@@ -738,6 +738,7 @@ boolean L8_trapperTalk()
 	{
 		auto_log_info("Talkint to the trapper to find out what kind of Ore he wants", "blue");
 		visit_url("place.php?whichplace=mclargehuge&action=trappercabin");		//talk to the trapper to advance quest
+        set_property("auto_interrupt", "true");
 	}
 	if(initial_step == 1)		//step1 == we know what ore to get. so go get ore and cheese
 	{
