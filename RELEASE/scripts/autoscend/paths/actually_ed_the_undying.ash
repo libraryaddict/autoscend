@@ -1098,7 +1098,7 @@ boolean L1_ed_island()
 		cli_execute("auto_post_adv");
 	}
 
-	buffMaintain($effect[Experimental Effect G-9], 0, 1, 1);
+	buffMaintain($effect[Experimental Effect G-9]);
 	autoAdv($location[The Secret Government Laboratory]);
 	if(item_amount($item[Bottle-Opener Keycard]) > 0)
 	{
@@ -1239,27 +1239,6 @@ boolean L9_ed_chasmStart()
 		autoAdvBypass("place.php?whichplace=orc_chasm&action=bridge_done", $location[The Smut Orc Logging Camp]);
 
 		set_property("auto_chasmBusted", true);
-		return true;
-	}
-	return false;
-}
-
-boolean L9_ed_chasmBuildClover(int need)
-{
-	if (isActuallyEd() && (need > 3) && (item_amount($item[Disassembled Clover]) > 2))
-	{
-		use(1, $item[disassembled clover]);
-		backupSetting("cloverProtectActive", false);
-		autoAdvBypass("adventure.php?snarfblat=295", $location[The Smut Orc Logging Camp]);
-		if(item_amount($item[Ten-Leaf Clover]) > 0)
-		{
-			auto_log_info("Wandering adventure in The Smut Orc Logging Camp, boo. Gonna have to do this again.");
-			use(item_amount($item[Ten-Leaf Clover]), $item[Ten-Leaf Clover]);
-			restoreSetting("cloverProtectActive");
-			return true;
-		}
-		restoreSetting("cloverProtectActive");
-		visit_url("place.php?whichplace=orc_chasm&action=bridge"+(to_int(get_property("chasmBridgeProgress"))));
 		return true;
 	}
 	return false;

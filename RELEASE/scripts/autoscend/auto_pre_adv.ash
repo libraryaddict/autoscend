@@ -87,9 +87,12 @@ void auto_ghost_prep(location place)
 		return;		//you robot with a rocket crotch. deals fire damage to kill ghosts.
 	}
 	//a few iconic spells per avatar is ok. no need to be too exhaustive
-	foreach sk in $skills[Saucestorm, saucegeyser,		//base classes
-	Storm of the Scarab,		//actually ed the undying
-	Boil]		//avatar of jarlsberg
+	foreach sk in $skills[
+		Saucestorm, saucegeyser,	//base classes
+		Storm of the Scarab,		//actually ed the undying
+		Boil,						//avatar of jarlsberg
+		Bilious Burst				//zombie slayer
+		]
 	{
 		if(auto_have_skill(sk))
 		{
@@ -158,7 +161,7 @@ void auto_ghost_prep(location place)
 		addToMaximize(max_with);
 		return;
 	}
-	
+
 	abort("I was about to head into [" +place+ "] which contains ghosts. I can not damage those");
 }
 
@@ -178,7 +181,7 @@ boolean auto_pre_adventure()
 
 	if(get_floundry_locations() contains place)
 	{
-		buffMaintain($effect[Baited Hook], 0, 1, 1);
+		buffMaintain($effect[Baited Hook]);
 	}
 
 	// be ready to use red rocket if we don't have one
@@ -201,12 +204,14 @@ boolean auto_pre_adventure()
 	{
 		uneffect($effect[Spiky Shell]);
 		uneffect($effect[Scarysauce]);
+		if(!uneffect($effect[Scariersauce])) abort("Could not uneffect [Scariersauce]");
 	}
 
 	if($locations[Next to that Barrel with something Burning In It, Near an Abandoned Refrigerator, Over where the Old Tires Are, Out by that Rusted-Out Car] contains place)
 	{
 		uneffect($effect[Spiky Shell]);
 		uneffect($effect[Scarysauce]);
+		if(!uneffect($effect[Scariersauce])) abort("Could not uneffect [Scariersauce]");
 	}
 
 	if(is_boris())
@@ -270,7 +275,7 @@ boolean auto_pre_adventure()
 	}
 
 	// this calls the appropriate provider for +combat or -combat depending on the zone we are about to adventure in..
-	boolean burningDelay = ((auto_voteMonster(true) || isOverdueDigitize() || auto_sausageGoblin()) && place == solveDelayZone());
+	boolean burningDelay = ((auto_voteMonster(true) || isOverdueDigitize() || auto_sausageGoblin() || auto_backupTarget()) && place == solveDelayZone());
 	generic_t combatModifier = zone_combatMod(place);
 	if (combatModifier._boolean && !burningDelay && !auto_haveQueuedForcedNonCombat()) {
 		acquireCombatMods(combatModifier._int, true);
@@ -329,6 +334,11 @@ boolean auto_pre_adventure()
 		}
 	}
 
+	if(auto_backupTarget())
+	{
+		autoEquip($slot[acc3], $item[backup camera]);
+	}
+	
 	if(auto_FireExtinguisherCombatString(place) != "" || $locations[The Goatlet, Twin Peak, The Hidden Bowling Alley, The Hatching Chamber, The Feeding Chamber, The Royal Guard Chamber] contains place)
 	{
 		autoEquip($item[industrial fire extinguisher]);
@@ -502,7 +512,7 @@ boolean auto_pre_adventure()
 	//	Casting before ML variation ensures that this, the more important buff, is cast before ML.
 	if(auto_predictAccordionTurns() >= 8)
 	{
-		buffMaintain($effect[Paul\'s Passionate Pop Song], 0, 1, 1);
+		buffMaintain($effect[Paul\'s Passionate Pop Song]);
 	}
 
 	// ML adjustment zone section

@@ -11,7 +11,9 @@ string auto_combatDefaultStage2(int round, monster enemy, string text)
 
 	//use industrial fire extinguisher zone specific skills
 	string extinguisherSkill = auto_FireExtinguisherCombatString(my_location());
-	if(extinguisherSkill != "" && have_equipped($item[industrial fire extinguisher]))
+	if(extinguisherSkill != "" && have_equipped($item[industrial fire extinguisher])
+	//below is temp workaround for https://github.com/Loathing-Associates-Scripting-Society/autoscend/issues/1011
+	&& enemy != $monster[screambat])
 	{
 		handleTracker(enemy, to_skill(substring(extinguisherSkill, 6)), "auto_otherstuff");
 		return extinguisherSkill;
@@ -190,6 +192,19 @@ string auto_combatDefaultStage2(int round, monster enemy, string text)
 			res += ", none";
 		}
 		return res;
+	}
+
+	// Bugbear Invasion
+	if (in_bugbear())
+	{
+		if (enemy == $monster[bugbear scientist] && item_amount($item[quantum nanopolymer spider web]) > 0)
+		{
+			return "item " + $item[quantum nanopolymer spider web];
+		}
+		if (enemy == $monster[liquid metal bugbear] && item_amount($item[drone self-destruct chip]) > 0)
+		{
+			return "item " + $item[drone self-destruct chip];
+		}
 	}
 	
 	# Instakill handler

@@ -250,11 +250,6 @@ boolean L9_chasmBuild()
 
 	if(in_hardcore())
 	{
-		int need = (30 - get_property("chasmBridgeProgress").to_int());
-		if(L9_ed_chasmBuildClover(need))
-		{
-			return true;
-		}
 
 		if(in_gnoob() && auto_have_familiar($familiar[Robortender]))
 		{
@@ -533,7 +528,7 @@ boolean L9_aBooPeak()
 
 		if(doThisBoo)
 		{
-			buffMaintain($effect[Go Get \'Em\, Tiger!], 0, 1, 1);
+			buffMaintain($effect[Go Get \'Em\, Tiger!]);
 			bat_formMist();
 			if(0 == have_effect($effect[Mist Form]))
 			{
@@ -544,13 +539,14 @@ boolean L9_aBooPeak()
 
 			buffMaintain($effect[Astral Shell], 10, 1, 1);
 			buffMaintain($effect[Elemental Saucesphere], 10, 1, 1);
+			buffMaintain($effect[Scariersauce], 10, 1, 1);
 			buffMaintain($effect[Scarysauce], 10, 1, 1);
-			buffMaintain($effect[Spookypants], 0, 1, 1);
-			buffMaintain($effect[Hyphemariffic], 0, 1, 1);
-			buffMaintain($effect[Insulated Trousers], 0, 1, 1);
-			buffMaintain($effect[Balls of Ectoplasm], 0, 1, 1);
-			buffMaintain($effect[Red Door Syndrome], 0, 1, 1);
-			buffMaintain($effect[Well-Oiled], 0, 1, 1);
+			buffMaintain($effect[Spookypants]);
+			buffMaintain($effect[Hyphemariffic]);
+			buffMaintain($effect[Insulated Trousers]);
+			buffMaintain($effect[Balls of Ectoplasm]);
+			buffMaintain($effect[Red Door Syndrome]);
+			buffMaintain($effect[Well-Oiled]);
 
 			auto_beachCombHead("cold");
 			auto_beachCombHead("spooky");
@@ -648,9 +644,9 @@ boolean L9_twinPeak()
 		handleBjornify($familiar[Grimstone Golem]);
 	}
 	
-	buffMaintain($effect[Fishy Whiskers], 0, 1, 1);		//heavy rains specific reduce item drop penalty by 10%
+	buffMaintain($effect[Fishy Whiskers]);		//heavy rains specific reduce item drop penalty by 10%
 	//BHY specific prevent wandering bees from skipping the burning the hotel down choice and wasting turns
-	buffMaintain($effect[Float Like a Butterfly, Smell Like a Bee], 0, 1, 1);
+	buffMaintain($effect[Float Like a Butterfly, Smell Like a Bee]);
 	
 	if(in_bhy())
 	{
@@ -715,7 +711,7 @@ boolean L9_twinPeak()
 		}
 		if((food_drop < 50.0) && (item_amount($item[resolution: be happier]) > 0) && (have_effect($effect[Joyful Resolve]) == 0))
 		{
-			buffMaintain($effect[Joyful Resolve], 0, 1, 1);
+			buffMaintain($effect[Joyful Resolve]);
 			food_drop = food_drop + 15;
 		}
 		if(food_drop >= 50.0)
@@ -834,17 +830,17 @@ boolean L9_oilPeak()
 		auto_log_info("Oil Peak is finished but we need more crude!", "blue");
 	}
 
-	buffMaintain($effect[Fishy Whiskers], 0, 1, 1);
+	buffMaintain($effect[Fishy Whiskers]);
 
 	auto_MaxMLToCap(auto_convertDesiredML(100), true);
 
 	if (isActuallyEd() && get_property("auto_dickstab").to_boolean())
 	{
-		buffMaintain($effect[The Dinsey Look], 0, 1, 1);
+		buffMaintain($effect[The Dinsey Look]);
 	}
 	if(monster_level_adjustment() < 50)
 	{
-		buffMaintain($effect[The Dinsey Look], 0, 1, 1);
+		buffMaintain($effect[The Dinsey Look]);
 	}
 	if((monster_level_adjustment() < 60))
 	{
