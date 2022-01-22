@@ -428,6 +428,7 @@ boolean batteryCombine(item battery);
 boolean batteryCombine(item battery, boolean simulate);
 boolean can_get_battery(item target);
 boolean auto_getBattery(item target);
+boolean have_fireworks_shop();
 boolean auto_haveFireExtinguisher();
 int auto_fireExtinguisherCharges();
 string auto_FireExtinguisherCombatString(location place);
@@ -747,6 +748,8 @@ int plumber_ppCost(skill sk);
 boolean plumber_canDealScalingDamage();
 boolean plumber_skillValid(skill sk);
 boolean plumber_equipTool(stat st);
+void plumber_eat_xp();
+boolean LM_plumber();
 
 ########################################################################################################
 //Defined in autoscend/paths/picky.ash
@@ -1019,7 +1022,6 @@ boolean L12_sonofaPrefix();
 boolean L12_sonofaFinish();
 boolean L12_flyerBackup();
 boolean L12_lastDitchFlyer();
-boolean LX_attemptFlyering();
 boolean L12_flyerFinish();
 boolean L12_themtharHills();
 boolean LX_obtainChaosButterfly();
@@ -1204,6 +1206,7 @@ boolean auto_breakfastCounterVisit();
 item still_targetToOrigin(item target);
 boolean stillReachable();
 boolean distill(item target);
+boolean prepare_food_xp_multi();
 
 ########################################################################################################
 //Defined in autoscend/auto_settings.ash
@@ -1369,6 +1372,7 @@ void pathDroppedCheck();
 ########################################################################################################
 //Defined in autoscend/auto_powerlevel.ash
 boolean isAboutToPowerlevel();
+location highestScalingZone();
 boolean LX_attemptPowerLevel();
 boolean disregardInstantKarma();
 int auto_freeCombatsRemaining();
