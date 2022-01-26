@@ -153,7 +153,6 @@ void initializeSettings() {
 	set_property("auto_chasmBusted", true);
 	set_property("auto_chewed", "");
 	set_property("auto_clanstuff", "0");
-	set_property("auto_combatHandler", "");
 	set_property("auto_cookie", -1);
 	set_property("auto_copies", "");
 	set_property("auto_crackpotjar", "");
@@ -786,10 +785,7 @@ void initializeDay(int day)
 						buyUpTo(1, $item[Toy Accordion]);
 					}
 				}
-				if(!possessEquipment($item[Turtle Totem]))
-				{
-					acquireGumItem($item[Turtle Totem]);
-				}
+				acquireTotem();
 				if(!possessEquipment($item[Saucepan]))
 				{
 					acquireGumItem($item[Saucepan]);
@@ -1270,6 +1266,11 @@ boolean adventureFailureHandler()
 		{
 			tooManyAdventures = false;
 		}
+
+		if ($locations[The Daily Dungeon] contains place && get_property("auto_forceFatLootToken").to_boolean())
+		{
+			tooManyAdventures = false;
+		}
 		
 		boolean can_powerlevel_stench = elementalPlanes_access($element[stench]) && auto_have_skill($skill[Summon Smithsness]) && get_property("auto_beatenUpCount").to_int() == 0;
 		boolean has_powerlevel_iotm = can_powerlevel_stench || elementalPlanes_access($element[spooky]) || elementalPlanes_access($element[cold]) || elementalPlanes_access($element[sleaze]) || elementalPlanes_access($element[hot]) || neverendingPartyAvailable();
@@ -1613,7 +1614,7 @@ boolean doTasks()
 	
 	print_header();
 
-	auto_interruptCheck();
+	auto_interruptCheck(false);
 
 	int delay = get_property("auto_delayTimer").to_int();
 	if(delay > 0)

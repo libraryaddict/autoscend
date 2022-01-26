@@ -1,4 +1,4 @@
-boolean buffMaintain(skill source, effect buff, int mp_min, int casts, int turns, boolean speculative)
+boolean buffMaintain(skill source, effect buff, item mustEquip, int mp_min, int casts, int turns, boolean speculative)
 {
 	if(!glover_usable(buff))
 	{
@@ -38,8 +38,39 @@ boolean buffMaintain(skill source, effect buff, int mp_min, int casts, int turns
 	{
 		return false;
 	}
+	//handling for buffs that must equip something first
+	boolean equip_changed = false;
+	slot equip_slot = to_slot(mustEquip);
+	item equip_original = equipped_item(equip_slot);
+	if(mustEquip != $item[none])
+	{
+		if(!possessEquipment(mustEquip) ||	//we can not wear what we do not have. this checks both inventory and already worn
+		!auto_is_valid(mustEquip) ||	//checks path limitations
+		!can_equip(mustEquip))	//checks if stats are high enough
+		{
+			return false;	//we can not wear this equipment
+		}
+		if(!speculative)
+		{
+			//wear it now before using the buff. do not use the auto_ functions here because we only want to wear it long enough to cast the buff. not change what we wear to the next adventure
+			equip(equip_slot, mustEquip);
+			if(equipped_amount(mustEquip) == 0)
+			{
+				auto_log_warning("buffMaintain failed to equip [" +mustEquip+ "] for some reason. which is necessary in order to apply [" +buff+ "] using the skill [" +source+ "].");
+				return false;
+			}
+			equip_changed = true;
+		}
+	}
 	if(!speculative)
+	{
 		use_skill(casts, source);
+	}
+	
+	if(equip_changed)
+	{
+		equip(equip_slot, equip_original);		//return equipment to how it was originally
+	}
 	return true;
 }
 
@@ -111,7 +142,7 @@ boolean buffMaintain(effect buff, int mp_min, int casts, int turns, boolean spec
 	case $effect[Ashen]:					useItem = $item[pile of ashes];						break;
 	case $effect[Ashen Burps]:					useItem = $item[ash soda];						break;
 	case $effect[Astral Shell]:
-		if(acquireTotem())
+		if(auto_have_skill($skill[Astral Shell]) && acquireTotem())
 		{
 			useSkill = $skill[Astral Shell];
 		}																						break;
@@ -204,7 +235,7 @@ boolean buffMaintain(effect buff, int mp_min, int casts, int turns, boolean spec
 	case $effect[Contemptible Emanations]:		useItem = $item[Cologne of Contempt];			break;
 	case $effect[The Cupcake of Wrath]:			useItem = $item[Green-Frosted Astral Cupcake];	break;
 	case $effect[Curiosity of Br\'er Tarrypin]:
-		if(acquireTotem())
+		if(pathHasFamiliar() && auto_have_skill($skill[Curiosity of Br\'er Tarrypin]) && acquireTotem())
 		{
 			useSkill = $skill[Curiosity of Br\'er Tarrypin];
 		}																						break;
@@ -236,7 +267,7 @@ boolean buffMaintain(effect buff, int mp_min, int casts, int turns, boolean spec
 	case $effect[Eldritch Alignment]:			useItem = $item[Eldritch Alignment Spray];		break;
 	case $effect[Elemental Saucesphere]:		useSkill = $skill[Elemental Saucesphere];		break;
 	case $effect[Empathy]:
-		if(pathHasFamiliar() && acquireTotem())
+		if(pathHasFamiliar() && auto_have_skill($skill[Empathy of the Newt]) && acquireTotem())
 		{
 			useSkill = $skill[Empathy of the Newt];
 		}																						break;
@@ -302,7 +333,7 @@ boolean buffMaintain(effect buff, int mp_min, int casts, int turns, boolean spec
 	case $effect[Funky Coal Patina]:			useItem = $item[Coal Dust];						break;
 	case $effect[Gelded]:						useItem = $item[Chocolate Filthy Lucre];		break;
 	case $effect[Ghostly Shell]:
-		if(acquireTotem())
+		if(auto_have_skill($skill[Ghostly Shell]) && acquireTotem())
 		{
 			useSkill = $skill[Ghostly Shell];
 		}																						break;
@@ -364,7 +395,7 @@ boolean buffMaintain(effect buff, int mp_min, int casts, int turns, boolean spec
 	case $effect[Jackasses\' Symphony of Destruction]:useSkill = $skill[Jackasses\' Symphony of Destruction];	break;
 	case $effect[Jalape&ntilde;o Saucesphere]:	useSkill = $skill[Jalape&ntilde;o Saucesphere];	break;
 	case $effect[Jingle Jangle Jingle]:
-		if(acquireTotem())
+		if(auto_have_skill($skill[Jingle Bells]) && acquireTotem())
 		{
 			useSkill = $skill[Jingle Bells];
 		}																						break;
@@ -511,7 +542,7 @@ boolean buffMaintain(effect buff, int mp_min, int casts, int turns, boolean spec
 	case $effect[Red Lettered]:					useItem = $item[Red Letter];					break;
 	case $effect[Red Door Syndrome]:			useItem = $item[Can of Black Paint];			break;
 	case $effect[Reptilian Fortitude]:
-		if(acquireTotem())
+		if(auto_have_skill($skill[Reptilian Fortitude]) && acquireTotem())
 		{
 			useSkill = $skill[Reptilian Fortitude];
 		}																						break;
@@ -587,7 +618,7 @@ boolean buffMaintain(effect buff, int mp_min, int casts, int turns, boolean spec
 	case $effect[Spice Haze]:					useSkill = $skill[Bind Spice Ghost];			break;
 	case $effect[Spiky Hair]:					useItem = $item[Super-Spiky Hair Gel];			break;
 	case $effect[Spiky Shell]:
-		if(acquireTotem())
+		if(auto_have_skill($skill[Spiky Shell]) && acquireTotem())
 		{
 			useSkill = $skill[Spiky Shell];
 		}																						break;
@@ -630,7 +661,7 @@ boolean buffMaintain(effect buff, int mp_min, int casts, int turns, boolean spec
 	case $effect[Taunt of Horus]:				useItem = $item[Talisman of Horus];				break;
 	case $effect[Temporary Lycanthropy]:		useItem = $item[Blood of the Wereseal];			break;
 	case $effect[Tenacity of the Snapper]:
-		if(acquireTotem())
+		if(auto_have_skill($skill[Tenacity of the Snapper]) && acquireTotem())
 		{
 			useSkill = $skill[Tenacity of the Snapper];
 		}																						break;
@@ -842,29 +873,13 @@ boolean buffMaintain(effect buff, int mp_min, int casts, int turns, boolean spec
 		}
 	}
 	
-	//handling for buffs that must equip something first
-	if(mustEquip != $item[none])
-	{
-		if(!possessEquipment(mustEquip) ||	//we can not wear what we do not have. this checks both inventory and already worn
-		!auto_is_valid(mustEquip) ||	//checks path limitations
-		!can_equip(mustEquip))	//checks if stats are high enough
-		{
-			return false;	//we can not wear this equipment
-		}
-		if(!speculative)
-		{
-			//wear it now before using the buff. do not use the auto_ functions here because we only want to wear it long enough to cast the buff. not change what we wear to the next adventure
-			equip(mustEquip);
-		}
-	}
-
 	if(useItem != $item[none])
 	{
 		return buffMaintain(useItem, buff, casts, turns, speculative);
 	}
 	if(useSkill != $skill[none])
 	{
-		return buffMaintain(useSkill, buff, mp_min, casts, turns, speculative);
+		return buffMaintain(useSkill, buff, mustEquip, mp_min, casts, turns, speculative);
 	}
 	return false;
 }
