@@ -1,8 +1,8 @@
 boolean needOre()
 {
-	//Determines if we need ore for the trapper or not.
+	// Determines if we need ore for the trapper or not.
 	
-	if (internalQuestStatus("questL08Trapper") > 2)
+	if(internalQuestStatus("questL08Trapper") > 2)
 	{
 		return false;
 	}
@@ -31,7 +31,7 @@ int getCellToMine(item oreGoal)
 
 	// the information we need is spread between the page (unmined sparkling cells) and the mineLayout1 property (what we got when mined the cell).
 
-	if (!is_wearing_outfit("Mining Gear"))
+	if(!is_wearing_outfit("Mining Gear"))
 	{
 		return 0;
 	}
@@ -105,7 +105,7 @@ int getCellToMine(item oreGoal)
 		// this is basically bounds checking for cells
 		// set rowLimit = 6 to not care about rows (there is no row 7)
 		int column = cellToCheck % 8;
-		if (column < 1 || column > 6 )
+		if(column < 1 || column > 6 )
 		{
 			return false;
 		}
@@ -120,7 +120,7 @@ int getCellToMine(item oreGoal)
 	boolean isInSideColumn(int cellToCheck)
 	{
 		int column = cellToCheck % 8;
-		if (column == 1 || column == 6)
+		if(column == 1 || column == 6)
 		{
 			return true;
 		}
@@ -258,7 +258,7 @@ int getCellToMine(item oreGoal)
 
 boolean L8_getGoatCheese()
 {
-	if(internalQuestStatus("questL08Trapper") != 1)		//step1 = we spoke to trapper to unlock goatlet
+	if(internalQuestStatus("questL08Trapper") != 1) // step1 = we spoke to trapper to unlock goatlet
 	{
 		return false;
 	}
@@ -273,7 +273,7 @@ boolean L8_getGoatCheese()
 	{
 		auto_sourceTerminalEducate($skill[Extract], $skill[Duplicate]);
 	}
-	if (canSniff($monster[Dairy Goat], $location[The Goatlet]) && auto_mapTheMonsters())
+	if(canSniff($monster[Dairy Goat], $location[The Goatlet]) && auto_mapTheMonsters())
 	{
 		auto_log_info("Attemping to use Map the Monsters to olfact a Dairy Goat.");
 	}
@@ -284,7 +284,7 @@ boolean L8_getGoatCheese()
 
 boolean L8_getMineOres()
 {
-	if(internalQuestStatus("questL08Trapper") != 1)		//step1 = we spoke to trapper to learn what ores he wants
+	if(internalQuestStatus("questL08Trapper") != 1) // step1 = we spoke to trapper to learn what ores he wants
 	{
 		return false;
 	}
@@ -302,7 +302,7 @@ boolean L8_getMineOres()
 		return false;
 	}
 
-	//heavy rain copy handling.
+	// heavy rain copy handling.
 	if(in_heavyrains() && have_skill($skill[Rain Man]))
 	{
 		if(my_rain() < 50)
@@ -320,22 +320,22 @@ boolean L8_getMineOres()
 		return rainManSummon($monster[mountain man], false, false);
 	}
 	
-	//in softcore we want to pull the ores.
+	// in softcore we want to pull the ores.
 	if(!in_hardcore())
 	{
 		if(pulls_remaining() != -1 && pulls_remaining() < (3 - item_amount(oreGoal)))
 		{
-			return false;	//if not enough pulls left wait until tomorrow
+			return false; // if not enough pulls left wait until tomorrow
 		}
 		pullXWhenHaveY(oreGoal, 3 - item_amount(oreGoal), item_amount(oreGoal));
 		if(item_amount(oreGoal) == 3)
 		{
-			return true;	//pulled successfully.
+			return true;// pulled successfully.
 		}
-		//do not return false if failed to pull despite having enough pulls left. It suggests there is some other issue preventing us from pulling so we should go forwards and acquire them.
+		// do not return false if failed to pull despite having enough pulls left. It suggests there is some other issue preventing us from pulling so we should go forwards and acquire them.
 	}
 	
-	//use 1 wish if we can guarentee it will be enough via cat burglar
+	// use 1 wish if we can guarentee it will be enough via cat burglar
 	if(canGenieCombat() && auto_shouldUseWishes() && catBurglarHeistsLeft() > 1)
 	{
 		auto_log_info("Trying to wish for a mountain man, which the cat will then burgle, hopefully.");
@@ -343,7 +343,7 @@ boolean L8_getMineOres()
 		return makeGenieCombat($monster[mountain man]);
 	}
 	
-	//try to clover for the ore
+	// try to clover for the ore
 	int numCloversKeep = 0;
 	if(get_property("auto_wandOfNagamar").to_boolean())
 	{
@@ -467,27 +467,27 @@ boolean L8_trapperExtreme()
 	{
 		return false;
 	}
-	if(L8_trapperPeak())	//try to unlock peak
+	if(L8_trapperPeak()) // try to unlock peak
 	{
-		return true;	//successfully finished this part of the quest
+		return true; //successfully finished this part of the quest
 	}
 	if(get_property("_sourceTerminalDigitizeMonster") == $monster[Ninja Snowman Assassin])
 	{
 		return false;
 	}
 	
-	//we should equip the extreme outfit if we have it
-	if (possessOutfit("eXtreme Cold-Weather Gear", true))	//own and can equip
+	// we should equip the extreme outfit if we have it
+	if(possessOutfit("eXtreme Cold-Weather Gear", true)) // own and can equip
 	{
 		autoOutfit("eXtreme Cold-Weather Gear");
 	}
-	else if (possessOutfit("eXtreme Cold-Weather Gear"))	//just own. thanks to else can not equip
+	else if(possessOutfit("eXtreme Cold-Weather Gear")) // just own. thanks to else can not equip
 	{
 		auto_log_warning("I can not wear the eXtreme Gear, I'm just not awesome enough :(", "red");
 		return false;
 	}
 	
-	//try to get extreme points
+	// try to get extreme points
 	auto_log_info("Penguin Tony Hawk time. Extreme!! SSX Tricky!!", "blue");
 	return autoAdv($location[The eXtreme Slope]);
 }
@@ -577,8 +577,8 @@ boolean L8_trapperSlopeSoftcore()
 {
 	// slope handling for softcore. we want to pull the ninja climbing gear. unless we are copying ninja assassins. in which case we want to go do something else.
 	
-	//special path or IOTM handling
-	if(!get_property("auto_L8_ninjaAssassinFail").to_boolean())		//can defeat assassins
+	// special path or IOTM handling
+	if(!get_property("auto_L8_ninjaAssassinFail").to_boolean()) // can defeat assassins
 	{
 		if(have_skill($skill[Rain Man]))
 		{
@@ -592,46 +592,46 @@ boolean L8_trapperSlopeSoftcore()
 		}
 	}
 
-	//pull ninja climbing gear to skip the slope.
+	// pull ninja climbing gear to skip the slope.
 	foreach it in $items[Ninja Carabiner, Ninja Crampons, Ninja Rope]
 	{
 		pullXWhenHaveY(it, 1, 0);
 		if(pulls_remaining() == 0 && item_amount(it) == 0)
 		{
-			return false;	//out of pulls in softcore. come back tomorrow
+			return false; // out of pulls in softcore. come back tomorrow
 		}
 	}
 	
-	//if we reached this point we have all the climbing gear. only need 5 cold res to progress
-	if(L8_trapperPeak())	//try to unlock peak with the pulled items
+	// if we reached this point we have all the climbing gear. only need 5 cold res to progress
+	if(L8_trapperPeak()) // try to unlock peak with the pulled items
 	{
-		return true;	//successfully finished this part of the quest
+		return true; // successfully finished this part of the quest
 	}
-	else if(!in_robot())	//robots need too many bodyparts for outfit.
+	else if(!in_robot()) // robots need too many bodyparts for outfit.
 	{
-		//if we failed to unlock at this point it is because we do not have 5 cold res. So grab the outfit for that +5 cold res
+		// if we failed to unlock at this point it is because we do not have 5 cold res. So grab the outfit for that +5 cold res
 		return L8_trapperExtreme();
 	}
-	return false;		//must have a return value. fallback option. should never actually be reached
+	return false; // must have a return value. fallback option. should never actually be reached
 }
 
 boolean L8_trapperNinjaLair()
 {
-	//adventure in the lair of the ninja snowmen to find and fight ninja snowman assassins.
-	//usually this would only occur in hardcore
+	// adventure in the lair of the ninja snowmen to find and fight ninja snowman assassins.
+	// usually this would only occur in hardcore
 	if(internalQuestStatus("questL08Trapper") != 2)
 	{
 		return false;
 	}
-	if(L8_trapperPeak())	//try to unlock peak
+	if(L8_trapperPeak()) // try to unlock peak
 	{
-		return true;	//successfully finished this part of the quest
+		return true; // successfully finished this part of the quest
 	}
-	if(get_property("auto_L8_extremeInstead").to_boolean())			//we want to do extreme path instead
+	if(get_property("auto_L8_extremeInstead").to_boolean()) // we want to do extreme path instead
 	{
 		return false;	
 	}
-	if(get_property("auto_L8_ninjaAssassinFail").to_boolean())		//we cannot survive against assassins
+	if(get_property("auto_L8_ninjaAssassinFail").to_boolean()) // we cannot survive against assassins
 	{
 		set_property("auto_L8_extremeInstead", true);
 		return false;
@@ -640,10 +640,10 @@ boolean L8_trapperNinjaLair()
 	
 	if(isActuallyEd())
 	{
-		//we lack a function to determine if we will get instagibbed by assassins.
-		//if we had one ed could benefit from doing the slope when he does not get instagibbed by the assassins
+		// we lack a function to determine if we will get instagibbed by assassins.
+		// if we had one ed could benefit from doing the slope when he does not get instagibbed by the assassins
 		auto_log_info("Ed assumed to not be able to survive ninja assassins", "blue");
-		set_property("auto_L8_ninjaAssassinFail", true);		//we assume ed cannot defeat assassins
+		set_property("auto_L8_ninjaAssassinFail", true); // we assume ed cannot defeat assassins
 		return true;
 	}
 
@@ -663,14 +663,14 @@ boolean L8_trapperNinjaLair()
 		return false;
 	}
 
-	if (shenShouldDelayZone($location[Lair of the Ninja Snowmen]))
+	if(shenShouldDelayZone($location[Lair of the Ninja Snowmen]))
 	{
 		auto_log_debug("Delaying Lair of the Ninja Snowmen in case of Shen.");
 		return false;
 	}
 
-	//can we provide enough combat bonus to encounter snowman assassins?
-	if(providePlusCombat(25, $location[Lair of the Ninja Snowmen], true, true) <= 0.0)	//ninja snowman does not show up if +combat is not greater than 0
+	// can we provide enough combat bonus to encounter snowman assassins?
+	if(providePlusCombat(25, $location[Lair of the Ninja Snowmen], true, true) <= 0.0) // ninja snowman does not show up if +combat is not greater than 0
 	{
 		if(isAboutToPowerlevel())
 		{
@@ -685,8 +685,8 @@ boolean L8_trapperNinjaLair()
 		return false;
 	}
 	
-	//buff
-	if (isActuallyEd() && !elementalPlanes_access($element[spooky]))
+	// buff
+	if(isActuallyEd() && !elementalPlanes_access($element[spooky]))
 	{
 		adjustEdHat("myst");
 	}
@@ -701,13 +701,13 @@ boolean L8_trapperNinjaLair()
 
 boolean L8_trapperGroar()
 {
-	//do the peak portion of L8 trapper quest.
+	// do the peak portion of L8 trapper quest.
 	if(internalQuestStatus("questL08Trapper") < 3 || internalQuestStatus("questL08Trapper") > 4)
 	{
-		return false;	//peak not yet unlocked or we are done with groar
+		return false; // peak not yet unlocked or we are done with groar
 	}
 	
-	//error catching for if we are actually on step5 and mafia did not notice.
+	// error catching for if we are actually on step5 and mafia did not notice.
 	if(item_amount($item[Groar\'s Fur]) > 0 || item_amount($item[Winged Yeti Fur]) > 0)
 	{
 		auto_log_info("Quest tracking error detected. Mafia thinks we are in step4 of questL08Trapper but we are in fact in step5. Correcting. Current Path = " +my_path(), "red");
@@ -720,7 +720,7 @@ boolean L8_trapperGroar()
 		return false;
 	}
 	
-	//we need 5 cold res to be allowed to adventure in [Mist-shrouded Peak]
+	// we need 5 cold res to be allowed to adventure in [Mist-shrouded Peak]
 	int [element] resGoal;
 	resGoal[$element[cold]] = 5;
 	// try getting resistance without equipment before bothering to change gear
@@ -735,8 +735,8 @@ boolean L8_trapperGroar()
 	}
 	if(retval && initial_adv == my_session_adv())
 	{
-		//if mafia tracking failed to advance quest then it will get stuck in an inf loop of trying to adv in [Mist-shrouded Peak]
-		//which becomes an invalid zone after groar dies. being replaced with the new zone called [The Icy Peak]
+		// if mafia tracking failed to advance quest then it will get stuck in an inf loop of trying to adv in [Mist-shrouded Peak]
+		// which becomes an invalid zone after groar dies. being replaced with the new zone called [The Icy Peak]
 		int initial_step = internalQuestStatus("questL08Trapper");
 		auto_log_debug("Adventured without spending adv in [Mist-shrouded Peak]. checking quest status", "blue");
 		cli_execute("refresh quests");
@@ -750,13 +750,13 @@ boolean L8_trapperGroar()
 
 boolean L8_trapperPeak()
 {
-	//unlock the peak in the trapper quest
+	// unlock the peak in the trapper quest
 	if(internalQuestStatus("questL08Trapper") != 2)
 	{
 		return false;
 	}
 	
-	//unlock peak using ninja climbing gear
+	// unlock peak using ninja climbing gear
 	if(item_amount($item[Ninja Rope]) > 0 && item_amount($item[Ninja Carabiner]) > 0 && item_amount($item[Ninja Crampons]) > 0)
 	{
 		int [element] resGoal;
@@ -764,19 +764,19 @@ boolean L8_trapperPeak()
 		if(provideResistances(resGoal, $location[Mist-shrouded Peak], true))
 		{
 			equipMaximizedGear();
-			visit_url("place.php?whichplace=mclargehuge&action=cloudypeak");	//unlock peak. advancing to step 4.
-			set_property("auto_ninjasnowmanassassin", true);		//heavy rains. are we done copying them
+			visit_url("place.php?whichplace=mclargehuge&action=cloudypeak"); // unlock peak. advancing to step 4.
+			set_property("auto_ninjasnowmanassassin", true); // heavy rains. are we done copying them
 		}
 		else
 		{
-			//TODO get outfit
-			//TODO does TCRS have a problem with the outfit still not being enough? look into it
-			return false;		//we are unable to provide 5 cold res
+			// TODO get outfit
+			// TODO does TCRS have a problem with the outfit still not being enough? look into it
+			return false; // we are unable to provide 5 cold res
 		}
 		
 		if(internalQuestStatus("questL08Trapper") == 3)
 		{
-			return true;	//successfully unlocked peak
+			return true; // successfully unlocked peak
 		}
 		else
 		{
@@ -784,7 +784,7 @@ boolean L8_trapperPeak()
 		}
 	}
 	
-	//unlock peak using extremeness
+	// unlock peak using extremeness
 	if(get_property("currentExtremity").to_int() >= 3)
 	{
 		// TODO: There are some reports of this breaking in TCRS, when cold-weather
@@ -801,80 +801,80 @@ boolean L8_trapperPeak()
 
 boolean L8_trapperSlope()
 {
-	//climb the slope and reach the peak in L8 trapper quest. either via ninja snowmen lair or via the extreme slope
+	// climb the slope and reach the peak in L8 trapper quest. either via ninja snowmen lair or via the extreme slope
 	
 	if(internalQuestStatus("questL08Trapper") != 2)
 	{
-		return false;		//climbing the slope is step2 of the quest. when you unlock the peak it advances to step3
+		return false; // climbing the slope is step2 of the quest. when you unlock the peak it advances to step3
 	}
-	if(can_interact())		//casual and postronin special handling
+	if(can_interact()) // casual and postronin special handling
 	{
-		return L8_slopeCasual();	//mallbuy everything. or go do something else if too poor to do so
+		return L8_slopeCasual(); // mallbuy everything. or go do something else if too poor to do so
 	}
-	else if(!in_hardcore())		//!casual && !postronin && !hardcore == in softcore. which requires special handling
+	else if(!in_hardcore()) // !casual && !postronin && !hardcore == in softcore. which requires special handling
 	{
-		return L8_trapperSlopeSoftcore();	//pull ninja climbing gear. unless assassins are being copied, then go do something else
+		return L8_trapperSlopeSoftcore(); // pull ninja climbing gear. unless assassins are being copied, then go do something else
 	}
-	if(L8_trapperPeak())	//try to finish step2 of the quest.
+	if(L8_trapperPeak()) // try to finish step2 of the quest.
 	{
 		return true;
 	}
-	//hardcore handling
+	// hardcore handling
 	if(robot_delay("outfit"))
 	{
-		return false;	//delay for You, Robot path
+		return false; // delay for You, Robot path
 	}
-	if(get_property("auto_L8_extremeInstead").to_boolean())		//we decided we do not want to adventure in the ninja lair
+	if(get_property("auto_L8_extremeInstead").to_boolean()) // we decided we do not want to adventure in the ninja lair
 	{
-		if(L8_trapperExtreme()) return true;	//try to climb slope via extreme path
+		if(L8_trapperExtreme()) return true; // try to climb slope via extreme path
 	}
-	if(L8_trapperNinjaLair()) return true;	//try to climb slope via ninja path
+	if(L8_trapperNinjaLair()) return true; // try to climb slope via ninja path
 	
 	return false;
 }
 
 boolean L8_trapperTalk()
 {
-	//talk to the trapper to advance the L8 quest.
+	// talk to the trapper to advance the L8 quest.
 	int initial_step = internalQuestStatus("questL08Trapper");
 	if(initial_step != 0 && initial_step != 1 && initial_step != 5)
 	{
-		return false;	//only need to talk to trapper at steps 0, 1, and 5
+		return false; // only need to talk to trapper at steps 0, 1, and 5
 	}
 
-	if(initial_step == 0)		//step0 == quest started. we do not know what ores we need yet.
+	if(initial_step == 0) // step0 == quest started. we do not know what ores we need yet.
 	{
 		auto_log_info("Talkint to the trapper to find out what kind of Ore he wants", "blue");
-		visit_url("place.php?whichplace=mclargehuge&action=trappercabin");		//talk to the trapper to advance quest
+		visit_url("place.php?whichplace=mclargehuge&action=trappercabin"); // talk to the trapper to advance quest
         set_property("auto_interrupt", "true");
 	}
-	if(initial_step == 1)		//step1 == we know what ore to get. so go get ore and cheese
+	if(initial_step == 1) // step1 == we know what ore to get. so go get ore and cheese
 	{
 		if(item_amount(get_property("trapperOre").to_item()) >= 3 && item_amount($item[Goat Cheese]) >= 3)
 		{
-			//turn in ore and cheese to advance from step1 to step2
+			// turn in ore and cheese to advance from step1 to step2
 			auto_log_info("Giving Trapper goat cheese and " + get_property("trapperOre").to_item(), "blue");
-			visit_url("place.php?whichplace=mclargehuge&action=trappercabin");		//talk to the trapper to advance quest
+			visit_url("place.php?whichplace=mclargehuge&action=trappercabin"); // talk to the trapper to advance quest
 		}
 		else
 		{
-			return false;		//not enough cheese or ore yet. go get them
+			return false; // not enough cheese or ore yet. go get them
 		}
 	}
 	if(initial_step == 5)
 	{
-		//finish the quest
+		// finish the quest
 		visit_url("place.php?whichplace=mclargehuge&action=trappercabin");
 		council();
 	}
 	
-	//error checking
-	if(initial_step == internalQuestStatus("questL08Trapper"))		//we failed to advance. try refreshing quests
+	// error checking
+	if(initial_step == internalQuestStatus("questL08Trapper")) // we failed to advance. try refreshing quests
 	{
 		auto_log_info("we visited trapper but failed to advance the quest from step" +initial_step+ ". Refreshing quests", "red");
 		cli_execute("refresh quests");
 	}
-	if(initial_step == internalQuestStatus("questL08Trapper"))		//refreshing quests did not solve the problem
+	if(initial_step == internalQuestStatus("questL08Trapper")) // refreshing quests did not solve the problem
 	{
 		abort("We were unable to advance the quest when talking to the trapper for some reason");
 	}
@@ -883,8 +883,8 @@ boolean L8_trapperTalk()
 
 boolean L8_trapperQuest()
 {
-	//do the entire L8 trapper quest
-	if (internalQuestStatus("questL08Trapper") < 0 || internalQuestStatus("questL08Trapper") > 5)
+	// do the entire L8 trapper quest
+	if(internalQuestStatus("questL08Trapper") < 0 || internalQuestStatus("questL08Trapper") > 5)
 	{
 		return false;
 	}
