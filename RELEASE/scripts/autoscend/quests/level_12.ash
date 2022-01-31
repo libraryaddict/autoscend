@@ -895,24 +895,24 @@ boolean L12_filthworms()
 	}
 	else		//could not guarentee stealing. buff item drops instead
 	{
-		buffMaintain($effect[Joyful Resolve], 0, 1, 1);
-		buffMaintain($effect[Kindly Resolve], 0, 1, 1);
-		buffMaintain($effect[Fortunate Resolve], 0, 1, 1);
-		buffMaintain($effect[One Very Clear Eye], 0, 1, 1);
-		buffMaintain($effect[Human-Fish Hybrid], 0, 1, 1);
-		buffMaintain($effect[Human-Human Hybrid], 0, 1, 1);
-		buffMaintain($effect[Human-Machine Hybrid], 0, 1, 1);
-		buffMaintain($effect[Unusual Perspective], 0, 1, 1);
-		buffMaintain($effect[Eagle Eyes], 0, 1, 1);
-		buffMaintain($effect[Heart of Lavender], 0, 1, 1);
+		buffMaintain($effect[Joyful Resolve]);
+		buffMaintain($effect[Kindly Resolve]);
+		buffMaintain($effect[Fortunate Resolve]);
+		buffMaintain($effect[One Very Clear Eye]);
+		buffMaintain($effect[Human-Fish Hybrid]);
+		buffMaintain($effect[Human-Human Hybrid]);
+		buffMaintain($effect[Human-Machine Hybrid]);
+		buffMaintain($effect[Unusual Perspective]);
+		buffMaintain($effect[Eagle Eyes]);
+		buffMaintain($effect[Heart of Lavender]);
 		asdonBuff($effect[Driving Observantly]);
 		bat_formBats();
 
 		if(get_property("auto_dickstab").to_boolean())
 		{
-			buffMaintain($effect[Wet and Greedy], 0, 1, 1);
+			buffMaintain($effect[Wet and Greedy]);
 		}
-		buffMaintain($effect[Frosty], 0, 1, 1);
+		buffMaintain($effect[Frosty]);
 		
 		//craft IOTM derivative that gives high item bonus
 		if((!possessEquipment($item[A Light That Never Goes Out])) && (item_amount($item[Lump of Brituminous Coal]) > 0))
@@ -1191,10 +1191,11 @@ boolean L12_sonofaBeach()
 
 	if(!in_lar())
 	{
-		if(providePlusCombat(25, $location[Sonofa Beach], true, true) < 0.0)
+		float combat_bonus = providePlusCombat(25, $location[Sonofa Beach], true, true);
+		if(combat_bonus <= 0.0)
 		{
-			auto_log_warning("Something is keeping us from getting a suitable combat rate, we have: " + numeric_modifier("Combat Rate") + " and Lobsterfrogmen.", "red");
-			equipBaseline();
+			auto_log_warning("Something is keeping us from getting a suitable combat rate for [Lobsterfrogmen] in [Sonofa Beach]. we have: " +combat_bonus, "red");
+			resetState();
 			return false;
 		}
 	}
@@ -1253,6 +1254,12 @@ boolean L12_sonofaPrefix()
 		}
 	}
 
+	if(auto_backupTarget() && get_property("lastCopyableMonster").to_monster() == $monster[lobsterfrogman])
+	{
+		//let LX_burnDelay() run prior to forcing backing up in noob cave
+		return false;
+	}
+
 	if(!(auto_get_campground() contains $item[Source Terminal]))
 	{
 		if((auto_voteMonster() || auto_sausageGoblin()) && adjustForReplaceIfPossible())
@@ -1305,32 +1312,11 @@ boolean L12_sonofaPrefix()
 
 	if(!in_lar())
 	{
-		if(equipped_item($slot[acc1]) == $item[over-the-shoulder folder holder])
+		float combat_bonus = providePlusCombat(25, $location[Sonofa Beach], true, true);
+		if(combat_bonus <= 0.0)
 		{
-			if((item_amount($item[Ass-Stompers of Violence]) > 0) && (equipped_item($slot[acc1]) != $item[Ass-Stompers of Violence]) && can_equip($item[Ass-Stompers of Violence]))
-			{
-				equip($slot[acc1], $item[Ass-Stompers of Violence]);
-			}
-			else
-			{
-				equip($slot[acc1], $item[bejeweled pledge pin]);
-			}
-		}
-		if(item_amount($item[portable cassette player]) > 0)
-		{
-			equip($slot[acc2], $item[portable cassette player]);
-		}
-		if(numeric_modifier("Combat Rate") <= 9.0)
-		{
-			if(possessEquipment($item[Carpe]))
-			{
-				equip($slot[Back], $item[Carpe]);
-			}
-		}
-		if(numeric_modifier("Combat Rate") < 0.0)
-		{
-			auto_log_warning("Something is keeping us from getting a suitable combat rate, we have: " + numeric_modifier("Combat Rate") + " and Lobsterfrogmen.", "red");
-			equipBaseline();
+			auto_log_warning("Something is keeping us from getting a suitable combat rate for [Lobsterfrogmen] in [Sonofa Beach]. we have: " +combat_bonus, "red");
+			resetState();
 			return false;
 		}
 	}
@@ -1342,7 +1328,7 @@ boolean L12_sonofaPrefix()
 
 	if((my_mp() < mp_cost($skill[Digitize])) && (auto_get_campground() contains $item[Source Terminal]) && is_unrestricted($item[Source Terminal]) && (get_property("_sourceTerminalDigitizeMonster") != $monster[Lobsterfrogman]) && (get_property("_sourceTerminalDigitizeUses").to_int() < 3))
 	{
-		equipBaseline();
+		resetState();
 		return false;
 	}
 
@@ -1365,11 +1351,12 @@ boolean L12_sonofaPrefix()
 	auto_sourceTerminalEducate($skill[Extract], $skill[Digitize]);
 
 	boolean retval = autoAdv($location[Sonofa Beach]);
-	
-	set_property("auto_combatDirective", "");
-	set_property("auto_doCombatCopy", "no");
+	if(!retval)
+	{
+		auto_log_error("Failed to adventure in [Sonofa Beach]");
+		resetState();
+	}
 	edAcquireHP();
-	
 	return retval;
 }
 
@@ -1434,6 +1421,10 @@ boolean L12_lastDitchFlyer()
 	{
 		return false;
 	}
+	if(!auto_bestWarPlan().do_arena)
+	{
+		return false;		//we are not planning to do arena this ascension
+	}
 	if(internalQuestStatus("questL12War") != 1 || get_property("sidequestArenaCompleted") != "none" || get_property("flyeredML").to_int() >= 10000)
 	{
 		return false;
@@ -1442,79 +1433,47 @@ boolean L12_lastDitchFlyer()
 	{
 		return false;
 	}
+	if(my_level() < 13 && !isAboutToPowerlevel())
+	{
+		return false;		//let the powerlevel lock release first so we can do quests that are waiting for optimal conditions.
+	}
 
 	auto_log_info("Not enough flyer ML but we are ready for the war... uh oh", "blue");
+	if(LX_freeCombats(true)) return true;	//try to use free combats to make up the difference.
 
-	if(needStarKey())
+	location scalezone = highestScalingZone();
+	float flyer_gains = my_buffedstat($stat[moxie]) + monster_level_adjustment();
+	switch(scalezone)
 	{
-		if(!zone_isAvailable($location[The Hole in the Sky]))
-		{
-			return (L10_topFloor() || L10_holeInTheSkyUnlock());
-		}
-		else
-		{
-			if(LX_getStarKey())
-			{
-				return true;
-			}
-		}
+		case $location[The Neverending Party]:
+			flyer_gains += 20; break;
+		case $location[VYKEA]:
+			flyer_gains += 6; break;
+		case $location[Uncle Gator\'s Country Fun-Time Liquid Waste Sluice]:
+		case $location[The Deep Dark Jungle]:
+		case $location[Sloppy Seconds Diner]:
+			flyer_gains += 5; break;
 	}
-	else if(needDigitalKey())
+	float adv_needed = (10000.0 - get_property("flyeredML").to_float()) / flyer_gains;
+	
+	warPlan plan_do_arena = auto_bestWarPlan();
+	plan_do_arena.do_arena = true;
+	warPlan plan_no_arena = auto_bestWarPlan();
+	plan_no_arena.do_arena = false;
+	float adv_saved = auto_warTotalBattles(plan_no_arena) - auto_warTotalBattles(plan_do_arena);
+	
+	if(adv_needed > adv_saved)
 	{
-		if(LX_getDigitalKey())
-		{
-			return true;
-		}
+		return false;	//if we lose advs by doing last ditch flyering then do not do it
 	}
-	else
-	{
-		auto_log_warning("Should not have so little flyer ML at this point", "red");
-		wait(1);
-		if(!LX_attemptFlyering())
-		{
-			abort("Need more flyer ML but don't know where to go :(");
-		}
-		return true;
-	}
-	return false;
-}
 
-boolean LX_attemptFlyering()
-{
-	if(elementalPlanes_access($element[stench]) && auto_have_skill($skill[Summon Smithsness]))
-	{
-		return autoAdv(1, $location[Uncle Gator\'s Country Fun-Time Liquid Waste Sluice]);
-	}
-	else if(elementalPlanes_access($element[spooky]))
-	{
-		return autoAdv(1, $location[The Deep Dark Jungle]);
-	}
-	else if(elementalPlanes_access($element[cold]))
-	{
-		return autoAdv(1, $location[VYKEA]);
-	}
-	else if(elementalPlanes_access($element[stench]))
-	{
-		return autoAdv(1, $location[Uncle Gator\'s Country Fun-Time Liquid Waste Sluice]);
-	}
-	else if(elementalPlanes_access($element[sleaze]))
-	{
-		return autoAdv(1, $location[Sloppy Seconds Diner]);
-	}
-	else if(neverendingPartyAvailable())
+	if(scalezone == $location[The Neverending Party])
 	{
 		return neverendingPartyCombat();
 	}
-	else
+	if(scalezone != $location[none])
 	{
-		int flyer = get_property("flyeredML").to_int();
-		boolean retval = autoAdv($location[Near an Abandoned Refrigerator]);
-		if(flyer == get_property("flyeredML").to_int())
-		{
-			abort("Trying to flyer but failed to flyer");
-		}
-		set_property("auto_newbieOverride", true);
-		return retval;
+		return autoAdv(scalezone);
 	}
 	return false;
 }
@@ -1626,21 +1585,21 @@ boolean L12_themtharHills()
 	{
 		makeGenieWish($effect[Frosty]);
 	}
-	buffMaintain($effect[Greedy Resolve], 0, 1, 1);
+	buffMaintain($effect[Greedy Resolve]);
 	buffMaintain($effect[Disco Leer], 10, 1, 1);
 	buffMaintain($effect[Polka of Plenty], 8, 1, 1);
 	#Handle for familiar weight change.
-	buffMaintain($effect[Kindly Resolve], 0, 1, 1);
-	buffMaintain($effect[Heightened Senses], 0, 1, 1);
-	buffMaintain($effect[Big Meat Big Prizes], 0, 1, 1);
-	buffMaintain($effect[Human-Machine Hybrid], 0, 1, 1);
-	buffMaintain($effect[Human-Constellation Hybrid], 0, 1, 1);
-	buffMaintain($effect[Human-Humanoid Hybrid], 0, 1, 1);
-	buffMaintain($effect[Human-Fish Hybrid], 0, 1, 1);
-	buffMaintain($effect[Cranberry Cordiality], 0, 1, 1);
-	buffMaintain($effect[Patent Avarice], 0, 1, 1);
-	buffMaintain($effect[Car-Charged], 0, 1, 1);
-	buffMaintain($effect[Heart of Pink], 0, 1, 1);
+	buffMaintain($effect[Kindly Resolve]);
+	buffMaintain($effect[Heightened Senses]);
+	buffMaintain($effect[Big Meat Big Prizes]);
+	buffMaintain($effect[Human-Machine Hybrid]);
+	buffMaintain($effect[Human-Constellation Hybrid]);
+	buffMaintain($effect[Human-Humanoid Hybrid]);
+	buffMaintain($effect[Human-Fish Hybrid]);
+	buffMaintain($effect[Cranberry Cordiality]);
+	buffMaintain($effect[Patent Avarice]);
+	buffMaintain($effect[Car-Charged]);
+	buffMaintain($effect[Heart of Pink]);
 	buffMaintain($effect[Sweet Heart], 0, 1, 20);
 		
 	if(item_amount($item[body spradium]) > 0 && !in_tcrs() && have_effect($effect[Boxing Day Glow]) == 0)
@@ -1669,11 +1628,12 @@ boolean L12_themtharHills()
 
 	if(in_heavyrains())
 	{
-		buffMaintain($effect[Sinuses For Miles], 0, 1, 1);
+		buffMaintain($effect[Sinuses For Miles]);
 	}
 	// Target 1000 + 400% = 5000 meat per brigand. Of course we want more, but don\'t bother unless we can get this.
 	float meat_need = 400.00;
-	if(item_amount($item[Mick\'s IcyVapoHotness Inhaler]) > 0)
+	//count inhaler if we have one or if we have a clover to obtain one
+	if(item_amount($item[Mick\'s IcyVapoHotness Inhaler]) > 0 || cloversAvailable() > 0)
 	{
 		meat_need = meat_need - 200;
 	}
@@ -1736,22 +1696,30 @@ boolean L12_themtharHills()
 		}
 	}
 
+	if(have_effect($effect[Sinuses For Miles]) <= 0 && item_amount($item[Mick\'s IcyVapoHotness Inhaler]) < 1 && cloversAvailable() > 0 && zone_isAvailable($location[The Castle in the Clouds in the Sky (Top Floor)]))
+	{
+		//use clover to get inhaler
+		cloverUsageInit();
+		boolean retval = autoAdv($location[The Castle in the Clouds in the Sky (Top Floor)]);
+		cloverUsageFinish();
+		return retval;
+	}
 
 	buffMaintain($effect[Disco Leer], 10, 1, 1);
 	buffMaintain($effect[Polka of Plenty], 8, 1, 1);
-	buffMaintain($effect[Sinuses For Miles], 0, 1, 1);
-	buffMaintain($effect[Greedy Resolve], 0, 1, 1);
-	buffMaintain($effect[Kindly Resolve], 0, 1, 1);
-	buffMaintain($effect[Heightened Senses], 0, 1, 1);
-	buffMaintain($effect[Big Meat Big Prizes], 0, 1, 1);
-	buffMaintain($effect[Fortunate Resolve], 0, 1, 1);
-	buffMaintain($effect[Human-Machine Hybrid], 0, 1, 1);
-	buffMaintain($effect[Human-Constellation Hybrid], 0, 1, 1);
-	buffMaintain($effect[Human-Humanoid Hybrid], 0, 1, 1);
-	buffMaintain($effect[Human-Fish Hybrid], 0, 1, 1);
-	buffMaintain($effect[Cranberry Cordiality], 0, 1, 1);
-	buffMaintain($effect[Car-Charged], 0, 1, 1);
-	buffMaintain($effect[Heart of Pink], 0, 1, 1);
+	buffMaintain($effect[Sinuses For Miles]);
+	buffMaintain($effect[Greedy Resolve]);
+	buffMaintain($effect[Kindly Resolve]);
+	buffMaintain($effect[Heightened Senses]);
+	buffMaintain($effect[Big Meat Big Prizes]);
+	buffMaintain($effect[Fortunate Resolve]);
+	buffMaintain($effect[Human-Machine Hybrid]);
+	buffMaintain($effect[Human-Constellation Hybrid]);
+	buffMaintain($effect[Human-Humanoid Hybrid]);
+	buffMaintain($effect[Human-Fish Hybrid]);
+	buffMaintain($effect[Cranberry Cordiality]);
+	buffMaintain($effect[Car-Charged]);
+	buffMaintain($effect[Heart of Pink]);
 	buffMaintain($effect[Sweet Heart], 0, 1, 20);
 	bat_formWolf();
 	zataraSeaside("meat");

@@ -411,30 +411,17 @@ boolean LX_guildUnlock()
 	switch(my_primestat())
 	{
 		case $stat[Muscle]:
-			set_property("choiceAdventure111", "3");//Malice in Chains -> Plot a cunning escape
-			set_property("choiceAdventure113", "2");//Knob Goblin BBQ -> Kick the chef
-			set_property("choiceAdventure118", "2");//When Rocks Attack -> "Sorry, gotta run."
-			set_property("choiceAdventure120", "4");//Ennui is Wasted on the Young -> "Since you\'re bored, you\'re boring. I\'m outta here."
 			pref = "questG09Muscle";
 			loc = $location[The Outskirts of Cobb\'s Knob];
 			goal = $item[11-Inch Knob Sausage];
 			break;
 		case $stat[Mysticality]:
-			set_property("choiceAdventure115", "1");//Oh No, Hobo -> Give him a beating
-			set_property("choiceAdventure116", "4");//The Singing Tree (Rustling) -> "No singing, thanks."
-			set_property("choiceAdventure117", "1");//Trespasser -> Tackle him
-			set_property("choiceAdventure114", "2");//The Baker\'s Dilemma -> "Sorry, I\'m busy right now."
 			pref = "questG07Myst";
 			loc = $location[The Haunted Pantry];
 			goal = $item[Exorcised Sandwich];
 			break;
 		case $stat[Moxie]:
 			goal = equipped_item($slot[pants]);
-			set_property("choiceAdventure108", "4");//Aww, Craps -> Walk Away
-			set_property("choiceAdventure109", "1");//Dumpster Diving -> Punch the hobo
-			set_property("choiceAdventure110", "4");//The Entertainer -> Introduce them to avant-garde
-			set_property("choiceAdventure112", "2");//Please, Hammer -> "Sorry, no time."
-			set_property("choiceAdventure121", "2");//Under the Knife -> Umm, no thanks. Seriously.
 			pref = "questG08Moxie";
 			if(internalQuestStatus(pref) < 1)
 			{
@@ -1032,6 +1019,13 @@ starterWeapons[$class[Disco Bandit]] = $item[disco ball];
 starterWeapons[$class[Accordion Thief]] = $item[stolen accordion];
 // usage: item starterWeapon = starterWeapons[my_class()];
 
+boolean tomb_already_found()
+{
+	//the tomb only appears once when adv in the unquiet garves. afterwards it appears on the map instead
+	string page = visit_url("place.php?whichplace=cemetery");
+	return page.contains_text("place.php?whichplace=cemetery&action=cem_advtomb");
+}
+
 boolean LX_acquireEpicWeapon()
 {
 	if (internalQuestStatus("questG04Nemesis") > 4)
@@ -1077,6 +1071,10 @@ boolean LX_acquireEpicWeapon()
 	}
 
 	addToMaximize("-equip " + starterWeapons[my_class()].to_string());
+	if(tomb_already_found())
+	{
+		return autoAdvBypass("place.php?whichplace=cemetery&action=cem_advtomb");
+	}
 
 	return autoAdv($location[The Unquiet Garves]);
 }

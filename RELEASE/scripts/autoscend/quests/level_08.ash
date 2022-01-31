@@ -18,7 +18,8 @@ boolean needOre()
 	return true;
 }
 
-int getCellToMine(item oreGoal) {
+int getCellToMine(item oreGoal)
+{
 
 	// the mine is an 8*7 grid starting at 0,0 in the top left and each cell has an incrementing identifier starting at 0.
 	// however all of row 0, column 0 and column 7 cannot be mined (so it's really a 6*6 grid with really confusing cell ids).
@@ -35,25 +36,40 @@ int getCellToMine(item oreGoal) {
 		return 0;
 	}
 
-	item[int] parseMineLayout() {
-		
+	item[int] parseMineLayout()
+	{
 		item[int] minedCells;
 		string mineLayout = get_property("mineLayout1");
-		if (mineLayout != "") {
-			foreach iter, str in split_string(mineLayout.substring(1), "#") {
-				if (str.contains_text("asbestos ore")) {
+		if(mineLayout != "")
+		{
+			foreach iter, str in split_string(mineLayout.substring(1), "#")
+			{
+				if(str.contains_text("asbestos ore"))
+				{
 					minedCells[str.substring(0,2).to_int()] = $item[asbestos ore];
-				} else if (str.contains_text("chrome ore")) {
+				}
+				else if(str.contains_text("chrome ore"))
+				{
 					minedCells[str.substring(0,2).to_int()] = $item[chrome ore];
-				} else if (str.contains_text("linoleum ore")) {
+				}
+				else if(str.contains_text("linoleum ore"))
+				{
 					minedCells[str.substring(0,2).to_int()] = $item[linoleum ore];
-				} else if (str.contains_text("loadstone")) {
+				}
+				else if(str.contains_text("loadstone"))
+				{
 					minedCells[str.substring(0,2).to_int()] = $item[loadstone];
-				} else if (str.contains_text("lump of diamond")) {
+				}
+				else if(str.contains_text("lump of diamond"))
+				{
 					minedCells[str.substring(0,2).to_int()] = $item[lump of diamond];
-				} else if (str.contains_text("meat stack")) {
+				}
+				else if(str.contains_text("meat stack"))
+				{
 					minedCells[str.substring(0,2).to_int()] = $item[meat stack];
-				} else if (str.contains_text("stone of eXtreme power")) {
+				}
+				else if(str.contains_text("stone of eXtreme power"))
+				{
 					minedCells[str.substring(0,2).to_int()] = $item[stone of eXtreme power];
 				}
 			}
@@ -61,17 +77,20 @@ int getCellToMine(item oreGoal) {
 		return minedCells;
 	}
 
-	int[int] findSparklingCells(string minePage) {
+	int[int] findSparklingCells(string minePage)
+	{
 		int[int] sparkles;
 		matcher mrSparkle = create_matcher("title='Promising Chunk of Wall \\((\\d),(\\d)\\)", minePage);
-		while (mrSparkle.find()) {
+		while (mrSparkle.find())
+		{
 			int sparkleCell = mrSparkle.group(1).to_int() + (mrSparkle.group(2).to_int() * 8);
 			sparkles[sparkleCell] = 1; // don't actually care about the value. Just want the cells as keys so we can use contains
 		}
 		return sparkles;
 	}
 
-	int[4] getOrthogonals(int cell) {
+	int[4] getOrthogonals(int cell)
+	{
 		// starting at the cell above, going clockwise
 		int[4] orthogonals; 
 		orthogonals[0] = cell - 8;
@@ -81,7 +100,8 @@ int getCellToMine(item oreGoal) {
 		return orthogonals;
 	}
 
-	boolean canMine(int cellToCheck, int rowLimit) {
+	boolean canMine(int cellToCheck, int rowLimit)
+	{
 		// this is basically bounds checking for cells
 		// set rowLimit = 6 to not care about rows (there is no row 7)
 		int column = cellToCheck % 8;
@@ -90,13 +110,15 @@ int getCellToMine(item oreGoal) {
 			return false;
 		}
 		int row = cellToCheck / 8;
-		if (row < 1 || row > 6 || row > rowLimit) {
+		if(row < 1 || row > 6 || row > rowLimit)
+		{
 			return false;
 		}
 		return true;
 	}
 
-	boolean isInSideColumn(int cellToCheck) {
+	boolean isInSideColumn(int cellToCheck)
+	{
 		int column = cellToCheck % 8;
 		if (column == 1 || column == 6)
 		{
@@ -107,7 +129,8 @@ int getCellToMine(item oreGoal) {
 
 	// - Simplest case, a fresh mine cavern
 	string mineLayout = visit_url("mining.php?mine=1");
-	if (get_property("auto_minedCells") == "") {
+	if(get_property("auto_minedCells") == "")
+	{
 		// pick a random column to start between 2-5
 		return 50 + random(4); // using 50 as we're in row 6 to start and random returns from 0 to range-1. Hence 6 * 8 + 2
 	}
@@ -116,7 +139,8 @@ int getCellToMine(item oreGoal) {
 	string[int] previously_mined = split_string(get_property("auto_minedCells"), ",");
 	int num_prev_mined = count(previously_mined);
 	int lastCell = previously_mined[num_prev_mined - 1].to_int();
-	if (num_prev_mined < 4 && (lastCell > 32 && lastCell < 55)) {
+	if(num_prev_mined < 4 && (lastCell > 32 && lastCell < 55))
+	{
 		// mine the square directly above it
 		return lastCell - 8;
 	}
@@ -124,17 +148,21 @@ int getCellToMine(item oreGoal) {
 	// - If we've got to row 3 or above, start searching for ores.
 	item[int] minedCells = parseMineLayout();
 	int[int] oreSeen;
-	foreach oreCell, oreType in minedCells {
-		if (oreType == oreGoal) {
+	foreach oreCell, oreType in minedCells
+	{
+		if(oreType == oreGoal)
+		{
 			oreSeen[oreCell] = 1; // value doesn't matter, just want to count and iterate the keys
 		}
 	}
 	int[int] sparklingCells = findSparklingCells(mineLayout);
 	int[int] potentialCells;
 	int potentialCount = 0;
-	if (count(oreSeen) == 0) {
+	if(count(oreSeen) == 0)
+	{
 		// - Not found any ore that we're looking for yet
-		if (lastCell > 24 && lastCell < 31) {
+		if(lastCell > 24 && lastCell < 31)
+		{
 			// get to row 2 as our probability of hitting ore we're looking for is higher.
 			return lastCell - 8;
 		}
@@ -145,32 +173,43 @@ int getCellToMine(item oreGoal) {
 		// unless we run into a situation where we've mined all the other sparkling cells.
 		int rowLimit = 2;
 		boolean avoidSides = true;
-		while (count(potentialCells) == 0 && rowLimit < 5) {
-			foreach sparkleCell in sparklingCells {
-				if (canMine(sparkleCell, rowLimit)) {
-					if (!isInSideColumn(sparkleCell) || !avoidSides) {
+		while (count(potentialCells) == 0 && rowLimit < 5)
+		{
+			foreach sparkleCell in sparklingCells
+			{
+				if(canMine(sparkleCell, rowLimit))
+				{
+					if(!isInSideColumn(sparkleCell) || !avoidSides)
+					{
 						potentialCells[potentialCount] = sparkleCell;
 						potentialCount++;
 					}
 				}
 			}
 			rowLimit++;
-			if (avoidSides && rowLimit == 5 && count(potentialCells) == 0) {
+			if(avoidSides && rowLimit == 5 && count(potentialCells) == 0)
+			{
 				avoidSides = false;
 				rowLimit = 2;
 			}
 		}
-	} else {
+	}
+	else
+	{
 		// - Found at least one ore that we're looking for!
 		// search orthogonally from the cells we found our required ore in as ore is always contiguous
 		// limit our search to the top 3 rows to begin, if we don't find any cells that meet the criteria
 		// increase the limit to the top 4 rows and check again.
 		int rowLimit = 3;
-		while (count(potentialCells) == 0 && rowLimit < 5) {
-			foreach oreCell in oreSeen {
+		while (count(potentialCells) == 0 && rowLimit < 5)
+		{
+			foreach oreCell in oreSeen
+			{
 				int[4] orthogonals = getOrthogonals(oreCell);
-				foreach _, orthoCell in orthogonals {
-					if (canMine(orthoCell, rowLimit) && sparklingCells contains orthoCell) {
+				foreach _, orthoCell in orthogonals
+				{
+					if(canMine(orthoCell, rowLimit) && sparklingCells contains orthoCell)
+					{
 						potentialCells[potentialCount] = orthoCell;
 						potentialCount++;
 					}
@@ -178,20 +217,25 @@ int getCellToMine(item oreGoal) {
 			}
 			rowLimit++;
 		}
-		if (count(potentialCells) == 0) {
+		if(count(potentialCells) == 0)
+		{
 			// we could be in a situation where the loadstone replaced one of our ores and we still need 1 or 2 ores
 			// but have exhausted all the twinkling cells adjacent to the ores we've found
 			// first lets find the loadstone cell
 			int loadstoneCell;
-			foreach oreCell, oreType in minedCells {
-				if (oreType == $item[loadstone]) {
+			foreach oreCell, oreType in minedCells
+			{
+				if(oreType == $item[loadstone])
+				{
 					loadstoneCell = oreCell;
 				}
 			}
 			// now add all twinkling cells adjacent to the loadstone in the top 4 rows to the potential cells
 			int[4] orthogonals = getOrthogonals(loadstoneCell);
-			foreach _, orthoCell in orthogonals {
-				if (canMine(orthoCell, 4) && sparklingCells contains orthoCell) {
+			foreach _, orthoCell in orthogonals
+			{
+				if(canMine(orthoCell, 4) && sparklingCells contains orthoCell)
+				{
 					potentialCells[potentialCount] = orthoCell;
 					potentialCount++;
 				}
@@ -200,9 +244,12 @@ int getCellToMine(item oreGoal) {
 	}
 	int numPotentials = count(potentialCells);
 	// only found one potential, just return it
-	if (numPotentials == 1) {
+	if(numPotentials == 1)
+	{
 		return potentialCells[0];
-	} else if (numPotentials == 0) {
+	}
+	else if(numPotentials == 0)
+	{
 		abort("Glitch in the matrix. Please report this to the dev team (preferably with a log and screenshot of your mine");
 	}
 	// found 2 or more potentials, return a random one of them
@@ -244,11 +291,13 @@ boolean L8_getMineOres()
 
 	item oreGoal = get_property("trapperOre").to_item();
 
-	if (item_amount(oreGoal) >= 3) {
+	if(item_amount(oreGoal) >= 3)
+	{
 		return false;
 	}
 
-	if (get_property("chateauMonster").to_monster() == $monster[Mountain Man]) {
+	if(get_property("chateauMonster").to_monster() == $monster[Mountain Man])
+	{
 		// apparently this is a thing some people do. Lets add the most basic of support.
 		return false;
 	}
@@ -304,17 +353,6 @@ boolean L8_getMineOres()
 			numCloversKeep = 0;
 		}
 	}
-	if(in_nuclear())
-	{
-		if(cloversAvailable() <= numCloversKeep)
-		{
-			handleBarrelFullOfBarrels(false);
-			string temp = visit_url("barrel.php");
-			temp = visit_url("choice.php?whichchoice=1099&pwd=&option=2");
-			handleBarrelFullOfBarrels(false);
-			return true;
-		}
-	}
 	if(cloversAvailable() > numCloversKeep)
 	{
 		cloverUsageInit();
@@ -323,17 +361,22 @@ boolean L8_getMineOres()
 		return true;
 	}
 
-	if(isAboutToPowerlevel()) {
-		if (!possessOutfit("Mining Gear")) {
+	if(isAboutToPowerlevel())
+	{
+		if(!possessOutfit("Mining Gear"))
+		{
 			auto_log_info("Getting Mining Gear.", "blue");
 			return autoAdv($location[Itznotyerzitz Mine]);
-		} else if (possessOutfit("Mining Gear", true)) {
+		}
+		else if(possessOutfit("Mining Gear", true))
+		{
 			equipMaximizedGear();
 			outfit("Mining Gear");
 			acquireHP(1);
 			auto_log_info("Mining in Itznotyerzitz Mine for Trapper ore", "blue");
 			int cell = getCellToMine(oreGoal);
-			if (cell != 0) {
+			if(cell != 0)
+			{
 				set_property("auto_minedCells", get_property("auto_minedCells") + cell.to_string() + ",");
 				visit_url("mining.php?mine=1&which=" + cell.to_string() + "&pwd");
 				return true;
@@ -344,45 +387,76 @@ boolean L8_getMineOres()
 	return false;
 }
 
-void itznotyerzitzMineChoiceHandler(int choice) {
+void itznotyerzitzMineChoiceHandler(int choice)
+{
 	auto_log_info("itznotyerzitzMineChoiceHandler Running choice " + choice, "blue");
-	if (choice == 18) { // A Flat Miner
-		if (possessEquipment($item[miner\'s pants])) {
-			if (possessEquipment($item[7-Foot Dwarven mattock])) {
+	if(choice == 18) // A Flat Miner
+	{
+		if(possessEquipment($item[miner\'s pants]))
+		{
+			if(possessEquipment($item[7-Foot Dwarven mattock]))
+			{
 				run_choice(3); // get 100 Meat.
-			} else {
+			}
+			else
+			{
 				run_choice(2); // get 7-Foot Dwarven mattock
 			}
-		} else {
+		}
+		else
+		{
 			run_choice(1); // get miner's pants
 		}
-	} else if (choice == 19) { // 100% Legal
-		if (possessEquipment($item[miner\'s helmet])) {
-			if (possessEquipment($item[miner\'s pants])) {
+	}
+	else if(choice == 19) // 100% Legal
+	{	
+		if(possessEquipment($item[miner\'s helmet]))
+		{
+			if(possessEquipment($item[miner\'s pants]))
+			{
 				run_choice(3); // get 100 Meat.
-			} else {
+			}
+			else
+			{
 				run_choice(2); // get miner's pants
 			}
-		} else {
+		}
+		else
+		{
 			run_choice(1); // get miner's helmet
 		}
-	} else if (choice == 20) { // See You Next Fall
-		if (possessEquipment($item[miner\'s helmet])) {
-			if (possessEquipment($item[7-Foot Dwarven mattock])) {
+	}
+	else if(choice == 20) // See You Next Fall
+	{
+		if(possessEquipment($item[miner\'s helmet]))
+		{
+			if(possessEquipment($item[7-Foot Dwarven mattock]))
+			{
 				run_choice(3); // get 100 Meat.
-			} else {
+			}
+			else
+			{
 				run_choice(2); // get 7-Foot Dwarven mattock
 			}
-		} else {
+		}
+		else
+		{
 			run_choice(1); // get miner's helmet
 		}
-	} else if (choice == 556) { // More Locker Than Morlock
-		if (!possessOutfit("Mining Gear")) {
+	}
+	else if(choice == 556) // More Locker Than Morlock
+	{
+		if(!possessOutfit("Mining Gear"))
+		{
 			run_choice(1); // get an outfit piece
-		} else {
+		}
+		else
+		{
 			run_choice(2); // skip
 		}
-	} else {
+	}
+	else
+	{
 		abort("unhandled choice in itznotyerzitzMineChoiceHandler");
 	}
 }
@@ -418,56 +492,90 @@ boolean L8_trapperExtreme()
 	return autoAdv($location[The eXtreme Slope]);
 }
 
-void theeXtremeSlopeChoiceHandler(int choice) {
+void theeXtremeSlopeChoiceHandler(int choice)
+{
 	auto_log_info("theeXtremeSlopeChoiceHandler Running choice " + choice, "blue");
-	if (choice == 15) { // Yeti Nother Hippy
-		if (possessEquipment($item[eXtreme mittens])) {
-			if (possessEquipment($item[eXtreme scarf])) {
+	if(choice == 15) // Yeti Nother Hippy
+	{
+		if(possessEquipment($item[eXtreme mittens]))
+		{
+			if(possessEquipment($item[eXtreme scarf]))
+			{
 				run_choice(3); // get 200 Meat.
-			} else {
+			}
+			else
+			{
 				run_choice(2); // get eXtreme scarf
 			}
-		} else {
+		}
+		else
+		{
 			run_choice(1); // get eXtreme mittens
 		}
-	} else if (choice == 16)  { // Saint Beernard
-		if (possessEquipment($item[snowboarder pants])) {
-			if (possessEquipment($item[eXtreme scarf])) {
+	}
+	else if(choice == 16) // Saint Beernard
+	{
+		if(possessEquipment($item[snowboarder pants]))
+		{
+			if(possessEquipment($item[eXtreme scarf]))
+			{
 				run_choice(3); // get 200 Meat.
-			} else {
+			}
+			else
+			{
 				run_choice(2); // get eXtreme scarf
 			}
-		} else {
+		}
+		else
+		{
 			run_choice(1); // get snowboarder pants
 		}
-	} else if (choice == 17) { // Generic Teen Comedy Snowboarding Adventure
-		if (possessEquipment($item[eXtreme mittens])) {
-			if (possessEquipment($item[snowboarder pants])) {
+	}
+	else if(choice == 17) // Generic Teen Comedy Snowboarding Adventure
+	{
+		if(possessEquipment($item[eXtreme mittens]))
+		{
+			if(possessEquipment($item[snowboarder pants]))
+			{
 				run_choice(3); // get 200 Meat.
-			} else {
+			}
+			else
+			{
 				run_choice(2); // get snowboarder pants
 			}
-		} else {
+		}
+		else
+		{
 			run_choice(1); // get eXtreme mittens
 		}
-	} else if (choice == 575) { // Duffel on the Double
-		if (!possessOutfit("eXtreme Cold-Weather Gear")) {
+	}
+	else if(choice == 575) // Duffel on the Double
+	{
+		if(!possessOutfit("eXtreme Cold-Weather Gear"))
+		{
 			run_choice(1); // get an outfit piece
-		} else {
-			if (isActuallyEd()) { // add other paths which don't want to waste spleen (if any) here.
+		}
+		else
+		{
+			if(isActuallyEd()) // add other paths which don't want to waste spleen (if any) here.
+			{
 				run_choice(3); // skip
-			} else {
+			}
+			else
+			{
 				run_choice(4); // Lucky Pill. (Clover for 1 spleen, worth?)
 			}
 		}
-	} else {
+	}
+	else
+	{
 		abort("unhandled choice in theeXtremeSlopeChoiceHandler");
 	}
 }
 
 boolean L8_trapperSlopeSoftcore()
 {
-	//Slop handling for softcore. We want to pull the ninja climbing gear. unless we are copying ninja assassins. in which case we want to go do something else.
+	// slope handling for softcore. we want to pull the ninja climbing gear. unless we are copying ninja assassins. in which case we want to go do something else.
 	
 	//special path or IOTM handling
 	if(!get_property("auto_L8_ninjaAssassinFail").to_boolean())		//can defeat assassins
@@ -528,7 +636,7 @@ boolean L8_trapperNinjaLair()
 		set_property("auto_L8_extremeInstead", true);
 		return false;
 	}
-	//we must use two variables because there are too many special cases. Maybe we can survie assassins but not encounter them due to +combat being too low. Copiers and pulls complicate matters. We could copy an assassin even if we cannot encounter it in the lair
+	// we must use two variables because there are too many special cases. maybe we can survive assassins but not encounter them due to +combat being too low. Copiers and pulls complicate matters. We could copy an assassin even if we cannot encounter it in the lair
 	
 	if(isActuallyEd())
 	{

@@ -6,6 +6,10 @@ string auto_combatDefaultStage3(int round, monster enemy, string text)
 	// Path = Heavy Rains
 	retval = auto_combatHeavyRainsStage3(round, enemy, text);
 	if(retval != "") return retval;
+
+	// Path = zombie slayer
+	retval = auto_combatZombieSlayerStage3(round, enemy, text);
+	if(retval != "") return retval;
 	
 	//delevel (10 + medicine_level)% in avatar of west of loathing path
 	if(canUse($skill[Bad Medicine]) && (my_mp() >= (3 * mp_cost($skill[Bad Medicine]))))
@@ -71,9 +75,8 @@ string auto_combatDefaultStage3(int round, monster enemy, string text)
 	if(canUse($skill[Fire Extinguisher: Polar Vortex], false) && auto_fireExtinguisherCharges() > 10)
 	{
 		boolean forceDrop = false;
-		string combatState = get_property("auto_combatHandler");
 		//only force 1 scent gland from each filthworm
-		if(!contains_text(combatState, "yellowray"))
+		if(!combat_status_check("yellowray"))
 		{
 			if(enemy == $monster[Larval Filthworm] && item_amount($item[filthworm hatchling scent gland]) < 1)
 			{
@@ -95,7 +98,7 @@ string auto_combatDefaultStage3(int round, monster enemy, string text)
 		if(auto_fireExtinguisherCharges() > 30)
 		{
 			int dropsFromYR = 0;
-			if(contains_text(combatState, "yellowray"))
+			if(combat_status_check("yellowray"))
 			{
 				dropsFromYR = 1;
 			}

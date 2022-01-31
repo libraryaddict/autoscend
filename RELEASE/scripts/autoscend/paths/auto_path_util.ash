@@ -31,9 +31,15 @@ boolean auto_buySkills()  // This handles skill acquisition for general paths
 		{
 			visit_url("guild.php?action=buyskill&skillid=28", true);
 		}
-		if((my_level() >= 4) && (my_meat() >= 4500) && (!have_skill($skill[Wrath of the Wolverine])))
+		if((my_level() >= 4) && (!have_skill($skill[Wrath of the Wolverine])) && 
+		((my_meat() >= 5500) || ((my_meat() >= 3500) && have_skill($skill[Club Foot])) || 
+		((my_meat() >= 2500) && have_skill($skill[Batter Up!]) && have_skill($skill[Ire of the Orca]))))
 		{
 			visit_url("guild.php?action=buyskill&skillid=29", true);
+		}
+		if((my_level() >= 8) && (my_meat() >= 8000) && (!have_skill($skill[Club Foot])))
+		{
+			visit_url("guild.php?action=buyskill&skillid=33", true);
 		}
 		if((my_level() >= 10) && (my_meat() >= 12000) && (!have_skill($skill[Ire of the Orca])))
 		{
@@ -149,17 +155,17 @@ boolean auto_buySkills()  // This handles skill acquisition for general paths
 		{
 			visit_url("guild.php?action=buyskill&skillid=27", true);
 		}
-		if((my_level() >= 8) && (my_meat() >= 12000) && !have_skill($skill[Itchy Curse Finger]))
-		{
-			visit_url("guild.php?action=buyskill&skillid=30", true);
-		}
-		if((my_level() >= 11) && (my_meat() >= 20000) && !have_skill($skill[Saucemaven]))
+		if((my_level() >= 11) && (my_meat() >= 20000) && !have_skill($skill[Saucemaven]) && ((stomach_left() >= 4) || in_tcrs()))
 		{
 			visit_url("guild.php?action=buyskill&skillid=39", true);
 		}
 		if((my_level() >= 12) && (my_meat() >= 20000) && !have_skill($skill[Curse of Weaksauce]))
 		{
 			visit_url("guild.php?action=buyskill&skillid=34", true);
+		}
+		if((my_level() >= 8) && (my_meat() >= 12000) && !have_skill($skill[Itchy Curse Finger]) && have_skill($skill[Curse of Weaksauce]))
+		{
+			visit_url("guild.php?action=buyskill&skillid=30", true);
 		}
 		break;
 	case $class[Disco Bandit]:
@@ -201,10 +207,6 @@ boolean auto_buySkills()  // This handles skill acquisition for general paths
 		{
 			visit_url("guild.php?action=buyskill&skillid=10", true);
 		}
-		if((my_level() >= 7) && (my_meat() >= 25000) && !have_skill($skill[Five Finger Discount]))
-		{
-			visit_url("guild.php?action=buyskill&skillid=35", true);
-		}
 		if((my_level() >= 10) && (my_meat() >= 12500) && !have_skill($skill[Thief Among the Honorable]))
 		{
 			visit_url("guild.php?action=buyskill&skillid=38", true);
@@ -233,17 +235,18 @@ boolean auto_buySkills()  // This handles skill acquisition for general paths
 void pathDroppedCheck()
 {
 	//detect path drops and reinitialize with settings appropriate for the new path
+	//this will also trigger when some paths break ronin
 	if(my_path() == get_property("auto_doneInitializePath"))
 	{
 		return;		//our current path is the same one we last initialized as
 	}
 	if(get_property("auto_doneInitializePath") == "")
 	{
-		//this setting has not been set. this means the ran started with an older version of autoscend that did not have this setting
-		//a path of none would have returned "None" not "". this check can be deleted in a future PR after a week
+		//this setting has not been set. this means the run started with an older version of autoscend that did not have this setting
+		//a path of none would have returned "None" not "". This is only backwards support and can be deleted in the future.
 		return;
 	}
 	print("Path change detected. You were previously " +get_property("auto_doneInitializePath")+ " and are now a " +my_path(), "red");
-	remove_property("auto_doneInitialize");
+	set_property("_auto_reinitialize", true);
 	initializeSettings();
 }

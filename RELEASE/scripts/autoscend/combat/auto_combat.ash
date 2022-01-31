@@ -21,6 +21,7 @@ import <autoscend/combat/auto_combat_plumber.ash>					//path = path of the plumb
 import <autoscend/combat/auto_combat_the_source.ash>				//path = the source
 import <autoscend/combat/auto_combat_wildfire.ash>					//path = wildfire
 import <autoscend/combat/auto_combat_you_robot.ash>					//path = you, robot
+import <autoscend/combat/auto_combat_zombie_slayer.ash>				//path = zombie slayer
 import <autoscend/combat/auto_combat_quest.ash>						//quest specific handling
 import <autoscend/combat/auto_combat_mr2012.ash>					//2012 iotm and ioty handling
 
@@ -53,7 +54,7 @@ void auto_combatInitialize(int round, monster enemy, string text)
 			break;
 	}
 
-	remove_property("auto_combatHandler");
+	remove_property("_auto_combatState");
 	remove_property("auto_funCombatHandler");				//ocrs specific tracker
 	remove_property("auto_funPrefix");						//ocrs specific tracker
 	set_property("auto_combatHandlerThunderBird", "0");
@@ -130,7 +131,7 @@ string auto_combatHandler(int round, monster enemy, string text)
 			string doThis = actions[idx];
 			while(contains_text(doThis, "(") && contains_text(doThis, ")") && (idx < count(actions)))
 			{
-				set_property("auto_combatHandler", get_property("auto_combatHandler") + doThis);
+				combat_status_add(doThis);
 				idx++;
 				if(idx >= count(actions))
 				{

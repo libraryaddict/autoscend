@@ -31,8 +31,6 @@ string auto_combatDefaultStage1(int round, monster enemy, string text)
 	retval = auto_combatWildfireStage1(round, enemy, text);
 	if(retval != "") return retval;
 	
-	string combatState = get_property("auto_combatHandler");
-	
 	if(enemy == $monster[Your Shadow])
 	{
 		if(in_plumber())
@@ -169,7 +167,7 @@ string auto_combatDefaultStage1(int round, monster enemy, string text)
 	if(retval != "") return retval;
 	
 	//pickpocket. do this after puzzle bosses but before escapes/instakills
-	if(!contains_text(combatState, "pickpocket") && ($classes[Accordion Thief, Avatar of Sneaky Pete, Disco Bandit, Gelatinous Noob] contains my_class()) && contains_text(text, "value=\"Pick") && canSurvive(2.0))
+	if(!combat_status_check("pickpocket") && ($classes[Accordion Thief, Avatar of Sneaky Pete, Disco Bandit, Gelatinous Noob] contains my_class()) && contains_text(text, "value=\"Pick") && canSurvive(2.0))
 	{
 		boolean tryIt = false;
 		foreach i, drop in item_drops_array(enemy)
@@ -185,10 +183,17 @@ string auto_combatDefaultStage1(int round, monster enemy, string text)
 		}
 		if(tryIt)
 		{
-			set_property("auto_combatHandler", combatState + "(pickpocket)");
+			combat_status_add("pickpocket");
 			string attemptSteal = steal();
 			return "pickpocket";
 		}
+	}
+
+	if(auto_backupTarget() && enemy != get_property("lastCopyableMonster").to_monster() && canUse($skill[Back-Up to your Last Enemy]))
+	{
+		handleTracker(enemy, $skill[Back-Up to your Last Enemy], "auto_replaces");
+		handleTracker(get_property("lastCopyableMonster").to_monster(), $skill[Back-Up to your Last Enemy], "auto_copies");
+		return useSkill($skill[Back-Up to your Last Enemy]);	
 	}
 	
 	//saber copy (iotm) is different from other copies in that it comes with a free escape

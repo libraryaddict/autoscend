@@ -163,10 +163,7 @@ generic_t zone_needItem(location loc)
 		value = 20.0;
 		break;
 	case $location[The Smut Orc Logging Camp]:
-		if(item_amount($item[Ten-Leaf Clover]) == 0)
-		{
-			value = 10.0;
-		}
+		value = 10.0;
 		break;
 	case $location[A-Boo Peak]:
 		if(get_property("auto_aboopending").to_int() == 0)
@@ -189,7 +186,7 @@ generic_t zone_needItem(location loc)
 		}
 		break;
 	case $location[Itznotyerzitz Mine]:
-		if (!possessOutfit("Mining Gear") && item_amount($item[Ten-Leaf Clover]) == 0)
+		if (!possessOutfit("Mining Gear") && cloversAvailable() == 0)
 		{
 			value = 10.0;
 		}
@@ -305,6 +302,20 @@ generic_t zone_needItem(location loc)
 			retval._float = 10.0;
 		}
 		break;
+	// Bugbear Invasion Locations
+	case $location[Waste Processing]:
+		if (!possessEquipment($item[bugbear communicator badge]))
+		{
+			retval._float = 20.0;
+		}
+		break;
+	case $location[Science Lab]:
+		retval._float = 30.0;
+		break;
+	case $location[Engineering]:
+		retval._float = 50.0;
+		break;
+	// End Bugbear Invasion Locations
 	default:
 		retval._error = true;
 		break;
@@ -436,7 +447,7 @@ generic_t zone_combatMod(location loc)
 		value = -95;
 		break;
 	case $location[Itznotyerzitz Mine]:
-		if (!possessOutfit("Mining Gear") && item_amount($item[Ten-Leaf Clover]) == 0) {
+		if (!possessOutfit("Mining Gear") && cloversAvailable() == 0) {
 			value = -90;
 		}
 		break;
@@ -534,6 +545,17 @@ generic_t zone_combatMod(location loc)
 	case $location[The Ice Hotel]:
 		value = -85;
 		break;
+	// Bugbear Invasion Locations
+	case $location[Sonar]:
+		value = -70;
+		break;
+	case $location[Morgue]:
+		if (item_amount($item[bugbear autopsy tweezers]) > 0)
+		{
+			value = -70;
+		}
+		break;
+	// End Bugbear Invasion Locations
 	default:
 		retval._error = true;
 		break;
@@ -1772,9 +1794,9 @@ boolean is_ghost_in_zone(location loc)
 	//special location handling
 	int totalTurnsSpent;
 	int delayForNextNoncombat;
-	if(get_property("_autoCloverNext").to_boolean())
+	if(have_effect($effect[Lucky!]) > 0)
 	{
-		return false;		//we are grabbing a semirare so we will not encounter a ghost unless it is a wandering monster
+		return false;		//we are grabbing a Lucky! so we will not encounter a ghost unless it is a wandering monster
 	}
 	switch(loc)
 	{

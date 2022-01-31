@@ -474,36 +474,9 @@ void bedtime_pulls()
 	
 	//scan through all pullable items for items that have a better rollover adv gain than currently best equipped item.
 	bedtime_pulls_rollover_equip();
-	
-	//grab clovers with remaining pulls
-	void batch_pull(item it)		//pull from storage without buying any extras
-	{
-		int amt = min(storage_amount(it), pulls_remaining());
-		if(amt > 0)
-		{
-			pullXWhenHaveY(it, amt, item_amount(it));
-		}
-	}
-	if(!get_property("auto_bedtime_pulls_skip_clover").to_boolean() && pulls_remaining() > 0)
-	{
-		boolean pieces_forbidden = in_glover() || in_bhy();
-		if(!pieces_forbidden)
-		{
-			batch_pull($item[Disassembled Clover]);
-		}
-		batch_pull($item[Ten-Leaf Clover]);
-		
-		//buy and pull clovers if we still need any
-		item cheaper = $item[Disassembled Clover];
-		if(pieces_forbidden || mall_price($item[Disassembled Clover]) > mall_price($item[Ten-Leaf Clover]))
-		{
-			cheaper = $item[Ten-Leaf Clover];
-		}
-		if(pulls_remaining() > 0)
-		{
-			pullXWhenHaveY(cheaper, pulls_remaining() + item_amount(cheaper), item_amount(cheaper));
-		}
-	}
+
+	//always pull an 11-leaf clover, if possible
+	pullXWhenHaveY($item[11-Leaf Clover], 1, item_amount($item[11-Leaf Clover]));
 }
 
 boolean doBedtime()
@@ -650,7 +623,7 @@ boolean doBedtime()
 
 	//We are committing to end of day now...
 	getSpaceJelly();
-	while(acquireHermitItem($item[Ten-leaf Clover]));
+	while(acquireHermitItem($item[11-leaf Clover]));
 
 	januaryToteAcquire($item[Makeshift Garbage Shirt]);		//doubles stat gains in the LOV tunnel. also keep leftover charges for tomorrow.
 	loveTunnelAcquire(true, $stat[none], true, 3, true, 1);
@@ -1082,6 +1055,12 @@ boolean doBedtime()
 	auto_beachUseFreeCombs();
 	auto_drinkNightcap();
 
+	if(in_plumber() && fullness_left() > 0)
+	{
+		print("Plumber consumption is complicated. Please manually consume stuff then run me again.", "red");
+		return false;
+	}
+	
 	boolean done = (my_inebriety() > inebriety_limit()) || (my_inebriety() == inebriety_limit() && my_familiar() == $familiar[Stooper]);
 	if(in_gnoob() || !can_drink() || out_of_blood)
 	{
@@ -1121,7 +1100,7 @@ boolean doBedtime()
 		if(have_skill($skill[The Ode to Booze]))
 		{
 			shrugAT($effect[Ode to Booze]);
-			buffMaintain($effect[Ode to Booze], 0, 1, 1);
+			buffMaintain($effect[Ode to Booze]);
 		}
 		return false;
 	}
@@ -1143,6 +1122,14 @@ boolean doBedtime()
 			{
 				auto_log_info("You may have a fax that you can use. Check it out!", "blue");
 			}
+		}
+		
+		bedtime_still();	//quickly use up all remaining uses of Nash Crosby's Still during bedtime
+
+		if(get_workshed() == $item[spinning wheel] && is_unrestricted($item[spinning wheel]) && !get_property("_spinningWheel").to_boolean())
+		{
+			auto_log_info("Using the spinning wheel in your workshed", "blue");
+			visit_url("campground.php?action=spinningwheel");
 		}
 		
 		bedtime_pulls();
@@ -1167,8 +1154,6 @@ boolean doBedtime()
 		{
 			auto_log_info("You can still fight a Chateau Mangtegna Painting today.", "blue");
 		}
-
-		bedtime_still();	//quickly use up all remaining uses of Nash Crosby's Still during bedtime
 
 		if(!get_property("_streamsCrossed").to_boolean() && possessEquipment($item[Protonic Accelerator Pack]))
 		{
@@ -1200,7 +1185,7 @@ boolean doBedtime()
 
 		if (get_property("spadingData") != "")
 		{
-			cli_execute("spade");
+			cli_execute("spade autoconfirm");
 		}
 
 		auto_log_info("You are probably done for today, beep.", "blue");

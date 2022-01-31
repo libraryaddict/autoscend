@@ -1,6 +1,76 @@
+void cyrptChoiceHandler(int choice)
+{
+	if(choice == 153) // Turn Your Head and Coffin (The Defiled Alcove)
+	{
+		if(my_meat() < 1000 + meatReserve())
+		{
+			run_choice(2); // get meat if needed
+		}
+		else
+		{
+			run_choice(4); // skip
+		}
+	}
+	else if(choice == 155) // Skull, Skull, Skull (The Defiled Nook)
+	{
+		if(in_zombieSlayer() && (item_amount($item[talkative skull]) == 0 || !have_familiar($familiar[Hovering Skull])))
+		{
+			run_choice(1); // get talkative skull
+		}
+		else if(my_meat() < 1000 + meatReserve())
+		{
+			run_choice(2); // get meat if needed
+		}
+		else
+		{
+			run_choice(5); // skip
+		}
+	}
+	else if(choice == 157) // Urning Your Keep (The Defiled Niche)
+	{
+		if(my_meat() < 1000 + meatReserve())
+		{
+			run_choice(3); // get meat if needed
+		}
+		else
+		{
+			run_choice(4); // skip
+		}
+	}
+	else if(choice == 523) // Death Rattlin' (The Defiled Cranny)
+	{
+		if(in_darkGyffte() && have_skill($skill[Flock of Bats Form]) && have_skill($skill[Sharp Eyes]))
+		{
+			int desired_pills = in_hardcore() ? 6 : 4;
+			desired_pills -= my_fullness()/2;
+			auto_log_info("We want " + desired_pills + " dieting pills and have " + item_amount($item[dieting pill]), "blue");
+			if(item_amount($item[dieting pill]) < desired_pills)
+			{
+				if(!bat_wantHowl($location[The Defiled Cranny]))
+				{
+					bat_formBats();
+				}
+			}
+			run_choice(5); // if meets thresholds, skip to farm more dieting pills in DG
+		}
+		else
+		{
+			run_choice(4); // fight swarm of ghuol whelps
+		}
+	}
+	else if(choice == 527) // The Haert of Darkness (The Cyrpt)
+	{
+		run_choice(1); // fight whichever version of the bonerdagon
+	}
+	else
+	{
+		abort("unhandled choice in cyrptChoiceHandler");
+	}
+}
+
 boolean L7_crypt()
 {
-	if (internalQuestStatus("questL07Cyrptic") != 0)
+	if(internalQuestStatus("questL07Cyrptic") != 0)
 	{
 		return false;
 	}
@@ -16,11 +86,11 @@ boolean L7_crypt()
 		handleBjornify($familiar[Grimstone Golem]);
 	}
 
-	buffMaintain($effect[Browbeaten], 0, 1, 1);
-	buffMaintain($effect[Rosewater Mark], 0, 1, 1);
+	buffMaintain($effect[Browbeaten]);
+	buffMaintain($effect[Rosewater Mark]);
 
 	boolean edAlcove = true;
-	if (isActuallyEd())
+	if(isActuallyEd())
 	{
 		edAlcove = (have_skill($skill[More Legs]) && (expected_damage($monster[modern zmobie]) + 15) < my_maxhp());
 	}
@@ -32,10 +102,10 @@ boolean L7_crypt()
 
 	void useNightmareFuelIfPossible()
 	{
-		//chews this when there are no guaranteed uses for spleen 
+		// chews this when there are no guaranteed uses for spleen 
 		if((spleen_left() > 0) && (item_amount($item[Nightmare Fuel]) > 0) && !isActuallyEd() && 
 		!(auto_havePillKeeper() && spleen_left() >= 3) && 
-		(spleen_left() > 4*min(auto_spleenFamiliarAdvItemsPossessed(),floor(spleen_left()/4))))	//only uses space than can't be filled with adv item
+		(spleen_left() > 4*min(auto_spleenFamiliarAdvItemsPossessed(),floor(spleen_left()/4)))) // only uses space than can't be filled with adv item
 		{
 			autoChew(1, $item[Nightmare Fuel]);
 		}
@@ -43,7 +113,7 @@ boolean L7_crypt()
 
 	void knockOffCapePrep()
 	{
-		if (auto_configureRetrocape("vampire", "kill"))
+		if(auto_configureRetrocape("vampire", "kill"))
 		{
 			auto_forceEquipSword();
 		}
@@ -75,10 +145,10 @@ boolean L7_crypt()
 		auto_log_info("The Alcove! (" + initiative_modifier() + ")", "blue");
 		return autoAdv($location[The Defiled Alcove]);
 	}
-	//current mafia bug causes us to lose track of the amount of Evil Eyes in inventory so adding a refresh here
+	// current mafia bug causes us to lose track of the amount of Evil Eyes in inventory so adding a refresh here
 	cli_execute("refresh inv");
-	// In KoE, skeleton astronauts are random encounters that drop Evil Eyes.
-	// We might be able to reach the Nook boss without adventuring.
+	// in KoE, skeleton astronauts are random encounters that drop Evil Eyes.
+	// we might be able to reach the Nook boss without adventuring.
 
 	while((item_amount($item[Evil Eye]) > 0) && auto_is_valid($item[Evil Eye]) && (get_property("cyrptNookEvilness").to_int() > 25))
 	{
@@ -90,13 +160,14 @@ boolean L7_crypt()
 	if((get_property("cyrptNookEvilness").to_int() > 0) && lar_repeat($location[The Defiled Nook]) && !skip_in_koe)
 	{
 		auto_log_info("The Nook!", "blue");
-		buffMaintain($effect[Joyful Resolve], 0, 1, 1);
+		buffMaintain($effect[Joyful Resolve]);
 		autoEquip($item[Gravy Boat]);
 		knockOffCapePrep();
 
 		bat_formBats();
 
-		if (get_property("cyrptNookEvilness").to_int() > 26) {
+		if(get_property("cyrptNookEvilness").to_int() > 26)
+		{
 			januaryToteAcquire($item[broken champagne bottle]);
 		}
 
@@ -115,7 +186,7 @@ boolean L7_crypt()
 		}
 		autoEquip($item[Gravy Boat]);
 
-		//prioritize extinguisher over slay the dead in Defiled Niche if its available and unused in the crypt
+		// prioritize extinguisher over slay the dead in Defiled Niche if its available and unused in the cyrpt
 		if(auto_FireExtinguisherCombatString($location[The Defiled Niche]) == "")
 		{
 			knockOffCapePrep();
@@ -132,7 +203,7 @@ boolean L7_crypt()
 		}
 
 		auto_log_info("The Niche!", "blue");
-		if (canSniff($monster[Dirty Old Lihc], $location[The Defiled Niche]) && auto_mapTheMonsters())
+		if(canSniff($monster[Dirty Old Lihc], $location[The Defiled Niche]) && auto_mapTheMonsters())
 		{
 			auto_log_info("Attemping to use Map the Monsters to olfact a Dirty Old Lihc.");
 		}
@@ -174,9 +245,9 @@ boolean L7_crypt()
 		if(my_primestat() == $stat[Muscle])
 		{
 			buyUpTo(1, $item[Ben-Gal&trade; Balm]);
-			buffMaintain($effect[Go Get \'Em\, Tiger!], 0, 1, 1);
+			buffMaintain($effect[Go Get \'Em\, Tiger!]);
 			buyUpTo(1, $item[Blood of the Wereseal]);
-			buffMaintain($effect[Temporary Lycanthropy], 0, 1, 1);
+			buffMaintain($effect[Temporary Lycanthropy]);
 		}
 
 		acquireHP();
