@@ -313,6 +313,11 @@ string cs_combatNormal(int round, monster enemy, string text)
 		return "item " + $item[Time-Spinner];
 	}
 
+	if(canUse(auto_spoonCombatSkill()))
+	{
+		return useSkill(auto_spoonCombatSkill());
+	}
+
 	if(have_skill($skill[Saucegeyser]) && (my_mp() >= mp_cost($skill[Saucegeyser])) && (my_class() == $class[Sauceror]))
 	{
 		return "skill " + $skill[Saucegeyser];
