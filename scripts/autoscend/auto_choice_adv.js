@@ -1592,7 +1592,7 @@ function dailyDungeonChoiceHandler(choice, options) {
 
 // src/autoscend/paths/you_robot.ts
 function in_robot() {
-  return (0, import_kolmafia44.myPath)() === $path`You\, Robot`;
+  return (0, import_kolmafia44.myPath)() === $path`You, Robot`;
 }
 function robot_cpu(choice, want_buy) {
   var upgrade = "";
@@ -1935,14 +1935,14 @@ lowKeys.set($item`clown car key`, $location`The "Fun" House`);
 lowKeys.set($item`batting cage key`, $location`The Bat Hole Entrance`);
 lowKeys.set($item`aquí`, $location`South of the Border`);
 lowKeys.set($item`knob labinet key`, $location`Cobb's Knob Laboratory`);
-lowKeys.set($item`weremoose key`, $location`Cobb's Knob Menagerie\, Level 2`);
+lowKeys.set($item`weremoose key`, $location`Cobb's Knob Menagerie, Level 2`);
 lowKeys.set($item`peg key`, $location`The Obligatory Pirate's Cove`);
 lowKeys.set($item`kekekey`, $location`The Valley of Rof L'm Fao`);
 lowKeys.set($item`rabbit's foot key`, $location`The Dire Warren`);
 lowKeys.set($item`knob shaft skate key`, $location`The Knob Shaft`);
 lowKeys.set($item`ice key`, $location`The Icy Peak`);
 lowKeys.set($item`anchovy can key`, $location`The Haunted Pantry`);
-lowKeys.set($item`cactus key`, $location`The Arid\, Extra-Dry Desert`);
+lowKeys.set($item`cactus key`, $location`The Arid, Extra-Dry Desert`);
 lowKeys.set($item`f'c'le sh'c'le k'y`, $location`The F'c'le`);
 lowKeys.set($item`treasure chest key`, $location`Belowdecks`);
 lowKeys.set($item`demonic key`, $location`Pandamonium Slums`);
@@ -3066,8 +3066,8 @@ function ed_nextUpgrade() {
     return $skill`Replacement Stomach`;
   } else if (!(0, import_kolmafia99.haveSkill)($skill`Elemental Wards`)) {
     return $skill`Elemental Wards`;
-  } else if (!(0, import_kolmafia99.haveSkill)($skill`Okay Seriously\, This is the Last Spleen`)) {
-    return $skill`Okay Seriously\, This is the Last Spleen`;
+  } else if (!(0, import_kolmafia99.haveSkill)($skill`Okay Seriously, This is the Last Spleen`)) {
+    return $skill`Okay Seriously, This is the Last Spleen`;
   } else if (!possessEquipment($item`The Crown of Ed the Undying`) && !(0, import_kolmafia99.haveSkill)($skill`Tougher Skin`)) {
     return $skill`Tougher Skin`;
   } else if (!(0, import_kolmafia99.haveSkill)($skill`More Elemental Wards`)) {
@@ -3113,7 +3113,7 @@ function ed_KaCost(upgrade) {
       [$skill`Just One More Extra Spleen`, 25],
       [$skill`Replacement Stomach`, 30],
       [$skill`Replacement Liver`, 30],
-      [$skill`Okay Seriously\, This is the Last Spleen`, 30],
+      [$skill`Okay Seriously, This is the Last Spleen`, 30],
       [$skill`Even More Elemental Wards`, 30]
     ]
   ));
@@ -3135,7 +3135,7 @@ function ed_shopping() {
         [$skill`Yet Another Extra Spleen`, 32],
         [$skill`Still Another Extra Spleen`, 33],
         [$skill`Just One More Extra Spleen`, 34],
-        [$skill`Okay Seriously\, This is the Last Spleen`, 35],
+        [$skill`Okay Seriously, This is the Last Spleen`, 35],
         [$skill`Upgraded Legs`, 36],
         [$skill`Upgraded Arms`, 37],
         [$skill`Upgraded Spine`, 38],
@@ -3212,7 +3212,7 @@ function ed_shopping() {
         (0, import_kolmafia99.visitUrl)("choice.php?pwd&option=2&whichchoice=1052", true);
         coins -= requiredKa;
       }
-    } else if ((0, import_kolmafia99.haveSkill)($skill`Okay Seriously\, This is the Last Spleen`) && canEat_1 < 1) {
+    } else if ((0, import_kolmafia99.haveSkill)($skill`Okay Seriously, This is the Last Spleen`) && canEat_1 < 1) {
       while ((0, import_kolmafia99.itemAmount)($item`talisman of Renenutet`) < 7 && (0, import_kolmafia99.toInt)((0, import_kolmafia99.getProperty)("auto_renenutetBought")) < 7 && coins >= 1) {
         auto_log_info("Buying Talisman of Renenutet", "green");
         (0, import_kolmafia99.visitUrl)(
@@ -3424,7 +3424,7 @@ function auto_latteDropName(l) {
       return "grobold";
     case $location`The Bat Hole Entrance`:
       return "guarna";
-    case $location`1st Floor\, Shiawase-Mitsuhama Building`:
+    case $location`1st Floor, Shiawase-Mitsuhama Building`:
       return "gunpowder";
     case $location`Hobopolis Town Square`:
       return "hobo";
@@ -3434,7 +3434,7 @@ function auto_latteDropName(l) {
       return "kombucha";
     case $location`The Defiled Niche`:
       return "lihc";
-    case $location`The Arid\, Extra-Dry Desert`:
+    case $location`The Arid, Extra-Dry Desert`:
       return "lizard";
     case $location`Cobb's Knob Laboratory`:
       return "mega";
