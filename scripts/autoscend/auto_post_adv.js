@@ -20589,7 +20589,6 @@ function autoAdv(num, loc, option) {
   (0, import_kolmafia121.print)(`Doing option ${option}`);
   var advReturn = (0, import_kolmafia121.adv1)(loc, -1, option);
   if (!advReturn) {
-    throw "aborts";
     auto_log_debug(
       "adv1 returned false for some reason. Did we actually adventure though?",
       "blue"
