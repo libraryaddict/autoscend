@@ -417,7 +417,7 @@ function List$8(data) {
   ), _step2;
   try {
     for (_iterator2.s(); !(_step2 = _iterator2.n()).done; ) {
-      var _step2$value = _slicedToArray(_step2.value, 2), _idx = _step2$value[0], _el = _step2$value[1];
+      var _step2$value = _slicedToArray(_step2.value, 2), _el = _step2$value[1];
       retval.set(index, _el);
       index = index + 1;
     }
@@ -887,10 +887,8 @@ function cartographyChoiceHandler(choice, page) {
       (0, import_kolmafia18.runChoice)(2);
     } else if ((0, import_kolmafia18.itemAmount)($item`Orcish cargo shorts`) > 0) {
       (0, import_kolmafia18.runChoice)(3);
-    } else if ((0, import_kolmafia18.itemAmount)($item`Orcish frat-paddle`) > 0 && (0, import_kolmafia18.itemAmount)($item`Orcish baseball cap`) > 0 && (0, import_kolmafia18.itemAmount)($item`Orcish cargo shorts`) > 0) {
-      (0, import_kolmafia18.runChoice)(4);
     } else {
-      (0, import_kolmafia18.runChoice)(1);
+      (0, import_kolmafia18.runChoice)(4);
     }
   } else if (choice === 1427) {
     (0, import_kolmafia18.runChoice)(1);
@@ -984,7 +982,6 @@ function in_kolhs() {
 function kolhsChoiceHandler(choice) {
   auto_log_debug$1("Running kolhsChoiceHandler");
   {
-    var target = 0;
     switch (choice) {
       case 700:
         if ((0, import_kolmafia20.haveEffect)($effect`Jamming with the Jocks`) > 0) {
@@ -1001,8 +998,8 @@ function kolhsChoiceHandler(choice) {
           (0, import_kolmafia20.runChoice)(3);
         }
         break;
-      case 772:
-        target = (0, import_kolmafia20.toInt)((0, import_kolmafia20.getProperty)("_NC772_directive"));
+      case 772: {
+        var target = (0, import_kolmafia20.toInt)((0, import_kolmafia20.getProperty)("_NC772_directive"));
         (0, import_kolmafia20.removeProperty)("_NC772_directive");
         if (target === 0) {
           (0, import_kolmafia20.abort)(
@@ -1020,6 +1017,7 @@ function kolhsChoiceHandler(choice) {
           );
         }
         break;
+      }
       default:
         break;
     }
@@ -1690,13 +1688,9 @@ function robot_choice_adv(choice, page) {
   }
   auto_log_debug$1("Running robot_choice_adv");
   {
-    var robot_need_mus = false;
-    var robot_need_mys = false;
-    var needSpectacles = false;
-    var options = /* @__PURE__ */ new Map();
     switch (choice) {
-      case 876:
-        robot_need_mus = (0, import_kolmafia44.myPrimestat)() === $stat`Muscle` || (0, import_kolmafia44.myBasestat)($stat`Muscle`) < 62;
+      case 876: {
+        var robot_need_mus = (0, import_kolmafia44.myPrimestat)() === $stat`Muscle` || (0, import_kolmafia44.myBasestat)($stat`Muscle`) < 62;
         if ((0, import_kolmafia44.myMeat)() < 1e3 + meatReserve() && auto_is_valid($item`old leather wallet`) && !robot_need_mus) {
           (0, import_kolmafia44.runChoice)(1);
         } else if ((0, import_kolmafia44.itemAmount)($item`ghost key`) > 0 && (0, import_kolmafia44.myPrimestat)() === $stat`Muscle`) {
@@ -1705,9 +1699,10 @@ function robot_choice_adv(choice, page) {
           (0, import_kolmafia44.runChoice)(2);
         }
         break;
-      case 878:
-        robot_need_mys = (0, import_kolmafia44.myPrimestat)() === $stat`Mysticality` || (0, import_kolmafia44.myBasestat)($stat`Mysticality`) < 70;
-        needSpectacles = (0, import_kolmafia44.itemAmount)($item`Lord Spookyraven's spectacles`) === 0 && internalQuestStatus("questL11Manor") < 2;
+      }
+      case 878: {
+        var robot_need_mys = (0, import_kolmafia44.myPrimestat)() === $stat`Mysticality` || (0, import_kolmafia44.myBasestat)($stat`Mysticality`) < 70;
+        var needSpectacles = (0, import_kolmafia44.itemAmount)($item`Lord Spookyraven's spectacles`) === 0 && internalQuestStatus("questL11Manor") < 2;
         if (needSpectacles) {
           (0, import_kolmafia44.runChoice)(3);
         } else if ((0, import_kolmafia44.itemAmount)($item`disposable instant camera`) === 0 && internalQuestStatus("questL11Palindome") < 1) {
@@ -1720,8 +1715,9 @@ function robot_choice_adv(choice, page) {
           (0, import_kolmafia44.runChoice)(2);
         }
         break;
-      case 879:
-        options = new Map(
+      }
+      case 879: {
+        var options = new Map(
           Object.entries((0, import_kolmafia44.availableChoiceOptions)()).map(
             (_ref) => {
               var _ref2 = _slicedToArray(_ref, 2), _k = _ref2[0], _v = _ref2[1];
@@ -1740,6 +1736,7 @@ function robot_choice_adv(choice, page) {
           (0, import_kolmafia44.runChoice)(1);
         }
         break;
+      }
       default:
         return false;
     }
@@ -1968,7 +1965,7 @@ function auto_spadeDigsRemaining() {
   return 11 - (0, import_kolmafia52.toInt)((0, import_kolmafia52.getProperty)("_archSpadeDigs"));
 }
 function legendaryNoodlesChoiceHandler() {
-  var target_choice = 0;
+  var target_choice;
   if ((0, import_kolmafia52.toBoolean)((0, import_kolmafia52.getProperty)("auto_forceCombatWithLegendaryNoodles"))) {
     target_choice = 2;
     (0, import_kolmafia52.setProperty)("auto_forceCombatWithLegendaryNoodles", false.toString());
@@ -2034,7 +2031,6 @@ function peridotChoiceHandler(choice, page) {
   if (!auto_havePeridot()) {
     (0, import_kolmafia53.runChoice)(2);
   }
-  var popChoice = import_kolmafia53.Monster.none;
   var loc = (0, import_kolmafia53.myLocation)();
   var mons = new AshMatcher('bandersnatch" value="(\\d+)', page);
   var monOpts = /* @__PURE__ */ new Map();
@@ -2056,7 +2052,7 @@ function peridotChoiceHandler(choice, page) {
     }
     i += 1;
   }
-  popChoice = monOpts.get(bestmon) ?? monOpts.set(bestmon, import_kolmafia53.Monster.none).get(bestmon);
+  var popChoice = monOpts.get(bestmon) ?? monOpts.set(bestmon, import_kolmafia53.Monster.none).get(bestmon);
   if ((0, import_kolmafia53.toInt)(popChoice) === 0 || auto_peridotSetZone(loc)) {
     handleTracker$2(
       $item`Peridot of Peril`.toString(),
@@ -2113,7 +2109,7 @@ function mobiusChoiceHandler(choice, page) {
     handleTracker$1($item`Möbius ring`.toString(), opt, "auto_otherstuff");
     (0, import_kolmafia53.runChoice)(num);
   }
-  var pos = "";
+  var pos;
   if (in_amw()) {
     pos = "Give your past self investment tips";
     if (choiceMap.has(pos)) {
@@ -2202,7 +2198,7 @@ function mobiusChoiceHandler(choice, page) {
     }
   }
   if (auto_paradoxicity() < 15) {
-    for (var _i0 = 0, _arr = [
+    for (var _i2 = 0, _arr = [
       "Stop your arch-nemesis as a baby",
       "Borrow meat from your future",
       "Hey, free gun!",
@@ -2222,8 +2218,8 @@ function mobiusChoiceHandler(choice, page) {
       "Play Schroedinger's Prank on yourself",
       "Peek in on your future",
       "Give your past self investment tips"
-    ]; _i0 < _arr.length; _i0++) {
-      var str = _arr[_i0];
+    ]; _i2 < _arr.length; _i2++) {
+      var str = _arr[_i2];
       if (choiceMap.has(str)) {
         mobiusChoice(str);
         return;
@@ -2904,7 +2900,7 @@ function bat_reallyPickSkills$1(hpLeft, requiredSkills) {
   ), _step6;
   try {
     for (_iterator6.s(); !(_step6 = _iterator6.n()).done; ) {
-      var _step6$value = _slicedToArray(_step6.value, 2), sk = _step6$value[0], _ = _step6$value[1];
+      var _step6$value = _slicedToArray(_step6.value, 1), sk = _step6$value[0];
       url += "&sk[]=";
       url += ((0, import_kolmafia94.toInt)(sk) - 24e3).toString();
     }
@@ -3584,8 +3580,7 @@ function disregardInstantKarma() {
 }
 
 // src/autoscend/iotms/mr2014.ts
-var $_f_importantMonsters;
-$_f_importantMonsters ?? ($_f_importantMonsters = import_kolmafia108.Monster.get(
+var $_f_importantMonsters = import_kolmafia108.Monster.get(
   [
     // L4:
     "beanbat",
@@ -3635,7 +3630,7 @@ $_f_importantMonsters ?? ($_f_importantMonsters = import_kolmafia108.Monster.get
     "spider gremlin (tool)",
     "vegetable gremlin (tool)"
   ]
-));
+);
 
 // src/autoscend/auto_familiar.ts
 function is100FamRun() {
@@ -3675,7 +3670,7 @@ function auto_have_familiar(fam) {
     ), _step2;
     try {
       for (_iterator2.s(); !(_step2 = _iterator2.n()).done; ) {
-        var _step2$value = _slicedToArray(_step2.value, 2), index = _step2$value[0], fam_1 = _step2$value[1];
+        var _step2$value = _slicedToArray(_step2.value, 2), fam_1 = _step2$value[1];
         blacklist.set((0, import_kolmafia109.toFamiliar)(trim(fam_1)), 1);
       }
     } catch (err) {
@@ -3689,24 +3684,6 @@ function auto_have_familiar(fam) {
   }
   return (0, import_kolmafia109.haveFamiliar)(fam);
 }
-
-// src/autoscend/auto_restore.ts
-var $_f___all_negative_effects;
-$_f___all_negative_effects ?? ($_f___all_negative_effects = /* @__PURE__ */ new Map());
-var $_f___known_restoration_sources;
-$_f___known_restoration_sources ?? ($_f___known_restoration_sources = /* @__PURE__ */ new Map());
-var $_f___restore_maximizer_cache;
-$_f___restore_maximizer_cache ?? ($_f___restore_maximizer_cache = /* @__PURE__ */ new Map());
-var $_f___RESTORE_ALL;
-$_f___RESTORE_ALL ?? ($_f___RESTORE_ALL = "all");
-var $_f___RESTORE_HALF;
-$_f___RESTORE_HALF ?? ($_f___RESTORE_HALF = "half");
-var $_f___RESTORE_SCALING;
-$_f___RESTORE_SCALING ?? ($_f___RESTORE_SCALING = "scaling");
-var $_f___HOT_TUB;
-$_f___HOT_TUB ?? ($_f___HOT_TUB = "a relaxing hot tub");
-var $_f___NUNS;
-$_f___NUNS ?? ($_f___NUNS = "the nunnery");
 
 // src/autoscend/iotms/mr2016.ts
 function expectGhostReport() {
@@ -3812,12 +3789,12 @@ function auto_combat_appearance_rates(place, queue) {
   if (noncombat_frequency === 0 || noncombat_frequency >= 100) {
     return res_including_noncombat;
   }
-  var _iterator8 = _createForOfIteratorHelper(
+  var _iterator7 = _createForOfIteratorHelper(
     res_including_noncombat
-  ), _step8;
+  ), _step7;
   try {
-    for (_iterator8.s(); !(_step8 = _iterator8.n()).done; ) {
-      var _step8$value = _slicedToArray(_step8.value, 2), mob = _step8$value[0], freq = _step8$value[1];
+    for (_iterator7.s(); !(_step7 = _iterator7.n()).done; ) {
+      var _step7$value = _slicedToArray(_step7.value, 2), mob = _step7$value[0], freq = _step7$value[1];
       if (mob !== import_kolmafia119.Monster.none) {
         res_excluding_noncombat.set(
           mob,
@@ -3826,9 +3803,9 @@ function auto_combat_appearance_rates(place, queue) {
       }
     }
   } catch (err) {
-    _iterator8.e(err);
+    _iterator7.e(err);
   } finally {
-    _iterator8.f();
+    _iterator7.f();
   }
   return res_excluding_noncombat;
 }
@@ -4061,7 +4038,6 @@ function auto_check_conditions(conds) {
   var conditions = new Map(
     (0, import_kolmafia119.splitString)(conds, ";").map((_v, _i) => [_i, _v])
   );
-  var failure = false;
   function compare_numbers(num1, num2, comparison) {
     switch (comparison) {
       case "=":
@@ -4101,9 +4077,7 @@ function auto_check_conditions(conds) {
       var req_familiar = import_kolmafia119.Familiar.none;
       var havefamiliar = import_kolmafia119.Familiar.none;
       var req_loc = import_kolmafia119.Location.none;
-      var m6 = void 0;
       var loc = import_kolmafia119.Location.none;
-      var m22 = void 0;
       var prop = "";
       var m3 = void 0;
       var quest_state = 0;
@@ -4200,8 +4174,11 @@ function auto_check_conditions(conds) {
             );
           }
           return (0, import_kolmafia119.myLocation)() === req_loc;
-        case "turnsspent":
-          m6 = new AshMatcher("([^=<>]+)([=<>]+)(.+)", condition_data);
+        case "turnsspent": {
+          var m6 = new AshMatcher(
+            "([^=<>]+)([=<>]+)(.+)",
+            condition_data
+          );
           if (!m6.find()) {
             (0, import_kolmafia119.abort)(
               `"${condition_data}" is not a proper turnsspent condition format!`
@@ -4221,8 +4198,12 @@ function auto_check_conditions(conds) {
             );
           }
           return loc.turnsSpent === (0, import_kolmafia119.toInt)(m6.group(3));
-        case "prop":
-          m22 = new AshMatcher("([^=<>]+)([=<>]+)(.+)", condition_data);
+        }
+        case "prop": {
+          var m22 = new AshMatcher(
+            "([^=<>]+)([=<>]+)(.+)",
+            condition_data
+          );
           if (!m22.find()) {
             (0, import_kolmafia119.abort)(`"${condition_data}" is not a proper prop condition format!`);
           }
@@ -4235,6 +4216,7 @@ function auto_check_conditions(conds) {
             );
           }
           return prop === m22.group(3);
+        }
         case "prop_boolean":
           return (0, import_kolmafia119.toBoolean)((0, import_kolmafia119.getProperty)(condition_data));
         case "quest":
@@ -4321,14 +4303,13 @@ function auto_check_conditions(conds) {
           (0, import_kolmafia119.abort)(`Invalid condition type "${condition_type}" found!`);
       }
     }
-    return false;
   }
-  var _iterator51 = _createForOfIteratorHelper(
+  var _iterator49 = _createForOfIteratorHelper(
     conditions
-  ), _step51;
+  ), _step49;
   try {
-    for (_iterator51.s(); !(_step51 = _iterator51.n()).done; ) {
-      var _step51$value = _slicedToArray(_step51.value, 2), i = _step51$value[0], cond = _step51$value[1];
+    for (_iterator49.s(); !(_step49 = _iterator49.n()).done; ) {
+      var _step49$value = _slicedToArray(_step49.value, 2), cond = _step49$value[1];
       var m = new AshMatcher("^(!?)(.+)$", cond);
       if (!m.find()) {
         (0, import_kolmafia119.abort)(`"${cond}" is not a proper condition!`);
@@ -4340,9 +4321,9 @@ function auto_check_conditions(conds) {
       }
     }
   } catch (err) {
-    _iterator51.e(err);
+    _iterator49.e(err);
   } finally {
-    _iterator51.f();
+    _iterator49.f();
   }
   return true;
 }
@@ -4352,18 +4333,18 @@ function auto_getMonsters(category) {
   if (!monsters_text.size) {
     auto_log_error("Could not load autoscend_monsters.txt. This is bad!");
   }
-  var _iterator52 = _createForOfIteratorHelper(
+  var _iterator50 = _createForOfIteratorHelper(
     monsters_text.get(category) ?? monsters_text.set(category, /* @__PURE__ */ new Map()).get(category)
-  ), _step52;
+  ), _step50;
   try {
-    for (_iterator52.s(); !(_step52 = _iterator52.n()).done; ) {
-      var _step52$value = _slicedToArray(_step52.value, 2), i = _step52$value[0], _v0 = _step52$value[1];
-      var _iterator53 = _createForOfIteratorHelper(
+    for (_iterator50.s(); !(_step50 = _iterator50.n()).done; ) {
+      var _step50$value = _slicedToArray(_step50.value, 2), _v0 = _step50$value[1];
+      var _iterator51 = _createForOfIteratorHelper(
         _v0
-      ), _step53;
+      ), _step51;
       try {
-        for (_iterator53.s(); !(_step53 = _iterator53.n()).done; ) {
-          var _step53$value = _slicedToArray(_step53.value, 2), name = _step53$value[0], _v1 = _step53$value[1];
+        for (_iterator51.s(); !(_step51 = _iterator51.n()).done; ) {
+          var _step51$value = _slicedToArray(_step51.value, 2), name = _step51$value[0], _v1 = _step51$value[1];
           var conds = _v1;
           var thisMonster = (0, import_kolmafia119.toMonster)(name);
           if (thisMonster === import_kolmafia119.Monster.none) {
@@ -4379,15 +4360,15 @@ function auto_getMonsters(category) {
           res.set(thisMonster, true);
         }
       } catch (err) {
-        _iterator53.e(err);
+        _iterator51.e(err);
       } finally {
-        _iterator53.f();
+        _iterator51.f();
       }
     }
   } catch (err) {
-    _iterator52.e(err);
+    _iterator50.e(err);
   } finally {
-    _iterator52.f();
+    _iterator50.f();
   }
   return res;
 }
@@ -4462,21 +4443,21 @@ function poolSkillPracticeGains() {
 }
 function hasUsefulShirt() {
   var amtUsefulShirts = 0;
-  var _iterator71 = _createForOfIteratorHelper(
+  var _iterator69 = _createForOfIteratorHelper(
     $items`January's Garbage Tote, astral shirt, shoe ad T-shirt, fresh coat of paint, tunac, Jurassic Parka, hairshirt, futuristic shirt`
-  ), _step71;
+  ), _step69;
   try {
-    for (_iterator71.s(); !(_step71 = _iterator71.n()).done; ) {
-      var it = _step71.value;
+    for (_iterator69.s(); !(_step69 = _iterator69.n()).done; ) {
+      var it = _step69.value;
       var w_it = wrap_item(it);
       if ((0, import_kolmafia119.itemAmount)(w_it) !== 0 && (0, import_kolmafia119.isUnrestricted)(w_it)) {
         amtUsefulShirts += 1;
       }
     }
   } catch (err) {
-    _iterator71.e(err);
+    _iterator69.e(err);
   } finally {
-    _iterator71.f();
+    _iterator69.f();
   }
   if (amtUsefulShirts > 0) {
     return true;
@@ -4579,16 +4560,6 @@ var import_kolmafia125 = require("kolmafia");
 
 // src/autoscend/autoscend_migration.ts
 var import_kolmafia126 = require("kolmafia");
-var $_f___autoscend_version;
-$_f___autoscend_version ?? ($_f___autoscend_version = "1.8.0");
-var $_f___autoscend_confirm_timeoutMS;
-$_f___autoscend_confirm_timeoutMS ?? ($_f___autoscend_confirm_timeoutMS = 1e4);
-var $_f___remove_sl_ascend_confirmation;
-$_f___remove_sl_ascend_confirmation ?? ($_f___remove_sl_ascend_confirmation = "Looks like you have the old sl_ascend project installed as well. Would you like to remove it? (it is no longer maintained). Will default to false in 10 seconds.");
-var $_f___migrate_sl_ascend_properties_confirmation;
-$_f___migrate_sl_ascend_properties_confirmation ?? ($_f___migrate_sl_ascend_properties_confirmation = "Looks like you may be migrating from sl_ascend. Starting with a fresh run using autoscend is adviable but we can try to migrate all the sl_ascend properties (results may vary). Will default to true in 10 seconds.");
-var $_f___migrate_sl_ascend_properties_remove_confirmation;
-$_f___migrate_sl_ascend_properties_remove_confirmation ?? ($_f___migrate_sl_ascend_properties_remove_confirmation = "Would you like to clean up old sl_ascend properties after migrating them? Will default to false in 10 seconds.");
 
 // src/autoscend/iotms/eudora.ts
 var import_kolmafia127 = require("kolmafia");
@@ -4669,7 +4640,7 @@ function canDrink$2(toDrink, checkValidity) {
     ), _step;
     try {
       for (_iterator.s(); !(_step = _iterator.n()).done; ) {
-        var _step$value = _slicedToArray(_step.value, 2), idx = _step$value[0], it = _step$value[1];
+        var _step$value = _slicedToArray(_step.value, 2), it = _step$value[1];
         if (it === toDrink) {
           found = true;
         }
@@ -4769,7 +4740,7 @@ function possessOutfit(outfitToCheck, checkCanEquip) {
   ), _step22;
   try {
     for (_iterator22.s(); !(_step22 = _iterator22.n()).done; ) {
-      var _step22$value = _slicedToArray(_step22.value, 2), key = _step22$value[0], piece = _step22$value[1];
+      var _step22$value = _slicedToArray(_step22.value, 2), piece = _step22$value[1];
       if (!possessEquipment(piece)) {
         return false;
       }
@@ -4801,9 +4772,6 @@ function auto_run_choice(choice, page) {
     })
   );
   {
-    var goal = 0;
-    var search = "";
-    var glchoice = 0;
     switch (choice) {
       case 15:
       case 16:
@@ -5348,15 +5316,15 @@ function auto_run_choice(choice, page) {
           (0, import_kolmafia136.runChoice)(4);
         }
         break;
-      case 1310:
-        goal = (0, import_kolmafia136.toInt)((0, import_kolmafia136.getProperty)("_auto_lobsterChoice"));
-        search = "I'd like part of your regalia.";
+      case 1310: {
+        var goal = (0, import_kolmafia136.toInt)((0, import_kolmafia136.getProperty)("_auto_lobsterChoice"));
+        var search = "I'd like part of your regalia.";
         if (goal === 2) {
           search = "I'd like a blessing.";
         } else if (goal === 3) {
           search = "I'd like some experience.";
         }
-        glchoice = 0;
+        var glchoice = 0;
         var _iterator = _createForOfIteratorHelper(
           options
         ), _step;
@@ -5374,6 +5342,7 @@ function auto_run_choice(choice, page) {
         }
         (0, import_kolmafia136.runChoice)(glchoice);
         break;
+      }
       case 1322:
       // The Beginning of the Neverend (The Neverending Party)
       case 1323:

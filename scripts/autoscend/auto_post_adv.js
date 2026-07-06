@@ -696,7 +696,7 @@ function List$8(data) {
   ), _step2;
   try {
     for (_iterator2.s(); !(_step2 = _iterator2.n()).done; ) {
-      var _step2$value = _slicedToArray(_step2.value, 2), _idx = _step2$value[0], _el = _step2$value[1];
+      var _step2$value = _slicedToArray(_step2.value, 2), _el = _step2$value[1];
       retval.set(index, _el);
       index = index + 1;
     }
@@ -1296,7 +1296,6 @@ function auto_isInEternityCodpiece(it) {
   try {
     for (_iterator.s(); !(_step = _iterator.n()).done; ) {
       var s = _step.value;
-      var b = true;
       if ((0, import_kolmafia27.equippedItem)(s) === it) {
         return true;
       }
@@ -2251,9 +2250,7 @@ function freeCandyFightsLeft() {
   if (!(0, import_kolmafia46.toBoolean)((0, import_kolmafia46.getProperty)("_mapToACandyRichBlockUsed")) && (0, import_kolmafia46.itemAmount)($item`map to a candy-rich block`) > 0) {
     return 5;
   }
-  var blockHtml = (0, import_kolmafia46.visitUrl)(
-    "place.php?whichplace=town&action=town_trickortreat"
-  );
+  (0, import_kolmafia46.visitUrl)("place.php?whichplace=town&action=town_trickortreat");
   var block = (0, import_kolmafia46.getProperty)("_trickOrTreatBlock");
   var m = new AshMatcher("D", block);
   var n_unused_dark = 0;
@@ -2781,7 +2778,7 @@ function fantasyBanditsFought() {
     ), _step;
     try {
       for (_iterator.s(); !(_step = _iterator.n()).done; ) {
-        var _step$value = _slicedToArray(_step.value, 2), idx = _step$value[0], it = _step$value[1];
+        var _step$value = _slicedToArray(_step.value, 2), it = _step$value[1];
         if ((0, import_kolmafia56.containsText)(it, "fantasy bandit")) {
           var _splitString, _;
           var count_1 = (0, import_kolmafia56.toInt)((_splitString = (0, import_kolmafia56.splitString)(it, ":"))[_ = 1] ?? (_splitString[_] = ""));
@@ -3297,13 +3294,13 @@ function leftKickHasSniff() {
   ), _step14;
   try {
     for (_iterator14.s(); !(_step14 = _iterator14.n()).done; ) {
-      var _step14$value = _slicedToArray(_step14.value, 2), i = _step14$value[0], attr = _step14$value[1];
+      var _step14$value = _slicedToArray(_step14.value, 2), attr = _step14$value[1];
       var _iterator15 = _createForOfIteratorHelper(
         sniffs
       ), _step15;
       try {
         for (_iterator15.s(); !(_step15 = _iterator15.n()).done; ) {
-          var _step15$value = _slicedToArray(_step15.value, 2), j = _step15$value[0], sniff = _step15$value[1];
+          var _step15$value = _slicedToArray(_step15.value, 2), sniff = _step15$value[1];
           if (sniff === attr) {
             return true;
           }
@@ -3338,32 +3335,32 @@ function leftKickHasInstaKill() {
       [7, "stench"]
     ]
   );
-  var _iterator18 = _createForOfIteratorHelper(
+  var _iterator16 = _createForOfIteratorHelper(
     attrs
-  ), _step18;
+  ), _step16;
   try {
-    for (_iterator18.s(); !(_step18 = _iterator18.n()).done; ) {
-      var _step18$value = _slicedToArray(_step18.value, 2), i = _step18$value[0], attr = _step18$value[1];
-      var _iterator19 = _createForOfIteratorHelper(
+    for (_iterator16.s(); !(_step16 = _iterator16.n()).done; ) {
+      var _step16$value = _slicedToArray(_step16.value, 2), attr = _step16$value[1];
+      var _iterator17 = _createForOfIteratorHelper(
         instakills
-      ), _step19;
+      ), _step17;
       try {
-        for (_iterator19.s(); !(_step19 = _iterator19.n()).done; ) {
-          var _step19$value = _slicedToArray(_step19.value, 2), j = _step19$value[0], instakill = _step19$value[1];
+        for (_iterator17.s(); !(_step17 = _iterator17.n()).done; ) {
+          var _step17$value = _slicedToArray(_step17.value, 2), instakill = _step17$value[1];
           if (instakill === attr) {
             return true;
           }
         }
       } catch (err) {
-        _iterator19.e(err);
+        _iterator17.e(err);
       } finally {
-        _iterator19.f();
+        _iterator17.f();
       }
     }
   } catch (err) {
-    _iterator18.e(err);
+    _iterator16.e(err);
   } finally {
-    _iterator18.f();
+    _iterator16.f();
   }
   return false;
 }
@@ -3384,32 +3381,32 @@ function rightKickHasSniff() {
       [7, "software"]
     ]
   );
-  var _iterator20 = _createForOfIteratorHelper(
+  var _iterator18 = _createForOfIteratorHelper(
     attrs
-  ), _step20;
+  ), _step18;
   try {
-    for (_iterator20.s(); !(_step20 = _iterator20.n()).done; ) {
-      var _step20$value = _slicedToArray(_step20.value, 2), i = _step20$value[0], attr = _step20$value[1];
-      var _iterator21 = _createForOfIteratorHelper(
+    for (_iterator18.s(); !(_step18 = _iterator18.n()).done; ) {
+      var _step18$value = _slicedToArray(_step18.value, 2), attr = _step18$value[1];
+      var _iterator19 = _createForOfIteratorHelper(
         sniffs
-      ), _step21;
+      ), _step19;
       try {
-        for (_iterator21.s(); !(_step21 = _iterator21.n()).done; ) {
-          var _step21$value = _slicedToArray(_step21.value, 2), j = _step21$value[0], sniff = _step21$value[1];
+        for (_iterator19.s(); !(_step19 = _iterator19.n()).done; ) {
+          var _step19$value = _slicedToArray(_step19.value, 2), sniff = _step19$value[1];
           if (sniff === attr) {
             return true;
           }
         }
       } catch (err) {
-        _iterator21.e(err);
+        _iterator19.e(err);
       } finally {
-        _iterator21.f();
+        _iterator19.f();
       }
     }
   } catch (err) {
-    _iterator20.e(err);
+    _iterator18.e(err);
   } finally {
-    _iterator20.f();
+    _iterator18.f();
   }
   return false;
 }
@@ -3430,32 +3427,32 @@ function rightKickHasInstaKill() {
       [7, "stench"]
     ]
   );
-  var _iterator24 = _createForOfIteratorHelper(
+  var _iterator20 = _createForOfIteratorHelper(
     attrs
-  ), _step24;
+  ), _step20;
   try {
-    for (_iterator24.s(); !(_step24 = _iterator24.n()).done; ) {
-      var _step24$value = _slicedToArray(_step24.value, 2), i = _step24$value[0], attr = _step24$value[1];
-      var _iterator25 = _createForOfIteratorHelper(
+    for (_iterator20.s(); !(_step20 = _iterator20.n()).done; ) {
+      var _step20$value = _slicedToArray(_step20.value, 2), attr = _step20$value[1];
+      var _iterator21 = _createForOfIteratorHelper(
         instakills
-      ), _step25;
+      ), _step21;
       try {
-        for (_iterator25.s(); !(_step25 = _iterator25.n()).done; ) {
-          var _step25$value = _slicedToArray(_step25.value, 2), j = _step25$value[0], instakill = _step25$value[1];
+        for (_iterator21.s(); !(_step21 = _iterator21.n()).done; ) {
+          var _step21$value = _slicedToArray(_step21.value, 2), instakill = _step21$value[1];
           if (instakill === attr) {
             return true;
           }
         }
       } catch (err) {
-        _iterator25.e(err);
+        _iterator21.e(err);
       } finally {
-        _iterator25.f();
+        _iterator21.f();
       }
     }
   } catch (err) {
-    _iterator24.e(err);
+    _iterator20.e(err);
   } finally {
-    _iterator24.f();
+    _iterator20.f();
   }
   return false;
 }
@@ -3542,7 +3539,7 @@ function haveUsedPeridot(loc) {
   ), _step4;
   try {
     for (_iterator4.s(); !(_step4 = _iterator4.n()).done; ) {
-      var _step4$value = _slicedToArray(_step4.value, 2), i = _step4$value[0], str = _step4$value[1];
+      var _step4$value = _slicedToArray(_step4.value, 2), str = _step4$value[1];
       if (loc === (0, import_kolmafia60.toInt)(str)) {
         return true;
       }
@@ -3764,7 +3761,7 @@ function auto_wantToShrunkenHead(enemy) {
   ), _step20;
   try {
     for (_iterator20.s(); !(_step20 = _iterator20.n()).done; ) {
-      var _step20$value = _slicedToArray(_step20.value, 2), i = _step20$value[0], bonus = _step20$value[1];
+      var _step20$value = _slicedToArray(_step20.value, 2), bonus = _step20$value[1];
       if ((0, import_kolmafia60.containsText)(bonus, "Attack")) {
         return false;
       }
@@ -3823,43 +3820,41 @@ function auto_haveDarts() {
   return false;
 }
 function dartELRcd() {
-  var perks = /* @__PURE__ */ new Map();
   var cd = 50;
-  perks = new Map(
+  var perks = new Map(
     (0, import_kolmafia62.splitString)((0, import_kolmafia62.toLowerCase)((0, import_kolmafia62.getProperty)("everfullDartPerks")), ",").map(
       (_v, _i) => [_i, _v]
     )
   );
-  var _iterator4 = _createForOfIteratorHelper(
+  var _iterator3 = _createForOfIteratorHelper(
     perks.keys()
-  ), _step4;
+  ), _step3;
   try {
-    for (_iterator4.s(); !(_step4 = _iterator4.n()).done; ) {
-      var perk = _step4.value;
+    for (_iterator3.s(); !(_step3 = _iterator3.n()).done; ) {
+      var perk = _step3.value;
       if ((0, import_kolmafia62.containsText)(perks.get(perk) ?? perks.set(perk, "").get(perk), "impress")) {
         cd -= 10;
       }
     }
   } catch (err) {
-    _iterator4.e(err);
+    _iterator3.e(err);
   } finally {
-    _iterator4.f();
+    _iterator3.f();
   }
   return cd;
 }
 function dartSkill() {
-  var curDartboard = /* @__PURE__ */ new Map();
-  curDartboard = new Map(
+  var curDartboard = new Map(
     (0, import_kolmafia62.splitString)((0, import_kolmafia62.toLowerCase)((0, import_kolmafia62.getProperty)("_currentDartboard")), ",").map(
       (_v, _i) => [_i, _v]
     )
   );
-  var _iterator5 = _createForOfIteratorHelper(
+  var _iterator4 = _createForOfIteratorHelper(
     curDartboard.keys()
-  ), _step5;
+  ), _step4;
   try {
-    for (_iterator5.s(); !(_step5 = _iterator5.n()).done; ) {
-      var sk = _step5.value;
+    for (_iterator4.s(); !(_step4 = _iterator4.n()).done; ) {
+      var sk = _step4.value;
       if ((0, import_kolmafia62.containsText)(
         curDartboard.get(sk) ?? curDartboard.set(sk, "").get(sk),
         "butt"
@@ -3891,9 +3886,9 @@ function dartSkill() {
       }
     }
   } catch (err) {
-    _iterator5.e(err);
+    _iterator4.e(err);
   } finally {
-    _iterator5.f();
+    _iterator4.f();
   }
   return (0, import_kolmafia62.toSkill)(7513);
 }
@@ -4634,8 +4629,6 @@ function auto_combatWereProfessorStage5(round_1, enemy, text) {
     return "";
   }
   var enemy_physical_immune = enemy.physicalResistance > 99;
-  var enemy_physical_res = 1 - enemy.physicalResistance * 0.01;
-  var dmg = 0;
   if (is_werewolf()) {
     if (enemy_physical_immune && canUse$1($skill`Bite`, true)) {
       return useSkill$1($skill`Bite`, true);
@@ -4699,8 +4692,7 @@ function auto_combatWildfireStage1(round_1, enemy, text) {
 
 // src/autoscend/combat/auto_combat_default_stage1.ts
 function auto_combatDefaultStage1(round_1, enemy, text) {
-  var retval = "";
-  retval = auto_combatHeavyRainsStage1(round_1, enemy, text);
+  var retval = auto_combatHeavyRainsStage1(round_1, enemy, text);
   if (retval !== "") {
     return retval;
   }
@@ -4860,7 +4852,7 @@ function auto_combatDefaultStage1(round_1, enemy, text) {
     ), _step2;
     try {
       for (_iterator2.s(); !(_step2 = _iterator2.n()).done; ) {
-        var _step2$value = _slicedToArray(_step2.value, 2), i = _step2$value[0], drop = _step2$value[1];
+        var _step2$value = _slicedToArray(_step2.value, 2), drop = _step2$value[1];
         if (drop.type === "0") {
           tryIt = true;
         }
@@ -4884,7 +4876,7 @@ function auto_combatDefaultStage1(round_1, enemy, text) {
     }
     if (tryIt) {
       combat_status_add("pickpocket");
-      var attemptSteal = (0, import_kolmafia76.steal)();
+      (0, import_kolmafia76.steal)();
       return "pickpocket";
     }
   }
@@ -4988,7 +4980,6 @@ function auto_combatDarkGyffteStage2(round_1, enemy, text) {
 
 // src/autoscend/combat/auto_combat_default_stage2.ts
 function auto_combatDefaultStage2(round_1, enemy, text) {
-  var retval = "";
   if ((0, import_kolmafia78.toBoolean)((0, import_kolmafia78.getProperty)("auto_skipStage2"))) {
     return "";
   }
@@ -5016,7 +5007,7 @@ function auto_combatDefaultStage2(round_1, enemy, text) {
     );
     return "";
   }
-  retval = auto_combatDarkGyffteStage2(round_1, enemy, text);
+  var retval = auto_combatDarkGyffteStage2(round_1, enemy, text);
   if (retval !== "") {
     return retval;
   }
@@ -5728,7 +5719,6 @@ function auto_combatZombieSlayerStage5(round_1, enemy, text) {
 
 // src/autoscend/combat/auto_combat_default_stage3.ts
 function auto_combatDefaultStage3(round_1, enemy, text) {
-  var retval = "";
   (0, import_kolmafia80.setProperty)("auto_instakillSuccess", false.toString());
   if ((0, import_kolmafia80.toBoolean)((0, import_kolmafia80.getProperty)("auto_skipStage2"))) {
     (0, import_kolmafia80.setProperty)("auto_skipStage2", false.toString());
@@ -5736,7 +5726,7 @@ function auto_combatDefaultStage3(round_1, enemy, text) {
   if ((0, import_kolmafia80.toBoolean)((0, import_kolmafia80.getProperty)("auto_skipStage3"))) {
     return "";
   }
-  retval = auto_combatHeavyRainsStage3(round_1, enemy, text);
+  var retval = auto_combatHeavyRainsStage3(round_1, enemy, text);
   if (retval !== "") {
     return retval;
   }
@@ -6252,11 +6242,10 @@ function auto_combatLicenseToAdventureStage4(round_1, enemy, text) {
 
 // src/autoscend/combat/auto_combat_default_stage4.ts
 function auto_combatDefaultStage4(round_1, enemy, text) {
-  var retval = "";
   if ((0, import_kolmafia82.toBoolean)((0, import_kolmafia82.getProperty)("auto_skipStage3"))) {
     (0, import_kolmafia82.setProperty)("auto_skipStage3", false.toString());
   }
-  retval = auto_combatTheSourceStage4(round_1, enemy, text);
+  var retval = auto_combatTheSourceStage4(round_1, enemy, text);
   if (retval !== "") {
     return retval;
   }
@@ -6591,7 +6580,7 @@ function auto_combat_robot_stage5(round_1, enemy, text) {
   var enemy_physical_immune = enemy.physicalResistance > 99;
   var enemy_hot_immune = (0, import_kolmafia84.monsterElement)(enemy) === $element`hot` || enemy === $monster`Protector S. P. E. C. T. R. E.`;
   var enemy_physical_res = 1 - enemy.physicalResistance * 0.01;
-  var dmg = 0;
+  var dmg;
   if (canUse$1($skill`Snipe`, false) && !enemy_physical_immune) {
     var better_than_crotch_burn = (0, import_kolmafia84.monsterHp)() > 40 || enemy_hot_immune;
     dmg = (0, import_kolmafia84.myBuffedstat)($stat`Mysticality`) * enemy_physical_res;
@@ -6632,11 +6621,10 @@ function auto_combat_robot_stage5(round_1, enemy, text) {
 
 // src/autoscend/combat/auto_combat_default_stage5.ts
 function auto_combatDefaultStage5(round_1, enemy, text) {
-  var retval = "";
   if ((0, import_kolmafia85.toBoolean)((0, import_kolmafia85.getProperty)("auto_skipStage4"))) {
     (0, import_kolmafia85.setProperty)("auto_skipStage4", false.toString());
   }
-  retval = auto_combatHeavyRainsStage5(round_1, enemy, text);
+  var retval = auto_combatHeavyRainsStage5(round_1, enemy, text);
   if (retval !== "") {
     return retval;
   }
@@ -6683,10 +6671,6 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
   var attackMajor = "attack with weapon";
   var costMinor = 0;
   var costMajor = 0;
-  var damageReceived = 0;
-  if (round_1 !== 0) {
-    damageReceived = (0, import_kolmafia85.toInt)((0, import_kolmafia85.getProperty)("auto_combatHP")) - (0, import_kolmafia85.myHp)();
-  }
   if (enemy === $monster`LOV Enforcer` && canUse$1($skill`Saucestorm`, false)) {
     return useSkill$1($skill`Saucestorm`, false);
   }
@@ -6756,8 +6740,6 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
     return useSkill$2($skill`Blow the Red Candle!`);
   }
   {
-    var mortar_round = 0;
-    var punch = import_kolmafia85.Skill.none;
     switch ((0, import_kolmafia85.myClass)()) {
       case $class`Seal Clubber`:
         attackMinor = "attack with weapon";
@@ -6875,7 +6857,7 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
           costMinor = (0, import_kolmafia85.mpCost)($skill`Saucegeyser`);
         }
         break;
-      case $class`Sauceror`:
+      case $class`Sauceror`: {
         if (canUse$1($skill`Saucegeyser`, false)) {
           attackMinor = useSkill$1($skill`Saucegeyser`, false);
           attackMajor = useSkill$1($skill`Saucegeyser`, false);
@@ -6902,7 +6884,9 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
           costMinor = (0, import_kolmafia85.mpCost)($skill`Stream of Sauce`);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Stream of Sauce`);
         }
-        mortar_round = (0, import_kolmafia85.toInt)((0, import_kolmafia85.getProperty)("_auto_combatTracker_MortarRound"));
+        var mortar_round = (0, import_kolmafia85.toInt)(
+          (0, import_kolmafia85.getProperty)("_auto_combatTracker_MortarRound")
+        );
         if (mortar_round > -1 && mortar_round === round_1 - 1 && canSurvive$1(2)) {
           if ((0, import_kolmafia85.monsterHp)() > 1 && canUse$3($item`seal tooth`, false)) {
             return useItem($item`seal tooth`, false);
@@ -6912,7 +6896,8 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
           }
         }
         break;
-      case $class`Avatar of Boris`:
+      }
+      case $class`Avatar of Boris`: {
         if (canUse$1($skill`Heroic Belch`, false) && enemy.physicalResistance >= 80 && $element`stench` !== (0, import_kolmafia85.monsterElement)(enemy)) {
           attackMinor = useSkill$2($skill`Heroic Belch`);
           attackMajor = useSkill$2($skill`Heroic Belch`);
@@ -6942,7 +6927,8 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
           costMajor = (0, import_kolmafia85.mpCost)($skill`Heroic Belch`);
         }
         break;
-      case $class`Avatar of Jarlsberg`:
+      }
+      case $class`Avatar of Jarlsberg`: {
         attackMinor = useSkill$1($skill`Curdle`, false);
         attackMajor = useSkill$1($skill`Curdle`, false);
         costMinor = (0, import_kolmafia85.mpCost)($skill`Curdle`);
@@ -7008,7 +6994,8 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
           }
         }
         break;
-      case $class`Avatar of Sneaky Pete`:
+      }
+      case $class`Avatar of Sneaky Pete`: {
         if (canUse$1($skill`Pop Wheelie`, false)) {
           attackMajor = useSkill$1($skill`Pop Wheelie`, false);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Pop Wheelie`);
@@ -7030,7 +7017,8 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
           costMajor = 0;
         }
         break;
-      case $class`Accordion Thief`:
+      }
+      case $class`Accordion Thief`: {
         if (canUse$2($skill`Cadenza`) && (0, import_kolmafia85.itemType)((0, import_kolmafia85.equippedItem)($slot`weapon`)) === "accordion" && canSurvive$1(2)) {
           if ($items`accordion file, alarm accordion, autocalliope, Bal-musette accordion, baritone accordion, Cajun accordion, ghost accordion, peace accordion, pentatonic accordion, pygmy concertinette, Skipper's accordion, Squeezebox of the Ages, The Trickster's Trikitixa`.includes(
             (0, import_kolmafia85.equippedItem)($slot`weapon`)
@@ -7064,7 +7052,8 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
           }
         }
         break;
-      case $class`Disco Bandit`:
+      }
+      case $class`Disco Bandit`: {
         if (auto_have_skill($skill`Disco State of Mind`) && auto_have_skill($skill`Flashy Dancer`) && auto_have_skill($skill`Disco Greed`) && auto_have_skill($skill`Disco Bravado`) && stunnable(enemy) && (0, import_kolmafia85.monsterLevelAdjustment)() < 150) {
           var mpRegen = ((0, import_kolmafia85.numericModifier)("MP Regen Min") + (0, import_kolmafia85.numericModifier)("MP Regen Max")) / 2;
           var netCost = 0;
@@ -7111,6 +7100,7 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
           }
         }
         break;
+      }
       case $class`Cow Puncher`:
       case $class`Beanslinger`:
       case $class`Snake Oiler`:
@@ -7295,8 +7285,8 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
           costMinor = (0, import_kolmafia85.mpCost)($skill`Grit Teeth`);
         }
         break;
-      case $class`Zootomist`:
-        punch = getZooBestPunch$1(enemy);
+      case $class`Zootomist`: {
+        var punch = getZooBestPunch$1(enemy);
         if (punch === import_kolmafia85.Skill.none) {
           return "attack with weapon";
         }
@@ -7305,6 +7295,7 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
         costMajor = (0, import_kolmafia85.mpCost)(punch);
         costMinor = (0, import_kolmafia85.mpCost)(punch);
         break;
+      }
     }
   }
   if ((0, import_kolmafia85.myHp)() * 10 / 3 < (0, import_kolmafia85.myMaxhp)()) {
@@ -7611,11 +7602,10 @@ function auto_combatHandler(round_1, enemy, text) {
     );
   }
   auto_combatInitialize(round_1, enemy, text);
-  var retval = "";
   (0, import_kolmafia87.setProperty)("auto_combatHP", (0, import_kolmafia87.myHp)().toString());
   (0, import_kolmafia87.setProperty)("auto_diag_round", round_1.toString());
   if (in_ocrs()) {
-    enemy = ocrs_combat_helper(text);
+    ocrs_combat_helper(text);
     enemy = (0, import_kolmafia87.lastMonster)();
   }
   if (in_awol()) {
@@ -7624,7 +7614,7 @@ function auto_combatHandler(round_1, enemy, text) {
   if (in_pokefam()) {
     if ((0, import_kolmafia87.gitExists)("Ezandora-Helix-Fossil")) {
       auto_log_info("Combat via Ezandora:", "green");
-      var ignore = (0, import_kolmafia87.cliExecute)("Pocket Familiars");
+      (0, import_kolmafia87.cliExecute)("Pocket Familiars");
       return "";
     }
   }
@@ -7680,7 +7670,7 @@ function auto_combatHandler(round_1, enemy, text) {
       }
     }
   }
-  retval = auto_combatDefaultStage1(round_1, enemy, text);
+  var retval = auto_combatDefaultStage1(round_1, enemy, text);
   if (retval !== "") {
     return retval;
   }
@@ -7707,8 +7697,6 @@ function auto_combatHandler(round_1, enemy, text) {
 // src/autoscend/combat/auto_combat_ed.ts
 var import_kolmafia88 = require("kolmafia");
 function auto_edCombatHandler(round_1, enemy, text) {
-  var blocked = (0, import_kolmafia88.containsText)(text, "(STUN RESISTED)");
-  var damageReceived = 0;
   if (!isActuallyEd()) {
     (0, import_kolmafia88.abort)(
       "Not in Actually Ed the Undying, this combat filter will result in massive suckage."
@@ -7732,7 +7720,6 @@ function auto_edCombatHandler(round_1, enemy, text) {
       "blue"
     );
   } else {
-    damageReceived = (0, import_kolmafia88.toInt)((0, import_kolmafia88.getProperty)("auto_combatHP")) - (0, import_kolmafia88.myHp)();
     (0, import_kolmafia88.setProperty)("auto_combatHP", (0, import_kolmafia88.myHp)().toString());
   }
   (0, import_kolmafia88.setProperty)(
@@ -8664,7 +8651,7 @@ function bat_reallyPickSkills$1(hpLeft, requiredSkills) {
   ), _step6;
   try {
     for (_iterator6.s(); !(_step6 = _iterator6.n()).done; ) {
-      var _step6$value = _slicedToArray(_step6.value, 2), sk = _step6$value[0], _ = _step6$value[1];
+      var _step6$value = _slicedToArray(_step6.value, 1), sk = _step6$value[0];
       url += "&sk[]=";
       url += ((0, import_kolmafia92.toInt)(sk) - 24e3).toString();
     }
@@ -8745,11 +8732,11 @@ function makeGenieWish(wish) {
     );
     return false;
   }
-  var page = (0, import_kolmafia93.visitUrl)(
+  (0, import_kolmafia93.visitUrl)(
     `inv_use.php?pwd=${(0, import_kolmafia93.myHash)()}&which=3&whichitem=${wish_provider}`,
     false
   );
-  page = (0, import_kolmafia93.visitUrl)(`choice.php?pwd=&whichchoice=1267&option=1&wish=${wish}`);
+  (0, import_kolmafia93.visitUrl)(`choice.php?pwd=&whichchoice=1267&option=1&wish=${wish}`);
   if (auto_wishesAvailable() === starting_wishes) {
     auto_log_warning(`Wish: '${wish}' failed`, "red");
     return false;
@@ -8952,7 +8939,7 @@ function canUse(sk, onlyOnce, inCombat) {
   ), _step;
   try {
     for (_iterator.s(); !(_step = _iterator.n()).done; ) {
-      var _step$value = _slicedToArray(_step.value, 2), i = _step$value[0], set = _step$value[1];
+      var _step$value = _slicedToArray(_step.value, 2), set = _step$value[1];
       if (set.skills.has(sk)) {
         var total = 0;
         var _iterator2 = _createForOfIteratorHelper(
@@ -9033,7 +9020,7 @@ function useItems$1(it1, it2) {
   return useItems(it1, it2, true);
 }
 function isSniffed(enemy, sk) {
-  var search = "";
+  var search;
   if (sk === $skill`Get a Good Whiff of This Guy`) {
     search = "Nosy Nose";
   } else {
@@ -9408,21 +9395,21 @@ function banisherCombatString$1(enemy, loc, inCombat) {
   }
   if (auto_have_skill($skill`Beancannon`) && (0, import_kolmafia94.toInt)((0, import_kolmafia94.getProperty)("_beancannonUses")) < 5 && (0, import_kolmafia94.myMp)() - 20 >= (0, import_kolmafia94.mpCost)($skill`Beancannon`) && !used.has("beancannon")) {
     var haveBeans = false;
-    var _iterator6 = _createForOfIteratorHelper(
+    var _iterator5 = _createForOfIteratorHelper(
       $items`Frigid Northern Beans, Heimz Fortified Kidney Beans, Hellfire Spicy Beans, Mixed Garbanzos and Chickpeas, Pork 'n' Pork 'n' Pork 'n' Beans, Shrub's Premium Baked Beans, Tesla's Electroplated Beans, Trader Olaf's Exotic Stinkbeans, World's Blackest-Eyed Peas`
-    ), _step6;
+    ), _step5;
     try {
-      for (_iterator6.s(); !(_step6 = _iterator6.n()).done; ) {
-        var beancan = _step6.value;
+      for (_iterator5.s(); !(_step5 = _iterator5.n()).done; ) {
+        var beancan = _step5.value;
         if (inCombat ? (0, import_kolmafia94.equippedItem)($slot`off-hand`) === beancan : possessEquipment(beancan)) {
           haveBeans = true;
           break;
         }
       }
     } catch (err) {
-      _iterator6.e(err);
+      _iterator5.e(err);
     } finally {
-      _iterator6.f();
+      _iterator5.f();
     }
     if (haveBeans) {
       return `skill ${$skill`Beancannon`}`;
@@ -9520,20 +9507,20 @@ function yellowRayCombatString(target, inCombat, noForceDrop) {
     if ((0, import_kolmafia94.getProperty)("peteMotorbikeHeadlight") === "Ultrabright Yellow Bulb" && auto_have_skill($skill`Flash Headlight`) && (0, import_kolmafia94.myMp)() >= (0, import_kolmafia94.mpCost)($skill`Flash Headlight`)) {
       return `skill ${$skill`Flash Headlight`}`;
     }
-    var _iterator7 = _createForOfIteratorHelper(
+    var _iterator6 = _createForOfIteratorHelper(
       $items`Golden Light, pumpkin bomb, unbearable light, viral video, micronova`
-    ), _step7;
+    ), _step6;
     try {
-      for (_iterator7.s(); !(_step7 = _iterator7.n()).done; ) {
-        var it = _step7.value;
+      for (_iterator6.s(); !(_step6 = _iterator6.n()).done; ) {
+        var it = _step6.value;
         if ((0, import_kolmafia94.itemAmount)(it) > 0 && auto_is_valid(it)) {
           return `item ${it}`;
         }
       }
     } catch (err) {
-      _iterator7.e(err);
+      _iterator6.e(err);
     } finally {
-      _iterator7.f();
+      _iterator6.f();
     }
     if (auto_have_skill($skill`Unleash Cowrruption`) && (0, import_kolmafia94.haveEffect)($effect`Cowrruption`) >= 30) {
       return `skill ${$skill`Unleash Cowrruption`}`;
@@ -9691,7 +9678,7 @@ function maxRoundsToDouse(enemy) {
   return rounds;
 }
 function canSurviveShootGhost(enemy, shots) {
-  var damage = 0;
+  var damage;
   switch (enemy) {
     case $monster`the ghost of Oily McBindle`:
       damage = (0, import_kolmafia94.toInt)(
@@ -10027,9 +10014,10 @@ function auto_habitatTarget(target) {
         return (0, import_kolmafia95.toInt)((0, import_kolmafia95.getProperty)("cyrptAlcoveEvilness")) - 5 * (5 + cyrptEvilBonus$1()) > 13;
       case $monster`dirty old lihc`:
         return in_avantGuard() && (0, import_kolmafia95.toInt)((0, import_kolmafia95.getProperty)("cyrptNicheEvilness")) - 5 * (3 + cyrptEvilBonus$1()) > 13;
-      case $monster`lobsterfrogman`:
+      case $monster`lobsterfrogman`: {
         var sonofa_complete = (0, import_kolmafia95.getProperty)("sidequestLighthouseCompleted") === "hippy" || (0, import_kolmafia95.getProperty)("sidequestLighthouseCompleted") === "fratboy";
         return !sonofa_complete && (0, import_kolmafia95.itemAmount)($item`barrel of gunpowder`) < 4;
+      }
       case $monster`Eldritch Tentacle`:
         if ((0, import_kolmafia95.toInt)((0, import_kolmafia95.getProperty)("_eldritchTentaclesFoughtToday")) > 5) {
           return false;
@@ -10242,8 +10230,8 @@ function auto_getCitizenZone(loc, inCombat) {
   var initZones = citizenZones("init");
   var mpZones = citizenZones("mp");
   var specZones = citizenZones("spec");
-  var activeCitZoneMod_1 = activeCitZoneMod();
-  var goal = "";
+  activeCitZoneMod();
+  var goal;
   if (!(0, import_kolmafia95.canAdventure)(loc)) {
     return false;
   }
@@ -11295,10 +11283,8 @@ function snojoFightAvailable() {
         `snojo${standard.get(0) ?? standard.set(0, "").get(0)}Wins`
       )
     ) < 14 && (0, import_kolmafia102.getProperty)("snojoSetting") !== (0, import_kolmafia102.toUpperCase)(standard.get(0) ?? standard.set(0, "").get(0))) {
-      var temp = (0, import_kolmafia102.visitUrl)(
-        "place.php?whichplace=snojo&action=snojo_controller"
-      );
-      temp = (0, import_kolmafia102.runChoice)(
+      (0, import_kolmafia102.visitUrl)("place.php?whichplace=snojo&action=snojo_controller");
+      (0, import_kolmafia102.runChoice)(
         controls.get(standard.get(0) ?? standard.set(0, "").get(0)) ?? controls.set(standard.get(0) ?? standard.set(0, "").get(0), 0).get(standard.get(0) ?? standard.set(0, "").get(0))
       );
     }
@@ -11311,10 +11297,8 @@ function snojoFightAvailable() {
         `snojo${standard.get(1) ?? standard.set(1, "").get(1)}Wins`
       )
     ) < 14) {
-      var _temp = (0, import_kolmafia102.visitUrl)(
-        "place.php?whichplace=snojo&action=snojo_controller"
-      );
-      _temp = (0, import_kolmafia102.runChoice)(
+      (0, import_kolmafia102.visitUrl)("place.php?whichplace=snojo&action=snojo_controller");
+      (0, import_kolmafia102.runChoice)(
         controls.get(standard.get(1) ?? standard.set(1, "").get(1)) ?? controls.set(standard.get(1) ?? standard.set(1, "").get(1), 0).get(standard.get(1) ?? standard.set(1, "").get(1))
       );
     }
@@ -11327,10 +11311,8 @@ function snojoFightAvailable() {
         `snojo${standard.get(2) ?? standard.set(2, "").get(2)}Wins`
       )
     ) < 14) {
-      var _temp2 = (0, import_kolmafia102.visitUrl)(
-        "place.php?whichplace=snojo&action=snojo_controller"
-      );
-      _temp2 = (0, import_kolmafia102.runChoice)(
+      (0, import_kolmafia102.visitUrl)("place.php?whichplace=snojo&action=snojo_controller");
+      (0, import_kolmafia102.runChoice)(
         controls.get(standard.get(2) ?? standard.set(2, "").get(2)) ?? controls.set(standard.get(2) ?? standard.set(2, "").get(2), 0).get(standard.get(2) ?? standard.set(2, "").get(2))
       );
     }
@@ -12926,6 +12908,30 @@ function to_string$1(o, simple) {
   function list_to_string$2(values) {
     var s = "{";
     var first = true;
+    var _iterator = _createForOfIteratorHelper(
+      values
+    ), _step;
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done; ) {
+        var _step$value = _slicedToArray(_step.value, 2), k = _step$value[0], v = _step$value[1];
+        if (first) {
+          first = false;
+        } else {
+          s += ", ";
+        }
+        s += `${k}: ${v}`;
+      }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+    s += "}";
+    return s;
+  }
+  function list_to_string$3(values) {
+    var s = "{";
+    var first = true;
     var _iterator2 = _createForOfIteratorHelper(
       values
     ), _step2;
@@ -12947,30 +12953,6 @@ function to_string$1(o, simple) {
     s += "}";
     return s;
   }
-  function list_to_string$3(values) {
-    var s = "{";
-    var first = true;
-    var _iterator3 = _createForOfIteratorHelper(
-      values
-    ), _step3;
-    try {
-      for (_iterator3.s(); !(_step3 = _iterator3.n()).done; ) {
-        var _step3$value = _slicedToArray(_step3.value, 2), k = _step3$value[0], v = _step3$value[1];
-        if (first) {
-          first = false;
-        } else {
-          s += ", ";
-        }
-        s += `${k}: ${v}`;
-      }
-    } catch (err) {
-      _iterator3.e(err);
-    } finally {
-      _iterator3.f();
-    }
-    s += "}";
-    return s;
-  }
   if (simple) {
     return `(${o.metadata.name}, hp: ${o.objectiveValues.get("hp_total_restored") ?? o.objectiveValues.set("hp_total_restored", 0).get("hp_total_restored")}, mp: ${o.objectiveValues.get("mp_total_restored") ?? o.objectiveValues.set("mp_total_restored", 0).get("mp_total_restored")}, negative effects remaining: ${o.objectiveValues.get("negative_status_effects_remaining") ?? o.objectiveValues.set("negative_status_effects_remaining", 0).get("negative_status_effects_remaining")})`;
   }
@@ -12982,12 +12964,12 @@ function to_string$1(o, simple) {
 function to_string$2(optima, simple) {
   var val = "";
   var first = true;
-  var _iterator4 = _createForOfIteratorHelper(
+  var _iterator3 = _createForOfIteratorHelper(
     optima
-  ), _step4;
+  ), _step3;
   try {
-    for (_iterator4.s(); !(_step4 = _iterator4.n()).done; ) {
-      var _step4$value = _slicedToArray(_step4.value, 2), i = _step4$value[0], o = _step4$value[1];
+    for (_iterator3.s(); !(_step3 = _iterator3.n()).done; ) {
+      var _step3$value = _slicedToArray(_step3.value, 2), i = _step3$value[0], o = _step3$value[1];
       if (first) {
         first = false;
       } else {
@@ -12996,9 +12978,9 @@ function to_string$2(optima, simple) {
       val += `${i} - ${to_string$1(o, simple)}`;
     }
   } catch (err) {
-    _iterator4.e(err);
+    _iterator3.e(err);
   } finally {
-    _iterator4.f();
+    _iterator3.f();
   }
   return val;
 }
@@ -13010,22 +12992,14 @@ function auto_log_restore_debug(s, level) {
     auto_log_debug$1(s);
   }
 }
-var $_f___all_negative_effects;
-$_f___all_negative_effects ?? ($_f___all_negative_effects = /* @__PURE__ */ new Map());
-var $_f___known_restoration_sources;
-$_f___known_restoration_sources ?? ($_f___known_restoration_sources = /* @__PURE__ */ new Map());
-var $_f___restore_maximizer_cache;
-$_f___restore_maximizer_cache ?? ($_f___restore_maximizer_cache = /* @__PURE__ */ new Map());
-var $_f___RESTORE_ALL;
-$_f___RESTORE_ALL ?? ($_f___RESTORE_ALL = "all");
-var $_f___RESTORE_HALF;
-$_f___RESTORE_HALF ?? ($_f___RESTORE_HALF = "half");
-var $_f___RESTORE_SCALING;
-$_f___RESTORE_SCALING ?? ($_f___RESTORE_SCALING = "scaling");
-var $_f___HOT_TUB;
-$_f___HOT_TUB ?? ($_f___HOT_TUB = "a relaxing hot tub");
-var $_f___NUNS;
-$_f___NUNS ?? ($_f___NUNS = "the nunnery");
+var $_f___all_negative_effects = /* @__PURE__ */ new Map();
+var $_f___known_restoration_sources = /* @__PURE__ */ new Map();
+var $_f___restore_maximizer_cache = /* @__PURE__ */ new Map();
+var $_f___RESTORE_ALL = "all";
+var $_f___RESTORE_HALF = "half";
+var $_f___RESTORE_SCALING = "scaling";
+var $_f___HOT_TUB = "a relaxing hot tub";
+var $_f___NUNS = "the nunnery";
 var $___init_restoration_metadata_resotration_filename;
 var $___init_restoration_metadata_negative_effects_filename;
 function __init_restoration_metadata() {
@@ -13037,12 +13011,12 @@ function __init_restoration_metadata() {
     if (effects_list === "all negative") {
       parsed_effects = $_f___all_negative_effects;
     } else if (effects_list !== "none" && effects_list !== "") {
-      var _iterator5 = _createForOfIteratorHelper(
+      var _iterator4 = _createForOfIteratorHelper(
         (0, import_kolmafia108.splitString)(effects_list, ",").entries()
-      ), _step5;
+      ), _step4;
       try {
-        for (_iterator5.s(); !(_step5 = _iterator5.n()).done; ) {
-          var _step5$value = _slicedToArray(_step5.value, 2), _ = _step5$value[0], s = _step5$value[1];
+        for (_iterator4.s(); !(_step4 = _iterator4.n()).done; ) {
+          var _step4$value = _slicedToArray(_step4.value, 2), s = _step4$value[1];
           var e = (0, import_kolmafia108.toEffect)(s);
           if (e !== import_kolmafia108.Effect.none) {
             parsed_effects.set(e, true);
@@ -13053,9 +13027,9 @@ function __init_restoration_metadata() {
           }
         }
       } catch (err) {
-        _iterator5.e(err);
+        _iterator4.e(err);
       } finally {
-        _iterator5.f();
+        _iterator4.f();
       }
     }
     return parsed_effects;
@@ -13084,7 +13058,6 @@ function __init_restoration_metadata() {
       $___init_restoration_metadata_negative_effects_filename,
       [import_kolmafia108.toEffect, import_kolmafia108.toBoolean]
     );
-    var parsed_records = /* @__PURE__ */ new Map();
     var raw_data = fileAsMap(
       $___init_restoration_metadata_resotration_filename,
       [
@@ -13101,48 +13074,48 @@ function __init_restoration_metadata() {
     );
     for (var _i = 0, _arr = ["item", "skill", "clan", "dwelling", "place"]; _i < _arr.length; _i++) {
       var type_1 = _arr[_i];
-      var _iterator6 = _createForOfIteratorHelper(
+      var _iterator5 = _createForOfIteratorHelper(
         raw_data.get(type_1) ?? raw_data.set(type_1, /* @__PURE__ */ new Map()).get(type_1)
-      ), _step6;
+      ), _step5;
       try {
-        for (_iterator6.s(); !(_step6 = _iterator6.n()).done; ) {
-          var _step6$value = _slicedToArray(_step6.value, 2), idx = _step6$value[0], _v0 = _step6$value[1];
-          var _iterator7 = _createForOfIteratorHelper(
+        for (_iterator5.s(); !(_step5 = _iterator5.n()).done; ) {
+          var _step5$value = _slicedToArray(_step5.value, 2), _v0 = _step5$value[1];
+          var _iterator6 = _createForOfIteratorHelper(
             _v0
-          ), _step7;
+          ), _step6;
           try {
-            for (_iterator7.s(); !(_step7 = _iterator7.n()).done; ) {
-              var _step7$value = _slicedToArray(_step7.value, 2), name = _step7$value[0], _v1 = _step7$value[1];
-              var _iterator8 = _createForOfIteratorHelper(
+            for (_iterator6.s(); !(_step6 = _iterator6.n()).done; ) {
+              var _step6$value = _slicedToArray(_step6.value, 2), name = _step6$value[0], _v1 = _step6$value[1];
+              var _iterator7 = _createForOfIteratorHelper(
                 _v1
-              ), _step8;
+              ), _step7;
               try {
-                for (_iterator8.s(); !(_step8 = _iterator8.n()).done; ) {
-                  var _step8$value = _slicedToArray(_step8.value, 2), hp_restored = _step8$value[0], _v2 = _step8$value[1];
-                  var _iterator9 = _createForOfIteratorHelper(
+                for (_iterator7.s(); !(_step7 = _iterator7.n()).done; ) {
+                  var _step7$value = _slicedToArray(_step7.value, 2), hp_restored = _step7$value[0], _v2 = _step7$value[1];
+                  var _iterator8 = _createForOfIteratorHelper(
                     _v2
-                  ), _step9;
+                  ), _step8;
                   try {
-                    for (_iterator9.s(); !(_step9 = _iterator9.n()).done; ) {
-                      var _step9$value = _slicedToArray(_step9.value, 2), mp_restored = _step9$value[0], _v3 = _step9$value[1];
-                      var _iterator0 = _createForOfIteratorHelper(
+                    for (_iterator8.s(); !(_step8 = _iterator8.n()).done; ) {
+                      var _step8$value = _slicedToArray(_step8.value, 2), mp_restored = _step8$value[0], _v3 = _step8$value[1];
+                      var _iterator9 = _createForOfIteratorHelper(
                         _v3
-                      ), _step0;
+                      ), _step9;
                       try {
-                        for (_iterator0.s(); !(_step0 = _iterator0.n()).done; ) {
-                          var _step0$value = _slicedToArray(_step0.value, 2), soft_reserve_limit = _step0$value[0], _v4 = _step0$value[1];
-                          var _iterator1 = _createForOfIteratorHelper(
+                        for (_iterator9.s(); !(_step9 = _iterator9.n()).done; ) {
+                          var _step9$value = _slicedToArray(_step9.value, 2), soft_reserve_limit = _step9$value[0], _v4 = _step9$value[1];
+                          var _iterator0 = _createForOfIteratorHelper(
                             _v4
-                          ), _step1;
+                          ), _step0;
                           try {
-                            for (_iterator1.s(); !(_step1 = _iterator1.n()).done; ) {
-                              var _step1$value = _slicedToArray(_step1.value, 2), hard_reserve_limit = _step1$value[0], _v5 = _step1$value[1];
-                              var _iterator10 = _createForOfIteratorHelper(
+                            for (_iterator0.s(); !(_step0 = _iterator0.n()).done; ) {
+                              var _step0$value = _slicedToArray(_step0.value, 2), hard_reserve_limit = _step0$value[0], _v5 = _step0$value[1];
+                              var _iterator1 = _createForOfIteratorHelper(
                                 _v5
-                              ), _step10;
+                              ), _step1;
                               try {
-                                for (_iterator10.s(); !(_step10 = _iterator10.n()).done; ) {
-                                  var _step10$value = _slicedToArray(_step10.value, 2), removes_effects = _step10$value[0], _v6 = _step10$value[1];
+                                for (_iterator1.s(); !(_step1 = _iterator1.n()).done; ) {
+                                  var _step1$value = _slicedToArray(_step1.value, 2), removes_effects = _step1$value[0], _v6 = _step1$value[1];
                                   var gives_effects = _v6;
                                   var parsed = new __RestorationMetadata();
                                   parsed.type = type_1;
@@ -13167,45 +13140,45 @@ function __init_restoration_metadata() {
                                   $_f___known_restoration_sources.set(parsed.name, parsed);
                                 }
                               } catch (err) {
-                                _iterator10.e(err);
+                                _iterator1.e(err);
                               } finally {
-                                _iterator10.f();
+                                _iterator1.f();
                               }
                             }
                           } catch (err) {
-                            _iterator1.e(err);
+                            _iterator0.e(err);
                           } finally {
-                            _iterator1.f();
+                            _iterator0.f();
                           }
                         }
                       } catch (err) {
-                        _iterator0.e(err);
+                        _iterator9.e(err);
                       } finally {
-                        _iterator0.f();
+                        _iterator9.f();
                       }
                     }
                   } catch (err) {
-                    _iterator9.e(err);
+                    _iterator8.e(err);
                   } finally {
-                    _iterator9.f();
+                    _iterator8.f();
                   }
                 }
               } catch (err) {
-                _iterator8.e(err);
+                _iterator7.e(err);
               } finally {
-                _iterator8.f();
+                _iterator7.f();
               }
             }
           } catch (err) {
-            _iterator7.e(err);
+            _iterator6.e(err);
           } finally {
-            _iterator7.f();
+            _iterator6.f();
           }
         }
       } catch (err) {
-        _iterator6.e(err);
+        _iterator5.e(err);
       } finally {
-        _iterator6.f();
+        _iterator5.f();
       }
     }
     if ((0, import_kolmafia108.getProperty)("sidequestNunsCompleted") === "fratboy") {
@@ -13584,7 +13557,6 @@ function __calculate_objective_values(hp_goal, mp_goal, meat_reserve, useFreeRes
     return (0, import_kolmafia108.floor)(hp_to_burn / blood_cost);
   }
   function blood_adjusted_waste(goal) {
-    var blood_cost = (0, import_kolmafia108.hpCost)($skill`Blood Bond`);
     var casts = blood_skill_opportunity_casts(goal);
     var waste = total_wasted("hp", goal);
     if (casts < 1) {
@@ -13639,25 +13611,25 @@ function __calculate_objective_values(hp_goal, mp_goal, meat_reserve, useFreeRes
   }
   function negative_status_effects_remaining() {
     var negative_effects_active = 0;
-    var _iterator11 = _createForOfIteratorHelper(
+    var _iterator10 = _createForOfIteratorHelper(
       Object.entries((0, import_kolmafia108.myEffects)()).map(
         (_ref) => {
           var _ref2 = _slicedToArray(_ref, 2), _k = _ref2[0], _v = _ref2[1];
           return [import_kolmafia108.Effect.get(_k), _v];
         }
       )
-    ), _step11;
+    ), _step10;
     try {
-      for (_iterator11.s(); !(_step11 = _iterator11.n()).done; ) {
-        var _step11$value = _slicedToArray(_step11.value, 2), e = _step11$value[0], _ = _step11$value[1];
+      for (_iterator10.s(); !(_step10 = _iterator10.n()).done; ) {
+        var _step10$value = _slicedToArray(_step10.value, 1), e = _step10$value[0];
         if (e !== $effect`Beaten Up` && $_f___all_negative_effects.has(e) && !metadata.removesEffects.has(e)) {
           negative_effects_active++;
         }
       }
     } catch (err) {
-      _iterator11.e(err);
+      _iterator10.e(err);
     } finally {
-      _iterator11.f();
+      _iterator10.f();
     }
     return negative_effects_active;
   }
@@ -13849,52 +13821,41 @@ function __maximize_restore_options(hp_goal, mp_goal, meat_reserve, useFreeRests
   function copy(p) {
     return slice(p, 0, p.size);
   }
-  function combine(left, right) {
-    var i = 0;
-    while (i < right.size) {
-      left.set(
-        left.size,
-        right.get(i) ?? right.set(i, new __RestorationOptimization()).get(i)
-      );
-      i++;
-    }
-    return left;
-  }
   function weighted_sum(o, keys, value_ranks) {
     var sum = 0;
-    var _iterator12 = _createForOfIteratorHelper(
+    var _iterator11 = _createForOfIteratorHelper(
       keys
-    ), _step12;
+    ), _step11;
     try {
-      for (_iterator12.s(); !(_step12 = _iterator12.n()).done; ) {
-        var _step12$value = _slicedToArray(_step12.value, 2), s = _step12$value[0], _ = _step12$value[1];
+      for (_iterator11.s(); !(_step11 = _iterator11.n()).done; ) {
+        var _step11$value = _slicedToArray(_step11.value, 1), s = _step11$value[0];
         sum += (o.objectiveValues.get(s) ?? o.objectiveValues.set(s, 0).get(s)) * (value_ranks.get(s) ?? value_ranks.set(s, 0).get(s));
       }
     } catch (err) {
-      _iterator12.e(err);
+      _iterator11.e(err);
     } finally {
-      _iterator12.f();
+      _iterator11.f();
     }
     return sum;
   }
   function ordered_ranks(weights) {
     var unordered = /* @__PURE__ */ new Map();
     var value_set = /* @__PURE__ */ new Map();
-    var _iterator13 = _createForOfIteratorHelper(
+    var _iterator12 = _createForOfIteratorHelper(
       weights
-    ), _step13;
+    ), _step12;
     try {
-      for (_iterator13.s(); !(_step13 = _iterator13.n()).done; ) {
-        var _step13$value = _slicedToArray(_step13.value, 2), s = _step13$value[0], w = _step13$value[1];
+      for (_iterator12.s(); !(_step12 = _iterator12.n()).done; ) {
+        var _step12$value = _slicedToArray(_step12.value, 2), w = _step12$value[1];
         if (!value_set.has(w)) {
           value_set.set(w, true);
           unordered.set(unordered.size, w);
         }
       }
     } catch (err) {
-      _iterator13.e(err);
+      _iterator12.e(err);
     } finally {
-      _iterator13.f();
+      _iterator12.f();
     }
     unordered = new Map(_toConsumableArray(unordered.entries()).sort((a, b) => a[1] - b[1]));
     return unordered;
@@ -13903,7 +13864,7 @@ function __maximize_restore_options(hp_goal, mp_goal, meat_reserve, useFreeRests
     var M = /* @__PURE__ */ new Map();
     var dominated = /* @__PURE__ */ new Map();
     var Ti = 0;
-    var Bi = 0;
+    var Bi;
     while (Ti < T.size) {
       Bi = 0;
       while (Bi < B.size) {
@@ -13915,12 +13876,12 @@ function __maximize_restore_options(hp_goal, mp_goal, meat_reserve, useFreeRests
         }
         var T_dominance = 0;
         var B_dominance = 0;
-        var _iterator14 = _createForOfIteratorHelper(
+        var _iterator13 = _createForOfIteratorHelper(
           value_ranks
-        ), _step14;
+        ), _step13;
         try {
-          for (_iterator14.s(); !(_step14 = _iterator14.n()).done; ) {
-            var _step14$value = _slicedToArray(_step14.value, 2), key = _step14$value[0], r = _step14$value[1];
+          for (_iterator13.s(); !(_step13 = _iterator13.n()).done; ) {
+            var _step13$value = _slicedToArray(_step13.value, 2), key = _step13$value[0], r = _step13$value[1];
             if (r === rank) {
               if (((T.get(Ti) ?? T.set(Ti, new __RestorationOptimization()).get(Ti)).objectiveValues.get(key) ?? (T.get(Ti) ?? T.set(Ti, new __RestorationOptimization()).get(Ti)).objectiveValues.set(key, 0).get(key)) === -1 || ((B.get(Bi) ?? B.set(Bi, new __RestorationOptimization()).get(Bi)).objectiveValues.get(key) ?? (B.get(Bi) ?? B.set(Bi, new __RestorationOptimization()).get(Bi)).objectiveValues.set(key, 0).get(key)) === -1) {
                 continue;
@@ -13941,9 +13902,9 @@ function __maximize_restore_options(hp_goal, mp_goal, meat_reserve, useFreeRests
             }
           }
         } catch (err) {
-          _iterator14.e(err);
+          _iterator13.e(err);
         } finally {
-          _iterator14.f();
+          _iterator13.f();
         }
         if (T_dominance > B_dominance) {
           dominated.set(
@@ -14036,12 +13997,12 @@ function __maximize_restore_options(hp_goal, mp_goal, meat_reserve, useFreeRests
       `${ranked.size} options before optimization: ${to_string$2(ranked, false)}`,
       2
     );
-    var _iterator15 = _createForOfIteratorHelper(
+    var _iterator14 = _createForOfIteratorHelper(
       ranks
-    ), _step15;
+    ), _step14;
     try {
-      for (_iterator15.s(); !(_step15 = _iterator15.n()).done; ) {
-        var _step15$value = _slicedToArray(_step15.value, 2), _ = _step15$value[0], rank = _step15$value[1];
+      for (_iterator14.s(); !(_step14 = _iterator14.n()).done; ) {
+        var _step14$value = _slicedToArray(_step14.value, 2), rank = _step14$value[1];
         var desc = __RANKED_GOAL_DESCRIPTIONS.has(rank) ? __RANKED_GOAL_DESCRIPTIONS.get(rank) ?? __RANKED_GOAL_DESCRIPTIONS.set(rank, "").get(rank) : "whoops, someone changed things and didnt update the descriptions. Bad dev.";
         auto_log_restore_debug(
           `Rank ${rank} optimization, prefer to... ${desc}`,
@@ -14059,9 +14020,9 @@ function __maximize_restore_options(hp_goal, mp_goal, meat_reserve, useFreeRests
         );
       }
     } catch (err) {
-      _iterator15.e(err);
+      _iterator14.e(err);
     } finally {
-      _iterator15.f();
+      _iterator14.f();
     }
     return ranked;
   }
@@ -14076,7 +14037,6 @@ function __maximize_restore_options(hp_goal, mp_goal, meat_reserve, useFreeRests
     var l = left_index + 1;
     var r = right_index;
     var done = false;
-    var swap = new __RestorationOptimization();
     while (!done) {
       while (l <= r) {
         if (weighted_sum(
@@ -14103,12 +14063,12 @@ function __maximize_restore_options(hp_goal, mp_goal, meat_reserve, useFreeRests
       if (r < l) {
         done = true;
       } else {
-        swap = p.get(l) ?? p.set(l, new __RestorationOptimization()).get(l);
+        var _swap = p.get(l) ?? p.set(l, new __RestorationOptimization()).get(l);
         p.set(l, p.get(r) ?? p.set(r, new __RestorationOptimization()).get(r));
-        p.set(r, swap);
+        p.set(r, _swap);
       }
     }
-    swap = p.get(left_index) ?? p.set(left_index, new __RestorationOptimization()).get(left_index);
+    var swap = p.get(left_index) ?? p.set(left_index, new __RestorationOptimization()).get(left_index);
     p.set(
       left_index,
       p.get(r) ?? p.set(r, new __RestorationOptimization()).get(r)
@@ -14142,37 +14102,37 @@ function __maximize_restore_options(hp_goal, mp_goal, meat_reserve, useFreeRests
     var c = p.size;
     auto_log_restore_debug(`Applying constraints to ${c} objective values.`, 1);
     var constrained = /* @__PURE__ */ new Map();
-    var _iterator16 = _createForOfIteratorHelper(
+    var _iterator15 = _createForOfIteratorHelper(
       p
-    ), _step16;
+    ), _step15;
     try {
-      for (_iterator16.s(); !(_step16 = _iterator16.n()).done; ) {
-        var _step16$value = _slicedToArray(_step16.value, 2), _ = _step16$value[0], o = _step16$value[1];
+      for (_iterator15.s(); !(_step15 = _iterator15.n()).done; ) {
+        var _step15$value = _slicedToArray(_step15.value, 2), o = _step15$value[1];
         var fail = false;
-        var _iterator17 = _createForOfIteratorHelper(
+        var _iterator16 = _createForOfIteratorHelper(
           constraint_keys
-        ), _step17;
+        ), _step16;
         try {
-          for (_iterator17.s(); !(_step17 = _iterator17.n()).done; ) {
-            var _step17$value = _slicedToArray(_step17.value, 2), c_1 = _step17$value[0], __1 = _step17$value[1];
+          for (_iterator16.s(); !(_step16 = _iterator16.n()).done; ) {
+            var _step16$value = _slicedToArray(_step16.value, 1), c_1 = _step16$value[0];
             if (!(o.constraints.get(c_1) ?? o.constraints.set(c_1, false).get(c_1))) {
               fail = true;
               break;
             }
           }
         } catch (err) {
-          _iterator17.e(err);
+          _iterator16.e(err);
         } finally {
-          _iterator17.f();
+          _iterator16.f();
         }
         if (!fail) {
           constrained.set(constrained.size, o);
         }
       }
     } catch (err) {
-      _iterator16.e(err);
+      _iterator15.e(err);
     } finally {
-      _iterator16.f();
+      _iterator15.f();
     }
     auto_log_restore_debug(
       `Removed  ${c - constrained.size} restore options from consideration.`,
@@ -14186,58 +14146,52 @@ function __maximize_restore_options(hp_goal, mp_goal, meat_reserve, useFreeRests
         "Recalculating cached restore objective values.",
         0
       );
-      var _iterator18 = _createForOfIteratorHelper(
+      var _iterator17 = _createForOfIteratorHelper(
         $_f___restore_maximizer_cache
-      ), _step18;
+      ), _step17;
       try {
-        var _loop = function _loop2() {
-          var _step18$value = _slicedToArray(_step18.value, 2), i = _step18$value[0], o2 = _step18$value[1];
-          var recalculated = (() => {
-            var _val = __calculate_objective_values(
-              hp_goal,
-              mp_goal,
-              meat_reserve,
-              useFreeRests,
-              o2.metadata
-            );
-            $_f___restore_maximizer_cache.set(i, _val);
-            return _val;
-          })();
-        };
-        for (_iterator18.s(); !(_step18 = _iterator18.n()).done; ) {
-          _loop();
+        for (_iterator17.s(); !(_step17 = _iterator17.n()).done; ) {
+          var _step17$value = _slicedToArray(_step17.value, 2), i = _step17$value[0], o = _step17$value[1];
+          var _val = __calculate_objective_values(
+            hp_goal,
+            mp_goal,
+            meat_reserve,
+            useFreeRests,
+            o.metadata
+          );
+          $_f___restore_maximizer_cache.set(i, _val);
         }
       } catch (err) {
-        _iterator18.e(err);
+        _iterator17.e(err);
       } finally {
-        _iterator18.f();
+        _iterator17.f();
       }
     } else {
       auto_log_restore_debug("Calculating restore objective values.", 0);
-      var _iterator19 = _createForOfIteratorHelper(
+      var _iterator18 = _createForOfIteratorHelper(
         __restoration_methods()
-      ), _step19;
+      ), _step18;
       try {
-        for (_iterator19.s(); !(_step19 = _iterator19.n()).done; ) {
-          var _step19$value = _slicedToArray(_step19.value, 2), name = _step19$value[0], metadata = _step19$value[1];
-          var o = __calculate_objective_values(
+        for (_iterator18.s(); !(_step18 = _iterator18.n()).done; ) {
+          var _step18$value = _slicedToArray(_step18.value, 2), metadata = _step18$value[1];
+          var _o = __calculate_objective_values(
             hp_goal,
             mp_goal,
             meat_reserve,
             useFreeRests,
             metadata
           );
-          if (o.constraints.get("is_ever_useable") ?? o.constraints.set("is_ever_useable", false).get("is_ever_useable")) {
+          if (_o.constraints.get("is_ever_useable") ?? _o.constraints.set("is_ever_useable", false).get("is_ever_useable")) {
             $_f___restore_maximizer_cache.set(
               $_f___restore_maximizer_cache.size,
-              o
+              _o
             );
           }
         }
       } catch (err) {
-        _iterator19.e(err);
+        _iterator18.e(err);
       } finally {
-        _iterator19.f();
+        _iterator18.f();
       }
     }
     return $_f___restore_maximizer_cache;
@@ -14330,20 +14284,20 @@ function __restore(resource_type, goal, meat_reserve, useFreeRests) {
     }
     var casts_so_far = 0;
     var to_cast = /* @__PURE__ */ new Map();
-    var _iterator20 = _createForOfIteratorHelper(
+    var _iterator19 = _createForOfIteratorHelper(
       skill_ratios
-    ), _step20;
+    ), _step19;
     try {
-      for (_iterator20.s(); !(_step20 = _iterator20.n()).done; ) {
-        var _step20$value = _slicedToArray(_step20.value, 2), sk = _step20$value[0], ratio = _step20$value[1];
+      for (_iterator19.s(); !(_step19 = _iterator19.n()).done; ) {
+        var _step19$value = _slicedToArray(_step19.value, 2), sk = _step19$value[0], ratio = _step19$value[1];
         var times_to_cast = (0, import_kolmafia108.floor)(casts_total * ratio / total_ratio);
         to_cast.set(sk, times_to_cast);
         casts_so_far += times_to_cast;
       }
     } catch (err) {
-      _iterator20.e(err);
+      _iterator19.e(err);
     } finally {
-      _iterator20.f();
+      _iterator19.f();
     }
     if (casts_so_far < casts_total) {
       to_cast.set(
@@ -14352,18 +14306,18 @@ function __restore(resource_type, goal, meat_reserve, useFreeRests) {
       );
     }
     var success2 = true;
-    var _iterator21 = _createForOfIteratorHelper(
+    var _iterator20 = _createForOfIteratorHelper(
       to_cast
-    ), _step21;
+    ), _step20;
     try {
-      for (_iterator21.s(); !(_step21 = _iterator21.n()).done; ) {
-        var _step21$value = _slicedToArray(_step21.value, 2), _sk = _step21$value[0], times = _step21$value[1];
+      for (_iterator20.s(); !(_step20 = _iterator20.n()).done; ) {
+        var _step20$value = _slicedToArray(_step20.value, 2), _sk = _step20$value[0], times = _step20$value[1];
         success2 = (0, import_kolmafia108.toBoolean)((0, import_kolmafia108.toInt)(success2) & (0, import_kolmafia108.toInt)((0, import_kolmafia108.useSkill)(times, _sk)));
       }
     } catch (err) {
-      _iterator21.e(err);
+      _iterator20.e(err);
     } finally {
-      _iterator21.f();
+      _iterator20.f();
     }
     return success2;
   }
@@ -14376,8 +14330,8 @@ function __restore(resource_type, goal, meat_reserve, useFreeRests) {
       "blue"
     );
     if (metadata.type === "item") {
-      var i2 = (0, import_kolmafia108.toItem)(metadata.name);
-      return (0, import_kolmafia108.retrieveItem)(1, i2) && (0, import_kolmafia108.use)(1, i2);
+      var i = (0, import_kolmafia108.toItem)(metadata.name);
+      return (0, import_kolmafia108.retrieveItem)(1, i) && (0, import_kolmafia108.use)(1, i);
     }
     if (metadata.type === "dwelling") {
       return doFreeRest();
@@ -14405,12 +14359,12 @@ function __restore(resource_type, goal, meat_reserve, useFreeRests) {
   function list_to_string(e_list) {
     var s = "[";
     var first = true;
-    var _iterator22 = _createForOfIteratorHelper(
+    var _iterator21 = _createForOfIteratorHelper(
       e_list.keys()
-    ), _step22;
+    ), _step21;
     try {
-      for (_iterator22.s(); !(_step22 = _iterator22.n()).done; ) {
-        var e = _step22.value;
+      for (_iterator21.s(); !(_step21 = _iterator21.n()).done; ) {
+        var e = _step21.value;
         if (first) {
           first = false;
         } else {
@@ -14419,52 +14373,52 @@ function __restore(resource_type, goal, meat_reserve, useFreeRests) {
         s += e.toString();
       }
     } catch (err) {
-      _iterator22.e(err);
+      _iterator21.e(err);
     } finally {
-      _iterator22.f();
+      _iterator21.f();
     }
     s += "]";
     return s;
   }
   function negative_effects() {
     var negative = /* @__PURE__ */ new Map();
-    var _iterator23 = _createForOfIteratorHelper(
+    var _iterator22 = _createForOfIteratorHelper(
       Object.entries((0, import_kolmafia108.myEffects)()).map(
         (_ref3) => {
           var _ref4 = _slicedToArray(_ref3, 2), _k = _ref4[0], _v = _ref4[1];
           return [import_kolmafia108.Effect.get(_k), _v];
         }
       )
+    ), _step22;
+    try {
+      for (_iterator22.s(); !(_step22 = _iterator22.n()).done; ) {
+        var _step22$value = _slicedToArray(_step22.value, 1), e = _step22$value[0];
+        if ($_f___all_negative_effects.has(e)) {
+          negative.set(e, true);
+        }
+      }
+    } catch (err) {
+      _iterator22.e(err);
+    } finally {
+      _iterator22.f();
+    }
+    return negative;
+  }
+  function recover_discount_pants() {
+    var _iterator23 = _createForOfIteratorHelper(
+      $items`designer sweatpants, Travoltan trousers`
     ), _step23;
     try {
       for (_iterator23.s(); !(_step23 = _iterator23.n()).done; ) {
-        var _step23$value = _slicedToArray(_step23.value, 2), e = _step23$value[0], _ = _step23$value[1];
-        if ($_f___all_negative_effects.has(e)) {
-          negative.set(e, true);
+        var discountpants2 = _step23.value;
+        if ((0, import_kolmafia108.closetAmount)(discountpants2) > 0) {
+          (0, import_kolmafia108.takeCloset)(1, discountpants2);
         }
       }
     } catch (err) {
       _iterator23.e(err);
     } finally {
       _iterator23.f();
-    }
-    return negative;
-  }
-  function recover_discount_pants() {
-    var _iterator24 = _createForOfIteratorHelper(
-      $items`designer sweatpants, Travoltan trousers`
-    ), _step24;
-    try {
-      for (_iterator24.s(); !(_step24 = _iterator24.n()).done; ) {
-        var discountpants2 = _step24.value;
-        if ((0, import_kolmafia108.closetAmount)(discountpants2) > 0) {
-          (0, import_kolmafia108.takeCloset)(1, discountpants2);
-        }
-      }
-    } catch (err) {
-      _iterator24.e(err);
-    } finally {
-      _iterator24.f();
     }
   }
   auto_log_info(
@@ -14505,17 +14459,17 @@ function __restore(resource_type, goal, meat_reserve, useFreeRests) {
       (0, import_kolmafia108.abort)();
     }
     var success = false;
-    var _iterator25 = _createForOfIteratorHelper(
+    var _iterator24 = _createForOfIteratorHelper(
       options
-    ), _step25;
+    ), _step24;
     try {
-      for (_iterator25.s(); !(_step25 = _iterator25.n()).done; ) {
-        var _step25$value = _slicedToArray(_step25.value, 2), i = _step25$value[0], o = _step25$value[1];
+      for (_iterator24.s(); !(_step24 = _iterator24.n()).done; ) {
+        var _step24$value = _slicedToArray(_step24.value, 2), o = _step24$value[1];
         if (o.metadata.type === "item" && (0, import_kolmafia108.itemAmount)((0, import_kolmafia108.toItem)(o.metadata.name)) === 0) {
-          var _iterator26 = _createForOfIteratorHelper($items`designer sweatpants, Travoltan trousers`), _step26;
+          var _iterator25 = _createForOfIteratorHelper($items`designer sweatpants, Travoltan trousers`), _step25;
           try {
-            for (_iterator26.s(); !(_step26 = _iterator26.n()).done; ) {
-              var discountpants = _step26.value;
+            for (_iterator25.s(); !(_step25 = _iterator25.n()).done; ) {
+              var discountpants = _step25.value;
               if ((0, import_kolmafia108.itemAmount)(discountpants) > 0) {
                 var mustnotpants = false;
                 (0, import_kolmafia108.cliExecute)(`whatif equip ${discountpants}; quiet`);
@@ -14532,9 +14486,9 @@ function __restore(resource_type, goal, meat_reserve, useFreeRests) {
               }
             }
           } catch (err) {
-            _iterator26.e(err);
+            _iterator25.e(err);
           } finally {
-            _iterator26.f();
+            _iterator25.f();
           }
         }
         use_opportunity_blood_skills(
@@ -14555,9 +14509,9 @@ function __restore(resource_type, goal, meat_reserve, useFreeRests) {
         }
       }
     } catch (err) {
-      _iterator25.e(err);
+      _iterator24.e(err);
     } finally {
-      _iterator25.f();
+      _iterator24.f();
     }
     if (!success) {
       if (options.size === 1 && (options.get(0) ?? options.set(0, new __RestorationOptimization()).get(0)).metadata.name === "rest upside down") {
@@ -14583,20 +14537,20 @@ function __restore(resource_type, goal, meat_reserve, useFreeRests) {
   return true;
 }
 function __cure_bad_stuff() {
-  var _iterator27 = _createForOfIteratorHelper(
+  var _iterator26 = _createForOfIteratorHelper(
     $effects`Hardly Poisoned at All, A Little Bit Poisoned, Somewhat Poisoned, Really Quite Poisoned, Majorly Poisoned, Toad In The Hole`
-  ), _step27;
+  ), _step26;
   try {
-    for (_iterator27.s(); !(_step27 = _iterator27.n()).done; ) {
-      var e = _step27.value;
+    for (_iterator26.s(); !(_step26 = _iterator26.n()).done; ) {
+      var e = _step26.value;
       if ((0, import_kolmafia108.haveEffect)(e) > 0) {
         uneffect(e);
       }
     }
   } catch (err) {
-    _iterator27.e(err);
+    _iterator26.e(err);
   } finally {
-    _iterator27.f();
+    _iterator26.f();
   }
   if ((0, import_kolmafia108.haveEffect)($effect`Beaten Up`) > 0) {
     auto_log_info$1(
@@ -14876,7 +14830,7 @@ function haveAnyIotmAlternativeRestSiteAvailable() {
 function doFreeRest() {
   if (haveFreeRestAvailable()) {
     var restorableMp = (0, import_kolmafia108.myMaxmp)() - (0, import_kolmafia108.myMp)();
-    var mpToBurn = 0;
+    var mpToBurn;
     if (chateaumantegna_available() || auto_campawayAvailable()) {
       mpToBurn = 100 - restorableMp;
     } else if ((0, import_kolmafia108.getDwelling)() === $item`Frobozz Real-Estate Company Instant House (TM)`) {
@@ -14948,7 +14902,7 @@ function ARBSupplyDrop(req) {
   if (!auto_canARBSupplyDrop()) {
     return false;
   }
-  var radio = "";
+  var radio;
   switch (req) {
     case "non-combat":
     case "nc":
@@ -15082,8 +15036,7 @@ function auto_freeCombatsRemaining$1(print_remaining_fights) {
 }
 
 // src/autoscend/iotms/mr2014.ts
-var $_f_importantMonsters;
-$_f_importantMonsters ?? ($_f_importantMonsters = import_kolmafia112.Monster.get(
+var $_f_importantMonsters = import_kolmafia112.Monster.get(
   [
     // L4:
     "beanbat",
@@ -15133,7 +15086,7 @@ $_f_importantMonsters ?? ($_f_importantMonsters = import_kolmafia112.Monster.get
     "spider gremlin (tool)",
     "vegetable gremlin (tool)"
   ]
-));
+);
 
 // src/autoscend/auto_familiar.ts
 function is100FamRun() {
@@ -15241,7 +15194,7 @@ function auto_have_familiar(fam) {
     ), _step2;
     try {
       for (_iterator2.s(); !(_step2 = _iterator2.n()).done; ) {
-        var _step2$value = _slicedToArray(_step2.value, 2), index = _step2$value[0], fam_1 = _step2$value[1];
+        var _step2$value = _slicedToArray(_step2.value, 2), fam_1 = _step2$value[1];
         blacklist.set((0, import_kolmafia113.toFamiliar)(trim(fam_1)), 1);
       }
     } catch (err) {
@@ -15449,7 +15402,7 @@ function autoOutfit(toWear) {
   ), _step;
   try {
     for (_iterator.s(); !(_step = _iterator.n()).done; ) {
-      var _step$value = _slicedToArray(_step.value, 2), i = _step$value[0], it = _step$value[1];
+      var _step$value = _slicedToArray(_step.value, 2), it = _step$value[1];
       if (CommonOutfitAccessories.includes(it)) {
         pass_1 = pass_1 && autoEquip($slot`acc3`, it);
       } else {
@@ -15698,12 +15651,12 @@ function equipStatgainIncreasers(increaseThisStat, alwaysEquip) {
       );
     }
   }
-  var HPlost = 0;
+  var HPlost;
   var mostHPlost = 0;
-  var MPlost = 0;
+  var MPlost;
   var mostMPlost = 0;
-  var speculateOneItem = "";
-  var speculateAllItems = "";
+  var speculateOneItem;
+  var speculateAllItems;
   var _iterator8 = _createForOfIteratorHelper(
     statgainIncreasers.keys()
   ), _step8;
@@ -16209,7 +16162,7 @@ function possessOutfit(outfitToCheck, checkCanEquip) {
   ), _step22;
   try {
     for (_iterator22.s(); !(_step22 = _iterator22.n()).done; ) {
-      var _step22$value = _slicedToArray(_step22.value, 2), key = _step22$value[0], piece = _step22$value[1];
+      var _step22$value = _slicedToArray(_step22.value, 2), piece = _step22$value[1];
       if (!possessEquipment(piece)) {
         return false;
       }
@@ -16276,7 +16229,7 @@ function auto_forceEquipSword(speculative) {
   return autoForceEquip$1($slot`weapon`, swordToEquip);
 }
 function auto_saveEquipped() {
-  var my_slots = /* @__PURE__ */ new Map();
+  var my_slots;
   if (in_hattrick()) {
     my_slots = /* @__PURE__ */ new Map(
       [
@@ -16307,7 +16260,6 @@ function auto_saveEquipped() {
       ]
     );
   }
-  var i = 0;
   var equipped = /* @__PURE__ */ new Map();
   var _iterator27 = _createForOfIteratorHelper(
     my_slots.keys()
@@ -16332,7 +16284,7 @@ function auto_loadEquipped(loadEquip) {
   ), _step28;
   try {
     for (_iterator28.s(); !(_step28 = _iterator28.n()).done; ) {
-      var _step28$value = _slicedToArray(_step28.value, 2), i = _step28$value[0], it = _step28$value[1];
+      var _step28$value = _slicedToArray(_step28.value, 2), it = _step28$value[1];
       if ((0, import_kolmafia114.toSlot)(it) === $slot`acc1`) {
         loadAccCount += 1;
       }
@@ -16347,7 +16299,7 @@ function auto_loadEquipped(loadEquip) {
   ), _step29;
   try {
     for (_iterator29.s(); !(_step29 = _iterator29.n()).done; ) {
-      var _step29$value = _slicedToArray(_step29.value, 2), _i3 = _step29$value[0], _it5 = _step29$value[1];
+      var _step29$value = _slicedToArray(_step29.value, 2), _it5 = _step29$value[1];
       if (_it5 === import_kolmafia114.Item.none) {
         continue;
       }
@@ -18818,8 +18770,8 @@ function canYellowRay(target) {
         (0, import_kolmafia120.useFamiliar)(curr);
       }
       if ((0, import_kolmafia120.getProperty)("shrubGifts") !== "yellow" && !(0, import_kolmafia120.toBoolean)((0, import_kolmafia120.getProperty)("_shrubDecorated"))) {
-        var temp = (0, import_kolmafia120.visitUrl)("inv_use.php?pwd=&which=3&whichitem=7958");
-        temp = (0, import_kolmafia120.visitUrl)(
+        (0, import_kolmafia120.visitUrl)("inv_use.php?pwd=&which=3&whichitem=7958");
+        (0, import_kolmafia120.visitUrl)(
           "choice.php?pwd=&whichchoice=999&option=1&topper=1&lights=1&garland=1&gift=1"
         );
       }
@@ -18862,12 +18814,12 @@ function auto_combat_appearance_rates(place, queue) {
   if (noncombat_frequency === 0 || noncombat_frequency >= 100) {
     return res_including_noncombat;
   }
-  var _iterator8 = _createForOfIteratorHelper(
+  var _iterator7 = _createForOfIteratorHelper(
     res_including_noncombat
-  ), _step8;
+  ), _step7;
   try {
-    for (_iterator8.s(); !(_step8 = _iterator8.n()).done; ) {
-      var _step8$value = _slicedToArray(_step8.value, 2), mob = _step8$value[0], freq = _step8$value[1];
+    for (_iterator7.s(); !(_step7 = _iterator7.n()).done; ) {
+      var _step7$value = _slicedToArray(_step7.value, 2), mob = _step7$value[0], freq = _step7$value[1];
       if (mob !== import_kolmafia120.Monster.none) {
         res_excluding_noncombat.set(
           mob,
@@ -18876,9 +18828,9 @@ function auto_combat_appearance_rates(place, queue) {
       }
     }
   } catch (err) {
-    _iterator8.e(err);
+    _iterator7.e(err);
   } finally {
-    _iterator8.f();
+    _iterator7.f();
   }
   return res_excluding_noncombat;
 }
@@ -18912,31 +18864,31 @@ function auto_banishesUsedAt(loc) {
     loc
   )) {
     var gremlinBanishes = /* @__PURE__ */ new Map();
-    var _iterator0 = _createForOfIteratorHelper(
+    var _iterator9 = _createForOfIteratorHelper(
       $locations`Next to that Barrel with Something Burning in it, Out by that Rusted-Out Car, Over Where the Old Tires Are, Near an Abandoned Refrigerator`
-    ), _step0;
+    ), _step9;
     try {
-      for (_iterator0.s(); !(_step0 = _iterator0.n()).done; ) {
-        var l = _step0.value;
+      for (_iterator9.s(); !(_step9 = _iterator9.n()).done; ) {
+        var l = _step9.value;
         var used = auto_reallyBanishesUsedAt(l);
-        var _iterator1 = _createForOfIteratorHelper(
+        var _iterator0 = _createForOfIteratorHelper(
           used.keys()
-        ), _step1;
+        ), _step0;
         try {
-          for (_iterator1.s(); !(_step1 = _iterator1.n()).done; ) {
-            var s = _step1.value;
+          for (_iterator0.s(); !(_step0 = _iterator0.n()).done; ) {
+            var s = _step0.value;
             gremlinBanishes.set(s, true);
           }
         } catch (err) {
-          _iterator1.e(err);
+          _iterator0.e(err);
         } finally {
-          _iterator1.f();
+          _iterator0.f();
         }
       }
     } catch (err) {
-      _iterator0.e(err);
+      _iterator9.e(err);
     } finally {
-      _iterator0.f();
+      _iterator9.f();
     }
     return gremlinBanishes;
   }
@@ -19035,20 +18987,20 @@ function freeRunCombatString(enemy, loc, inCombat) {
         }
       }
     }
-    var _iterator11 = _createForOfIteratorHelper(
+    var _iterator10 = _createForOfIteratorHelper(
       $items`green smoke bomb, tattered scrap of paper, GOTO`
-    ), _step11;
+    ), _step10;
     try {
-      for (_iterator11.s(); !(_step11 = _iterator11.n()).done; ) {
-        var it = _step11.value;
+      for (_iterator10.s(); !(_step10 = _iterator10.n()).done; ) {
+        var it = _step10.value;
         if (canUse$4(it) && (0, import_kolmafia120.itemAmount)(it) > 0) {
           return useItem$1(it);
         }
       }
     } catch (err) {
-      _iterator11.e(err);
+      _iterator10.e(err);
     } finally {
-      _iterator11.f();
+      _iterator10.f();
     }
   }
   if (canChangeToFamiliar($familiar`Frumious Bandersnatch`)) {
@@ -19108,20 +19060,20 @@ function freeRunCombatString(enemy, loc, inCombat) {
     return `item ${$item`handful of split pea soup`}`;
   }
   if (!inAftercore()) {
-    var _iterator12 = _createForOfIteratorHelper(
+    var _iterator11 = _createForOfIteratorHelper(
       $items`giant eraser`
-    ), _step12;
+    ), _step11;
     try {
-      for (_iterator12.s(); !(_step12 = _iterator12.n()).done; ) {
-        var _it = _step12.value;
+      for (_iterator11.s(); !(_step11 = _iterator11.n()).done; ) {
+        var _it = _step11.value;
         if (canUse$4(_it) && (0, import_kolmafia120.itemAmount)(_it) > 0) {
           return useItem$1(_it);
         }
       }
     } catch (err) {
-      _iterator12.e(err);
+      _iterator11.e(err);
     } finally {
-      _iterator12.f();
+      _iterator11.f();
     }
   }
   return "";
@@ -19663,13 +19615,12 @@ function shrugAT$1(anticipated) {
     maxSongs += 1;
   }
   var count_1 = 1;
-  var last = import_kolmafia120.Effect.none;
-  var _iterator50 = _createForOfIteratorHelper(
+  var _iterator48 = _createForOfIteratorHelper(
     ATSongList().keys()
-  ), _step50;
+  ), _step48;
   try {
-    for (_iterator50.s(); !(_step50 = _iterator50.n()).done; ) {
-      var ATsong = _step50.value;
+    for (_iterator48.s(); !(_step48 = _iterator48.n()).done; ) {
+      var ATsong = _step48.value;
       if ((0, import_kolmafia120.haveEffect)(ATsong) > 0) {
         count_1 += 1;
         if (count_1 > maxSongs) {
@@ -19679,9 +19630,9 @@ function shrugAT$1(anticipated) {
       }
     }
   } catch (err) {
-    _iterator50.e(err);
+    _iterator48.e(err);
   } finally {
-    _iterator50.f();
+    _iterator48.f();
   }
   auto_log_info(`I think we're good to go to apply ${anticipated}`, "blue");
 }
@@ -19875,7 +19826,6 @@ function auto_check_conditions(conds) {
   var conditions = new Map(
     (0, import_kolmafia120.splitString)(conds, ";").map((_v, _i) => [_i, _v])
   );
-  var failure = false;
   function compare_numbers(num1, num2, comparison) {
     switch (comparison) {
       case "=":
@@ -19915,9 +19865,7 @@ function auto_check_conditions(conds) {
       var req_familiar = import_kolmafia120.Familiar.none;
       var havefamiliar = import_kolmafia120.Familiar.none;
       var req_loc = import_kolmafia120.Location.none;
-      var m6 = void 0;
       var loc = import_kolmafia120.Location.none;
-      var m22 = void 0;
       var prop = "";
       var m3 = void 0;
       var quest_state = 0;
@@ -20014,8 +19962,11 @@ function auto_check_conditions(conds) {
             );
           }
           return (0, import_kolmafia120.myLocation)() === req_loc;
-        case "turnsspent":
-          m6 = new AshMatcher("([^=<>]+)([=<>]+)(.+)", condition_data);
+        case "turnsspent": {
+          var m6 = new AshMatcher(
+            "([^=<>]+)([=<>]+)(.+)",
+            condition_data
+          );
           if (!m6.find()) {
             (0, import_kolmafia120.abort)(
               `"${condition_data}" is not a proper turnsspent condition format!`
@@ -20035,8 +19986,12 @@ function auto_check_conditions(conds) {
             );
           }
           return loc.turnsSpent === (0, import_kolmafia120.toInt)(m6.group(3));
-        case "prop":
-          m22 = new AshMatcher("([^=<>]+)([=<>]+)(.+)", condition_data);
+        }
+        case "prop": {
+          var m22 = new AshMatcher(
+            "([^=<>]+)([=<>]+)(.+)",
+            condition_data
+          );
           if (!m22.find()) {
             (0, import_kolmafia120.abort)(`"${condition_data}" is not a proper prop condition format!`);
           }
@@ -20049,6 +20004,7 @@ function auto_check_conditions(conds) {
             );
           }
           return prop === m22.group(3);
+        }
         case "prop_boolean":
           return (0, import_kolmafia120.toBoolean)((0, import_kolmafia120.getProperty)(condition_data));
         case "quest":
@@ -20135,14 +20091,13 @@ function auto_check_conditions(conds) {
           (0, import_kolmafia120.abort)(`Invalid condition type "${condition_type}" found!`);
       }
     }
-    return false;
   }
-  var _iterator51 = _createForOfIteratorHelper(
+  var _iterator49 = _createForOfIteratorHelper(
     conditions
-  ), _step51;
+  ), _step49;
   try {
-    for (_iterator51.s(); !(_step51 = _iterator51.n()).done; ) {
-      var _step51$value = _slicedToArray(_step51.value, 2), i = _step51$value[0], cond = _step51$value[1];
+    for (_iterator49.s(); !(_step49 = _iterator49.n()).done; ) {
+      var _step49$value = _slicedToArray(_step49.value, 2), cond = _step49$value[1];
       var m = new AshMatcher("^(!?)(.+)$", cond);
       if (!m.find()) {
         (0, import_kolmafia120.abort)(`"${cond}" is not a proper condition!`);
@@ -20154,9 +20109,9 @@ function auto_check_conditions(conds) {
       }
     }
   } catch (err) {
-    _iterator51.e(err);
+    _iterator49.e(err);
   } finally {
-    _iterator51.f();
+    _iterator49.f();
   }
   return true;
 }
@@ -20166,18 +20121,18 @@ function auto_getMonsters(category) {
   if (!monsters_text.size) {
     auto_log_error("Could not load autoscend_monsters.txt. This is bad!");
   }
-  var _iterator52 = _createForOfIteratorHelper(
+  var _iterator50 = _createForOfIteratorHelper(
     monsters_text.get(category) ?? monsters_text.set(category, /* @__PURE__ */ new Map()).get(category)
-  ), _step52;
+  ), _step50;
   try {
-    for (_iterator52.s(); !(_step52 = _iterator52.n()).done; ) {
-      var _step52$value = _slicedToArray(_step52.value, 2), i = _step52$value[0], _v0 = _step52$value[1];
-      var _iterator53 = _createForOfIteratorHelper(
+    for (_iterator50.s(); !(_step50 = _iterator50.n()).done; ) {
+      var _step50$value = _slicedToArray(_step50.value, 2), _v0 = _step50$value[1];
+      var _iterator51 = _createForOfIteratorHelper(
         _v0
-      ), _step53;
+      ), _step51;
       try {
-        for (_iterator53.s(); !(_step53 = _iterator53.n()).done; ) {
-          var _step53$value = _slicedToArray(_step53.value, 2), name = _step53$value[0], _v1 = _step53$value[1];
+        for (_iterator51.s(); !(_step51 = _iterator51.n()).done; ) {
+          var _step51$value = _slicedToArray(_step51.value, 2), name = _step51$value[0], _v1 = _step51$value[1];
           var conds = _v1;
           var thisMonster = (0, import_kolmafia120.toMonster)(name);
           if (thisMonster === import_kolmafia120.Monster.none) {
@@ -20193,15 +20148,15 @@ function auto_getMonsters(category) {
           res.set(thisMonster, true);
         }
       } catch (err) {
-        _iterator53.e(err);
+        _iterator51.e(err);
       } finally {
-        _iterator53.f();
+        _iterator51.f();
       }
     }
   } catch (err) {
-    _iterator52.e(err);
+    _iterator50.e(err);
   } finally {
-    _iterator52.f();
+    _iterator50.f();
   }
   return res;
 }
@@ -20214,18 +20169,18 @@ function auto_getPhylum(category) {
   if (!phylum_text.size) {
     auto_log_error("Could not load autoscend_phylums.txt. This is bad!");
   }
-  var _iterator54 = _createForOfIteratorHelper(
+  var _iterator52 = _createForOfIteratorHelper(
     phylum_text.get(category) ?? phylum_text.set(category, /* @__PURE__ */ new Map()).get(category)
-  ), _step54;
+  ), _step52;
   try {
-    for (_iterator54.s(); !(_step54 = _iterator54.n()).done; ) {
-      var _step54$value = _slicedToArray(_step54.value, 2), i = _step54$value[0], _v0 = _step54$value[1];
-      var _iterator55 = _createForOfIteratorHelper(
+    for (_iterator52.s(); !(_step52 = _iterator52.n()).done; ) {
+      var _step52$value = _slicedToArray(_step52.value, 2), _v0 = _step52$value[1];
+      var _iterator53 = _createForOfIteratorHelper(
         _v0
-      ), _step55;
+      ), _step53;
       try {
-        for (_iterator55.s(); !(_step55 = _iterator55.n()).done; ) {
-          var _step55$value = _slicedToArray(_step55.value, 2), name = _step55$value[0], _v1 = _step55$value[1];
+        for (_iterator53.s(); !(_step53 = _iterator53.n()).done; ) {
+          var _step53$value = _slicedToArray(_step53.value, 2), name = _step53$value[0], _v1 = _step53$value[1];
           var conds = _v1;
           var thisPhylum = (0, import_kolmafia120.toPhylum)(name);
           if (thisPhylum === import_kolmafia120.Phylum.none) {
@@ -20241,15 +20196,15 @@ function auto_getPhylum(category) {
           res.set(thisPhylum, true);
         }
       } catch (err) {
-        _iterator55.e(err);
+        _iterator53.e(err);
       } finally {
-        _iterator55.f();
+        _iterator53.f();
       }
     }
   } catch (err) {
-    _iterator54.e(err);
+    _iterator52.e(err);
   } finally {
-    _iterator54.f();
+    _iterator52.f();
   }
   return res;
 }
@@ -20308,21 +20263,21 @@ function auto_haveQueuedForcedNonCombat() {
 }
 function hasUsefulShirt() {
   var amtUsefulShirts = 0;
-  var _iterator71 = _createForOfIteratorHelper(
+  var _iterator69 = _createForOfIteratorHelper(
     $items`January's Garbage Tote, astral shirt, shoe ad T-shirt, fresh coat of paint, tunac, Jurassic Parka, hairshirt, futuristic shirt`
-  ), _step71;
+  ), _step69;
   try {
-    for (_iterator71.s(); !(_step71 = _iterator71.n()).done; ) {
-      var it = _step71.value;
+    for (_iterator69.s(); !(_step69 = _iterator69.n()).done; ) {
+      var it = _step69.value;
       var w_it = wrap_item(it);
       if ((0, import_kolmafia120.itemAmount)(w_it) !== 0 && (0, import_kolmafia120.isUnrestricted)(w_it)) {
         amtUsefulShirts += 1;
       }
     }
   } catch (err) {
-    _iterator71.e(err);
+    _iterator69.e(err);
   } finally {
-    _iterator71.f();
+    _iterator69.f();
   }
   if (amtUsefulShirts > 0) {
     return true;
@@ -20400,21 +20355,21 @@ function wrap_item(it) {
 }
 function auto_burnMP(mpToBurn) {
   var defaultSkill = import_kolmafia120.Skill.none;
-  var _iterator72 = _createForOfIteratorHelper(
+  var _iterator70 = _createForOfIteratorHelper(
     $skills`Sauce Contemplation, Seal Clubbing Frenzy, Patience of the Tortoise, Manicotti Meditation, Disco Aerobics, Moxie of the Mariachi`
-  ), _step72;
+  ), _step70;
   try {
-    for (_iterator72.s(); !(_step72 = _iterator72.n()).done; ) {
-      var sk = _step72.value;
+    for (_iterator70.s(); !(_step70 = _iterator70.n()).done; ) {
+      var sk = _step70.value;
       if ((0, import_kolmafia120.haveSkill)(sk)) {
         defaultSkill = sk;
         break;
       }
     }
   } catch (err) {
-    _iterator72.e(err);
+    _iterator70.e(err);
   } finally {
-    _iterator72.f();
+    _iterator70.f();
   }
   if (defaultSkill !== import_kolmafia120.Skill.none) {
     (0, import_kolmafia120.setProperty)("lastChanceBurn", `cast # ${defaultSkill}`);
@@ -20532,18 +20487,18 @@ function auto_ignoreExperience() {
 }
 function auto_remainingShantyTurns() {
   var turns = 0;
-  var _iterator75 = _createForOfIteratorHelper(
+  var _iterator73 = _createForOfIteratorHelper(
     $effects`Who's Going to Pay This Drunken Sailor?, Only Dogs Love a Drunken Sailor, I'm Smarter Than a Drunken Sailor, Look At That Drunken Sailor Dance, Let's Beat Up This Drunken Sailor`
-  ), _step75;
+  ), _step73;
   try {
-    for (_iterator75.s(); !(_step75 = _iterator75.n()).done; ) {
-      var ef = _step75.value;
+    for (_iterator73.s(); !(_step73 = _iterator73.n()).done; ) {
+      var ef = _step73.value;
       turns = (0, import_kolmafia120.max)(turns, (0, import_kolmafia120.haveEffect)(ef));
     }
   } catch (err) {
-    _iterator75.e(err);
+    _iterator73.e(err);
   } finally {
-    _iterator75.f();
+    _iterator73.f();
   }
   return turns;
 }
@@ -20608,16 +20563,6 @@ var import_kolmafia125 = require("kolmafia");
 
 // src/autoscend/autoscend_migration.ts
 var import_kolmafia126 = require("kolmafia");
-var $_f___autoscend_version;
-$_f___autoscend_version ?? ($_f___autoscend_version = "1.8.0");
-var $_f___autoscend_confirm_timeoutMS;
-$_f___autoscend_confirm_timeoutMS ?? ($_f___autoscend_confirm_timeoutMS = 1e4);
-var $_f___remove_sl_ascend_confirmation;
-$_f___remove_sl_ascend_confirmation ?? ($_f___remove_sl_ascend_confirmation = "Looks like you have the old sl_ascend project installed as well. Would you like to remove it? (it is no longer maintained). Will default to false in 10 seconds.");
-var $_f___migrate_sl_ascend_properties_confirmation;
-$_f___migrate_sl_ascend_properties_confirmation ?? ($_f___migrate_sl_ascend_properties_confirmation = "Looks like you may be migrating from sl_ascend. Starting with a fresh run using autoscend is adviable but we can try to migrate all the sl_ascend properties (results may vary). Will default to true in 10 seconds.");
-var $_f___migrate_sl_ascend_properties_remove_confirmation;
-$_f___migrate_sl_ascend_properties_remove_confirmation ?? ($_f___migrate_sl_ascend_properties_remove_confirmation = "Would you like to clean up old sl_ascend properties after migrating them? Will default to false in 10 seconds.");
 
 // src/autoscend/iotms/eudora.ts
 var import_kolmafia127 = require("kolmafia");
@@ -20706,7 +20651,7 @@ function canDrink$2(toDrink, checkValidity) {
     ), _step;
     try {
       for (_iterator.s(); !(_step = _iterator.n()).done; ) {
-        var _step$value = _slicedToArray(_step.value, 2), idx = _step$value[0], it = _step$value[1];
+        var _step$value = _slicedToArray(_step.value, 2), it = _step$value[1];
         if (it === toDrink) {
           found = true;
         }
@@ -20885,20 +20830,20 @@ function pulledToday(it) {
       ]
     )
   );
-  var _iterator2 = _createForOfIteratorHelper(
+  var _iterator = _createForOfIteratorHelper(
     allPulls.keys()
-  ), _step2;
+  ), _step;
   try {
-    for (_iterator2.s(); !(_step2 = _iterator2.n()).done; ) {
-      var i = _step2.value;
+    for (_iterator.s(); !(_step = _iterator.n()).done; ) {
+      var i = _step.value;
       if ((0, import_kolmafia135.toInt)(allPulls.get(i) ?? allPulls.set(i, "").get(i)) === (0, import_kolmafia135.toInt)(it)) {
         return true;
       }
     }
   } catch (err) {
-    _iterator2.e(err);
+    _iterator.e(err);
   } finally {
-    _iterator2.f();
+    _iterator.f();
   }
   return false;
 }
@@ -20910,7 +20855,7 @@ function auto_mall_price(it) {
     return (0, import_kolmafia135.historicalPrice)(it);
   }
   if ((0, import_kolmafia135.isTradeable)(it)) {
-    var retval = 0;
+    var retval;
     var it_type = (0, import_kolmafia135.itemType)(it);
     if (it_type === "food" || it_type === "booze") {
       retval = (0, import_kolmafia135.historicalPrice)(it);
@@ -21104,12 +21049,12 @@ function acquireGumItem(it) {
   return have + 1 === (0, import_kolmafia135.itemAmount)(it);
 }
 function acquireTotem() {
-  var _iterator3 = _createForOfIteratorHelper(
+  var _iterator2 = _createForOfIteratorHelper(
     $items`primitive alien totem, Flail of the Seven Aspects, Chelonian Morningstar, Mace of the Tortoise, Ouija Board\, Ouija Board, turtle totem`
-  ), _step3;
+  ), _step2;
   try {
-    for (_iterator3.s(); !(_step3 = _iterator3.n()).done; ) {
-      var totem = _step3.value;
+    for (_iterator2.s(); !(_step2 = _iterator2.n()).done; ) {
+      var totem = _step2.value;
       if (possessEquipment(totem)) {
         return true;
       }
@@ -21119,25 +21064,25 @@ function acquireTotem() {
       }
     }
   } catch (err) {
-    _iterator3.e(err);
+    _iterator2.e(err);
   } finally {
-    _iterator3.f();
+    _iterator2.f();
   }
   var want_totem = false;
-  var _iterator4 = _createForOfIteratorHelper(
+  var _iterator3 = _createForOfIteratorHelper(
     $skills`Empathy of the Newt, Astral Shell, Ghostly Shell, Tenacity of the Snapper, Spiky Shell, Reptilian Fortitude, Jingle Bells, Curiosity of Br'er Tarrypin`
-  ), _step4;
+  ), _step3;
   try {
-    for (_iterator4.s(); !(_step4 = _iterator4.n()).done; ) {
-      var sk = _step4.value;
+    for (_iterator3.s(); !(_step3 = _iterator3.n()).done; ) {
+      var sk = _step3.value;
       if (auto_have_skill(sk)) {
         want_totem = true;
       }
     }
   } catch (err) {
-    _iterator4.e(err);
+    _iterator3.e(err);
   } finally {
-    _iterator4.f();
+    _iterator3.f();
   }
   if (want_totem) {
     if (acquireGumItem($item`turtle totem`)) {
@@ -21392,7 +21337,6 @@ function auto_post_adventure() {
     auto_log_info("Postadventure skipped by clingy modifier.", "green");
     return true;
   }
-  var beforeBuffs = auto_saveEquipped();
   addToMaximize("-1000mana cost, -tie");
   equipMaximizedGear();
   if ((0, import_kolmafia136.haveEffect)($effect`Cunctatitis`) > 0) {
