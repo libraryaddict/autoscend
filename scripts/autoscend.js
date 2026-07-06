@@ -591,10 +591,8 @@ function boris_initializeSettings() {
     auto_log_info("Initializing Avatar of Boris settings", "blue");
     (0, import_kolmafia3.setProperty)("auto_borisSkills", (-1).toString());
     (0, import_kolmafia3.setProperty)("auto_wandOfNagamar", false.toString());
-    var temp = (0, import_kolmafia3.visitUrl)(
-      "storage.php?action=pull&whichitem1=5648&howmany1=1&pwd"
-    );
-    temp = (0, import_kolmafia3.visitUrl)("storage.php?action=pull&whichitem1=5650&howmany1=1&pwd");
+    (0, import_kolmafia3.visitUrl)("storage.php?action=pull&whichitem1=5648&howmany1=1&pwd");
+    (0, import_kolmafia3.visitUrl)("storage.php?action=pull&whichitem1=5650&howmany1=1&pwd");
   }
 }
 function boris_initializeDay(day) {
@@ -640,7 +638,6 @@ function boris_buySkills() {
   if ((0, import_kolmafia3.haveSkill)($skill`Bifurcating Blow`) && (0, import_kolmafia3.haveSkill)($skill`Banishing Shout`) && (0, import_kolmafia3.haveSkill)($skill`Gourmand`)) {
     return;
   }
-  var possBorisPoints = 0;
   var page = (0, import_kolmafia3.visitUrl)("da.php?place=gate1");
   var my_skillPoints = new AshMatcher(
     "You can learn (\\d+) more skill",
@@ -649,7 +646,6 @@ function boris_buySkills() {
   if (my_skillPoints.find()) {
     var skillPoints = (0, import_kolmafia3.toInt)(my_skillPoints.group(1));
     auto_log_info$1(`Skill points found: ${skillPoints}`);
-    possBorisPoints = skillPoints - 1;
     while (skillPoints > 0) {
       skillPoints = skillPoints - 1;
       var tree = 1;
@@ -1267,34 +1263,34 @@ function itemList() {
 function List$8(data) {
   var retval = /* @__PURE__ */ new Map();
   var temp = /* @__PURE__ */ new Map();
-  var _iterator0 = _createForOfIteratorHelper(
+  var _iterator = _createForOfIteratorHelper(
     data
-  ), _step0;
+  ), _step;
   try {
-    for (_iterator0.s(); !(_step0 = _iterator0.n()).done; ) {
-      var _step0$value = _slicedToArray(_step0.value, 2), idx = _step0$value[0], el = _step0$value[1];
+    for (_iterator.s(); !(_step = _iterator.n()).done; ) {
+      var _step$value = _slicedToArray(_step.value, 2), idx = _step$value[0], el = _step$value[1];
       temp.set(idx, el);
     }
   } catch (err) {
-    _iterator0.e(err);
+    _iterator.e(err);
   } finally {
-    _iterator0.f();
+    _iterator.f();
   }
   temp = new Map(_toConsumableArray(temp.entries()).sort((a, b) => a[0] - b[0]));
   var index = 0;
-  var _iterator1 = _createForOfIteratorHelper(
+  var _iterator2 = _createForOfIteratorHelper(
     temp
-  ), _step1;
+  ), _step2;
   try {
-    for (_iterator1.s(); !(_step1 = _iterator1.n()).done; ) {
-      var _step1$value = _slicedToArray(_step1.value, 2), _idx3 = _step1$value[0], _el3 = _step1$value[1];
-      retval.set(index, _el3);
+    for (_iterator2.s(); !(_step2 = _iterator2.n()).done; ) {
+      var _step2$value = _slicedToArray(_step2.value, 2), _idx = _step2$value[0], _el = _step2$value[1];
+      retval.set(index, _el);
       index = index + 1;
     }
   } catch (err) {
-    _iterator1.e(err);
+    _iterator2.e(err);
   } finally {
-    _iterator1.f();
+    _iterator2.f();
   }
   return retval;
 }
@@ -1306,53 +1302,53 @@ function ListInsert$3(list, what) {
 function List$1(data) {
   var retval = /* @__PURE__ */ new Map();
   var index = 0;
-  var _iterator11 = _createForOfIteratorHelper(
+  var _iterator3 = _createForOfIteratorHelper(
     data.keys()
-  ), _step11;
+  ), _step3;
   try {
-    for (_iterator11.s(); !(_step11 = _iterator11.n()).done; ) {
-      var el = _step11.value;
+    for (_iterator3.s(); !(_step3 = _iterator3.n()).done; ) {
+      var el = _step3.value;
       retval.set(index, el);
       index = index + 1;
     }
   } catch (err) {
-    _iterator11.e(err);
+    _iterator3.e(err);
   } finally {
-    _iterator11.f();
+    _iterator3.f();
   }
   return retval;
 }
 function List$5(data) {
   var retval = /* @__PURE__ */ new Map();
   var temp = /* @__PURE__ */ new Map();
-  var _iterator12 = _createForOfIteratorHelper(
+  var _iterator4 = _createForOfIteratorHelper(
     data
-  ), _step12;
+  ), _step4;
   try {
-    for (_iterator12.s(); !(_step12 = _iterator12.n()).done; ) {
-      var _step12$value = _slicedToArray(_step12.value, 2), idx = _step12$value[0], el = _step12$value[1];
+    for (_iterator4.s(); !(_step4 = _iterator4.n()).done; ) {
+      var _step4$value = _slicedToArray(_step4.value, 2), idx = _step4$value[0], el = _step4$value[1];
       temp.set(idx, el);
     }
   } catch (err) {
-    _iterator12.e(err);
+    _iterator4.e(err);
   } finally {
-    _iterator12.f();
+    _iterator4.f();
   }
   temp = new Map(_toConsumableArray(temp.entries()).sort((a, b) => a[0] - b[0]));
   var index = 0;
-  var _iterator13 = _createForOfIteratorHelper(
+  var _iterator5 = _createForOfIteratorHelper(
     temp
-  ), _step13;
+  ), _step5;
   try {
-    for (_iterator13.s(); !(_step13 = _iterator13.n()).done; ) {
-      var _step13$value = _slicedToArray(_step13.value, 2), _idx4 = _step13$value[0], _el4 = _step13$value[1];
-      retval.set(index, _el4);
+    for (_iterator5.s(); !(_step5 = _iterator5.n()).done; ) {
+      var _step5$value = _slicedToArray(_step5.value, 2), _idx2 = _step5$value[0], _el2 = _step5$value[1];
+      retval.set(index, _el2);
       index = index + 1;
     }
   } catch (err) {
-    _iterator13.e(err);
+    _iterator5.e(err);
   } finally {
-    _iterator13.f();
+    _iterator5.f();
   }
   return retval;
 }
@@ -1378,18 +1374,18 @@ function auto_sortedByModifier(map, m) {
 }
 function auto_sortedByModifier$1(map, m, high_to_low) {
   var ranked_list = /* @__PURE__ */ new Map();
-  var _iterator19 = _createForOfIteratorHelper(
+  var _iterator6 = _createForOfIteratorHelper(
     map.keys()
-  ), _step19;
+  ), _step6;
   try {
-    for (_iterator19.s(); !(_step19 = _iterator19.n()).done; ) {
-      var entry = _step19.value;
+    for (_iterator6.s(); !(_step6 = _iterator6.n()).done; ) {
+      var entry = _step6.value;
       ranked_list.set(ranked_list.size, entry);
     }
   } catch (err) {
-    _iterator19.e(err);
+    _iterator6.e(err);
   } finally {
-    _iterator19.f();
+    _iterator6.f();
   }
   var sign = high_to_low ? -1 : 1;
   ranked_list = new Map(
@@ -1408,18 +1404,18 @@ function auto_sortedByModifier$1(map, m, high_to_low) {
 }
 function auto_sortedByModifier$3(map, m, high_to_low) {
   var int_map = /* @__PURE__ */ new Map();
-  var _iterator20 = _createForOfIteratorHelper(
+  var _iterator7 = _createForOfIteratorHelper(
     map.keys()
-  ), _step20;
+  ), _step7;
   try {
-    for (_iterator20.s(); !(_step20 = _iterator20.n()).done; ) {
-      var entry = _step20.value;
+    for (_iterator7.s(); !(_step7 = _iterator7.n()).done; ) {
+      var entry = _step7.value;
       int_map.set(entry, (int_map.get(entry) ?? 0) + 1);
     }
   } catch (err) {
-    _iterator20.e(err);
+    _iterator7.e(err);
   } finally {
-    _iterator20.f();
+    _iterator7.f();
   }
   return auto_sortedByModifier$1(int_map, m, high_to_low);
 }
@@ -1654,7 +1650,6 @@ function gnoob_buySkills() {
         break;
       }
       var possible = /* @__PURE__ */ new Map();
-      var count_1 = 0;
       var _iterator2 = _createForOfIteratorHelper(
         available.keys()
       ), _step2;
@@ -1988,104 +1983,104 @@ function awol_buySkills() {
       while (skillPoints > 0) {
         if ((0, import_kolmafia11.myClass)() === $class`Cow Puncher`) {
           if (!(0, import_kolmafia11.haveSkill)($skill`Rugged Survivalist`)) {
-            page = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1177&whichskill=5",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Larger Than Life`)) {
-            page = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1177&whichskill=6",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Cowcall`)) {
-            page = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1177&whichskill=1",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`[18008]Hard Drinker`) && cowSlang) {
-            page = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1177&whichskill=8",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`One-Two Punch`)) {
-            page = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1177&whichskill=0",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Pistolwhip`)) {
-            page = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1177&whichskill=2",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Walk: Cautious Prowl`) && cowSlang) {
-            page = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1177&whichskill=9",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Hogtie`)) {
-            page = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1177&whichskill=3",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`True Outdoorsperson`)) {
-            page = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1177&whichskill=4",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Unleash Cowrruption`) && cowSlang) {
-            page = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1177&whichskill=7",
               true
             );
           }
         } else {
           if (!(0, import_kolmafia11.haveSkill)($skill`[18008]Hard Drinker`) && cowSlang) {
-            page = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1177&whichskill=8",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Rugged Survivalist`)) {
-            page = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1177&whichskill=5",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Walk: Cautious Prowl`) && cowSlang) {
-            page = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1177&whichskill=9",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Larger Than Life`)) {
-            page = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1177&whichskill=6",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Cowcall`)) {
-            page = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1177&whichskill=1",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`One-Two Punch`)) {
-            page = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1177&whichskill=0",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Pistolwhip`)) {
-            page = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1177&whichskill=2",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Hogtie`)) {
-            page = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1177&whichskill=3",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`True Outdoorsperson`)) {
-            page = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1177&whichskill=4",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Unleash Cowrruption`) && cowSlang) {
-            page = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1177&whichskill=7",
               true
             );
@@ -2112,104 +2107,104 @@ function awol_buySkills() {
       while (_skillPoints > 0) {
         if ((0, import_kolmafia11.myClass)() === $class`Beanslinger`) {
           if (!(0, import_kolmafia11.haveSkill)($skill`Lavafava`)) {
-            _page = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1178&whichskill=0",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Walk: Prideful Strut`) && beanSlang) {
-            _page = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1178&whichskill=9",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Bean Runner`)) {
-            _page = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1178&whichskill=4",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Canhandle`)) {
-            _page = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1178&whichskill=2",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Prodigious Appetite`) && beanSlang) {
-            _page = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1178&whichskill=8",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Beanstorm`)) {
-            _page = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1178&whichskill=6",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Beanscreen`)) {
-            _page = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1178&whichskill=3",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Beancannon`) && beanSlang) {
-            _page = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1178&whichskill=7",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Beanweaver`)) {
-            _page = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1178&whichskill=5",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Pungent Mung`)) {
-            _page = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1178&whichskill=1",
               true
             );
           }
         } else {
           if (!(0, import_kolmafia11.haveSkill)($skill`Prodigious Appetite`) && beanSlang) {
-            _page = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1178&whichskill=8",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Walk: Prideful Strut`) && beanSlang) {
-            _page = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1178&whichskill=9",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Bean Runner`)) {
-            _page = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1178&whichskill=4",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Beanscreen`)) {
-            _page = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1178&whichskill=3",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Canhandle`)) {
-            _page = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1178&whichskill=2",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Lavafava`)) {
-            _page = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1178&whichskill=0",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Beanstorm`)) {
-            _page = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1178&whichskill=6",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Beancannon`) && beanSlang) {
-            _page = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1178&whichskill=7",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Beanweaver`)) {
-            _page = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1178&whichskill=5",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Pungent Mung`)) {
-            _page = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1178&whichskill=1",
               true
             );
@@ -2236,104 +2231,104 @@ function awol_buySkills() {
       while (_skillPoints2 > 0) {
         if ((0, import_kolmafia11.myClass)() === $class`Snake Oiler`) {
           if (!(0, import_kolmafia11.haveSkill)($skill`Good Medicine`)) {
-            _page2 = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1179&whichskill=6",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Bad Medicine`)) {
-            _page2 = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1179&whichskill=3",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Extract Oil`)) {
-            _page2 = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1179&whichskill=2",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Tolerant Constitution`) && snakeSlang) {
-            _page2 = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1179&whichskill=8",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Snakewhip`)) {
-            _page2 = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1179&whichskill=0",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Patent Medicine`)) {
-            _page2 = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1179&whichskill=4",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Long Con`) && snakeSlang) {
-            _page2 = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1179&whichskill=7",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Walk: Leisurely Amble`) && snakeSlang) {
-            _page2 = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1179&whichskill=9",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Well-Oiled Guns`)) {
-            _page2 = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1179&whichskill=5",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Fan Hammer`)) {
-            _page2 = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1179&whichskill=1",
               true
             );
           }
         } else {
           if (!(0, import_kolmafia11.haveSkill)($skill`Tolerant Constitution`) && snakeSlang) {
-            _page2 = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1179&whichskill=8",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Long Con`) && snakeSlang) {
-            _page2 = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1179&whichskill=7",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Good Medicine`)) {
-            _page2 = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1179&whichskill=6",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Snakewhip`)) {
-            _page2 = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1179&whichskill=0",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Bad Medicine`)) {
-            _page2 = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1179&whichskill=3",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Extract Oil`)) {
-            _page2 = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1179&whichskill=2",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Patent Medicine`)) {
-            _page2 = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1179&whichskill=4",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Walk: Leisurely Amble`) && snakeSlang) {
-            _page2 = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1179&whichskill=9",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Well-Oiled Guns`)) {
-            _page2 = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1179&whichskill=5",
               true
             );
           } else if (!(0, import_kolmafia11.haveSkill)($skill`Fan Hammer`)) {
-            _page2 = (0, import_kolmafia11.visitUrl)(
+            (0, import_kolmafia11.visitUrl)(
               "choice.php?pwd=&option=1&whichchoice=1179&whichskill=1",
               true
             );
@@ -2975,7 +2970,7 @@ function c2t_apron_allowlist() {
   ), _step;
   try {
     for (_iterator.s(); !(_step = _iterator.n()).done; ) {
-      var _step$value = _slicedToArray(_step.value, 2), i = _step$value[0], x = _step$value[1];
+      var _step$value = _slicedToArray(_step.value, 2), x = _step$value[1];
       out.set(x, true);
     }
   } catch (err) {
@@ -3057,7 +3052,6 @@ function c2t_megg_preAdv() {
   var prefLast = "_c2t_megg_lastCheck";
   var prefLimit = "c2t_megg_timeLimit";
   var maxlist = /* @__PURE__ */ new Map();
-  var page = null;
   var last = (0, import_kolmafia16.toInt)((0, import_kolmafia16.getProperty)(prefLast));
   var limit = (0, import_kolmafia16.toInt)((0, import_kolmafia16.getProperty)(prefLimit)) * 6e4;
   var now = (0, import_kolmafia16.nowToInt)();
@@ -3080,7 +3074,7 @@ function c2t_megg_preAdv() {
   }
   c2t_megg_init();
   (0, import_kolmafia16.useFamiliar)(mimic);
-  page = (0, import_kolmafia16.visitUrl)(
+  var page = (0, import_kolmafia16.visitUrl)(
     "place.php?whichplace=town_right&action=townright_dna",
     false,
     true
@@ -3246,7 +3240,6 @@ function c2t_megg_eggs() {
   var out = /* @__PURE__ */ new Map();
   var egg = $item`mimic egg`;
   var prop = "mimicEggMonsters";
-  var split = /* @__PURE__ */ new Map();
   if ((0, import_kolmafia16.itemAmount)(egg) === 0) {
     return out;
   }
@@ -3262,8 +3255,10 @@ function c2t_megg_eggs() {
   ), _step0;
   try {
     for (_iterator0.s(); !(_step0 = _iterator0.n()).done; ) {
-      var _step0$value = _slicedToArray(_step0.value, 2), i = _step0$value[0], x = _step0$value[1];
-      split = new Map((0, import_kolmafia16.splitString)(x, ":").map((_v, _i) => [_i, _v]));
+      var _step0$value = _slicedToArray(_step0.value, 2), x = _step0$value[1];
+      var split = new Map(
+        (0, import_kolmafia16.splitString)(x, ":").map((_v, _i) => [_i, _v])
+      );
       out.set(
         (0, import_kolmafia16.toMonster)(split.get(0) ?? split.set(0, "").get(0)),
         (0, import_kolmafia16.toInt)(split.get(1) ?? split.set(1, "").get(1))
@@ -3893,7 +3888,6 @@ function auto_smallCampgroundGear() {
       [$item`kilopede skull`, true]
     ]
   );
-  var veryTallGrassGear = $items`beetle antenna, mantis skull, spider leg`;
   function haveGear(gear) {
     var _iterator = _createForOfIteratorHelper(
       gear.keys()
@@ -4243,7 +4237,6 @@ function LX_wereprof_getSmashedEquip() {
   if (is_professor() || wereprof_haveAllEquipment()) {
     return false;
   }
-  var smashedLocs = /* @__PURE__ */ new Map();
   var alreadySmashedLocs = (0, import_kolmafia22.getProperty)("antiScientificMethod");
   var _iterator = _createForOfIteratorHelper($locations`The Hidden Hospital, The Castle in the Clouds in the Sky (Top Floor), Noob Cave, The Haunted Pantry, The Thinknerd Warehouse, Vanya's Castle`), _step;
   try {
@@ -5899,7 +5892,7 @@ function auto_tavern() {
         page = (0, import_kolmafia31.visitUrl)("place.php?whichplace=kgb&action=kgb_handleup", false);
         flipped = true;
       }
-      page = (0, import_kolmafia31.visitUrl)("place.php?whichplace=kgb&action=kgb_button1", false);
+      (0, import_kolmafia31.visitUrl)("place.php?whichplace=kgb&action=kgb_button1", false);
       page = (0, import_kolmafia31.visitUrl)("place.php?whichplace=kgb&action=kgb_button1", false);
       if (flipped) {
         page = (0, import_kolmafia31.visitUrl)(
@@ -6021,7 +6014,7 @@ function auto_tavern() {
   }
   var tavern_1 = (0, import_kolmafia31.getProperty)("tavernLayout");
   if (tavern_1 === "0000000000000000000000000") {
-    var temp_1 = (0, import_kolmafia31.visitUrl)("cellar.php");
+    (0, import_kolmafia31.visitUrl)("cellar.php");
     tavern_1 = (0, import_kolmafia31.getProperty)("tavernLayout");
     if (tavern_1 === "0000000000000000000000000") {
       (0, import_kolmafia31.abort)(
@@ -7651,7 +7644,7 @@ function simulatePreAdvForCrystalBall(place) {
     try {
       for (_iterator2.s(); !(_step2 = _iterator2.n()).done; ) {
         var _appearanceRates, _mon$toString;
-        var _step2$value = _slicedToArray(_step2.value, 2), i = _step2$value[0], mon = _step2$value[1];
+        var _step2$value = _slicedToArray(_step2.value, 2), mon = _step2$value[1];
         if (((_appearanceRates = (0, import_kolmafia39.appearanceRates)(place))[_mon$toString = mon.toString()] ?? (_appearanceRates[_mon$toString] = 0)) > 0) {
           possible_monsters.set(possible_monsters.size, mon);
         }
@@ -7668,7 +7661,7 @@ function simulatePreAdvForCrystalBall(place) {
     var _iterator3 = _createForOfIteratorHelper(possible_monsters), _step3;
     try {
       for (_iterator3.s(); !(_step3 = _iterator3.n()).done; ) {
-        var _step3$value = _slicedToArray(_step3.value, 2), _i2 = _step3$value[0], _mon = _step3$value[1];
+        var _step3$value = _slicedToArray(_step3.value, 2), _mon = _step3$value[1];
         if (auto_wantToYellowRay(_mon, place)) {
           zoneHasWantedMonsters = true;
         }
@@ -8615,11 +8608,12 @@ function LX_bugbearBridge() {
   autoEquip($slot`off-hand`, $item`Oscus's garbage can lid`);
   handleFamiliar("boss");
   addToMaximize("10dr,3moxie,0.5da 1000max,-5ml,1.5hp,0item,0meat");
-  var ret = false;
   if ((0, import_kolmafia40.itemAmount)($item`Jeff Goldblum larva`) > 0) {
-    ret = autoAdvBypass$6("place.php?whichplace=bugbearship&action=bb_bridge");
+    autoAdvBypass$6("place.php?whichplace=bugbearship&action=bb_bridge");
   }
-  ret = autoAdvBypass$6("place.php?whichplace=bugbearship&action=bb_bridge");
+  var ret = autoAdvBypass$6(
+    "place.php?whichplace=bugbearship&action=bb_bridge"
+  );
   if ((0, import_kolmafia40.toBoolean)((0, import_kolmafia40.getProperty)("auto_stayInRun"))) {
     (0, import_kolmafia40.abort)("User wanted to stay in run (auto_stayInRun), we are done.");
   }
@@ -8902,9 +8896,7 @@ function nuclear_initializeDay(day) {
     return;
   }
   if (!(0, import_kolmafia43.toBoolean)((0, import_kolmafia43.getProperty)("falloutShelterChronoUsed")) && (0, import_kolmafia43.toInt)((0, import_kolmafia43.getProperty)("falloutShelterLevel")) >= 6) {
-    var temp = (0, import_kolmafia43.visitUrl)(
-      "place.php?whichplace=falloutshelter&action=vault5"
-    );
+    (0, import_kolmafia43.visitUrl)("place.php?whichplace=falloutshelter&action=vault5");
   }
   if (!(0, import_kolmafia43.toBoolean)((0, import_kolmafia43.getProperty)("falloutShelterCoolingTankUsed")) && (0, import_kolmafia43.toInt)((0, import_kolmafia43.getProperty)("falloutShelterLevel")) >= 8) {
   }
@@ -9258,8 +9250,8 @@ function LX_handleIntroAdventures() {
       edUnderworldChoiceHandler(choice);
     }
     if (1230 === choice) {
-      var page = (0, import_kolmafia46.visitUrl)("main.php");
-      page = (0, import_kolmafia46.visitUrl)("api.php?what=status&for=4", false);
+      (0, import_kolmafia46.visitUrl)("main.php");
+      var page = (0, import_kolmafia46.visitUrl)("api.php?what=status&for=4", false);
       gnoob_startAscension(page);
     }
     if (1342 === choice) {
@@ -9462,7 +9454,6 @@ function LX_islandAccess() {
     (0, import_kolmafia46.use)(1, $item`pirate dinghy`);
     return true;
   }
-  var canDesert = (0, import_kolmafia46.toInt)((0, import_kolmafia46.getProperty)("lastDesertUnlock")) === (0, import_kolmafia46.myAscensions)();
   if ((0, import_kolmafia46.itemAmount)($item`Shore Inc. Ship Trip Scrip`) >= 3 && (0, import_kolmafia46.toInt)((0, import_kolmafia46.getProperty)("lastIslandUnlock")) !== (0, import_kolmafia46.myAscensions)() && (0, import_kolmafia46.myMeat)() >= (0, import_kolmafia46.npcPrice)($item`dingy planks`) && isGeneralStoreAvailable()) {
     (0, import_kolmafia46.cliExecute)("make dinghy plans");
     auto_buyUpTo(1, $item`dingy planks`);
@@ -10305,7 +10296,7 @@ function LX_unlockThinknerdWarehouse(spend_resources) {
     if (!hasShirt) {
       return false;
     }
-    var temp = (0, import_kolmafia47.visitUrl)(
+    (0, import_kolmafia47.visitUrl)(
       `inv_equip.php?pwd&which=2&action=equip&whichitem=${(0, import_kolmafia47.toInt)(target_shirt)}`
     );
     if (useLetter()) {
@@ -10401,13 +10392,13 @@ function LX_steelOrgan() {
   }
   provideItem$2(567, $location`The Laugh Floor`, true);
   if ((0, import_kolmafia47.getProperty)("questM10Azazel") === "unstarted") {
-    var temp = (0, import_kolmafia47.visitUrl)("pandamonium.php");
-    temp = (0, import_kolmafia47.visitUrl)("pandamonium.php?action=moan");
-    temp = (0, import_kolmafia47.visitUrl)("pandamonium.php?action=infe");
-    temp = (0, import_kolmafia47.visitUrl)("pandamonium.php?action=sven");
-    temp = (0, import_kolmafia47.visitUrl)("pandamonium.php?action=sven");
-    temp = (0, import_kolmafia47.visitUrl)("pandamonium.php?action=beli");
-    temp = (0, import_kolmafia47.visitUrl)("pandamonium.php?action=mourn");
+    (0, import_kolmafia47.visitUrl)("pandamonium.php");
+    (0, import_kolmafia47.visitUrl)("pandamonium.php?action=moan");
+    (0, import_kolmafia47.visitUrl)("pandamonium.php?action=infe");
+    (0, import_kolmafia47.visitUrl)("pandamonium.php?action=sven");
+    (0, import_kolmafia47.visitUrl)("pandamonium.php?action=sven");
+    (0, import_kolmafia47.visitUrl)("pandamonium.php?action=beli");
+    (0, import_kolmafia47.visitUrl)("pandamonium.php?action=mourn");
   }
   if ((0, import_kolmafia47.getProperty)("questM10Azazel") === "started") {
     if ((!possessEquipment($item`observational glasses`) || (0, import_kolmafia47.itemAmount)($item`imp air`) < 5) && (0, import_kolmafia47.itemAmount)($item`Azazel's tutu`) === 0) {
@@ -10459,19 +10450,19 @@ function LX_steelOrgan() {
         }
       }
       if (need === 0 && (0, import_kolmafia47.itemAmount)($item`Azazel's unicorn`) === 0) {
-        var _temp = (0, import_kolmafia47.visitUrl)("pandamonium.php?action=sven");
+        (0, import_kolmafia47.visitUrl)("pandamonium.php?action=sven");
         (0, import_kolmafia47.visitUrl)(
           `pandamonium.php?action=sven&bandmember=Jim&togive=${jim}&preaction=try`
         );
-        _temp = (0, import_kolmafia47.visitUrl)("pandamonium.php?action=sven");
+        (0, import_kolmafia47.visitUrl)("pandamonium.php?action=sven");
         (0, import_kolmafia47.visitUrl)(
           `pandamonium.php?action=sven&bandmember=Flargwurm&togive=${flargwurm}&preaction=try`
         );
-        _temp = (0, import_kolmafia47.visitUrl)("pandamonium.php?action=sven");
+        (0, import_kolmafia47.visitUrl)("pandamonium.php?action=sven");
         (0, import_kolmafia47.visitUrl)(
           `pandamonium.php?action=sven&bandmember=Bognort&togive=${bognort}&preaction=try`
         );
-        _temp = (0, import_kolmafia47.visitUrl)("pandamonium.php?action=sven");
+        (0, import_kolmafia47.visitUrl)("pandamonium.php?action=sven");
         (0, import_kolmafia47.visitUrl)(
           `pandamonium.php?action=sven&bandmember=Stinkface&togive=${stinkface}&preaction=try`
         );
@@ -10498,9 +10489,9 @@ function LX_steelOrgan() {
         _iterator2.f();
       }
     } else if ((0, import_kolmafia47.itemAmount)($item`Azazel's tutu`) === 0 && (0, import_kolmafia47.itemAmount)($item`bus pass`) >= 5 && (0, import_kolmafia47.itemAmount)($item`imp air`) >= 5) {
-      var _temp2 = (0, import_kolmafia47.visitUrl)("pandamonium.php?action=moan");
+      (0, import_kolmafia47.visitUrl)("pandamonium.php?action=moan");
     } else if ((0, import_kolmafia47.itemAmount)($item`Azazel's tutu`) > 0 && (0, import_kolmafia47.itemAmount)($item`Azazel's lollipop`) > 0 && (0, import_kolmafia47.itemAmount)($item`Azazel's unicorn`) > 0) {
-      var _temp3 = (0, import_kolmafia47.visitUrl)("pandamonium.php?action=temp");
+      (0, import_kolmafia47.visitUrl)("pandamonium.php?action=temp");
     } else {
       auto_log_warning(
         "Stuck in the Steel Organ quest and can't continue, moving on.",
@@ -10572,7 +10563,7 @@ function LX_guildUnlock() {
   }
   if (loc !== import_kolmafia47.Location.none) {
     if ((0, import_kolmafia47.getProperty)(pref) !== "started") {
-      var temp = (0, import_kolmafia47.visitUrl)("guild.php?place=challenge");
+      (0, import_kolmafia47.visitUrl)("guild.php?place=challenge");
     }
     if (internalQuestStatus(pref) < 0) {
       auto_log_warning("Visiting the guild failed to set guild quest.", "red");
@@ -11058,8 +11049,7 @@ function LX_unlockKnobMenagerie() {
   auto_log_info("Looking for the Cobb's Knob Menagerie key.", "blue");
   return autoAdv$1(1, $location`Cobb's Knob Laboratory`);
 }
-var $_f_epicWeapons;
-$_f_epicWeapons ?? ($_f_epicWeapons = /* @__PURE__ */ new Map(
+var $_f_epicWeapons = /* @__PURE__ */ new Map(
   [
     [$class`Seal Clubber`, $item`Hammer of Smiting`],
     [$class`Turtle Tamer`, $item`Chelonian Morningstar`],
@@ -11068,9 +11058,8 @@ $_f_epicWeapons ?? ($_f_epicWeapons = /* @__PURE__ */ new Map(
     [$class`Disco Bandit`, $item`Shagadelic Disco Banjo`],
     [$class`Accordion Thief`, $item`Squeezebox of the Ages`]
   ]
-));
-var $_f_starterWeapons;
-$_f_starterWeapons ?? ($_f_starterWeapons = /* @__PURE__ */ new Map(
+);
+var $_f_starterWeapons = /* @__PURE__ */ new Map(
   [
     [$class`Seal Clubber`, $item`seal-clubbing club`],
     [$class`Turtle Tamer`, $item`turtle totem`],
@@ -11079,7 +11068,7 @@ $_f_starterWeapons ?? ($_f_starterWeapons = /* @__PURE__ */ new Map(
     [$class`Disco Bandit`, $item`disco ball`],
     [$class`Accordion Thief`, $item`stolen accordion`]
   ]
-));
+);
 function tomb_already_found() {
   var page = (0, import_kolmafia47.visitUrl)("place.php?whichplace=cemetery");
   return (0, import_kolmafia47.containsText)(page, "place.php?whichplace=cemetery&action=cem_advtomb");
@@ -11290,10 +11279,8 @@ function theSource_oracle() {
         break;
     }
   } else if ((0, import_kolmafia48.itemAmount)($item`no spoon`) > 0) {
-    var _temp = (0, import_kolmafia48.visitUrl)(
-      "place.php?whichplace=town_wrong&action=townwrong_oracle"
-    );
-    _temp = (0, import_kolmafia48.visitUrl)("choice.php?pwd=&whichchoice=1190&option=2");
+    (0, import_kolmafia48.visitUrl)("place.php?whichplace=town_wrong&action=townwrong_oracle");
+    (0, import_kolmafia48.visitUrl)("choice.php?pwd=&whichchoice=1190&option=2");
     return true;
   }
   return false;
@@ -11714,9 +11701,7 @@ function L13_towerNSContests() {
     if ((0, import_kolmafia49.toInt)((0, import_kolmafia49.getProperty)("nsContestants2")) === -1) {
       resetMaximize();
       if (!(0, import_kolmafia49.toBoolean)((0, import_kolmafia49.getProperty)("_lyleFavored")) && auto_is_valid$3($effect`Favored by Lyle`)) {
-        var temp = (0, import_kolmafia49.visitUrl)(
-          "place.php?whichplace=monorail&action=monorail_lyle"
-        );
+        (0, import_kolmafia49.visitUrl)("place.php?whichplace=monorail&action=monorail_lyle");
       }
       acquireMP$1(150);
       if (in_darkGyffte()) {
@@ -12076,7 +12061,7 @@ function L13_towerNSContests() {
   return false;
 }
 function maximize_hedge() {
-  var data = (0, import_kolmafia49.visitUrl)("campground.php?action=telescopelow");
+  (0, import_kolmafia49.visitUrl)("campground.php?action=telescopelow");
   var first = ns_hedge1();
   var second = ns_hedge2();
   var third = ns_hedge3();
@@ -12225,7 +12210,7 @@ function L13_sorceressDoor() {
   }
   if ((0, import_kolmafia49.containsText)(page, "ns_lock4")) {
     if ((0, import_kolmafia49.itemAmount)($item`Richard's star key`) === 0) {
-      var temp = (0, import_kolmafia49.cliExecute)("make richard's star key");
+      (0, import_kolmafia49.cliExecute)("make richard's star key");
     }
     if ((0, import_kolmafia49.itemAmount)($item`Richard's star key`) === 0) {
       if (!(0, import_kolmafia49.toBoolean)((0, import_kolmafia49.getProperty)("auto_getStarKey"))) {
@@ -12569,7 +12554,7 @@ function L13_towerNSTowerBones() {
     var _iterator0 = _createForOfIteratorHelper(auto_getListOfNonDamagingFamiliarEquipment()), _step0;
     try {
       for (_iterator0.s(); !(_step0 = _iterator0.n()).done; ) {
-        var _step0$value = _slicedToArray(_step0.value, 2), i = _step0$value[0], it = _step0$value[1];
+        var _step0$value = _slicedToArray(_step0.value, 2), it = _step0$value[1];
         if ((0, import_kolmafia49.canEquip)((0, import_kolmafia49.myFamiliar)(), it)) {
           (0, import_kolmafia49.equip)($slot`familiar`, it);
           break;
@@ -14388,7 +14373,6 @@ function lowkey_keysRemaining() {
   try {
     for (_iterator.s(); !(_step = _iterator.n()).done; ) {
       var key = _step.value;
-      var loc = lowKeys.get(key) ?? lowKeys.set(key, import_kolmafia53.Location.none).get(key);
       if (!lowkey_needKey(key)) {
         found++;
       }
@@ -15061,7 +15045,7 @@ function shenSnakeLocations(day, n_items_returned) {
         ), _step;
         try {
           for (_iterator.s(); !(_step = _iterator.n()).done; ) {
-            var _step$value = _slicedToArray(_step.value, 2), z = _step$value[0], _ = _step$value[1];
+            var _step$value = _slicedToArray(_step.value, 1), z = _step$value[0];
             ret.set(z, true);
           }
         } catch (err) {
@@ -15075,7 +15059,7 @@ function shenSnakeLocations(day, n_items_returned) {
         ), _step2;
         try {
           for (_iterator2.s(); !(_step2 = _iterator2.n()).done; ) {
-            var _step2$value = _slicedToArray(_step2.value, 2), _z = _step2$value[0], _2 = _step2$value[1];
+            var _step2$value = _slicedToArray(_step2.value, 1), _z = _step2$value[0];
             ret.set(_z, true);
           }
         } catch (err) {
@@ -15089,7 +15073,7 @@ function shenSnakeLocations(day, n_items_returned) {
         ), _step3;
         try {
           for (_iterator3.s(); !(_step3 = _iterator3.n()).done; ) {
-            var _step3$value = _slicedToArray(_step3.value, 2), _z2 = _step3$value[0], _3 = _step3$value[1];
+            var _step3$value = _slicedToArray(_step3.value, 1), _z2 = _step3$value[0];
             ret.set(_z2, true);
           }
         } catch (err) {
@@ -15190,7 +15174,7 @@ function shenZonesToAvoidBecauseMaybeSnake() {
       var _iterator5 = _createForOfIteratorHelper(shenSnakeLocations((0, import_kolmafia54.myDaycount)(), 0)), _step5;
       try {
         for (_iterator5.s(); !(_step5 = _iterator5.n()).done; ) {
-          var _step5$value = _slicedToArray(_step5.value, 2), _z3 = _step5$value[0], _4 = _step5$value[1];
+          var _step5$value = _slicedToArray(_step5.value, 1), _z3 = _step5$value[0];
           zones_to_avoid.set(_z3, true);
         }
       } catch (err) {
@@ -15224,7 +15208,7 @@ function getShenZonesTurnsSpent() {
     ), _step6;
     try {
       for (_iterator6.s(); !(_step6 = _iterator6.n()).done; ) {
-        var _step6$value = _slicedToArray(_step6.value, 2), _ = _step6$value[0], zone = _step6$value[1];
+        var _step6$value = _slicedToArray(_step6.value, 2), zone = _step6$value[1];
         var loc = (0, import_kolmafia54.toLocation)((0, import_kolmafia54.substring)(zone, 0, (0, import_kolmafia54.indexOf)(zone, ":")));
         var turns_spent = (0, import_kolmafia54.toInt)(
           (0, import_kolmafia54.substring)(zone, (0, import_kolmafia54.indexOf)(zone, ":") + 1)
@@ -18042,8 +18026,8 @@ function fantasyBanditsFought() {
       for (_iterator.s(); !(_step = _iterator.n()).done; ) {
         var _step$value = _slicedToArray(_step.value, 2), idx = _step$value[0], it = _step$value[1];
         if ((0, import_kolmafia56.containsText)(it, "fantasy bandit")) {
-          var _splitString, _2;
-          var count_1 = (0, import_kolmafia56.toInt)((_splitString = (0, import_kolmafia56.splitString)(it, ":"))[_2 = 1] ?? (_splitString[_2] = ""));
+          var _splitString, _;
+          var count_1 = (0, import_kolmafia56.toInt)((_splitString = (0, import_kolmafia56.splitString)(it, ":"))[_ = 1] ?? (_splitString[_] = ""));
           return count_1;
         }
       }
@@ -18399,10 +18383,7 @@ function cheeseWarMachine(stats, it, eff, potion) {
   if (first.find()) {
     var setting = (0, import_kolmafia56.toInt)(first.group(1));
     while (setting !== stats) {
-      var temp_1 = (0, import_kolmafia56.visitUrl)(
-        `choice.php?whichchoice=1313&option=1&pwd=${(0, import_kolmafia56.myHash)()}`,
-        false
-      );
+      (0, import_kolmafia56.visitUrl)(`choice.php?whichchoice=1313&option=1&pwd=${(0, import_kolmafia56.myHash)()}`, false);
       setting++;
       if (setting > 3) {
         setting = 1;
@@ -18413,7 +18394,7 @@ function cheeseWarMachine(stats, it, eff, potion) {
   if (second.find()) {
     var _setting = (0, import_kolmafia56.toInt)(second.group(1));
     while (_setting !== it) {
-      var _temp_ = (0, import_kolmafia56.visitUrl)(
+      var temp_1 = (0, import_kolmafia56.visitUrl)(
         `choice.php?whichchoice=1313&option=2&pwd=${(0, import_kolmafia56.myHash)()}`,
         false
       );
@@ -18427,7 +18408,7 @@ function cheeseWarMachine(stats, it, eff, potion) {
   if (third.find()) {
     var _setting2 = (0, import_kolmafia56.toInt)(third.group(1));
     while (_setting2 !== eff) {
-      var _temp_2 = (0, import_kolmafia56.visitUrl)(
+      var _temp_ = (0, import_kolmafia56.visitUrl)(
         `choice.php?whichchoice=1313&option=3&pwd=${(0, import_kolmafia56.myHash)()}`,
         false
       );
@@ -18441,7 +18422,7 @@ function cheeseWarMachine(stats, it, eff, potion) {
   if (fourth.find()) {
     var _setting3 = (0, import_kolmafia56.toInt)(fourth.group(1));
     while (_setting3 !== potion) {
-      var _temp_3 = (0, import_kolmafia56.visitUrl)(
+      var _temp_2 = (0, import_kolmafia56.visitUrl)(
         `choice.php?whichchoice=1313&option=4&pwd=${(0, import_kolmafia56.myHash)()}`,
         false
       );
@@ -18451,10 +18432,7 @@ function cheeseWarMachine(stats, it, eff, potion) {
       }
     }
   }
-  var temp = (0, import_kolmafia56.visitUrl)(
-    `choice.php?whichchoice=1313&option=5&pwd=${(0, import_kolmafia56.myHash)()}`,
-    false
-  );
+  (0, import_kolmafia56.visitUrl)(`choice.php?whichchoice=1313&option=5&pwd=${(0, import_kolmafia56.myHash)()}`, false);
   for (var i = 0; i < 5; i++) {
     (0, import_kolmafia56.visitUrl)(`choice.php?whichchoice=1314&option=3&pwd=${(0, import_kolmafia56.myHash)()}`);
     (0, import_kolmafia56.visitUrl)(`choice.php?whichchoice=1319&option=3&pwd=${(0, import_kolmafia56.myHash)()}`);
@@ -18715,7 +18693,7 @@ function auto_latteRefill(want1, want2, want3, force) {
     ), _step3;
     try {
       for (_iterator3.s(); !(_step3 = _iterator3.n()).done; ) {
-        var _step3$value = _slicedToArray(_step3.value, 2), i2 = _step3$value[0], s2 = _step3$value[1];
+        var _step3$value = _slicedToArray(_step3.value, 2), s2 = _step3$value[1];
         if (s2 === want4) {
           return true;
         }
@@ -20178,30 +20156,18 @@ function auto_checkTrainSet() {
 }
 
 // src/autoscend/paths/zootomist.ts
-var $_f_ZOOPART_NONE;
-$_f_ZOOPART_NONE ?? ($_f_ZOOPART_NONE = 0);
-var $_f_ZOOPART_HEAD;
-$_f_ZOOPART_HEAD ?? ($_f_ZOOPART_HEAD = 1);
-var $_f_ZOOPART_L_SHOULDER;
-$_f_ZOOPART_L_SHOULDER ?? ($_f_ZOOPART_L_SHOULDER = 2);
-var $_f_ZOOPART_R_SHOULDER;
-$_f_ZOOPART_R_SHOULDER ?? ($_f_ZOOPART_R_SHOULDER = 3);
-var $_f_ZOOPART_L_HAND;
-$_f_ZOOPART_L_HAND ?? ($_f_ZOOPART_L_HAND = 4);
-var $_f_ZOOPART_R_HAND;
-$_f_ZOOPART_R_HAND ?? ($_f_ZOOPART_R_HAND = 5);
-var $_f_ZOOPART_R_NIPPLE;
-$_f_ZOOPART_R_NIPPLE ?? ($_f_ZOOPART_R_NIPPLE = 6);
-var $_f_ZOOPART_L_NIPPLE;
-$_f_ZOOPART_L_NIPPLE ?? ($_f_ZOOPART_L_NIPPLE = 7);
-var $_f_ZOOPART_L_BUTTOCK;
-$_f_ZOOPART_L_BUTTOCK ?? ($_f_ZOOPART_L_BUTTOCK = 8);
-var $_f_ZOOPART_R_BUTTOCK;
-$_f_ZOOPART_R_BUTTOCK ?? ($_f_ZOOPART_R_BUTTOCK = 9);
-var $_f_ZOOPART_L_FOOT;
-$_f_ZOOPART_L_FOOT ?? ($_f_ZOOPART_L_FOOT = 10);
-var $_f_ZOOPART_R_FOOT;
-$_f_ZOOPART_R_FOOT ?? ($_f_ZOOPART_R_FOOT = 11);
+var $_f_ZOOPART_NONE = 0;
+var $_f_ZOOPART_HEAD = 1;
+var $_f_ZOOPART_L_SHOULDER = 2;
+var $_f_ZOOPART_R_SHOULDER = 3;
+var $_f_ZOOPART_L_HAND = 4;
+var $_f_ZOOPART_R_HAND = 5;
+var $_f_ZOOPART_R_NIPPLE = 6;
+var $_f_ZOOPART_L_NIPPLE = 7;
+var $_f_ZOOPART_L_BUTTOCK = 8;
+var $_f_ZOOPART_R_BUTTOCK = 9;
+var $_f_ZOOPART_L_FOOT = 10;
+var $_f_ZOOPART_R_FOOT = 11;
 function in_zootomist() {
   return (0, import_kolmafia59.myPath)() === $path`Z is for Zootomist`;
 }
@@ -20362,7 +20328,7 @@ function zoo_isGrafted(f) {
   ), _step2;
   try {
     for (_iterator2.s(); !(_step2 = _iterator2.n()).done; ) {
-      var _step2$value = _slicedToArray(_step2.value, 2), i = _step2$value[0], fam = _step2$value[1];
+      var _step2$value = _slicedToArray(_step2.value, 2), fam = _step2$value[1];
       if (fam === f) {
         return true;
       }
@@ -24460,7 +24426,7 @@ function auto_combatWereProfessorStage4(round_1, enemy, text) {
   try {
     for (_iterator.s(); !(_step = _iterator.n()).done; ) {
       var str = _step.value;
-      if ((0, import_kolmafia74.toInt)(str) == enemy.id) {
+      if ((0, import_kolmafia74.toInt)(str) === enemy.id) {
         return "";
       }
     }
@@ -27218,7 +27184,6 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
     return useSkill$1($skill`Skunk Glands`, false);
   }
   if (enemy.physicalResistance >= 80 && attackMinor === "attack with weapon") {
-    var success = false;
     var m_hot = 1;
     var m_cold = 1;
     var m_spooky = 1;
@@ -27459,7 +27424,6 @@ function auto_combatHandler(round_1, enemy, text) {
   }
   auto_combatInitialize(round_1, enemy, text);
   var retval = "";
-  var blocked = (0, import_kolmafia87.containsText)(text, "(STUN RESISTED)");
   (0, import_kolmafia87.setProperty)("auto_combatHP", (0, import_kolmafia87.myHp)().toString());
   (0, import_kolmafia87.setProperty)("auto_diag_round", round_1.toString());
   if (in_ocrs()) {
@@ -28398,7 +28362,7 @@ function auto_JunkyardCombatHandler(round_1, enemy, text) {
       flyerWith = $item`Time-Spinner`;
       staggeringFlyer = true;
     } else if (canUse$4($item`beehive`)) {
-      var canBeehiveGremlin = false;
+      var canBeehiveGremlin;
       var beehiveDamage = (0, import_kolmafia89.ceil)(
         30 * combatItemDamageMultiplier() * MLDamageToMonsterMultiplier()
       );
@@ -28891,7 +28855,7 @@ function warAdventure() {
         "hippiesDefeated",
         ((0, import_kolmafia91.toInt)((0, import_kolmafia91.getProperty)("hippiesDefeated")) + 1).toString()
       );
-      var temp = (0, import_kolmafia91.visitUrl)("island.php");
+      (0, import_kolmafia91.visitUrl)("island.php");
     }
   } else {
     if (!autoAdv$1(1, $location`The Battlefield (Hippy Uniform)`)) {
@@ -28899,7 +28863,7 @@ function warAdventure() {
         "fratboysDefeated",
         ((0, import_kolmafia91.toInt)((0, import_kolmafia91.getProperty)("fratboysDefeated")) + 1).toString()
       );
-      var _temp = (0, import_kolmafia91.visitUrl)("island.php");
+      (0, import_kolmafia91.visitUrl)("island.php");
     }
   }
   return true;
@@ -29856,7 +29820,7 @@ function L12_themtharHills() {
     var myLastMeat = (0, import_kolmafia91.myMeat)();
     auto_log_info(`Meat drop to start: ${(0, import_kolmafia91.meatDropModifier)()}`, "blue");
     if (!autoAdv$1(1, $location`The Themthar Hills`)) {
-      var temp = (0, import_kolmafia91.visitUrl)("bigisland.php?place=nunnery");
+      (0, import_kolmafia91.visitUrl)("bigisland.php?place=nunnery");
     }
     if ((0, import_kolmafia91.lastMonster)() !== $monster`dirty thieving brigand`) {
       return true;
@@ -29871,7 +29835,6 @@ function L12_themtharHills() {
     }
     var _advs = $location`The Themthar Hills`.turnsSpent + 1;
     var diffMeat = _curMeat - lastMeat;
-    var _needMeat = 1e5 - _curMeat;
     var average = _curMeat / _advs;
     auto_log_info(`Cur Meat: ${_curMeat} Average: ${average}`, "blue");
     diffMeat = (0, import_kolmafia91.toInt)(diffMeat * 1.2);
@@ -30314,7 +30277,7 @@ function L12_finalizeWar() {
     auto_log_warning("Boss already defeated, ignoring", "red");
   }
   if (in_pokefam()) {
-    var temp = (0, import_kolmafia91.visitUrl)("island.php");
+    (0, import_kolmafia91.visitUrl)("island.php");
     (0, import_kolmafia91.council)();
   }
   (0, import_kolmafia91.cliExecute)("refresh quests");
@@ -31251,7 +31214,7 @@ function mummifyFamiliar(fam, bonus) {
   }
   bonus = (0, import_kolmafia93.toLowerCase)(bonus);
   var last = (0, import_kolmafia93.myFamiliar)();
-  var goal = 0;
+  var goal;
   switch (bonus) {
     case "1":
     case "meat":
@@ -31724,7 +31687,7 @@ function kgbTryEffect(ef) {
   var tracker = new Map(
     (0, import_kolmafia93.splitString)((0, import_kolmafia93.getProperty)("auto_kgbTracker"), ":").map((_v, _i) => [_i, _v])
   );
-  if (tracker.size < 13 || (0, import_kolmafia93.toInt)(tracker.get(0) ?? tracker.set(0, "").get(0)) != (0, import_kolmafia93.myAscensions)()) {
+  if (tracker.size < 13 || (0, import_kolmafia93.toInt)(tracker.get(0) ?? tracker.set(0, "").get(0)) !== (0, import_kolmafia93.myAscensions)()) {
     (0, import_kolmafia93.setProperty)("auto_kgbTracker", `${(0, import_kolmafia93.myAscensions)()}:0:0:0:0:0:0:0:0:0:0:0:0`);
   }
   tracker = new Map(
@@ -31733,10 +31696,7 @@ function kgbTryEffect(ef) {
   for (var i = 1; i < 13; i++) {
     if ((0, import_kolmafia93.toEffect)(tracker.get(i) ?? tracker.set(i, "").get(i)) === ef) {
       var button = (i + 1) / 2;
-      var page = (0, import_kolmafia93.visitUrl)(
-        `place.php?whichplace=kgb&action=kgb_tab${button}`,
-        false
-      );
+      (0, import_kolmafia93.visitUrl)(`place.php?whichplace=kgb&action=kgb_tab${button}`, false);
       return true;
     }
   }
@@ -31758,7 +31718,7 @@ function kgbDiscovery() {
   var tracker = new Map(
     (0, import_kolmafia93.splitString)((0, import_kolmafia93.getProperty)("auto_kgbTracker"), ":").map((_v, _i) => [_i, _v])
   );
-  if (tracker.size < 13 || (0, import_kolmafia93.toInt)(tracker.get(0) ?? tracker.set(0, "").get(0)) != (0, import_kolmafia93.myAscensions)()) {
+  if (tracker.size < 13 || (0, import_kolmafia93.toInt)(tracker.get(0) ?? tracker.set(0, "").get(0)) !== (0, import_kolmafia93.myAscensions)()) {
     (0, import_kolmafia93.setProperty)("auto_kgbTracker", `${(0, import_kolmafia93.myAscensions)()}:0:0:0:0:0:0:0:0:0:0:0:0`);
   }
   tracker = new Map(
@@ -32102,14 +32062,14 @@ function getSpaceJelly() {
     }
   }
   if (internalQuestStatus("questS01OldGuy") < 0) {
-    var temp_1 = (0, import_kolmafia93.visitUrl)("oldman.php");
-    temp_1 = (0, import_kolmafia93.visitUrl)("place.php?whichplace=sea_oldman&action=oldman_oldman");
+    (0, import_kolmafia93.visitUrl)("oldman.php");
+    (0, import_kolmafia93.visitUrl)("place.php?whichplace=sea_oldman&action=oldman_oldman");
   }
   var old = (0, import_kolmafia93.myFamiliar)();
   (0, import_kolmafia93.useFamiliar)($familiar`Space Jellyfish`);
-  var temp = (0, import_kolmafia93.visitUrl)("place.php?whichplace=thesea");
-  temp = (0, import_kolmafia93.visitUrl)("place.php?whichplace=thesea&action=thesea_left2");
-  temp = (0, import_kolmafia93.visitUrl)("choice.php?pwd=&whichchoice=1219&option=1");
+  (0, import_kolmafia93.visitUrl)("place.php?whichplace=thesea");
+  (0, import_kolmafia93.visitUrl)("place.php?whichplace=thesea&action=thesea_left2");
+  (0, import_kolmafia93.visitUrl)("choice.php?pwd=&whichchoice=1219&option=1");
   (0, import_kolmafia93.useFamiliar)(old);
   return true;
 }
@@ -32157,7 +32117,7 @@ function asdonBuff$1(goal) {
     _iterator3.f();
   }
   if (needShrug) {
-    var temp_1 = (0, import_kolmafia93.visitUrl)("campground.php?pwd=&preaction=undrive");
+    (0, import_kolmafia93.visitUrl)("campground.php?pwd=&preaction=undrive");
   }
   var effectNum = -1;
   switch (goal) {
@@ -32189,9 +32149,7 @@ function asdonBuff$1(goal) {
       effectNum = 8;
       break;
   }
-  var temp = (0, import_kolmafia93.visitUrl)(
-    `campground.php?pwd=&preaction=drive&whichdrive=${effectNum}`
-  );
+  (0, import_kolmafia93.visitUrl)(`campground.php?pwd=&preaction=drive&whichdrive=${effectNum}`);
   return true;
 }
 function asdonAutoFeed() {
@@ -32289,7 +32247,7 @@ function asdonFeed(it, qty) {
     return false;
   }
   var oldFuel = (0, import_kolmafia93.getFuel)();
-  var temp = (0, import_kolmafia93.visitUrl)(
+  (0, import_kolmafia93.visitUrl)(
     `campground.php?pwd=&action=fuelconvertor&qty=${qty}&iid=${(0, import_kolmafia93.toInt)(it)}`
   );
   var newFuel = (0, import_kolmafia93.getFuel)();
@@ -34250,7 +34208,6 @@ function auto_habitatTarget(target) {
     return false;
   }
   {
-    var sonofa_complete = false;
     switch (target) {
       case $monster`fantasy bandit`:
         return fantasyBanditsFought() === 0;
@@ -34259,7 +34216,7 @@ function auto_habitatTarget(target) {
       case $monster`dirty old lihc`:
         return in_avantGuard() && (0, import_kolmafia95.toInt)((0, import_kolmafia95.getProperty)("cyrptNicheEvilness")) - 5 * (3 + cyrptEvilBonus$1()) > 13;
       case $monster`lobsterfrogman`:
-        sonofa_complete = (0, import_kolmafia95.getProperty)("sidequestLighthouseCompleted") === "hippy" || (0, import_kolmafia95.getProperty)("sidequestLighthouseCompleted") === "fratboy";
+        var sonofa_complete = (0, import_kolmafia95.getProperty)("sidequestLighthouseCompleted") === "hippy" || (0, import_kolmafia95.getProperty)("sidequestLighthouseCompleted") === "fratboy";
         return !sonofa_complete && (0, import_kolmafia95.itemAmount)($item`barrel of gunpowder`) < 4;
       case $monster`Eldritch Tentacle`:
         if ((0, import_kolmafia95.toInt)((0, import_kolmafia95.getProperty)("_eldritchTentaclesFoughtToday")) > 5) {
@@ -35142,7 +35099,7 @@ function auto_barrelPrayers() {
     return false;
   }
   if (!(0, import_kolmafia97.toBoolean)((0, import_kolmafia97.getProperty)("barrelShrineUnlocked"))) {
-    var temp = (0, import_kolmafia97.visitUrl)("da.php");
+    (0, import_kolmafia97.visitUrl)("da.php");
     if (!(0, import_kolmafia97.toBoolean)((0, import_kolmafia97.getProperty)("barrelShrineUnlocked"))) {
       return false;
     }
@@ -37791,8 +37748,8 @@ function auto_saberChoice(choice) {
       choiceNum = 4;
       break;
   }
-  var page = (0, import_kolmafia100.visitUrl)("main.php?action=may4", false);
-  page = (0, import_kolmafia100.visitUrl)(`choice.php?pwd=&whichchoice=1386&option=${choiceNum}`);
+  (0, import_kolmafia100.visitUrl)("main.php?action=may4", false);
+  (0, import_kolmafia100.visitUrl)(`choice.php?pwd=&whichchoice=1386&option=${choiceNum}`);
   return true;
 }
 function auto_saberDailyUpgrade(day) {
@@ -38741,10 +38698,8 @@ function snojoFightAvailable() {
         `snojo${standard.get(2) ?? standard.set(2, "").get(2)}Wins`
       )
     ) >= 11 && (0, import_kolmafia102.getProperty)("snojoSetting") !== (0, import_kolmafia102.toUpperCase)(standard.get(3) ?? standard.set(3, "").get(3))) {
-      var _temp3 = (0, import_kolmafia102.visitUrl)(
-        "place.php?whichplace=snojo&action=snojo_controller"
-      );
-      _temp3 = (0, import_kolmafia102.runChoice)(
+      (0, import_kolmafia102.visitUrl)("place.php?whichplace=snojo&action=snojo_controller");
+      (0, import_kolmafia102.runChoice)(
         controls.get(standard.get(3) ?? standard.set(3, "").get(3)) ?? controls.set(standard.get(3) ?? standard.set(3, "").get(3), 0).get(standard.get(3) ?? standard.set(3, "").get(3))
       );
     }
@@ -38801,9 +38756,7 @@ function auto_sourceTerminalRequest(request) {
     } else {
       var _temp_ = (0, import_kolmafia102.visitUrl)("campground.php?action=terminal");
     }
-    var temp = (0, import_kolmafia102.visitUrl)(
-      `choice.php?pwd=&whichchoice=1191&option=1&input=${request}`
-    );
+    (0, import_kolmafia102.visitUrl)(`choice.php?pwd=&whichchoice=1191&option=1&input=${request}`);
     return true;
   }
   return false;
@@ -39022,7 +38975,7 @@ function auto_advWitchessTargets(target) {
   if (target === "rook" || target === "ml" || target === "stats") {
     return 1938;
   }
-  if ((0, import_kolmafia102.toInt)(target) == 1942 && (0, import_kolmafia102.myPath)() === $path`Teetotaler`) {
+  if ((0, import_kolmafia102.toInt)(target) === 1942 && (0, import_kolmafia102.myPath)() === $path`Teetotaler`) {
     return 1936;
   }
   if (target === "ox" || target === "ox-head shield" || target === "shield" || target === "pvp" || target === "hp" || target === "resist" || target === "resistance") {
@@ -41862,7 +41815,7 @@ function getCellToMine(oreGoal) {
           ), _step5;
           try {
             for (_iterator5.s(); !(_step5 = _iterator5.n()).done; ) {
-              var _step5$value = _slicedToArray(_step5.value, 2), _ = _step5$value[0], orthoCell = _step5$value[1];
+              var _step5$value = _slicedToArray(_step5.value, 2), orthoCell = _step5$value[1];
               if (canMine(orthoCell, _rowLimit) && sparklingCells.has(orthoCell)) {
                 potentialCells.set(potentialCount, orthoCell);
                 potentialCount++;
@@ -41904,7 +41857,7 @@ function getCellToMine(oreGoal) {
       ), _step7;
       try {
         for (_iterator7.s(); !(_step7 = _iterator7.n()).done; ) {
-          var _step7$value = _slicedToArray(_step7.value, 2), _2 = _step7$value[0], _orthoCell = _step7$value[1];
+          var _step7$value = _slicedToArray(_step7.value, 2), _ = _step7$value[0], _orthoCell = _step7$value[1];
           if (canMine(_orthoCell, 4) && sparklingCells.has(_orthoCell)) {
             potentialCells.set(potentialCount, _orthoCell);
             potentialCount++;
@@ -42601,9 +42554,8 @@ function canReturnToCurrentClan() {
   return isWhitelistedToClan((0, import_kolmafia107.getClanId)());
 }
 function changeClan(clanName) {
-  var toClan = 0;
   var canReturn = canReturnToCurrentClan();
-  toClan = whitelistedClanToID(clanName);
+  var toClan = whitelistedClanToID(clanName);
   if (toClan === 0) {
     auto_log_warning$1(
       "Do not have a whitelist to destination clan, can not change clans."
@@ -42923,7 +42875,7 @@ function auto_floundryAction$1(it) {
   }
   var fish = auto_get_clan_lounge();
   if ((fish.get(it) ?? fish.set(it, 0).get(it)) > 0) {
-    var temp = (0, import_kolmafia107.visitUrl)(
+    (0, import_kolmafia107.visitUrl)(
       `clan_viplounge.php?preaction=buyfloundryitem&whichitem=${(0, import_kolmafia107.toInt)(it)}`
     );
     return true;
@@ -45735,9 +45687,7 @@ function provideInitiative(amt, loc, doEquips, speculative) {
   if (doEquips && auto_haveCCSC() && (0, import_kolmafia110.haveEffect)($effect`Peppermint Rush`) === 0 && !(0, import_kolmafia110.toBoolean)((0, import_kolmafia110.getProperty)("_candyCaneSwordLyle"))) {
     if (!speculative) {
       (0, import_kolmafia110.equip)($item`candy cane sword cane`);
-      var temp = (0, import_kolmafia110.visitUrl)(
-        "place.php?whichplace=monorail&action=monorail_lyle"
-      );
+      (0, import_kolmafia110.visitUrl)("place.php?whichplace=monorail&action=monorail_lyle");
     }
     handleEffect$1($effect`Peppermint Rush`);
     if (pass$1()) {
@@ -48285,15 +48235,15 @@ function dna_sorceressTest() {
     ns_crowd3();
   }
   if ((0, import_kolmafia112.getProperty)("dnaSyringe") === $phylum`plant`.toString() && (0, import_kolmafia112.getProperty)("nsChallenge2") === $element`cold`.toString() && (0, import_kolmafia112.itemAmount)($item`Gene Tonic: Plant`) === 0) {
-    var temp = (0, import_kolmafia112.cliExecute)("camp dnainject");
+    (0, import_kolmafia112.cliExecute)("camp dnainject");
   } else if ((0, import_kolmafia112.getProperty)("dnaSyringe") === $phylum`demon`.toString() && (0, import_kolmafia112.getProperty)("nsChallenge2") === $element`hot`.toString() && (0, import_kolmafia112.itemAmount)($item`Gene Tonic: Demon`) === 0) {
-    var _temp = (0, import_kolmafia112.cliExecute)("camp dnainject");
+    (0, import_kolmafia112.cliExecute)("camp dnainject");
   } else if ((0, import_kolmafia112.getProperty)("dnaSyringe") === $phylum`slime`.toString() && (0, import_kolmafia112.getProperty)("nsChallenge2") === $element`sleaze`.toString() && (0, import_kolmafia112.itemAmount)($item`Gene Tonic: Slime`) === 0) {
-    var _temp2 = (0, import_kolmafia112.cliExecute)("camp dnainject");
+    (0, import_kolmafia112.cliExecute)("camp dnainject");
   } else if ((0, import_kolmafia112.getProperty)("dnaSyringe") === $phylum`undead`.toString() && (0, import_kolmafia112.getProperty)("nsChallenge2") === $element`spooky`.toString() && (0, import_kolmafia112.itemAmount)($item`Gene Tonic: Undead`) === 0) {
-    var _temp3 = (0, import_kolmafia112.cliExecute)("camp dnainject");
+    (0, import_kolmafia112.cliExecute)("camp dnainject");
   } else if ((0, import_kolmafia112.getProperty)("dnaSyringe") === $phylum`hobo`.toString() && (0, import_kolmafia112.getProperty)("nsChallenge2") === $element`stench`.toString() && (0, import_kolmafia112.itemAmount)($item`Gene Tonic: Hobo`) === 0) {
-    var _temp4 = (0, import_kolmafia112.cliExecute)("camp dnainject");
+    (0, import_kolmafia112.cliExecute)("camp dnainject");
   }
   return false;
 }
@@ -48307,7 +48257,7 @@ function dna_bedtime() {
   if ($item`Little Geneticist DNA-Splicing Lab`.toString() in (0, import_kolmafia112.getCampground)()) {
     var potionsMade = (0, import_kolmafia112.toInt)((0, import_kolmafia112.getProperty)("_dnaPotionsMade"));
     while (potionsMade < 3) {
-      var temp = (0, import_kolmafia112.cliExecute)("camp dnapotion");
+      (0, import_kolmafia112.cliExecute)("camp dnapotion");
       potionsMade += 1;
     }
   }
@@ -53743,7 +53693,7 @@ function effectiveDropChance(it, baseDropRate) {
       retval = retval * (1 - (0, import_kolmafia119.max)(0, heavyrainsWashChance));
     }
     if (in_wildfire()) {
-      var wildfireBurnChance = 0;
+      var wildfireBurnChance;
       switch ((0, import_kolmafia119.myLocation)().fireLevel) {
         case 5:
           wildfireBurnChance = 1;
@@ -54846,7 +54796,7 @@ function auto_reserveAmount(it) {
   ), _step64;
   try {
     for (_iterator64.s(); !(_step64 = _iterator64.n()).done; ) {
-      var _step64$value = _slicedToArray(_step64.value, 2), i = _step64$value[0], _v0 = _step64$value[1];
+      var _step64$value = _slicedToArray(_step64.value, 2), _v0 = _step64$value[1];
       var _iterator65 = _createForOfIteratorHelper(
         _v0
       ), _step65;
@@ -61783,12 +61733,10 @@ function doBedtime() {
     doHottub();
   }
   if (!(0, import_kolmafia125.toBoolean)((0, import_kolmafia125.getProperty)("_mayoTankSoaked")) && auto_get_campground().has($item`portable Mayo Clinic`) && (0, import_kolmafia125.isUnrestricted)($item`portable Mayo Clinic`)) {
-    var temp = (0, import_kolmafia125.visitUrl)("shop.php?action=bacta&whichshop=mayoclinic");
+    (0, import_kolmafia125.visitUrl)("shop.php?action=bacta&whichshop=mayoclinic");
   }
   if (in_nuclear() && (0, import_kolmafia125.toInt)((0, import_kolmafia125.getProperty)("falloutShelterLevel")) >= 3 && !(0, import_kolmafia125.toBoolean)((0, import_kolmafia125.getProperty)("_falloutShelterSpaUsed"))) {
-    var _temp = (0, import_kolmafia125.visitUrl)(
-      "place.php?whichplace=falloutshelter&action=vault3"
-    );
+    (0, import_kolmafia125.visitUrl)("place.php?whichplace=falloutshelter&action=vault3");
   }
   ed_doResting();
   var libram = preferredLibram();
@@ -61873,10 +61821,7 @@ function doBedtime() {
   }
   dna_bedtime();
   if ((0, import_kolmafia125.getProperty)("_grimBuff") === "false" && auto_have_familiar($familiar`Grim Brother`)) {
-    var _temp2 = (0, import_kolmafia125.visitUrl)(
-      "choice.php?pwd=&whichchoice=835&option=1",
-      true
-    );
+    (0, import_kolmafia125.visitUrl)("choice.php?pwd=&whichchoice=835&option=1", true);
   }
   dailyEvents();
   if ((0, import_kolmafia125.toInt)((0, import_kolmafia125.getProperty)("auto_clanstuff")) < (0, import_kolmafia125.myDaycount)() && (0, import_kolmafia125.getClanId)() !== -1) {
@@ -61893,7 +61838,7 @@ function doBedtime() {
         (0, import_kolmafia125.cliExecute)("swim item");
       }
       if ((0, import_kolmafia125.isUnrestricted)($item`Clan looking glass`) && !(0, import_kolmafia125.toBoolean)((0, import_kolmafia125.getProperty)("_lookingGlass"))) {
-        var _temp3 = (0, import_kolmafia125.visitUrl)("clan_viplounge.php?action=lookingglass");
+        (0, import_kolmafia125.visitUrl)("clan_viplounge.php?action=lookingglass");
       }
       if ((0, import_kolmafia125.toInt)((0, import_kolmafia125.getProperty)("_deluxeKlawSummons")) === 0) {
         (0, import_kolmafia125.cliExecute)("clan_viplounge.php?action=klaw");
@@ -62105,9 +62050,7 @@ function doBedtime() {
     (0, import_kolmafia125.use)(1, $item`School of Hard Knocks Diploma`);
   }
   if (!(0, import_kolmafia125.toBoolean)((0, import_kolmafia125.getProperty)("_lyleFavored")) && auto_is_valid$3($effect`Favored by Lyle`)) {
-    var _temp4 = (0, import_kolmafia125.visitUrl)(
-      "place.php?whichplace=monorail&action=monorail_lyle"
-    );
+    (0, import_kolmafia125.visitUrl)("place.php?whichplace=monorail&action=monorail_lyle");
   }
   if ((0, import_kolmafia125.toBoolean)((0, import_kolmafia125.getProperty)("spookyAirportAlways")) && !isActuallyEd() && !(0, import_kolmafia125.toBoolean)((0, import_kolmafia125.getProperty)("_controlPanelUsed"))) {
     (0, import_kolmafia125.visitUrl)(
@@ -62971,7 +62914,7 @@ function autoscend_migrate() {
         if ((0, import_kolmafia128.propertyExists)(old_prop)) {
           if ((0, import_kolmafia128.propertyExists)(p) && (0, import_kolmafia128.propertyExists)(old_prop) && (0, import_kolmafia128.getProperty)(p) !== (0, import_kolmafia128.getProperty)(old_prop)) {
             auto_log_warning$1(
-              `Conflict: ${old_prop} (${(0, import_kolmafia128.getProperty)(old_prop)}) != ${p} (${(0, import_kolmafia128.getProperty)(p)})`
+              `Conflict: ${old_prop} (${(0, import_kolmafia128.getProperty)(old_prop)}) !== ${p} (${(0, import_kolmafia128.getProperty)(p)})`
             );
             prop_conflicts++;
           }
@@ -63019,7 +62962,7 @@ function autoscend_migrate() {
             (0, import_kolmafia128.setProperty)(p, (0, import_kolmafia128.getProperty)(old_prop));
           } else if ((0, import_kolmafia128.getProperty)(old_prop) !== (0, import_kolmafia128.getProperty)(p)) {
             auto_log_warning(
-              `Conflict: ${old_prop} (${(0, import_kolmafia128.getProperty)(old_prop)}) != ${p} (${(0, import_kolmafia128.getProperty)(p)})`,
+              `Conflict: ${old_prop} (${(0, import_kolmafia128.getProperty)(old_prop)}) !== ${p} (${(0, import_kolmafia128.getProperty)(p)})`,
               "red"
             );
             prop_conflicts++;
@@ -63619,127 +63562,126 @@ function handleRainDoh() {
 
 // src/autoscend/task_registry.ts
 var taskFunctionRegistry = {
-  LX_freeCombatsTask,
-  woods_questStart,
-  LX_unlockPirateRealm,
-  catBurglarHeist,
   auto_breakfastCounterVisit,
-  chateauPainting,
-  LX_setWorkshed,
-  LX_galaktikSubQuest,
-  L9_leafletQuest,
-  L5_findKnob,
-  L12_sonofaPrefix,
-  LX_burnDelay,
-  LX_summonMonster,
-  L11_aridDesert,
-  L11_shenStartQuest,
-  finishBuildingSmutOrcBridge,
   auto_earlyRoutingHandling,
-  LX_guildUnlock,
-  LX_unlockDesert,
-  LX_lockPicking,
-  LX_fatLootToken,
-  LX_steelOrgan,
-  LX_spookyravenManorFirstFloor,
-  L5_getEncryptionKey,
-  L12_islandWar,
-  L11_blackMarket,
-  L11_forgedDocuments,
-  L11_mcmuffinDiary,
-  L11_getBeehive,
-  L2_mosquito,
-  LX_unlockHiddenTemple,
-  L6_dakotaFanning,
-  L11_unlockHiddenCity,
-  L11_hiddenCityZones,
-  L11_hiddenCity,
-  LX_spookyravenManorSecondFloor,
-  L11_mauriceSpookyraven,
-  L11_talismanOfNam,
-  L10_plantThatBean,
-  L10_rainOnThePlains,
-  L9_chasmBuild,
-  L9_highLandlord,
-  L8_trapperQuest,
-  L7_crypt,
-  L6_friarsGetParts,
-  L11_palindome,
-  L11_unlockPyramid,
-  L11_unlockEd,
-  L11_defeatEd,
-  L5_slayTheGoblinKing,
-  L4_batCave,
-  L3_tavern,
-  L13_towerAscent,
-  LX_lastChance,
   auto_softBlockHandler,
-  LX_attemptPowerLevel,
-  L12_opportunisticWarStart,
-  LX_attemptPowerLevelMeat,
-  LM_avantGuard,
-  LX_koeInvaderHandler,
-  LM_jarlsberg,
-  handleRainDoh,
-  resolveSixthDMT,
-  L12_flyerFinish,
-  L12_getOutfit,
-  L12_startWar,
-  LX_loggingHatchet,
-  LX_bitchinMeatcar,
-  LX_islandAccess,
+  catBurglarHeist,
+  chateauPainting,
   fancyOilPainting,
-  L12_preOutfit,
+  finishBuildingSmutOrcBridge,
+  handleRainDoh,
+  is_professor,
+  is_werewolf,
   L10_airship,
   L10_basement,
   L10_ground,
-  L10_topFloor,
   L10_holeInTheSkyUnlock,
-  L12_flyerBackup,
-  Lsc_flyerSeals,
-  LX_ornateDowsingRod,
-  L12_gremlins,
-  L12_sonofaFinish,
-  L12_sonofaBeach,
-  L12_filthworms,
-  L12_orchardFinalize,
-  L12_themtharHills,
-  L12_farm,
-  L12_finalizeWar,
-  L12_clearBattlefield,
-  L12_lastDitchFlyer,
-  LX_bugbearInvasionFinale,
-  L13_towerNSContests,
-  L13_towerNSHedge,
-  L13_sorceressDoor,
-  L13_towerNSTower,
-  L13_towerNSNagamar,
-  L13_towerNSFinal,
-  LX_quantumTerrarium,
-  LM_wereprof,
-  LX_wereprof_getSmashedEquip,
+  L10_plantThatBean,
+  L10_rainOnThePlains,
+  L10_topFloor,
+  L11_aridDesert,
+  L11_blackMarket,
+  L11_defeatEd,
+  L11_forgedDocuments,
+  L11_getBeehive,
   L11_getUVCompass,
-  L11_shenCopperhead,
-  L9_aBooPeak,
-  L9_oilPeak,
-  L8_trapperGroar,
-  LX_getStarKey,
-  LX_getDigitalKey,
-  LM_zombieSlayer,
-  LM_edTheUndying,
-  LX_bugbearInvasion,
-  LX_lowkeySummer,
   L11_hasUltrahydrated,
-  LX_needMeatSkills,
-  LX_bitchinMeatcar_condition,
-  LX_steelOrgan_condition_slow,
+  L11_hiddenCity,
+  L11_hiddenCityZones,
+  L11_mauriceSpookyraven,
+  L11_mcmuffinDiary,
+  L11_palindome,
+  L11_shenCopperhead,
+  L11_shenStartQuest,
+  L11_talismanOfNam,
+  L11_unlockEd,
+  L11_unlockHiddenCity,
+  L11_unlockPyramid,
+  L12_clearBattlefield,
+  L12_farm,
+  L12_filthworms,
+  L12_finalizeWar,
+  L12_flyerBackup,
+  L12_flyerFinish,
+  L12_getOutfit,
+  L12_gremlins,
+  L12_islandWar,
+  L12_lastDitchFlyer,
+  L12_opportunisticWarStart,
+  L12_orchardFinalize,
+  L12_preOutfit,
+  L12_sonofaBeach,
+  L12_sonofaFinish,
+  L12_sonofaPrefix,
+  L12_startWar,
+  L12_themtharHills,
+  L13_sorceressDoor,
+  L13_towerAscent,
+  L13_towerNSContests,
+  L13_towerNSFinal,
+  L13_towerNSHedge,
+  L13_towerNSNagamar,
+  L13_towerNSTower,
+  L2_mosquito,
+  L3_tavern,
+  L4_batCave,
+  L5_findKnob,
+  L5_getEncryptionKey,
+  L5_slayTheGoblinKing,
+  L6_dakotaFanning,
+  L6_friarsGetParts,
   L6_friarsGetParts_condition_hardcore,
+  L7_crypt,
+  L8_trapperGroar,
+  L8_trapperQuest,
+  L9_aBooPeak,
+  L9_chasmBuild,
+  L9_highLandlord,
+  L9_leafletQuest,
+  L9_oilPeak,
+  LM_avantGuard,
+  LM_edTheUndying,
+  LM_jarlsberg,
+  LM_wereprof,
+  LM_zombieSlayer,
+  Lsc_flyerSeals,
+  LX_attemptPowerLevel,
+  LX_attemptPowerLevelMeat,
+  LX_bitchinMeatcar,
+  LX_bitchinMeatcar_condition,
+  LX_bugbearInvasion,
+  LX_bugbearInvasionFinale,
+  LX_burnDelay,
+  LX_fatLootToken,
+  LX_freeCombatsTask,
+  LX_galaktikSubQuest,
+  LX_getDigitalKey,
+  LX_getStarKey,
+  LX_guildUnlock,
+  LX_islandAccess,
+  LX_koeInvaderHandler,
+  LX_lastChance,
+  LX_lockPicking,
+  LX_loggingHatchet,
+  LX_lowkeySummer,
+  LX_needMeatSkills,
+  LX_ornateDowsingRod,
+  LX_quantumTerrarium,
+  LX_setWorkshed,
+  LX_spookyravenManorFirstFloor,
+  LX_spookyravenManorSecondFloor,
+  LX_steelOrgan,
+  LX_steelOrgan_condition_slow,
+  LX_summonMonster,
+  LX_unlockDesert,
+  LX_unlockHiddenTemple,
+  LX_unlockPirateRealm,
+  LX_wereprof_getSmashedEquip,
   in_hardcore: import_kolmafia134.inHardcore,
-  is_werewolf,
-  is_professor,
-  allowSoftblockDelay
+  resolveSixthDMT,
+  woods_questStart
 };
-function callRegisteredTask(name) {
+function callRegisteredTaskFunction(name) {
   var fn = taskFunctionRegistry[name];
   if (!fn) {
     throw `Task "${name}" is not registered in task registry.`;
@@ -64237,9 +64179,7 @@ function initializeDay(day) {
     (0, import_kolmafia135.setProperty)("_auto_candyMapCompleted", false.toString());
   }
   if (!possessEquipment($item`your cowboy boots`) && (0, import_kolmafia135.toBoolean)((0, import_kolmafia135.getProperty)("telegraphOfficeAvailable")) && (0, import_kolmafia135.isUnrestricted)($item`LT&T telegraph office deed`)) {
-    var temp = (0, import_kolmafia135.visitUrl)(
-      "place.php?whichplace=town_right&action=townright_ltt"
-    );
+    (0, import_kolmafia135.visitUrl)("place.php?whichplace=town_right&action=townright_ltt");
   }
   if (auto_is_valid($item`Fourth of May Cosplay Saber`)) {
     auto_saberDailyUpgrade(day);
@@ -64267,7 +64207,7 @@ function initializeDay(day) {
         "Lady Spookyraven quest not started and we have a Telegram so let us use it.",
         "red"
       );
-      var _temp = (0, import_kolmafia135.use)(1, $item`telegram from Lady Spookyraven`);
+      (0, import_kolmafia135.use)(1, $item`telegram from Lady Spookyraven`);
     } else {
       auto_log_warning(
         "Lady Spookyraven quest not detected as started but we don't have the telegram, assuming it is... If you are not in an Ed run, report this. Otherwise, it is expected.",
@@ -64331,7 +64271,7 @@ function initializeDay(day) {
   }
   auto_doPrecinct();
   if (!(in_koe() || in_lar()) && (0, import_kolmafia135.itemAmount)($item`cop dollar`) >= 10 && (0, import_kolmafia135.itemAmount)($item`shoe gum`) === 0) {
-    var _temp2 = (0, import_kolmafia135.cliExecute)("make shoe gum");
+    (0, import_kolmafia135.cliExecute)("make shoe gum");
   }
   if ((0, import_kolmafia135.myClass)() === $class`Seal Clubber` && auto_have_skill($skill`Iron Palm Technique`) && (0, import_kolmafia135.haveEffect)($effect`Iron Palms`) === 0) {
     (0, import_kolmafia135.useSkill)(1, $skill`Iron Palm Technique`);
@@ -64417,7 +64357,7 @@ function initializeDay(day) {
       equipBaseline();
       handleBjornify(import_kolmafia135.Familiar.none);
       handleBjornify($familiar`El Vibrato Megadrone`);
-      var _temp3 = (0, import_kolmafia135.visitUrl)("guild.php?place=challenge");
+      (0, import_kolmafia135.visitUrl)("guild.php?place=challenge");
       auto_beachCombHead("exp");
     }
     if ((0, import_kolmafia135.toInt)((0, import_kolmafia135.getProperty)("lastCouncilVisit")) < (0, import_kolmafia135.myLevel)()) {
@@ -64587,7 +64527,7 @@ function dailyEvents() {
       (0, import_kolmafia135.cliExecute)("swim item");
     }
     if (furn.has($item`Clan looking glass`) && !(0, import_kolmafia135.toBoolean)((0, import_kolmafia135.getProperty)("_lookingGlass")) && (0, import_kolmafia135.isUnrestricted)($item`Clan looking glass`)) {
-      var temp = (0, import_kolmafia135.visitUrl)("clan_viplounge.php?action=lookingglass");
+      (0, import_kolmafia135.visitUrl)("clan_viplounge.php?action=lookingglass");
     }
     if ((0, import_kolmafia135.toInt)((0, import_kolmafia135.getProperty)("_deluxeKlawSummons")) === 0) {
       (0, import_kolmafia135.cliExecute)("clan_viplounge.php?action=klaw");
@@ -65267,8 +65207,8 @@ function process_tasks() {
           var _step0$value = _slicedToArray(_step0.value, 2), task_function = _step0$value[0], _v1 = _step0$value[1];
           var condition_function = _v1;
           auto_log_debug$1(`Attempting to execute task ${i} ${task_function}`);
-          if (condition_function === "" || callRegisteredTask(condition_function)) {
-            var result_1 = callRegisteredTask(task_function);
+          if (condition_function === "" || callRegisteredTaskFunction(condition_function)) {
+            var result_1 = callRegisteredTaskFunction(task_function);
             if (result_1) {
               return true;
             }

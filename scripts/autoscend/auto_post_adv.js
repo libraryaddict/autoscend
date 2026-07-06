@@ -676,34 +676,34 @@ function itemList() {
 function List$8(data) {
   var retval = /* @__PURE__ */ new Map();
   var temp = /* @__PURE__ */ new Map();
-  var _iterator0 = _createForOfIteratorHelper(
+  var _iterator = _createForOfIteratorHelper(
     data
-  ), _step0;
+  ), _step;
   try {
-    for (_iterator0.s(); !(_step0 = _iterator0.n()).done; ) {
-      var _step0$value = _slicedToArray(_step0.value, 2), idx = _step0$value[0], el = _step0$value[1];
+    for (_iterator.s(); !(_step = _iterator.n()).done; ) {
+      var _step$value = _slicedToArray(_step.value, 2), idx = _step$value[0], el = _step$value[1];
       temp.set(idx, el);
     }
   } catch (err) {
-    _iterator0.e(err);
+    _iterator.e(err);
   } finally {
-    _iterator0.f();
+    _iterator.f();
   }
   temp = new Map(_toConsumableArray(temp.entries()).sort((a, b) => a[0] - b[0]));
   var index = 0;
-  var _iterator1 = _createForOfIteratorHelper(
+  var _iterator2 = _createForOfIteratorHelper(
     temp
-  ), _step1;
+  ), _step2;
   try {
-    for (_iterator1.s(); !(_step1 = _iterator1.n()).done; ) {
-      var _step1$value = _slicedToArray(_step1.value, 2), _idx3 = _step1$value[0], _el3 = _step1$value[1];
-      retval.set(index, _el3);
+    for (_iterator2.s(); !(_step2 = _iterator2.n()).done; ) {
+      var _step2$value = _slicedToArray(_step2.value, 2), _idx = _step2$value[0], _el = _step2$value[1];
+      retval.set(index, _el);
       index = index + 1;
     }
   } catch (err) {
-    _iterator1.e(err);
+    _iterator2.e(err);
   } finally {
-    _iterator1.f();
+    _iterator2.f();
   }
   return retval;
 }
@@ -1795,7 +1795,7 @@ function simulatePreAdvForCrystalBall(place) {
     try {
       for (_iterator2.s(); !(_step2 = _iterator2.n()).done; ) {
         var _appearanceRates, _mon$toString;
-        var _step2$value = _slicedToArray(_step2.value, 2), i = _step2$value[0], mon = _step2$value[1];
+        var _step2$value = _slicedToArray(_step2.value, 2), mon = _step2$value[1];
         if (((_appearanceRates = (0, import_kolmafia39.appearanceRates)(place))[_mon$toString = mon.toString()] ?? (_appearanceRates[_mon$toString] = 0)) > 0) {
           possible_monsters.set(possible_monsters.size, mon);
         }
@@ -1812,7 +1812,7 @@ function simulatePreAdvForCrystalBall(place) {
     var _iterator3 = _createForOfIteratorHelper(possible_monsters), _step3;
     try {
       for (_iterator3.s(); !(_step3 = _iterator3.n()).done; ) {
-        var _step3$value = _slicedToArray(_step3.value, 2), _i2 = _step3$value[0], _mon = _step3$value[1];
+        var _step3$value = _slicedToArray(_step3.value, 2), _mon = _step3$value[1];
         if (auto_wantToYellowRay(_mon, place)) {
           zoneHasWantedMonsters = true;
         }
@@ -2305,7 +2305,7 @@ function LX_unlockThinknerdWarehouse(spend_resources) {
     if (!hasShirt) {
       return false;
     }
-    var temp = (0, import_kolmafia47.visitUrl)(
+    (0, import_kolmafia47.visitUrl)(
       `inv_equip.php?pwd&which=2&action=equip&whichitem=${(0, import_kolmafia47.toInt)(target_shirt)}`
     );
     if (useLetter()) {
@@ -2379,8 +2379,7 @@ function numPirateInsults() {
   }
   return retval;
 }
-var $_f_epicWeapons;
-$_f_epicWeapons ?? ($_f_epicWeapons = /* @__PURE__ */ new Map(
+var $_f_epicWeapons = /* @__PURE__ */ new Map(
   [
     [$class`Seal Clubber`, $item`Hammer of Smiting`],
     [$class`Turtle Tamer`, $item`Chelonian Morningstar`],
@@ -2389,9 +2388,8 @@ $_f_epicWeapons ?? ($_f_epicWeapons = /* @__PURE__ */ new Map(
     [$class`Disco Bandit`, $item`Shagadelic Disco Banjo`],
     [$class`Accordion Thief`, $item`Squeezebox of the Ages`]
   ]
-));
-var $_f_starterWeapons;
-$_f_starterWeapons ?? ($_f_starterWeapons = /* @__PURE__ */ new Map(
+);
+var $_f_starterWeapons = /* @__PURE__ */ new Map(
   [
     [$class`Seal Clubber`, $item`seal-clubbing club`],
     [$class`Turtle Tamer`, $item`turtle totem`],
@@ -2400,7 +2398,7 @@ $_f_starterWeapons ?? ($_f_starterWeapons = /* @__PURE__ */ new Map(
     [$class`Disco Bandit`, $item`disco ball`],
     [$class`Accordion Thief`, $item`stolen accordion`]
   ]
-));
+);
 
 // src/autoscend/paths/the_source.ts
 function in_theSource() {
@@ -2655,7 +2653,7 @@ function getShenZonesTurnsSpent() {
     ), _step6;
     try {
       for (_iterator6.s(); !(_step6 = _iterator6.n()).done; ) {
-        var _step6$value = _slicedToArray(_step6.value, 2), _ = _step6$value[0], zone = _step6$value[1];
+        var _step6$value = _slicedToArray(_step6.value, 2), zone = _step6$value[1];
         var loc = (0, import_kolmafia54.toLocation)((0, import_kolmafia54.substring)(zone, 0, (0, import_kolmafia54.indexOf)(zone, ":")));
         var turns_spent = (0, import_kolmafia54.toInt)(
           (0, import_kolmafia54.substring)(zone, (0, import_kolmafia54.indexOf)(zone, ":") + 1)
@@ -2785,8 +2783,8 @@ function fantasyBanditsFought() {
       for (_iterator.s(); !(_step = _iterator.n()).done; ) {
         var _step$value = _slicedToArray(_step.value, 2), idx = _step$value[0], it = _step$value[1];
         if ((0, import_kolmafia56.containsText)(it, "fantasy bandit")) {
-          var _splitString, _2;
-          var count_1 = (0, import_kolmafia56.toInt)((_splitString = (0, import_kolmafia56.splitString)(it, ":"))[_2 = 1] ?? (_splitString[_2] = ""));
+          var _splitString, _;
+          var count_1 = (0, import_kolmafia56.toInt)((_splitString = (0, import_kolmafia56.splitString)(it, ":"))[_ = 1] ?? (_splitString[_] = ""));
           return count_1;
         }
       }
@@ -3168,30 +3166,17 @@ function auto_remainingSpeakeasyFreeFights() {
 }
 
 // src/autoscend/paths/zootomist.ts
-var $_f_ZOOPART_NONE;
-$_f_ZOOPART_NONE ?? ($_f_ZOOPART_NONE = 0);
-var $_f_ZOOPART_HEAD;
-$_f_ZOOPART_HEAD ?? ($_f_ZOOPART_HEAD = 1);
-var $_f_ZOOPART_L_SHOULDER;
-$_f_ZOOPART_L_SHOULDER ?? ($_f_ZOOPART_L_SHOULDER = 2);
-var $_f_ZOOPART_R_SHOULDER;
-$_f_ZOOPART_R_SHOULDER ?? ($_f_ZOOPART_R_SHOULDER = 3);
-var $_f_ZOOPART_L_HAND;
-$_f_ZOOPART_L_HAND ?? ($_f_ZOOPART_L_HAND = 4);
-var $_f_ZOOPART_R_HAND;
-$_f_ZOOPART_R_HAND ?? ($_f_ZOOPART_R_HAND = 5);
-var $_f_ZOOPART_R_NIPPLE;
-$_f_ZOOPART_R_NIPPLE ?? ($_f_ZOOPART_R_NIPPLE = 6);
-var $_f_ZOOPART_L_NIPPLE;
-$_f_ZOOPART_L_NIPPLE ?? ($_f_ZOOPART_L_NIPPLE = 7);
-var $_f_ZOOPART_L_BUTTOCK;
-$_f_ZOOPART_L_BUTTOCK ?? ($_f_ZOOPART_L_BUTTOCK = 8);
-var $_f_ZOOPART_R_BUTTOCK;
-$_f_ZOOPART_R_BUTTOCK ?? ($_f_ZOOPART_R_BUTTOCK = 9);
-var $_f_ZOOPART_L_FOOT;
-$_f_ZOOPART_L_FOOT ?? ($_f_ZOOPART_L_FOOT = 10);
-var $_f_ZOOPART_R_FOOT;
-$_f_ZOOPART_R_FOOT ?? ($_f_ZOOPART_R_FOOT = 11);
+var $_f_ZOOPART_HEAD = 1;
+var $_f_ZOOPART_L_SHOULDER = 2;
+var $_f_ZOOPART_R_SHOULDER = 3;
+var $_f_ZOOPART_L_HAND = 4;
+var $_f_ZOOPART_R_HAND = 5;
+var $_f_ZOOPART_R_NIPPLE = 6;
+var $_f_ZOOPART_L_NIPPLE = 7;
+var $_f_ZOOPART_L_BUTTOCK = 8;
+var $_f_ZOOPART_R_BUTTOCK = 9;
+var $_f_ZOOPART_L_FOOT = 10;
+var $_f_ZOOPART_R_FOOT = 11;
 function in_zootomist() {
   return (0, import_kolmafia59.myPath)() === $path`Z is for Zootomist`;
 }
@@ -4629,7 +4614,7 @@ function auto_combatWereProfessorStage4(round_1, enemy, text) {
   try {
     for (_iterator.s(); !(_step = _iterator.n()).done; ) {
       var str = _step.value;
-      if ((0, import_kolmafia74.toInt)(str) == enemy.id) {
+      if ((0, import_kolmafia74.toInt)(str) === enemy.id) {
         return "";
       }
     }
@@ -7387,7 +7372,6 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
     return useSkill$1($skill`Skunk Glands`, false);
   }
   if (enemy.physicalResistance >= 80 && attackMinor === "attack with weapon") {
-    var success = false;
     var m_hot = 1;
     var m_cold = 1;
     var m_spooky = 1;
@@ -7628,7 +7612,6 @@ function auto_combatHandler(round_1, enemy, text) {
   }
   auto_combatInitialize(round_1, enemy, text);
   var retval = "";
-  var blocked = (0, import_kolmafia87.containsText)(text, "(STUN RESISTED)");
   (0, import_kolmafia87.setProperty)("auto_combatHP", (0, import_kolmafia87.myHp)().toString());
   (0, import_kolmafia87.setProperty)("auto_diag_round", round_1.toString());
   if (in_ocrs()) {
@@ -10037,7 +10020,6 @@ function auto_habitatTarget(target) {
     return false;
   }
   {
-    var sonofa_complete = false;
     switch (target) {
       case $monster`fantasy bandit`:
         return fantasyBanditsFought() === 0;
@@ -10046,7 +10028,7 @@ function auto_habitatTarget(target) {
       case $monster`dirty old lihc`:
         return in_avantGuard() && (0, import_kolmafia95.toInt)((0, import_kolmafia95.getProperty)("cyrptNicheEvilness")) - 5 * (3 + cyrptEvilBonus$1()) > 13;
       case $monster`lobsterfrogman`:
-        sonofa_complete = (0, import_kolmafia95.getProperty)("sidequestLighthouseCompleted") === "hippy" || (0, import_kolmafia95.getProperty)("sidequestLighthouseCompleted") === "fratboy";
+        var sonofa_complete = (0, import_kolmafia95.getProperty)("sidequestLighthouseCompleted") === "hippy" || (0, import_kolmafia95.getProperty)("sidequestLighthouseCompleted") === "fratboy";
         return !sonofa_complete && (0, import_kolmafia95.itemAmount)($item`barrel of gunpowder`) < 4;
       case $monster`Eldritch Tentacle`:
         if ((0, import_kolmafia95.toInt)((0, import_kolmafia95.getProperty)("_eldritchTentaclesFoughtToday")) > 5) {
@@ -11357,10 +11339,8 @@ function snojoFightAvailable() {
         `snojo${standard.get(2) ?? standard.set(2, "").get(2)}Wins`
       )
     ) >= 11 && (0, import_kolmafia102.getProperty)("snojoSetting") !== (0, import_kolmafia102.toUpperCase)(standard.get(3) ?? standard.set(3, "").get(3))) {
-      var _temp3 = (0, import_kolmafia102.visitUrl)(
-        "place.php?whichplace=snojo&action=snojo_controller"
-      );
-      _temp3 = (0, import_kolmafia102.runChoice)(
+      (0, import_kolmafia102.visitUrl)("place.php?whichplace=snojo&action=snojo_controller");
+      (0, import_kolmafia102.runChoice)(
         controls.get(standard.get(3) ?? standard.set(3, "").get(3)) ?? controls.set(standard.get(3) ?? standard.set(3, "").get(3), 0).get(standard.get(3) ?? standard.set(3, "").get(3))
       );
     }
@@ -19602,7 +19582,7 @@ function effectiveDropChance(it, baseDropRate) {
       retval = retval * (1 - (0, import_kolmafia120.max)(0, heavyrainsWashChance));
     }
     if (in_wildfire()) {
-      var wildfireBurnChance = 0;
+      var wildfireBurnChance;
       switch ((0, import_kolmafia120.myLocation)().fireLevel) {
         case 5:
           wildfireBurnChance = 1;
@@ -21333,7 +21313,7 @@ function auto_post_adventure() {
   if (in_theSource()) {
     if ((0, import_kolmafia136.toInt)((0, import_kolmafia136.getProperty)("auto_diag_round")) === 0) {
       var last = (0, import_kolmafia136.lastMonster)();
-      var temp = (0, import_kolmafia136.visitUrl)("main.php");
+      (0, import_kolmafia136.visitUrl)("main.php");
       if (last !== (0, import_kolmafia136.lastMonster)()) {
         auto_log_warning(
           "Interrupted battle detected at post combat time",
@@ -21889,11 +21869,11 @@ function auto_post_adventure() {
         `Mymp: ${(0, import_kolmafia136.myMp)()} of ${(0, import_kolmafia136.myMaxmp)()} and cost: ${(0, import_kolmafia136.mpCost)(libram)}`,
         "blue"
       );
-      var _temp = false;
+      var temp = false;
       try {
-        _temp = (0, import_kolmafia136.useSkill)(1, libram);
+        temp = (0, import_kolmafia136.useSkill)(1, libram);
       } finally {
-        if (!_temp) {
+        if (!temp) {
           auto_log_warning("No longer have enough MP and failed.", "red");
           auto_log_info(
             `Mymp: ${(0, import_kolmafia136.myMp)()} of ${(0, import_kolmafia136.myMaxmp)()} and cost: ${(0, import_kolmafia136.mpCost)(libram)}`,
@@ -22205,4 +22185,4 @@ function main() {
     }
   }
 }
-//!cocoon == expensive heal. +durability to save meat even when maxhp > 100
+//!cocoon===expensive heal. +durability to save meat even when maxhp > 100

@@ -397,34 +397,34 @@ function itemList() {
 function List$8(data) {
   var retval = /* @__PURE__ */ new Map();
   var temp = /* @__PURE__ */ new Map();
-  var _iterator0 = _createForOfIteratorHelper(
+  var _iterator = _createForOfIteratorHelper(
     data
-  ), _step0;
+  ), _step;
   try {
-    for (_iterator0.s(); !(_step0 = _iterator0.n()).done; ) {
-      var _step0$value = _slicedToArray(_step0.value, 2), idx = _step0$value[0], el = _step0$value[1];
+    for (_iterator.s(); !(_step = _iterator.n()).done; ) {
+      var _step$value = _slicedToArray(_step.value, 2), idx = _step$value[0], el = _step$value[1];
       temp.set(idx, el);
     }
   } catch (err) {
-    _iterator0.e(err);
+    _iterator.e(err);
   } finally {
-    _iterator0.f();
+    _iterator.f();
   }
   temp = new Map(_toConsumableArray(temp.entries()).sort((a, b) => a[0] - b[0]));
   var index = 0;
-  var _iterator1 = _createForOfIteratorHelper(
+  var _iterator2 = _createForOfIteratorHelper(
     temp
-  ), _step1;
+  ), _step2;
   try {
-    for (_iterator1.s(); !(_step1 = _iterator1.n()).done; ) {
-      var _step1$value = _slicedToArray(_step1.value, 2), _idx3 = _step1$value[0], _el3 = _step1$value[1];
-      retval.set(index, _el3);
+    for (_iterator2.s(); !(_step2 = _iterator2.n()).done; ) {
+      var _step2$value = _slicedToArray(_step2.value, 2), _idx = _step2$value[0], _el = _step2$value[1];
+      retval.set(index, _el);
       index = index + 1;
     }
   } catch (err) {
-    _iterator1.e(err);
+    _iterator2.e(err);
   } finally {
-    _iterator1.f();
+    _iterator2.f();
   }
   return retval;
 }
@@ -1824,8 +1824,7 @@ function fcleChoiceHandler(choice) {
     (0, import_kolmafia45.abort)("unhandled choice in fcleChoiceHandler");
   }
 }
-var $_f_epicWeapons;
-$_f_epicWeapons ?? ($_f_epicWeapons = /* @__PURE__ */ new Map(
+var $_f_epicWeapons = /* @__PURE__ */ new Map(
   [
     [$class`Seal Clubber`, $item`Hammer of Smiting`],
     [$class`Turtle Tamer`, $item`Chelonian Morningstar`],
@@ -1834,9 +1833,8 @@ $_f_epicWeapons ?? ($_f_epicWeapons = /* @__PURE__ */ new Map(
     [$class`Disco Bandit`, $item`Shagadelic Disco Banjo`],
     [$class`Accordion Thief`, $item`Squeezebox of the Ages`]
   ]
-));
-var $_f_starterWeapons;
-$_f_starterWeapons ?? ($_f_starterWeapons = /* @__PURE__ */ new Map(
+);
+var $_f_starterWeapons = /* @__PURE__ */ new Map(
   [
     [$class`Seal Clubber`, $item`seal-clubbing club`],
     [$class`Turtle Tamer`, $item`turtle totem`],
@@ -1845,7 +1843,7 @@ $_f_starterWeapons ?? ($_f_starterWeapons = /* @__PURE__ */ new Map(
     [$class`Disco Bandit`, $item`disco ball`],
     [$class`Accordion Thief`, $item`stolen accordion`]
   ]
-));
+);
 
 // src/autoscend/quests/level_10.ts
 function castleBasementChoiceHandler(choice) {
@@ -1954,32 +1952,6 @@ lowKeys.set($item`actual skeleton key`, $location`The Skeleton Store`);
 lowKeys.set($item`music box key`, $location`The Haunted Nursery`);
 lowKeys.set($item`deep-fried key`, $location`Madness Bakery`);
 lowKeys.set($item`discarded bike lock key`, $location`The Overgrown Lot`);
-
-// src/autoscend/paths/zootomist.ts
-var $_f_ZOOPART_NONE;
-$_f_ZOOPART_NONE ?? ($_f_ZOOPART_NONE = 0);
-var $_f_ZOOPART_HEAD;
-$_f_ZOOPART_HEAD ?? ($_f_ZOOPART_HEAD = 1);
-var $_f_ZOOPART_L_SHOULDER;
-$_f_ZOOPART_L_SHOULDER ?? ($_f_ZOOPART_L_SHOULDER = 2);
-var $_f_ZOOPART_R_SHOULDER;
-$_f_ZOOPART_R_SHOULDER ?? ($_f_ZOOPART_R_SHOULDER = 3);
-var $_f_ZOOPART_L_HAND;
-$_f_ZOOPART_L_HAND ?? ($_f_ZOOPART_L_HAND = 4);
-var $_f_ZOOPART_R_HAND;
-$_f_ZOOPART_R_HAND ?? ($_f_ZOOPART_R_HAND = 5);
-var $_f_ZOOPART_R_NIPPLE;
-$_f_ZOOPART_R_NIPPLE ?? ($_f_ZOOPART_R_NIPPLE = 6);
-var $_f_ZOOPART_L_NIPPLE;
-$_f_ZOOPART_L_NIPPLE ?? ($_f_ZOOPART_L_NIPPLE = 7);
-var $_f_ZOOPART_L_BUTTOCK;
-$_f_ZOOPART_L_BUTTOCK ?? ($_f_ZOOPART_L_BUTTOCK = 8);
-var $_f_ZOOPART_R_BUTTOCK;
-$_f_ZOOPART_R_BUTTOCK ?? ($_f_ZOOPART_R_BUTTOCK = 9);
-var $_f_ZOOPART_L_FOOT;
-$_f_ZOOPART_L_FOOT ?? ($_f_ZOOPART_L_FOOT = 10);
-var $_f_ZOOPART_R_FOOT;
-$_f_ZOOPART_R_FOOT ?? ($_f_ZOOPART_R_FOOT = 11);
 
 // src/autoscend/iotms/mr2026.ts
 var import_kolmafia52 = require("kolmafia");
@@ -3972,7 +3944,7 @@ function effectiveDropChance(it, baseDropRate) {
       retval = retval * (1 - (0, import_kolmafia119.max)(0, heavyrainsWashChance));
     }
     if (in_wildfire()) {
-      var wildfireBurnChance = 0;
+      var wildfireBurnChance;
       switch ((0, import_kolmafia119.myLocation)().fireLevel) {
         case 5:
           wildfireBurnChance = 1;
@@ -4635,7 +4607,7 @@ var import_kolmafia132 = require("kolmafia");
 
 // src/autoscend/iotms/mr2012.ts
 var import_kolmafia131 = require("kolmafia");
-function auto_reagnimatedGetPart(choice) {
+function auto_reagnimatedGetPart() {
   if ((0, import_kolmafia131.availableAmount)($item`gnomish housemaid's kgnee`) === 0) {
     (0, import_kolmafia131.runChoice)(4);
   } else if ((0, import_kolmafia131.availableAmount)($item`gnomish coal miner's lung`) === 0) {
@@ -5091,7 +5063,7 @@ function auto_run_choice(choice, page) {
         (0, import_kolmafia136.runChoice)(1);
         break;
       case 597:
-        auto_reagnimatedGetPart(choice);
+        auto_reagnimatedGetPart();
         break;
       case 604:
       case 605:

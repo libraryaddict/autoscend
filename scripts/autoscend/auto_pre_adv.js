@@ -702,34 +702,34 @@ function itemList() {
 function List$8(data) {
   var retval = /* @__PURE__ */ new Map();
   var temp = /* @__PURE__ */ new Map();
-  var _iterator0 = _createForOfIteratorHelper(
+  var _iterator = _createForOfIteratorHelper(
     data
-  ), _step0;
+  ), _step;
   try {
-    for (_iterator0.s(); !(_step0 = _iterator0.n()).done; ) {
-      var _step0$value = _slicedToArray(_step0.value, 2), idx = _step0$value[0], el = _step0$value[1];
+    for (_iterator.s(); !(_step = _iterator.n()).done; ) {
+      var _step$value = _slicedToArray(_step.value, 2), idx = _step$value[0], el = _step$value[1];
       temp.set(idx, el);
     }
   } catch (err) {
-    _iterator0.e(err);
+    _iterator.e(err);
   } finally {
-    _iterator0.f();
+    _iterator.f();
   }
   temp = new Map(_toConsumableArray(temp.entries()).sort((a, b) => a[0] - b[0]));
   var index = 0;
-  var _iterator1 = _createForOfIteratorHelper(
+  var _iterator2 = _createForOfIteratorHelper(
     temp
-  ), _step1;
+  ), _step2;
   try {
-    for (_iterator1.s(); !(_step1 = _iterator1.n()).done; ) {
-      var _step1$value = _slicedToArray(_step1.value, 2), _idx3 = _step1$value[0], _el3 = _step1$value[1];
-      retval.set(index, _el3);
+    for (_iterator2.s(); !(_step2 = _iterator2.n()).done; ) {
+      var _step2$value = _slicedToArray(_step2.value, 2), _idx = _step2$value[0], _el = _step2$value[1];
+      retval.set(index, _el);
       index = index + 1;
     }
   } catch (err) {
-    _iterator1.e(err);
+    _iterator2.e(err);
   } finally {
-    _iterator1.f();
+    _iterator2.f();
   }
   return retval;
 }
@@ -741,53 +741,53 @@ function ListInsert$3(list, what) {
 function List$1(data) {
   var retval = /* @__PURE__ */ new Map();
   var index = 0;
-  var _iterator11 = _createForOfIteratorHelper(
+  var _iterator3 = _createForOfIteratorHelper(
     data.keys()
-  ), _step11;
+  ), _step3;
   try {
-    for (_iterator11.s(); !(_step11 = _iterator11.n()).done; ) {
-      var el = _step11.value;
+    for (_iterator3.s(); !(_step3 = _iterator3.n()).done; ) {
+      var el = _step3.value;
       retval.set(index, el);
       index = index + 1;
     }
   } catch (err) {
-    _iterator11.e(err);
+    _iterator3.e(err);
   } finally {
-    _iterator11.f();
+    _iterator3.f();
   }
   return retval;
 }
 function List$5(data) {
   var retval = /* @__PURE__ */ new Map();
   var temp = /* @__PURE__ */ new Map();
-  var _iterator12 = _createForOfIteratorHelper(
+  var _iterator4 = _createForOfIteratorHelper(
     data
-  ), _step12;
+  ), _step4;
   try {
-    for (_iterator12.s(); !(_step12 = _iterator12.n()).done; ) {
-      var _step12$value = _slicedToArray(_step12.value, 2), idx = _step12$value[0], el = _step12$value[1];
+    for (_iterator4.s(); !(_step4 = _iterator4.n()).done; ) {
+      var _step4$value = _slicedToArray(_step4.value, 2), idx = _step4$value[0], el = _step4$value[1];
       temp.set(idx, el);
     }
   } catch (err) {
-    _iterator12.e(err);
+    _iterator4.e(err);
   } finally {
-    _iterator12.f();
+    _iterator4.f();
   }
   temp = new Map(_toConsumableArray(temp.entries()).sort((a, b) => a[0] - b[0]));
   var index = 0;
-  var _iterator13 = _createForOfIteratorHelper(
+  var _iterator5 = _createForOfIteratorHelper(
     temp
-  ), _step13;
+  ), _step5;
   try {
-    for (_iterator13.s(); !(_step13 = _iterator13.n()).done; ) {
-      var _step13$value = _slicedToArray(_step13.value, 2), _idx4 = _step13$value[0], _el4 = _step13$value[1];
-      retval.set(index, _el4);
+    for (_iterator5.s(); !(_step5 = _iterator5.n()).done; ) {
+      var _step5$value = _slicedToArray(_step5.value, 2), _idx2 = _step5$value[0], _el2 = _step5$value[1];
+      retval.set(index, _el2);
       index = index + 1;
     }
   } catch (err) {
-    _iterator13.e(err);
+    _iterator5.e(err);
   } finally {
-    _iterator13.f();
+    _iterator5.f();
   }
   return retval;
 }
@@ -1060,7 +1060,7 @@ function c2t_apron_allowlist() {
   ), _step;
   try {
     for (_iterator.s(); !(_step = _iterator.n()).done; ) {
-      var _step$value = _slicedToArray(_step.value, 2), i = _step$value[0], x = _step$value[1];
+      var _step$value = _slicedToArray(_step.value, 2), x = _step$value[1];
       out.set(x, true);
     }
   } catch (err) {
@@ -1243,9 +1243,7 @@ function pokefam_makeTeam() {
   if (in_pokefam()) {
     if ((0, import_kolmafia19.gitExists)("Ezandora-Helix-Fossil")) {
       auto_log_info("Setting our team via Ezandora:", "green");
-      var ignore = (0, import_kolmafia19.cliExecute)(
-        "PocketFamiliarsAutoSelect Strongest 2;"
-      );
+      (0, import_kolmafia19.cliExecute)("PocketFamiliarsAutoSelect Strongest 2;");
       return true;
     }
   }
@@ -2249,7 +2247,7 @@ function simulatePreAdvForCrystalBall(place) {
     try {
       for (_iterator2.s(); !(_step2 = _iterator2.n()).done; ) {
         var _appearanceRates, _mon$toString;
-        var _step2$value = _slicedToArray(_step2.value, 2), i = _step2$value[0], mon = _step2$value[1];
+        var _step2$value = _slicedToArray(_step2.value, 2), mon = _step2$value[1];
         if (((_appearanceRates = (0, import_kolmafia39.appearanceRates)(place))[_mon$toString = mon.toString()] ?? (_appearanceRates[_mon$toString] = 0)) > 0) {
           possible_monsters.set(possible_monsters.size, mon);
         }
@@ -2266,7 +2264,7 @@ function simulatePreAdvForCrystalBall(place) {
     var _iterator3 = _createForOfIteratorHelper(possible_monsters), _step3;
     try {
       for (_iterator3.s(); !(_step3 = _iterator3.n()).done; ) {
-        var _step3$value = _slicedToArray(_step3.value, 2), _i2 = _step3$value[0], _mon = _step3$value[1];
+        var _step3$value = _slicedToArray(_step3.value, 2), _mon = _step3$value[1];
         if (auto_wantToYellowRay(_mon, place)) {
           zoneHasWantedMonsters = true;
         }
@@ -2830,7 +2828,7 @@ function LX_unlockThinknerdWarehouse(spend_resources) {
     if (!hasShirt) {
       return false;
     }
-    var temp = (0, import_kolmafia47.visitUrl)(
+    (0, import_kolmafia47.visitUrl)(
       `inv_equip.php?pwd&which=2&action=equip&whichitem=${(0, import_kolmafia47.toInt)(target_shirt)}`
     );
     if (useLetter()) {
@@ -2904,8 +2902,7 @@ function numPirateInsults() {
   }
   return retval;
 }
-var $_f_epicWeapons;
-$_f_epicWeapons ?? ($_f_epicWeapons = /* @__PURE__ */ new Map(
+var $_f_epicWeapons = /* @__PURE__ */ new Map(
   [
     [$class`Seal Clubber`, $item`Hammer of Smiting`],
     [$class`Turtle Tamer`, $item`Chelonian Morningstar`],
@@ -2914,9 +2911,8 @@ $_f_epicWeapons ?? ($_f_epicWeapons = /* @__PURE__ */ new Map(
     [$class`Disco Bandit`, $item`Shagadelic Disco Banjo`],
     [$class`Accordion Thief`, $item`Squeezebox of the Ages`]
   ]
-));
-var $_f_starterWeapons;
-$_f_starterWeapons ?? ($_f_starterWeapons = /* @__PURE__ */ new Map(
+);
+var $_f_starterWeapons = /* @__PURE__ */ new Map(
   [
     [$class`Seal Clubber`, $item`seal-clubbing club`],
     [$class`Turtle Tamer`, $item`turtle totem`],
@@ -2925,7 +2921,7 @@ $_f_starterWeapons ?? ($_f_starterWeapons = /* @__PURE__ */ new Map(
     [$class`Disco Bandit`, $item`disco ball`],
     [$class`Accordion Thief`, $item`stolen accordion`]
   ]
-));
+);
 
 // src/autoscend/quests/level_13.ts
 function needStarKey() {
@@ -3230,7 +3226,7 @@ function getShenZonesTurnsSpent() {
     ), _step6;
     try {
       for (_iterator6.s(); !(_step6 = _iterator6.n()).done; ) {
-        var _step6$value = _slicedToArray(_step6.value, 2), _ = _step6$value[0], zone = _step6$value[1];
+        var _step6$value = _slicedToArray(_step6.value, 2), zone = _step6$value[1];
         var loc = (0, import_kolmafia54.toLocation)((0, import_kolmafia54.substring)(zone, 0, (0, import_kolmafia54.indexOf)(zone, ":")));
         var turns_spent = (0, import_kolmafia54.toInt)(
           (0, import_kolmafia54.substring)(zone, (0, import_kolmafia54.indexOf)(zone, ":") + 1)
@@ -3427,8 +3423,8 @@ function fantasyBanditsFought() {
       for (_iterator.s(); !(_step = _iterator.n()).done; ) {
         var _step$value = _slicedToArray(_step.value, 2), idx = _step$value[0], it = _step$value[1];
         if ((0, import_kolmafia56.containsText)(it, "fantasy bandit")) {
-          var _splitString, _2;
-          var count_1 = (0, import_kolmafia56.toInt)((_splitString = (0, import_kolmafia56.splitString)(it, ":"))[_2 = 1] ?? (_splitString[_2] = ""));
+          var _splitString, _;
+          var count_1 = (0, import_kolmafia56.toInt)((_splitString = (0, import_kolmafia56.splitString)(it, ":"))[_ = 1] ?? (_splitString[_] = ""));
           return count_1;
         }
       }
@@ -4390,30 +4386,17 @@ function auto_remainingSpeakeasyFreeFights() {
 }
 
 // src/autoscend/paths/zootomist.ts
-var $_f_ZOOPART_NONE;
-$_f_ZOOPART_NONE ?? ($_f_ZOOPART_NONE = 0);
-var $_f_ZOOPART_HEAD;
-$_f_ZOOPART_HEAD ?? ($_f_ZOOPART_HEAD = 1);
-var $_f_ZOOPART_L_SHOULDER;
-$_f_ZOOPART_L_SHOULDER ?? ($_f_ZOOPART_L_SHOULDER = 2);
-var $_f_ZOOPART_R_SHOULDER;
-$_f_ZOOPART_R_SHOULDER ?? ($_f_ZOOPART_R_SHOULDER = 3);
-var $_f_ZOOPART_L_HAND;
-$_f_ZOOPART_L_HAND ?? ($_f_ZOOPART_L_HAND = 4);
-var $_f_ZOOPART_R_HAND;
-$_f_ZOOPART_R_HAND ?? ($_f_ZOOPART_R_HAND = 5);
-var $_f_ZOOPART_R_NIPPLE;
-$_f_ZOOPART_R_NIPPLE ?? ($_f_ZOOPART_R_NIPPLE = 6);
-var $_f_ZOOPART_L_NIPPLE;
-$_f_ZOOPART_L_NIPPLE ?? ($_f_ZOOPART_L_NIPPLE = 7);
-var $_f_ZOOPART_L_BUTTOCK;
-$_f_ZOOPART_L_BUTTOCK ?? ($_f_ZOOPART_L_BUTTOCK = 8);
-var $_f_ZOOPART_R_BUTTOCK;
-$_f_ZOOPART_R_BUTTOCK ?? ($_f_ZOOPART_R_BUTTOCK = 9);
-var $_f_ZOOPART_L_FOOT;
-$_f_ZOOPART_L_FOOT ?? ($_f_ZOOPART_L_FOOT = 10);
-var $_f_ZOOPART_R_FOOT;
-$_f_ZOOPART_R_FOOT ?? ($_f_ZOOPART_R_FOOT = 11);
+var $_f_ZOOPART_HEAD = 1;
+var $_f_ZOOPART_L_SHOULDER = 2;
+var $_f_ZOOPART_R_SHOULDER = 3;
+var $_f_ZOOPART_L_HAND = 4;
+var $_f_ZOOPART_R_HAND = 5;
+var $_f_ZOOPART_R_NIPPLE = 6;
+var $_f_ZOOPART_L_NIPPLE = 7;
+var $_f_ZOOPART_L_BUTTOCK = 8;
+var $_f_ZOOPART_R_BUTTOCK = 9;
+var $_f_ZOOPART_L_FOOT = 10;
+var $_f_ZOOPART_R_FOOT = 11;
 function in_zootomist() {
   return (0, import_kolmafia59.myPath)() === $path`Z is for Zootomist`;
 }
@@ -5824,10 +5807,7 @@ function ag_bgChat() {
   if (title.find()) {
     auto_log_info("Trying to chat with your Bodyguard", "blue");
     var mon = ag_bgToChat();
-    var url = (0, import_kolmafia63.visitUrl)(
-      `choice.php?pwd=&whichchoice=1532&option=1&bgid=${mon.id}`,
-      true
-    );
+    (0, import_kolmafia63.visitUrl)(`choice.php?pwd=&whichchoice=1532&option=1&bgid=${mon.id}`, true);
     auto_log_info(`Making the next bodyguard a ${mon.toString()}`, "blue");
     handleTracker$1(
       $familiar`Burly Bodyguard`.toString(),
@@ -6570,7 +6550,7 @@ function auto_combatWereProfessorStage4(round_1, enemy, text) {
   try {
     for (_iterator.s(); !(_step = _iterator.n()).done; ) {
       var str = _step.value;
-      if ((0, import_kolmafia74.toInt)(str) == enemy.id) {
+      if ((0, import_kolmafia74.toInt)(str) === enemy.id) {
         return "";
       }
     }
@@ -9328,7 +9308,6 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
     return useSkill$1($skill`Skunk Glands`, false);
   }
   if (enemy.physicalResistance >= 80 && attackMinor === "attack with weapon") {
-    var success = false;
     var m_hot = 1;
     var m_cold = 1;
     var m_spooky = 1;
@@ -9569,7 +9548,6 @@ function auto_combatHandler(round_1, enemy, text) {
   }
   auto_combatInitialize(round_1, enemy, text);
   var retval = "";
-  var blocked = (0, import_kolmafia87.containsText)(text, "(STUN RESISTED)");
   (0, import_kolmafia87.setProperty)("auto_combatHP", (0, import_kolmafia87.myHp)().toString());
   (0, import_kolmafia87.setProperty)("auto_diag_round", round_1.toString());
   if (in_ocrs()) {
@@ -10814,7 +10792,7 @@ function mummifyFamiliar(fam, bonus) {
   }
   bonus = (0, import_kolmafia93.toLowerCase)(bonus);
   var last = (0, import_kolmafia93.myFamiliar)();
-  var goal = 0;
+  var goal;
   switch (bonus) {
     case "1":
     case "meat":
@@ -10940,7 +10918,7 @@ function asdonBuff$1(goal) {
     _iterator3.f();
   }
   if (needShrug) {
-    var temp_1 = (0, import_kolmafia93.visitUrl)("campground.php?pwd=&preaction=undrive");
+    (0, import_kolmafia93.visitUrl)("campground.php?pwd=&preaction=undrive");
   }
   var effectNum = -1;
   switch (goal) {
@@ -10972,9 +10950,7 @@ function asdonBuff$1(goal) {
       effectNum = 8;
       break;
   }
-  var temp = (0, import_kolmafia93.visitUrl)(
-    `campground.php?pwd=&preaction=drive&whichdrive=${effectNum}`
-  );
+  (0, import_kolmafia93.visitUrl)(`campground.php?pwd=&preaction=drive&whichdrive=${effectNum}`);
   return true;
 }
 function asdonCanMissile() {
@@ -11078,10 +11054,8 @@ function getHorse(type_1) {
   if (choice === -1) {
     return false;
   }
-  var temp = (0, import_kolmafia93.visitUrl)(
-    "place.php?whichplace=town_right&action=town_horsery"
-  );
-  temp = (0, import_kolmafia93.visitUrl)(`choice.php?pwd=&whichchoice=1266&option=${choice}`);
+  (0, import_kolmafia93.visitUrl)("place.php?whichplace=town_right&action=town_horsery");
+  (0, import_kolmafia93.visitUrl)(`choice.php?pwd=&whichchoice=1266&option=${choice}`);
   if (choice <= 4) {
     (0, import_kolmafia93.setProperty)(
       "_horseryRented",
@@ -12475,7 +12449,6 @@ function auto_habitatTarget(target) {
     return false;
   }
   {
-    var sonofa_complete = false;
     switch (target) {
       case $monster`fantasy bandit`:
         return fantasyBanditsFought() === 0;
@@ -12484,7 +12457,7 @@ function auto_habitatTarget(target) {
       case $monster`dirty old lihc`:
         return in_avantGuard() && (0, import_kolmafia95.toInt)((0, import_kolmafia95.getProperty)("cyrptNicheEvilness")) - 5 * (3 + cyrptEvilBonus$1()) > 13;
       case $monster`lobsterfrogman`:
-        sonofa_complete = (0, import_kolmafia95.getProperty)("sidequestLighthouseCompleted") === "hippy" || (0, import_kolmafia95.getProperty)("sidequestLighthouseCompleted") === "fratboy";
+        var sonofa_complete = (0, import_kolmafia95.getProperty)("sidequestLighthouseCompleted") === "hippy" || (0, import_kolmafia95.getProperty)("sidequestLighthouseCompleted") === "fratboy";
         return !sonofa_complete && (0, import_kolmafia95.itemAmount)($item`barrel of gunpowder`) < 4;
       case $monster`Eldritch Tentacle`:
         if ((0, import_kolmafia95.toInt)((0, import_kolmafia95.getProperty)("_eldritchTentaclesFoughtToday")) > 5) {
@@ -14150,10 +14123,8 @@ function snojoFightAvailable() {
         `snojo${standard.get(2) ?? standard.set(2, "").get(2)}Wins`
       )
     ) >= 11 && (0, import_kolmafia102.getProperty)("snojoSetting") !== (0, import_kolmafia102.toUpperCase)(standard.get(3) ?? standard.set(3, "").get(3))) {
-      var _temp3 = (0, import_kolmafia102.visitUrl)(
-        "place.php?whichplace=snojo&action=snojo_controller"
-      );
-      _temp3 = (0, import_kolmafia102.runChoice)(
+      (0, import_kolmafia102.visitUrl)("place.php?whichplace=snojo&action=snojo_controller");
+      (0, import_kolmafia102.runChoice)(
         controls.get(standard.get(3) ?? standard.set(3, "").get(3)) ?? controls.set(standard.get(3) ?? standard.set(3, "").get(3), 0).get(standard.get(3) ?? standard.set(3, "").get(3))
       );
     }
@@ -14210,9 +14181,7 @@ function auto_sourceTerminalRequest(request) {
     } else {
       var _temp_ = (0, import_kolmafia102.visitUrl)("campground.php?action=terminal");
     }
-    var temp = (0, import_kolmafia102.visitUrl)(
-      `choice.php?pwd=&whichchoice=1191&option=1&input=${request}`
-    );
+    (0, import_kolmafia102.visitUrl)(`choice.php?pwd=&whichchoice=1191&option=1&input=${request}`);
     return true;
   }
   return false;
@@ -19093,9 +19062,7 @@ function provideInitiative(amt, loc, doEquips, speculative) {
   if (doEquips && auto_haveCCSC() && (0, import_kolmafia110.haveEffect)($effect`Peppermint Rush`) === 0 && !(0, import_kolmafia110.toBoolean)((0, import_kolmafia110.getProperty)("_candyCaneSwordLyle"))) {
     if (!speculative) {
       (0, import_kolmafia110.equip)($item`candy cane sword cane`);
-      var temp = (0, import_kolmafia110.visitUrl)(
-        "place.php?whichplace=monorail&action=monorail_lyle"
-      );
+      (0, import_kolmafia110.visitUrl)("place.php?whichplace=monorail&action=monorail_lyle");
     }
     handleEffect$1($effect`Peppermint Rush`);
     if (pass$1()) {
@@ -24172,7 +24139,7 @@ function effectiveDropChance(it, baseDropRate) {
       retval = retval * (1 - (0, import_kolmafia119.max)(0, heavyrainsWashChance));
     }
     if (in_wildfire()) {
-      var wildfireBurnChance = 0;
+      var wildfireBurnChance;
       switch ((0, import_kolmafia119.myLocation)().fireLevel) {
         case 5:
           wildfireBurnChance = 1;
