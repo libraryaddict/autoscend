@@ -575,7 +575,7 @@ function borisAcquireHP(goal) {
     }
     var mp_desired = (0, import_kolmafia3.toInt)((0, import_kolmafia3.min)(castAmount, 0.9 * (0, import_kolmafia3.myMaxmp)()));
     if ((0, import_kolmafia3.myMp)() < mp_desired && (0, import_kolmafia3.myMaxmp)() > 10) {
-      if (!acquireMP$1(mp_desired)) {
+      if (!acquireMP(mp_desired)) {
         failed_acquireMP = true;
       }
     }
@@ -707,7 +707,7 @@ function List$8(data) {
   }
   return retval;
 }
-function ListInsert$3(list, what) {
+function ListInsert(list, what) {
   var retval = List$8(list);
   retval.set(retval.size, what);
   return List$8(retval);
@@ -2214,7 +2214,7 @@ function bondDrinks() {
       for (_iterator.s(); !(_step = _iterator.n()).done; ) {
         var it = _step.value;
         if (it.inebriety > 0 && it.smallimage === "martini.gif" && (0, import_kolmafia42.isUnrestricted)(it)) {
-          bondDrinksCached = ListInsert$3(bondDrinksCached, it);
+          bondDrinksCached = ListInsert(bondDrinksCached, it);
         }
       }
     } catch (err) {
@@ -2462,7 +2462,7 @@ function prepForMegaloCity() {
   if (isGuildClass()) {
     return true;
   }
-  if ((0, import_kolmafia49.myMeat)() >= 6e3 && (0, import_kolmafia49.gnomadsAvailable)() && !hasTorso$1() && hasUsefulShirt()) {
+  if ((0, import_kolmafia49.myMeat)() >= 6e3 && (0, import_kolmafia49.gnomadsAvailable)() && !hasTorso() && hasUsefulShirt()) {
     (0, import_kolmafia49.visitUrl)("gnomes.php?action=trainskill&whichskill=12");
   }
   var aegis = $item`autumnal aegis`;
@@ -2739,7 +2739,7 @@ function januaryToteAcquire(it) {
       return false;
     }
   }
-  if (choice === 5 && !hasTorso$1()) {
+  if (choice === 5 && !hasTorso()) {
     return false;
   }
   if (choice === 0) {
@@ -3068,23 +3068,23 @@ function auto_bowlingBallCombatString(place, speculation) {
     }
     return useItem($item`cosmic bowling ball`, !speculation);
   }
-  if (canUse$2($skill`Bowl Sideways`)) {
+  if (canUse($skill`Bowl Sideways`)) {
     if (isAboutToPowerlevel()) {
-      return useSkill$1($skill`Bowl Sideways`, !speculation);
+      return auto_useSkill($skill`Bowl Sideways`, !speculation);
     }
     if ((0, import_kolmafia58.toBoolean)((0, import_kolmafia58.getProperty)("_auto_farmingKaAsEd"))) {
-      return useSkill$1($skill`Bowl Sideways`, !speculation);
+      return auto_useSkill($skill`Bowl Sideways`, !speculation);
     }
   }
-  if (canUse$2($skill`Bowl Straight Up`)) {
+  if (canUse($skill`Bowl Straight Up`)) {
     var itemNeed = zone_needItem(place);
     if (itemNeed._boolean) {
       if ((0, import_kolmafia58.itemDropModifier)() < itemNeed._float) {
-        return useSkill$1($skill`Bowl Straight Up`, !speculation);
+        return auto_useSkill($skill`Bowl Straight Up`, !speculation);
       }
     }
     if (place === $location`The Themthar Hills`) {
-      return useSkill$1($skill`Bowl Straight Up`, !speculation);
+      return auto_useSkill($skill`Bowl Straight Up`, !speculation);
     }
   }
   return "";
@@ -3632,7 +3632,7 @@ function auto_BCZEquipped() {
   return false;
 }
 function auto_wantToBCZ(sk) {
-  if (!auto_haveBCZ() || !canUse$2(sk) || in_zootomist()) {
+  if (!auto_haveBCZ() || !canUse(sk) || in_zootomist()) {
     return false;
   }
   var bloodBathCasts = (0, import_kolmafia60.toInt)((0, import_kolmafia60.getProperty)("_bczBloodBathCasts"));
@@ -3710,7 +3710,7 @@ function auto_wantToBCZ(sk) {
     case $skill`BCZ: Refracted Gaze`:
       return statChange($stat`Mysticality`, refractedGazeCasts) && refractedGazeCasts < 6;
     case $skill`BCZ: Prepare Spinal Tapas`:
-      if (!canEat$1($item`spinal tapas`)) {
+      if (!auto_canEat($item`spinal tapas`)) {
         return false;
       }
       return statChange($stat`Mysticality`, spinalTapasCasts) && spinalTapasCasts < 3;
@@ -3719,7 +3719,7 @@ function auto_wantToBCZ(sk) {
     case $skill`BCZ: Sweat Equity`:
       return statChange($stat`Moxie`, sweatEquityCasts) && sweatEquityCasts < 2;
     case $skill`BCZ: Craft a Pheromone Cocktail`:
-      if (!canDrink$1($item`pheromone cocktail`)) {
+      if (!auto_canDrink($item`pheromone cocktail`)) {
         return false;
       }
       return statChange($stat`Moxie`, pheromoneCocktailCasts) && pheromoneCocktailCasts < 6;
@@ -3749,7 +3749,7 @@ function auto_wantToShrunkenHead(enemy) {
   if (!auto_haveShrunkenHead()) {
     return false;
   }
-  if (!canUse$2($skill`Prepare to reanimate your Foe`)) {
+  if (!canUse($skill`Prepare to reanimate your Foe`)) {
     return false;
   }
   if (!enemy.copyable) {
@@ -3940,7 +3940,7 @@ function auto_goingToMouthwashLevel() {
   want_to_mouthwash_level = want_to_mouthwash_level && (0, import_kolmafia62.myLevel)() < 15;
   return remainingEmbers() >= 2 && want_to_mouthwash_level;
 }
-function expected_mouthwash_main_substat$1(cold_res) {
+function expected_mouthwash_main_substat(cold_res) {
   var boost_factor = 1 + stat_exp_percent((0, import_kolmafia62.myPrimestat)()) / 100;
   return boost_factor * 14 * cold_res ** 1.7 / 2;
 }
@@ -3951,10 +3951,10 @@ function expected_level_after_mouthwash() {
   );
 }
 function expected_level_after_mouthwash$2(n_mouthwash, cold_res) {
-  var gained_main_substats = n_mouthwash * expected_mouthwash_main_substat$1(cold_res);
+  var gained_main_substats = n_mouthwash * expected_mouthwash_main_substat(cold_res);
   var old_main_substats = (0, import_kolmafia62.myBasestat)(stat_to_substat((0, import_kolmafia62.myPrimestat)()));
   var new_main_substats = old_main_substats + gained_main_substats;
-  var level = substat_to_level$1((0, import_kolmafia62.toInt)(new_main_substats));
+  var level = substat_to_level((0, import_kolmafia62.toInt)(new_main_substats));
   return level;
 }
 
@@ -4011,7 +4011,7 @@ function auto_combatMeatGolemStage3(round_1, enemy, text) {
     return "";
   }
   if (canUse($skill`Meat Cleaver`, true, true) && ((!canSurvive$1(8) || (0, import_kolmafia65.monsterHp)() >= 500) && canSurvive$1(0.7) || enemy === $monster`The Manwich` || enemy === $monster`The Big Mac Wisniewski` || enemy === $monster`Naughty Sorceress, all sausage`)) {
-    return useSkill$2($skill`Meat Cleaver`);
+    return auto_useSkill($skill`Meat Cleaver`);
   }
   return "";
 }
@@ -4019,31 +4019,31 @@ function auto_combatMeatGolemStage5(round_1, enemy, text) {
   if (!in_amw()) {
     return "";
   }
-  if ((!canSurvive$1(1.4) || (0, import_kolmafia65.myHp)() < 0.5 * (0, import_kolmafia65.myMaxhp)()) && canUse$1($skill`Chew the Fat`, false) && (0, import_kolmafia65.myHp)() < (0, import_kolmafia65.myMaxhp)() * 0.95) {
-    return useSkill$1($skill`Chew the Fat`, false);
+  if ((!canSurvive$1(1.4) || (0, import_kolmafia65.myHp)() < 0.5 * (0, import_kolmafia65.myMaxhp)()) && canUse($skill`Chew the Fat`, false) && (0, import_kolmafia65.myHp)() < (0, import_kolmafia65.myMaxhp)() * 0.95) {
+    return auto_useSkill($skill`Chew the Fat`, false);
   }
-  if (canUse$1($skill`Steak Through the Heart`, true) && (0, import_kolmafia65.combatSkillAvailable)($skill`Steak Through the Heart`) && round_1 > 12) {
-    return useSkill$1($skill`Steak Through the Heart`, true);
+  if (canUse($skill`Steak Through the Heart`, true) && (0, import_kolmafia65.combatSkillAvailable)($skill`Steak Through the Heart`) && round_1 > 12) {
+    return auto_useSkill($skill`Steak Through the Heart`, true);
   }
-  if (canUse$1($skill`Wet Rub`, true) && ((0, import_kolmafia65.monsterHp)() >= 400 || enemy === $monster`The Manwich` || enemy === $monster`The Big Mac Wisniewski` || enemy === $monster`Naughty Sorceress, all sausage`)) {
-    return useSkill$1($skill`Wet Rub`, true);
+  if (canUse($skill`Wet Rub`, true) && ((0, import_kolmafia65.monsterHp)() >= 400 || enemy === $monster`The Manwich` || enemy === $monster`The Big Mac Wisniewski` || enemy === $monster`Naughty Sorceress, all sausage`)) {
+    return auto_useSkill($skill`Wet Rub`, true);
   }
   if (canUse($skill`Meat Cleaver`, true, true) && ((0, import_kolmafia65.monsterHp)() >= 400 || enemy === $monster`The Manwich` || enemy === $monster`The Big Mac Wisniewski` || enemy === $monster`Naughty Sorceress, all sausage`)) {
-    return useSkill$1($skill`Meat Cleaver`, true);
+    return auto_useSkill($skill`Meat Cleaver`, true);
   }
   if ((0, import_kolmafia65.haveEquipped)($item`Everfull Dart Holster`) && (0, import_kolmafia65.toInt)((0, import_kolmafia65.getProperty)("_dartsLeft")) > 0) {
-    return useSkill$2(dartSkill());
+    return auto_useSkill(dartSkill());
   }
   var beef_shank_value = (0, import_kolmafia65.myBuffedstat)($stat`Muscle`);
   var spicy_meatball_value = (0, import_kolmafia65.myBuffedstat)($stat`Mysticality`);
   var bacon_ray_value = (0, import_kolmafia65.toInt)(0.55 * (0, import_kolmafia65.myBuffedstat)($stat`Moxie`));
-  if (!canUse$1($skill`Beef Shank`, false) || enemy.physicalResistance > 70) {
+  if (!canUse($skill`Beef Shank`, false) || enemy.physicalResistance > 70) {
     beef_shank_value = 0;
   }
-  if (!canUse$1($skill`Spicy Meatball`, false) || enemy.defenseElement === $element`hot`) {
+  if (!canUse($skill`Spicy Meatball`, false) || enemy.defenseElement === $element`hot`) {
     spicy_meatball_value = 0;
   }
-  if (!canUse$1($skill`Bacon Ray`, false) || enemy.defenseElement === $element`sleaze`) {
+  if (!canUse($skill`Bacon Ray`, false) || enemy.defenseElement === $element`sleaze`) {
     bacon_ray_value = 0;
   }
   if (enemy.defenseElement === $element`cold` || enemy.defenseElement === $element`spooky`) {
@@ -4052,11 +4052,11 @@ function auto_combatMeatGolemStage5(round_1, enemy, text) {
     bacon_ray_value = 2 * bacon_ray_value;
   }
   if (spicy_meatball_value > bacon_ray_value && spicy_meatball_value > beef_shank_value) {
-    return useSkill$1($skill`Spicy Meatball`, false);
+    return auto_useSkill($skill`Spicy Meatball`, false);
   } else if (bacon_ray_value > beef_shank_value) {
-    return useSkill$1($skill`Bacon Ray`, false);
+    return auto_useSkill($skill`Bacon Ray`, false);
   } else if (beef_shank_value !== 0) {
-    return useSkill$1($skill`Beef Shank`, false);
+    return auto_useSkill($skill`Beef Shank`, false);
   }
   return "";
 }
@@ -4065,7 +4065,7 @@ function auto_combatMeatGolemStage5(round_1, enemy, text) {
 var import_kolmafia66 = require("kolmafia");
 function auto_combatBHYStage1(round_1, enemy, text) {
   if (enemy === $monster`Guy Made Of Bees`) {
-    if (canUse$4($item`antique hand mirror`)) {
+    if (canUse$3($item`antique hand mirror`)) {
       return useItem$1($item`antique hand mirror`);
     } else {
       (0, import_kolmafia66.abort)(
@@ -4106,8 +4106,8 @@ function auto_combatDisguisesStage1(round_1, enemy, text) {
   var disguises = (0, import_kolmafia67.toInt)(
     (0, import_kolmafia67.getProperty)("_auto_combatDisguisesDelimitMask")
   );
-  if (disguises === 7 && canUse$2($skill`Swap Mask`)) {
-    return useSkill$2($skill`Swap Mask`);
+  if (disguises === 7 && canUse($skill`Swap Mask`)) {
+    return auto_useSkill($skill`Swap Mask`);
   }
   if (disguises === 3) {
     if (canSurvive$1(1.5)) {
@@ -4117,8 +4117,8 @@ function auto_combatDisguisesStage1(round_1, enemy, text) {
       "May not be able to survive combat. Is swapping protest mask still not allowing us to do anything?"
     );
   }
-  if ((0, import_kolmafia67.myMask)() === "protest mask" && canUse$2($skill`Swap Mask`)) {
-    return useSkill$2($skill`Swap Mask`);
+  if ((0, import_kolmafia67.myMask)() === "protest mask" && canUse($skill`Swap Mask`)) {
+    return auto_useSkill($skill`Swap Mask`);
   }
   return "";
 }
@@ -4131,11 +4131,11 @@ function auto_combatDisguisesStage5(round_1, enemy, text) {
   );
   if (disguises === 13) {
     if (enemy.physicalResistance >= 80) {
-      if ((0, import_kolmafia67.myHp)() > (0, import_kolmafia67.monsterHp)() + 150 && canUse$1($skill`Saucestorm`, false)) {
-        return useSkill$1($skill`Saucestorm`, false);
+      if ((0, import_kolmafia67.myHp)() > (0, import_kolmafia67.monsterHp)() + 150 && canUse($skill`Saucestorm`, false)) {
+        return auto_useSkill($skill`Saucestorm`, false);
       }
-      if (canUse$2($skill`Implode Universe`)) {
-        return useSkill$1($skill`Implode Universe`, true);
+      if (canUse($skill`Implode Universe`)) {
+        return auto_useSkill($skill`Implode Universe`, true);
       }
       (0, import_kolmafia67.abort)(
         "Not sure how to handle a physically resistent enemy wearing a welding mask."
@@ -4144,8 +4144,8 @@ function auto_combatDisguisesStage5(round_1, enemy, text) {
     if (canSurvive$1(1.5) && round_1 < 10) {
       return "attack with weapon";
     }
-    if (canUse$2($skill`Implode Universe`)) {
-      return useSkill$1($skill`Implode Universe`, true);
+    if (canUse($skill`Implode Universe`)) {
+      return auto_useSkill($skill`Implode Universe`, true);
     }
     (0, import_kolmafia67.abort)("Not sure how to handle welding mask.");
   }
@@ -4159,8 +4159,8 @@ function auto_combatDisguisesStage5(round_1, enemy, text) {
     if (attack_dmg > 20) {
       return "attack with weapon";
     }
-    if (canUse$1($skill`Saucestorm`, false)) {
-      return useSkill$1($skill`Saucestorm`, false);
+    if (canUse($skill`Saucestorm`, false)) {
+      return auto_useSkill($skill`Saucestorm`, false);
     }
   }
   return "";
@@ -4213,11 +4213,11 @@ function auto_combatFallOfTheDinosaursStage5(round_1, enemy, text) {
   var dino = (0, import_kolmafia68.getProperty)("_auto_combatFotdDinosaur");
   if (dino === "archelon") {
     if (enemy.physicalResistance >= 80 && !haveUsed($skill`Silent Treatment`)) {
-      if (canUse$2($skill`Implode Universe`)) {
-        return useSkill$1($skill`Implode Universe`, true);
+      if (canUse($skill`Implode Universe`)) {
+        return auto_useSkill($skill`Implode Universe`, true);
       }
-      if (canUse$2($skill`Silent Treatment`)) {
-        return useSkill$1($skill`Silent Treatment`, true);
+      if (canUse($skill`Silent Treatment`)) {
+        return auto_useSkill($skill`Silent Treatment`, true);
       }
       (0, import_kolmafia68.abort)(
         "Not sure how to handle a physically resistent enemy eaten by a glass-shelled archelon."
@@ -4226,37 +4226,37 @@ function auto_combatFallOfTheDinosaursStage5(round_1, enemy, text) {
     if (canSurvive$1(1.5) && round_1 < 25) {
       return "attack with weapon";
     }
-    if (canUse$2($skill`Implode Universe`)) {
-      return useSkill$1($skill`Implode Universe`, true);
+    if (canUse($skill`Implode Universe`)) {
+      return auto_useSkill($skill`Implode Universe`, true);
     }
     (0, import_kolmafia68.abort)("Not sure how to handle monster eaten by a glass-shelled archelon.");
   }
   if (dino === "pterodactyl") {
-    if (canUse$1($skill`Snipe Pterodactyl`, false)) {
-      return useSkill$1($skill`Snipe Pterodactyl`, false);
+    if (canUse($skill`Snipe Pterodactyl`, false)) {
+      return auto_useSkill($skill`Snipe Pterodactyl`, false);
     }
-    if (canUse$1($skill`Saucegeyser`, false)) {
-      return useSkill$1($skill`Saucegeyser`, false);
+    if (canUse($skill`Saucegeyser`, false)) {
+      return auto_useSkill($skill`Saucegeyser`, false);
     }
-    if (canUse$1($skill`Saucestorm`, false)) {
-      return useSkill$1($skill`Saucestorm`, false);
+    if (canUse($skill`Saucestorm`, false)) {
+      return auto_useSkill($skill`Saucestorm`, false);
     }
   }
   if (dino === "spikolodon") {
-    if (canUse$1($skill`Saucegeyser`, false)) {
-      return useSkill$1($skill`Saucegeyser`, false);
+    if (canUse($skill`Saucegeyser`, false)) {
+      return auto_useSkill($skill`Saucegeyser`, false);
     }
-    if (canUse$1($skill`Saucestorm`, false)) {
-      return useSkill$1($skill`Saucestorm`, false);
+    if (canUse($skill`Saucestorm`, false)) {
+      return auto_useSkill($skill`Saucestorm`, false);
     }
   }
   if (dino === "ghostasaurus") {
     var dino_difficulty = (0, import_kolmafia68.containsText)(enemy.attributes, "Scale:") ? 0 : (0, import_kolmafia68.toInt)(enemy.baseAttack / 1.8);
-    if (dino_difficulty >= 75 && canUse$2($skill`Silent Treatment`)) {
-      return useSkill$1($skill`Silent Treatment`, true);
+    if (dino_difficulty >= 75 && canUse($skill`Silent Treatment`)) {
+      return auto_useSkill($skill`Silent Treatment`, true);
     }
-    if (canUse$1($skill`Saucestorm`, false)) {
-      return useSkill$1($skill`Saucestorm`, false);
+    if (canUse($skill`Saucestorm`, false)) {
+      return auto_useSkill($skill`Saucestorm`, false);
     }
   }
   return "";
@@ -4266,20 +4266,20 @@ function auto_combatFallOfTheDinosaursStage5(round_1, enemy, text) {
 var import_kolmafia69 = require("kolmafia");
 function auto_combatHeavyRainsStage1(round_1, enemy, text) {
   if (enemy.toString() === "Gurgle") {
-    if (canUse$2($skill`Summon Love Stinkbug`)) {
-      return useSkill$2($skill`Summon Love Stinkbug`);
+    if (canUse($skill`Summon Love Stinkbug`)) {
+      return auto_useSkill($skill`Summon Love Stinkbug`);
     }
     return "attack with weapon";
   }
   if (enemy.toString() === "Dr. Aquard") {
-    if (canUse$2($skill`Curse of Weaksauce`)) {
-      return useSkill$2($skill`Curse of Weaksauce`);
+    if (canUse($skill`Curse of Weaksauce`)) {
+      return auto_useSkill($skill`Curse of Weaksauce`);
     }
-    if (canUse$2($skill`Micrometeorite`)) {
-      return useSkill$2($skill`Micrometeorite`);
+    if (canUse($skill`Micrometeorite`)) {
+      return auto_useSkill($skill`Micrometeorite`);
     }
-    if (canUse$2($skill`Summon Love Stinkbug`)) {
-      return useSkill$2($skill`Summon Love Stinkbug`);
+    if (canUse($skill`Summon Love Stinkbug`)) {
+      return auto_useSkill($skill`Summon Love Stinkbug`);
     }
     return "attack with weapon";
   }
@@ -4319,32 +4319,32 @@ function auto_combatHeavyRainsStage3(round_1, enemy, text) {
         return `item ${$item`crayon shavings`}`;
       }
     } else {
-      if (canUse$2($skill`Micrometeorite`)) {
+      if (canUse($skill`Micrometeorite`)) {
         (0, import_kolmafia69.setProperty)(
           "auto_combatHandlerThunderBird",
           ((0, import_kolmafia69.toInt)((0, import_kolmafia69.getProperty)("auto_combatHandlerThunderBird")) - 1).toString()
         );
-        return useSkill$2($skill`Micrometeorite`);
+        return auto_useSkill($skill`Micrometeorite`);
       }
-      if (canUse$2($skill`Curse of Weaksauce`) && (0, import_kolmafia69.myMp)() >= 50 && auto_have_skill($skill`Itchy Curse Finger`)) {
-        return useSkill$2($skill`Curse of Weaksauce`);
+      if (canUse($skill`Curse of Weaksauce`) && (0, import_kolmafia69.myMp)() >= 50 && auto_have_skill($skill`Itchy Curse Finger`)) {
+        return auto_useSkill($skill`Curse of Weaksauce`);
       }
-      if (canUse$2($skill`Thunderstrike`) && (0, import_kolmafia69.myThunder)() >= 5) {
-        return useSkill$2($skill`Thunderstrike`);
+      if (canUse($skill`Thunderstrike`) && (0, import_kolmafia69.myThunder)() >= 5) {
+        return auto_useSkill($skill`Thunderstrike`);
       }
-      if (canUse$2($skill`Curse of Weaksauce`) && (0, import_kolmafia69.myMp)() >= 50) {
-        return useSkill$2($skill`Curse of Weaksauce`);
+      if (canUse($skill`Curse of Weaksauce`) && (0, import_kolmafia69.myMp)() >= 50) {
+        return auto_useSkill($skill`Curse of Weaksauce`);
       }
     }
     if ((0, import_kolmafia69.myThunder)() === 0 && (0, import_kolmafia69.toInt)((0, import_kolmafia69.getProperty)("auto_combatHandlerThunderBird")) > 0) {
       (0, import_kolmafia69.setProperty)("auto_combatHandlerThunderBird", 0 .toString());
     }
-    if ((0, import_kolmafia69.toInt)((0, import_kolmafia69.getProperty)("auto_combatHandlerThunderBird")) > 0 && canUse$1($skill`Thunder Bird`, false)) {
+    if ((0, import_kolmafia69.toInt)((0, import_kolmafia69.getProperty)("auto_combatHandlerThunderBird")) > 0 && canUse($skill`Thunder Bird`, false)) {
       (0, import_kolmafia69.setProperty)(
         "auto_combatHandlerThunderBird",
         ((0, import_kolmafia69.toInt)((0, import_kolmafia69.getProperty)("auto_combatHandlerThunderBird")) - 1).toString()
       );
-      return useSkill$1($skill`Thunder Bird`, false);
+      return auto_useSkill($skill`Thunder Bird`, false);
     }
   }
   return "";
@@ -4352,30 +4352,30 @@ function auto_combatHeavyRainsStage3(round_1, enemy, text) {
 function auto_combatHeavyRainsStage5(round_1, enemy, text) {
   if (enemy.toString() === "The Rain King") {
     if ((0, import_kolmafia69.getProperty)("auto_rain_king_combat") === "attack") {
-      if (canUse$1($skill`Lunging Thrust-Smack`, false)) {
-        return useSkill$1($skill`Lunging Thrust-Smack`, false);
+      if (canUse($skill`Lunging Thrust-Smack`, false)) {
+        return auto_useSkill($skill`Lunging Thrust-Smack`, false);
       }
-      if (canUse$1($skill`Thrust-Smack`, false)) {
-        return useSkill$1($skill`Thrust-Smack`, false);
+      if (canUse($skill`Thrust-Smack`, false)) {
+        return auto_useSkill($skill`Thrust-Smack`, false);
       }
-      if (canUse$1($skill`Lunge Smack`, false)) {
-        return useSkill$1($skill`Lunge Smack`, false);
+      if (canUse($skill`Lunge Smack`, false)) {
+        return auto_useSkill($skill`Lunge Smack`, false);
       }
       return "attack with weapon";
     }
-    if ((0, import_kolmafia69.getProperty)("auto_rain_king_combat") === "saucestorm" && canUse$1($skill`Saucestorm`, false)) {
-      return useSkill$1($skill`Saucestorm`, false);
+    if ((0, import_kolmafia69.getProperty)("auto_rain_king_combat") === "saucestorm" && canUse($skill`Saucestorm`, false)) {
+      return auto_useSkill($skill`Saucestorm`, false);
     }
-    if ((0, import_kolmafia69.getProperty)("auto_rain_king_combat") === "weapon_of_the_pastalord" && canUse$1($skill`Weapon of the Pastalord`, false)) {
-      return useSkill$1($skill`Weapon of the Pastalord`, false);
+    if ((0, import_kolmafia69.getProperty)("auto_rain_king_combat") === "weapon_of_the_pastalord" && canUse($skill`Weapon of the Pastalord`, false)) {
+      return auto_useSkill($skill`Weapon of the Pastalord`, false);
     }
-    if ((0, import_kolmafia69.getProperty)("auto_rain_king_combat") === "turtleini" && canUse$1($skill`Turtleini`, false)) {
-      return useSkill$1($skill`Turtleini`, false);
+    if ((0, import_kolmafia69.getProperty)("auto_rain_king_combat") === "turtleini" && canUse($skill`Turtleini`, false)) {
+      return auto_useSkill($skill`Turtleini`, false);
     }
     (0, import_kolmafia69.abort)("I am not sure how to finish this battle");
   }
   if (enemy === $monster`storm cow` && auto_have_skill($skill`Unleash the Greash`)) {
-    return useSkill$1($skill`Unleash the Greash`, false);
+    return auto_useSkill($skill`Unleash the Greash`, false);
   }
   return "";
 }
@@ -4383,11 +4383,11 @@ function auto_combatHeavyRainsStage5(round_1, enemy, text) {
 // src/autoscend/combat/auto_combat_kingdom_of_exploathing.ts
 var import_kolmafia70 = require("kolmafia");
 function auto_combatExploathingStage1(round_1, enemy, text) {
-  if (enemy === $monster`the invader` && canUse$1($skill`Lunging Thrust-Smack`, false) && (0, import_kolmafia70.haveEquipped)($item`June cleaver`)) {
-    return useSkill$1($skill`Lunging Thrust-Smack`, false);
+  if (enemy === $monster`the invader` && canUse($skill`Lunging Thrust-Smack`, false) && (0, import_kolmafia70.haveEquipped)($item`June cleaver`)) {
+    return auto_useSkill($skill`Lunging Thrust-Smack`, false);
   }
-  if (enemy === $monster`the invader` && canUse$1($skill`Weapon of the Pastalord`, false)) {
-    return useSkill$1($skill`Weapon of the Pastalord`, false);
+  if (enemy === $monster`the invader` && canUse($skill`Weapon of the Pastalord`, false)) {
+    return auto_useSkill($skill`Weapon of the Pastalord`, false);
   }
   if (enemy === $monster`skeleton astronaut`) {
     if ((0, import_kolmafia70.myDaycount)() === 1 && canUse$3($item`exploding cigar`, false)) {
@@ -4409,8 +4409,8 @@ function auto_combatExploathingStage1(round_1, enemy, text) {
     }
     if (dmg >= 10 && (0, import_kolmafia70.buffedHitStat)() >= 120 + (0, import_kolmafia70.monsterLevelAdjustment)()) {
       return "attack with weapon";
-    } else if (canUse$1($skill`Saucestorm`, false)) {
-      return useSkill$1($skill`Saucestorm`, false);
+    } else if (canUse($skill`Saucestorm`, false)) {
+      return auto_useSkill($skill`Saucestorm`, false);
     }
   }
   return "";
@@ -4429,13 +4429,13 @@ function auto_combat_nanorhinoBuff(round_1, enemy, text) {
   var target_mark = false;
   switch ((0, import_kolmafia71.myPrimestat)()) {
     case $stat`Muscle`:
-      if (target === import_kolmafia71.Skill.none && in_glover() && canUse$2($skill`Lunge Smack`) && canSurvive$1(4)) {
+      if (target === import_kolmafia71.Skill.none && in_glover() && canUse($skill`Lunge Smack`) && canSurvive$1(4)) {
         target = $skill`Lunge Smack`;
       }
-      if (target === import_kolmafia71.Skill.none && canUse$2($skill`Shell Up`)) {
+      if (target === import_kolmafia71.Skill.none && canUse($skill`Shell Up`)) {
         target = $skill`Shell Up`;
       }
-      if (target === import_kolmafia71.Skill.none && stunnable(enemy) && canUse$2($skill`Club Foot`) && (0, import_kolmafia71.myClass)() === $class`Seal Clubber` && (0, import_kolmafia71.myMp)() > 25) {
+      if (target === import_kolmafia71.Skill.none && stunnable(enemy) && canUse($skill`Club Foot`) && (0, import_kolmafia71.myClass)() === $class`Seal Clubber` && (0, import_kolmafia71.myMp)() > 25) {
         target = $skill`Club Foot`;
       }
       if (target === import_kolmafia71.Skill.none && canSurvive$1(4)) {
@@ -4443,7 +4443,7 @@ function auto_combat_nanorhinoBuff(round_1, enemy, text) {
         try {
           for (_iterator.s(); !(_step = _iterator.n()).done; ) {
             var sk = _step.value;
-            if (canUse$2(sk)) {
+            if (canUse(sk)) {
               target = sk;
             }
           }
@@ -4462,7 +4462,7 @@ function auto_combat_nanorhinoBuff(round_1, enemy, text) {
         try {
           for (_iterator2.s(); !(_step2 = _iterator2.n()).done; ) {
             var _sk = _step2.value;
-            if (canUse$2(_sk)) {
+            if (canUse(_sk)) {
               target = _sk;
             }
           }
@@ -4472,14 +4472,14 @@ function auto_combat_nanorhinoBuff(round_1, enemy, text) {
           _iterator2.f();
         }
       }
-      if (target === import_kolmafia71.Skill.none && canUse$2($skill`Accordion Bash`)) {
+      if (target === import_kolmafia71.Skill.none && canUse($skill`Accordion Bash`)) {
         target = $skill`Accordion Bash`;
         target_mark = true;
       }
       if (!canSurvive$1(4)) {
         break;
       }
-      if (target === import_kolmafia71.Skill.none && canUse$2($skill`Cadenza`)) {
+      if (target === import_kolmafia71.Skill.none && canUse($skill`Cadenza`)) {
         target = $skill`Cadenza`;
         target_mark = true;
       }
@@ -4488,7 +4488,7 @@ function auto_combat_nanorhinoBuff(round_1, enemy, text) {
         try {
           for (_iterator3.s(); !(_step3 = _iterator3.n()).done; ) {
             var _sk2 = _step3.value;
-            if (canUse$2(_sk2)) {
+            if (canUse(_sk2)) {
               target = _sk2;
             }
           }
@@ -4502,7 +4502,7 @@ function auto_combat_nanorhinoBuff(round_1, enemy, text) {
   }
   combat_status_add("nanorhino_buffed");
   if (target !== import_kolmafia71.Skill.none) {
-    return useSkill$1(target, target_mark);
+    return auto_useSkill(target, target_mark);
   }
   return "";
 }
@@ -4517,8 +4517,8 @@ function auto_combatPeteStage1(round_1, enemy, text) {
     )) {
       maxAudience = 50;
     }
-    if (canUse$2($skill`Mug for the Audience`) && ((0, import_kolmafia72.myAudience)() < maxAudience || disregardInstantKarma())) {
-      return useSkill$2($skill`Mug for the Audience`);
+    if (canUse($skill`Mug for the Audience`) && ((0, import_kolmafia72.myAudience)() < maxAudience || disregardInstantKarma())) {
+      return auto_useSkill($skill`Mug for the Audience`);
     }
   }
   return "";
@@ -4531,50 +4531,50 @@ function auto_combatTheSourceStage1(round_1, enemy, text) {
     if (auto_have_skill($skill`Data Siphon`)) {
       if ((0, import_kolmafia73.myMp)() < 50) {
         if (auto_have_skill($skill`Source Punch`) && (0, import_kolmafia73.myMp)() >= (0, import_kolmafia73.mpCost)($skill`Source Punch`)) {
-          return useSkill$1($skill`Source Punch`, false);
+          return auto_useSkill($skill`Source Punch`, false);
         }
       } else if ((0, import_kolmafia73.myMp)() > 125) {
-        if (canUse$2($skill`Reboot`) && ((0, import_kolmafia73.haveEffect)($effect`Latency`) > 0 || (0, import_kolmafia73.myHp)() * 2 < (0, import_kolmafia73.myMaxhp)())) {
-          return useSkill$2($skill`Reboot`);
+        if (canUse($skill`Reboot`) && ((0, import_kolmafia73.haveEffect)($effect`Latency`) > 0 || (0, import_kolmafia73.myHp)() * 2 < (0, import_kolmafia73.myMaxhp)())) {
+          return auto_useSkill($skill`Reboot`);
         }
-        if (canUse$2($skill`Humiliating Hack`)) {
-          return useSkill$2($skill`Humiliating Hack`);
+        if (canUse($skill`Humiliating Hack`)) {
+          return auto_useSkill($skill`Humiliating Hack`);
         }
-        if (canUse$2($skill`Disarmament`)) {
-          return useSkill$2($skill`Disarmament`);
+        if (canUse($skill`Disarmament`)) {
+          return auto_useSkill($skill`Disarmament`);
         }
-        if (canUse$2($skill`Big Guns`) && (0, import_kolmafia73.myHp)() < 100) {
-          return useSkill$2($skill`Big Guns`);
+        if (canUse($skill`Big Guns`) && (0, import_kolmafia73.myHp)() < 100) {
+          return auto_useSkill($skill`Big Guns`);
         }
       } else if ((0, import_kolmafia73.myMp)() > 100) {
-        if (canUse$2($skill`Humiliating Hack`)) {
-          return useSkill$2($skill`Humiliating Hack`);
+        if (canUse($skill`Humiliating Hack`)) {
+          return auto_useSkill($skill`Humiliating Hack`);
         }
-        if (canUse$2($skill`Disarmament`)) {
-          return useSkill$2($skill`Disarmament`);
+        if (canUse($skill`Disarmament`)) {
+          return auto_useSkill($skill`Disarmament`);
         }
       }
-      if (canUse$1($skill`Source Kick`, false)) {
-        return useSkill$1($skill`Source Kick`, false);
+      if (canUse($skill`Source Kick`, false)) {
+        return auto_useSkill($skill`Source Kick`, false);
       }
     }
-    if (canUse$2($skill`Big Guns`)) {
-      return useSkill$2($skill`Big Guns`);
+    if (canUse($skill`Big Guns`)) {
+      return auto_useSkill($skill`Big Guns`);
     }
-    if (canUse$1($skill`Source Punch`, false)) {
-      return useSkill$1($skill`Source Punch`, false);
+    if (canUse($skill`Source Punch`, false)) {
+      return auto_useSkill($skill`Source Punch`, false);
     }
     return "runaway";
   }
   return "";
 }
 function auto_combatTheSourceStage4(round_1, enemy, text) {
-  if (canUse$2($skill`Portscan`) && (0, import_kolmafia73.myLocation)().turnsSpent < 8 && (0, import_kolmafia73.toInt)((0, import_kolmafia73.getProperty)("_sourceTerminalPortscanUses")) < 3 && !(0, import_kolmafia73.toBoolean)((0, import_kolmafia73.getProperty)("_portscanPending"))) {
+  if (canUse($skill`Portscan`) && (0, import_kolmafia73.myLocation)().turnsSpent < 8 && (0, import_kolmafia73.toInt)((0, import_kolmafia73.getProperty)("_sourceTerminalPortscanUses")) < 3 && !(0, import_kolmafia73.toBoolean)((0, import_kolmafia73.getProperty)("_portscanPending"))) {
     if ($locations`The Castle in the Clouds in the Sky (Ground Floor), The Haunted Bathroom, The Haunted Gallery`.includes(
       (0, import_kolmafia73.myLocation)()
     )) {
       (0, import_kolmafia73.setProperty)("_portscanPending", true.toString());
-      return useSkill$2($skill`Portscan`);
+      return auto_useSkill($skill`Portscan`);
     }
   }
   return "";
@@ -4590,8 +4590,8 @@ function auto_combatWereProfessorStage1(round_1, enemy, text) {
     (0, import_kolmafia74.setProperty)("auto_skipStage3", true.toString());
   }
   if (enemy === $monster`wall of bones`) {
-    if (canUse$2($skill`Slaughter`) && (0, import_kolmafia74.haveEffect)($effect`Everything Looks Red`) === 0) {
-      return useSkill$2($skill`Slaughter`);
+    if (canUse($skill`Slaughter`) && (0, import_kolmafia74.haveEffect)($effect`Everything Looks Red`) === 0) {
+      return auto_useSkill($skill`Slaughter`);
     }
   }
   return "";
@@ -4630,20 +4630,20 @@ function auto_combatWereProfessorStage5(round_1, enemy, text) {
   }
   var enemy_physical_immune = enemy.physicalResistance > 99;
   if (is_werewolf()) {
-    if (enemy_physical_immune && canUse$1($skill`Bite`, true)) {
-      return useSkill$1($skill`Bite`, true);
+    if (enemy_physical_immune && canUse($skill`Bite`, true)) {
+      return auto_useSkill($skill`Bite`, true);
     } else if ((0, import_kolmafia74.haveEquipped)($item`Everfull Dart Holster`) && (0, import_kolmafia74.toInt)((0, import_kolmafia74.getProperty)("_dartsLeft")) > 0) {
-      return useSkill$2(dartSkill());
+      return auto_useSkill(dartSkill());
     }
-    if (!enemy_physical_immune && canUse$1($skill`Rend`, false)) {
-      return useSkill$1($skill`Rend`, true);
+    if (!enemy_physical_immune && canUse($skill`Rend`, false)) {
+      return auto_useSkill($skill`Rend`, true);
     }
     return "attack with weapon";
   }
   if (is_professor()) {
     if ((0, import_kolmafia74.haveEquipped)($item`Everfull Dart Holster`) && (0, import_kolmafia74.toInt)((0, import_kolmafia74.getProperty)("_dartsLeft")) > 0) {
-      return useSkill$2(dartSkill());
-    } else if (auto_haveCosmicBowlingBall() && canUse$4($item`cosmic bowling ball`) && !enemy_physical_immune && (0, import_kolmafia74.monsterHp)() < 100) {
+      return auto_useSkill(dartSkill());
+    } else if (auto_haveCosmicBowlingBall() && canUse$3($item`cosmic bowling ball`) && !enemy_physical_immune && (0, import_kolmafia74.monsterHp)() < 100) {
       return useItem$1($item`cosmic bowling ball`);
     } else {
       return "runaway";
@@ -4661,29 +4661,29 @@ function auto_combatWildfireStage1(round_1, enemy, text) {
   if ($monsters`Groar\, Except Hot, The Man on Fire, The Big Ignatowicz`.includes(
     enemy
   )) {
-    if ((0, import_kolmafia75.haveEquipped)($item`industrial fire extinguisher`) && canUse$2($skill`Curse of Weaksauce`) && (0, import_kolmafia75.haveSkill)($skill`Itchy Curse Finger`) && (0, import_kolmafia75.myClass)() === $class`Sauceror`) {
-      return useSkill$2($skill`Curse of Weaksauce`);
+    if ((0, import_kolmafia75.haveEquipped)($item`industrial fire extinguisher`) && canUse($skill`Curse of Weaksauce`) && (0, import_kolmafia75.haveSkill)($skill`Itchy Curse Finger`) && (0, import_kolmafia75.myClass)() === $class`Sauceror`) {
+      return auto_useSkill($skill`Curse of Weaksauce`);
     }
-    if (canUse$2($skill`Stuffed Mortar Shell`)) {
-      return useSkill$2($skill`Stuffed Mortar Shell`);
+    if (canUse($skill`Stuffed Mortar Shell`)) {
+      return auto_useSkill($skill`Stuffed Mortar Shell`);
     }
-    if ($elements`sleaze, stench`.includes(currentFlavour()) && canUse$2($skill`Weapon of the Pastalord`)) {
-      return useSkill$1($skill`Weapon of the Pastalord`, false);
+    if ($elements`sleaze, stench`.includes(currentFlavour()) && canUse($skill`Weapon of the Pastalord`)) {
+      return auto_useSkill($skill`Weapon of the Pastalord`, false);
     }
-    if (canUse$1($skill`Saucegeyser`, false)) {
-      return useSkill$1($skill`Saucegeyser`, false);
+    if (canUse($skill`Saucegeyser`, false)) {
+      return auto_useSkill($skill`Saucegeyser`, false);
     }
     (0, import_kolmafia75.abort)(`We do not know what to do next against [${enemy}].`);
   }
   if ($monster`wall of meat` === enemy) {
-    if (canUse$2($skill`Stuffed Mortar Shell`)) {
-      return useSkill$2($skill`Stuffed Mortar Shell`);
+    if (canUse($skill`Stuffed Mortar Shell`)) {
+      return auto_useSkill($skill`Stuffed Mortar Shell`);
     }
-    if (canUse$2($skill`Weapon of the Pastalord`) && (0, import_kolmafia75.mpCost)($skill`Weapon of the Pastalord`) < (0, import_kolmafia75.mpCost)($skill`Saucegeyser`)) {
-      return useSkill$1($skill`Weapon of the Pastalord`, false);
+    if (canUse($skill`Weapon of the Pastalord`) && (0, import_kolmafia75.mpCost)($skill`Weapon of the Pastalord`) < (0, import_kolmafia75.mpCost)($skill`Saucegeyser`)) {
+      return auto_useSkill($skill`Weapon of the Pastalord`, false);
     }
-    if (canUse$1($skill`Saucegeyser`, false)) {
-      return useSkill$1($skill`Saucegeyser`, false);
+    if (canUse($skill`Saucegeyser`, false)) {
+      return auto_useSkill($skill`Saucegeyser`, false);
     }
     (0, import_kolmafia75.abort)(`We do not know what to do next against [${enemy}].`);
   }
@@ -4737,8 +4737,8 @@ function auto_combatDefaultStage1(round_1, enemy, text) {
     return useItems$1($item`waffle`, import_kolmafia76.Item.none);
   }
   if (enemy === $monster`Your Shadow`) {
-    if (in_amw() && canUse$1($skill`Chew the Fat`, false)) {
-      return useSkill$1($skill`Chew the Fat`, false);
+    if (in_amw() && canUse($skill`Chew the Fat`, false)) {
+      return auto_useSkill($skill`Chew the Fat`, false);
     }
     if (in_plumber()) {
       if ((0, import_kolmafia76.itemAmount)($item`super deluxe mushroom`) > 0) {
@@ -4752,7 +4752,7 @@ function auto_combatDefaultStage1(round_1, enemy, text) {
     var hand_1 = import_kolmafia76.Item.none;
     var hand_2 = import_kolmafia76.Item.none;
     var icup = $item`Rain-Doh indigo cup`;
-    if (canUse$4(icup)) {
+    if (canUse$3(icup)) {
       if ((0, import_kolmafia76.myMaxhp)() > 500 && hand_1 === import_kolmafia76.Item.none) {
         markAsUsed$1(icup);
         hand_1 = icup;
@@ -4796,28 +4796,28 @@ function auto_combatDefaultStage1(round_1, enemy, text) {
     }
   }
   if (enemy === $monster`wall of meat`) {
-    if (canUse$2($skill`Make it Rain`)) {
-      return useSkill$2($skill`Make it Rain`);
+    if (canUse($skill`Make it Rain`)) {
+      return auto_useSkill($skill`Make it Rain`);
     }
   }
   if (enemy === $monster`wall of skin`) {
     if ((0, import_kolmafia76.itemAmount)($item`beehive`) > 0) {
       return `item ${$item`beehive`}`;
     }
-    if (canUse$2($skill`Shell Up`) && round_1 >= 3) {
-      return useSkill$2($skill`Shell Up`);
+    if (canUse($skill`Shell Up`) && round_1 >= 3) {
+      return auto_useSkill($skill`Shell Up`);
     }
-    if (canUse$2($skill`Sauceshell`) && round_1 >= 4) {
-      return useSkill$2($skill`Sauceshell`);
+    if (canUse($skill`Sauceshell`) && round_1 >= 4) {
+      return auto_useSkill($skill`Sauceshell`);
     }
-    if (canUse$1($skill`Belch The Rainbow`, false)) {
-      return useSkill$1($skill`Belch The Rainbow`, false);
+    if (canUse($skill`Belch The Rainbow`, false)) {
+      return auto_useSkill($skill`Belch The Rainbow`, false);
     }
-    if (canUse$1($skill`Kneebutt`, false)) {
-      return useSkill$1($skill`Kneebutt`, false);
+    if (canUse($skill`Kneebutt`, false)) {
+      return auto_useSkill($skill`Kneebutt`, false);
     }
-    if (canUse$1($skill`Headbutt`, false)) {
-      return useSkill$1($skill`Headbutt`, false);
+    if (canUse($skill`Headbutt`, false)) {
+      return auto_useSkill($skill`Headbutt`, false);
     }
     return "attack with weapon";
   }
@@ -4826,16 +4826,16 @@ function auto_combatDefaultStage1(round_1, enemy, text) {
       return `item ${$item`electric boning knife`}`;
     }
     if ((0, import_kolmafia76.myHp)() * 4 < (0, import_kolmafia76.myMaxhp)() && (0, import_kolmafia76.haveEffect)($effect`Takin' It Greasy`) > 0) {
-      return useSkill$1($skill`Unleash the Greash`, false);
+      return auto_useSkill($skill`Unleash the Greash`, false);
     }
-    if (canUse$1($skill`Surprisingly Sweet Slash`, true) && auto_remainingCandyCaneSlashes() > 0) {
-      return useSkill$1($skill`Surprisingly Sweet Slash`, true);
+    if (canUse($skill`Surprisingly Sweet Slash`, true) && auto_remainingCandyCaneSlashes() > 0) {
+      return auto_useSkill($skill`Surprisingly Sweet Slash`, true);
     }
-    if (canUse$1($skill`Garbage Nova`, false)) {
-      return useSkill$1($skill`Garbage Nova`, false);
+    if (canUse($skill`Garbage Nova`, false)) {
+      return auto_useSkill($skill`Garbage Nova`, false);
     }
-    if (canUse$1($skill`Saucegeyser`, false)) {
-      return useSkill$2($skill`Saucegeyser`);
+    if (canUse($skill`Saucegeyser`, false)) {
+      return auto_useSkill($skill`Saucegeyser`);
     }
   }
   retval = auto_combat_nanorhinoBuff(round_1, enemy, text);
@@ -4880,35 +4880,35 @@ function auto_combatDefaultStage1(round_1, enemy, text) {
       return "pickpocket";
     }
   }
-  if (auto_canCircadianRhythm() && (auto_circadianRhythmTarget(enemy) || auto_circadianRhythmTarget$1((0, import_kolmafia76.monsterPhylum)(enemy))) && canUse$2($skill`Recall Facts: %phylum Circadian Rhythms`) && !ag_is_bodyguard()) {
+  if (auto_canCircadianRhythm() && (auto_circadianRhythmTarget(enemy) || auto_circadianRhythmTarget$1((0, import_kolmafia76.monsterPhylum)(enemy))) && canUse($skill`Recall Facts: %phylum Circadian Rhythms`) && !ag_is_bodyguard()) {
     handleTracker$1(
       $skill`Recall Facts: %phylum Circadian Rhythms`.toString(),
       (0, import_kolmafia76.monsterPhylum)(enemy).toString(),
       "auto_otherstuff"
     );
-    return useSkill$2($skill`Recall Facts: %phylum Circadian Rhythms`);
+    return auto_useSkill($skill`Recall Facts: %phylum Circadian Rhythms`);
   }
-  if (auto_canHabitat() && auto_habitatTarget(enemy) && canUse$2($skill`Recall Facts: Monster Habitats`) && !ag_is_bodyguard()) {
+  if (auto_canHabitat() && auto_habitatTarget(enemy) && canUse($skill`Recall Facts: Monster Habitats`) && !ag_is_bodyguard()) {
     handleTracker$1(
       $skill`Recall Facts: Monster Habitats`.toString(),
       enemy.toString(),
       "auto_copies"
     );
-    return useSkill$2($skill`Recall Facts: Monster Habitats`);
+    return auto_useSkill($skill`Recall Facts: Monster Habitats`);
   }
-  if (auto_canRWBBlast() && auto_RWBBlastTarget(enemy) && canUse$2($skill`%fn, fire a Red, White and Blue Blast`)) {
+  if (auto_canRWBBlast() && auto_RWBBlastTarget(enemy) && canUse($skill`%fn, fire a Red, White and Blue Blast`)) {
     handleTracker$1(
       $skill`%fn, fire a Red, White and Blue Blast`.toString(),
       enemy.toString(),
       "auto_copies"
     );
-    return useSkill$2($skill`%fn, fire a Red, White and Blue Blast`);
+    return auto_useSkill($skill`%fn, fire a Red, White and Blue Blast`);
   }
   var backedUpMonster = (0, import_kolmafia76.toMonster)(
     (0, import_kolmafia76.getProperty)("lastCopyableMonster")
   );
   var reserveAdvsForFreeFights = (0, import_kolmafia76.myAdventures)() < 3 && !isFreeMonster(backedUpMonster);
-  if (auto_backupTarget() && enemy !== backedUpMonster && canUse$2($skill`Back-Up to your Last Enemy`) && !reserveAdvsForFreeFights) {
+  if (auto_backupTarget() && enemy !== backedUpMonster && canUse($skill`Back-Up to your Last Enemy`) && !reserveAdvsForFreeFights) {
     handleTracker$1(
       enemy.toString(),
       $skill`Back-Up to your Last Enemy`.toString(),
@@ -4919,25 +4919,25 @@ function auto_combatDefaultStage1(round_1, enemy, text) {
       $skill`Back-Up to your Last Enemy`.toString(),
       "auto_copies"
     );
-    return useSkill$2($skill`Back-Up to your Last Enemy`);
+    return auto_useSkill($skill`Back-Up to your Last Enemy`);
   }
   if ($monsters`pygmy bowler, bearpig topiary animal, elephant (meatcar?) topiary animal, spider (duck?) topiary animal, red butler`.includes(
     enemy
-  ) && canUse$2($skill`%fn, spit on them!`)) {
+  ) && canUse($skill`%fn, spit on them!`)) {
     handleTracker$1(
       $skill`%fn, spit on them!`.toString(),
       enemy.toString(),
       "auto_otherstuff"
     );
-    return useSkill$1($skill`%fn, spit on them!`, true);
+    return auto_useSkill($skill`%fn, spit on them!`, true);
   }
-  if (canUse$2($skill`%fn, let's pledge allegiance to a Zone`)) {
+  if (canUse($skill`%fn, let's pledge allegiance to a Zone`)) {
     auto_getCitizenZone((0, import_kolmafia76.myLocation)(), true);
-    return useSkill$1($skill`%fn, let's pledge allegiance to a Zone`, true);
+    return auto_useSkill($skill`%fn, let's pledge allegiance to a Zone`, true);
   }
-  if (canUse$2($skill`Duplicate`) && (0, import_kolmafia76.toInt)((0, import_kolmafia76.getProperty)("_sourceTerminalDuplicateUses")) === 0 && !inAftercore() && !in_nuclear()) {
+  if (canUse($skill`Duplicate`) && (0, import_kolmafia76.toInt)((0, import_kolmafia76.getProperty)("_sourceTerminalDuplicateUses")) === 0 && !inAftercore() && !in_nuclear()) {
     if ($monsters`dairy goat`.includes(enemy)) {
-      return useSkill$2($skill`Duplicate`);
+      return auto_useSkill($skill`Duplicate`);
     }
   }
   if (auto_talkToSomeFish((0, import_kolmafia76.myLocation)(), enemy) && auto_have_skill($skill`Sea *dent: Talk to Some Fish`)) {
@@ -4946,7 +4946,7 @@ function auto_combatDefaultStage1(round_1, enemy, text) {
       $skill`Sea *dent: Talk to Some Fish`.toString(),
       "auto_otherstuff"
     );
-    return useSkill$2($skill`Sea *dent: Talk to Some Fish`);
+    return auto_useSkill($skill`Sea *dent: Talk to Some Fish`);
   }
   if ((0, import_kolmafia76.haveEffect)($effect`Temporary Amnesia`) > 0) {
     return "attack with weapon";
@@ -4963,7 +4963,7 @@ var import_kolmafia78 = require("kolmafia");
 // src/autoscend/combat/auto_combat_dark_gyffte.ts
 var import_kolmafia77 = require("kolmafia");
 function auto_combatDarkGyffteStage2(round_1, enemy, text) {
-  if (bat_shouldEnsorcel(enemy) && canUse$2($skill`Ensorcel`) && (0, import_kolmafia77.toInt)((0, import_kolmafia77.getProperty)("auto_bat_ensorcels")) < 3) {
+  if (bat_shouldEnsorcel(enemy) && canUse($skill`Ensorcel`) && (0, import_kolmafia77.toInt)((0, import_kolmafia77.getProperty)("auto_bat_ensorcels")) < 3) {
     (0, import_kolmafia77.setProperty)(
       "auto_bat_ensorcels",
       ((0, import_kolmafia77.toInt)((0, import_kolmafia77.getProperty)("auto_bat_ensorcels")) + 1).toString()
@@ -4973,7 +4973,7 @@ function auto_combatDarkGyffteStage2(round_1, enemy, text) {
       $skill`Ensorcel`.toString(),
       "auto_otherstuff"
     );
-    return useSkill$2($skill`Ensorcel`);
+    return auto_useSkill($skill`Ensorcel`);
   }
   return "";
 }
@@ -5018,7 +5018,7 @@ function auto_combatDefaultStage2(round_1, enemy, text) {
       "auto_otherstuff"
     );
     combat_status_add("droptablereplaced");
-    return useSkill$2($skill`BCZ: Refracted Gaze`);
+    return auto_useSkill($skill`BCZ: Refracted Gaze`);
   }
   var extinguisherSkill = auto_FireExtinguisherCombatString((0, import_kolmafia78.myLocation)());
   if (extinguisherSkill !== "" && (0, import_kolmafia78.haveEquipped)(wrap_item($item`industrial fire extinguisher`)) && enemy !== $monster`screambat`) {
@@ -5041,7 +5041,7 @@ function auto_combatDefaultStage2(round_1, enemy, text) {
       return useItem$1($item`glark cable`);
     }
   }
-  if (canUse$4($item`cigarette lighter`) && (0, import_kolmafia78.myLocation)() === $location`A Mob of Zeppelin Protesters` && (0, import_kolmafia78.getProperty)("questL11Ron") === "step1") {
+  if (canUse$3($item`cigarette lighter`) && (0, import_kolmafia78.myLocation)() === $location`A Mob of Zeppelin Protesters` && (0, import_kolmafia78.getProperty)("questL11Ron") === "step1") {
     handleTracker$1(
       enemy.toString(),
       $item`cigarette lighter`.toString(),
@@ -5062,25 +5062,25 @@ function auto_combatDefaultStage2(round_1, enemy, text) {
   if ((0, import_kolmafia78.myFamiliar)() === $familiar`Pair of Stomping Boots` && (0, import_kolmafia78.toInt)((0, import_kolmafia78.getProperty)("_bootStomps")) < 7 && instakillable(enemy) && (0, import_kolmafia78.toBoolean)((0, import_kolmafia78.getProperty)("bootsCharged"))) {
     if (!$monsters`dairy goat, lobsterfrogman`.includes(enemy) && !careAboutDrops(enemy) && !$locations`The Laugh Floor, Infernal Rackets Backstage`.includes(
       (0, import_kolmafia78.myLocation)()
-    ) && canUse$2($skill`Release the Boots`)) {
-      return useSkill$2($skill`Release the Boots`);
+    ) && canUse($skill`Release the Boots`)) {
+      return auto_useSkill($skill`Release the Boots`);
     }
   }
-  if (enemy === $monster`tomb rat king` && (0, import_kolmafia78.itemAmount)($item`crumbling wooden wheel`) + (0, import_kolmafia78.itemAmount)($item`tomb ratchet`) < 10 && canUse$2($skill`Do an epic McTwist!`) && !(0, import_kolmafia78.toBoolean)((0, import_kolmafia78.getProperty)("_epicMcTwistUsed"))) {
+  if (enemy === $monster`tomb rat king` && (0, import_kolmafia78.itemAmount)($item`crumbling wooden wheel`) + (0, import_kolmafia78.itemAmount)($item`tomb ratchet`) < 10 && canUse($skill`Do an epic McTwist!`) && !(0, import_kolmafia78.toBoolean)((0, import_kolmafia78.getProperty)("_epicMcTwistUsed"))) {
     handleTracker$1(
       enemy.toString(),
       $skill`Do an epic McTwist!`.toString(),
       "auto_otherstuff"
     );
-    return useSkill$2($skill`Do an epic McTwist!`);
+    return auto_useSkill($skill`Do an epic McTwist!`);
   }
-  if (enemy === $monster`mountain man` && (0, import_kolmafia78.myDaycount)() === 1 && !auto_turbo() && canUse$2($skill`Do an epic McTwist!`) && !(0, import_kolmafia78.toBoolean)((0, import_kolmafia78.getProperty)("_epicMcTwistUsed"))) {
+  if (enemy === $monster`mountain man` && (0, import_kolmafia78.myDaycount)() === 1 && !auto_turbo() && canUse($skill`Do an epic McTwist!`) && !(0, import_kolmafia78.toBoolean)((0, import_kolmafia78.getProperty)("_epicMcTwistUsed"))) {
     handleTracker$1(
       enemy.toString(),
       $skill`Do an epic McTwist!`.toString(),
       "auto_otherstuff"
     );
-    return useSkill$2($skill`Do an epic McTwist!`);
+    return auto_useSkill($skill`Do an epic McTwist!`);
   }
   if (auto_wantToShrunkenHead(enemy)) {
     handleTracker$1(
@@ -5088,13 +5088,13 @@ function auto_combatDefaultStage2(round_1, enemy, text) {
       $skill`Prepare to reanimate your Foe`.toString(),
       "auto_otherstuff"
     );
-    return useSkill$2($skill`Prepare to reanimate your Foe`);
+    return auto_useSkill($skill`Prepare to reanimate your Foe`);
   }
   var douse = $skill`Douse Foe`;
   var isDouseTarget = wantToDouse(enemy) && round_1 < maxRoundsToDouse(enemy) - 1;
-  var douseAvailable = canUse$1(douse, false) && auto_dousesRemaining() > 0;
+  var douseAvailable = canUse(douse, false) && auto_dousesRemaining() > 0;
   var willDouse = isDouseTarget && douseAvailable;
-  var swoopAvailable = canUse$1($skill`Swoop like a Bat`, true) && (0, import_kolmafia78.toInt)((0, import_kolmafia78.getProperty)("_batWingsSwoopUsed")) < 11;
+  var swoopAvailable = canUse($skill`Swoop like a Bat`, true) && (0, import_kolmafia78.toInt)((0, import_kolmafia78.getProperty)("_batWingsSwoopUsed")) < 11;
   var willSwoop = auto_swoopLocations().has((0, import_kolmafia78.myLocation)()) && swoopAvailable;
   if ((!combat_status_check("yellowray") && auto_wantToYellowRay(enemy, (0, import_kolmafia78.myLocation)()) || combat_status_check("droptablereplaced")) && !willDouse && !willSwoop) {
     var combatAction = yellowRayCombatString(
@@ -5124,7 +5124,7 @@ function auto_combatDefaultStage2(round_1, enemy, text) {
           "red"
         );
       }
-      if (combatAction === useSkill$1($skill`Asdon Martin: Missile Launcher`, false)) {
+      if (combatAction === auto_useSkill($skill`Asdon Martin: Missile Launcher`, false)) {
         (0, import_kolmafia78.setProperty)("_missileLauncherUsed", true.toString());
       }
       return combatAction;
@@ -5133,19 +5133,19 @@ function auto_combatDefaultStage2(round_1, enemy, text) {
     }
   }
   if ((0, import_kolmafia78.toBoolean)((0, import_kolmafia78.getProperty)("auto_useCleesh"))) {
-    if (canUse$2($skill`CLEESH`)) {
+    if (canUse($skill`CLEESH`)) {
       (0, import_kolmafia78.setProperty)("auto_useCleesh", false.toString());
-      return useSkill$2($skill`CLEESH`);
+      return auto_useSkill($skill`CLEESH`);
     }
   }
   if (wantToClubEmBackInTime((0, import_kolmafia78.myLocation)(), enemy)) {
-    if (canUse$2($skill`Club 'Em Back in Time`)) {
+    if (canUse($skill`Club 'Em Back in Time`)) {
       handleTracker$1(
         enemy.toString(),
         $skill`Club 'Em Back in Time`.toString(),
         "auto_instakill"
       );
-      return useSkill$2($skill`Club 'Em Back in Time`);
+      return auto_useSkill($skill`Club 'Em Back in Time`);
     }
   }
   if (wantToThrowGravel((0, import_kolmafia78.myLocation)(), enemy)) {
@@ -5437,38 +5437,38 @@ function auto_combatDefaultStage2(round_1, enemy, text) {
       wantFreeKillNowEspecially = true;
     }
     var reserveFreekills = (0, import_kolmafia78.myAdventures)() >= 9 && !wantFreeKillNowEspecially && (waitForDesert || waitForCyrpt);
-    if (canUse$2($skill`Darts: Aim for the Bullseye`) && (0, import_kolmafia78.haveEffect)($effect`Everything Looks Red`) === 0 && dartELRcd() <= 40) {
+    if (canUse($skill`Darts: Aim for the Bullseye`) && (0, import_kolmafia78.haveEffect)($effect`Everything Looks Red`) === 0 && dartELRcd() <= 40) {
       (0, import_kolmafia78.setProperty)("auto_instakillSource", "darts bullseye");
       (0, import_kolmafia78.setProperty)("auto_instakillSuccess", true.toString());
       loopHandlerDelayAll();
-      return useSkill$2($skill`Darts: Aim for the Bullseye`);
+      return auto_useSkill($skill`Darts: Aim for the Bullseye`);
     }
-    if (canUse$2($skill`Free-For-All`) && (0, import_kolmafia78.haveEffect)($effect`Everything Looks Red`) === 0 && (wantFreeKillNowEspecially || !reserveFreekills) && (0, import_kolmafia78.myMp)() > 80) {
+    if (canUse($skill`Free-For-All`) && (0, import_kolmafia78.haveEffect)($effect`Everything Looks Red`) === 0 && (wantFreeKillNowEspecially || !reserveFreekills) && (0, import_kolmafia78.myMp)() > 80) {
       handleTracker$1(
         enemy.toString(),
         $skill`Free-For-All`.toString(),
         "auto_instakill"
       );
       loopHandlerDelayAll();
-      return useSkill$2($skill`Free-For-All`);
+      return auto_useSkill($skill`Free-For-All`);
     }
-    if (canUse$2($skill`Lightning Strike`) && (wantFreeKillNowEspecially || !reserveFreekills || (0, import_kolmafia78.myLightning)() >= 60)) {
+    if (canUse($skill`Lightning Strike`) && (wantFreeKillNowEspecially || !reserveFreekills || (0, import_kolmafia78.myLightning)() >= 60)) {
       handleTracker$1(
         enemy.toString(),
         $skill`Lightning Strike`.toString(),
         "auto_instakill"
       );
       loopHandlerDelayAll();
-      return useSkill$2($skill`Lightning Strike`);
+      return auto_useSkill($skill`Lightning Strike`);
     }
     var z_kick = getZooKickInstaKill();
-    if (canUse$2(z_kick)) {
+    if (canUse(z_kick)) {
       (0, import_kolmafia78.setProperty)("auto_instakillSource", "zootomist kick");
       (0, import_kolmafia78.setProperty)("auto_instakillSuccess", true.toString());
       loopHandlerDelayAll();
-      return useSkill$2(z_kick);
+      return auto_useSkill(z_kick);
     }
-    if (canUse$2($skill`Chest X-Ray`) && auto_chestXraysRemaining() > 0) {
+    if (canUse($skill`Chest X-Ray`) && auto_chestXraysRemaining() > 0) {
       if (wantFreeKillNowEspecially || !reserveFreekills || inAftercore() || (0, import_kolmafia78.myDaycount)() >= 3) {
         handleTracker$1(
           enemy.toString(),
@@ -5476,17 +5476,17 @@ function auto_combatDefaultStage2(round_1, enemy, text) {
           "auto_instakill"
         );
         loopHandlerDelayAll();
-        return useSkill$2($skill`Chest X-Ray`);
+        return auto_useSkill($skill`Chest X-Ray`);
       }
     }
-    if (canUse$2($skill`Fire the Jokester's Gun`) && auto_jokesterGunFreeKillAvailable() && (wantFreeKillNowEspecially || !reserveFreekills)) {
+    if (canUse($skill`Fire the Jokester's Gun`) && auto_jokesterGunFreeKillAvailable() && (wantFreeKillNowEspecially || !reserveFreekills)) {
       handleTracker$1(
         enemy.toString(),
         $skill`Fire the Jokester's Gun`.toString(),
         "auto_instakill"
       );
       loopHandlerDelayAll();
-      return useSkill$2($skill`Fire the Jokester's Gun`);
+      return auto_useSkill($skill`Fire the Jokester's Gun`);
     }
     if (auto_wantToBCZ($skill`BCZ: Sweat Bullets`) && (wantFreeKillNowEspecially || !reserveFreekills)) {
       handleTracker$1(
@@ -5495,9 +5495,9 @@ function auto_combatDefaultStage2(round_1, enemy, text) {
         "auto_instakill"
       );
       loopHandlerDelayAll();
-      return useSkill$2($skill`BCZ: Sweat Bullets`);
+      return auto_useSkill($skill`BCZ: Sweat Bullets`);
     }
-    if (canUse$2($skill`Shattering Punch`) && (0, import_kolmafia78.toInt)((0, import_kolmafia78.getProperty)("_shatteringPunchUsed")) < 3 && !reserveFreekills) {
+    if (canUse($skill`Shattering Punch`) && (0, import_kolmafia78.toInt)((0, import_kolmafia78.getProperty)("_shatteringPunchUsed")) < 3 && !reserveFreekills) {
       if (!wantFreeKillNowEspecially && (0, import_kolmafia78.myDaycount)() === 1 && (0, import_kolmafia78.myTurncount)() < 100 && (0, import_kolmafia78.myMp)() < 80) {
       } else {
         handleTracker$1(
@@ -5506,19 +5506,19 @@ function auto_combatDefaultStage2(round_1, enemy, text) {
           "auto_instakill"
         );
         loopHandlerDelayAll();
-        return useSkill$2($skill`Shattering Punch`);
+        return auto_useSkill($skill`Shattering Punch`);
       }
     }
-    if (canUse$2($skill`Gingerbread Mob Hit`) && !(0, import_kolmafia78.toBoolean)((0, import_kolmafia78.getProperty)("_gingerbreadMobHitUsed")) && !reserveFreekills && (0, import_kolmafia78.myMp)() > 50) {
+    if (canUse($skill`Gingerbread Mob Hit`) && !(0, import_kolmafia78.toBoolean)((0, import_kolmafia78.getProperty)("_gingerbreadMobHitUsed")) && !reserveFreekills && (0, import_kolmafia78.myMp)() > 50) {
       handleTracker$1(
         enemy.toString(),
         $skill`Gingerbread Mob Hit`.toString(),
         "auto_instakill"
       );
       loopHandlerDelayAll();
-      return useSkill$2($skill`Gingerbread Mob Hit`);
+      return auto_useSkill($skill`Gingerbread Mob Hit`);
     }
-    if (canUse$4($item`replica bat-oomerang`) && !reserveFreekills) {
+    if (canUse$3($item`replica bat-oomerang`) && !reserveFreekills) {
       if ((0, import_kolmafia78.toInt)((0, import_kolmafia78.getProperty)("auto_batoomerangDay")) !== (0, import_kolmafia78.myDaycount)()) {
         (0, import_kolmafia78.setProperty)("auto_batoomerangDay", (0, import_kolmafia78.myDaycount)().toString());
         (0, import_kolmafia78.setProperty)("auto_batoomerangUse", 0 .toString());
@@ -5537,7 +5537,7 @@ function auto_combatDefaultStage2(round_1, enemy, text) {
         return useItem$1($item`replica bat-oomerang`);
       }
     }
-    if (canUse$4($item`shadow brick`) && (0, import_kolmafia78.toInt)((0, import_kolmafia78.getProperty)("_shadowBricksUsed")) < 13 && !reserveFreekills) {
+    if (canUse$3($item`shadow brick`) && (0, import_kolmafia78.toInt)((0, import_kolmafia78.getProperty)("_shadowBricksUsed")) < 13 && !reserveFreekills) {
       handleTracker$1(
         enemy.toString(),
         $item`shadow brick`.toString(),
@@ -5547,17 +5547,17 @@ function auto_combatDefaultStage2(round_1, enemy, text) {
       return useItems$1($item`shadow brick`, import_kolmafia78.Item.none);
     }
   }
-  if (canUse$2($skill`Slay the Dead`) && enemy.phylum === $phylum`undead`) {
-    return useSkill$2($skill`Slay the Dead`);
+  if (canUse($skill`Slay the Dead`) && enemy.phylum === $phylum`undead`) {
+    return auto_useSkill($skill`Slay the Dead`);
   }
-  if (canUse$4($item`exploding cigar`) && haveUsed($skill`Duplicate`)) {
+  if (canUse$3($item`exploding cigar`) && haveUsed($skill`Duplicate`)) {
     return useItem$1($item`exploding cigar`);
   }
-  if (canUse$2($skill`Slaughter`) && (0, import_kolmafia78.haveEffect)($effect`Everything Looks Red`) === 0) {
+  if (canUse($skill`Slaughter`) && (0, import_kolmafia78.haveEffect)($effect`Everything Looks Red`) === 0) {
     (0, import_kolmafia78.setProperty)("auto_instakillSource", "slaughter");
     (0, import_kolmafia78.setProperty)("auto_instakillSuccess", true.toString());
     loopHandlerDelayAll();
-    return useSkill$2($skill`Slaughter`);
+    return auto_useSkill($skill`Slaughter`);
   }
   return "";
 }
@@ -5568,23 +5568,23 @@ var import_kolmafia80 = require("kolmafia");
 // src/autoscend/combat/auto_combat_zombie_slayer.ts
 var import_kolmafia79 = require("kolmafia");
 function wantBearHug(enemy) {
-  return canUse$2($skill`Bear Hug`) && (0, import_kolmafia79.toInt)((0, import_kolmafia79.getProperty)("_bearHugs")) < 10 && !enemy.boss && !(0, import_kolmafia79.containsText)(enemy.attributes, "FREE") && enemy.group > 1;
+  return canUse($skill`Bear Hug`) && (0, import_kolmafia79.toInt)((0, import_kolmafia79.getProperty)("_bearHugs")) < 10 && !enemy.boss && !(0, import_kolmafia79.containsText)(enemy.attributes, "FREE") && enemy.group > 1;
 }
 function wantKodiakMoment(enemy) {
-  return canUse$2($skill`Kodiak Moment`) && enemy.physicalResistance >= 80;
+  return canUse($skill`Kodiak Moment`) && enemy.physicalResistance >= 80;
 }
 function auto_combatZombieSlayerStage3(round_1, enemy, text) {
   if (!in_zombieSlayer()) {
     return "";
   }
-  if (canUse$2($skill`Infectious Bite`) && canSurvive$1(4)) {
-    return useSkill$2($skill`Infectious Bite`);
+  if (canUse($skill`Infectious Bite`) && canSurvive$1(4)) {
+    return auto_useSkill($skill`Infectious Bite`);
   }
-  if (canUse$2($skill`Meat Shields`) && enemy.boss && canSurvive$1(4)) {
-    return useSkill$2($skill`Meat Shields`);
+  if (canUse($skill`Meat Shields`) && enemy.boss && canSurvive$1(4)) {
+    return auto_useSkill($skill`Meat Shields`);
   }
-  if (canUse$2($skill`Bear-ly Legal`) && !wantBearHug(enemy) && !wantKodiakMoment(enemy)) {
-    return useSkill$2($skill`Bear-ly Legal`);
+  if (canUse($skill`Bear-ly Legal`) && !wantBearHug(enemy) && !wantKodiakMoment(enemy)) {
+    return auto_useSkill($skill`Bear-ly Legal`);
   }
   return "";
 }
@@ -5592,7 +5592,7 @@ function auto_combatZombieSlayerStage4(round_1, enemy, text) {
   if (!in_zombieSlayer()) {
     return "";
   }
-  if (canUse$2($skill`Smash & Graaagh`) && (0, import_kolmafia79.toInt)((0, import_kolmafia79.getProperty)("_zombieSmashPocketsUsed")) < 30 && canSurvive$1(2)) {
+  if (canUse($skill`Smash & Graaagh`) && (0, import_kolmafia79.toInt)((0, import_kolmafia79.getProperty)("_zombieSmashPocketsUsed")) < 30 && canSurvive$1(2)) {
     var doSmash = false;
     if (enemy === $monster`Big Wheelin' Twins` && !possessEquipment($item`badge of authority`)) {
       doSmash = true;
@@ -5693,7 +5693,7 @@ function auto_combatZombieSlayerStage4(round_1, enemy, text) {
         $skill`Smash & Graaagh`.toString(),
         "auto_otherstuff"
       );
-      return useSkill$2($skill`Smash & Graaagh`);
+      return auto_useSkill($skill`Smash & Graaagh`);
     }
   }
   return "";
@@ -5703,16 +5703,16 @@ function auto_combatZombieSlayerStage5(round_1, enemy, text) {
     return "";
   }
   if (wantBearHug(enemy)) {
-    return useSkill$2($skill`Bear Hug`);
+    return auto_useSkill($skill`Bear Hug`);
   }
   if (round_1 < 20 && canSurvive$1(5) && auto_have_skill($skill`Plague Claws`) && enemy.physicalResistance < 80) {
-    return useSkill$2($skill`Plague Claws`);
+    return auto_useSkill($skill`Plague Claws`);
   }
   if (wantKodiakMoment(enemy)) {
-    return useSkill$2($skill`Kodiak Moment`);
+    return auto_useSkill($skill`Kodiak Moment`);
   }
-  if (canUse$2($skill`Bilious Burst`) && enemy.physicalResistance >= 80) {
-    return useSkill$2($skill`Bilious Burst`);
+  if (canUse($skill`Bilious Burst`) && enemy.physicalResistance >= 80) {
+    return auto_useSkill($skill`Bilious Burst`);
   }
   return "";
 }
@@ -5738,19 +5738,19 @@ function auto_combatDefaultStage3(round_1, enemy, text) {
   if (retval !== "") {
     return retval;
   }
-  if (canUse$2($skill`Bad Medicine`) && (0, import_kolmafia80.myMp)() >= 3 * (0, import_kolmafia80.mpCost)($skill`Bad Medicine`)) {
-    return useSkill$2($skill`Bad Medicine`);
+  if (canUse($skill`Bad Medicine`) && (0, import_kolmafia80.myMp)() >= 3 * (0, import_kolmafia80.mpCost)($skill`Bad Medicine`)) {
+    return auto_useSkill($skill`Bad Medicine`);
   }
-  if (canUse$2($skill`Intimidating Bellow`) && (0, import_kolmafia80.expectedDamage)() > 0 && !enemyCanBlocksSkills()) {
-    return useSkill$2($skill`Intimidating Bellow`);
+  if (canUse($skill`Intimidating Bellow`) && (0, import_kolmafia80.expectedDamage)() > 0 && !enemyCanBlocksSkills()) {
+    return auto_useSkill($skill`Intimidating Bellow`);
   }
   var enemy_la = (0, import_kolmafia80.monsterLevelAdjustment)();
-  if (canUse$2($skill`Tunnel Downwards`) && (0, import_kolmafia80.haveEffect)($effect`Shape of...Mole!`) > 0 && (0, import_kolmafia80.myLocation)() === $location`Mt. Molehill`) {
-    return useSkill$2($skill`Tunnel Downwards`);
+  if (canUse($skill`Tunnel Downwards`) && (0, import_kolmafia80.haveEffect)($effect`Shape of...Mole!`) > 0 && (0, import_kolmafia80.myLocation)() === $location`Mt. Molehill`) {
+    return auto_useSkill($skill`Tunnel Downwards`);
   }
-  if (canUse$2($skill`Emit Matter Duplicating Drones`) && (0, import_kolmafia80.myFamiliar)() === $familiar`Grey Goose`) {
+  if (canUse($skill`Emit Matter Duplicating Drones`) && (0, import_kolmafia80.myFamiliar)() === $familiar`Grey Goose`) {
     var emitDrones = false;
-    var canExtingo = auto_fireExtinguisherCharges() > 30 && canUse$1($skill`Fire Extinguisher: Polar Vortex`, false);
+    var canExtingo = auto_fireExtinguisherCharges() > 30 && canUse($skill`Fire Extinguisher: Polar Vortex`, false);
     var drones = gooseExpectedDrones() >= 1;
     if ($item`sonar-in-a-biscuit`.toString() in (0, import_kolmafia80.itemDrops)(enemy) && (0, import_kolmafia80.itemDrops)(enemy).size <= 2 && internalQuestStatus("questL04Bat") <= 1 && drones) {
       emitDrones = true;
@@ -5801,10 +5801,10 @@ function auto_combatDefaultStage3(round_1, enemy, text) {
         $skill`Emit Matter Duplicating Drones`.toString(),
         "auto_otherstuff"
       );
-      return useSkill$2($skill`Emit Matter Duplicating Drones`);
+      return auto_useSkill($skill`Emit Matter Duplicating Drones`);
     }
   }
-  if (canUse$2($skill`Hugs and Kisses!`) && (0, import_kolmafia80.myFamiliar)() === $familiar`XO Skeleton` && (0, import_kolmafia80.toInt)((0, import_kolmafia80.getProperty)("_xoHugsUsed")) < 11) {
+  if (canUse($skill`Hugs and Kisses!`) && (0, import_kolmafia80.myFamiliar)() === $familiar`XO Skeleton` && (0, import_kolmafia80.toInt)((0, import_kolmafia80.getProperty)("_xoHugsUsed")) < 11) {
     var forceDrop = false;
     if ($monsters`filthworm drone, filthworm royal guard, larval filthworm`.includes(
       enemy
@@ -5833,28 +5833,28 @@ function auto_combatDefaultStage3(round_1, enemy, text) {
         $skill`Hugs and Kisses!`.toString(),
         "auto_otherstuff"
       );
-      return useSkill$2($skill`Hugs and Kisses!`);
+      return auto_useSkill($skill`Hugs and Kisses!`);
     }
   }
   if (wantToDouse(enemy) && round_1 <= maxRoundsToDouse(enemy) && !(0, import_kolmafia80.toBoolean)((0, import_kolmafia80.getProperty)("_douseFoeSuccess"))) {
     var douse = $skill`Douse Foe`;
-    var douseAvailable = canUse$1(douse, false) && auto_dousesRemaining() > 0;
+    var douseAvailable = canUse(douse, false) && auto_dousesRemaining() > 0;
     if (douseAvailable) {
       handleTracker$1(enemy.toString(), douse.toString(), "auto_otherstuff");
-      return useSkill$2(douse);
+      return auto_useSkill(douse);
     }
   }
   if (wantToForceDrop(enemy)) {
-    var polarVortexAvailable = canUse$1($skill`Fire Extinguisher: Polar Vortex`, false) && auto_fireExtinguisherCharges() > 10;
-    var mildEvilAvailable = canUse$1($skill`Perpetrate Mild Evil`, false) && (0, import_kolmafia80.toInt)((0, import_kolmafia80.getProperty)("_mildEvilPerpetrated")) < 3;
-    var swoopAvailable = canUse$1($skill`Swoop like a Bat`, true) && (0, import_kolmafia80.toInt)((0, import_kolmafia80.getProperty)("_batWingsSwoopUsed")) < 11;
+    var polarVortexAvailable = canUse($skill`Fire Extinguisher: Polar Vortex`, false) && auto_fireExtinguisherCharges() > 10;
+    var mildEvilAvailable = canUse($skill`Perpetrate Mild Evil`, false) && (0, import_kolmafia80.toInt)((0, import_kolmafia80.getProperty)("_mildEvilPerpetrated")) < 3;
+    var swoopAvailable = canUse($skill`Swoop like a Bat`, true) && (0, import_kolmafia80.toInt)((0, import_kolmafia80.getProperty)("_batWingsSwoopUsed")) < 11;
     if (swoopAvailable) {
       handleTracker$1(
         enemy.toString(),
         $skill`Swoop like a Bat`.toString(),
         "auto_otherstuff"
       );
-      return useSkill$2($skill`Swoop like a Bat`);
+      return auto_useSkill($skill`Swoop like a Bat`);
     }
     if (mildEvilAvailable) {
       handleTracker$1(
@@ -5862,7 +5862,7 @@ function auto_combatDefaultStage3(round_1, enemy, text) {
         $skill`Perpetrate Mild Evil`.toString(),
         "auto_otherstuff"
       );
-      return useSkill$2($skill`Perpetrate Mild Evil`);
+      return auto_useSkill($skill`Perpetrate Mild Evil`);
     }
     if (polarVortexAvailable) {
       handleTracker$1(
@@ -5870,7 +5870,7 @@ function auto_combatDefaultStage3(round_1, enemy, text) {
         $skill`Fire Extinguisher: Polar Vortex`.toString(),
         "auto_otherstuff"
       );
-      return useSkill$2($skill`Fire Extinguisher: Polar Vortex`);
+      return auto_useSkill($skill`Fire Extinguisher: Polar Vortex`);
     }
   }
   var doWeaksauce = true;
@@ -5883,8 +5883,8 @@ function auto_combatDefaultStage3(round_1, enemy, text) {
   if (enemy === $monster`invader bullet`) {
     doWeaksauce = false;
   }
-  if (canUse$2($skill`Curse of Weaksauce`) && (0, import_kolmafia80.haveSkill)($skill`Itchy Curse Finger`) && (0, import_kolmafia80.myMp)() >= 60 && doWeaksauce) {
-    return useSkill$2($skill`Curse of Weaksauce`);
+  if (canUse($skill`Curse of Weaksauce`) && (0, import_kolmafia80.haveSkill)($skill`Itchy Curse Finger`) && (0, import_kolmafia80.myMp)() >= 60 && doWeaksauce) {
+    return auto_useSkill($skill`Curse of Weaksauce`);
   }
   if (enemy === $monster`Eldritch Tentacle`) {
     enemy_la = 151;
@@ -5901,38 +5901,38 @@ function auto_combatDefaultStage3(round_1, enemy, text) {
     enemy_la = 151;
   }
   if (enemy_la <= 150) {
-    if (canUse$2($skill`Curse of Weaksauce`) && (0, import_kolmafia80.haveSkill)($skill`Itchy Curse Finger`) && (0, import_kolmafia80.myMp)() >= 60 && doWeaksauce) {
-      return useSkill$2($skill`Curse of Weaksauce`);
+    if (canUse($skill`Curse of Weaksauce`) && (0, import_kolmafia80.haveSkill)($skill`Itchy Curse Finger`) && (0, import_kolmafia80.myMp)() >= 60 && doWeaksauce) {
+      return auto_useSkill($skill`Curse of Weaksauce`);
     }
     if ((0, import_kolmafia80.monsterHp)() > 1500 || enemy.physicalResistance > 90) {
-      if (canUse$2($skill`Surprisingly Sweet Slash`) && auto_remainingCandyCaneSlashes() > 1) {
-        return useSkill$2($skill`Surprisingly Sweet Slash`);
+      if (canUse($skill`Surprisingly Sweet Slash`) && auto_remainingCandyCaneSlashes() > 1) {
+        return auto_useSkill($skill`Surprisingly Sweet Slash`);
       }
-      if (canUse$4($item`autumnic bomb`)) {
+      if (canUse$3($item`autumnic bomb`)) {
         return useItem$1($item`autumnic bomb`);
       }
     }
-    if (canUse$2($skill`Surprisingly Sweet Slash`) && !in_avantGuard() && auto_remainingCandyCaneSlashes() > 1) {
-      return useSkill$2($skill`Surprisingly Sweet Slash`);
+    if (canUse($skill`Surprisingly Sweet Slash`) && !in_avantGuard() && auto_remainingCandyCaneSlashes() > 1) {
+      return auto_useSkill($skill`Surprisingly Sweet Slash`);
     }
-    if (canUse$2($skill`Loofah Lei Lasso`)) {
-      return useSkill$2($skill`Loofah Lei Lasso`);
+    if (canUse($skill`Loofah Lei Lasso`)) {
+      return auto_useSkill($skill`Loofah Lei Lasso`);
     }
     if ($item`Daily Affirmation: Keep Free Hate in your Heart`.combat) {
-      if (canUse$4($item`Daily Affirmation: Keep Free Hate in your Heart`) && inAftercore() && (0, import_kolmafia80.hippyStoneBroken)() && !(0, import_kolmafia80.toBoolean)((0, import_kolmafia80.getProperty)("_affirmationHateUsed"))) {
+      if (canUse$3($item`Daily Affirmation: Keep Free Hate in your Heart`) && inAftercore() && (0, import_kolmafia80.hippyStoneBroken)() && !(0, import_kolmafia80.toBoolean)((0, import_kolmafia80.getProperty)("_affirmationHateUsed"))) {
         return useItem$1(
           $item`Daily Affirmation: Keep Free Hate in your Heart`
         );
       }
     }
-    if (canUse$2($skill`Canhandle`)) {
+    if (canUse($skill`Canhandle`)) {
       if ($items`Frigid Northern Beans, Heimz Fortified Kidney Beans, Hellfire Spicy Beans, Mixed Garbanzos and Chickpeas, Pork 'n' Pork 'n' Pork 'n' Beans, Shrub's Premium Baked Beans, Tesla's Electroplated Beans, Trader Olaf's Exotic Stinkbeans, World's Blackest-Eyed Peas`.includes(
         (0, import_kolmafia80.equippedItem)($slot`off-hand`)
       )) {
-        return useSkill$2($skill`Canhandle`);
+        return auto_useSkill($skill`Canhandle`);
       }
     }
-    if (canUse$2($skill`Curse of Weaksauce`) && (0, import_kolmafia80.myClass)() === $class`Sauceror` && doWeaksauce) {
+    if (canUse($skill`Curse of Weaksauce`) && (0, import_kolmafia80.myClass)() === $class`Sauceror` && doWeaksauce) {
       var MPafterWeaksauce = (0, import_kolmafia80.myMp)() - (0, import_kolmafia80.mpCost)($skill`Curse of Weaksauce`);
       var canCastAfterWeaksauce = false;
       var _iterator = _createForOfIteratorHelper(
@@ -5941,7 +5941,7 @@ function auto_combatDefaultStage3(round_1, enemy, text) {
       try {
         for (_iterator.s(); !(_step = _iterator.n()).done; ) {
           var sp = _step.value;
-          if (canUse$1(sp, false) && MPafterWeaksauce >= (0, import_kolmafia80.mpCost)(sp)) {
+          if (canUse(sp, false) && MPafterWeaksauce >= (0, import_kolmafia80.mpCost)(sp)) {
             canCastAfterWeaksauce = true;
             break;
           }
@@ -5952,36 +5952,36 @@ function auto_combatDefaultStage3(round_1, enemy, text) {
         _iterator.f();
       }
       if (!canCastAfterWeaksauce) {
-        if (canUse$1($skill`Wave of Sauce`, false) && (0, import_kolmafia80.monsterElement)(enemy) !== $element`hot` && MPafterWeaksauce >= (0, import_kolmafia80.mpCost)($skill`Wave of Sauce`)) {
+        if (canUse($skill`Wave of Sauce`, false) && (0, import_kolmafia80.monsterElement)(enemy) !== $element`hot` && MPafterWeaksauce >= (0, import_kolmafia80.mpCost)($skill`Wave of Sauce`)) {
           canCastAfterWeaksauce = true;
-        } else if (canUse$1($skill`Saucecicle`, false) && (0, import_kolmafia80.monsterElement)(enemy) !== $element`cold` && MPafterWeaksauce >= (0, import_kolmafia80.mpCost)($skill`Saucecicle`)) {
+        } else if (canUse($skill`Saucecicle`, false) && (0, import_kolmafia80.monsterElement)(enemy) !== $element`cold` && MPafterWeaksauce >= (0, import_kolmafia80.mpCost)($skill`Saucecicle`)) {
           canCastAfterWeaksauce = true;
         }
       }
       if (canCastAfterWeaksauce) {
-        return useSkill$2($skill`Curse of Weaksauce`);
+        return auto_useSkill($skill`Curse of Weaksauce`);
       }
     }
-    if (canUse$2($skill`Detect Weakness`)) {
-      return useSkill$2($skill`Detect Weakness`);
+    if (canUse($skill`Detect Weakness`)) {
+      return auto_useSkill($skill`Detect Weakness`);
     }
-    if (canUse$2($skill`Deploy Robo-Handcuffs`)) {
-      return useSkill$2($skill`Deploy Robo-Handcuffs`);
+    if (canUse($skill`Deploy Robo-Handcuffs`)) {
+      return auto_useSkill($skill`Deploy Robo-Handcuffs`);
     }
-    if (canUse$2($skill`Pocket Crumbs`)) {
-      return useSkill$2($skill`Pocket Crumbs`);
+    if (canUse($skill`Pocket Crumbs`)) {
+      return auto_useSkill($skill`Pocket Crumbs`);
     }
-    if (canUse$2($skill`Micrometeorite`)) {
-      return useSkill$2($skill`Micrometeorite`);
+    if (canUse($skill`Micrometeorite`)) {
+      return auto_useSkill($skill`Micrometeorite`);
     }
-    if (canUse$4($item`cow poker`)) {
+    if (canUse$3($item`cow poker`)) {
       if ($monsters`caugr, moomy, Pharaoh Amoon-Ra Cowtep, pyrobove, spidercow`.includes(
         enemy
       )) {
         return useItem$1($item`cow poker`);
       }
     }
-    if (canUse$4($item`western-style skinning knife`)) {
+    if (canUse$3($item`western-style skinning knife`)) {
       if ($monsters`caugr, coal snake, diamondback rattler, frontwinder, grizzled bear, mountain lion`.includes(
         enemy
       )) {
@@ -5989,49 +5989,49 @@ function auto_combatDefaultStage3(round_1, enemy, text) {
       }
     }
     if ((0, import_kolmafia80.myLocation)() === $location`The Smut Orc Logging Camp` && canSurvive$1(1) && (0, import_kolmafia80.toInt)((0, import_kolmafia80.getProperty)("chasmBridgeProgress")) < bridgeGoal()) {
-      var coldMortarShell = canUse$2($skill`Stuffed Mortar Shell`) && (0, import_kolmafia80.haveEffect)($effect`Spirit of Peppermint`) !== 0;
+      var coldMortarShell = canUse($skill`Stuffed Mortar Shell`) && (0, import_kolmafia80.haveEffect)($effect`Spirit of Peppermint`) !== 0;
       var coldSkillToUse = import_kolmafia80.Skill.none;
       var coldAttackDamageMultiplier = 1;
       if ((0, import_kolmafia80.myClass)() === $class`Seal Clubber`) {
-        if (canUse$1($skill`Lunging Thrust-Smack`, false)) {
+        if (canUse($skill`Lunging Thrust-Smack`, false)) {
           coldAttackDamageMultiplier = 3;
-        } else if (canUse$1($skill`Thrust-Smack`, false)) {
+        } else if (canUse($skill`Thrust-Smack`, false)) {
           coldAttackDamageMultiplier = 2;
         }
       }
       var coldAttackDamage = (0, import_kolmafia80.toInt)(
         (0, import_kolmafia80.numericModifier)("cold damage") * coldAttackDamageMultiplier
       );
-      if (canUse$1($skill`Saucegeyser`, false) && (0, import_kolmafia80.numericModifier)("Cold Spell Damage") > (0, import_kolmafia80.numericModifier)("Hot Spell Damage")) {
+      if (canUse($skill`Saucegeyser`, false) && (0, import_kolmafia80.numericModifier)("Cold Spell Damage") > (0, import_kolmafia80.numericModifier)("Hot Spell Damage")) {
         coldSkillToUse = $skill`Saucegeyser`;
-      } else if (canUse$1($skill`Saucecicle`, false)) {
+      } else if (canUse($skill`Saucecicle`, false)) {
         coldSkillToUse = $skill`Saucecicle`;
-      } else if (canUse$1($skill`Cannelloni Cannon`, false) && (0, import_kolmafia80.haveEffect)($effect`Spirit of Peppermint`) !== 0) {
+      } else if (canUse($skill`Cannelloni Cannon`, false) && (0, import_kolmafia80.haveEffect)($effect`Spirit of Peppermint`) !== 0) {
         coldSkillToUse = $skill`Cannelloni Cannon`;
-      } else if (canUse$1($skill`Northern Explosion`, false) && !auto_canNorthernExplosionFE()) {
+      } else if (canUse($skill`Northern Explosion`, false) && !auto_canNorthernExplosionFE()) {
         coldSkillToUse = $skill`Northern Explosion`;
-      } else if ((0, import_kolmafia80.monsterLevelAdjustment)() < -65 && canUse$1($skill`Saucestorm`, false)) {
+      } else if ((0, import_kolmafia80.monsterLevelAdjustment)() < -65 && canUse($skill`Saucestorm`, false)) {
         coldSkillToUse = $skill`Saucestorm`;
       } else if (coldAttackDamage > 3 * (0, import_kolmafia80.max)(1, 69 + (0, import_kolmafia80.monsterLevelAdjustment)())) {
         if ((0, import_kolmafia80.myClass)() === $class`Seal Clubber`) {
-          if (canUse$1($skill`Lunging Thrust-Smack`, false)) {
+          if (canUse($skill`Lunging Thrust-Smack`, false)) {
             coldSkillToUse = $skill`Lunging Thrust-Smack`;
-          } else if (canUse$1($skill`Thrust-Smack`, false)) {
+          } else if (canUse($skill`Thrust-Smack`, false)) {
             coldSkillToUse = $skill`Thrust-Smack`;
-          } else if (canUse$1($skill`Lunge Smack`, false)) {
+          } else if (canUse($skill`Lunge Smack`, false)) {
             coldSkillToUse = $skill`Lunge Smack`;
           }
         }
-      } else if (canUse$1($skill`Saucegeyser`, false) && (0, import_kolmafia80.numericModifier)("Cold Spell Damage") === (0, import_kolmafia80.numericModifier)("Hot Spell Damage")) {
+      } else if (canUse($skill`Saucegeyser`, false) && (0, import_kolmafia80.numericModifier)("Cold Spell Damage") === (0, import_kolmafia80.numericModifier)("Hot Spell Damage")) {
         coldSkillToUse = $skill`Saucegeyser`;
-      } else if (in_nuclear() && canUse$1($skill`Throat Refrigerant`, false)) {
+      } else if (in_nuclear() && canUse($skill`Throat Refrigerant`, false)) {
         coldSkillToUse = $skill`Throat Refrigerant`;
       }
       var MPreservedForColdSpells = coldMortarShell ? (0, import_kolmafia80.mpCost)($skill`Stuffed Mortar Shell`) : 0;
       if (coldSkillToUse !== import_kolmafia80.Skill.none) {
         MPreservedForColdSpells += (0, import_kolmafia80.mpCost)(coldSkillToUse);
       }
-      if (canUse$1($skill`Gallapagosian Mating Call`, false) && (0, import_kolmafia80.myMp)() >= MPreservedForColdSpells + (0, import_kolmafia80.mpCost)($skill`Gallapagosian Mating Call`)) {
+      if (canUse($skill`Gallapagosian Mating Call`, false) && (0, import_kolmafia80.myMp)() >= MPreservedForColdSpells + (0, import_kolmafia80.mpCost)($skill`Gallapagosian Mating Call`)) {
         var useMiniSniff = false;
         var sniffedLumber = isSniffed$1($monster`smut orc pipelayer`) || isSniffed$1($monster`smut orc jacker`);
         var sniffedFastener = isSniffed$1($monster`smut orc screwer`) || isSniffed$1($monster`smut orc nailer`);
@@ -6068,36 +6068,36 @@ function auto_combatDefaultStage3(round_1, enemy, text) {
             $skill`Gallapagosian Mating Call`.toString(),
             "auto_sniffs"
           );
-          return useSkill$1($skill`Gallapagosian Mating Call`, false);
+          return auto_useSkill($skill`Gallapagosian Mating Call`, false);
         }
       }
       if (coldMortarShell) {
-        return useSkill$2($skill`Stuffed Mortar Shell`);
+        return auto_useSkill($skill`Stuffed Mortar Shell`);
       } else if (coldSkillToUse !== import_kolmafia80.Skill.none) {
-        return useSkill$1(coldSkillToUse, false);
+        return auto_useSkill(coldSkillToUse, false);
       } else if (!in_robot() && $classes`Seal Clubber, Turtle Tamer, Pastamancer, Sauceror, Disco Bandit, Accordion Thief`.includes(
         (0, import_kolmafia80.myClass)()
       )) {
         if (coldAttackDamage > 69 + (0, import_kolmafia80.monsterLevelAdjustment)() && coldAttackDamage > 0) {
           if ((0, import_kolmafia80.myClass)() === $class`Seal Clubber`) {
-            if (canUse$1($skill`Lunging Thrust-Smack`, false)) {
-              return useSkill$1($skill`Lunging Thrust-Smack`, false);
-            } else if (canUse$1($skill`Thrust-Smack`, false)) {
-              return useSkill$1($skill`Thrust-Smack`, false);
-            } else if (canUse$1($skill`Lunge Smack`, false)) {
-              return useSkill$1($skill`Lunge Smack`, false);
+            if (canUse($skill`Lunging Thrust-Smack`, false)) {
+              return auto_useSkill($skill`Lunging Thrust-Smack`, false);
+            } else if (canUse($skill`Thrust-Smack`, false)) {
+              return auto_useSkill($skill`Thrust-Smack`, false);
+            } else if (canUse($skill`Lunge Smack`, false)) {
+              return auto_useSkill($skill`Lunge Smack`, false);
             } else {
               return "attack with weapon";
             }
           } else {
             return "attack with weapon";
           }
-        } else if ((0, import_kolmafia80.monsterLevelAdjustment)() <= -25 && canUse$1($skill`Saucestorm`, false)) {
+        } else if ((0, import_kolmafia80.monsterLevelAdjustment)() <= -25 && canUse($skill`Saucestorm`, false)) {
           auto_log_warning(
             "None of the best [cold] skills available against smut orcs but trying weaker alternative in view of the negative monster level.",
             "red"
           );
-          return useSkill$1($skill`Saucestorm`, false);
+          return auto_useSkill($skill`Saucestorm`, false);
         } else {
           auto_log_warning(
             "None of our preferred [cold] skills available against smut orcs. Engaging in Fisticuffs.",
@@ -6106,115 +6106,115 @@ function auto_combatDefaultStage3(round_1, enemy, text) {
         }
       }
     }
-    if ((0, import_kolmafia80.myLocation)() === $location`The Haunted Kitchen` && canUse$2($skill`Become a Cloud of Mist`) && (0, import_kolmafia80.toInt)((0, import_kolmafia80.getProperty)("_vampyreCloakeFormUses")) < 10) {
+    if ((0, import_kolmafia80.myLocation)() === $location`The Haunted Kitchen` && canUse($skill`Become a Cloud of Mist`) && (0, import_kolmafia80.toInt)((0, import_kolmafia80.getProperty)("_vampyreCloakeFormUses")) < 10) {
       var hot = (0, import_kolmafia80.toInt)((0, import_kolmafia80.numericModifier)("Hot Resistance"));
       var stench = (0, import_kolmafia80.toInt)((0, import_kolmafia80.numericModifier)("Stench Resistance"));
-      if ((hot < 9 && hot % 3 !== 0 || stench < 9 && stench % 3 !== 0) && canUse$2($skill`Become a Cloud of Mist`)) {
-        return useSkill$2($skill`Become a Cloud of Mist`);
+      if ((hot < 9 && hot % 3 !== 0 || stench < 9 && stench % 3 !== 0) && canUse($skill`Become a Cloud of Mist`)) {
+        return auto_useSkill($skill`Become a Cloud of Mist`);
       }
     }
-    if (enemy === $monster`dirty thieving brigand` && canUse$2($skill`Become a Wolf`) && (0, import_kolmafia80.toInt)((0, import_kolmafia80.getProperty)("_vampyreCloakeFormUses")) < 10) {
-      return useSkill$2($skill`Become a Wolf`);
+    if (enemy === $monster`dirty thieving brigand` && canUse($skill`Become a Wolf`) && (0, import_kolmafia80.toInt)((0, import_kolmafia80.getProperty)("_vampyreCloakeFormUses")) < 10) {
+      return auto_useSkill($skill`Become a Wolf`);
     }
-    if (canUse$2($skill`Air Dirty Laundry`)) {
-      return useSkill$2($skill`Air Dirty Laundry`);
+    if (canUse($skill`Air Dirty Laundry`)) {
+      return auto_useSkill($skill`Air Dirty Laundry`);
     }
-    if (canUse$2($skill`Cowboy Kick`)) {
-      return useSkill$2($skill`Cowboy Kick`);
+    if (canUse($skill`Cowboy Kick`)) {
+      return auto_useSkill($skill`Cowboy Kick`);
     }
-    if (canUse$2($skill`Fire Death Ray`)) {
-      return useSkill$2($skill`Fire Death Ray`);
+    if (canUse($skill`Fire Death Ray`)) {
+      return auto_useSkill($skill`Fire Death Ray`);
     }
-    if (canUse$2($skill`Ply Reality`)) {
-      return useSkill$2($skill`Ply Reality`);
+    if (canUse($skill`Ply Reality`)) {
+      return auto_useSkill($skill`Ply Reality`);
     }
-    if (canUse$4($item`Rain-Doh indigo cup`)) {
+    if (canUse$3($item`Rain-Doh indigo cup`)) {
       return useItem$1($item`Rain-Doh indigo cup`);
     }
-    if (canUse$2($skill`Summon Love Mosquito`)) {
-      return useSkill$2($skill`Summon Love Mosquito`);
+    if (canUse($skill`Summon Love Mosquito`)) {
+      return auto_useSkill($skill`Summon Love Mosquito`);
     }
-    if (canUse$4($item`tomayohawk-style reflex hammer`)) {
+    if (canUse$3($item`tomayohawk-style reflex hammer`)) {
       return useItem$1($item`tomayohawk-style reflex hammer`);
     }
-    if (canUse$2($skill`Tear Away your Pants!`) && ((0, import_kolmafia80.getProperty)("auto_forceNonCombatSource") === "" && !(auto_wantToSniff(enemy, (0, import_kolmafia80.myLocation)()) && getSniffer$1(enemy) !== import_kolmafia80.Skill.none) || (0, import_kolmafia80.monsterPhylum)() === $phylum`plant`)) {
-      return useSkill$2($skill`Tear Away your Pants!`);
+    if (canUse($skill`Tear Away your Pants!`) && ((0, import_kolmafia80.getProperty)("auto_forceNonCombatSource") === "" && !(auto_wantToSniff(enemy, (0, import_kolmafia80.myLocation)()) && getSniffer$1(enemy) !== import_kolmafia80.Skill.none) || (0, import_kolmafia80.monsterPhylum)() === $phylum`plant`)) {
+      return auto_useSkill($skill`Tear Away your Pants!`);
     }
-    if (canUse$2($skill`Disarming Thrust`)) {
-      return useSkill$2($skill`Disarming Thrust`);
+    if (canUse($skill`Disarming Thrust`)) {
+      return auto_useSkill($skill`Disarming Thrust`);
     }
-    if (canUse$2($skill`Barrage of Tears`)) {
-      return useSkill$2($skill`Barrage of Tears`);
+    if (canUse($skill`Barrage of Tears`)) {
+      return auto_useSkill($skill`Barrage of Tears`);
     }
-    if (canUse$2($skill`Cadenza`) && (0, import_kolmafia80.itemType)((0, import_kolmafia80.equippedItem)($slot`weapon`)) === "accordion") {
+    if (canUse($skill`Cadenza`) && (0, import_kolmafia80.itemType)((0, import_kolmafia80.equippedItem)($slot`weapon`)) === "accordion") {
       if ($items`Accordion of Jordion, accordionoid rocca, non-Euclidean non-accordion, Shakespeare's Sister's Accordion, zombie accordion`.includes(
         (0, import_kolmafia80.equippedItem)($slot`weapon`)
       )) {
-        return useSkill$2($skill`Cadenza`);
+        return auto_useSkill($skill`Cadenza`);
       }
     }
-    if (canUse$2($skill`Extract`) && (0, import_kolmafia80.myMp)() > (0, import_kolmafia80.mpCost)($skill`Extract`) * 3 && (0, import_kolmafia80.itemAmount)($item`Source essence`) <= 60 && canSurvive$1(2)) {
-      return useSkill$2($skill`Extract`);
+    if (canUse($skill`Extract`) && (0, import_kolmafia80.myMp)() > (0, import_kolmafia80.mpCost)($skill`Extract`) * 3 && (0, import_kolmafia80.itemAmount)($item`Source essence`) <= 60 && canSurvive$1(2)) {
+      return auto_useSkill($skill`Extract`);
     }
-    if (canUse$2($skill`Extract Jelly`) && (0, import_kolmafia80.myMp)() > (0, import_kolmafia80.mpCost)($skill`Extract Jelly`) * 3 && canSurvive$1(2) && (0, import_kolmafia80.myFamiliar)() === $familiar`Space Jellyfish` && (0, import_kolmafia80.toInt)((0, import_kolmafia80.getProperty)("_spaceJellyfishDrops")) < 3 && $elements`hot, spooky, stench`.includes((0, import_kolmafia80.monsterElement)(enemy))) {
-      return useSkill$2($skill`Extract Jelly`);
+    if (canUse($skill`Extract Jelly`) && (0, import_kolmafia80.myMp)() > (0, import_kolmafia80.mpCost)($skill`Extract Jelly`) * 3 && canSurvive$1(2) && (0, import_kolmafia80.myFamiliar)() === $familiar`Space Jellyfish` && (0, import_kolmafia80.toInt)((0, import_kolmafia80.getProperty)("_spaceJellyfishDrops")) < 3 && $elements`hot, spooky, stench`.includes((0, import_kolmafia80.monsterElement)(enemy))) {
+      return auto_useSkill($skill`Extract Jelly`);
     }
-    if (canUse$2($skill`Science! Fight with Medicine`) && (0, import_kolmafia80.myHp)() * 2 < (0, import_kolmafia80.myMaxhp)()) {
-      return useSkill$2($skill`Science! Fight with Medicine`);
+    if (canUse($skill`Science! Fight with Medicine`) && (0, import_kolmafia80.myHp)() * 2 < (0, import_kolmafia80.myMaxhp)()) {
+      return auto_useSkill($skill`Science! Fight with Medicine`);
     }
-    if (canUse$2($skill`Science! Fight with Rational Thought`) && (0, import_kolmafia80.haveEffect)($effect`Rational Thought`) < 10) {
-      return useSkill$2($skill`Science! Fight with Rational Thought`);
+    if (canUse($skill`Science! Fight with Rational Thought`) && (0, import_kolmafia80.haveEffect)($effect`Rational Thought`) < 10) {
+      return auto_useSkill($skill`Science! Fight with Rational Thought`);
     }
-    if (canUse$4($item`Time-Spinner`)) {
+    if (canUse$3($item`Time-Spinner`)) {
       return useItem$1($item`Time-Spinner`);
     }
-    if (canUse$2($skill`Sing Along`)) {
+    if (canUse($skill`Sing Along`)) {
       if (canSurvive$1(2) && (0, import_kolmafia80.getProperty)("boomBoxSong") === "Remainin' Alive") {
-        return useSkill$2($skill`Sing Along`);
+        return auto_useSkill($skill`Sing Along`);
       }
       if (canSurvive$1(5) && (0, import_kolmafia80.getProperty)("boomBoxSong") === "Total Eclipse of Your Meat" && (0, import_kolmafia80.expectedDamage)() < 10 && !in_wotsf()) {
-        return useSkill$2($skill`Sing Along`);
+        return auto_useSkill($skill`Sing Along`);
       }
       if (canSurvive$1(3) && (0, import_kolmafia80.getProperty)("boomBoxSong") === "Total Eclipse of Your Meat" && $monsters`dirty thieving brigand, wall of meat`.includes(enemy)) {
-        return useSkill$2($skill`Sing Along`);
+        return auto_useSkill($skill`Sing Along`);
       }
     }
   }
   if (enemy_la < 100 && stunnable(enemy)) {
-    if (canUse$4($item`Rain-Doh blue balls`)) {
+    if (canUse$3($item`Rain-Doh blue balls`)) {
       return useItem$1($item`Rain-Doh blue balls`);
     }
-    if (canUse$2($skill`Summon Love Gnats`)) {
-      return useSkill$2($skill`Summon Love Gnats`);
+    if (canUse($skill`Summon Love Gnats`)) {
+      return auto_useSkill($skill`Summon Love Gnats`);
     }
     if (!((0, import_kolmafia80.haveEquipped)($item`protonic accelerator pack`) && isGhost(enemy))) {
-      if (canUse$2($skill`Summon Love Stinkbug`) && haveUsed($skill`Summon Love Gnats`) && !(0, import_kolmafia80.containsText)(text, "STUN RESIST")) {
-        return useSkill$2($skill`Summon Love Stinkbug`);
+      if (canUse($skill`Summon Love Stinkbug`) && haveUsed($skill`Summon Love Gnats`) && !(0, import_kolmafia80.containsText)(text, "STUN RESIST")) {
+        return auto_useSkill($skill`Summon Love Stinkbug`);
       }
     }
   }
-  if (canUse$2($skill`Curse of Weaksauce`) && (0, import_kolmafia80.myClass)() === $class`Sauceror` && ((0, import_kolmafia80.myMp)() >= 32 || haveUsed($skill`Stuffed Mortar Shell`)) && doWeaksauce) {
-    return useSkill$2($skill`Curse of Weaksauce`);
+  if (canUse($skill`Curse of Weaksauce`) && (0, import_kolmafia80.myClass)() === $class`Sauceror` && ((0, import_kolmafia80.myMp)() >= 32 || haveUsed($skill`Stuffed Mortar Shell`)) && doWeaksauce) {
+    return auto_useSkill($skill`Curse of Weaksauce`);
   }
-  if ((0, import_kolmafia80.myClass)() === $class`Turtle Tamer` && canUse$2($skill`Spirit Snap`) && (0, import_kolmafia80.myMp)() > 80) {
+  if ((0, import_kolmafia80.myClass)() === $class`Turtle Tamer` && canUse($skill`Spirit Snap`) && (0, import_kolmafia80.myMp)() > 80) {
     if ((0, import_kolmafia80.haveEffect)($effect`Blessing of the Storm Tortoise`) > 0 && (0, import_kolmafia80.monsterHp)() > 0.15 * (0, import_kolmafia80.myBuffedstat)($stat`Muscle`) || (0, import_kolmafia80.haveEffect)($effect`Grand Blessing of the Storm Tortoise`) > 0 && (0, import_kolmafia80.monsterHp)() > 0.2 * (0, import_kolmafia80.myBuffedstat)($stat`Muscle`) || (0, import_kolmafia80.haveEffect)($effect`Glorious Blessing of the Storm Tortoise`) > 0 && (0, import_kolmafia80.monsterHp)() > 0.25 * (0, import_kolmafia80.myBuffedstat)($stat`Muscle`)) {
-      return useSkill$2($skill`Spirit Snap`);
+      return auto_useSkill($skill`Spirit Snap`);
     }
   }
-  if (canUse$2($skill`Thunderstrike`) && enemy_la <= 150 && !canSurvive$1(5)) {
+  if (canUse($skill`Thunderstrike`) && enemy_la <= 150 && !canSurvive$1(5)) {
     combat_status_add("stunned");
-    return useSkill$2($skill`Thunderstrike`);
+    return auto_useSkill($skill`Thunderstrike`);
   }
   if (enemy_la <= 100 && stunnable(enemy) && (!canSurvive$1(5) || $monsters`Groar`.includes(enemy))) {
     var stunner = getStunner(enemy);
     if (stunner !== import_kolmafia80.Skill.none) {
       combat_status_add("stunned");
-      return useSkill$2(stunner);
+      return auto_useSkill(stunner);
     }
   }
-  if (auto_wantToBCZ($skill`BCZ: Blood Geyser`) && canUse$2($skill`BCZ: Blood Geyser`) && enemy_la <= 150 && !canSurvive$1(5)) {
+  if (auto_wantToBCZ($skill`BCZ: Blood Geyser`) && canUse($skill`BCZ: Blood Geyser`) && enemy_la <= 150 && !canSurvive$1(5)) {
     combat_status_add("stunned");
-    return useSkill$2($skill`BCZ: Blood Geyser`);
+    return auto_useSkill($skill`BCZ: Blood Geyser`);
   }
   return "";
 }
@@ -6271,23 +6271,23 @@ function auto_combatDefaultStage4(round_1, enemy, text) {
       }
       handleTracker$1(enemy.toString(), sniffer.toString(), "auto_sniffs");
       combat_status_add("sniffed");
-      return useSkill$2(sniffer);
+      return auto_useSkill(sniffer);
     }
   }
-  if (enemy === $monster`animated ornate nightstand` && (0, import_kolmafia82.myFamiliar)() === $familiar`Nosy Nose` && !is100FamRun() && canUse$2($skill`Get a Good Whiff of This Guy`) && !isSniffed(enemy, $skill`Get a Good Whiff of This Guy`)) {
+  if (enemy === $monster`animated ornate nightstand` && (0, import_kolmafia82.myFamiliar)() === $familiar`Nosy Nose` && !is100FamRun() && canUse($skill`Get a Good Whiff of This Guy`) && !isSniffed(enemy, $skill`Get a Good Whiff of This Guy`)) {
     handleTracker$1(
       enemy.toString(),
       $skill`Get a Good Whiff of This Guy`.toString(),
       "auto_sniffs"
     );
-    return useSkill$2($skill`Get a Good Whiff of This Guy`);
+    return auto_useSkill($skill`Get a Good Whiff of This Guy`);
   }
   if (!haveUsed$1($item`Rain-Doh black box`) && !in_heavyrains() && (0, import_kolmafia82.toInt)((0, import_kolmafia82.getProperty)("_raindohCopiesMade")) < 5 && !ag_is_bodyguard()) {
     if (enemy === $monster`modern zmobie` && (0, import_kolmafia82.toInt)((0, import_kolmafia82.getProperty)("auto_modernzmobiecount")) < 3) {
       (0, import_kolmafia82.setProperty)("auto_doCombatCopy", "yes");
     }
   }
-  if (canUse$4($item`Rain-Doh black box`) && (0, import_kolmafia82.getProperty)("auto_doCombatCopy") === "yes" && enemy !== $monster`gourmet gourami` && !ag_is_bodyguard()) {
+  if (canUse$3($item`Rain-Doh black box`) && (0, import_kolmafia82.getProperty)("auto_doCombatCopy") === "yes" && enemy !== $monster`gourmet gourami` && !ag_is_bodyguard()) {
     (0, import_kolmafia82.setProperty)("auto_doCombatCopy", "no");
     markAsUsed$1($item`Rain-Doh black box`);
     if ((0, import_kolmafia82.toInt)((0, import_kolmafia82.getProperty)("_raindohCopiesMade")) < 5) {
@@ -6315,7 +6315,7 @@ function auto_combatDefaultStage4(round_1, enemy, text) {
       }
     }
   }
-  if (canUse$2($skill`Digitize`) && (0, import_kolmafia82.toInt)((0, import_kolmafia82.getProperty)("_sourceTerminalDigitizeUses")) === 0 && !inAftercore()) {
+  if (canUse($skill`Digitize`) && (0, import_kolmafia82.toInt)((0, import_kolmafia82.getProperty)("_sourceTerminalDigitizeUses")) === 0 && !inAftercore()) {
     if ($monsters`lobsterfrogman`.includes(enemy)) {
       if ((0, import_kolmafia82.getProperty)("_sourceTerminalDigitizeMonster") !== enemy.toString()) {
         handleTracker$1(
@@ -6323,11 +6323,11 @@ function auto_combatDefaultStage4(round_1, enemy, text) {
           $skill`Digitize`.toString(),
           "auto_copies"
         );
-        return useSkill$2($skill`Digitize`);
+        return auto_useSkill($skill`Digitize`);
       }
     }
   }
-  if (canUse$2($skill`Digitize`) && (0, import_kolmafia82.toInt)((0, import_kolmafia82.getProperty)("_sourceTerminalDigitizeUses")) < 3 && !inAftercore()) {
+  if (canUse($skill`Digitize`) && (0, import_kolmafia82.toInt)((0, import_kolmafia82.getProperty)("_sourceTerminalDigitizeUses")) < 3 && !inAftercore()) {
     if ((0, import_kolmafia82.getProperty)("auto_digitizeDirective") === enemy.toString()) {
       if ((0, import_kolmafia82.getProperty)("_sourceTerminalDigitizeMonster") !== enemy.toString()) {
         handleTracker$1(
@@ -6335,42 +6335,42 @@ function auto_combatDefaultStage4(round_1, enemy, text) {
           $skill`Digitize`.toString(),
           "auto_copies"
         );
-        return useSkill$2($skill`Digitize`);
+        return auto_useSkill($skill`Digitize`);
       }
     }
   }
   if (auto_wantToCopy(enemy, (0, import_kolmafia82.myLocation)()) && !ag_is_bodyguard()) {
     var copier = getCopier$1(enemy);
-    if (copier !== import_kolmafia82.Skill.none && canUse$2(copier)) {
+    if (copier !== import_kolmafia82.Skill.none && canUse(copier)) {
       if (copier === $skill`Blow the Purple Candle!`) {
         (0, import_kolmafia82.setProperty)("auto_purple_candled", enemy.toString());
       }
       handleTracker$1(enemy.toString(), copier.toString(), "auto_copies");
       combat_status_add("copied");
-      return useSkill$2(copier);
+      return auto_useSkill(copier);
     }
   }
-  if (canUse$2($skill`Steal Accordion`) && (0, import_kolmafia82.myClass)() === $class`Accordion Thief` && canSurvive$1(2)) {
-    return useSkill$2($skill`Steal Accordion`);
+  if (canUse($skill`Steal Accordion`) && (0, import_kolmafia82.myClass)() === $class`Accordion Thief` && canSurvive$1(2)) {
+    return auto_useSkill($skill`Steal Accordion`);
   }
-  if (canUse$4($item`abstraction: sensation`) && enemy === $monster`Performer of Actions`) {
+  if (canUse$3($item`abstraction: sensation`) && enemy === $monster`Performer of Actions`) {
     return useItem$1($item`abstraction: sensation`);
   }
-  if (canUse$4($item`abstraction: thought`) && enemy === $monster`Perceiver of Sensations`) {
+  if (canUse$3($item`abstraction: thought`) && enemy === $monster`Perceiver of Sensations`) {
     return useItem$1($item`abstraction: thought`);
   }
-  if (canUse$4($item`abstraction: action`) && enemy === $monster`Thinker of Thoughts`) {
+  if (canUse$3($item`abstraction: action`) && enemy === $monster`Thinker of Thoughts`) {
     return useItem$1($item`abstraction: action`);
   }
   if ((0, import_kolmafia82.monsterLevelAdjustment)() <= 150) {
-    if (canUse$2($skill`Loofah Leglifts`)) {
-      return useSkill$2($skill`Loofah Leglifts`);
+    if (canUse($skill`Loofah Leglifts`)) {
+      return auto_useSkill($skill`Loofah Leglifts`);
     }
-    if (canUse$2($skill`Loofah Hosenzittern`)) {
-      return useSkill$2($skill`Loofah Hosenzittern`);
+    if (canUse($skill`Loofah Hosenzittern`)) {
+      return auto_useSkill($skill`Loofah Hosenzittern`);
     }
-    if (canUse$2($skill`Loofah Head-Scratch`)) {
-      return useSkill$2($skill`Loofah Head-Scratch`);
+    if (canUse($skill`Loofah Head-Scratch`)) {
+      return auto_useSkill($skill`Loofah Head-Scratch`);
     }
   }
   if ((0, import_kolmafia82.myFamiliar)() === $familiar`Stocking Mimic` && round_1 < 12 && canSurvive$1(1.5)) {
@@ -6379,18 +6379,18 @@ function auto_combatDefaultStage4(round_1, enemy, text) {
     }
   }
   var wink_skill = import_kolmafia82.Skill.none;
-  if (canUse$2($skill`Wink at`)) {
+  if (canUse($skill`Wink at`)) {
     wink_skill = $skill`Wink at`;
   }
-  if (canUse$2($skill`Fire a badly romantic arrow`)) {
+  if (canUse($skill`Fire a badly romantic arrow`)) {
     wink_skill = $skill`Fire a badly romantic arrow`;
   }
   if (wink_skill !== import_kolmafia82.Skill.none) {
     if ($monsters`lobsterfrogman, modern zmobie`.includes(enemy)) {
-      return useSkill$2(wink_skill);
+      return auto_useSkill(wink_skill);
     }
   }
-  if (canUse$4($item`The Big Book of Pirate Insults`) && numPirateInsults() < 8 && internalQuestStatus("questM12Pirate") < 5) {
+  if (canUse$3($item`The Big Book of Pirate Insults`) && numPirateInsults() < 8 && internalQuestStatus("questM12Pirate") < 5) {
     if ($locations`Barrrney's Barrr, The Obligatory Pirate's Cove`.includes(
       (0, import_kolmafia82.myLocation)()
     )) {
@@ -6406,7 +6406,7 @@ function auto_combatDefaultStage4(round_1, enemy, text) {
   if (auto_warSide() === "hippy") {
     flyer = $item`jam band flyers`;
   }
-  if (canUse$4(flyer) && (0, import_kolmafia82.toInt)((0, import_kolmafia82.getProperty)("flyeredML")) < 1e4 && (0, import_kolmafia82.myLocation)() !== $location`The Battlefield (Frat Uniform)` && (0, import_kolmafia82.myLocation)() !== $location`The Battlefield (Hippy Uniform)` && !(0, import_kolmafia82.toBoolean)((0, import_kolmafia82.getProperty)("auto_ignoreFlyer"))) {
+  if (canUse$3(flyer) && (0, import_kolmafia82.toInt)((0, import_kolmafia82.getProperty)("flyeredML")) < 1e4 && (0, import_kolmafia82.myLocation)() !== $location`The Battlefield (Frat Uniform)` && (0, import_kolmafia82.myLocation)() !== $location`The Battlefield (Hippy Uniform)` && !(0, import_kolmafia82.toBoolean)((0, import_kolmafia82.getProperty)("auto_ignoreFlyer"))) {
     var shouldFlyer = false;
     var staggeringFlyer = false;
     var flyerWith = import_kolmafia82.Item.none;
@@ -6414,10 +6414,10 @@ function auto_combatDefaultStage4(round_1, enemy, text) {
       staggeringFlyer = true;
     }
     if (auto_have_skill($skill`Ambidextrous Funkslinging`)) {
-      if (canUse$4($item`Time-Spinner`)) {
+      if (canUse$3($item`Time-Spinner`)) {
         flyerWith = $item`Time-Spinner`;
         staggeringFlyer = true;
-      } else if (canUse$4($item`beehive`)) {
+      } else if (canUse$3($item`beehive`)) {
         if ((0, import_kolmafia82.myClass)() === $class`Sauceror` && haveUsed($skill`Curse of Weaksauce`)) {
           var beehiveDamage = (0, import_kolmafia82.ceil)(
             30 * combatItemDamageMultiplier() * MLDamageToMonsterMultiplier()
@@ -6441,7 +6441,7 @@ function auto_combatDefaultStage4(round_1, enemy, text) {
       stunned = combat_status_check("stunned");
       if (stunner !== import_kolmafia82.Skill.none && !stunned) {
         combat_status_add("stunned");
-        return useSkill$2(stunner);
+        return auto_useSkill(stunner);
       }
     }
     if (canSurvive$1(3) || stunned || staggeringFlyer) {
@@ -6455,13 +6455,13 @@ function auto_combatDefaultStage4(round_1, enemy, text) {
       }
     }
   }
-  if (canUse$4($item`chaos butterfly`) && !(0, import_kolmafia82.toBoolean)((0, import_kolmafia82.getProperty)("chaosButterflyThrown")) && !(0, import_kolmafia82.toBoolean)((0, import_kolmafia82.getProperty)("auto_skipL12Farm"))) {
-    if (canUse$4($item`Time-Spinner`) && auto_have_skill($skill`Ambidextrous Funkslinging`)) {
+  if (canUse$3($item`chaos butterfly`) && !(0, import_kolmafia82.toBoolean)((0, import_kolmafia82.getProperty)("chaosButterflyThrown")) && !(0, import_kolmafia82.toBoolean)((0, import_kolmafia82.getProperty)("auto_skipL12Farm"))) {
+    if (canUse$3($item`Time-Spinner`) && auto_have_skill($skill`Ambidextrous Funkslinging`)) {
       return useItems$1($item`chaos butterfly`, $item`Time-Spinner`);
     }
     return useItem$1($item`chaos butterfly`);
   }
-  if (canUse$4($item`disposable instant camera`)) {
+  if (canUse$3($item`disposable instant camera`)) {
     if ($monsters`Bob Racecar, Racecar Bob`.includes(enemy)) {
       return useItem$1($item`disposable instant camera`);
     }
@@ -6471,29 +6471,29 @@ function auto_combatDefaultStage4(round_1, enemy, text) {
       return `item ${$item`Duskwalker syringe`}`;
     }
   }
-  if (canUse$4($item`DNA extraction syringe`) && (0, import_kolmafia82.monsterLevelAdjustment)() < 150) {
+  if (canUse$3($item`DNA extraction syringe`) && (0, import_kolmafia82.monsterLevelAdjustment)() < 150) {
     if ((0, import_kolmafia82.monsterPhylum)(enemy) !== (0, import_kolmafia82.toPhylum)((0, import_kolmafia82.getProperty)("dnaSyringe"))) {
       return useItem$1($item`DNA extraction syringe`);
     }
   }
-  if (!in_plumber() && !in_darkGyffte() && !in_zombieSlayer() && canUse$2(
+  if (!in_plumber() && !in_darkGyffte() && !in_zombieSlayer() && canUse(
     //paths that do not use MP
     $skill`Gulp Latte`
   ) && (0, import_kolmafia82.myMp)() * 2 < (0, import_kolmafia82.myMaxmp)()) {
-    return useSkill$2($skill`Gulp Latte`);
+    return auto_useSkill($skill`Gulp Latte`);
   }
-  if (!in_plumber() && !in_darkGyffte() && !in_zombieSlayer() && canUse$2(
+  if (!in_plumber() && !in_darkGyffte() && !in_zombieSlayer() && canUse(
     //paths that do not use MP
     $skill`Spring Raindrop Attack`
   ) && (0, import_kolmafia82.myMp)() < 0.9 * (0, import_kolmafia82.myMaxmp)()) {
-    return useSkill$2($skill`Spring Raindrop Attack`);
+    return auto_useSkill($skill`Spring Raindrop Attack`);
   }
   if (!((0, import_kolmafia82.haveEquipped)($item`protonic accelerator pack`) && isGhost(enemy))) {
-    if (canUse$2($skill`Summon Love Stinkbug`) && enemy.physicalResistance >= 100 && (0, import_kolmafia82.monsterElement)(enemy) !== $element`stench`) {
-      return useSkill$2($skill`Summon Love Stinkbug`);
+    if (canUse($skill`Summon Love Stinkbug`) && enemy.physicalResistance >= 100 && (0, import_kolmafia82.monsterElement)(enemy) !== $element`stench`) {
+      return auto_useSkill($skill`Summon Love Stinkbug`);
     }
   }
-  if (fullness_left() > 0 && canUse$4($item`red rocket`) && (0, import_kolmafia82.haveEffect)($effect`Everything Looks Red`) <= 0 && (0, import_kolmafia82.haveEffect)($effect`Ready to Eat`) <= 0 && canSurvive$1(5) && (0, import_kolmafia82.myAdventures)() < 100) {
+  if (fullness_left() > 0 && canUse$3($item`red rocket`) && (0, import_kolmafia82.haveEffect)($effect`Everything Looks Red`) <= 0 && (0, import_kolmafia82.haveEffect)($effect`Ready to Eat`) <= 0 && canSurvive$1(5) && (0, import_kolmafia82.myAdventures)() < 100) {
     if (in_plumber()) {
       return useItem$1($item`red rocket`);
     }
@@ -6502,16 +6502,16 @@ function auto_combatDefaultStage4(round_1, enemy, text) {
   if (auto_bowlingBallCombatString((0, import_kolmafia82.myLocation)(), true) !== "" && !enemy.boss) {
     return auto_bowlingBallCombatString((0, import_kolmafia82.myLocation)(), false);
   }
-  if (canUse$2($skill`McHugeLarge Avalanche`) && (0, import_kolmafia82.getProperty)("auto_forceNonCombatSource") === "McHugeLarge left ski" && !(0, import_kolmafia82.toBoolean)((0, import_kolmafia82.getProperty)("auto_avalancheDeployed"))) {
+  if (canUse($skill`McHugeLarge Avalanche`) && (0, import_kolmafia82.getProperty)("auto_forceNonCombatSource") === "McHugeLarge left ski" && !(0, import_kolmafia82.toBoolean)((0, import_kolmafia82.getProperty)("auto_avalancheDeployed"))) {
     (0, import_kolmafia82.setProperty)("auto_avalancheDeployed", true.toString());
-    return useSkill$2($skill`McHugeLarge Avalanche`);
+    return auto_useSkill($skill`McHugeLarge Avalanche`);
   }
-  if (canUse$2($skill`Launch spikolodon spikes`) && (0, import_kolmafia82.getProperty)("auto_forceNonCombatSource") === "jurassic parka" && !(0, import_kolmafia82.toBoolean)((0, import_kolmafia82.getProperty)("auto_parkaSpikesDeployed"))) {
+  if (canUse($skill`Launch spikolodon spikes`) && (0, import_kolmafia82.getProperty)("auto_forceNonCombatSource") === "jurassic parka" && !(0, import_kolmafia82.toBoolean)((0, import_kolmafia82.getProperty)("auto_parkaSpikesDeployed"))) {
     (0, import_kolmafia82.setProperty)("auto_parkaSpikesDeployed", true.toString());
-    return useSkill$2($skill`Launch spikolodon spikes`);
+    return auto_useSkill($skill`Launch spikolodon spikes`);
   }
   if (shouldCinchoConfetti() && canSurvive$1(5)) {
-    return useSkill$2($skill`Cincho: Confetti Extravaganza`);
+    return auto_useSkill($skill`Cincho: Confetti Extravaganza`);
   }
   return "";
 }
@@ -6524,9 +6524,9 @@ function auto_combatGelatinousNoobStage5(round_1, enemy, text) {
   if (!in_gnoob()) {
     return "";
   }
-  if (canUse$1($skill`Gelatinous Kick`, false) && haveUsed($skill`Duplicate`)) {
+  if (canUse($skill`Gelatinous Kick`, false) && haveUsed($skill`Duplicate`)) {
     if ($monsters`dairy goat`.includes(enemy)) {
-      return useSkill$1($skill`Gelatinous Kick`, false);
+      return auto_useSkill($skill`Gelatinous Kick`, false);
     }
   }
   return "";
@@ -6538,34 +6538,34 @@ function auto_combatPlumberStage5(round_1, enemy, text) {
   if ((0, import_kolmafia83.myClass)() !== $class`Plumber`) {
     return "";
   }
-  if ((0, import_kolmafia83.myPp)() > 2 && canUse$1($skill`[7332]Juggle Fireballs`, true)) {
-    return useSkill$2($skill`[7332]Juggle Fireballs`);
+  if ((0, import_kolmafia83.myPp)() > 2 && canUse($skill`[7332]Juggle Fireballs`, true)) {
+    return auto_useSkill($skill`[7332]Juggle Fireballs`);
   }
   if (enemy.physicalResistance >= 80 || (0, import_kolmafia83.myLocation)() === $location`The Smut Orc Logging Camp` && 0 < (0, import_kolmafia83.equippedAmount)($item`frosty button`)) {
-    if (canUse$1($skill`[7333]Fireball Barrage`, false)) {
-      return useSkill$2($skill`[7333]Fireball Barrage`);
+    if (canUse($skill`[7333]Fireball Barrage`, false)) {
+      return auto_useSkill($skill`[7333]Fireball Barrage`);
     }
-    if (canUse$1($skill`Beach Combo`, true)) {
-      return useSkill$2($skill`Beach Combo`);
+    if (canUse($skill`Beach Combo`, true)) {
+      return auto_useSkill($skill`Beach Combo`);
     }
-    if (canUse$1($skill`Fireball Toss`, false)) {
-      return useSkill$1($skill`Fireball Toss`, false);
+    if (canUse($skill`Fireball Toss`, false)) {
+      return auto_useSkill($skill`Fireball Toss`, false);
     }
   }
-  if (canUse$1($skill`[7336]Multi-Bounce`, false)) {
-    return useSkill$2($skill`[7336]Multi-Bounce`);
+  if (canUse($skill`[7336]Multi-Bounce`, false)) {
+    return auto_useSkill($skill`[7336]Multi-Bounce`);
   }
-  if (canUse$1($skill`Beach Combo`, true)) {
-    return useSkill$2($skill`Beach Combo`);
+  if (canUse($skill`Beach Combo`, true)) {
+    return auto_useSkill($skill`Beach Combo`);
   }
-  if (canUse$1($skill`Jump Attack`, false)) {
-    return useSkill$1($skill`Jump Attack`, false);
+  if (canUse($skill`Jump Attack`, false)) {
+    return auto_useSkill($skill`Jump Attack`, false);
   }
-  if (canUse$1($skill`[7333]Fireball Barrage`, false)) {
+  if (canUse($skill`[7333]Fireball Barrage`, false)) {
     {
-      return useSkill$2($skill`[7333]Fireball Barrage`);
+      return auto_useSkill($skill`[7333]Fireball Barrage`);
     }
-    return useSkill$1($skill`Fireball Toss`, false);
+    return auto_useSkill($skill`Fireball Toss`, false);
   }
   return "";
 }
@@ -6580,36 +6580,36 @@ function auto_combat_robot_stage5(round_1, enemy, text) {
   var enemy_hot_immune = (0, import_kolmafia84.monsterElement)(enemy) === $element`hot` || enemy === $monster`Protector S. P. E. C. T. R. E.`;
   var enemy_physical_res = 1 - enemy.physicalResistance * 0.01;
   var dmg;
-  if (canUse$1($skill`Snipe`, false) && !enemy_physical_immune) {
+  if (canUse($skill`Snipe`, false) && !enemy_physical_immune) {
     var better_than_crotch_burn = (0, import_kolmafia84.monsterHp)() > 40 || enemy_hot_immune;
     dmg = (0, import_kolmafia84.myBuffedstat)($stat`Mysticality`) * enemy_physical_res;
     if (canSurvive$1(turns_to_kill(dmg)) && better_than_crotch_burn) {
-      return useSkill$1($skill`Snipe`, false);
+      return auto_useSkill($skill`Snipe`, false);
     }
   }
-  if (canUse$1($skill`Blow Snow`, false) && $monsters`smut orc jacker, smut orc nailer, smut orc pipelayer, smut orc screwer`.includes(
+  if (canUse($skill`Blow Snow`, false) && $monsters`smut orc jacker, smut orc nailer, smut orc pipelayer, smut orc screwer`.includes(
     enemy
   )) {
     if (canSurvive$1(turns_to_kill((0, import_kolmafia84.myBuffedstat)($stat`Muscle`)))) {
-      return useSkill$1($skill`Blow Snow`, false);
+      return auto_useSkill($skill`Blow Snow`, false);
     }
   }
-  if (canUse$1($skill`Swing Pound-O-Tron`, false) && !enemy_physical_immune) {
+  if (canUse($skill`Swing Pound-O-Tron`, false) && !enemy_physical_immune) {
     dmg = (20 + 0.1 * (0, import_kolmafia84.myBuffedstat)($stat`Muscle`)) * enemy_physical_res;
     if (canSurvive$1(turns_to_kill(dmg))) {
-      return useSkill$1($skill`Swing Pound-O-Tron`, false);
+      return auto_useSkill($skill`Swing Pound-O-Tron`, false);
     }
   }
-  if (canUse$1($skill`Crotch Burn`, false) && !enemy_hot_immune) {
+  if (canUse($skill`Crotch Burn`, false) && !enemy_hot_immune) {
     dmg = 20 + 0.1 * (0, import_kolmafia84.myBuffedstat)($stat`Mysticality`);
     if (canSurvive$1(turns_to_kill(dmg))) {
-      return useSkill$1($skill`Crotch Burn`, false);
+      return auto_useSkill($skill`Crotch Burn`, false);
     }
   }
-  if (canUse$1($skill`Shoot Pea`, false) && !enemy_physical_immune) {
+  if (canUse($skill`Shoot Pea`, false) && !enemy_physical_immune) {
     dmg = (20 + 0.1 * (0, import_kolmafia84.myBuffedstat)($stat`Moxie`)) * enemy_physical_res;
     if (canSurvive$1(turns_to_kill(dmg))) {
-      return useSkill$1($skill`Shoot Pea`, false);
+      return auto_useSkill($skill`Shoot Pea`, false);
     }
   }
   if ((0, import_kolmafia84.equippedItem)($slot`weapon`) === import_kolmafia84.Item.none) {
@@ -6659,99 +6659,99 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
   if (retval !== "") {
     return retval;
   }
-  if (canUse$2($skill`Loofah Stew`) && (0, import_kolmafia85.monsterElement)(enemy) !== $element`cold`) {
-    return useSkill$1($skill`Loofah Stew`, false);
+  if (canUse($skill`Loofah Stew`) && (0, import_kolmafia85.monsterElement)(enemy) !== $element`cold`) {
+    return auto_useSkill($skill`Loofah Stew`, false);
   }
-  if (canUse$2($skill`Loofah Lava`) && (0, import_kolmafia85.monsterElement)(enemy) !== $element`hot`) {
-    return useSkill$1($skill`Loofah Lava`, false);
+  if (canUse($skill`Loofah Lava`) && (0, import_kolmafia85.monsterElement)(enemy) !== $element`hot`) {
+    return auto_useSkill($skill`Loofah Lava`, false);
   }
   var type_1 = (0, import_kolmafia85.monsterPhylum)(enemy);
   var attackMinor = "attack with weapon";
   var attackMajor = "attack with weapon";
   var costMinor = 0;
   var costMajor = 0;
-  if (enemy === $monster`LOV Enforcer` && canUse$1($skill`Saucestorm`, false)) {
-    return useSkill$1($skill`Saucestorm`, false);
+  if (enemy === $monster`LOV Enforcer` && canUse($skill`Saucestorm`, false)) {
+    return auto_useSkill($skill`Saucestorm`, false);
   }
   if ((0, import_kolmafia85.myClass)() === $class`Seal Clubber`) {
     if (enemy === $monster`hellseal pup`) {
-      return useSkill$1($skill`Clobber`, false);
+      return auto_useSkill($skill`Clobber`, false);
     }
     if (enemy === $monster`mother hellseal`) {
-      if (canUse$4($item`Rain-Doh indigo cup`)) {
+      if (canUse$3($item`Rain-Doh indigo cup`)) {
         return useItem$1($item`Rain-Doh indigo cup`);
       }
-      return useSkill$1($skill`Lunging Thrust-Smack`, false);
+      return auto_useSkill($skill`Lunging Thrust-Smack`, false);
     }
   }
   if (enemy === $monster`french guard turtle` && (0, import_kolmafia85.haveEquipped)($item`fouet de tortue-dressage`) && (0, import_kolmafia85.myMp)() >= (0, import_kolmafia85.mpCost)($skill`Apprivoisez la tortue`)) {
-    return useSkill$1($skill`Apprivoisez la tortue`, false);
+    return auto_useSkill($skill`Apprivoisez la tortue`, false);
   }
   if ((0, import_kolmafia85.haveEquipped)($item`protonic accelerator pack`) && isGhost(enemy) && !combat_status_check("skipGhostbusting")) {
     var stunner = getStunner(enemy);
     if (stunner !== import_kolmafia85.Skill.none) {
       combat_status_add("stunned");
-      return useSkill$2(stunner);
+      return auto_useSkill(stunner);
     }
     var shots_takens = usedCount($skill`Shoot Ghost`);
-    if (canUse$1($skill`Shoot Ghost`, false) && shots_takens < 3) {
+    if (canUse($skill`Shoot Ghost`, false) && shots_takens < 3) {
       var shotsLeft = 3 - shots_takens;
       if (canSurviveShootGhost(enemy, shotsLeft)) {
         markAsUsed($skill`Shoot Ghost`);
-        return useSkill$1($skill`Shoot Ghost`, false);
+        return auto_useSkill($skill`Shoot Ghost`, false);
       } else {
         combat_status_add("skipGhostbusting");
       }
     }
-    if (canUse$2($skill`Trap Ghost`) && shots_takens === 3) {
+    if (canUse($skill`Trap Ghost`) && shots_takens === 3) {
       auto_log_info("Busting makes me feel good!!", "green");
-      return useSkill$2($skill`Trap Ghost`);
+      return auto_useSkill($skill`Trap Ghost`);
     }
   }
-  if ((0, import_kolmafia85.myClass)() === $class`Turtle Tamer` && canUse$2($skill`Spirit Snap`) && (0, import_kolmafia85.myMp)() > 80) {
+  if ((0, import_kolmafia85.myClass)() === $class`Turtle Tamer` && canUse($skill`Spirit Snap`) && (0, import_kolmafia85.myMp)() > 80) {
     if ((0, import_kolmafia85.haveEffect)($effect`Glorious Blessing of the War Snapper`) > 0) {
-      return useSkill$2($skill`Spirit Snap`);
+      return auto_useSkill($skill`Spirit Snap`);
     }
     if ((0, import_kolmafia85.haveEffect)($effect`Glorious Blessing of She-Who-Was`) > 0 && (0, import_kolmafia85.monsterElement)(enemy) !== $element`spooky`) {
-      return useSkill$2($skill`Spirit Snap`);
+      return auto_useSkill($skill`Spirit Snap`);
     }
   }
-  if (canUse$2($skill`Candyblast`) && (0, import_kolmafia85.myMp)() > 60 && inAftercore()) {
-    return useSkill$2($skill`Candyblast`);
+  if (canUse($skill`Candyblast`) && (0, import_kolmafia85.myMp)() > 60 && inAftercore()) {
+    return auto_useSkill($skill`Candyblast`);
   }
-  if ((0, import_kolmafia85.myClass)() !== $class`Sauceror` && canUse$2(auto_spoonCombatSkill())) {
-    return useSkill$2(auto_spoonCombatSkill());
+  if ((0, import_kolmafia85.myClass)() !== $class`Sauceror` && canUse(auto_spoonCombatSkill())) {
+    return auto_useSkill(auto_spoonCombatSkill());
   }
-  if (auto_haveCosmicBowlingBall() && canUse$4($item`cosmic bowling ball`) && (0, import_kolmafia85.monsterHp)() < 100) {
+  if (auto_haveCosmicBowlingBall() && canUse$3($item`cosmic bowling ball`) && (0, import_kolmafia85.monsterHp)() < 100) {
     return useItem$1($item`cosmic bowling ball`);
   }
-  if (canUse$2($skill`Surprisingly Sweet Stab`)) {
-    return useSkill$2($skill`Surprisingly Sweet Stab`);
+  if (canUse($skill`Surprisingly Sweet Stab`)) {
+    return auto_useSkill($skill`Surprisingly Sweet Stab`);
   }
   if ((0, import_kolmafia85.haveEquipped)($item`Everfull Dart Holster`) && (0, import_kolmafia85.toInt)((0, import_kolmafia85.getProperty)("_dartsLeft")) > 0 && !$monsters`Naughty Sorceress, Naughty Sorceress (2)`.includes(enemy)) {
-    return useSkill$1(dartSkill(), false);
+    return auto_useSkill(dartSkill(), false);
   }
-  if (canUse$2($skill`Stuffed Mortar Shell`) && (0, import_kolmafia85.myClass)() === $class`Sauceror` && canSurvive$1(2) && (currentFlavour() !== (0, import_kolmafia85.monsterElement)(enemy) || currentFlavour() === import_kolmafia85.Element.none)) {
+  if (canUse($skill`Stuffed Mortar Shell`) && (0, import_kolmafia85.myClass)() === $class`Sauceror` && canSurvive$1(2) && (currentFlavour() !== (0, import_kolmafia85.monsterElement)(enemy) || currentFlavour() === import_kolmafia85.Element.none)) {
     (0, import_kolmafia85.setProperty)("_auto_combatTracker_MortarRound", round_1.toString());
-    return useSkill$2($skill`Stuffed Mortar Shell`);
+    return auto_useSkill($skill`Stuffed Mortar Shell`);
   }
   if ((0, import_kolmafia85.haveEquipped)($item`Roman Candelabra`) && (0, import_kolmafia85.haveEffect)($effect`Everything Looks Red`) === 0 && !auto_haveDarts()) {
-    return useSkill$2($skill`Blow the Red Candle!`);
+    return auto_useSkill($skill`Blow the Red Candle!`);
   }
   {
     switch ((0, import_kolmafia85.myClass)()) {
       case $class`Seal Clubber`:
         attackMinor = "attack with weapon";
-        if (canUse$1($skill`Lunge Smack`, false) && (0, import_kolmafia85.weaponType)((0, import_kolmafia85.equippedItem)($slot`weapon`)) === $stat`Muscle`) {
-          attackMinor = useSkill$1($skill`Lunge Smack`, false);
+        if (canUse($skill`Lunge Smack`, false) && (0, import_kolmafia85.weaponType)((0, import_kolmafia85.equippedItem)($slot`weapon`)) === $stat`Muscle`) {
+          attackMinor = auto_useSkill($skill`Lunge Smack`, false);
           costMinor = (0, import_kolmafia85.mpCost)($skill`Lunge Smack`);
         }
-        if (canUse$1($skill`Lunging Thrust-Smack`, false) && (0, import_kolmafia85.weaponType)((0, import_kolmafia85.equippedItem)($slot`weapon`)) === $stat`Muscle`) {
-          attackMajor = useSkill$1($skill`Lunging Thrust-Smack`, false);
+        if (canUse($skill`Lunging Thrust-Smack`, false) && (0, import_kolmafia85.weaponType)((0, import_kolmafia85.equippedItem)($slot`weapon`)) === $stat`Muscle`) {
+          attackMajor = auto_useSkill($skill`Lunging Thrust-Smack`, false);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Lunging Thrust-Smack`);
         }
-        if ((0, import_kolmafia85.buffedHitStat)() - 20 < (0, import_kolmafia85.monsterDefense)() && canUse$1($skill`Saucestorm`, false) && !hasClubEquipped()) {
-          attackMajor = useSkill$1($skill`Saucestorm`, false);
+        if ((0, import_kolmafia85.buffedHitStat)() - 20 < (0, import_kolmafia85.monsterDefense)() && canUse($skill`Saucestorm`, false) && !hasClubEquipped()) {
+          attackMajor = auto_useSkill($skill`Saucestorm`, false);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Saucestorm`);
         }
         if (enemy.physicalResistance > 80) {
@@ -6761,9 +6761,9 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
           try {
             for (_iterator.s(); !(_step = _iterator.n()).done; ) {
               var sk = _step.value;
-              if (canUse$1(sk, false)) {
-                attackMinor = useSkill$1(sk, false);
-                attackMajor = useSkill$1(sk, false);
+              if (canUse(sk, false)) {
+                attackMinor = auto_useSkill(sk, false);
+                attackMajor = auto_useSkill(sk, false);
                 costMinor = (0, import_kolmafia85.mpCost)(sk);
                 costMajor = (0, import_kolmafia85.mpCost)(sk);
                 break;
@@ -6774,9 +6774,9 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
           } finally {
             _iterator.f();
           }
-          if (canUse$1($skill`Northern Explosion`, false) && !auto_canNorthernExplosionFE()) {
-            attackMinor = useSkill$1($skill`Northern Explosion`, false);
-            attackMajor = useSkill$1($skill`Northern Explosion`, false);
+          if (canUse($skill`Northern Explosion`, false) && !auto_canNorthernExplosionFE()) {
+            attackMinor = auto_useSkill($skill`Northern Explosion`, false);
+            attackMajor = auto_useSkill($skill`Northern Explosion`, false);
             costMinor = (0, import_kolmafia85.mpCost)($skill`Northern Explosion`);
             costMajor = (0, import_kolmafia85.mpCost)($skill`Northern Explosion`);
           }
@@ -6784,23 +6784,23 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
         break;
       case $class`Turtle Tamer`:
         attackMinor = "attack with weapon";
-        if ((0, import_kolmafia85.myMp)() > 150 && canUse$1($skill`Shieldbutt`, false)) {
-          attackMinor = useSkill$1($skill`Shieldbutt`, false);
+        if ((0, import_kolmafia85.myMp)() > 150 && canUse($skill`Shieldbutt`, false)) {
+          attackMinor = auto_useSkill($skill`Shieldbutt`, false);
           costMinor = (0, import_kolmafia85.mpCost)($skill`Shieldbutt`);
-        } else if ((0, import_kolmafia85.myMp)() > 80 && (0, import_kolmafia85.myHp)() * 2 < (0, import_kolmafia85.myMaxhp)() && canUse$1($skill`Kneebutt`, false)) {
-          attackMinor = useSkill$1($skill`Kneebutt`, false);
+        } else if ((0, import_kolmafia85.myMp)() > 80 && (0, import_kolmafia85.myHp)() * 2 < (0, import_kolmafia85.myMaxhp)() && canUse($skill`Kneebutt`, false)) {
+          attackMinor = auto_useSkill($skill`Kneebutt`, false);
           costMinor = (0, import_kolmafia85.mpCost)($skill`Kneebutt`);
         }
-        if ((round_1 > 15 || (0, import_kolmafia85.myHp)() * 2 < (0, import_kolmafia85.myMaxhp)()) && canUse$1($skill`Kneebutt`, false)) {
-          attackMajor = useSkill$1($skill`Kneebutt`, false);
+        if ((round_1 > 15 || (0, import_kolmafia85.myHp)() * 2 < (0, import_kolmafia85.myMaxhp)()) && canUse($skill`Kneebutt`, false)) {
+          attackMajor = auto_useSkill($skill`Kneebutt`, false);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Kneebutt`);
         }
-        if (canUse$1($skill`Shieldbutt`, false)) {
-          attackMajor = useSkill$1($skill`Shieldbutt`, false);
+        if (canUse($skill`Shieldbutt`, false)) {
+          attackMajor = auto_useSkill($skill`Shieldbutt`, false);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Shieldbutt`);
         }
-        if ((0, import_kolmafia85.buffedHitStat)() - 20 < (0, import_kolmafia85.monsterDefense)() && canUse$1($skill`Saucestorm`, false)) {
-          attackMajor = useSkill$1($skill`Saucestorm`, false);
+        if ((0, import_kolmafia85.buffedHitStat)() - 20 < (0, import_kolmafia85.monsterDefense)() && canUse($skill`Saucestorm`, false)) {
+          attackMajor = auto_useSkill($skill`Saucestorm`, false);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Saucestorm`);
         }
         if (enemy.physicalResistance > 80) {
@@ -6810,9 +6810,9 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
           try {
             for (_iterator2.s(); !(_step2 = _iterator2.n()).done; ) {
               var _sk = _step2.value;
-              if (canUse$1(_sk, false)) {
-                attackMinor = useSkill$1(_sk, false);
-                attackMajor = useSkill$1(_sk, false);
+              if (canUse(_sk, false)) {
+                attackMinor = auto_useSkill(_sk, false);
+                attackMajor = auto_useSkill(_sk, false);
                 costMinor = (0, import_kolmafia85.mpCost)(_sk);
                 costMajor = (0, import_kolmafia85.mpCost)(_sk);
                 break;
@@ -6826,60 +6826,60 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
         }
         break;
       case $class`Pastamancer`:
-        if (canUse$1($skill`Cannelloni Cannon`, false)) {
-          attackMinor = useSkill$1($skill`Cannelloni Cannon`, false);
+        if (canUse($skill`Cannelloni Cannon`, false)) {
+          attackMinor = auto_useSkill($skill`Cannelloni Cannon`, false);
           costMinor = (0, import_kolmafia85.mpCost)($skill`Cannelloni Cannon`);
         }
-        if (canUse$1($skill`Weapon of the Pastalord`, false)) {
-          attackMajor = useSkill$2($skill`Weapon of the Pastalord`);
+        if (canUse($skill`Weapon of the Pastalord`, false)) {
+          attackMajor = auto_useSkill($skill`Weapon of the Pastalord`);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Weapon of the Pastalord`);
         }
-        if (canUse$1($skill`Saucestorm`, false)) {
-          attackMajor = useSkill$1($skill`Saucestorm`, false);
-          attackMinor = useSkill$1($skill`Saucestorm`, false);
+        if (canUse($skill`Saucestorm`, false)) {
+          attackMajor = auto_useSkill($skill`Saucestorm`, false);
+          attackMinor = auto_useSkill($skill`Saucestorm`, false);
           costMinor = (0, import_kolmafia85.mpCost)($skill`Saucestorm`);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Saucestorm`);
         }
-        if (canUse$1($skill`Utensil Twist`, false) && (0, import_kolmafia85.itemType)((0, import_kolmafia85.equippedItem)($slot`weapon`)) === "utensil") {
+        if (canUse($skill`Utensil Twist`, false) && (0, import_kolmafia85.itemType)((0, import_kolmafia85.equippedItem)($slot`weapon`)) === "utensil") {
           if ((0, import_kolmafia85.equippedItem)($slot`weapon`) === $item`Hand that Rocks the Ladle`) {
-            attackMajor = useSkill$1($skill`Utensil Twist`, false);
-            attackMinor = useSkill$1($skill`Utensil Twist`, false);
+            attackMajor = auto_useSkill($skill`Utensil Twist`, false);
+            attackMinor = auto_useSkill($skill`Utensil Twist`, false);
             costMinor = (0, import_kolmafia85.mpCost)($skill`Utensil Twist`);
             costMajor = (0, import_kolmafia85.mpCost)($skill`Utensil Twist`);
-          } else if (enemy.physicalResistance <= 80 && attackMinor !== useSkill$1($skill`Saucestorm`, false)) {
-            attackMinor = useSkill$1($skill`Utensil Twist`, false);
+          } else if (enemy.physicalResistance <= 80 && attackMinor !== auto_useSkill($skill`Saucestorm`, false)) {
+            attackMinor = auto_useSkill($skill`Utensil Twist`, false);
             costMinor = (0, import_kolmafia85.mpCost)($skill`Utensil Twist`);
           }
         }
-        if ((in_glover() || attackMinor === "attack with weapon") && canUse$1($skill`Saucegeyser`, false)) {
-          attackMinor = useSkill$1($skill`Saucegeyser`, false);
+        if ((in_glover() || attackMinor === "attack with weapon") && canUse($skill`Saucegeyser`, false)) {
+          attackMinor = auto_useSkill($skill`Saucegeyser`, false);
           costMinor = (0, import_kolmafia85.mpCost)($skill`Saucegeyser`);
         }
         break;
       case $class`Sauceror`: {
-        if (canUse$1($skill`Saucegeyser`, false)) {
-          attackMinor = useSkill$1($skill`Saucegeyser`, false);
-          attackMajor = useSkill$1($skill`Saucegeyser`, false);
+        if (canUse($skill`Saucegeyser`, false)) {
+          attackMinor = auto_useSkill($skill`Saucegeyser`, false);
+          attackMajor = auto_useSkill($skill`Saucegeyser`, false);
           costMinor = (0, import_kolmafia85.mpCost)($skill`Saucegeyser`);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Saucegeyser`);
-        } else if (canUse$1($skill`Saucecicle`, false) && (0, import_kolmafia85.monsterElement)(enemy) !== $element`cold`) {
-          attackMinor = useSkill$1($skill`Saucecicle`, false);
-          attackMajor = useSkill$1($skill`Saucecicle`, false);
+        } else if (canUse($skill`Saucecicle`, false) && (0, import_kolmafia85.monsterElement)(enemy) !== $element`cold`) {
+          attackMinor = auto_useSkill($skill`Saucecicle`, false);
+          attackMajor = auto_useSkill($skill`Saucecicle`, false);
           costMinor = (0, import_kolmafia85.mpCost)($skill`Saucecicle`);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Saucecicle`);
-        } else if (canUse$1($skill`Saucestorm`, false)) {
-          attackMinor = useSkill$1($skill`Saucestorm`, false);
-          attackMajor = useSkill$1($skill`Saucestorm`, false);
+        } else if (canUse($skill`Saucestorm`, false)) {
+          attackMinor = auto_useSkill($skill`Saucestorm`, false);
+          attackMajor = auto_useSkill($skill`Saucestorm`, false);
           costMinor = (0, import_kolmafia85.mpCost)($skill`Saucestorm`);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Saucestorm`);
-        } else if (canUse$1($skill`Wave of Sauce`, false) && (0, import_kolmafia85.monsterElement)(enemy) !== $element`hot`) {
-          attackMinor = useSkill$1($skill`Wave of Sauce`, false);
-          attackMajor = useSkill$1($skill`Wave of Sauce`, false);
+        } else if (canUse($skill`Wave of Sauce`, false) && (0, import_kolmafia85.monsterElement)(enemy) !== $element`hot`) {
+          attackMinor = auto_useSkill($skill`Wave of Sauce`, false);
+          attackMajor = auto_useSkill($skill`Wave of Sauce`, false);
           costMinor = (0, import_kolmafia85.mpCost)($skill`Wave of Sauce`);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Wave of Sauce`);
-        } else if (canUse$1($skill`Stream of Sauce`, false) && (0, import_kolmafia85.monsterElement)(enemy) !== $element`hot`) {
-          attackMinor = useSkill$1($skill`Stream of Sauce`, false);
-          attackMajor = useSkill$1($skill`Stream of Sauce`, false);
+        } else if (canUse($skill`Stream of Sauce`, false) && (0, import_kolmafia85.monsterElement)(enemy) !== $element`hot`) {
+          attackMinor = auto_useSkill($skill`Stream of Sauce`, false);
+          attackMajor = auto_useSkill($skill`Stream of Sauce`, false);
           costMinor = (0, import_kolmafia85.mpCost)($skill`Stream of Sauce`);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Stream of Sauce`);
         }
@@ -6890,123 +6890,123 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
           if ((0, import_kolmafia85.monsterHp)() > 1 && canUse$3($item`seal tooth`, false)) {
             return useItem($item`seal tooth`, false);
           }
-          if ((0, import_kolmafia85.monsterHp)() > 15 && canUse$1($skill`Salsaball`, false)) {
-            return useSkill$1($skill`Salsaball`, false);
+          if ((0, import_kolmafia85.monsterHp)() > 15 && canUse($skill`Salsaball`, false)) {
+            return auto_useSkill($skill`Salsaball`, false);
           }
         }
         break;
       }
       case $class`Avatar of Boris`: {
-        if (canUse$1($skill`Heroic Belch`, false) && enemy.physicalResistance >= 80 && $element`stench` !== (0, import_kolmafia85.monsterElement)(enemy)) {
-          attackMinor = useSkill$2($skill`Heroic Belch`);
-          attackMajor = useSkill$2($skill`Heroic Belch`);
+        if (canUse($skill`Heroic Belch`, false) && enemy.physicalResistance >= 80 && $element`stench` !== (0, import_kolmafia85.monsterElement)(enemy)) {
+          attackMinor = auto_useSkill($skill`Heroic Belch`);
+          attackMajor = auto_useSkill($skill`Heroic Belch`);
           costMinor = (0, import_kolmafia85.mpCost)($skill`Heroic Belch`);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Heroic Belch`);
         }
-        if (canUse$1($skill`Mighty Axing`, false)) {
-          attackMinor = useSkill$1($skill`Mighty Axing`, false);
-          attackMajor = useSkill$1($skill`Mighty Axing`, false);
+        if (canUse($skill`Mighty Axing`, false)) {
+          attackMinor = auto_useSkill($skill`Mighty Axing`, false);
+          attackMajor = auto_useSkill($skill`Mighty Axing`, false);
           costMinor = (0, import_kolmafia85.mpCost)($skill`Mighty Axing`);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Mighty Axing`);
         }
-        if (canUse$1($skill`Cleave`, false)) {
-          attackMajor = useSkill$1($skill`Cleave`, false);
+        if (canUse($skill`Cleave`, false)) {
+          attackMajor = auto_useSkill($skill`Cleave`, false);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Cleave`);
         }
-        if ((0, import_kolmafia85.equippedItem)($slot`weapon`) === $item`Trusty` && canUse$1($skill`Throw Trusty`, false) && $monsters`apathetic lizardman, Procrastination Giant`.includes(enemy)) {
-          attackMinor = useSkill$1($skill`Throw Trusty`, false);
-          attackMajor = useSkill$1($skill`Throw Trusty`, false);
+        if ((0, import_kolmafia85.equippedItem)($slot`weapon`) === $item`Trusty` && canUse($skill`Throw Trusty`, false) && $monsters`apathetic lizardman, Procrastination Giant`.includes(enemy)) {
+          attackMinor = auto_useSkill($skill`Throw Trusty`, false);
+          attackMajor = auto_useSkill($skill`Throw Trusty`, false);
           costMinor = (0, import_kolmafia85.mpCost)($skill`Throw Trusty`);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Throw Trusty`);
         }
-        if (canUse$1($skill`Heroic Belch`, false) && enemy.physicalResistance >= 100 && (0, import_kolmafia85.monsterElement)(enemy) !== $element`stench` && (0, import_kolmafia85.myFullness)() >= 5) {
-          attackMinor = useSkill$1($skill`Heroic Belch`, false);
-          attackMajor = useSkill$1($skill`Heroic Belch`, false);
+        if (canUse($skill`Heroic Belch`, false) && enemy.physicalResistance >= 100 && (0, import_kolmafia85.monsterElement)(enemy) !== $element`stench` && (0, import_kolmafia85.myFullness)() >= 5) {
+          attackMinor = auto_useSkill($skill`Heroic Belch`, false);
+          attackMajor = auto_useSkill($skill`Heroic Belch`, false);
           costMinor = (0, import_kolmafia85.mpCost)($skill`Heroic Belch`);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Heroic Belch`);
         }
         break;
       }
       case $class`Avatar of Jarlsberg`: {
-        attackMinor = useSkill$1($skill`Curdle`, false);
-        attackMajor = useSkill$1($skill`Curdle`, false);
+        attackMinor = auto_useSkill($skill`Curdle`, false);
+        attackMajor = auto_useSkill($skill`Curdle`, false);
         costMinor = (0, import_kolmafia85.mpCost)($skill`Curdle`);
         costMajor = (0, import_kolmafia85.mpCost)($skill`Curdle`);
         if (enemy.physicalResistance < 50) {
-          if (canUse$1($skill`Chop`, false)) {
-            attackMinor = useSkill$1($skill`Chop`, false);
-            attackMajor = useSkill$1($skill`Chop`, false);
+          if (canUse($skill`Chop`, false)) {
+            attackMinor = auto_useSkill($skill`Chop`, false);
+            attackMajor = auto_useSkill($skill`Chop`, false);
             costMinor = (0, import_kolmafia85.mpCost)($skill`Chop`);
             costMajor = (0, import_kolmafia85.mpCost)($skill`Chop`);
           }
-          if (canUse$1($skill`Slice`, false)) {
-            attackMajor = useSkill$1($skill`Slice`, false);
+          if (canUse($skill`Slice`, false)) {
+            attackMajor = auto_useSkill($skill`Slice`, false);
             costMajor = (0, import_kolmafia85.mpCost)($skill`Slice`);
           }
         }
-        if ($elements`cold, spooky`.includes((0, import_kolmafia85.monsterElement)(enemy)) && canUse$2($skill`Bake`)) {
-          attackMinor = useSkill$2($skill`Bake`);
-          attackMajor = useSkill$2($skill`Bake`);
+        if ($elements`cold, spooky`.includes((0, import_kolmafia85.monsterElement)(enemy)) && canUse($skill`Bake`)) {
+          attackMinor = auto_useSkill($skill`Bake`);
+          attackMajor = auto_useSkill($skill`Bake`);
           costMinor = (0, import_kolmafia85.mpCost)($skill`Bake`);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Bake`);
-        } else if ($elements`cold, spooky`.includes((0, import_kolmafia85.monsterElement)(enemy)) && canUse$1($skill`Boil`, false)) {
-          attackMinor = useSkill$1($skill`Boil`, false);
-          attackMajor = useSkill$1($skill`Boil`, false);
+        } else if ($elements`cold, spooky`.includes((0, import_kolmafia85.monsterElement)(enemy)) && canUse($skill`Boil`, false)) {
+          attackMinor = auto_useSkill($skill`Boil`, false);
+          attackMajor = auto_useSkill($skill`Boil`, false);
           costMinor = (0, import_kolmafia85.mpCost)($skill`Boil`);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Boil`);
-        } else if ($elements`stench, sleaze`.includes((0, import_kolmafia85.monsterElement)(enemy)) && canUse$1($skill`Freeze`, false)) {
-          attackMinor = useSkill$1($skill`Freeze`, false);
-          attackMajor = useSkill$1($skill`Freeze`, false);
+        } else if ($elements`stench, sleaze`.includes((0, import_kolmafia85.monsterElement)(enemy)) && canUse($skill`Freeze`, false)) {
+          attackMinor = auto_useSkill($skill`Freeze`, false);
+          attackMajor = auto_useSkill($skill`Freeze`, false);
           costMinor = (0, import_kolmafia85.mpCost)($skill`Freeze`);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Freeze`);
         } else if (enemy.physicalResistance >= 50) {
-          if ((0, import_kolmafia85.monsterElement)(enemy) !== $element`hot` && canUse$2($skill`Bake`)) {
-            attackMinor = useSkill$2($skill`Bake`);
-            attackMajor = useSkill$2($skill`Bake`);
+          if ((0, import_kolmafia85.monsterElement)(enemy) !== $element`hot` && canUse($skill`Bake`)) {
+            attackMinor = auto_useSkill($skill`Bake`);
+            attackMajor = auto_useSkill($skill`Bake`);
             costMinor = (0, import_kolmafia85.mpCost)($skill`Bake`);
             costMajor = (0, import_kolmafia85.mpCost)($skill`Bake`);
-          } else if ((0, import_kolmafia85.monsterElement)(enemy) !== $element`hot` && canUse$1($skill`Boil`, false)) {
-            attackMinor = useSkill$1($skill`Boil`, false);
-            attackMajor = useSkill$1($skill`Boil`, false);
+          } else if ((0, import_kolmafia85.monsterElement)(enemy) !== $element`hot` && canUse($skill`Boil`, false)) {
+            attackMinor = auto_useSkill($skill`Boil`, false);
+            attackMajor = auto_useSkill($skill`Boil`, false);
             costMinor = (0, import_kolmafia85.mpCost)($skill`Boil`);
             costMajor = (0, import_kolmafia85.mpCost)($skill`Boil`);
-          } else if ((0, import_kolmafia85.monsterElement)(enemy) !== $element`cold` && canUse$1($skill`Freeze`, false)) {
-            attackMinor = useSkill$1($skill`Freeze`, false);
-            attackMajor = useSkill$1($skill`Freeze`, false);
+          } else if ((0, import_kolmafia85.monsterElement)(enemy) !== $element`cold` && canUse($skill`Freeze`, false)) {
+            attackMinor = auto_useSkill($skill`Freeze`, false);
+            attackMajor = auto_useSkill($skill`Freeze`, false);
             costMinor = (0, import_kolmafia85.mpCost)($skill`Freeze`);
             costMajor = (0, import_kolmafia85.mpCost)($skill`Freeze`);
           }
         }
-        if ($elements`hot, stench`.includes((0, import_kolmafia85.monsterElement)(enemy)) && canUse$1($skill`Fry`, false)) {
-          attackMajor = useSkill$1($skill`Fry`, false);
+        if ($elements`hot, stench`.includes((0, import_kolmafia85.monsterElement)(enemy)) && canUse($skill`Fry`, false)) {
+          attackMajor = auto_useSkill($skill`Fry`, false);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Fry`);
-        } else if ((0, import_kolmafia85.monsterElement)(enemy) !== import_kolmafia85.Element.none && canUse$1($skill`Grill`, false)) {
-          attackMajor = useSkill$1($skill`Grill`, false);
+        } else if ((0, import_kolmafia85.monsterElement)(enemy) !== import_kolmafia85.Element.none && canUse($skill`Grill`, false)) {
+          attackMajor = auto_useSkill($skill`Grill`, false);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Grill`);
         } else if (enemy.physicalResistance >= 50) {
-          if ((0, import_kolmafia85.monsterElement)(enemy) !== $element`sleaze` && canUse$1($skill`Fry`, false)) {
-            attackMajor = useSkill$1($skill`Fry`, false);
+          if ((0, import_kolmafia85.monsterElement)(enemy) !== $element`sleaze` && canUse($skill`Fry`, false)) {
+            attackMajor = auto_useSkill($skill`Fry`, false);
             costMajor = (0, import_kolmafia85.mpCost)($skill`Fry`);
-          } else if (canUse$1($skill`Grill`, false)) {
-            attackMajor = useSkill$1($skill`Grill`, false);
+          } else if (canUse($skill`Grill`, false)) {
+            attackMajor = auto_useSkill($skill`Grill`, false);
             costMajor = (0, import_kolmafia85.mpCost)($skill`Grill`);
           }
         }
         break;
       }
       case $class`Avatar of Sneaky Pete`: {
-        if (canUse$1($skill`Pop Wheelie`, false)) {
-          attackMajor = useSkill$1($skill`Pop Wheelie`, false);
+        if (canUse($skill`Pop Wheelie`, false)) {
+          attackMajor = auto_useSkill($skill`Pop Wheelie`, false);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Pop Wheelie`);
         }
-        if (canUse$2($skill`Smoke Break`) && enemy.physicalResistance >= 80) {
-          attackMinor = useSkill$2($skill`Smoke Break`);
-          attackMajor = useSkill$2($skill`Smoke Break`);
+        if (canUse($skill`Smoke Break`) && enemy.physicalResistance >= 80) {
+          attackMinor = auto_useSkill($skill`Smoke Break`);
+          attackMajor = auto_useSkill($skill`Smoke Break`);
           costMinor = (0, import_kolmafia85.mpCost)($skill`Smoke Break`);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Smoke Break`);
-        } else if (canUse$2($skill`Flash Headlight`) && enemy.physicalResistance >= 80 && ((0, import_kolmafia85.getProperty)("peteMotorbikeHeadlight") === "Party Bulb" || (0, import_kolmafia85.getProperty)("peteMotorbikeHeadlight") === "Blacklight Bulb" && (0, import_kolmafia85.monsterElement)(enemy) !== $element`sleaze`)) {
-          attackMinor = useSkill$2($skill`Flash Headlight`);
-          attackMajor = useSkill$2($skill`Flash Headlight`);
+        } else if (canUse($skill`Flash Headlight`) && enemy.physicalResistance >= 80 && ((0, import_kolmafia85.getProperty)("peteMotorbikeHeadlight") === "Party Bulb" || (0, import_kolmafia85.getProperty)("peteMotorbikeHeadlight") === "Blacklight Bulb" && (0, import_kolmafia85.monsterElement)(enemy) !== $element`sleaze`)) {
+          attackMinor = auto_useSkill($skill`Flash Headlight`);
+          attackMajor = auto_useSkill($skill`Flash Headlight`);
           costMinor = (0, import_kolmafia85.mpCost)($skill`Flash Headlight`);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Flash Headlight`);
         } else if (canUse$3($item`firebomb`, false) && enemy.physicalResistance >= 100 && (0, import_kolmafia85.monsterElement)(enemy) !== $element`hot`) {
@@ -7018,15 +7018,15 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
         break;
       }
       case $class`Accordion Thief`: {
-        if (canUse$2($skill`Cadenza`) && (0, import_kolmafia85.itemType)((0, import_kolmafia85.equippedItem)($slot`weapon`)) === "accordion" && canSurvive$1(2)) {
+        if (canUse($skill`Cadenza`) && (0, import_kolmafia85.itemType)((0, import_kolmafia85.equippedItem)($slot`weapon`)) === "accordion" && canSurvive$1(2)) {
           if ($items`accordion file, alarm accordion, autocalliope, Bal-musette accordion, baritone accordion, Cajun accordion, ghost accordion, peace accordion, pentatonic accordion, pygmy concertinette, Skipper's accordion, Squeezebox of the Ages, The Trickster's Trikitixa`.includes(
             (0, import_kolmafia85.equippedItem)($slot`weapon`)
           )) {
-            return useSkill$2($skill`Cadenza`);
+            return auto_useSkill($skill`Cadenza`);
           }
         }
-        if ((0, import_kolmafia85.buffedHitStat)() - 20 < (0, import_kolmafia85.monsterDefense)() && canUse$1($skill`Saucestorm`, false)) {
-          attackMajor = useSkill$1($skill`Saucestorm`, false);
+        if ((0, import_kolmafia85.buffedHitStat)() - 20 < (0, import_kolmafia85.monsterDefense)() && canUse($skill`Saucestorm`, false)) {
+          attackMajor = auto_useSkill($skill`Saucestorm`, false);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Saucestorm`);
         }
         if (enemy.physicalResistance > 80) {
@@ -7036,9 +7036,9 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
           try {
             for (_iterator3.s(); !(_step3 = _iterator3.n()).done; ) {
               var _sk2 = _step3.value;
-              if (canUse$1(_sk2, false)) {
-                attackMinor = useSkill$1(_sk2, false);
-                attackMajor = useSkill$1(_sk2, false);
+              if (canUse(_sk2, false)) {
+                attackMinor = auto_useSkill(_sk2, false);
+                attackMajor = auto_useSkill(_sk2, false);
                 costMinor = (0, import_kolmafia85.mpCost)(_sk2);
                 costMajor = (0, import_kolmafia85.mpCost)(_sk2);
                 break;
@@ -7063,8 +7063,8 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
             for (_iterator4.s(); !(_step4 = _iterator4.n()).done; ) {
               var dance = _step4.value;
               netCost += (0, import_kolmafia85.mpCost)(dance);
-              if (canUse$2(dance) && mpRegen > netCost * 2) {
-                return useSkill$2(dance);
+              if (canUse(dance) && mpRegen > netCost * 2) {
+                return auto_useSkill(dance);
               }
             }
           } catch (err) {
@@ -7073,8 +7073,8 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
             _iterator4.f();
           }
         }
-        if ((0, import_kolmafia85.buffedHitStat)() - 20 < (0, import_kolmafia85.monsterDefense)() && canUse$1($skill`Saucestorm`, false)) {
-          attackMajor = useSkill$1($skill`Saucestorm`, false);
+        if ((0, import_kolmafia85.buffedHitStat)() - 20 < (0, import_kolmafia85.monsterDefense)() && canUse($skill`Saucestorm`, false)) {
+          attackMajor = auto_useSkill($skill`Saucestorm`, false);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Saucestorm`);
         }
         if (enemy.physicalResistance > 80) {
@@ -7084,9 +7084,9 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
           try {
             for (_iterator5.s(); !(_step5 = _iterator5.n()).done; ) {
               var _sk3 = _step5.value;
-              if (canUse$1(_sk3, false)) {
-                attackMinor = useSkill$1(_sk3, false);
-                attackMajor = useSkill$1(_sk3, false);
+              if (canUse(_sk3, false)) {
+                attackMinor = auto_useSkill(_sk3, false);
+                attackMajor = auto_useSkill(_sk3, false);
                 costMinor = (0, import_kolmafia85.mpCost)(_sk3);
                 costMajor = (0, import_kolmafia85.mpCost)(_sk3);
                 break;
@@ -7103,59 +7103,59 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
       case $class`Cow Puncher`:
       case $class`Beanslinger`:
       case $class`Snake Oiler`:
-        if (canUse$2($skill`Extract Oil`) && (0, import_kolmafia85.myHp)() > 80 && (0, import_kolmafia85.myMp)() >= 3 * (0, import_kolmafia85.mpCost)($skill`Extract Oil`)) {
+        if (canUse($skill`Extract Oil`) && (0, import_kolmafia85.myHp)() > 80 && (0, import_kolmafia85.myMp)() >= 3 * (0, import_kolmafia85.mpCost)($skill`Extract Oil`)) {
           if ($monsters`aggressive grass snake, bacon snake, Batsnake, black adder, Burning Snake of Fire, coal snake, diamondback rattler, frontwinder, Frozen Solid Snake, king snake, licorice snake, mutant rattlesnake, prince snake, sewer snake with a sewer snake in it, Snakeleton, The Snake With Like Ten Heads, tomb asp, Trouser Snake, whitesnake`.includes(
             enemy
           ) && (0, import_kolmafia85.itemAmount)($item`snake oil`) < 4) {
-            return useSkill$2($skill`Extract Oil`);
+            return auto_useSkill($skill`Extract Oil`);
           } else if ($phyla`beast, dude, hippy, humanoid, orc, pirate`.includes(
             type_1
           ) && (0, import_kolmafia85.itemAmount)($item`skin oil`) < 3) {
-            return useSkill$2($skill`Extract Oil`);
+            return auto_useSkill($skill`Extract Oil`);
           } else if ($phyla`bug, construct, constellation, demon, elemental, elf, fish, goblin, hobo, horror, mer-kin, penguin, plant, slime, weird`.includes(
             type_1
           ) && (0, import_kolmafia85.itemAmount)($item`unusual oil`) < 4) {
-            return useSkill$2($skill`Extract Oil`);
+            return auto_useSkill($skill`Extract Oil`);
           } else if ($phyla`undead`.includes(type_1) && (0, import_kolmafia85.itemAmount)($item`eldritch oil`) < 5) {
-            return useSkill$2($skill`Extract Oil`);
+            return auto_useSkill($skill`Extract Oil`);
           }
         }
-        if (canUse$2($skill`Good Medicine`) && (0, import_kolmafia85.myMp)() >= 3 * (0, import_kolmafia85.mpCost)($skill`Good Medicine`)) {
-          return useSkill$2($skill`Good Medicine`);
+        if (canUse($skill`Good Medicine`) && (0, import_kolmafia85.myMp)() >= 3 * (0, import_kolmafia85.mpCost)($skill`Good Medicine`)) {
+          return auto_useSkill($skill`Good Medicine`);
         }
-        if (canUse$1($skill`Lavafava`, false) && enemy.defenseElement !== $element`hot`) {
-          attackMajor = useSkill$1($skill`Lavafava`, false);
-          attackMinor = useSkill$1($skill`Lavafava`, false);
+        if (canUse($skill`Lavafava`, false) && enemy.defenseElement !== $element`hot`) {
+          attackMajor = auto_useSkill($skill`Lavafava`, false);
+          attackMinor = auto_useSkill($skill`Lavafava`, false);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Lavafava`);
           costMinor = (0, import_kolmafia85.mpCost)($skill`Lavafava`);
         }
-        if (canUse$1($skill`Beanstorm`, false)) {
-          attackMajor = useSkill$1($skill`Beanstorm`, false);
-          attackMinor = useSkill$1($skill`Beanstorm`, false);
+        if (canUse($skill`Beanstorm`, false)) {
+          attackMajor = auto_useSkill($skill`Beanstorm`, false);
+          attackMinor = auto_useSkill($skill`Beanstorm`, false);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Beanstorm`);
           costMinor = (0, import_kolmafia85.mpCost)($skill`Beanstorm`);
         }
-        if (canUse$1($skill`Fan Hammer`, false) && enemy.physicalResistance < 80) {
-          attackMajor = useSkill$1($skill`Fan Hammer`, false);
-          attackMinor = useSkill$1($skill`Fan Hammer`, false);
+        if (canUse($skill`Fan Hammer`, false) && enemy.physicalResistance < 80) {
+          attackMajor = auto_useSkill($skill`Fan Hammer`, false);
+          attackMinor = auto_useSkill($skill`Fan Hammer`, false);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Fan Hammer`);
           costMinor = (0, import_kolmafia85.mpCost)($skill`Fan Hammer`);
         }
-        if (canUse$1($skill`Snakewhip`, false) && enemy.physicalResistance < 80) {
-          attackMajor = useSkill$1($skill`Snakewhip`, false);
-          attackMinor = useSkill$1($skill`Snakewhip`, false);
+        if (canUse($skill`Snakewhip`, false) && enemy.physicalResistance < 80) {
+          attackMajor = auto_useSkill($skill`Snakewhip`, false);
+          attackMinor = auto_useSkill($skill`Snakewhip`, false);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Snakewhip`);
           costMinor = (0, import_kolmafia85.mpCost)($skill`Snakewhip`);
         }
-        if (canUse$1($skill`Pungent Mung`, false) && enemy.defenseElement !== $element`stench`) {
-          attackMajor = useSkill$1($skill`Pungent Mung`, false);
-          attackMinor = useSkill$1($skill`Pungent Mung`, false);
+        if (canUse($skill`Pungent Mung`, false) && enemy.defenseElement !== $element`stench`) {
+          attackMajor = auto_useSkill($skill`Pungent Mung`, false);
+          attackMinor = auto_useSkill($skill`Pungent Mung`, false);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Pungent Mung`);
           costMinor = (0, import_kolmafia85.mpCost)($skill`Pungent Mung`);
         }
-        if (canUse$1($skill`Cowcall`, false) && type_1 !== $phylum`undead` && enemy.defenseElement !== $element`spooky` && ((0, import_kolmafia85.haveEffect)($effect`Cowrruption`) >= 60 || (0, import_kolmafia85.myClass)() === $class`Cow Puncher`)) {
-          attackMajor = useSkill$1($skill`Cowcall`, false);
-          attackMinor = useSkill$1($skill`Cowcall`, false);
+        if (canUse($skill`Cowcall`, false) && type_1 !== $phylum`undead` && enemy.defenseElement !== $element`spooky` && ((0, import_kolmafia85.haveEffect)($effect`Cowrruption`) >= 60 || (0, import_kolmafia85.myClass)() === $class`Cow Puncher`)) {
+          attackMajor = auto_useSkill($skill`Cowcall`, false);
+          attackMinor = auto_useSkill($skill`Cowcall`, false);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Cowcall`);
           costMinor = (0, import_kolmafia85.mpCost)($skill`Cowcall`);
         }
@@ -7170,9 +7170,9 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
             if (_sk4 === $skill`Chill of the Tomb` && (0, import_kolmafia85.monsterElement)(enemy) === $element`cold`) {
               continue;
             }
-            if (canUse$1(_sk4, false) && (0, import_kolmafia85.myHp)() > (0, import_kolmafia85.hpCost)(_sk4)) {
-              attackMajor = useSkill$1(_sk4, false);
-              attackMinor = useSkill$1(_sk4, false);
+            if (canUse(_sk4, false) && (0, import_kolmafia85.myHp)() > (0, import_kolmafia85.hpCost)(_sk4)) {
+              attackMajor = auto_useSkill(_sk4, false);
+              attackMinor = auto_useSkill(_sk4, false);
               break;
             }
           }
@@ -7181,105 +7181,105 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
         } finally {
           _iterator6.f();
         }
-        if ((0, import_kolmafia85.myHp)() > 0.5 * (0, import_kolmafia85.myMaxhp)() && attackMajor === useSkill$1($skill`Chill of the Tomb`, false) && (0, import_kolmafia85.myLocation)() === $location`The Smut Orc Logging Camp`) {
+        if ((0, import_kolmafia85.myHp)() > 0.5 * (0, import_kolmafia85.myMaxhp)() && attackMajor === auto_useSkill($skill`Chill of the Tomb`, false) && (0, import_kolmafia85.myLocation)() === $location`The Smut Orc Logging Camp`) {
           break;
         }
-        if ((0, import_kolmafia85.myHp)() < (0, import_kolmafia85.myMaxhp)() && ((0, import_kolmafia85.monsterHp)() <= 30 || (0, import_kolmafia85.monsterHp)() <= 100 && auto_have_skill($skill`Hypnotic Eyes`)) && canUse$2($skill`Dark Feast`)) {
-          return useSkill$2($skill`Dark Feast`);
+        if ((0, import_kolmafia85.myHp)() < (0, import_kolmafia85.myMaxhp)() && ((0, import_kolmafia85.monsterHp)() <= 30 || (0, import_kolmafia85.monsterHp)() <= 100 && auto_have_skill($skill`Hypnotic Eyes`)) && canUse($skill`Dark Feast`)) {
+          return auto_useSkill($skill`Dark Feast`);
         }
-        if (attackMinor === "attack with weapon" && !(0, import_kolmafia85.haveSkill)($skill`Preternatural Strength`) && canUse$4($item`beehive`) && $stat`Moxie` !== (0, import_kolmafia85.weaponType)((0, import_kolmafia85.equippedItem)($slot`weapon`))) {
+        if (attackMinor === "attack with weapon" && !(0, import_kolmafia85.haveSkill)($skill`Preternatural Strength`) && canUse$3($item`beehive`) && $stat`Moxie` !== (0, import_kolmafia85.weaponType)((0, import_kolmafia85.equippedItem)($slot`weapon`))) {
           attackMinor = useItem($item`beehive`, false);
         }
         break;
       case $class`Pig Skinner`:
         attackMinor = "attack with weapon";
-        if (canUse$1($skill`Ball Throw`, true) && enemy.physicalResistance < 80) {
-          attackMajor = useSkill$1($skill`Ball Throw`, true);
-          attackMinor = useSkill$1($skill`Ball Throw`, true);
+        if (canUse($skill`Ball Throw`, true) && enemy.physicalResistance < 80) {
+          attackMajor = auto_useSkill($skill`Ball Throw`, true);
+          attackMinor = auto_useSkill($skill`Ball Throw`, true);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Ball Throw`);
           costMinor = (0, import_kolmafia85.mpCost)($skill`Ball Throw`);
         }
-        if (canUse$1($skill`Hot Foot`, true) && enemy.defenseElement !== $element`hot` && !enemyCanBlocksSkills()) {
-          attackMajor = useSkill$1($skill`Hot Foot`, true);
-          attackMinor = useSkill$1($skill`Hot Foot`, true);
+        if (canUse($skill`Hot Foot`, true) && enemy.defenseElement !== $element`hot` && !enemyCanBlocksSkills()) {
+          attackMajor = auto_useSkill($skill`Hot Foot`, true);
+          attackMinor = auto_useSkill($skill`Hot Foot`, true);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Hot Foot`);
           costMinor = (0, import_kolmafia85.mpCost)($skill`Hot Foot`);
         }
-        if (canUse$1($skill`Stop Hitting Yourself`, true) && enemy.physicalResistance < 80) {
-          attackMajor = useSkill$1($skill`Stop Hitting Yourself`, true);
-          attackMinor = useSkill$1($skill`Stop Hitting Yourself`, true);
+        if (canUse($skill`Stop Hitting Yourself`, true) && enemy.physicalResistance < 80) {
+          attackMajor = auto_useSkill($skill`Stop Hitting Yourself`, true);
+          attackMinor = auto_useSkill($skill`Stop Hitting Yourself`, true);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Stop Hitting Yourself`);
           costMinor = (0, import_kolmafia85.mpCost)($skill`Stop Hitting Yourself`);
         }
-        if ((0, import_kolmafia85.myHp)() / 0.5 < (0, import_kolmafia85.myMaxhp)() && canUse$1($skill`Second Wind`, true)) {
-          attackMajor = useSkill$1($skill`Second Wind`, true);
-          attackMinor = useSkill$1($skill`Second Wind`, true);
+        if ((0, import_kolmafia85.myHp)() / 0.5 < (0, import_kolmafia85.myMaxhp)() && canUse($skill`Second Wind`, true)) {
+          attackMajor = auto_useSkill($skill`Second Wind`, true);
+          attackMinor = auto_useSkill($skill`Second Wind`, true);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Second Wind`);
           costMinor = (0, import_kolmafia85.mpCost)($skill`Second Wind`);
         }
         break;
       case $class`Cheese Wizard`:
         attackMinor = "attack with weapon";
-        if (canUse$2($skill`Parmesan Missile`)) {
-          attackMajor = useSkill$1($skill`Parmesan Missile`, false);
-          attackMinor = useSkill$1($skill`Parmesan Missile`, false);
+        if (canUse($skill`Parmesan Missile`)) {
+          attackMajor = auto_useSkill($skill`Parmesan Missile`, false);
+          attackMinor = auto_useSkill($skill`Parmesan Missile`, false);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Parmesan Missile`);
           costMinor = (0, import_kolmafia85.mpCost)($skill`Parmesan Missile`);
         }
-        if (canUse$2($skill`Crack Knuckles`) && enemy.physicalResistance < 80) {
-          attackMajor = useSkill$1($skill`Crack Knuckles`, true);
-          attackMinor = useSkill$1($skill`Crack Knuckles`, true);
+        if (canUse($skill`Crack Knuckles`) && enemy.physicalResistance < 80) {
+          attackMajor = auto_useSkill($skill`Crack Knuckles`, true);
+          attackMinor = auto_useSkill($skill`Crack Knuckles`, true);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Crack Knuckles`);
           costMinor = (0, import_kolmafia85.mpCost)($skill`Crack Knuckles`);
         }
-        if (canUse$1($skill`Mind Melt`, true)) {
-          attackMajor = useSkill$1($skill`Mind Melt`, true);
-          attackMinor = useSkill$1($skill`Mind Melt`, true);
+        if (canUse($skill`Mind Melt`, true)) {
+          attackMajor = auto_useSkill($skill`Mind Melt`, true);
+          attackMinor = auto_useSkill($skill`Mind Melt`, true);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Mind Melt`);
           costMinor = (0, import_kolmafia85.mpCost)($skill`Mind Melt`);
         }
-        if (canUse$1($skill`Stilton Splatter`, true) && enemy.physicalResistance < 80) {
-          attackMajor = useSkill$1($skill`Stilton Splatter`, true);
-          attackMinor = useSkill$1($skill`Stilton Splatter`, true);
+        if (canUse($skill`Stilton Splatter`, true) && enemy.physicalResistance < 80) {
+          attackMajor = auto_useSkill($skill`Stilton Splatter`, true);
+          attackMinor = auto_useSkill($skill`Stilton Splatter`, true);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Stilton Splatter`);
           costMinor = (0, import_kolmafia85.mpCost)($skill`Stilton Splatter`);
         }
-        if (canUse$1($skill`Emmental Elemental`, true) && (0, import_kolmafia85.myHp)() / 0.7 < (0, import_kolmafia85.myMaxhp)()) {
-          attackMajor = useSkill$1($skill`Emmental Elemental`, true);
-          attackMinor = useSkill$1($skill`Emmental Elemental`, true);
+        if (canUse($skill`Emmental Elemental`, true) && (0, import_kolmafia85.myHp)() / 0.7 < (0, import_kolmafia85.myMaxhp)()) {
+          attackMajor = auto_useSkill($skill`Emmental Elemental`, true);
+          attackMinor = auto_useSkill($skill`Emmental Elemental`, true);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Emmental Elemental`);
           costMinor = (0, import_kolmafia85.mpCost)($skill`Emmental Elemental`);
         }
         break;
       case $class`Jazz Agent`:
         attackMinor = "attack with weapon";
-        if (canUse$1($skill`Orchestra Strike`, false) && enemy.physicalResistance < 80) {
-          attackMajor = useSkill$1($skill`Orchestra Strike`, false);
-          attackMinor = useSkill$1($skill`Orchestra Strike`, false);
+        if (canUse($skill`Orchestra Strike`, false) && enemy.physicalResistance < 80) {
+          attackMajor = auto_useSkill($skill`Orchestra Strike`, false);
+          attackMinor = auto_useSkill($skill`Orchestra Strike`, false);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Orchestra Strike`);
           costMinor = (0, import_kolmafia85.mpCost)($skill`Orchestra Strike`);
         }
-        if (canUse$1($skill`Sax of Violence`, false) && enemy.defenseElement !== $element`sleaze`) {
-          attackMajor = useSkill$1($skill`Sax of Violence`, false);
-          attackMinor = useSkill$1($skill`Sax of Violence`, false);
+        if (canUse($skill`Sax of Violence`, false) && enemy.defenseElement !== $element`sleaze`) {
+          attackMajor = auto_useSkill($skill`Sax of Violence`, false);
+          attackMinor = auto_useSkill($skill`Sax of Violence`, false);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Sax of Violence`);
           costMinor = (0, import_kolmafia85.mpCost)($skill`Sax of Violence`);
         }
-        if (canUse$1($skill`Venomous Riff`, true)) {
-          attackMajor = useSkill$1($skill`Venomous Riff`, true);
-          attackMinor = useSkill$1($skill`Venomous Riff`, true);
+        if (canUse($skill`Venomous Riff`, true)) {
+          attackMajor = auto_useSkill($skill`Venomous Riff`, true);
+          attackMinor = auto_useSkill($skill`Venomous Riff`, true);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Venomous Riff`);
           costMinor = (0, import_kolmafia85.mpCost)($skill`Venomous Riff`);
         }
-        if (canUse$1($skill`Knife In The Darkness`, true) && zone_combatMod((0, import_kolmafia85.myLocation)())._int < 0) {
-          attackMajor = useSkill$1($skill`Knife In The Darkness`, true);
-          attackMinor = useSkill$1($skill`Knife In The Darkness`, true);
+        if (canUse($skill`Knife In The Darkness`, true) && zone_combatMod((0, import_kolmafia85.myLocation)())._int < 0) {
+          attackMajor = auto_useSkill($skill`Knife In The Darkness`, true);
+          attackMinor = auto_useSkill($skill`Knife In The Darkness`, true);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Knife In The Darkness`);
           costMinor = (0, import_kolmafia85.mpCost)($skill`Knife In The Darkness`);
         }
         if (canUse($skill`Grit Teeth`, false, true) && (0, import_kolmafia85.myHp)() < (0, import_kolmafia85.myMaxhp)() && combat_status_check("stunned") && round_1 < 5) {
-          attackMajor = useSkill$1($skill`Grit Teeth`, true);
-          attackMinor = useSkill$1($skill`Grit Teeth`, true);
+          attackMajor = auto_useSkill($skill`Grit Teeth`, true);
+          attackMinor = auto_useSkill($skill`Grit Teeth`, true);
           costMajor = (0, import_kolmafia85.mpCost)($skill`Grit Teeth`);
           costMinor = (0, import_kolmafia85.mpCost)($skill`Grit Teeth`);
         }
@@ -7289,8 +7289,8 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
         if (punch === import_kolmafia85.Skill.none) {
           return "attack with weapon";
         }
-        attackMajor = useSkill$1(punch, false);
-        attackMinor = useSkill$1(punch, false);
+        attackMajor = auto_useSkill(punch, false);
+        attackMinor = auto_useSkill(punch, false);
         costMajor = (0, import_kolmafia85.mpCost)(punch);
         costMinor = (0, import_kolmafia85.mpCost)(punch);
         break;
@@ -7298,27 +7298,27 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
     }
   }
   if ((0, import_kolmafia85.myHp)() * 10 / 3 < (0, import_kolmafia85.myMaxhp)()) {
-    if (canUse$2($skill`Thunderstrike`) && (0, import_kolmafia85.monsterLevelAdjustment)() <= 150) {
-      return useSkill$2($skill`Thunderstrike`);
+    if (canUse($skill`Thunderstrike`) && (0, import_kolmafia85.monsterLevelAdjustment)() <= 150) {
+      return auto_useSkill($skill`Thunderstrike`);
     }
-    if (canUse$2($skill`Unleash the Greash`) && (0, import_kolmafia85.monsterElement)(enemy) !== $element`sleaze` && (0, import_kolmafia85.haveEffect)($effect`Takin' It Greasy`) > 100) {
-      return useSkill$2($skill`Unleash the Greash`);
+    if (canUse($skill`Unleash the Greash`) && (0, import_kolmafia85.monsterElement)(enemy) !== $element`sleaze` && (0, import_kolmafia85.haveEffect)($effect`Takin' It Greasy`) > 100) {
+      return auto_useSkill($skill`Unleash the Greash`);
     }
-    if (canUse$2($skill`Thousand-Yard Stare`) && (0, import_kolmafia85.monsterElement)(enemy) !== $element`spooky` && (0, import_kolmafia85.haveEffect)($effect`Intimidating Mien`) > 100) {
-      return useSkill$2($skill`Thousand-Yard Stare`);
+    if (canUse($skill`Thousand-Yard Stare`) && (0, import_kolmafia85.monsterElement)(enemy) !== $element`spooky` && (0, import_kolmafia85.haveEffect)($effect`Intimidating Mien`) > 100) {
+      return auto_useSkill($skill`Thousand-Yard Stare`);
     }
     if ($monsters`Aquagoblin, Lord Soggyraven, Groar, The Big Wisniewski, The Man`.includes(
       enemy
     ) && (0, import_kolmafia85.myMp)() >= costMajor) {
       return attackMajor;
     }
-    if ((0, import_kolmafia85.myClass)() === $class`Turtle Tamer` && canUse$2($skill`Spirit Snap`)) {
+    if ((0, import_kolmafia85.myClass)() === $class`Turtle Tamer` && canUse($skill`Spirit Snap`)) {
       if ((0, import_kolmafia85.haveEffect)($effect`Blessing of the Storm Tortoise`) > 0 || (0, import_kolmafia85.haveEffect)($effect`Grand Blessing of the Storm Tortoise`) > 0 || (0, import_kolmafia85.haveEffect)($effect`Glorious Blessing of the Storm Tortoise`) > 0 || (0, import_kolmafia85.haveEffect)($effect`Glorious Blessing of the War Snapper`) > 0 || (0, import_kolmafia85.haveEffect)($effect`Glorious Blessing of She-Who-Was`) > 0) {
-        return useSkill$2($skill`Spirit Snap`);
+        return auto_useSkill($skill`Spirit Snap`);
       }
     }
-    if (canUse$2($skill`Northern Explosion`) && !auto_canNorthernExplosionFE() && (0, import_kolmafia85.myClass)() === $class`Seal Clubber` && (0, import_kolmafia85.monsterElement)(enemy) !== $element`cold` && (hasClubEquipped() || (0, import_kolmafia85.buffedHitStat)() - 20 > (0, import_kolmafia85.monsterDefense)())) {
-      return useSkill$2($skill`Northern Explosion`);
+    if (canUse($skill`Northern Explosion`) && !auto_canNorthernExplosionFE() && (0, import_kolmafia85.myClass)() === $class`Seal Clubber` && (0, import_kolmafia85.monsterElement)(enemy) !== $element`cold` && (hasClubEquipped() || (0, import_kolmafia85.buffedHitStat)() - 20 > (0, import_kolmafia85.monsterDefense)())) {
+      return auto_useSkill($skill`Northern Explosion`);
     }
     if (!combat_status_check("last attempt") && (0, import_kolmafia85.myMp)() >= costMajor) {
       if (canSurvive$1(1.4)) {
@@ -7343,23 +7343,23 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
       (0, import_kolmafia85.abort)("Could not handle monster, sorry");
     }
   }
-  if ((0, import_kolmafia85.monsterLevelAdjustment)() > 150 && (0, import_kolmafia85.myMp)() >= 45 && canUse$2($skill`Shell Up`) && (0, import_kolmafia85.myClass)() === $class`Turtle Tamer`) {
-    return useSkill$2($skill`Shell Up`);
+  if ((0, import_kolmafia85.monsterLevelAdjustment)() > 150 && (0, import_kolmafia85.myMp)() >= 45 && canUse($skill`Shell Up`) && (0, import_kolmafia85.myClass)() === $class`Turtle Tamer`) {
+    return auto_useSkill($skill`Shell Up`);
   }
-  if (enemy.physicalResistance >= 100 && (0, import_kolmafia85.monsterElement)(enemy) !== $element`cold` && canUse$1($skill`Throat Refrigerant`, false)) {
-    return useSkill$1($skill`Throat Refrigerant`, false);
+  if (enemy.physicalResistance >= 100 && (0, import_kolmafia85.monsterElement)(enemy) !== $element`cold` && canUse($skill`Throat Refrigerant`, false)) {
+    return auto_useSkill($skill`Throat Refrigerant`, false);
   }
-  if (enemy.physicalResistance >= 100 && (0, import_kolmafia85.monsterElement)(enemy) !== $element`hot` && canUse$1($skill`Boiling Tear Ducts`, false)) {
-    return useSkill$1($skill`Boiling Tear Ducts`, false);
+  if (enemy.physicalResistance >= 100 && (0, import_kolmafia85.monsterElement)(enemy) !== $element`hot` && canUse($skill`Boiling Tear Ducts`, false)) {
+    return auto_useSkill($skill`Boiling Tear Ducts`, false);
   }
-  if (enemy.physicalResistance >= 100 && (0, import_kolmafia85.monsterElement)(enemy) !== $element`sleaze` && canUse$2($skill`Projectile Salivary Glands`)) {
-    return useSkill$2($skill`Projectile Salivary Glands`);
+  if (enemy.physicalResistance >= 100 && (0, import_kolmafia85.monsterElement)(enemy) !== $element`sleaze` && canUse($skill`Projectile Salivary Glands`)) {
+    return auto_useSkill($skill`Projectile Salivary Glands`);
   }
-  if (enemy.physicalResistance >= 100 && (0, import_kolmafia85.monsterElement)(enemy) !== $element`spooky` && canUse$1($skill`Translucent Skin`, false)) {
-    return useSkill$1($skill`Translucent Skin`, false);
+  if (enemy.physicalResistance >= 100 && (0, import_kolmafia85.monsterElement)(enemy) !== $element`spooky` && canUse($skill`Translucent Skin`, false)) {
+    return auto_useSkill($skill`Translucent Skin`, false);
   }
-  if (enemy.physicalResistance >= 100 && (0, import_kolmafia85.monsterElement)(enemy) !== $element`stench` && canUse$1($skill`Skunk Glands`, false)) {
-    return useSkill$1($skill`Skunk Glands`, false);
+  if (enemy.physicalResistance >= 100 && (0, import_kolmafia85.monsterElement)(enemy) !== $element`stench` && canUse($skill`Skunk Glands`, false)) {
+    return auto_useSkill($skill`Skunk Glands`, false);
   }
   if (enemy.physicalResistance >= 80 && attackMinor === "attack with weapon") {
     var m_hot = 1;
@@ -7410,8 +7410,8 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
     try {
       for (_iterator7.s(); !(_step7 = _iterator7.n()).done; ) {
         var _sk5 = _step7.value;
-        if (canUse$1(_sk5, false)) {
-          return useSkill$1(_sk5, false);
+        if (canUse(_sk5, false)) {
+          return auto_useSkill(_sk5, false);
         }
       }
     } catch (err) {
@@ -7434,17 +7434,17 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
   ) && (0, import_kolmafia85.myMp)() >= costMajor) {
     return attackMajor;
   }
-  if (canUse$1($skill`Lunge Smack`, false) && attackMinor !== "attack with weapon" && (0, import_kolmafia85.weaponType)((0, import_kolmafia85.equippedItem)($slot`weapon`)) === $stat`Muscle`) {
+  if (canUse($skill`Lunge Smack`, false) && attackMinor !== "attack with weapon" && (0, import_kolmafia85.weaponType)((0, import_kolmafia85.equippedItem)($slot`weapon`)) === $stat`Muscle`) {
     return attackMinor;
   }
   if ((0, import_kolmafia85.myMp)() >= costMinor && attackMinor !== "attack with weapon") {
     return attackMinor;
   }
-  if (round_1 > 20 && canUse$1($skill`Saucestorm`, false)) {
-    return useSkill$1($skill`Saucestorm`, false);
+  if (round_1 > 20 && canUse($skill`Saucestorm`, false)) {
+    return auto_useSkill($skill`Saucestorm`, false);
   }
-  if (attackMinor === "attack with weapon" && (0, import_kolmafia85.monsterDefense)() > 20 && (0, import_kolmafia85.buffedHitStat)() - 20 < (0, import_kolmafia85.monsterDefense)() && canUse$1($skill`Saucestorm`, false)) {
-    return useSkill$1($skill`Saucestorm`, false);
+  if (attackMinor === "attack with weapon" && (0, import_kolmafia85.monsterDefense)() > 20 && (0, import_kolmafia85.buffedHitStat)() - 20 < (0, import_kolmafia85.monsterDefense)() && canUse($skill`Saucestorm`, false)) {
+    return auto_useSkill($skill`Saucestorm`, false);
   }
   return attackMinor;
 }
@@ -7588,8 +7588,8 @@ function auto_combatInitialize(round_1, enemy, text) {
 }
 function auto_combatHandler(round_1, enemy, text) {
   if (round_1 > defaultRoundLimit() && !$monsters`The Man, The Big Wisniewski`.includes(enemy)) {
-    if (canUse$2($skill`Implode Universe`)) {
-      return useSkill$1($skill`Implode Universe`, true);
+    if (canUse($skill`Implode Universe`)) {
+      return auto_useSkill($skill`Implode Universe`, true);
     }
     (0, import_kolmafia87.abort)(
       `Some sort of problem occurred, it is past round ${defaultRoundLimit()} but we are still in non-gremlin combat...`
@@ -7735,7 +7735,7 @@ function auto_edCombatHandler(round_1, enemy, text) {
       try {
         for (_iterator.s(); !(_step = _iterator.n()).done; ) {
           var it = _step.value;
-          if (canUse$4(it)) {
+          if (canUse$3(it)) {
             return useItem(it, false);
           }
         }
@@ -7755,7 +7755,7 @@ function auto_edCombatHandler(round_1, enemy, text) {
   if ($monsters`LOV Enforcer, LOV Engineer, LOV Equivocator`.includes(enemy)) {
     (0, import_kolmafia88.setProperty)("auto_edStatus", "dying");
   }
-  if (auto_backupTarget() && enemy !== (0, import_kolmafia88.toMonster)((0, import_kolmafia88.getProperty)("lastCopyableMonster")) && canUse$2($skill`Back-Up to your Last Enemy`)) {
+  if (auto_backupTarget() && enemy !== (0, import_kolmafia88.toMonster)((0, import_kolmafia88.getProperty)("lastCopyableMonster")) && canUse($skill`Back-Up to your Last Enemy`)) {
     handleTracker$1(
       enemy.toString(),
       $skill`Back-Up to your Last Enemy`.toString(),
@@ -7766,50 +7766,50 @@ function auto_edCombatHandler(round_1, enemy, text) {
       $skill`Back-Up to your Last Enemy`.toString(),
       "auto_copies"
     );
-    return useSkill$2($skill`Back-Up to your Last Enemy`);
+    return auto_useSkill($skill`Back-Up to your Last Enemy`);
   }
   if ((0, import_kolmafia88.haveEffect)($effect`Temporary Amnesia`) > 0) {
     return "attack with weapon";
   }
-  if (canUse$2($skill`Pocket Crumbs`)) {
-    return useSkill$2($skill`Pocket Crumbs`);
+  if (canUse($skill`Pocket Crumbs`)) {
+    return auto_useSkill($skill`Pocket Crumbs`);
   }
-  if (canUse$2($skill`Micrometeorite`)) {
-    return useSkill$2($skill`Micrometeorite`);
+  if (canUse($skill`Micrometeorite`)) {
+    return auto_useSkill($skill`Micrometeorite`);
   }
-  if (canUse$2($skill`Air Dirty Laundry`)) {
-    return useSkill$2($skill`Air Dirty Laundry`);
+  if (canUse($skill`Air Dirty Laundry`)) {
+    return auto_useSkill($skill`Air Dirty Laundry`);
   }
-  if (canUse$2($skill`Summon Love Scarabs`)) {
-    return useSkill$2($skill`Summon Love Scarabs`);
+  if (canUse($skill`Summon Love Scarabs`)) {
+    return auto_useSkill($skill`Summon Love Scarabs`);
   }
-  if (canUse$4($item`Time-Spinner`)) {
+  if (canUse$3($item`Time-Spinner`)) {
     return useItem$1($item`Time-Spinner`);
   }
-  if (canUse$2($skill`Sing Along`)) {
+  if (canUse($skill`Sing Along`)) {
     if ((0, import_kolmafia88.getProperty)("boomBoxSong") === "Remainin' Alive" || (0, import_kolmafia88.getProperty)("boomBoxSong") === "Total Eclipse of Your Meat" && canSurvive$1(2)) {
-      return useSkill$2($skill`Sing Along`);
+      return auto_useSkill($skill`Sing Along`);
     }
   }
   if ((0, import_kolmafia88.haveEquipped)($item`protonic accelerator pack`) && isGhost(enemy) && !combat_status_check("skipGhostbusting")) {
     var stunner = getStunner(enemy);
     if (stunner !== import_kolmafia88.Skill.none) {
       combat_status_add("stunned");
-      return useSkill$2(stunner);
+      return auto_useSkill(stunner);
     }
     var shots_takens = usedCount($skill`Shoot Ghost`);
-    if (canUse$1($skill`Shoot Ghost`, false) && shots_takens < 3) {
+    if (canUse($skill`Shoot Ghost`, false) && shots_takens < 3) {
       var survive_needed = 3.05 - (0, import_kolmafia88.toFloat)(shots_takens);
       if (canSurvive$1(survive_needed)) {
         markAsUsed($skill`Shoot Ghost`);
-        return useSkill$1($skill`Shoot Ghost`, false);
+        return auto_useSkill($skill`Shoot Ghost`, false);
       } else {
         combat_status_add("skipGhostbusting");
       }
     }
-    if (canUse$2($skill`Trap Ghost`) && shots_takens === 3) {
+    if (canUse($skill`Trap Ghost`) && shots_takens === 3) {
       auto_log_info("Busting makes me feel good!!", "green");
-      return useSkill$2($skill`Trap Ghost`);
+      return auto_useSkill($skill`Trap Ghost`);
     }
   }
   var extinguisherSkill = auto_FireExtinguisherCombatString((0, import_kolmafia88.myLocation)());
@@ -7828,8 +7828,8 @@ function auto_edCombatHandler(round_1, enemy, text) {
     }
   }
   if ((0, import_kolmafia88.getProperty)("auto_edStatus") === "UNDYING!") {
-    if (canUse$2($skill`Summon Love Gnats`)) {
-      return useSkill$2($skill`Summon Love Gnats`);
+    if (canUse($skill`Summon Love Gnats`)) {
+      return auto_useSkill($skill`Summon Love Gnats`);
     }
   } else if ((0, import_kolmafia88.getProperty)("auto_edStatus") === "dying") {
     var doStunner = true;
@@ -7837,56 +7837,56 @@ function auto_edCombatHandler(round_1, enemy, text) {
       doStunner = false;
     }
     if (doStunner) {
-      if (canUse$2($skill`Summon Love Gnats`)) {
-        return useSkill$2($skill`Summon Love Gnats`);
+      if (canUse($skill`Summon Love Gnats`)) {
+        return auto_useSkill($skill`Summon Love Gnats`);
       }
     }
   } else {
     auto_log_warning("Ed combat state does not exist, winging it....", "red");
   }
-  if (canUse$2($skill`Fire Sewage Pistol`)) {
-    return useSkill$2($skill`Fire Sewage Pistol`);
+  if (canUse($skill`Fire Sewage Pistol`)) {
+    return auto_useSkill($skill`Fire Sewage Pistol`);
   }
   if (enemy === $monster`Protagonist`) {
     (0, import_kolmafia88.setProperty)("auto_edStatus", "dying");
   }
   if ((0, import_kolmafia88.myLocation)() !== $location`The Battlefield (Frat Uniform)` && (0, import_kolmafia88.myLocation)() !== $location`The Battlefield (Hippy Uniform)` && !(0, import_kolmafia88.toBoolean)((0, import_kolmafia88.getProperty)("auto_ignoreFlyer"))) {
-    if (canUse$4($item`rock band flyers`) && (0, import_kolmafia88.toInt)((0, import_kolmafia88.getProperty)("flyeredML")) < 1e4) {
+    if (canUse$3($item`rock band flyers`) && (0, import_kolmafia88.toInt)((0, import_kolmafia88.getProperty)("flyeredML")) < 1e4) {
       if ((0, import_kolmafia88.toInt)((0, import_kolmafia88.getProperty)("_edDefeats")) < 2 && (0, import_kolmafia88.getProperty)("auto_edStatus") === "dying") {
         (0, import_kolmafia88.setProperty)("auto_edStatus", "UNDYING!");
       }
       return useItem$1($item`rock band flyers`);
     }
-    if (canUse$4($item`jam band flyers`) && (0, import_kolmafia88.toInt)((0, import_kolmafia88.getProperty)("flyeredML")) < 1e4) {
+    if (canUse$3($item`jam band flyers`) && (0, import_kolmafia88.toInt)((0, import_kolmafia88.getProperty)("flyeredML")) < 1e4) {
       if ((0, import_kolmafia88.toInt)((0, import_kolmafia88.getProperty)("_edDefeats")) < 2 && (0, import_kolmafia88.getProperty)("auto_edStatus") === "dying") {
         (0, import_kolmafia88.setProperty)("auto_edStatus", "UNDYING!");
       }
       return useItem$1($item`jam band flyers`);
     }
   }
-  if (canUse$4($item`chaos butterfly`) && !(0, import_kolmafia88.toBoolean)((0, import_kolmafia88.getProperty)("chaosButterflyThrown")) && !(0, import_kolmafia88.toBoolean)((0, import_kolmafia88.getProperty)("auto_skipL12Farm"))) {
+  if (canUse$3($item`chaos butterfly`) && !(0, import_kolmafia88.toBoolean)((0, import_kolmafia88.getProperty)("chaosButterflyThrown")) && !(0, import_kolmafia88.toBoolean)((0, import_kolmafia88.getProperty)("auto_skipL12Farm"))) {
     return useItem$1($item`chaos butterfly`);
   }
-  if (enemy === $monster`dirty thieving brigand` && canUse$2($skill`Curse of Fortune`)) {
+  if (enemy === $monster`dirty thieving brigand` && canUse($skill`Curse of Fortune`)) {
     if ((0, import_kolmafia88.itemAmount)($item`Ka coin`) > 0 && (0, import_kolmafia88.myHp)() > (0, import_kolmafia88.expectedDamage)() + 15) {
       (0, import_kolmafia88.setProperty)("auto_edStatus", "dying");
-      return useSkill$2($skill`Curse of Fortune`);
+      return auto_useSkill($skill`Curse of Fortune`);
     } else if ((0, import_kolmafia88.toInt)((0, import_kolmafia88.getProperty)("_edDefeats")) === 0 && (0, import_kolmafia88.myMaxhp)() > (0, import_kolmafia88.expectedDamage)() + 15) {
       (0, import_kolmafia88.setProperty)("auto_edStatus", "UNDYING!");
     }
   }
-  if (canUse$2($skill`Curse of Stench`) && (0, import_kolmafia88.toMonster)((0, import_kolmafia88.getProperty)("stenchCursedMonster")) !== enemy && (0, import_kolmafia88.toInt)((0, import_kolmafia88.getProperty)("_edDefeats")) < 3) {
+  if (canUse($skill`Curse of Stench`) && (0, import_kolmafia88.toMonster)((0, import_kolmafia88.getProperty)("stenchCursedMonster")) !== enemy && (0, import_kolmafia88.toInt)((0, import_kolmafia88.getProperty)("_edDefeats")) < 3) {
     if (auto_wantToSniff(enemy, (0, import_kolmafia88.myLocation)())) {
       handleTracker$1(
         enemy.toString(),
         $skill`Curse of Stench`.toString(),
         "auto_sniffs"
       );
-      return useSkill$2($skill`Curse of Stench`);
+      return auto_useSkill($skill`Curse of Stench`);
     }
   }
   if ((0, import_kolmafia88.myLocation)() === $location`The Secret Council Warehouse`) {
-    if (canUse$2($skill`Curse of Stench`) && (0, import_kolmafia88.toMonster)((0, import_kolmafia88.getProperty)("stenchCursedMonster")) !== enemy && (0, import_kolmafia88.toInt)((0, import_kolmafia88.getProperty)("_edDefeats")) < 3) {
+    if (canUse($skill`Curse of Stench`) && (0, import_kolmafia88.toMonster)((0, import_kolmafia88.getProperty)("stenchCursedMonster")) !== enemy && (0, import_kolmafia88.toInt)((0, import_kolmafia88.getProperty)("_edDefeats")) < 3) {
       var doStench = false;
       if (enemy === $monster`warehouse guard`) {
         var progress = (0, import_kolmafia88.toInt)((0, import_kolmafia88.getProperty)("warehouseProgress"));
@@ -7908,12 +7908,12 @@ function auto_edCombatHandler(round_1, enemy, text) {
           $skill`Curse of Stench`.toString(),
           "auto_sniffs"
         );
-        return useSkill$2($skill`Curse of Stench`);
+        return auto_useSkill($skill`Curse of Stench`);
       }
     }
   }
   if ((0, import_kolmafia88.myLocation)() === $location`The Smut Orc Logging Camp`) {
-    if (canUse$2($skill`Curse of Stench`) && (0, import_kolmafia88.toMonster)((0, import_kolmafia88.getProperty)("stenchCursedMonster")) !== enemy && (0, import_kolmafia88.toInt)((0, import_kolmafia88.getProperty)("_edDefeats")) < 3) {
+    if (canUse($skill`Curse of Stench`) && (0, import_kolmafia88.toMonster)((0, import_kolmafia88.getProperty)("stenchCursedMonster")) !== enemy && (0, import_kolmafia88.toInt)((0, import_kolmafia88.getProperty)("_edDefeats")) < 3) {
       var _doStench = false;
       var stenched = (0, import_kolmafia88.toLowerCase)((0, import_kolmafia88.getProperty)("stenchCursedMonster"));
       if (fastenerCount() >= 30 && stenched !== "smut orc pipelayer" && stenched !== "smut orc jacker") {
@@ -7932,7 +7932,7 @@ function auto_edCombatHandler(round_1, enemy, text) {
           $skill`Curse of Stench`.toString(),
           "auto_sniffs"
         );
-        return useSkill$2($skill`Curse of Stench`);
+        return auto_useSkill($skill`Curse of Stench`);
       }
     }
   }
@@ -7964,7 +7964,7 @@ function auto_edCombatHandler(round_1, enemy, text) {
           "red"
         );
       }
-      if (combatAction === useSkill$1($skill`Asdon Martin: Missile Launcher`, false)) {
+      if (combatAction === auto_useSkill($skill`Asdon Martin: Missile Launcher`, false)) {
         (0, import_kolmafia88.setProperty)("_missileLauncherUsed", true.toString());
       }
       return combatAction;
@@ -8094,10 +8094,10 @@ function auto_edCombatHandler(round_1, enemy, text) {
     }
     combat_status_add("replacercheck");
   }
-  if (canUse$4($item`disposable instant camera`) && $monsters`Bob Racecar, Racecar Bob`.includes(enemy)) {
+  if (canUse$3($item`disposable instant camera`) && $monsters`Bob Racecar, Racecar Bob`.includes(enemy)) {
     return useItem$1($item`disposable instant camera`);
   }
-  if ((0, import_kolmafia88.myLocation)() === $location`Oil Peak` && canUse$4($item`Duskwalker syringe`)) {
+  if ((0, import_kolmafia88.myLocation)() === $location`Oil Peak` && canUse$3($item`Duskwalker syringe`)) {
     var oilProgress = (0, import_kolmafia88.toInt)((0, import_kolmafia88.getProperty)("twinPeakProgress"));
     var wantCrude = (oilProgress & 4) === 0;
     if ((0, import_kolmafia88.itemAmount)($item`bubblin' crude`) > 11 || (0, import_kolmafia88.itemAmount)($item`jar of oil`) > 0) {
@@ -8107,14 +8107,14 @@ function auto_edCombatHandler(round_1, enemy, text) {
       return useItem$1($item`Duskwalker syringe`);
     }
   }
-  if (canUse$4($item`glark cable`) && (0, import_kolmafia88.myLocation)() === $location`The Red Zeppelin` && internalQuestStatus("questL11Ron") === 3 && (0, import_kolmafia88.toInt)((0, import_kolmafia88.getProperty)("_glarkCableUses")) < 5 && (0, import_kolmafia88.getProperty)("auto_edStatus") === "dying") {
+  if (canUse$3($item`glark cable`) && (0, import_kolmafia88.myLocation)() === $location`The Red Zeppelin` && internalQuestStatus("questL11Ron") === 3 && (0, import_kolmafia88.toInt)((0, import_kolmafia88.getProperty)("_glarkCableUses")) < 5 && (0, import_kolmafia88.getProperty)("auto_edStatus") === "dying") {
     if ($monsters`man with the red buttons, red butler, Red Fox, red skeleton`.includes(
       enemy
     )) {
       return useItem$1($item`glark cable`);
     }
   }
-  if (!(0, import_kolmafia88.toBoolean)((0, import_kolmafia88.getProperty)("edUsedLash")) && canUse$2($skill`Lash of the Cobra`) && (0, import_kolmafia88.toInt)((0, import_kolmafia88.getProperty)("_edLashCount")) < 30) {
+  if (!(0, import_kolmafia88.toBoolean)((0, import_kolmafia88.getProperty)("edUsedLash")) && canUse($skill`Lash of the Cobra`) && (0, import_kolmafia88.toInt)((0, import_kolmafia88.getProperty)("_edLashCount")) < 30) {
     var doLash = false;
     if (enemy === $monster`shadow slab`) {
       doLash = true;
@@ -8227,10 +8227,10 @@ function auto_edCombatHandler(round_1, enemy, text) {
     }
     if (doLash) {
       handleTracker(enemy.toString(), "auto_lashes");
-      return useSkill$2($skill`Lash of the Cobra`);
+      return auto_useSkill($skill`Lash of the Cobra`);
     }
   }
-  if (!combat_status_check("talismanofrenenutet") && canUse$4($item`talisman of Renenutet`)) {
+  if (!combat_status_check("talismanofrenenutet") && canUse$3($item`talisman of Renenutet`)) {
     var doRenenutet = false;
     if (enemy === $monster`cabinet of Dr. Limpieza` && $location`The Haunted Laundry Room`.turnsSpent > 2) {
       doRenenutet = true;
@@ -8285,9 +8285,9 @@ function auto_edCombatHandler(round_1, enemy, text) {
       doRenenutet = true;
     }
     if (doRenenutet) {
-      if (!combat_status_check("curseofindecision") && canUse$2($skill`Curse of Indecision`)) {
+      if (!combat_status_check("curseofindecision") && canUse($skill`Curse of Indecision`)) {
         combat_status_add("curseofindecision");
-        return useSkill$2($skill`Curse of Indecision`);
+        return auto_useSkill($skill`Curse of Indecision`);
       }
       combat_status_add("talismanofrenenutet");
       handleTracker(enemy.toString(), "auto_renenutet");
@@ -8295,28 +8295,28 @@ function auto_edCombatHandler(round_1, enemy, text) {
       return useItem$1($item`talisman of Renenutet`);
     }
   }
-  if (canUse$4($item`cigarette lighter`) && (0, import_kolmafia88.myLocation)() === $location`A Mob of Zeppelin Protesters` && internalQuestStatus("questL11Ron") === 1 && (0, import_kolmafia88.getProperty)("auto_edStatus") === "dying") {
+  if (canUse$3($item`cigarette lighter`) && (0, import_kolmafia88.myLocation)() === $location`A Mob of Zeppelin Protesters` && internalQuestStatus("questL11Ron") === 1 && (0, import_kolmafia88.getProperty)("auto_edStatus") === "dying") {
     return useItem$1($item`cigarette lighter`);
   }
   if (enemy === $monster`pygmy orderlies` && canUse$3($item`short writ of habeas corpus`, false) && (0, import_kolmafia88.haveEffect)($effect`Everything Looks Green`) === 0) {
     return useItem$1($item`short writ of habeas corpus`);
   }
-  if (canUse$2($skill`Darts: Aim for the Bullseye`) && (0, import_kolmafia88.haveEffect)($effect`Everything Looks Red`) === 0 && dartELRcd() <= 40) {
+  if (canUse($skill`Darts: Aim for the Bullseye`) && (0, import_kolmafia88.haveEffect)($effect`Everything Looks Red`) === 0 && dartELRcd() <= 40) {
     (0, import_kolmafia88.setProperty)("auto_instakillSource", "darts bullseye");
     (0, import_kolmafia88.setProperty)("auto_instakillSuccess", true.toString());
     loopHandlerDelayAll();
-    return useSkill$2($skill`Darts: Aim for the Bullseye`);
+    return auto_useSkill($skill`Darts: Aim for the Bullseye`);
   }
   if (auto_bowlingBallCombatString((0, import_kolmafia88.myLocation)(), true) !== "" && !enemy.boss) {
     return auto_bowlingBallCombatString((0, import_kolmafia88.myLocation)(), false);
   }
-  if (canUse$2($skill`McHugeLarge Avalanche`) && (0, import_kolmafia88.getProperty)("auto_forceNonCombatSource") === "McHugeLarge left ski" && !(0, import_kolmafia88.toBoolean)((0, import_kolmafia88.getProperty)("auto_avalancheDeployed"))) {
+  if (canUse($skill`McHugeLarge Avalanche`) && (0, import_kolmafia88.getProperty)("auto_forceNonCombatSource") === "McHugeLarge left ski" && !(0, import_kolmafia88.toBoolean)((0, import_kolmafia88.getProperty)("auto_avalancheDeployed"))) {
     (0, import_kolmafia88.setProperty)("auto_avalancheDeployed", true.toString());
-    return useSkill$2($skill`McHugeLarge Avalanche`);
+    return auto_useSkill($skill`McHugeLarge Avalanche`);
   }
-  if (canUse$2($skill`Launch spikolodon spikes`) && (0, import_kolmafia88.getProperty)("auto_forceNonCombatSource") === "jurassic parka" && !(0, import_kolmafia88.toBoolean)((0, import_kolmafia88.getProperty)("auto_parkaSpikesDeployed"))) {
+  if (canUse($skill`Launch spikolodon spikes`) && (0, import_kolmafia88.getProperty)("auto_forceNonCombatSource") === "jurassic parka" && !(0, import_kolmafia88.toBoolean)((0, import_kolmafia88.getProperty)("auto_parkaSpikesDeployed"))) {
     (0, import_kolmafia88.setProperty)("auto_parkaSpikesDeployed", true.toString());
-    return useSkill$2($skill`Launch spikolodon spikes`);
+    return auto_useSkill($skill`Launch spikolodon spikes`);
   }
   if (instakillable(enemy) && !isFreeMonster$1(enemy, (0, import_kolmafia88.myLocation)()) && doInstaKill) {
     if (!combat_status_check("batoomerang") && (0, import_kolmafia88.itemAmount)($item`replica bat-oomerang`) > 0) {
@@ -8339,7 +8339,7 @@ function auto_edCombatHandler(round_1, enemy, text) {
         return `item ${$item`replica bat-oomerang`}`;
       }
     }
-    if (canUse$4($item`shadow brick`) && (0, import_kolmafia88.toInt)((0, import_kolmafia88.getProperty)("_shadowBricksUsed")) < 13) {
+    if (canUse$3($item`shadow brick`) && (0, import_kolmafia88.toInt)((0, import_kolmafia88.getProperty)("_shadowBricksUsed")) < 13) {
       handleTracker$1(
         enemy.toString(),
         $item`shadow brick`.toString(),
@@ -8358,8 +8358,8 @@ function auto_edCombatHandler(round_1, enemy, text) {
       loopHandlerDelayAll();
       return `skill${$skill`Fire the Jokester's Gun`}`;
     }
-    if (canUse$2($skill`Slay the Dead`) && enemy.phylum === $phylum`undead`) {
-      return useSkill$2($skill`Slay the Dead`);
+    if (canUse($skill`Slay the Dead`) && enemy.phylum === $phylum`undead`) {
+      return auto_useSkill($skill`Slay the Dead`);
     }
   }
   if ((0, import_kolmafia88.getProperty)("auto_edStatus") === "UNDYING!") {
@@ -8377,19 +8377,19 @@ function auto_edCombatHandler(round_1, enemy, text) {
     return "skill Mild Curse; repeat; ";
   }
   if ((0, import_kolmafia88.haveEquipped)($item`Everfull Dart Holster`) && (0, import_kolmafia88.toInt)((0, import_kolmafia88.getProperty)("_dartsLeft")) > 0) {
-    return useSkill$1(dartSkill(), false);
+    return auto_useSkill(dartSkill(), false);
   }
   if ((0, import_kolmafia88.toInt)((0, import_kolmafia88.getProperty)("_edDefeats")) < 2) {
     if (wantToForceDrop(enemy)) {
-      var polarVortexAvailable = canUse$1($skill`Fire Extinguisher: Polar Vortex`, false) && auto_fireExtinguisherCharges() > 10;
-      var mildEvilAvailable = canUse$1($skill`Perpetrate Mild Evil`, false) && (0, import_kolmafia88.toInt)((0, import_kolmafia88.getProperty)("_mildEvilPerpetrated")) < 3;
+      var polarVortexAvailable = canUse($skill`Fire Extinguisher: Polar Vortex`, false) && auto_fireExtinguisherCharges() > 10;
+      var mildEvilAvailable = canUse($skill`Perpetrate Mild Evil`, false) && (0, import_kolmafia88.toInt)((0, import_kolmafia88.getProperty)("_mildEvilPerpetrated")) < 3;
       if (mildEvilAvailable) {
         handleTracker$1(
           enemy.toString(),
           $skill`Perpetrate Mild Evil`.toString(),
           "auto_otherstuff"
         );
-        return useSkill$2($skill`Perpetrate Mild Evil`);
+        return auto_useSkill($skill`Perpetrate Mild Evil`);
       }
       if (polarVortexAvailable) {
         handleTracker$1(
@@ -8397,45 +8397,45 @@ function auto_edCombatHandler(round_1, enemy, text) {
           $skill`Fire Extinguisher: Polar Vortex`.toString(),
           "auto_otherstuff"
         );
-        return useSkill$2($skill`Fire Extinguisher: Polar Vortex`);
+        return auto_useSkill($skill`Fire Extinguisher: Polar Vortex`);
       }
     }
   }
-  if (canUse$2(auto_spoonCombatSkill())) {
-    return useSkill$2(auto_spoonCombatSkill());
+  if (canUse(auto_spoonCombatSkill())) {
+    return auto_useSkill(auto_spoonCombatSkill());
   }
-  if ((0, import_kolmafia88.myLocation)() === $location`The Secret Government Laboratory` && canUse$1($skill`Roar of the Lion`, false)) {
-    if (canUse$1($skill`Storm of the Scarab`, false) && (0, import_kolmafia88.myBuffedstat)($stat`Mysticality`) >= 60) {
-      return useSkill$1($skill`Storm of the Scarab`, false);
+  if ((0, import_kolmafia88.myLocation)() === $location`The Secret Government Laboratory` && canUse($skill`Roar of the Lion`, false)) {
+    if (canUse($skill`Storm of the Scarab`, false) && (0, import_kolmafia88.myBuffedstat)($stat`Mysticality`) >= 60) {
+      return auto_useSkill($skill`Storm of the Scarab`, false);
     }
-    return useSkill$1($skill`Roar of the Lion`, false);
+    return auto_useSkill($skill`Roar of the Lion`, false);
   }
   if ($locations`Pirates of the Garbage Barges, The SMOOCH Army HQ, VYKEA`.includes(
     (0, import_kolmafia88.myLocation)()
-  ) && canUse$1($skill`Storm of the Scarab`, false)) {
-    return useSkill$1($skill`Storm of the Scarab`, false);
+  ) && canUse($skill`Storm of the Scarab`, false)) {
+    return auto_useSkill($skill`Storm of the Scarab`, false);
   }
   if ($locations`The Hippy Camp, The Outskirts of Cobb's Knob, The Spooky Forest, The Batrat and Ratbat Burrow, The Boss Bat's Lair, Cobb's Knob Harem`.includes(
     (0, import_kolmafia88.myLocation)()
-  ) && canUse$1($skill`Fist of the Mummy`, false)) {
-    return useSkill$1($skill`Fist of the Mummy`, false);
+  ) && canUse($skill`Fist of the Mummy`, false)) {
+    return auto_useSkill($skill`Fist of the Mummy`, false);
   }
   var fightStat = (0, import_kolmafia88.myBuffedstat)((0, import_kolmafia88.weaponType)((0, import_kolmafia88.equippedItem)($slot`weapon`))) - 20;
   if (fightStat > (0, import_kolmafia88.monsterDefense)() && round_1 < 20 && canSurvive$1(1.1) && (0, import_kolmafia88.getProperty)("auto_edStatus") === "UNDYING!") {
     return "attack with weapon";
   }
-  if (canUse$2($skill`Cowboy Kick`)) {
-    return useSkill$2($skill`Cowboy Kick`);
+  if (canUse($skill`Cowboy Kick`)) {
+    return auto_useSkill($skill`Cowboy Kick`);
   }
-  if (canUse$4($item`ice-cold Cloaca Zero`) && (0, import_kolmafia88.myMp)() < 15 && (0, import_kolmafia88.myMaxmp)() > 200) {
+  if (canUse$3($item`ice-cold Cloaca Zero`) && (0, import_kolmafia88.myMp)() < 15 && (0, import_kolmafia88.myMaxmp)() > 200) {
     return useItem$1($item`ice-cold Cloaca Zero`);
   }
-  if (canUse$1($skill`Storm of the Scarab`, false) && (0, import_kolmafia88.myBuffedstat)($stat`Mysticality`) > 35) {
-    return useSkill$1($skill`Storm of the Scarab`, false);
+  if (canUse($skill`Storm of the Scarab`, false) && (0, import_kolmafia88.myBuffedstat)($stat`Mysticality`) > 35) {
+    return auto_useSkill($skill`Storm of the Scarab`, false);
   }
   if (enemy.physicalResistance >= 100 || round_1 >= 25 || canSurvive$1(1.25)) {
-    if (canUse$1($skill`Fist of the Mummy`, false)) {
-      return useSkill$1($skill`Fist of the Mummy`, false);
+    if (canUse($skill`Fist of the Mummy`, false)) {
+      return auto_useSkill($skill`Fist of the Mummy`, false);
     }
   }
   if ((0, import_kolmafia88.myMp)() < (0, import_kolmafia88.mpCost)($skill`Storm of the Scarab`)) {
@@ -8445,7 +8445,7 @@ function auto_edCombatHandler(round_1, enemy, text) {
     try {
       for (_iterator2.s(); !(_step2 = _iterator2.n()).done; ) {
         var _it = _step2.value;
-        if (canUse$4(_it)) {
+        if (canUse$3(_it)) {
           return useItem(_it, false);
         }
       }
@@ -8467,7 +8467,7 @@ function auto_edCombatHandler(round_1, enemy, text) {
     );
     return "attack with weapon";
   }
-  return useSkill$1($skill`Mild Curse`, false);
+  return auto_useSkill($skill`Mild Curse`, false);
 }
 
 // src/autoscend/paths/i_love_u_hate.ts
@@ -8813,7 +8813,9 @@ function markAsUsed$1(it) {
   }
 }
 var $_canUse_exclusives;
-function canUse(sk, onlyOnce, inCombat) {
+function canUse(sk) {
+  var onlyOnce = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : true;
+  var inCombat = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : true;
   if (onlyOnce && haveUsed(sk)) {
     return false;
   }
@@ -8966,13 +8968,8 @@ function canUse(sk, onlyOnce, inCombat) {
   }
   return true;
 }
-function canUse$1(sk, onlyOnce) {
-  return canUse(sk, onlyOnce, true);
-}
-function canUse$2(sk) {
-  return canUse$1(sk, true);
-}
-function canUse$3(it, onlyOnce) {
+function canUse$3(it) {
+  var onlyOnce = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : true;
   if (onlyOnce && haveUsed$1(it)) {
     return false;
   }
@@ -8984,17 +8981,12 @@ function canUse$3(it, onlyOnce) {
   }
   return true;
 }
-function canUse$4(it) {
-  return canUse$3(it, true);
-}
-function useSkill$1(sk, mark) {
+function auto_useSkill(sk) {
+  var mark = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : true;
   if (mark) {
     markAsUsed(sk);
   }
   return `skill ${sk.name}`;
-}
-function useSkill$2(sk) {
-  return useSkill$1(sk, true);
 }
 function useItem(it, mark) {
   if (mark) {
@@ -9099,14 +9091,14 @@ function getSniffer(enemy, inCombat) {
   if (canUse($skill`Gallapagosian Mating Call`, true, inCombat) && !isSniffed(enemy, $skill`Gallapagosian Mating Call`)) {
     return $skill`Gallapagosian Mating Call`;
   }
-  if ((0, import_kolmafia94.myFamiliar)() === $familiar`Nosy Nose` && canUse$2($skill`Get a Good Whiff of This Guy`) && !isSniffed(enemy, $skill`Get a Good Whiff of This Guy`)) {
+  if ((0, import_kolmafia94.myFamiliar)() === $familiar`Nosy Nose` && canUse($skill`Get a Good Whiff of This Guy`) && !isSniffed(enemy, $skill`Get a Good Whiff of This Guy`)) {
     return $skill`Get a Good Whiff of This Guy`;
   }
   if (canUse($skill`Offer Latte to Opponent`, true, inCombat) && !(0, import_kolmafia94.toBoolean)((0, import_kolmafia94.getProperty)("_latteCopyUsed")) && !isSniffed(enemy, $skill`Offer Latte to Opponent`)) {
     return $skill`Offer Latte to Opponent`;
   }
   var z_kick = getZooKickSniff();
-  if (canUse$2(z_kick)) {
+  if (canUse(z_kick)) {
     return z_kick;
   }
   return import_kolmafia94.Skill.none;
@@ -9127,95 +9119,95 @@ function getCopier$1(enemy) {
   return getCopier(enemy, true);
 }
 function getStunner(enemy) {
-  if (canUse$2($skill`Blow the Blue Candle!`) && (0, import_kolmafia94.haveEffect)($effect`Everything Looks Blue`) === 0) {
+  if (canUse($skill`Blow the Blue Candle!`) && (0, import_kolmafia94.haveEffect)($effect`Everything Looks Blue`) === 0) {
     return $skill`Blow the Blue Candle!`;
   }
   switch ((0, import_kolmafia94.myClass)()) {
     case $class`Seal Clubber`:
-      if (canUse$2($skill`Club Foot`) && ((0, import_kolmafia94.myFury)() > 0 || hasClubEquipped())) {
+      if (canUse($skill`Club Foot`) && ((0, import_kolmafia94.myFury)() > 0 || hasClubEquipped())) {
         return $skill`Club Foot`;
       }
       break;
     case $class`Turtle Tamer`:
-      if (canUse$2($skill`Shell Up`)) {
+      if (canUse($skill`Shell Up`)) {
         if ((0, import_kolmafia94.haveEffect)($effect`Blessing of the Storm Tortoise`) > 0 || (0, import_kolmafia94.haveEffect)($effect`Grand Blessing of the Storm Tortoise`) > 0 || (0, import_kolmafia94.haveEffect)($effect`Glorious Blessing of the Storm Tortoise`) > 0) {
           return $skill`Shell Up`;
         }
       }
       break;
     case $class`Accordion Thief`:
-      if (canUse$2($skill`Accordion Bash`) && (0, import_kolmafia94.itemType)((0, import_kolmafia94.equippedItem)($slot`weapon`)) === "accordion") {
+      if (canUse($skill`Accordion Bash`) && (0, import_kolmafia94.itemType)((0, import_kolmafia94.equippedItem)($slot`weapon`)) === "accordion") {
         return $skill`Accordion Bash`;
       }
       break;
     case $class`Pastamancer`:
-      if (canUse$2($skill`Entangling Noodles`)) {
+      if (canUse($skill`Entangling Noodles`)) {
         return $skill`Entangling Noodles`;
       }
       break;
     case $class`Sauceror`:
-      if (canUse$2($skill`Soul Bubble`)) {
+      if (canUse($skill`Soul Bubble`)) {
         return $skill`Soul Bubble`;
       }
       break;
     case $class`Avatar of Boris`:
-      if (canUse$2($skill`Broadside`)) {
+      if (canUse($skill`Broadside`)) {
         return $skill`Broadside`;
       }
       break;
     case $class`Avatar of Sneaky Pete`:
-      if (canUse$2($skill`Snap Fingers`)) {
+      if (canUse($skill`Snap Fingers`)) {
         return $skill`Snap Fingers`;
       }
       break;
     case $class`Avatar of Jarlsberg`:
-      if (canUse$2($skill`Blend`)) {
+      if (canUse($skill`Blend`)) {
         return $skill`Blend`;
       }
       break;
     case $class`Cow Puncher`:
     case $class`Beanslinger`:
     case $class`Snake Oiler`:
-      if (canUse$2($skill`Beanscreen`)) {
+      if (canUse($skill`Beanscreen`)) {
         return $skill`Beanscreen`;
       }
-      if (canUse$2($skill`Hogtie`) && !haveUsed($skill`Beanscreen`) && enemy.parts.includes("leg")) {
+      if (canUse($skill`Hogtie`) && !haveUsed($skill`Beanscreen`) && enemy.parts.includes("leg")) {
         return $skill`Hogtie`;
       }
       break;
     case $class`Vampyre`:
-      if (canUse$2($skill`Blood Chains`) && (0, import_kolmafia94.myHp)() > 3 * (0, import_kolmafia94.hpCost)($skill`Blood Chains`)) {
+      if (canUse($skill`Blood Chains`) && (0, import_kolmafia94.myHp)() > 3 * (0, import_kolmafia94.hpCost)($skill`Blood Chains`)) {
         return $skill`Blood Chains`;
       }
       break;
     case $class`Pig Skinner`:
-      if (canUse$2($skill`Noogie`)) {
+      if (canUse($skill`Noogie`)) {
         return $skill`Noogie`;
       }
       break;
     case $class`Cheese Wizard`:
-      if (canUse$2($skill`Gather Cheese-Chi`)) {
+      if (canUse($skill`Gather Cheese-Chi`)) {
         return $skill`Gather Cheese-Chi`;
       }
       break;
     case $class`Jazz Agent`:
-      if (canUse$1($skill`Drum Roll`, true)) {
+      if (canUse($skill`Drum Roll`, true)) {
         return $skill`Drum Roll`;
       }
       break;
     case $class`Meat Golem`:
-      if (canUse$1($skill`Meat Locker`, true)) {
+      if (canUse($skill`Meat Locker`, true)) {
         return $skill`Meat Locker`;
       }
       break;
   }
-  if (canUse$2($skill`Sweat Flood`) && (getSweat() > 98 || (0, import_kolmafia94.containsText)((0, import_kolmafia94.getProperty)("_auto_combatState"), "last attempt"))) {
+  if (canUse($skill`Sweat Flood`) && (getSweat() > 98 || (0, import_kolmafia94.containsText)((0, import_kolmafia94.getProperty)("_auto_combatState"), "last attempt"))) {
     return $skill`Sweat Flood`;
   }
-  if (canUse$2($skill`Summon Love Gnats`)) {
+  if (canUse($skill`Summon Love Gnats`)) {
     return $skill`Summon Love Gnats`;
   }
-  if (canUse$2($skill`Mind Bullets`)) {
+  if (canUse($skill`Mind Bullets`)) {
     return $skill`Mind Bullets`;
   }
   return import_kolmafia94.Skill.none;
@@ -9325,7 +9317,7 @@ function banisherCombatString$1(enemy, loc, inCombat) {
   if (auto_have_skill($skill`Batter Up!`) && (0, import_kolmafia94.myFury)() >= 5 && (inCombat ? hasClubEquipped() : true) && auto_is_valid$2($skill`Batter Up!`) && !used.has("batter up!")) {
     return `skill ${$skill`Batter Up!`}`;
   }
-  if (inCombat ? auto_have_skill($skill`Mark Your Territory`) && !used.has("Mark Your Territory") : auto_is_valid$2($skill`Mark Your Territory`) && (auto_have_skill($skill`Mark Your Territory`) || (0, import_kolmafia94.availableAmount)($item`pheromone cocktail`) > 0 && canDrink$1($item`pheromone cocktail`) && inebriety_left() > 1 && !isActuallyEd())) {
+  if (inCombat ? auto_have_skill($skill`Mark Your Territory`) && !used.has("Mark Your Territory") : auto_is_valid$2($skill`Mark Your Territory`) && (auto_have_skill($skill`Mark Your Territory`) || (0, import_kolmafia94.availableAmount)($item`pheromone cocktail`) > 0 && auto_canDrink($item`pheromone cocktail`) && inebriety_left() > 1 && !isActuallyEd())) {
     return `skill ${$skill`Mark Your Territory`}`;
   }
   var z_kick = getZooKickBanish();
@@ -9389,7 +9381,7 @@ function banisherCombatString$1(enemy, loc, inCombat) {
   if ((inCombat ? auto_have_skill($skill`Sea *dent: Throw a Lightning Bolt`) : possessEquipment($item`Monodent of the Sea`)) && auto_throwLightningRemaining() > 0 && !used.has("Sea *dent: Throw a Lightning Bolt")) {
     return `skill ${$skill`Sea *dent: Throw a Lightning Bolt`}`;
   }
-  if (canUse$2($skill`Unleash Nanites`) && (0, import_kolmafia94.haveEffect)($effect`Nanobrawny`) >= 40) {
+  if (canUse($skill`Unleash Nanites`) && (0, import_kolmafia94.haveEffect)($effect`Nanobrawny`) >= 40) {
     return `skill ${$skill`Unleash Nanites`}`;
   }
   if (auto_have_skill($skill`Beancannon`) && (0, import_kolmafia94.toInt)((0, import_kolmafia94.getProperty)("_beancannonUses")) < 5 && (0, import_kolmafia94.myMp)() - 20 >= (0, import_kolmafia94.mpCost)($skill`Beancannon`) && !used.has("beancannon")) {
@@ -9476,7 +9468,7 @@ function yellowRayCombatString(target, inCombat, noForceDrop) {
     if (free_monster && (0, import_kolmafia94.itemAmount)($item`yellow rocket`) > 0 && auto_is_valid($item`yellow rocket`)) {
       return `item ${$item`yellow rocket`}`;
     }
-    if (inCombat ? (0, import_kolmafia94.haveSkill)($skill`Spit jurassic acid`) : auto_hasParka() && auto_is_valid$2($skill`Spit jurassic acid`) && hasTorso$1()) {
+    if (inCombat ? (0, import_kolmafia94.haveSkill)($skill`Spit jurassic acid`) : auto_hasParka() && auto_is_valid$2($skill`Spit jurassic acid`) && hasTorso()) {
       return `skill ${$skill`Spit jurassic acid`}`;
     }
     if ((0, import_kolmafia94.itemAmount)($item`yellow rocket`) > 0 && auto_is_valid($item`yellow rocket`)) {
@@ -9561,7 +9553,7 @@ function replaceMonsterCombatString(target, inCombat) {
   if (auto_powerfulGloveReplacesAvailable(inCombat) > 0 && auto_is_valid$2($skill`CHEAT CODE: Replace Enemy`)) {
     return `skill ${$skill`CHEAT CODE: Replace Enemy`}`;
   }
-  if (canUse$4($item`waffle`) && !in_avantGuard()) {
+  if (canUse$3($item`waffle`) && !in_avantGuard()) {
     return useItems$1($item`waffle`, import_kolmafia94.Item.none);
   }
   return "";
@@ -9580,8 +9572,8 @@ function combat_status_add(mark) {
   (0, import_kolmafia94.setProperty)("_auto_combatState", st);
 }
 function wantToForceDrop(enemy) {
-  var mildEvilAvailable = canUse$1($skill`Perpetrate Mild Evil`, false) && (0, import_kolmafia94.toInt)((0, import_kolmafia94.getProperty)("_mildEvilPerpetrated")) < 3;
-  var swoopAvailable = canUse$1($skill`Swoop like a Bat`, true) && (0, import_kolmafia94.toInt)((0, import_kolmafia94.getProperty)("_batWingsSwoopUsed")) < 11;
+  var mildEvilAvailable = canUse($skill`Perpetrate Mild Evil`, false) && (0, import_kolmafia94.toInt)((0, import_kolmafia94.getProperty)("_mildEvilPerpetrated")) < 3;
+  var swoopAvailable = canUse($skill`Swoop like a Bat`, true) && (0, import_kolmafia94.toInt)((0, import_kolmafia94.getProperty)("_batWingsSwoopUsed")) < 11;
   var forceDrop = false;
   if (!combat_status_check("yellowray")) {
     if (enemy === $monster`larval filthworm` && (0, import_kolmafia94.itemAmount)($item`filthworm hatchling scent gland`) < 1) {
@@ -9659,19 +9651,19 @@ function maxRoundsToDouse(enemy) {
     rounds -= 3;
   }
   var flyer = auto_warSide() === "hippy" ? $item`jam band flyers` : $item`rock band flyers`;
-  if (canUse$4(flyer) && (0, import_kolmafia94.toInt)((0, import_kolmafia94.getProperty)("flyeredML")) < 1e4) {
+  if (canUse$3(flyer) && (0, import_kolmafia94.toInt)((0, import_kolmafia94.getProperty)("flyeredML")) < 1e4) {
     rounds -= 1;
   }
-  if (canUse$2($skill`Tear Away your Pants!`)) {
+  if (canUse($skill`Tear Away your Pants!`)) {
     rounds -= 1;
   }
-  if (canUse$2($skill`Perpetrate Mild Evil`)) {
+  if (canUse($skill`Perpetrate Mild Evil`)) {
     rounds -= auto_remainingMildEvilUses();
   }
-  if (canUse$2($skill`Swoop like a Bat`)) {
+  if (canUse($skill`Swoop like a Bat`)) {
     rounds -= 1;
   }
-  if (canUse$2($skill`Fire Extinguisher: Polar Vortex`)) {
+  if (canUse($skill`Fire Extinguisher: Polar Vortex`)) {
     rounds -= auto_fireExtinguisherCharges();
   }
   return rounds;
@@ -9930,7 +9922,7 @@ function auto_nextRestOverCinch() {
   return auto_cinchAfterNextRest() > 100;
 }
 function shouldCinchoConfetti() {
-  if (!canUse$2($skill`Cincho: Confetti Extravaganza`)) {
+  if (!canUse($skill`Cincho: Confetti Extravaganza`)) {
     return false;
   }
   if (!disregardInstantKarma()) {
@@ -11008,7 +11000,7 @@ function auto_sausageBlocked() {
   if (in_tcrs()) {
     return true;
   }
-  if (!canEat$1($item`magical sausage`)) {
+  if (!auto_canEat($item`magical sausage`)) {
     return true;
   }
   if (auto_sausageLeftToday() <= 0) {
@@ -14343,7 +14335,7 @@ function __restore(resource_type, goal, meat_reserve, useFreeRests) {
     }
     if (metadata.type === "skill") {
       var s = (0, import_kolmafia108.toSkill)(metadata.name);
-      if ((0, import_kolmafia108.myMp)() < (0, import_kolmafia108.mpCost)(s) && !acquireMP$3((0, import_kolmafia108.mpCost)(s), 0, useFreeRests2)) {
+      if ((0, import_kolmafia108.myMp)() < (0, import_kolmafia108.mpCost)(s) && !acquireMP((0, import_kolmafia108.mpCost)(s), 0, useFreeRests2)) {
         auto_log_warning(`Couldnt acquire enough MP to cast ${s}`, "red");
         return false;
       }
@@ -14560,13 +14552,9 @@ function __cure_bad_stuff() {
     }
   }
 }
-function acquireMP$1(goal) {
-  return acquireMP$2(goal, meatReserve());
-}
-function acquireMP$2(goal, meat_reserve) {
-  return acquireMP$3(goal, meat_reserve, true);
-}
-function acquireMP$3(goal, meat_reserve, useFreeRests) {
+function acquireMP(goal) {
+  var meat_reserve = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : meatReserve();
+  var useFreeRests = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : true;
   if (in_darkGyffte()) {
     return false;
   } else if (in_zombieSlayer()) {
@@ -17525,7 +17513,7 @@ function buffMaintain$2(buff, mp_min, casts, turns, speculative) {
       useItem_1 = $item`cuppa Obscuri tea`;
       break;
     case $effect`Ode to Booze`:
-      shrugAT$1($effect`Ode to Booze`);
+      shrugAT($effect`Ode to Booze`);
       useSkill_1 = $skill`The Ode to Booze`;
       break;
     case $effect`The Odour of Magick`:
@@ -17634,7 +17622,7 @@ function buffMaintain$2(buff, mp_min, casts, turns, speculative) {
       useItem_1 = $item`tobiko marble soda`;
       break;
     case $effect`Psalm of Pointiness`:
-      shrugAT$1($effect`Psalm of Pointiness`);
+      shrugAT($effect`Psalm of Pointiness`);
       useSkill_1 = $skill`The Psalm of Pointiness`;
       break;
     case $effect`Prayer of Seshat`:
@@ -18680,7 +18668,7 @@ function canYellowRay(target) {
     return false;
   }
   if ((0, import_kolmafia120.haveEffect)($effect`Everything Looks Yellow`) <= 0) {
-    if (auto_hasParka() && auto_is_valid$2($skill`Spit jurassic acid`) && hasTorso$1()) {
+    if (auto_hasParka() && auto_is_valid$2($skill`Spit jurassic acid`) && hasTorso()) {
       return yellowRayCombatString(
         target,
         false,
@@ -18939,10 +18927,10 @@ function freeRunCombatStringPreBanish(enemy, loc, inCombat) {
     return "";
   }
   if (!inAftercore() && (0, import_kolmafia120.haveEffect)($effect`Everything Looks Green`) === 0) {
-    if (isGhost(enemy) && canUse$4($item`T.U.R.D.S. Key`) && (0, import_kolmafia120.itemAmount)($item`T.U.R.D.S. Key`) > 0) {
+    if (isGhost(enemy) && canUse$3($item`T.U.R.D.S. Key`) && (0, import_kolmafia120.itemAmount)($item`T.U.R.D.S. Key`) > 0) {
       return useItem$1($item`T.U.R.D.S. Key`);
     }
-    if (canUse$4($item`short writ of habeas corpus`) && (0, import_kolmafia120.itemAmount)($item`short writ of habeas corpus`) > 0 && $monsters`pygmy orderlies, pygmy witch lawyer, pygmy witch nurse`.includes(
+    if (canUse$3($item`short writ of habeas corpus`) && (0, import_kolmafia120.itemAmount)($item`short writ of habeas corpus`) > 0 && $monsters`pygmy orderlies, pygmy witch lawyer, pygmy witch nurse`.includes(
       enemy
     )) {
       return useItem$1($item`short writ of habeas corpus`);
@@ -18967,7 +18955,7 @@ function freeRunCombatString(enemy, loc, inCombat) {
         autoEquip$1($item`spring shoes`);
         return `skill ${$skill`Spring Away`}`;
       } else {
-        if (canUse$2($skill`Spring Away`)) {
+        if (canUse($skill`Spring Away`)) {
           return `skill ${$skill`Spring Away`}`;
         }
       }
@@ -18977,7 +18965,7 @@ function freeRunCombatString(enemy, loc, inCombat) {
         autoEquip$1($item`Roman Candelabra`);
         return `skill ${$skill`Blow the Green Candle!`}`;
       } else {
-        if (canUse$2($skill`Blow the Green Candle!`)) {
+        if (canUse($skill`Blow the Green Candle!`)) {
           return `skill ${$skill`Blow the Green Candle!`}`;
         }
       }
@@ -18988,7 +18976,7 @@ function freeRunCombatString(enemy, loc, inCombat) {
     try {
       for (_iterator10.s(); !(_step10 = _iterator10.n()).done; ) {
         var it = _step10.value;
-        if (canUse$4(it) && (0, import_kolmafia120.itemAmount)(it) > 0) {
+        if (canUse$3(it) && (0, import_kolmafia120.itemAmount)(it) > 0) {
           return useItem$1(it);
         }
       }
@@ -19044,7 +19032,7 @@ function freeRunCombatString(enemy, loc, inCombat) {
       }
     }
   }
-  if (canUse$2($skill`Peel Out`) && pete_peelOutRemaining() > 0) {
+  if (canUse($skill`Peel Out`) && pete_peelOutRemaining() > 0) {
     return `skill ${$skill`Peel Out`}`;
   }
   if ((inCombat ? auto_have_skill($skill`Bowl a Curveball`) : (0, import_kolmafia120.itemAmount)($item`cosmic bowling ball`) > 0) && auto_is_valid$2($skill`Bowl a Curveball`)) {
@@ -19061,7 +19049,7 @@ function freeRunCombatString(enemy, loc, inCombat) {
     try {
       for (_iterator11.s(); !(_step11 = _iterator11.n()).done; ) {
         var _it = _step11.value;
-        if (canUse$4(_it) && (0, import_kolmafia120.itemAmount)(_it) > 0) {
+        if (canUse$3(_it) && (0, import_kolmafia120.itemAmount)(_it) > 0) {
           return useItem$1(_it);
         }
       }
@@ -19073,7 +19061,7 @@ function freeRunCombatString(enemy, loc, inCombat) {
   }
   return "";
 }
-function hasTorso$1() {
+function hasTorso() {
   return (0, import_kolmafia120.haveSkill)($skill`Torso Awareness`) || (0, import_kolmafia120.haveSkill)($skill`Best Dressed`) || robot_cpu(9, false);
 }
 function isGuildClass() {
@@ -19366,7 +19354,7 @@ function MLDamageToMonsterMultiplier() {
   }
   return retval;
 }
-function freeCrafts$1() {
+function auto_freeCrafts() {
   var retval = 0;
   if ((0, import_kolmafia120.haveSkill)($skill`Rapid Prototyping`) && (0, import_kolmafia120.isUnrestricted)($item`Crimbot ROM: Rapid Prototyping`)) {
     retval += 5 - (0, import_kolmafia120.toInt)((0, import_kolmafia120.getProperty)("_rapidPrototypingUsed"));
@@ -19590,7 +19578,7 @@ function ATSongList() {
   );
   return songs;
 }
-function shrugAT$1(anticipated) {
+function shrugAT(anticipated) {
   if (is_boris() || is_jarlsberg() || is_pete() || isActuallyEd() || in_darkGyffte() || in_plumber()) {
     return;
   }
@@ -19804,7 +19792,7 @@ function auto_can_equip(it) {
   return auto_can_equip$1(it, (0, import_kolmafia120.toSlot)(it));
 }
 function auto_can_equip$1(it, s) {
-  if (s === $slot`shirt` && !hasTorso$1()) {
+  if (s === $slot`shirt` && !hasTorso()) {
     return false;
   }
   if (s === $slot`off-hand` && (0, import_kolmafia120.toSlot)(it) === $slot`weapon` && !auto_have_skill($skill`Double-Fisted Skull Smashing`)) {
@@ -20298,10 +20286,10 @@ function meatReserve() {
   if (in_wildfire() && !(0, import_kolmafia120.toBoolean)((0, import_kolmafia120.getProperty)("wildfirePumpGreased")) && (0, import_kolmafia120.itemAmount)($item`pump grease`) === 0) {
     reserve_extra += (0, import_kolmafia120.npcPrice)($item`pump grease`);
   }
-  if (!hasTorso$1() && hasUsefulShirt() && !(0, import_kolmafia120.gnomadsAvailable)() && inGnomeSign()) {
+  if (!hasTorso() && hasUsefulShirt() && !(0, import_kolmafia120.gnomadsAvailable)() && inGnomeSign()) {
     reserve_extra += (0, import_kolmafia120.toInt)(5e3 * npcStoreDiscountMulti());
   }
-  if (!hasTorso$1() && (0, import_kolmafia120.gnomadsAvailable)() && hasUsefulShirt()) {
+  if (!hasTorso() && (0, import_kolmafia120.gnomadsAvailable)() && hasUsefulShirt()) {
     reserve_extra += 5e3;
   }
   if ((0, import_kolmafia120.myLevel)() < 10) {
@@ -20389,7 +20377,7 @@ function auto_burnMP(mpToBurn) {
   removeFromMaximize("-1000mana cost");
   return startingMP !== (0, import_kolmafia120.myMp)();
 }
-function substat_to_level$1(n) {
+function substat_to_level(n) {
   if (n <= 16) {
     return 1;
   }
@@ -20596,7 +20584,7 @@ function auto_advToReserve() {
   if (auto_freeCombatsRemaining() > 0) {
     reserveadv = (0, import_kolmafia133.max)(2, reserveadv);
   }
-  if (freeCrafts$1() < 2) {
+  if (auto_freeCrafts() < 2) {
     if ((0, import_kolmafia133.canEat)() && (0, import_kolmafia133.myFullness)() + 3 <= (0, import_kolmafia133.fullnessLimit)() && auto_have_skill($skill`Pastamastery`)) {
       reserveadv = (0, import_kolmafia133.max)(2, reserveadv);
     }
@@ -20623,7 +20611,8 @@ function fullness_left() {
 function inebriety_left() {
   return (0, import_kolmafia134.inebrietyLimit)() - (0, import_kolmafia134.myInebriety)();
 }
-function canDrink$2(toDrink, checkValidity) {
+function auto_canDrink(toDrink) {
+  var checkValidity = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : true;
   if (!(0, import_kolmafia134.canDrink)()) {
     return false;
   }
@@ -20688,10 +20677,8 @@ function canDrink$2(toDrink, checkValidity) {
   }
   return true;
 }
-function canDrink$1(toDrink) {
-  return canDrink$2(toDrink, true);
-}
-function canEat$2(toEat, checkValidity) {
+function auto_canEat(toEat) {
+  var checkValidity = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : true;
   if (!(0, import_kolmafia134.canEat)()) {
     return false;
   }
@@ -20727,9 +20714,6 @@ function canEat$2(toEat, checkValidity) {
     return false;
   }
   return true;
-}
-function canEat$1(toEat) {
-  return canEat$2(toEat, true);
 }
 function canChew(toChew) {
   if (!auto_is_valid(toChew)) {
@@ -20985,10 +20969,8 @@ function pullXWhenHaveY(it, howMany, whenHave) {
   }
   return false;
 }
-function buyableMaintain$1(toMaintain, howMany, meatMin) {
-  return buyableMaintain$2(toMaintain, howMany, meatMin, true);
-}
-function buyableMaintain$2(toMaintain, howMany, meatMin, condition) {
+function buyableMaintain(toMaintain, howMany, meatMin) {
+  var condition = arguments.length > 3 && arguments[3] !== void 0 ? arguments[3] : true;
   if (!condition || (0, import_kolmafia135.myMeat)() < meatMin || in_wotsf()) {
     return false;
   }
@@ -21443,7 +21425,7 @@ function auto_post_adventure() {
       buffMaintain$3($effect`Wisdom of Thoth`, 10, 1, 10);
     }
     if ((0, import_kolmafia136.myMp)() + 100 < (0, import_kolmafia136.myMaxmp)()) {
-      acquireMP$2(100, (0, import_kolmafia136.myMeat)());
+      acquireMP(100, (0, import_kolmafia136.myMeat)());
     }
     return true;
   }
@@ -22038,21 +22020,21 @@ function auto_post_adventure() {
     buffMaintain$4($effect`From Nantucket`);
     buffMaintain$4($effect`Squatting and Thrusting`);
     buffMaintain$4($effect`You Read The Manual`);
-    buyableMaintain$2(
+    buyableMaintain(
       $item`hair spray`,
       1,
       200,
       (0, import_kolmafia136.myClass)() !== $class`Turtle Tamer`
     );
-    buyableMaintain$2(
+    buyableMaintain(
       $item`blood of the Wereseal`,
       1,
       3500,
       (0, import_kolmafia136.monsterLevelAdjustment)() > 135
     );
-    buyableMaintain$1($item`Ben-Gal™ Balm`, 1, 200);
+    buyableMaintain($item`Ben-Gal™ Balm`, 1, 200);
   }
-  buyableMaintain$2(
+  buyableMaintain(
     $item`turtle pheromones`,
     1,
     800,

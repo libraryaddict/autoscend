@@ -428,7 +428,7 @@ function List$8(data) {
   }
   return retval;
 }
-function ListInsert$3(list, what) {
+function ListInsert(list, what) {
   var retval = List$8(list);
   retval.set(retval.size, what);
   return List$8(retval);
@@ -868,7 +868,7 @@ function auto_monsterToMap(loc, page) {
   var bestmon = 0;
   while (mons.find()) {
     monOpts.set(i, (0, import_kolmafia18.toMonster)((0, import_kolmafia18.toInt)(mons.group(1))));
-    if (zoneRank$1(monOpts.get(i) ?? monOpts.set(i, import_kolmafia18.Monster.none).get(i), loc) <= zoneRank$1(
+    if (zoneRank(monOpts.get(i) ?? monOpts.set(i, import_kolmafia18.Monster.none).get(i), loc) <= zoneRank(
       monOpts.get(bestmon) ?? monOpts.set(bestmon, import_kolmafia18.Monster.none).get(bestmon),
       loc
     )) {
@@ -1461,7 +1461,7 @@ function bondDrinks() {
       for (_iterator.s(); !(_step = _iterator.n()).done; ) {
         var it = _step.value;
         if (it.inebriety > 0 && it.smallimage === "martini.gif" && (0, import_kolmafia40.isUnrestricted)(it)) {
-          bondDrinksCached = ListInsert$3(bondDrinksCached, it);
+          bondDrinksCached = ListInsert(bondDrinksCached, it);
         }
       }
     } catch (err) {
@@ -2044,7 +2044,7 @@ function peridotChoiceHandler(choice, page) {
       bestmon = i;
       break;
     }
-    if (zoneRank$1(monOpts.get(i) ?? monOpts.set(i, import_kolmafia53.Monster.none).get(i), loc) <= zoneRank$1(
+    if (zoneRank(monOpts.get(i) ?? monOpts.set(i, import_kolmafia53.Monster.none).get(i), loc) <= zoneRank(
       monOpts.get(bestmon) ?? monOpts.set(bestmon, import_kolmafia53.Monster.none).get(bestmon),
       loc
     )) {
@@ -2168,7 +2168,7 @@ function mobiusChoiceHandler(choice, page) {
         break;
     }
   }
-  if (canEat$1($item`Susie's cupcake`)) {
+  if (auto_canEat($item`Susie's cupcake`)) {
     pos = "Steal a cupcake from young Susie";
     if (choiceMap.has(pos)) {
       mobiusChoice(pos);
@@ -2226,7 +2226,7 @@ function mobiusChoiceHandler(choice, page) {
       }
     }
   }
-  if (canEat$1($item`Susie's cupcake`)) {
+  if (auto_canEat($item`Susie's cupcake`)) {
     pos = "Steal a cupcake from young Susie";
     if (choiceMap.has(pos)) {
       mobiusChoice(pos);
@@ -2324,7 +2324,7 @@ function juneCleaverChoiceHandler(choice) {
     case 1469:
       if ((0, import_kolmafia57.myMeat)() < meatReserve()) {
         (0, import_kolmafia57.runChoice)(3);
-      } else if (canDrink$1($item`Dad's brandy`) && (0, import_kolmafia57.myInebriety)() < (0, import_kolmafia57.inebrietyLimit)()) {
+      } else if (auto_canDrink($item`Dad's brandy`) && (0, import_kolmafia57.myInebriety)() < (0, import_kolmafia57.inebrietyLimit)()) {
         (0, import_kolmafia57.runChoice)(2);
       } else {
         (0, import_kolmafia57.runChoice)(3);
@@ -3832,7 +3832,7 @@ function auto_wantToFreeRun(enemy, loc) {
   (0, import_kolmafia119.setLocation)(locCache);
   return monstersToFreeRun.get(enemy) ?? monstersToFreeRun.set(enemy, false).get(enemy);
 }
-function hasTorso$1() {
+function hasTorso() {
   return (0, import_kolmafia119.haveSkill)($skill`Torso Awareness`) || (0, import_kolmafia119.haveSkill)($skill`Best Dressed`) || robot_cpu(9, false);
 }
 function isGuildClass() {
@@ -4409,7 +4409,7 @@ function auto_wantToCopy$1(enemy) {
   var toCopy = auto_getMonsters("copy");
   return toCopy.get(enemy) ?? toCopy.set(enemy, false).get(enemy);
 }
-function zoneRank$1(mon, loc) {
+function zoneRank(mon, loc) {
   if (auto_wantToYellowRay(mon, loc)) {
     return 1;
   }
@@ -4481,10 +4481,10 @@ function meatReserve() {
   if (in_wildfire() && !(0, import_kolmafia119.toBoolean)((0, import_kolmafia119.getProperty)("wildfirePumpGreased")) && (0, import_kolmafia119.itemAmount)($item`pump grease`) === 0) {
     reserve_extra += (0, import_kolmafia119.npcPrice)($item`pump grease`);
   }
-  if (!hasTorso$1() && hasUsefulShirt() && !(0, import_kolmafia119.gnomadsAvailable)() && inGnomeSign()) {
+  if (!hasTorso() && hasUsefulShirt() && !(0, import_kolmafia119.gnomadsAvailable)() && inGnomeSign()) {
     reserve_extra += (0, import_kolmafia119.toInt)(5e3 * npcStoreDiscountMulti());
   }
-  if (!hasTorso$1() && (0, import_kolmafia119.gnomadsAvailable)() && hasUsefulShirt()) {
+  if (!hasTorso() && (0, import_kolmafia119.gnomadsAvailable)() && hasUsefulShirt()) {
     reserve_extra += 5e3;
   }
   if ((0, import_kolmafia119.myLevel)() < 10) {
@@ -4615,7 +4615,8 @@ function fullness_left() {
 function inebriety_left() {
   return (0, import_kolmafia134.inebrietyLimit)() - (0, import_kolmafia134.myInebriety)();
 }
-function canDrink$2(toDrink, checkValidity) {
+function auto_canDrink(toDrink) {
+  var checkValidity = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : true;
   if (!(0, import_kolmafia134.canDrink)()) {
     return false;
   }
@@ -4680,10 +4681,8 @@ function canDrink$2(toDrink, checkValidity) {
   }
   return true;
 }
-function canDrink$1(toDrink) {
-  return canDrink$2(toDrink, true);
-}
-function canEat$2(toEat, checkValidity) {
+function auto_canEat(toEat) {
+  var checkValidity = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : true;
   if (!(0, import_kolmafia134.canEat)()) {
     return false;
   }
@@ -4719,9 +4718,6 @@ function canEat$2(toEat, checkValidity) {
     return false;
   }
   return true;
-}
-function canEat$1(toEat) {
-  return canEat$2(toEat, true);
 }
 
 // src/autoscend/auto_equipment.ts
