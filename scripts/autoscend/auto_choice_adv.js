@@ -3178,7 +3178,6 @@ function ed_shopping() {
           true
         );
         (0, import_kolmafia99.visitUrl)("choice.php?pwd&option=2&whichchoice=1052", true);
-        coins -= requiredKa;
       }
     } else if ((0, import_kolmafia99.haveSkill)($skill`Okay Seriously, This is the Last Spleen`) && canEat_1 < 1) {
       while ((0, import_kolmafia99.itemAmount)($item`talisman of Renenutet`) < 7 && (0, import_kolmafia99.toInt)((0, import_kolmafia99.getProperty)("auto_renenutetBought")) < 7 && coins >= 1) {
@@ -3239,7 +3238,6 @@ function ed_shopping() {
           "shop.php?pwd=&whichshop=edunder_shopshop&action=buyitem&quantity=1&whichrow=433",
           true
         );
-        coins -= 3;
       }
     }
   }
@@ -3859,7 +3857,6 @@ function auto_have_skill(sk) {
   return auto_is_valid$2(sk) && (0, import_kolmafia119.haveSkill)(sk);
 }
 function effectiveDropChance(it, baseDropRate) {
-  var retval = 0;
   var item_modifier = (0, import_kolmafia119.itemDropModifier)();
   if (baseDropRate > 0) {
     if ((0, import_kolmafia119.itemType)(it) === "food") {
@@ -3895,7 +3892,7 @@ function effectiveDropChance(it, baseDropRate) {
       }
     }
   }
-  retval = baseDropRate * (100 + item_modifier) / 100;
+  var retval = baseDropRate * (100 + item_modifier) / 100;
   retval = (0, import_kolmafia119.min)(100, retval);
   if (retval > 0) {
     if (in_lar()) {
@@ -3925,14 +3922,19 @@ function effectiveDropChance(it, baseDropRate) {
       switch ((0, import_kolmafia119.myLocation)().fireLevel) {
         case 5:
           wildfireBurnChance = 1;
+          break;
         case 4:
           wildfireBurnChance = 0.768;
+          break;
         case 3:
           wildfireBurnChance = 0.361;
+          break;
         case 2:
           wildfireBurnChance = 0.109;
+          break;
         default:
           wildfireBurnChance = 0;
+          break;
       }
       retval = retval * (1 - wildfireBurnChance);
     }
@@ -4064,71 +4066,58 @@ function auto_check_conditions(conds) {
     var condition_type = m2.group(1);
     var condition_data = m2.group(2);
     {
-      var req_class = import_kolmafia119.Class.none;
-      var req_mainstat = import_kolmafia119.Stat.none;
-      var req_pathid = 0;
-      var req_skill = import_kolmafia119.Skill.none;
-      var req_effect = import_kolmafia119.Effect.none;
-      var m5 = void 0;
-      var req_item = import_kolmafia119.Item.none;
-      var m7 = void 0;
-      var todrop_item = import_kolmafia119.Item.none;
-      var base_drop_chance = 0;
-      var req_familiar = import_kolmafia119.Familiar.none;
-      var havefamiliar = import_kolmafia119.Familiar.none;
-      var req_loc = import_kolmafia119.Location.none;
-      var loc = import_kolmafia119.Location.none;
-      var prop = "";
-      var m3 = void 0;
-      var quest_state = 0;
-      var compare_to = 0;
-      var check_sniffed = import_kolmafia119.Monster.none;
-      var sgeeas = 0;
-      var day = 0;
-      var m4 = void 0;
       switch (condition_type) {
-        case "class":
-          req_class = (0, import_kolmafia119.toClass)(condition_data);
+        case "class": {
+          var req_class = (0, import_kolmafia119.toClass)(condition_data);
           if (req_class === import_kolmafia119.Class.none) {
             (0, import_kolmafia119.abort)(`"${condition_data}" does not properly convert to a class!`);
           }
           return req_class === (0, import_kolmafia119.myClass)();
-        case "mainstat":
-          req_mainstat = (0, import_kolmafia119.toStat)(condition_data);
+        }
+        case "mainstat": {
+          var req_mainstat = (0, import_kolmafia119.toStat)(condition_data);
           if (req_mainstat === import_kolmafia119.Stat.none) {
             (0, import_kolmafia119.abort)(`"${condition_data}" does not properly convert to a stat!`);
           }
           return req_mainstat === (0, import_kolmafia119.myPrimestat)();
-        case "path":
+        }
+        case "path": {
           return condition_data === (0, import_kolmafia119.myPath)().name;
-        case "pathid":
-          req_pathid = (0, import_kolmafia119.toInt)(condition_data);
+        }
+        case "pathid": {
+          var req_pathid = (0, import_kolmafia119.toInt)(condition_data);
           if (req_pathid === 0) {
             (0, import_kolmafia119.abort)(
               `"${condition_data}" does not properly convert to a path id!`
             );
           }
           return req_pathid === (0, import_kolmafia119.myPath)().id;
-        case "skill":
-          req_skill = (0, import_kolmafia119.toSkill)(condition_data);
+        }
+        case "skill": {
+          var req_skill = (0, import_kolmafia119.toSkill)(condition_data);
           if (req_skill === import_kolmafia119.Skill.none) {
             (0, import_kolmafia119.abort)(`"${condition_data}" does not properly convert to a skill!`);
           }
           return auto_have_skill(req_skill);
-        case "effect":
-          req_effect = (0, import_kolmafia119.toEffect)(condition_data);
+        }
+        case "effect": {
+          var req_effect = (0, import_kolmafia119.toEffect)(condition_data);
           if (req_effect === import_kolmafia119.Effect.none) {
             (0, import_kolmafia119.abort)(
               `"${condition_data}" does not properly convert to an effect!`
             );
           }
           return (0, import_kolmafia119.haveEffect)(req_effect) > 0;
-        case "item":
-          m5 = new AshMatcher("([^=<>]+)([=<>]+)(.+)", condition_data);
+        }
+        case "item": {
+          var m5 = new AshMatcher(
+            "([^=<>]+)([=<>]+)(.+)",
+            condition_data
+          );
           if (!m5.find()) {
             (0, import_kolmafia119.abort)(`"${condition_data}" is not a proper item condition format!`);
           }
-          req_item = (0, import_kolmafia119.toItem)(m5.group(1));
+          var req_item = (0, import_kolmafia119.toItem)(m5.group(1));
           if (req_item === import_kolmafia119.Item.none) {
             (0, import_kolmafia119.abort)(`"${m5.group(1)}" does not properly convert to an item!`);
           }
@@ -4137,43 +4126,51 @@ function auto_check_conditions(conds) {
             (0, import_kolmafia119.toInt)(m5.group(3)),
             m5.group(2)
           );
-        case "itemdropcapped":
-          m7 = new AshMatcher("([^=<>]+)=(.+)", condition_data);
+        }
+        case "itemdropcapped": {
+          var m7 = new AshMatcher(
+            "([^=<>]+)=(.+)",
+            condition_data
+          );
           if (!m7.find()) {
             (0, import_kolmafia119.abort)(`"${condition_data}" is not a proper item condition format!`);
           }
-          todrop_item = (0, import_kolmafia119.toItem)(m7.group(2));
-          base_drop_chance = (0, import_kolmafia119.toFloat)(m7.group(1));
+          var todrop_item = (0, import_kolmafia119.toItem)(m7.group(2));
+          var base_drop_chance = (0, import_kolmafia119.toFloat)(m7.group(1));
           if (todrop_item === import_kolmafia119.Item.none) {
             (0, import_kolmafia119.abort)(`"${m7.group(1)}" does not properly convert to an item!`);
           }
           return effectiveDropChance(todrop_item, base_drop_chance) >= 100;
+        }
         case "outfit":
           return (0, import_kolmafia119.haveOutfit)(condition_data);
-        case "familiar":
-          req_familiar = (0, import_kolmafia119.toFamiliar)(condition_data);
+        case "familiar": {
+          var req_familiar = (0, import_kolmafia119.toFamiliar)(condition_data);
           if (req_familiar === import_kolmafia119.Familiar.none && condition_data !== "none") {
             (0, import_kolmafia119.abort)(
               `"${condition_data}" does not properly convert to a familiar!`
             );
           }
           return (0, import_kolmafia119.myFamiliar)() === req_familiar;
-        case "havefamiliar":
-          havefamiliar = (0, import_kolmafia119.toFamiliar)(condition_data);
+        }
+        case "havefamiliar": {
+          var havefamiliar = (0, import_kolmafia119.toFamiliar)(condition_data);
           if (havefamiliar === import_kolmafia119.Familiar.none) {
             (0, import_kolmafia119.abort)(
               `"${condition_data}" does not properly convert to a familiar!`
             );
           }
           return auto_have_familiar(havefamiliar);
-        case "loc":
-          req_loc = (0, import_kolmafia119.toLocation)(condition_data);
+        }
+        case "loc": {
+          var req_loc = (0, import_kolmafia119.toLocation)(condition_data);
           if (req_loc === import_kolmafia119.Location.none) {
             (0, import_kolmafia119.abort)(
               `"${condition_data}" does not properly convert to a location!`
             );
           }
           return (0, import_kolmafia119.myLocation)() === req_loc;
+        }
         case "turnsspent": {
           var m6 = new AshMatcher(
             "([^=<>]+)([=<>]+)(.+)",
@@ -4184,7 +4181,7 @@ function auto_check_conditions(conds) {
               `"${condition_data}" is not a proper turnsspent condition format!`
             );
           }
-          loc = (0, import_kolmafia119.toLocation)(m6.group(1));
+          var loc = (0, import_kolmafia119.toLocation)(m6.group(1));
           if (loc === import_kolmafia119.Location.none) {
             (0, import_kolmafia119.abort)(
               `"${condition_data}" does not properly convert to a location!`
@@ -4207,7 +4204,7 @@ function auto_check_conditions(conds) {
           if (!m22.find()) {
             (0, import_kolmafia119.abort)(`"${condition_data}" is not a proper prop condition format!`);
           }
-          prop = (0, import_kolmafia119.getProperty)(m22.group(1));
+          var prop = (0, import_kolmafia119.getProperty)(m22.group(1));
           if (!["=", "=="].includes(m22.group(2))) {
             return compare_numbers(
               (0, import_kolmafia119.toInt)(prop),
@@ -4219,18 +4216,22 @@ function auto_check_conditions(conds) {
         }
         case "prop_boolean":
           return (0, import_kolmafia119.toBoolean)((0, import_kolmafia119.getProperty)(condition_data));
-        case "quest":
-          m3 = new AshMatcher("([^=<>]+)([=<>]+)(.+)", condition_data);
+        case "quest": {
+          var m3 = new AshMatcher(
+            "([^=<>]+)([=<>]+)(.+)",
+            condition_data
+          );
           if (!m3.find()) {
             (0, import_kolmafia119.abort)(
               `"${condition_data}" is not a proper quest condition format!`
             );
           }
-          quest_state = internalQuestStatus(m3.group(1));
-          compare_to = (0, import_kolmafia119.toInt)(m3.group(3));
+          var quest_state = internalQuestStatus(m3.group(1));
+          var compare_to = (0, import_kolmafia119.toInt)(m3.group(3));
           return compare_numbers(quest_state, compare_to, m3.group(2));
-        case "sniffed":
-          check_sniffed = (0, import_kolmafia119.toMonster)(condition_data);
+        }
+        case "sniffed": {
+          var check_sniffed = (0, import_kolmafia119.toMonster)(condition_data);
           if (check_sniffed === import_kolmafia119.Monster.none) {
             (0, import_kolmafia119.abort)(
               `"${condition_data}" does not properly convert to a monster!`
@@ -4266,20 +4267,23 @@ function auto_check_conditions(conds) {
             return true;
           }
           return false;
+        }
         case "expectghostreport":
           return expectGhostReport();
         case "latte":
           return auto_latteDropAvailable((0, import_kolmafia119.myLocation)());
         case "tavern":
           return (0, import_kolmafia119.toInt)((0, import_kolmafia119.getProperty)("hiddenTavernUnlock")) >= (0, import_kolmafia119.myAscensions)();
-        case "sgeea":
-          sgeeas = (0, import_kolmafia119.toInt)(condition_data);
+        case "sgeea": {
+          var sgeeas = (0, import_kolmafia119.toInt)(condition_data);
           return (0, import_kolmafia119.itemAmount)($item`soft green echo eyedrop antidote`) >= sgeeas;
-        case "day":
-          day = (0, import_kolmafia119.toInt)(condition_data);
+        }
+        case "day": {
+          var day = (0, import_kolmafia119.toInt)(condition_data);
           return (0, import_kolmafia119.myDaycount)() === day;
-        case "ML":
-          m4 = new AshMatcher("([=<>]+)(.+)", condition_data);
+        }
+        case "ML": {
+          var m4 = new AshMatcher("([=<>]+)(.+)", condition_data);
           if (!m4.find()) {
             (0, import_kolmafia119.abort)(`"${condition_data}" is not a proper ML condition format!`);
           }
@@ -4288,7 +4292,8 @@ function auto_check_conditions(conds) {
             (0, import_kolmafia119.toInt)(m4.group(2)),
             m4.group(1)
           );
-        case "consume":
+        }
+        case "consume": {
           switch (condition_data) {
             case "eat":
               return fullness_left() > 0;
@@ -4296,9 +4301,12 @@ function auto_check_conditions(conds) {
               return inebriety_left() > 0;
             case "chew":
               return spleen_left() > 0;
-            default:
+            default: {
               (0, import_kolmafia119.abort)(`Invalid consume type "${condition_type}" found!`);
+            }
           }
+          break;
+        }
         default:
           (0, import_kolmafia119.abort)(`Invalid condition type "${condition_type}" found!`);
       }
