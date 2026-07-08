@@ -5273,6 +5273,177 @@ function auto_burnRemainingSpadeDigs() {
   }
   return auto_spadeDigsRemaining() === 0;
 }
+function auto_havePastaWand() {
+  if (auto_is_valid($item`legendary pasta wand`) && (0, import_kolmafia28.availableAmount)($item`legendary pasta wand`) > 0) {
+    return true;
+  }
+  return false;
+}
+function legendaryNoodleDishes() {
+  var dishes = /* @__PURE__ */ new Map();
+  dishes.set($item`Tubetto Gelatto`, $item`tomb aspic`);
+  dishes.set($item`Formica e Pepe`, $item`hot honey ant`);
+  dishes.set($item`Gnocci Domani`, $item`later tots`);
+  dishes.set($item`Linguini Ubriacapa`, $item`sauced mutton`);
+  dishes.set($item`Pasta Grimavera`, $item`haunted crudités`);
+  dishes.set($item`Orzo di Riso`, $item`spicy onigiri`);
+  dishes.set($item`Arrattabbattabiata`, $item`ratbatatouille`);
+  dishes.set($item`Pesto alla Marziano`, $item`alien salad`);
+  dishes.set($item`Frutti di Scatoletta`, $item`can of tuna`);
+  return dishes;
+}
+function numPreparedLegendaryNoodleDishes() {
+  var num = 0;
+  var _iterator3 = _createForOfIteratorHelper(
+    legendaryNoodleDishes().keys()
+  ), _step3;
+  try {
+    for (_iterator3.s(); !(_step3 = _iterator3.n()).done; ) {
+      var dish = _step3.value;
+      if (auto_canEat(dish)) {
+        num += (0, import_kolmafia28.itemAmount)(dish);
+      }
+    }
+  } catch (err) {
+    _iterator3.e(err);
+  } finally {
+    _iterator3.f();
+  }
+  return num;
+}
+function auto_findPreparedLegendaryNoods() {
+  var _iterator4 = _createForOfIteratorHelper(
+    legendaryNoodleDishes().keys()
+  ), _step4;
+  try {
+    for (_iterator4.s(); !(_step4 = _iterator4.n()).done; ) {
+      var it = _step4.value;
+      if (auto_canEat(it) && (0, import_kolmafia28.itemAmount)(it) > 0) {
+        return it;
+      }
+    }
+  } catch (err) {
+    _iterator4.e(err);
+  } finally {
+    _iterator4.f();
+  }
+  return import_kolmafia28.Item.none;
+}
+function numBaseLegendaryNoodleDishes() {
+  var num = 0;
+  var _iterator5 = _createForOfIteratorHelper(
+    legendaryNoodleDishes().keys()
+  ), _step5;
+  try {
+    for (_iterator5.s(); !(_step5 = _iterator5.n()).done; ) {
+      var preparedDish = _step5.value;
+      if (auto_canEat(preparedDish))
+        num += (0, import_kolmafia28.itemAmount)(
+          legendaryNoodleDishes().get(preparedDish) ?? legendaryNoodleDishes().set(preparedDish, import_kolmafia28.Item.none).get(preparedDish)
+        );
+    }
+  } catch (err) {
+    _iterator5.e(err);
+  } finally {
+    _iterator5.f();
+  }
+  return num;
+}
+function auto_findBaseLegendaryNoods() {
+  if ((0, import_kolmafia28.itemAmount)($item`legendary noodles`) < 1) {
+    return import_kolmafia28.Item.none;
+  }
+  var _iterator6 = _createForOfIteratorHelper(
+    legendaryNoodleDishes().keys()
+  ), _step6;
+  try {
+    for (_iterator6.s(); !(_step6 = _iterator6.n()).done; ) {
+      var it = _step6.value;
+      if ((0, import_kolmafia28.itemAmount)(
+        legendaryNoodleDishes().get(it) ?? legendaryNoodleDishes().set(it, import_kolmafia28.Item.none).get(it)
+      ) > 0 && auto_canEat(it)) {
+        return it;
+      }
+    }
+  } catch (err) {
+    _iterator6.e(err);
+  } finally {
+    _iterator6.f();
+  }
+  return import_kolmafia28.Item.none;
+}
+function canEatSomeLegNoods() {
+  if (auto_canEat($item`Gnocci Domani`)) {
+    return true;
+  } else if ((0, import_kolmafia28.myPath)().id < 58) {
+    return false;
+  }
+  var _iterator7 = _createForOfIteratorHelper(legendaryNoodleDishes().keys()), _step7;
+  try {
+    for (_iterator7.s(); !(_step7 = _iterator7.n()).done; ) {
+      var it = _step7.value;
+      if (auto_canEat(it)) return true;
+    }
+  } catch (err) {
+    _iterator7.e(err);
+  } finally {
+    _iterator7.f();
+  }
+  return false;
+}
+function auto_willEatLegendaryNoodles() {
+  return canEatSomeLegNoods() && auto_canEat($item`Orzo di Riso`) && !(0, import_kolmafia28.toBoolean)((0, import_kolmafia28.getProperty)("auto_limitConsume")) && !in_small() && !in_plumber();
+}
+function auto_legendaryNoodlesAvailable() {
+  if (stomach_left() < 1 || !auto_willEatLegendaryNoodles()) {
+    return false;
+  }
+  if (auto_findPreparedLegendaryNoods() !== import_kolmafia28.Item.none) {
+    return true;
+  }
+  if (auto_findBaseLegendaryNoods() !== import_kolmafia28.Item.none) {
+    return true;
+  }
+  return false;
+}
+function auto_forceCombatLegendaryNoodles() {
+  var AUTO_ORGAN_STOMACH_1 = 1;
+  var AUTO_OBTAIN_NULL_1 = 100;
+  var AUTO_OBTAIN_CRAFT_1 = 101;
+  var action = new ConsumeAction();
+  var prospective_dish = auto_findPreparedLegendaryNoods();
+  if (prospective_dish !== import_kolmafia28.Item.none) {
+    action = new ConsumeAction(
+      prospective_dish,
+      0,
+      1,
+      5,
+      10,
+      AUTO_ORGAN_STOMACH_1,
+      AUTO_OBTAIN_NULL_1
+    );
+  } else {
+    var prospective_dish_1 = auto_findBaseLegendaryNoods();
+    if (prospective_dish_1 !== import_kolmafia28.Item.none) {
+      action = new ConsumeAction(
+        prospective_dish_1,
+        0,
+        1,
+        5,
+        10,
+        AUTO_ORGAN_STOMACH_1,
+        AUTO_OBTAIN_CRAFT_1
+      );
+    } else {
+      return false;
+    }
+  }
+  (0, import_kolmafia28.setProperty)("auto_forceCombatWithLegendaryNoodles", true.toString());
+  if (auto_autoConsumeOne(action)) {
+    return true;
+  }
+  return false;
+}
 
 // src/autoscend/paths/avatar_of_shadows_over_loathing.ts
 var import_kolmafia29 = require("kolmafia");
@@ -8411,15 +8582,11 @@ function bugbear_UnlockMothership(loc) {
       unlockLocation = $location`The Haunted Gallery`;
       break;
     case $location`Galley`:
-      unlockLocation = import_kolmafia41.Location.get(
-        "The Hippy Camp (Bombed Back to the Stone Age)"
-      );
+      unlockLocation = $location`The Hippy Camp (Bombed Back to the Stone Age)`;
       if (zone_available(unlockLocation)) {
         break;
       }
-      unlockLocation = import_kolmafia41.Location.get(
-        "The Orcish Frat House (Bombed Back to the Stone Age)"
-      );
+      unlockLocation = $location`The Orcish Frat House (Bombed Back to the Stone Age)`;
       break;
     default:
       (0, import_kolmafia41.abort)(`Invalid Biodata location ${loc}`);
@@ -17159,6 +17326,16 @@ function L11_shenCopperhead() {
       } else if (auto_wantToSpadeDigSkeleton(goal)) {
         return auto_spadeDigSkeleton();
       }
+      if (goal === $location`Lair of the Ninja Snowmen`) {
+        if (auto_canForceNextCombat() || auto_haveQueuedForcedCombat()) {
+          if (L8_trapperNinjaLair()) {
+            return true;
+          }
+        }
+        if ((0, import_kolmafia55.toInt)(internalQuestStatus("questL08Trapper")) === 2 && auto_haveCombatForceSource() && !isAboutToPowerlevel() && !(0, import_kolmafia55.toBoolean)((0, import_kolmafia55.getProperty)("auto_L8_extremeInstead"))) {
+          return false;
+        }
+      }
       if (canBurnDelay(goal)) {
         return false;
       }
@@ -23062,9 +23239,9 @@ function auto_MayamClaimWhatever() {
   var ring3 = "BAD_VALUE";
   var ring4 = "BAD_VALUE";
   var failure = false;
-  if (!auto_MayamIsUsed("fur") && auto_haveChestMimic() && $familiar`Chest Mimic`.experience <= 300) {
+  if (!auto_MayamIsUsed("fur") && auto_wantFamXP(300)) {
     ring1 = "fur";
-    (0, import_kolmafia63.useFamiliar)($familiar`Chest Mimic`);
+    switchToFamXP(300);
   } else if (!auto_MayamIsUsed("chair") && auto_haveCincho()) {
     ring1 = "chair";
   } else if (!auto_MayamIsUsed("eye")) {
@@ -29380,7 +29557,22 @@ function L12_sonofaPrefix() {
   if ((0, import_kolmafia92.itemAmount)($item`goatskin umbrella`) === 1) {
     pulverizeThing($item`goatskin umbrella`);
   }
-  if (!in_lar()) {
+  var CForced = false;
+  if (!auto_havePeridot() || haveUsedPeridot$1($location`Sonofa Beach`)) {
+    if (auto_haveQueuedForcedCombat()) {
+      CForced = true;
+      auto_log_info$1(
+        "Not trying to force combat again at Sonofa Beach because we already have a forced combat queued"
+      );
+    } else {
+      CForced = auto_forceNextCombat$1($location`Sonofa Beach`);
+      auto_log_info(
+        `Trying to force combat at Sonofa Beach: ${CForced.toString()}`,
+        "blue"
+      );
+    }
+  }
+  if (!in_lar() && !CForced) {
     var combat_bonus = providePlusCombat(
       auto_combatModCap(),
       $location`Sonofa Beach`,
@@ -39767,6 +39959,8 @@ function zone_unlock(loc) {
   var unlocked;
   if (loc === $location`The Thinknerd Warehouse`) {
     unlocked = LX_unlockThinknerdWarehouse(false);
+  } else if (loc === $location`Lair of the Ninja Snowmen` && L8_trapperTalk()) {
+    unlocked = true;
   } else {
     auto_log_debug$1(`Don't know how to unlock ${loc}`);
     return false;
@@ -40050,7 +40244,7 @@ function zone_needItem(loc) {
       case $location`Barf Mountain`:
         retval._float = 15;
         break;
-      case import_kolmafia104.Location.get("The Velvet / Gold Mine"):
+      case $location`The Velvet / Gold Mine`:
         if (!canYellowRay$1()) {
           retval._float = 10;
         }
@@ -41089,7 +41283,7 @@ function zone_available(loc) {
       break;
     case $location`The SMOOCH Army HQ`:
     case $location`LavaCo™ Lamp Factory`:
-    case import_kolmafia104.Location.get("The Velvet / Gold Mine"):
+    case $location`The Velvet / Gold Mine`:
     case $location`The Bubblin' Caldera`:
       retval = (0, import_kolmafia104.toBoolean)((0, import_kolmafia104.getProperty)("hotAirportAlways")) || (0, import_kolmafia104.toBoolean)((0, import_kolmafia104.getProperty)("_hotAirportToday"));
       break;
@@ -41412,6 +41606,14 @@ function auto_earlyRoutingHandling() {
       "Forcing a non-combat somewhere. Strap yourselves in, kids."
     );
     if (L6_friarsGetParts() || L10_basement() || L10_topFloor() || L10_holeInTheSkyUnlock()) {
+      return true;
+    }
+  }
+  if (auto_canForceNextCombat() || auto_haveQueuedForcedCombat()) {
+    auto_log_debug$1(
+      "Possibly forcing a combat somewhere. Strap yourselves in, kids."
+    );
+    if (L8_trapperSlope()) {
       return true;
     }
   }
@@ -41889,6 +42091,9 @@ function L8_trapperExtreme() {
   return autoAdv$2($location`The eXtreme Slope`);
 }
 function L8_trapperNinjaLair() {
+  if (L8_trapperTalk()) {
+    return true;
+  }
   if (internalQuestStatus("questL08Trapper") !== 2) {
     return false;
   }
@@ -41921,7 +42126,20 @@ function L8_trapperNinjaLair() {
     auto_log_debug$1("Delaying Lair of the Ninja Snowmen in case of Shen.");
     return false;
   }
-  if (providePlusCombat(
+  var CForced = false;
+  if (auto_haveQueuedForcedCombat()) {
+    CForced = true;
+    auto_log_info$1(
+      "Not trying to force combat again at Lair of the Ninja Showmen because we already have a forced combat queued"
+    );
+  } else {
+    CForced = auto_forceNextCombat$1($location`Lair of the Ninja Snowmen`);
+    auto_log_info(
+      `Trying to force combat at Lair of the Ninja Snowmen: ${CForced.toString()}`,
+      "blue"
+    );
+  }
+  if (!CForced && providePlusCombat(
     auto_combatModCap(),
     $location`Lair of the Ninja Snowmen`,
     true,
@@ -41942,7 +42160,7 @@ function L8_trapperNinjaLair() {
     }
     return false;
   }
-  if (isActuallyEd() && !elementalPlanes_access($element`spooky`)) {
+  if (isActuallyEd() && !elementalPlanes_access(import_kolmafia106.Element.get("spooky"))) {
     adjustEdHat("myst");
   }
   auto_getCitizenZone($location`Lair of the Ninja Snowmen`, false);
@@ -42050,11 +42268,24 @@ function L8_trapperGroar() {
   }
   return retval;
 }
+function ninjaItemsRemaining() {
+  var items_remaining = 3;
+  if ((0, import_kolmafia106.itemAmount)($item`ninja carabiner`) > 0) {
+    items_remaining -= 1;
+  }
+  if ((0, import_kolmafia106.itemAmount)($item`ninja crampons`) > 0) {
+    items_remaining -= 1;
+  }
+  if ((0, import_kolmafia106.itemAmount)($item`ninja rope`) > 0) {
+    items_remaining -= 1;
+  }
+  return items_remaining;
+}
 function L8_trapperPeak() {
   if (internalQuestStatus("questL08Trapper") !== 2) {
     return false;
   }
-  if ((0, import_kolmafia106.itemAmount)($item`ninja rope`) > 0 && (0, import_kolmafia106.itemAmount)($item`ninja carabiner`) > 0 && (0, import_kolmafia106.itemAmount)($item`ninja crampons`) > 0) {
+  if (ninjaItemsRemaining() < 1) {
     var resGoal = /* @__PURE__ */ new Map();
     resGoal.set($element`cold`, 5);
     if (provideResistances$4(resGoal, $location`Mist-Shrouded Peak`, true)) {
@@ -42091,7 +42322,7 @@ function L8_forceExtremeInstead() {
   if ((0, import_kolmafia106.availableAmount)($item`ninja crampons`) > 0) {
     return false;
   }
-  if (auto_canEquipAllMcHugeLarge()) {
+  if (auto_canEquipAllMcHugeLarge() && !auto_haveQueuedForcedCombat() && !auto_canForceNextCombat() && (!auto_haveCombatForceSource() || isAboutToPowerlevel())) {
     (0, import_kolmafia106.setProperty)("auto_L8_extremeInstead", true.toString());
   }
   return (0, import_kolmafia106.toBoolean)((0, import_kolmafia106.getProperty)("auto_L8_extremeInstead"));
@@ -42107,6 +42338,14 @@ function L8_trapperSlope() {
     return true;
   }
   if (robot_delay("outfit")) {
+    return false;
+  }
+  if (auto_canForceNextCombat() || auto_haveQueuedForcedCombat()) {
+    if (L8_trapperNinjaLair()) {
+      return true;
+    }
+  }
+  if (auto_haveCombatForceSource() && !isAboutToPowerlevel() && !(0, import_kolmafia106.toBoolean)((0, import_kolmafia106.getProperty)("auto_L8_extremeInstead"))) {
     return false;
   }
   if (L8_forceExtremeInstead()) {
@@ -47657,6 +47896,7 @@ function LX_freeCombats() {
   return LX_freeCombats$1(disregardInstantKarma());
 }
 function LX_freeCombats$1(powerlevel) {
+  var _appearanceRates, _toString;
   if (auto_freeCombatsRemaining() === 0) {
     auto_log_debug$1("Could not use free combats because you have none");
     return false;
@@ -47717,6 +47957,19 @@ function LX_freeCombats$1(powerlevel) {
       }
     }
   }
+  var burrow = $location`The Batrat and Ratbat Burrow`;
+  if ((0, import_kolmafia112.myClass)() === $class`Pastamancer` && (0, import_kolmafia112.toThrall)("ver").level > 10 && (0, import_kolmafia112.toInt)((0, import_kolmafia112.getProperty)("_legendaryVermincelliFreeRats")) < 3 && zone_isAvailable(burrow, true) && ((_appearanceRates = (0, import_kolmafia112.appearanceRates)(burrow))[_toString = $monster`screambat`.toString()] ?? (_appearanceRates[_toString] = 0)) < 0.01) {
+    pm_updateThrall(burrow, false);
+    if ((0, import_kolmafia112.myThrall)() === $thrall`Vermincelli`) {
+      auto_log_debug$1(
+        "LX_freeCombats is adventuring in [The Batrat and Ratbat Burrow] with Vermincelli"
+      );
+      var adv_done = autoAdv$1(1, burrow);
+      if (adv_done) {
+        return true;
+      }
+    }
+  }
   if (!in_koe() && (0, import_kolmafia112.toInt)((0, import_kolmafia112.getProperty)("_machineTunnelsAdv")) < 5 && canChangeToFamiliar($familiar`Machine Elf`)) {
     auto_log_debug$1(
       "LX_freeCombats is adventuring in [The Deep Machine Tunnels]"
@@ -47725,23 +47978,23 @@ function LX_freeCombats$1(powerlevel) {
     if (bjorn === $familiar`Machine Elf`) {
       handleBjornify($familiar`Grinning Turtle`);
     }
-    var adv_done = autoAdv$1(1, $location`The Deep Machine Tunnels`);
+    var _adv_done = autoAdv$1(1, $location`The Deep Machine Tunnels`);
     if (bjorn === $familiar`Machine Elf`) {
       handleBjornify(bjorn);
     }
     loopHandlerDelayAll();
-    if (adv_done) {
+    if (_adv_done) {
       return true;
     }
   }
   if (snojoFightAvailable()) {
     auto_log_debug$1("LX_freeCombats is adventuring in [The Snojo]");
-    var _adv_done = autoAdv$1(
+    var _adv_done2 = autoAdv$1(
       1,
       $location`The X-32-F Combat Training Snowman`
     );
     loopHandlerDelayAll();
-    if (_adv_done) {
+    if (_adv_done2) {
       return true;
     }
   }
@@ -47761,11 +48014,11 @@ function LX_freeCombats$1(powerlevel) {
     auto_log_debug$1(
       "LX_freeCombats is adventuring in [An Unusually Quiet Barroom Brawl]"
     );
-    var _adv_done2 = autoAdv$1(
+    var _adv_done3 = autoAdv$1(
       1,
       $location`An Unusually Quiet Barroom Brawl`
     );
-    if (_adv_done2) {
+    if (_adv_done3) {
       return true;
     }
   }
@@ -49098,6 +49351,24 @@ function auto_famModifiers$2(mod) {
     (0, import_kolmafia114.familiarEquippedEquipment)(fam)
   );
 }
+function auto_wantFamXP(max_fam_experience) {
+  if (!pathAllowsChangingFamiliar()) {
+    return false;
+  }
+  if (auto_haveChestMimic() && import_kolmafia114.Familiar.get("Chest Mimic").experience <= max_fam_experience) {
+    return true;
+  }
+  return false;
+}
+function switchToFamXP(max_fam_experience) {
+  if (!pathAllowsChangingFamiliar()) {
+    return;
+  }
+  auto_log_debug$1("Possibly switching to a familiar we want famxp on");
+  if (auto_haveChestMimic() && import_kolmafia114.Familiar.get("Chest Mimic").experience <= max_fam_experience) {
+    (0, import_kolmafia114.useFamiliar)(import_kolmafia114.Familiar.get("Chest Mimic"));
+  }
+}
 
 // src/autoscend/auto_equipment.ts
 function getMaximizeSlotPref(s) {
@@ -50012,6 +50283,9 @@ function finalizeMaximize(speculative) {
   }
   if (auto_haveBatWings() && (0, import_kolmafia115.toInt)((0, import_kolmafia115.getProperty)("_batWingsFreeFights")) < 5) {
     addBonusToMaximize($item`bat wings`, 200);
+  }
+  if ((0, import_kolmafia115.myClass)() === $class`Pastamancer` && auto_havePastaWand() && (0, import_kolmafia115.myThrall)().level < 11 && ((0, import_kolmafia115.myThrall)() === $thrall`Vermincelli` || (0, import_kolmafia115.myThrall)() === $thrall`Spice Ghost`)) {
+    addToMaximize("40 Pasta Thrall Experience");
   }
   if (in_koe() && auto_hasPowerfulGlove()) {
     if (koe_NeedWhitePixels()) {
@@ -54974,6 +55248,61 @@ function auto_forceNextNoncombat(loc) {
 function auto_haveQueuedForcedNonCombat() {
   return (0, import_kolmafia120.toBoolean)((0, import_kolmafia120.getProperty)("noncombatForcerActive"));
 }
+function _auto_forceNextCombat(loc, speculative) {
+  if (auto_haveQueuedForcedCombat()) {
+    return true;
+  }
+  if (auto_legendaryNoodlesAvailable()) {
+    if (speculative) {
+      return true;
+    }
+    auto_forceCombatLegendaryNoodles();
+    if (!auto_haveQueuedForcedCombat()) {
+      (0, import_kolmafia120.abort)(
+        "Attempted to force a combat with legendary pasta noodles but was unable to."
+      );
+    }
+    (0, import_kolmafia120.setProperty)("auto_forceCombatSource", "legendary noodle dish");
+    return true;
+  }
+  return false;
+}
+function auto_canForceNextCombat() {
+  return _auto_forceNextCombat(import_kolmafia120.Location.none, true);
+}
+function _auto_forceNextCombat$1(loc) {
+  return _auto_forceNextCombat(loc, false);
+}
+function auto_forceNextCombat$1(loc) {
+  if (auto_haveQueuedForcedCombat()) {
+    auto_log_warning(
+      "Trying to force a combat adventure, but I think we've already forced one...",
+      "red"
+    );
+    return true;
+  }
+  if (_auto_forceNextCombat$1(loc)) {
+    var forceCMethod = (0, import_kolmafia120.getProperty)("auto_forceCombatSource");
+    auto_log_info(
+      `Next combat adventure has been forced with ${forceCMethod}`,
+      "blue"
+    );
+    return true;
+  }
+  return false;
+}
+function auto_haveQueuedForcedCombat() {
+  return auto_numQueuedForcedCombat() > 0;
+}
+function auto_numQueuedForcedCombat() {
+  return (0, import_kolmafia120.toInt)((0, import_kolmafia120.getProperty)("legendaryNoodlesAmygdala"));
+}
+function auto_haveCombatForceSource() {
+  if (auto_havePastaWand() && auto_willEatLegendaryNoodles()) {
+    return true;
+  }
+  return false;
+}
 function auto_predictAccordionTurns() {
   var All_Accordions = /* @__PURE__ */ new Map(
     [
@@ -55528,6 +55857,55 @@ function damageModifier(el) {
       return import_kolmafia120.Modifier.get("Sleaze Damage");
   }
   return import_kolmafia120.Modifier.none;
+}
+function rat_locations() {
+  var rats = /* @__PURE__ */ new Map();
+  rats.set($location`The Batrat and Ratbat Burrow`, true);
+  rats.set($location`The Typical Tavern Cellar`, true);
+  rats.set($location`The Middle Chamber`, true);
+  return rats;
+}
+function pm_updateThrall(place, going_to_eat) {
+  if ((0, import_kolmafia120.myThrall)() === $thrall`Vampieroghi` && place === $location`The Hidden Apartment Building` && auto_have_skill(import_kolmafia120.Skill.get("Dismiss Pasta Thrall"))) {
+    (0, import_kolmafia120.useSkill)(import_kolmafia120.Skill.get("Dismiss Pasta Thrall"));
+  }
+  var cur = (0, import_kolmafia120.myThrall)();
+  var consider = import_kolmafia120.Thrall.none;
+  var baseline_ver = (0, import_kolmafia120.myMp)() >= 1.2 * (0, import_kolmafia120.mpCost)(import_kolmafia120.Skill.get("Bind Vermincelli")) && auto_have_skill(import_kolmafia120.Skill.get("Bind Vermincelli"));
+  var ver_level = (0, import_kolmafia120.toThrall)("ver").level;
+  var base_spice = (0, import_kolmafia120.myMp)() >= 1.2 * (0, import_kolmafia120.mpCost)(import_kolmafia120.Skill.get("Bind Spice Ghost")) && auto_have_skill(import_kolmafia120.Skill.get("Bind Spice Ghost")) && (0, import_kolmafia120.myDaycount)() > 1 && (0, import_kolmafia120.toInt)((0, import_kolmafia120.numericModifier)("MP Regen Min")) > 9;
+  if (going_to_eat) {
+    if (base_spice && (0, import_kolmafia120.toThrall)("spice").level > 10 && !(0, import_kolmafia120.toBoolean)((0, import_kolmafia120.getProperty)("_legendarySpiceGhostFood"))) {
+      consider = $thrall`Spice Ghost`;
+    }
+  } else {
+    if (baseline_ver && cur === import_kolmafia120.Thrall.none) {
+      consider = $thrall`Vermincelli`;
+    }
+    if (base_spice) {
+      consider = $thrall`Spice Ghost`;
+    }
+    if (baseline_ver && ver_level > 10 && rat_locations().has(place)) {
+      consider = $thrall`Vermincelli`;
+    } else if (baseline_ver && ver_level < 11 && auto_havePastaWand()) {
+      consider = $thrall`Vermincelli`;
+    }
+  }
+  if (consider !== cur && consider !== import_kolmafia120.Thrall.none) {
+    var toEquip = (0, import_kolmafia120.toSkill)(`Bind ${consider}`);
+    if (toEquip !== import_kolmafia120.Skill.none) {
+      if ((0, import_kolmafia120.myMp)() >= (0, import_kolmafia120.mpCost)(toEquip)) {
+        (0, import_kolmafia120.useSkill)(1, toEquip);
+      }
+    } else {
+      auto_log_warning(
+        "Thrall handler error. Could not generate appropriate skill.",
+        "red"
+      );
+      return false;
+    }
+  }
+  return true;
 }
 function auto_meetsMinimumRequirements() {
   if ((0, import_kolmafia120.myClass)().id > 6) {
@@ -58211,6 +58589,15 @@ function autoEat$1(howMany, toEat, silent) {
       );
     }
   }
+  if (legendaryNoodleDishes().has(toEat) && !(0, import_kolmafia123.toBoolean)(
+    // This stuff relates to the Legendary Digestion choice adv from eating legendary noods
+    (0, import_kolmafia123.getProperty)("auto_forceCombatWithLegendaryNoodles")
+  ) && ((0, import_kolmafia123.toBoolean)(
+    // check that we aren't forcing combat via amygdala option
+    (0, import_kolmafia123.getProperty)("_legendaryNoodlesSpleen")
+  ) || spleen_left() < 1)) {
+    switchToFamXP(400);
+  }
   if ((0, import_kolmafia123.itemAmount)(toEat) < howMany) {
     return false;
   }
@@ -58222,6 +58609,9 @@ function autoEat$1(howMany, toEat, silent) {
   acquireMilkOfMagnesiumIfUnused(true);
   consumeMilkOfMagnesiumIfUnused();
   wantDietPill(toEat);
+  if ((0, import_kolmafia123.myClass)() === $class`Pastamancer`) {
+    pm_updateThrall($location`Noob Cave`, true);
+  }
   if (possessEquipment($item`Wrist-Boy`) && (0, import_kolmafia123.myMeat)() > 6500) {
     if ((0, import_kolmafia123.haveEffect)($effect`Record Hunger`) < expectedFullness && (0, import_kolmafia123.itemAmount)($item`The Pigs holo-record`) === 0) {
       auto_buyUpTo(1, $item`The Pigs holo-record`);
@@ -58660,9 +59050,7 @@ function loadConsumables(_type, actions) {
   var craftables = /* @__PURE__ */ new Map();
   var blacklist = /* @__PURE__ */ new Map();
   var craftable_blacklist = /* @__PURE__ */ new Map();
-  var _iterator3 = _createForOfIteratorHelper(
-    $items`Cursed Punch, unidentified drink, bag of QWOP, FantasyRealm turkey leg, FantasyRealm mead, waffle`
-  ), _step3;
+  var _iterator3 = _createForOfIteratorHelper($items`Cursed Punch, unidentified drink, bag of QWOP, FantasyRealm turkey leg, FantasyRealm mead, waffle`), _step3;
   try {
     for (_iterator3.s(); !(_step3 = _iterator3.n()).done; ) {
       var _it7 = _step3.value;
@@ -58716,67 +59104,106 @@ function loadConsumables(_type, actions) {
       craftable_blacklist.set($item`devil hair pasta`, true);
     }
   }
-  if ((0, import_kolmafia123.myClass)() !== $class`Cow Puncher`) {
-    if ((0, import_kolmafia123.myBasestat)($stat`Moxie`) > 30 || (0, import_kolmafia123.myPrimestat)() === $stat`Muscle` && (0, import_kolmafia123.myBasestat)($stat`Muscle`) > 30) {
+  if (internalQuestStatus("questL08Trapper") < 3 && auto_havePastaWand()) {
+    var legendary_noodle_dishes = legendaryNoodleDishes();
+    if (numPreparedLegendaryNoodleDishes() === 1) {
       var _iterator6 = _createForOfIteratorHelper(
-        $items`tainted milk, rotting beefsteak, firemilk`
+        legendary_noodle_dishes.keys()
       ), _step6;
       try {
         for (_iterator6.s(); !(_step6 = _iterator6.n()).done; ) {
-          var _it2 = _step6.value;
-          blacklist.set(_it2, true);
+          var dish = _step6.value;
+          blacklist.set(dish, true);
         }
       } catch (err) {
         _iterator6.e(err);
       } finally {
         _iterator6.f();
       }
+    } else if (numPreparedLegendaryNoodleDishes() < 1 && (0, import_kolmafia123.min)(
+      numBaseLegendaryNoodleDishes(),
+      (0, import_kolmafia123.itemAmount)($item`legendary noodles`)
+    ) < 2) {
+      var _iterator7 = _createForOfIteratorHelper(
+        legendary_noodle_dishes.keys()
+      ), _step7;
+      try {
+        for (_iterator7.s(); !(_step7 = _iterator7.n()).done; ) {
+          var _dish = _step7.value;
+          blacklist.set(_dish, true);
+          blacklist.set(
+            legendary_noodle_dishes.get(_dish) ?? legendary_noodle_dishes.set(_dish, import_kolmafia123.Item.none).get(_dish),
+            true
+          );
+        }
+      } catch (err) {
+        _iterator7.e(err);
+      } finally {
+        _iterator7.f();
+      }
     }
   }
-  var _iterator7 = _createForOfIteratorHelper($items`campfire hot dog, campfire beans, campfire coffee, campfire stew, campfire s'more`), _step7;
+  if ((0, import_kolmafia123.myClass)() !== $class`Cow Puncher`) {
+    if ((0, import_kolmafia123.myBasestat)($stat`Moxie`) > 30 || (0, import_kolmafia123.myPrimestat)() === $stat`Muscle` && (0, import_kolmafia123.myBasestat)($stat`Muscle`) > 30) {
+      var _iterator8 = _createForOfIteratorHelper(
+        $items`tainted milk, rotting beefsteak, firemilk`
+      ), _step8;
+      try {
+        for (_iterator8.s(); !(_step8 = _iterator8.n()).done; ) {
+          var _it2 = _step8.value;
+          blacklist.set(_it2, true);
+        }
+      } catch (err) {
+        _iterator8.e(err);
+      } finally {
+        _iterator8.f();
+      }
+    }
+  }
+  var _iterator9 = _createForOfIteratorHelper($items`campfire hot dog, campfire beans, campfire coffee, campfire stew, campfire s'more`), _step9;
   try {
-    for (_iterator7.s(); !(_step7 = _iterator7.n()).done; ) {
-      var _it8 = _step7.value;
+    for (_iterator9.s(); !(_step9 = _iterator9.n()).done; ) {
+      var _it8 = _step9.value;
       craftable_blacklist.set(_it8, true);
     }
   } catch (err) {
-    _iterator7.e(err);
+    _iterator9.e(err);
   } finally {
-    _iterator7.f();
+    _iterator9.f();
   }
   function add_mutex_craftables(items) {
     var best_it = import_kolmafia123.Item.none;
     var best_amount = 0;
-    var _iterator8 = _createForOfIteratorHelper(
+    var _iterator0 = _createForOfIteratorHelper(
       items.keys()
-    ), _step8;
+    ), _step0;
     try {
-      for (_iterator8.s(); !(_step8 = _iterator8.n()).done; ) {
-        var _it3 = _step8.value;
+      for (_iterator0.s(); !(_step0 = _iterator0.n()).done; ) {
+        var _it3 = _step0.value;
         if ((0, import_kolmafia123.creatableAmount)(_it3) > best_amount) {
           best_it = _it3;
           best_amount = (0, import_kolmafia123.max)(0, (0, import_kolmafia123.creatableAmount)(_it3) - auto_reserveCraftAmount(_it3));
         }
       }
     } catch (err) {
-      _iterator8.e(err);
+      _iterator0.e(err);
     } finally {
-      _iterator8.f();
+      _iterator0.f();
     }
-    var _iterator9 = _createForOfIteratorHelper(
+    var _iterator1 = _createForOfIteratorHelper(
       items.keys()
-    ), _step9;
+    ), _step1;
     try {
-      for (_iterator9.s(); !(_step9 = _iterator9.n()).done; ) {
-        var _it4 = _step9.value;
+      for (_iterator1.s(); !(_step1 = _iterator1.n()).done; ) {
+        var _it4 = _step1.value;
         if (_it4 !== best_it) {
           craftable_blacklist.set(_it4, true);
         }
       }
     } catch (err) {
-      _iterator9.e(err);
+      _iterator1.e(err);
     } finally {
-      _iterator9.f();
+      _iterator1.f();
     }
   }
   add_mutex_craftables(
@@ -58792,12 +59219,12 @@ function loadConsumables(_type, actions) {
     )
   );
   var potentialTurnGain = /* @__PURE__ */ new Map();
-  var _iterator0 = _createForOfIteratorHelper(
+  var _iterator10 = _createForOfIteratorHelper(
     $items.all()
-  ), _step0;
+  ), _step10;
   try {
-    for (_iterator0.s(); !(_step0 = _iterator0.n()).done; ) {
-      var _it9 = _step0.value;
+    for (_iterator10.s(); !(_step10 = _iterator10.n()).done; ) {
+      var _it9 = _step10.value;
       if (!blacklist.has(_it9) && canConsume$1(_it9) && organCost(_it9) > 0 && (_it9.fullness === 0 || _it9.inebriety === 0) && auto_is_valid(_it9)) {
         var value_allowed = (0, import_kolmafia123.historicalPrice)(_it9) < auto_getConsumablePriceLimit() || $items`blueberry muffin, bran muffin, chocolate chip muffin`.includes(
           _it9
@@ -58859,6 +59286,12 @@ function loadConsumables(_type, actions) {
         }
         if (_it9 === $item`pheromone cocktail` && (0, import_kolmafia123.itemAmount)(_it9) > 0 && banishSources() - (0, import_kolmafia123.itemAmount)(_it9) < 3) {
           potentialTurnGain.set(_it9, 2);
+        } else if (legendaryNoodleDishes().has(_it9)) {
+          if (!(0, import_kolmafia123.toBoolean)((0, import_kolmafia123.getProperty)("_legendaryNoodlesSpleen")) && spleen_left() > 0 && auto_willEatLegendaryNoodles() && !isActuallyEd()) {
+            potentialTurnGain.set(_it9, 20);
+          } else if (auto_wantFamXP(400)) {
+            potentialTurnGain.set(_it9, 0.75);
+          }
         }
         if (!isSpeakeasyDrink(_it9) && canPull$1(_it9)) {
           if (!(0, import_kolmafia123.canInteract)()) {
@@ -58870,9 +59303,9 @@ function loadConsumables(_type, actions) {
       }
     }
   } catch (err) {
-    _iterator0.e(err);
+    _iterator10.e(err);
   } finally {
-    _iterator0.f();
+    _iterator10.f();
   }
   var keyLimePieDesirabilityBonus = 0;
   var keyLimePieDesirabilityBonusType = "";
@@ -58913,15 +59346,15 @@ function loadConsumables(_type, actions) {
       keyObtainableFromFR = 1;
       fantasyRealmTurnEstimate = 5;
       if ((0, import_kolmafia123.containsText)((0, import_kolmafia123.getProperty)("_frMonstersKilled"), "fantasy bandit")) {
-        var _iterator1 = _createForOfIteratorHelper(
+        var _iterator11 = _createForOfIteratorHelper(
           (0, import_kolmafia123.splitString)(
             (0, import_kolmafia123.getProperty)("_frMonstersKilled"),
             ","
           ).entries()
-        ), _step1;
+        ), _step11;
         try {
-          for (_iterator1.s(); !(_step1 = _iterator1.n()).done; ) {
-            var _step1$value = _slicedToArray(_step1.value, 2), _it5 = _step1$value[1];
+          for (_iterator11.s(); !(_step11 = _iterator11.n()).done; ) {
+            var _step11$value = _slicedToArray(_step11.value, 2), _it5 = _step11$value[1];
             if ((0, import_kolmafia123.containsText)(_it5, "fantasy bandit")) {
               var _splitString, _;
               var count_1 = (0, import_kolmafia123.toInt)((_splitString = (0, import_kolmafia123.splitString)(_it5, ":"))[_ = 1] ?? (_splitString[_] = ""));
@@ -58933,9 +59366,9 @@ function loadConsumables(_type, actions) {
             }
           }
         } catch (err) {
-          _iterator1.e(err);
+          _iterator11.e(err);
         } finally {
-          _iterator1.f();
+          _iterator11.f();
         }
       }
     }
@@ -59041,46 +59474,20 @@ function loadConsumables(_type, actions) {
           );
           (actions.get(n2) ?? actions.set(n2, new ConsumeAction()).get(n2)).desirability += keyLimePieDesirabilityBonus;
         }
-        if (_i2 === 0 && it2 === $item`pheromone cocktail` && (potentialTurnGain.get(it2) ?? potentialTurnGain.set(it2, 0).get(it2)) > 0) {
-          (actions.get(n2) ?? actions.set(n2, new ConsumeAction()).get(n2)).desirability += potentialTurnGain.get(it2) ?? potentialTurnGain.set(it2, 0).get(it2);
-        }
+      }
+      if (_i2 === 0 && (it2 === $item`pheromone cocktail` || legendaryNoodleDishes().has(it2)) && (potentialTurnGain.get(it2) ?? potentialTurnGain.set(it2, 0).get(it2)) > 0) {
+        (actions.get(n2) ?? actions.set(n2, new ConsumeAction()).get(n2)).desirability += potentialTurnGain.get(it2) ?? potentialTurnGain.set(it2, 0).get(it2);
       }
       (actions.get(n2) ?? actions.set(n2, new ConsumeAction()).get(n2)).howtoget = obtain_mode;
     }
   }
-  var _iterator10 = _createForOfIteratorHelper(
-    pullables
-  ), _step10;
-  try {
-    for (_iterator10.s(); !(_step10 = _iterator10.n()).done; ) {
-      var _step10$value = _slicedToArray(_step10.value, 2), _it0 = _step10$value[0], _howmany = _step10$value[1];
-      add(_it0, AUTO_OBTAIN_PULL, _howmany);
-    }
-  } catch (err) {
-    _iterator10.e(err);
-  } finally {
-    _iterator10.f();
-  }
-  var _iterator11 = _createForOfIteratorHelper(
-    small_owned
-  ), _step11;
-  try {
-    for (_iterator11.s(); !(_step11 = _iterator11.n()).done; ) {
-      var _step11$value = _slicedToArray(_step11.value, 2), _it1 = _step11$value[0], _howmany2 = _step11$value[1];
-      add(_it1, AUTO_OBTAIN_NULL, _howmany2);
-    }
-  } catch (err) {
-    _iterator11.e(err);
-  } finally {
-    _iterator11.f();
-  }
   var _iterator12 = _createForOfIteratorHelper(
-    buyables
+    pullables
   ), _step12;
   try {
     for (_iterator12.s(); !(_step12 = _iterator12.n()).done; ) {
-      var _step12$value = _slicedToArray(_step12.value, 2), _it10 = _step12$value[0], _howmany3 = _step12$value[1];
-      add(_it10, AUTO_OBTAIN_BUY, _howmany3);
+      var _step12$value = _slicedToArray(_step12.value, 2), _it0 = _step12$value[0], _howmany = _step12$value[1];
+      add(_it0, AUTO_OBTAIN_PULL, _howmany);
     }
   } catch (err) {
     _iterator12.e(err);
@@ -59088,12 +59495,12 @@ function loadConsumables(_type, actions) {
     _iterator12.f();
   }
   var _iterator13 = _createForOfIteratorHelper(
-    large_owned
+    small_owned
   ), _step13;
   try {
     for (_iterator13.s(); !(_step13 = _iterator13.n()).done; ) {
-      var _step13$value = _slicedToArray(_step13.value, 2), _it11 = _step13$value[0], _howmany4 = _step13$value[1];
-      add(_it11, AUTO_OBTAIN_NULL, _howmany4);
+      var _step13$value = _slicedToArray(_step13.value, 2), _it1 = _step13$value[0], _howmany2 = _step13$value[1];
+      add(_it1, AUTO_OBTAIN_NULL, _howmany2);
     }
   } catch (err) {
     _iterator13.e(err);
@@ -59101,17 +59508,43 @@ function loadConsumables(_type, actions) {
     _iterator13.f();
   }
   var _iterator14 = _createForOfIteratorHelper(
-    craftables
+    buyables
   ), _step14;
   try {
     for (_iterator14.s(); !(_step14 = _iterator14.n()).done; ) {
-      var _step14$value = _slicedToArray(_step14.value, 2), _it12 = _step14$value[0], _howmany5 = _step14$value[1];
-      add(_it12, AUTO_OBTAIN_CRAFT, _howmany5);
+      var _step14$value = _slicedToArray(_step14.value, 2), _it10 = _step14$value[0], _howmany3 = _step14$value[1];
+      add(_it10, AUTO_OBTAIN_BUY, _howmany3);
     }
   } catch (err) {
     _iterator14.e(err);
   } finally {
     _iterator14.f();
+  }
+  var _iterator15 = _createForOfIteratorHelper(
+    large_owned
+  ), _step15;
+  try {
+    for (_iterator15.s(); !(_step15 = _iterator15.n()).done; ) {
+      var _step15$value = _slicedToArray(_step15.value, 2), _it11 = _step15$value[0], _howmany4 = _step15$value[1];
+      add(_it11, AUTO_OBTAIN_NULL, _howmany4);
+    }
+  } catch (err) {
+    _iterator15.e(err);
+  } finally {
+    _iterator15.f();
+  }
+  var _iterator16 = _createForOfIteratorHelper(
+    craftables
+  ), _step16;
+  try {
+    for (_iterator16.s(); !(_step16 = _iterator16.n()).done; ) {
+      var _step16$value = _slicedToArray(_step16.value, 2), _it12 = _step16$value[0], _howmany5 = _step16$value[1];
+      add(_it12, AUTO_OBTAIN_CRAFT, _howmany5);
+    }
+  } catch (err) {
+    _iterator16.e(err);
+  } finally {
+    _iterator16.f();
   }
   if (type_1 === AUTO_ORGAN_LIVER && auto_hasStillSuit() && !in_kolhs() && !in_small()) {
     var size = 1;
@@ -59271,12 +59704,12 @@ function loadConsumables(_type, actions) {
       `Something went wrong while trying to load ${filename}. Maybe run 'tcrs load'?`
     );
   }
-  var _iterator15 = _createForOfIteratorHelper(
+  var _iterator17 = _createForOfIteratorHelper(
     cafe_stuff
-  ), _step15;
+  ), _step17;
   try {
-    for (_iterator15.s(); !(_step15 = _iterator15.n()).done; ) {
-      var _step15$value = _slicedToArray(_step15.value, 2), _i8 = _step15$value[0], r = _step15$value[1];
+    for (_iterator17.s(); !(_step17 = _iterator17.n()).done; ) {
+      var _step17$value = _slicedToArray(_step17.value, 2), _i8 = _step17$value[0], r = _step17$value[1];
       if (_i8 >= -3 && r.space > 0) {
         var _limit2 = 1 + (0, import_kolmafia123.min)((0, import_kolmafia123.myMeat)() / 100, organLeft$2() / r.space);
         for (var j = 0; j < _limit2; j++) {
@@ -59298,9 +59731,9 @@ function loadConsumables(_type, actions) {
       }
     }
   } catch (err) {
-    _iterator15.e(err);
+    _iterator17.e(err);
   } finally {
-    _iterator15.f();
+    _iterator17.f();
   }
   return true;
 }
@@ -59520,12 +59953,12 @@ function auto_findBestConsumeAction(type_1) {
   );
   var best_desirability_per_fill = 0;
   var best = -1;
-  var _iterator16 = _createForOfIteratorHelper(
+  var _iterator18 = _createForOfIteratorHelper(
     result_1.keys()
-  ), _step16;
+  ), _step18;
   try {
-    for (_iterator16.s(); !(_step16 = _iterator16.n()).done; ) {
-      var _i9 = _step16.value;
+    for (_iterator18.s(); !(_step18 = _iterator18.n()).done; ) {
+      var _i9 = _step18.value;
       var tentative_desirability_per_fill = (actions.get(_i9) ?? actions.set(_i9, new ConsumeAction()).get(_i9)).desirability / (actions.get(_i9) ?? actions.set(_i9, new ConsumeAction()).get(_i9)).size;
       if (tentative_desirability_per_fill > best_desirability_per_fill) {
         best_desirability_per_fill = tentative_desirability_per_fill;
@@ -59533,9 +59966,9 @@ function auto_findBestConsumeAction(type_1) {
       }
     }
   } catch (err) {
-    _iterator16.e(err);
+    _iterator18.e(err);
   } finally {
-    _iterator16.f();
+    _iterator18.f();
   }
   if (best === -1) {
     return MakeConsumeAction(import_kolmafia123.Item.none);
@@ -59626,20 +60059,20 @@ function auto_autoConsumeOne$1(type_1) {
 }
 function auto_spleenFamiliarAdvItemsPossessed() {
   var spleenFamiliarAdvItemsCount = 0;
-  var _iterator17 = _createForOfIteratorHelper(
+  var _iterator19 = _createForOfIteratorHelper(
     $items`Unconscious Collective Dream Jar, grim fairy tale, powdered gold, groose grease, beastly paste, bug paste, cosmic paste, oily paste, demonic paste, gooey paste, elemental paste, Crimbo paste, fishy paste, goblin paste, hippy paste, hobo paste, indescribably horrible paste, greasy paste, Mer-kin paste, orc paste, penguin paste, pirate paste, chlorophyll paste, slimy paste, ectoplasmic paste, strange paste, agua de vida`
-  ), _step17;
+  ), _step19;
   try {
-    for (_iterator17.s(); !(_step17 = _iterator17.n()).done; ) {
-      var it = _step17.value;
+    for (_iterator19.s(); !(_step19 = _iterator19.n()).done; ) {
+      var it = _step19.value;
       if ((0, import_kolmafia123.itemAmount)(it) > 0 && auto_is_valid(it) && (0, import_kolmafia123.mallPrice)(it) < (0, import_kolmafia123.toInt)((0, import_kolmafia123.getProperty)("autoBuyPriceLimit"))) {
         spleenFamiliarAdvItemsCount += (0, import_kolmafia123.itemAmount)(it);
       }
     }
   } catch (err) {
-    _iterator17.e(err);
+    _iterator19.e(err);
   } finally {
-    _iterator17.f();
+    _iterator19.f();
   }
   return spleenFamiliarAdvItemsCount;
 }
@@ -59664,30 +60097,30 @@ function auto_chewAdventures() {
       }
     }
   }
-  var _iterator18 = _createForOfIteratorHelper($items`Unconscious Collective Dream Jar, grim fairy tale, powdered gold, groose grease`), _step18;
+  var _iterator20 = _createForOfIteratorHelper($items`Unconscious Collective Dream Jar, grim fairy tale, powdered gold, groose grease`), _step20;
   try {
-    for (_iterator18.s(); !(_step18 = _iterator18.n()).done; ) {
-      var _it13 = _step18.value;
+    for (_iterator20.s(); !(_step20 = _iterator20.n()).done; ) {
+      var _it13 = _step20.value;
       chooseCheapestTarget(_it13);
     }
   } catch (err) {
-    _iterator18.e(err);
+    _iterator20.e(err);
   } finally {
-    _iterator18.f();
+    _iterator20.f();
   }
   if ((0, import_kolmafia123.myLevel)() >= 4 && target === import_kolmafia123.Item.none) {
-    var _iterator19 = _createForOfIteratorHelper(
+    var _iterator21 = _createForOfIteratorHelper(
       $items`beastly paste, bug paste, cosmic paste, oily paste, demonic paste, gooey paste, elemental paste, Crimbo paste, fishy paste, goblin paste, hippy paste, hobo paste, indescribably horrible paste, greasy paste, Mer-kin paste, orc paste, penguin paste, pirate paste, chlorophyll paste, slimy paste, ectoplasmic paste, strange paste, agua de vida`
-    ), _step19;
+    ), _step21;
     try {
-      for (_iterator19.s(); !(_step19 = _iterator19.n()).done; ) {
-        var it = _step19.value;
+      for (_iterator21.s(); !(_step21 = _iterator21.n()).done; ) {
+        var it = _step21.value;
         chooseCheapestTarget(it);
       }
     } catch (err) {
-      _iterator19.e(err);
+      _iterator21.e(err);
     } finally {
-      _iterator19.f();
+      _iterator21.f();
     }
   }
   var oldSpleenUse = (0, import_kolmafia123.mySpleenUse)();
@@ -59885,6 +60318,9 @@ function shouldUseSpleenForLowPriority() {
   var spleen_likely_to_use = 0;
   spleen_likely_to_use += 2 * auto_CMCconsultsLeft();
   spleen_likely_to_use += $item`dieting pill`.spleen * (0, import_kolmafia123.availableAmount)($item`dieting pill`);
+  if (auto_havePastaWand() && !(0, import_kolmafia123.toBoolean)((0, import_kolmafia123.getProperty)("_legendaryNoodlesSpleen")) && fullness_left() > 0) {
+    spleen_likely_to_use += 1;
+  }
   return spleen_left() > spleen_likely_to_use;
 }
 function isSpleenConsumable(it) {

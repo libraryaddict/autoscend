@@ -1972,7 +1972,7 @@ function legendaryNoodlesChoiceHandler() {
   } else if (!(0, import_kolmafia52.toBoolean)(
     // or use a spleen instead of a stomach
     (0, import_kolmafia52.getProperty)("_legendaryNoodlesSpleen")
-  ) && spleen_left() > 0) {
+  ) && spleen_left() > 0 && !isActuallyEd()) {
     target_choice = 1;
   } else {
     target_choice = 4;
