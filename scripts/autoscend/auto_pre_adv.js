@@ -25003,10 +25003,8 @@ function meatReserveMessage() {
 function auto_interruptZoneCheck() {
   var currentZone = (0, import_kolmafia119.myLocation)().toString();
   var interruptZones = (0, import_kolmafia119.getProperty)("auto_interruptZones");
-  var interruptedZones = (0, import_kolmafia119.toBuffer)(
-    (0, import_kolmafia119.getProperty)("auto_interruptedZones")
-  );
-  if (interruptZones === "" || (0, import_kolmafia119.containsText)(interruptedZones, currentZone)) {
+  var interruptedZones = (0, import_kolmafia119.getProperty)("auto_interruptedZones");
+  if (interruptZones === "" || interruptedZones.includes(currentZone)) {
     return false;
   }
   var _iterator55 = _createForOfIteratorHelper(
@@ -25016,7 +25014,7 @@ function auto_interruptZoneCheck() {
     for (_iterator55.s(); !(_step55 = _iterator55.n()).done; ) {
       var _step55$value = _slicedToArray(_step55.value, 2), zone = _step55$value[1];
       if ((0, import_kolmafia119.toLocation)(zone) === (0, import_kolmafia119.myLocation)()) {
-        (0, import_kolmafia119.append)(interruptedZones, `${currentZone};`);
+        interruptedZones += `${currentZone};`;
         (0, import_kolmafia119.setProperty)("auto_interruptedZones", interruptedZones);
         return true;
       }

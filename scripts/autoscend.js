@@ -3409,7 +3409,6 @@ function c2t_megg_readFile() {
   return out;
 }
 function c2t_megg_writeFile(list) {
-  var buf = null;
   var neat = /* @__PURE__ */ new Map();
   var prefCount = "_c2t_megg_maxlistCount";
   var prefLast = "_c2t_megg_lastCheck";
@@ -3432,20 +3431,7 @@ function c2t_megg_writeFile(list) {
   } finally {
     _iterator2.f();
   }
-  var _iterator3 = _createForOfIteratorHelper(
-    neat.keys()
-  ), _step3;
-  try {
-    for (_iterator3.s(); !(_step3 = _iterator3.n()).done; ) {
-      var _x = _step3.value;
-      (0, import_kolmafia17.append)(buf, `${_x}
-`);
-    }
-  } catch (err) {
-    _iterator3.e(err);
-  } finally {
-    _iterator3.f();
-  }
+  var buf = _toConsumableArray(neat.keys()).map((s) => String(s)).join("\n");
   if ((0, import_kolmafia17.bufferToFile)(buf, "c2t_megg_maxlist.txt")) {
     c2t_megg_print(`maxed egg list updated with ${size} entries`);
     (0, import_kolmafia17.setProperty)(prefLast, (0, import_kolmafia17.nowToInt)().toString());
@@ -3459,18 +3445,18 @@ function c2t_megg_writeFile(list) {
 function c2t_megg_maxed() {
   var out = /* @__PURE__ */ new Map();
   var maxlist = c2t_megg_readFile();
-  var _iterator4 = _createForOfIteratorHelper(
+  var _iterator3 = _createForOfIteratorHelper(
     maxlist.keys()
-  ), _step4;
+  ), _step3;
   try {
-    for (_iterator4.s(); !(_step4 = _iterator4.n()).done; ) {
-      var x = _step4.value;
+    for (_iterator3.s(); !(_step3 = _iterator3.n()).done; ) {
+      var x = _step3.value;
       out.set((0, import_kolmafia17.toMonster)(x), true);
     }
   } catch (err) {
-    _iterator4.e(err);
+    _iterator3.e(err);
   } finally {
-    _iterator4.f();
+    _iterator3.f();
   }
   return out;
 }
@@ -3488,12 +3474,12 @@ function c2t_megg_eggs() {
     }
     (0, import_kolmafia17.visitUrl)(`desc_item.php?whichitem=${egg.descid}`, false, true);
   }
-  var _iterator5 = _createForOfIteratorHelper(
+  var _iterator4 = _createForOfIteratorHelper(
     (0, import_kolmafia17.splitString)((0, import_kolmafia17.getProperty)(prop), ",").entries()
-  ), _step5;
+  ), _step4;
   try {
-    for (_iterator5.s(); !(_step5 = _iterator5.n()).done; ) {
-      var _step5$value = _slicedToArray(_step5.value, 2), x = _step5$value[1];
+    for (_iterator4.s(); !(_step4 = _iterator4.n()).done; ) {
+      var _step4$value = _slicedToArray(_step4.value, 2), x = _step4$value[1];
       var split = new Map(
         (0, import_kolmafia17.splitString)(x, ":").map((_v, _i) => [_i, _v])
       );
@@ -3503,9 +3489,9 @@ function c2t_megg_eggs() {
       );
     }
   } catch (err) {
-    _iterator5.e(err);
+    _iterator4.e(err);
   } finally {
-    _iterator5.f();
+    _iterator4.f();
   }
   return out;
 }
@@ -54550,10 +54536,8 @@ function meatReserveMessage() {
 function auto_interruptZoneCheck() {
   var currentZone = (0, import_kolmafia120.myLocation)().toString();
   var interruptZones = (0, import_kolmafia120.getProperty)("auto_interruptZones");
-  var interruptedZones = (0, import_kolmafia120.toBuffer)(
-    (0, import_kolmafia120.getProperty)("auto_interruptedZones")
-  );
-  if (interruptZones === "" || (0, import_kolmafia120.containsText)(interruptedZones, currentZone)) {
+  var interruptedZones = (0, import_kolmafia120.getProperty)("auto_interruptedZones");
+  if (interruptZones === "" || interruptedZones.includes(currentZone)) {
     return false;
   }
   var _iterator55 = _createForOfIteratorHelper(
@@ -54563,7 +54547,7 @@ function auto_interruptZoneCheck() {
     for (_iterator55.s(); !(_step55 = _iterator55.n()).done; ) {
       var _step55$value = _slicedToArray(_step55.value, 2), zone = _step55$value[1];
       if ((0, import_kolmafia120.toLocation)(zone) === (0, import_kolmafia120.myLocation)()) {
-        (0, import_kolmafia120.append)(interruptedZones, `${currentZone};`);
+        interruptedZones += `${currentZone};`;
         (0, import_kolmafia120.setProperty)("auto_interruptedZones", interruptedZones);
         return true;
       }
