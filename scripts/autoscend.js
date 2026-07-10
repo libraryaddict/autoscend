@@ -58691,22 +58691,18 @@ function fullness_left() {
 function inebriety_left() {
   return (0, import_kolmafia124.inebrietyLimit)() - (0, import_kolmafia124.myInebriety)();
 }
-var $_saucemavenApplies_saucy_foods;
+var $_saucemavenApplies_saucy_foods = $items`cold hi mein, devil hair pasta, Fettris, fettucini Inconnu, fleetwood mac 'n' cheese, fusillocybin, gnocchetti di Nietzsche, haunted Hell ramen, Hell ramen, hot hi mein, libertagliatelle, linguini immondizia bianco, linguini of the sea, prescription noodles, shells a la shellfish, sleazy hi mein, spagecialetti, spaghetti con calaveras, spaghetti with Skullheads, spooky hi mein, stinky hi mein, turkish mostaccioli`;
 function saucemavenApplies(it) {
-  $_saucemavenApplies_saucy_foods ?? ($_saucemavenApplies_saucy_foods = $items`cold hi mein, devil hair pasta, Fettris, fettucini Inconnu, fleetwood mac 'n' cheese, fusillocybin, gnocchetti di Nietzsche, haunted Hell ramen, Hell ramen, hot hi mein, libertagliatelle, linguini immondizia bianco, linguini of the sea, prescription noodles, shells a la shellfish, sleazy hi mein, spagecialetti, spaghetti con calaveras, spaghetti with Skullheads, spooky hi mein, stinky hi mein, turkish mostaccioli`);
   return $_saucemavenApplies_saucy_foods.includes(it);
 }
+function parseRawAdventures(it) {
+  var advs = it.adventures.split("-").filter(Boolean).map(Number);
+  if (!advs.length) return 0;
+  var avgAdvs = advs.reduce((l, r) => (l + r) / 2);
+  return isNaN(avgAdvs) ? 0 : avgAdvs;
+}
 function expectedAdventuresFrom(it) {
-  function parse() {
-    if (!(0, import_kolmafia124.containsText)(it.adventures, "-")) {
-      return (0, import_kolmafia124.toInt)(it.adventures);
-    }
-    var s = new Map(
-      (0, import_kolmafia124.splitString)(it.adventures, "-").map((_v, _i) => [_i, _v])
-    );
-    return ((0, import_kolmafia124.toInt)(s.get(1) ?? s.set(1, "").get(1)) + (0, import_kolmafia124.toInt)(s.get(0) ?? s.set(0, "").get(0))) / 2;
-  }
-  var expected = parse();
+  var expected = parseRawAdventures(it);
   if (auto_have_skill($skill`Saucemaven`) && saucemavenApplies(it)) {
     if ($classes`Sauceror, Pastamancer`.includes((0, import_kolmafia124.myClass)())) {
       expected += 5;
@@ -59202,7 +59198,7 @@ function auto_canDrink(toDrink) {
   if (toDrink.levelreq >= 13 && !(0, import_kolmafia124.canInteract)()) {
     return false;
   }
-  return true;
+  return meetsMinAdvPerFillReq(toDrink);
 }
 function meetsMinAdvPerFillReq(it) {
   if (it.fullness + it.inebriety <= 0) return true;
@@ -59210,7 +59206,7 @@ function meetsMinAdvPerFillReq(it) {
 }
 function auto_canEat(toEat) {
   var checkValidity = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : true;
-  if (!(0, import_kolmafia124.canEat)() || !meetsMinAdvPerFillReq(toEat)) {
+  if (!(0, import_kolmafia124.canEat)()) {
     return false;
   }
   if (!auto_is_valid(toEat) && checkValidity) {
@@ -59244,7 +59240,7 @@ function auto_canEat(toEat) {
   if (toEat.levelreq >= 13 && !(0, import_kolmafia124.canInteract)()) {
     return false;
   }
-  return true;
+  return meetsMinAdvPerFillReq(toEat);
 }
 function canChew(toChew) {
   if (!auto_is_valid(toChew)) {
@@ -59612,80 +59608,76 @@ function loadConsumables(_type, actions) {
   try {
     for (_iterator10.s(); !(_step10 = _iterator10.n()).done; ) {
       var _it9 = _step10.value;
-      if (!blacklist.has(_it9) && canConsume$1(_it9) && organCost(_it9) > 0 && (_it9.fullness === 0 || _it9.inebriety === 0) && auto_is_valid(_it9)) {
-        var value_allowed = (0, import_kolmafia124.historicalPrice)(_it9) < auto_getConsumablePriceLimit() || $items`blueberry muffin, bran muffin, chocolate chip muffin`.includes(
-          _it9
-        ) && (0, import_kolmafia124.itemAmount)(_it9) > 0 && (0, import_kolmafia124.myPath)() !== $path`Grey You`;
-        if (!value_allowed) {
-          continue;
+      if (organCost(_it9) <= 0 || _it9.fullness !== 0 && _it9.inebriety !== 0)
+        continue;
+      if (blacklist.has(_it9) || !auto_is_valid(_it9)) continue;
+      if (!canConsume$1(_it9)) continue;
+      var value_allowed = (0, import_kolmafia124.historicalPrice)(_it9) < auto_getConsumablePriceLimit() || $items`blueberry muffin, bran muffin, chocolate chip muffin`.includes(
+        _it9
+      ) && (0, import_kolmafia124.itemAmount)(_it9) > 0 && (0, import_kolmafia124.myPath)() !== $path`Grey You`;
+      if (!value_allowed) {
+        continue;
+      }
+      if ((_it9 === $item`astral pilsner` || _it9 === $item`Cold One` || _it9 === $item`astral hot dog`) && (0, import_kolmafia124.myLevel)() < 11) {
+        continue;
+      }
+      if (_it9 === $item`spaghetti breakfast` && ((0, import_kolmafia124.myLevel)() < 11 || (0, import_kolmafia124.myFullness)() > 0 || (0, import_kolmafia124.toBoolean)((0, import_kolmafia124.getProperty)("_spaghettiBreakfastEaten")))) {
+        continue;
+      }
+      if (_it9 === $item`Pizza of Legend` && (0, import_kolmafia124.toBoolean)((0, import_kolmafia124.getProperty)("pizzaOfLegendEaten"))) {
+        continue;
+      }
+      if (_it9 === $item`Calzone of Legend` && (0, import_kolmafia124.toBoolean)((0, import_kolmafia124.getProperty)("calzoneOfLegendEaten"))) {
+        continue;
+      }
+      if (_it9 === $item`Deep Dish of Legend` && (0, import_kolmafia124.toBoolean)((0, import_kolmafia124.getProperty)("deepDishOfLegendEaten"))) {
+        continue;
+      }
+      var howmany = _it9.inebriety > 0 ? 1 : 0;
+      howmany += organLeft$2() / organCost(_it9);
+      if (howmany < 1) {
+        continue;
+      }
+      if (_it9 === $item`spaghetti breakfast`) {
+        howmany = 1;
+      }
+      if ((0, import_kolmafia124.itemAmount)(_it9) > 0 && organCost(_it9) <= 5) {
+        small_owned.set(
+          _it9,
+          (0, import_kolmafia124.min)((0, import_kolmafia124.max)((0, import_kolmafia124.itemAmount)(_it9) - auto_reserveAmount(_it9), 0), howmany)
+        );
+      }
+      if ((0, import_kolmafia124.npcPrice)(_it9) > 0 && !isSpeakeasyDrink(_it9)) {
+        buyables.set(_it9, (0, import_kolmafia124.min)(howmany, (0, import_kolmafia124.myMeat)() / (0, import_kolmafia124.npcPrice)(_it9)));
+      } else if ((0, import_kolmafia124.buyPrice)($coinmaster`Hermit`, _it9) > 0) {
+        buyables.set(_it9, (buyables.get(_it9) ?? 0) + (0, import_kolmafia124.min)(howmany, (0, import_kolmafia124.myMeat)() / 500));
+      }
+      if ((0, import_kolmafia124.itemAmount)(_it9) > 0 && organCost(_it9) > 5) {
+        large_owned.set(
+          _it9,
+          (0, import_kolmafia124.min)((0, import_kolmafia124.max)((0, import_kolmafia124.itemAmount)(_it9) - auto_reserveAmount(_it9), 0), howmany)
+        );
+      }
+      if (!craftable_blacklist.has(_it9) && (0, import_kolmafia124.creatableAmount)(_it9) > 0) {
+        craftables.set(
+          _it9,
+          (0, import_kolmafia124.min)(howmany, (0, import_kolmafia124.max)(0, (0, import_kolmafia124.creatableAmount)(_it9) - auto_reserveCraftAmount(_it9)))
+        );
+      }
+      if (_it9 === $item`pheromone cocktail` && (0, import_kolmafia124.itemAmount)(_it9) > 0 && banishSources() - (0, import_kolmafia124.itemAmount)(_it9) < 3) {
+        potentialTurnGain.set(_it9, 2);
+      } else if (legendaryNoodleDishes().has(_it9)) {
+        if (!(0, import_kolmafia124.toBoolean)((0, import_kolmafia124.getProperty)("_legendaryNoodlesSpleen")) && spleen_left() > 0 && auto_willEatLegendaryNoodles() && !isActuallyEd()) {
+          potentialTurnGain.set(_it9, 20);
+        } else if (auto_wantFamXP(400)) {
+          potentialTurnGain.set(_it9, 0.75);
         }
-        if ((_it9 === $item`astral pilsner` || _it9 === $item`Cold One` || _it9 === $item`astral hot dog`) && (0, import_kolmafia124.myLevel)() < 11) {
-          continue;
-        }
-        if (_it9 === $item`spaghetti breakfast` && ((0, import_kolmafia124.myLevel)() < 11 || (0, import_kolmafia124.myFullness)() > 0 || (0, import_kolmafia124.toBoolean)((0, import_kolmafia124.getProperty)("_spaghettiBreakfastEaten")))) {
-          continue;
-        }
-        if (_it9 === $item`Pizza of Legend` && (0, import_kolmafia124.toBoolean)((0, import_kolmafia124.getProperty)("pizzaOfLegendEaten"))) {
-          continue;
-        }
-        if (_it9 === $item`Calzone of Legend` && (0, import_kolmafia124.toBoolean)((0, import_kolmafia124.getProperty)("calzoneOfLegendEaten"))) {
-          continue;
-        }
-        if (_it9 === $item`Deep Dish of Legend` && (0, import_kolmafia124.toBoolean)((0, import_kolmafia124.getProperty)("deepDishOfLegendEaten"))) {
-          continue;
-        }
-        var howmany = _it9.inebriety > 0 ? 1 : 0;
-        howmany += organLeft$2() / organCost(_it9);
-        if (howmany < 1) {
-          continue;
-        }
-        if (_it9 === $item`spaghetti breakfast`) {
-          howmany = 1;
-        }
-        if ((0, import_kolmafia124.itemAmount)(_it9) > 0 && organCost(_it9) <= 5) {
-          small_owned.set(
-            _it9,
-            (0, import_kolmafia124.min)((0, import_kolmafia124.max)((0, import_kolmafia124.itemAmount)(_it9) - auto_reserveAmount(_it9), 0), howmany)
-          );
-        }
-        if ((0, import_kolmafia124.npcPrice)(_it9) > 0 && !isSpeakeasyDrink(_it9)) {
-          buyables.set(_it9, (0, import_kolmafia124.min)(howmany, (0, import_kolmafia124.myMeat)() / (0, import_kolmafia124.npcPrice)(_it9)));
-        } else if ((0, import_kolmafia124.buyPrice)($coinmaster`Hermit`, _it9) > 0) {
-          buyables.set(
-            _it9,
-            (buyables.get(_it9) ?? 0) + (0, import_kolmafia124.min)(howmany, (0, import_kolmafia124.myMeat)() / 500)
-          );
-        }
-        if ((0, import_kolmafia124.itemAmount)(_it9) > 0 && organCost(_it9) > 5) {
-          large_owned.set(
-            _it9,
-            (0, import_kolmafia124.min)((0, import_kolmafia124.max)((0, import_kolmafia124.itemAmount)(_it9) - auto_reserveAmount(_it9), 0), howmany)
-          );
-        }
-        if (!craftable_blacklist.has(_it9) && (0, import_kolmafia124.creatableAmount)(_it9) > 0) {
-          craftables.set(
-            _it9,
-            (0, import_kolmafia124.min)(
-              howmany,
-              (0, import_kolmafia124.max)(0, (0, import_kolmafia124.creatableAmount)(_it9) - auto_reserveCraftAmount(_it9))
-            )
-          );
-        }
-        if (_it9 === $item`pheromone cocktail` && (0, import_kolmafia124.itemAmount)(_it9) > 0 && banishSources() - (0, import_kolmafia124.itemAmount)(_it9) < 3) {
-          potentialTurnGain.set(_it9, 2);
-        } else if (legendaryNoodleDishes().has(_it9)) {
-          if (!(0, import_kolmafia124.toBoolean)((0, import_kolmafia124.getProperty)("_legendaryNoodlesSpleen")) && spleen_left() > 0 && auto_willEatLegendaryNoodles() && !isActuallyEd()) {
-            potentialTurnGain.set(_it9, 20);
-          } else if (auto_wantFamXP(400)) {
-            potentialTurnGain.set(_it9, 0.75);
-          }
-        }
-        if (!isSpeakeasyDrink(_it9) && canPull$1(_it9)) {
-          if (!(0, import_kolmafia124.canInteract)()) {
-            pullables.set(_it9, 1);
-          } else {
-            pullables.set(_it9, (0, import_kolmafia124.min)(howmany, (0, import_kolmafia124.pullsRemaining)()));
-          }
+      }
+      if (!isSpeakeasyDrink(_it9) && canPull$1(_it9)) {
+        if (!(0, import_kolmafia124.canInteract)()) {
+          pullables.set(_it9, 1);
+        } else {
+          pullables.set(_it9, (0, import_kolmafia124.min)(howmany, (0, import_kolmafia124.pullsRemaining)()));
         }
       }
     }
@@ -59809,7 +59801,7 @@ function loadConsumables(_type, actions) {
     }
   }
   function add(it2, obtain_mode, howmany2) {
-    for (var _i2 = 0; _i2 < howmany2; _i2++) {
+    for (var _i = 0; _i < howmany2; _i++) {
       var n2 = actions.size;
       actions.set(n2, MakeConsumeAction(it2));
       if (obtain_mode === AUTO_OBTAIN_PULL && !in_small()) {
@@ -59852,17 +59844,17 @@ function loadConsumables(_type, actions) {
         }
       }
       if (obtain_mode === AUTO_OBTAIN_CRAFT) {
-        var turns_to_craft = (0, import_kolmafia124.creatableTurns)(it2, _i2 + 1, false) - (0, import_kolmafia124.creatableTurns)(it2, _i2, false);
+        var turns_to_craft = (0, import_kolmafia124.creatableTurns)(it2, _i + 1, false) - (0, import_kolmafia124.creatableTurns)(it2, _i, false);
         (actions.get(n2) ?? actions.set(n2, new ConsumeAction()).get(n2)).desirability -= turns_to_craft;
       } else {
-        if (_i2 === 0 && (it2 === $item`Boris's key lime pie` && wantBorisPie || it2 === $item`Jarlsberg's key lime pie` && wantJarlsbergPie || it2 === $item`Sneaky Pete's key lime pie` && wantPetePie)) {
+        if (_i === 0 && (it2 === $item`Boris's key lime pie` && wantBorisPie || it2 === $item`Jarlsberg's key lime pie` && wantJarlsbergPie || it2 === $item`Sneaky Pete's key lime pie` && wantPetePie)) {
           auto_log_info$1(
             `If we ate a ${it2} we could skip getting a fat loot token...`
           );
           (actions.get(n2) ?? actions.set(n2, new ConsumeAction()).get(n2)).desirability += keyLimePieDesirabilityBonus;
         }
       }
-      if (_i2 === 0 && (it2 === $item`pheromone cocktail` || legendaryNoodleDishes().has(it2)) && (potentialTurnGain.get(it2) ?? potentialTurnGain.set(it2, 0).get(it2)) > 0) {
+      if (_i === 0 && (it2 === $item`pheromone cocktail` || legendaryNoodleDishes().has(it2)) && (potentialTurnGain.get(it2) ?? potentialTurnGain.set(it2, 0).get(it2)) > 0) {
         (actions.get(n2) ?? actions.set(n2, new ConsumeAction()).get(n2)).desirability += potentialTurnGain.get(it2) ?? potentialTurnGain.set(it2, 0).get(it2);
       }
       (actions.get(n2) ?? actions.set(n2, new ConsumeAction()).get(n2)).howtoget = obtain_mode;
@@ -59978,7 +59970,7 @@ function loadConsumables(_type, actions) {
       (0, import_kolmafia124.myMeat)() / (0, import_kolmafia124.toInt)((0, import_kolmafia124.getProperty)("_dailySpecialPrice")),
       organLeft$2() / organCost((0, import_kolmafia124.dailySpecial)())
     );
-    for (var _i3 = 0; _i3 < daily_special_limit; _i3++) {
+    for (var _i2 = 0; _i2 < daily_special_limit; _i2++) {
       var n = actions.size;
       actions.set(n, MakeConsumeAction((0, import_kolmafia124.dailySpecial)()));
       (actions.get(n) ?? actions.set(n, new ConsumeAction()).get(n)).cafeid = (0, import_kolmafia124.toInt)((0, import_kolmafia124.dailySpecial)());
@@ -59988,7 +59980,7 @@ function loadConsumables(_type, actions) {
   if (!in_tcrs()) {
     if (type_1 === AUTO_ORGAN_LIVER) {
       var limit = 1 + (0, import_kolmafia124.min)((0, import_kolmafia124.myMeat)() / 100, inebriety_left() / 3);
-      for (var _i4 = 0; _i4 < limit; _i4++) {
+      for (var _i3 = 0; _i3 < limit; _i3++) {
         var _size2 = 3;
         var _adv2 = 11 / 3;
         actions.set(
@@ -60007,7 +59999,7 @@ function loadConsumables(_type, actions) {
     }
     if (type_1 === AUTO_ORGAN_STOMACH) {
       var _limit = 1 + (0, import_kolmafia124.min)((0, import_kolmafia124.myMeat)() / 50, fullness_left() / 3);
-      for (var _i5 = 0; _i5 < _limit; _i5++) {
+      for (var _i4 = 0; _i4 < _limit; _i4++) {
         var _size3 = 3;
         var _adv3 = 3.5;
         actions.set(
@@ -60024,7 +60016,7 @@ function loadConsumables(_type, actions) {
         );
       }
       _limit = 1 + (0, import_kolmafia124.min)((0, import_kolmafia124.myMeat)() / 75, fullness_left() / 4);
-      for (var _i6 = 0; _i6 < _limit; _i6++) {
+      for (var _i5 = 0; _i5 < _limit; _i5++) {
         var _size4 = 4;
         var _adv4 = 5;
         actions.set(
@@ -60041,7 +60033,7 @@ function loadConsumables(_type, actions) {
         );
       }
       _limit = 1 + (0, import_kolmafia124.min)((0, import_kolmafia124.myMeat)() / 100, fullness_left() / 4);
-      for (var _i7 = 0; _i7 < _limit; _i7++) {
+      for (var _i6 = 0; _i6 < _limit; _i6++) {
         var _size5 = 5;
         var _adv5 = 7;
         actions.set(
@@ -60096,8 +60088,8 @@ function loadConsumables(_type, actions) {
   ), _step17;
   try {
     for (_iterator17.s(); !(_step17 = _iterator17.n()).done; ) {
-      var _step17$value = _slicedToArray(_step17.value, 2), _i8 = _step17$value[0], r = _step17$value[1];
-      if (_i8 >= -3 && r.space > 0) {
+      var _step17$value = _slicedToArray(_step17.value, 2), _i7 = _step17$value[0], r = _step17$value[1];
+      if (_i7 >= -3 && r.space > 0) {
         var _limit2 = 1 + (0, import_kolmafia124.min)((0, import_kolmafia124.myMeat)() / 100, organLeft$2() / r.space);
         for (var j = 0; j < _limit2; j++) {
           var _size6 = r.space;
@@ -60345,11 +60337,11 @@ function auto_findBestConsumeAction(type_1) {
   ), _step18;
   try {
     for (_iterator18.s(); !(_step18 = _iterator18.n()).done; ) {
-      var _i9 = _step18.value;
-      var tentative_desirability_per_fill = (actions.get(_i9) ?? actions.set(_i9, new ConsumeAction()).get(_i9)).desirability / (actions.get(_i9) ?? actions.set(_i9, new ConsumeAction()).get(_i9)).size;
+      var _i8 = _step18.value;
+      var tentative_desirability_per_fill = (actions.get(_i8) ?? actions.set(_i8, new ConsumeAction()).get(_i8)).desirability / (actions.get(_i8) ?? actions.set(_i8, new ConsumeAction()).get(_i8)).size;
       if (tentative_desirability_per_fill > best_desirability_per_fill) {
         best_desirability_per_fill = tentative_desirability_per_fill;
-        best = _i9;
+        best = _i8;
       }
     }
   } catch (err) {

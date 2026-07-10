@@ -28455,22 +28455,18 @@ function fullness_left() {
 function inebriety_left() {
   return (0, import_kolmafia123.inebrietyLimit)() - (0, import_kolmafia123.myInebriety)();
 }
-var $_saucemavenApplies_saucy_foods;
+var $_saucemavenApplies_saucy_foods = $items`cold hi mein, devil hair pasta, Fettris, fettucini Inconnu, fleetwood mac 'n' cheese, fusillocybin, gnocchetti di Nietzsche, haunted Hell ramen, Hell ramen, hot hi mein, libertagliatelle, linguini immondizia bianco, linguini of the sea, prescription noodles, shells a la shellfish, sleazy hi mein, spagecialetti, spaghetti con calaveras, spaghetti with Skullheads, spooky hi mein, stinky hi mein, turkish mostaccioli`;
 function saucemavenApplies(it) {
-  $_saucemavenApplies_saucy_foods ?? ($_saucemavenApplies_saucy_foods = $items`cold hi mein, devil hair pasta, Fettris, fettucini Inconnu, fleetwood mac 'n' cheese, fusillocybin, gnocchetti di Nietzsche, haunted Hell ramen, Hell ramen, hot hi mein, libertagliatelle, linguini immondizia bianco, linguini of the sea, prescription noodles, shells a la shellfish, sleazy hi mein, spagecialetti, spaghetti con calaveras, spaghetti with Skullheads, spooky hi mein, stinky hi mein, turkish mostaccioli`);
   return $_saucemavenApplies_saucy_foods.includes(it);
 }
+function parseRawAdventures(it) {
+  var advs = it.adventures.split("-").filter(Boolean).map(Number);
+  if (!advs.length) return 0;
+  var avgAdvs = advs.reduce((l, r) => (l + r) / 2);
+  return isNaN(avgAdvs) ? 0 : avgAdvs;
+}
 function expectedAdventuresFrom(it) {
-  function parse() {
-    if (!(0, import_kolmafia123.containsText)(it.adventures, "-")) {
-      return (0, import_kolmafia123.toInt)(it.adventures);
-    }
-    var s = new Map(
-      (0, import_kolmafia123.splitString)(it.adventures, "-").map((_v, _i) => [_i, _v])
-    );
-    return ((0, import_kolmafia123.toInt)(s.get(1) ?? s.set(1, "").get(1)) + (0, import_kolmafia123.toInt)(s.get(0) ?? s.set(0, "").get(0))) / 2;
-  }
-  var expected = parse();
+  var expected = parseRawAdventures(it);
   if (auto_have_skill($skill`Saucemaven`) && saucemavenApplies(it)) {
     if ($classes`Sauceror, Pastamancer`.includes((0, import_kolmafia123.myClass)())) {
       expected += 5;
@@ -28929,7 +28925,7 @@ function auto_canDrink(toDrink) {
   if (toDrink.levelreq >= 13 && !(0, import_kolmafia123.canInteract)()) {
     return false;
   }
-  return true;
+  return meetsMinAdvPerFillReq(toDrink);
 }
 function meetsMinAdvPerFillReq(it) {
   if (it.fullness + it.inebriety <= 0) return true;
@@ -28937,7 +28933,7 @@ function meetsMinAdvPerFillReq(it) {
 }
 function auto_canEat(toEat) {
   var checkValidity = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : true;
-  if (!(0, import_kolmafia123.canEat)() || !meetsMinAdvPerFillReq(toEat)) {
+  if (!(0, import_kolmafia123.canEat)()) {
     return false;
   }
   if (!auto_is_valid(toEat) && checkValidity) {
@@ -28971,7 +28967,7 @@ function auto_canEat(toEat) {
   if (toEat.levelreq >= 13 && !(0, import_kolmafia123.canInteract)()) {
     return false;
   }
-  return true;
+  return meetsMinAdvPerFillReq(toEat);
 }
 function canChew(toChew) {
   if (!auto_is_valid(toChew)) {
