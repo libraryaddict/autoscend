@@ -56302,6 +56302,11 @@ function auto_meetsMinimumRequirements() {
 }
 
 // src/autoscend/auto_adventure.ts
+function findMacroName(func) {
+  var asStr = String(func);
+  var match = asStr.match(/^function ([^( ]+)\(/);
+  return match ? match[1] : asStr;
+}
 function autoAdv(num, loc, option) {
   if (!zone_isAvailable(loc, true)) {
     auto_log_warning(`Can't get to ${loc} right now.`, "red");
@@ -56319,7 +56324,7 @@ function autoAdv(num, loc, option) {
   }
   var previousEncounter = (0, import_kolmafia122.getProperty)("lastEncounter");
   var turncount = (0, import_kolmafia122.myTurncount)();
-  (0, import_kolmafia122.print)(`Doing option ${option}`);
+  (0, import_kolmafia122.print)(`Doing option ${findMacroName(option)}`);
   auto_interruptCheck(false);
   var advReturn = (0, import_kolmafia122.adv1)(loc, -1, option);
   if (!advReturn) {
@@ -59608,7 +59613,7 @@ function loadConsumables(_type, actions) {
   try {
     for (_iterator10.s(); !(_step10 = _iterator10.n()).done; ) {
       var _it9 = _step10.value;
-      if (organCost(_it9) <= 0 || _it9.fullness !== 0 && _it9.inebriety !== 0)
+      if (_it9.fullness !== 0 && _it9.inebriety !== 0 || organCost(_it9) <= 0)
         continue;
       if (blacklist.has(_it9) || !auto_is_valid(_it9)) continue;
       if (!canConsume$1(_it9)) continue;

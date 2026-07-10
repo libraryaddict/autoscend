@@ -26181,6 +26181,11 @@ function pm_updateThrall(place, going_to_eat) {
 }
 
 // src/autoscend/auto_adventure.ts
+function findMacroName(func) {
+  var asStr = String(func);
+  var match = asStr.match(/^function ([^( ]+)\(/);
+  return match ? match[1] : asStr;
+}
 function autoAdv(num, loc, option) {
   if (!zone_isAvailable(loc, true)) {
     auto_log_warning(`Can't get to ${loc} right now.`, "red");
@@ -26198,7 +26203,7 @@ function autoAdv(num, loc, option) {
   }
   var previousEncounter = (0, import_kolmafia121.getProperty)("lastEncounter");
   var turncount = (0, import_kolmafia121.myTurncount)();
-  (0, import_kolmafia121.print)(`Doing option ${option}`);
+  (0, import_kolmafia121.print)(`Doing option ${findMacroName(option)}`);
   auto_interruptCheck(false);
   var advReturn = (0, import_kolmafia121.adv1)(loc, -1, option);
   if (!advReturn) {
