@@ -5793,7 +5793,7 @@ function auto_forceCombatLegendaryNoodles() {
   var AUTO_ORGAN_STOMACH_1 = 1;
   var AUTO_OBTAIN_NULL_1 = 100;
   var AUTO_OBTAIN_CRAFT_1 = 101;
-  var action = new ConsumeAction();
+  var action;
   var prospective_dish = auto_findPreparedLegendaryNoods();
   if (prospective_dish !== import_kolmafia29.Item.none) {
     action = new ConsumeAction(
@@ -42509,7 +42509,7 @@ function L8_trapperNinjaLair() {
     auto_log_debug$1("Delaying Lair of the Ninja Snowmen in case of Shen.");
     return false;
   }
-  var CForced = false;
+  var CForced;
   if (auto_haveQueuedForcedCombat()) {
     CForced = true;
     auto_log_info$1(

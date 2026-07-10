@@ -2031,7 +2031,7 @@ function auto_forceCombatLegendaryNoodles() {
   var AUTO_ORGAN_STOMACH_1 = 1;
   var AUTO_OBTAIN_NULL_1 = 100;
   var AUTO_OBTAIN_CRAFT_1 = 101;
-  var action = new ConsumeAction();
+  var action;
   var prospective_dish = auto_findPreparedLegendaryNoods();
   if (prospective_dish !== import_kolmafia28.Item.none) {
     action = new ConsumeAction(
