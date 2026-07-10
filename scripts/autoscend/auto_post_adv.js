@@ -19418,6 +19418,51 @@ function handleTracker$2(used, loc, detail, tracker) {
   cur = `${cur}(${(0, import_kolmafia121.myDaycount)()}:${safeString(used)}:${safeString(loc)}:${safeString(detail)}:${(0, import_kolmafia121.myTurncount)()})`;
   (0, import_kolmafia121.setProperty)(tracker, cur);
 }
+function restoreAllSettings() {
+  var defaults = fileAsMap(
+    "data/defaults.txt",
+    [String, String, String]
+  );
+  var retval = false;
+  var _iterator5 = _createForOfIteratorHelper(
+    defaults
+  ), _step5;
+  try {
+    for (_iterator5.s(); !(_step5 = _iterator5.n()).done; ) {
+      var _step5$value = _slicedToArray(_step5.value, 2), _v0 = _step5$value[1];
+      var _iterator6 = _createForOfIteratorHelper(
+        _v0
+      ), _step6;
+      try {
+        for (_iterator6.s(); !(_step6 = _iterator6.n()).done; ) {
+          var _step6$value = _slicedToArray(_step6.value, 1), name = _step6$value[0];
+          retval = (0, import_kolmafia121.toBoolean)((0, import_kolmafia121.toInt)(retval) | (0, import_kolmafia121.toInt)(restoreSetting(name)));
+        }
+      } catch (err) {
+        _iterator6.e(err);
+      } finally {
+        _iterator6.f();
+      }
+    }
+  } catch (err) {
+    _iterator5.e(err);
+  } finally {
+    _iterator5.f();
+  }
+  return retval;
+}
+function restoreSetting(setting) {
+  if ((0, import_kolmafia121.getProperty)(`auto_backup_${setting}`) !== "") {
+    if ((0, import_kolmafia121.getProperty)(`auto_backup_${setting}`) === "__BLANK__") {
+      (0, import_kolmafia121.setProperty)(setting, "");
+    } else {
+      (0, import_kolmafia121.setProperty)(setting, (0, import_kolmafia121.getProperty)(`auto_backup_${setting}`));
+    }
+    (0, import_kolmafia121.removeProperty)(`auto_backup_${setting}`);
+    return true;
+  }
+  return false;
+}
 function loopHandlerDelay(counterSetting) {
   return loopHandlerDelay$1(counterSetting, 3);
 }
@@ -21041,6 +21086,56 @@ function auto_wantToCopy(enemy, loc) {
   (0, import_kolmafia121.setLocation)(locCache);
   return toCopy.get(enemy) ?? toCopy.set(enemy, false).get(enemy);
 }
+function meatReserveMessage() {
+  var reserve = meatReserve();
+  if (reserve > 0) {
+    auto_log_info$1(
+      `Autoscend thinks that you need ${reserve} meat for remaining quest requirements this ascension.`
+    );
+  }
+  return;
+}
+function auto_interruptZoneCheck() {
+  var currentZone = (0, import_kolmafia121.myLocation)().toString();
+  var interruptZones = (0, import_kolmafia121.getProperty)("auto_interruptZones");
+  var interruptedZones = (0, import_kolmafia121.getProperty)("auto_interruptedZones");
+  if (interruptZones === "" || interruptedZones.includes(currentZone)) {
+    return false;
+  }
+  var _iterator55 = _createForOfIteratorHelper(
+    (0, import_kolmafia121.splitString)(interruptZones, ";").entries()
+  ), _step55;
+  try {
+    for (_iterator55.s(); !(_step55 = _iterator55.n()).done; ) {
+      var _step55$value = _slicedToArray(_step55.value, 2), zone = _step55$value[1];
+      if ((0, import_kolmafia121.toLocation)(zone) === (0, import_kolmafia121.myLocation)()) {
+        interruptedZones += `${currentZone};`;
+        (0, import_kolmafia121.setProperty)("auto_interruptedZones", interruptedZones);
+        return true;
+      }
+    }
+  } catch (err) {
+    _iterator55.e(err);
+  } finally {
+    _iterator55.f();
+  }
+  return false;
+}
+function auto_interruptCheck(debug) {
+  if ((0, import_kolmafia121.toBoolean)((0, import_kolmafia121.getProperty)("auto_interrupt"))) {
+    (0, import_kolmafia121.setProperty)("auto_interrupt", false.toString());
+    restoreAllSettings();
+    meatReserveMessage();
+    (0, import_kolmafia121.abort)("auto_interrupt detected and aborting, auto_interrupt disabled.");
+  } else if (auto_interruptZoneCheck()) {
+    (0, import_kolmafia121.abort)(
+      `auto_interruptZones detected, aborting at ${(0, import_kolmafia121.myLocation)().toString()}`
+    );
+  } else if ((0, import_kolmafia121.toBoolean)((0, import_kolmafia121.getProperty)("auto_debugging")) && debug) {
+    (0, import_kolmafia121.setProperty)("auto_interrupt", true.toString());
+    auto_log_info$1("auto_debugging detected, auto_interrupt enabled.");
+  }
+}
 function currentFlavour() {
   if ((0, import_kolmafia121.haveEffect)($effect`Spirit of Peppermint`) !== 0) {
     return $element`cold`;
@@ -21406,8 +21501,10 @@ function autoAdv(num, loc, option) {
   var previousEncounter = (0, import_kolmafia122.getProperty)("lastEncounter");
   var turncount = (0, import_kolmafia122.myTurncount)();
   (0, import_kolmafia122.print)(`Doing option ${option}`);
+  auto_interruptCheck(false);
   var advReturn = (0, import_kolmafia122.adv1)(loc, -1, option);
   if (!advReturn) {
+    auto_interruptCheck(false);
     auto_log_debug(
       "adv1 returned false for some reason. Did we actually adventure though?",
       "blue"
@@ -21961,8 +22058,7 @@ function auto_canDrink(toDrink) {
 }
 function meetsMinAdvPerFillReq(it) {
   if (it.fullness + it.inebriety <= 0) return true;
-  var advs = expectedAdventuresFrom(it) / Math.max(1, it.fullness + it.inebriety);
-  return advs >= get("auto_consumeMinAdvPerFill", 0);
+  return expectedAdventuresFrom(it) / (it.fullness + it.inebriety) >= get("auto_consumeMinAdvPerFill", 0);
 }
 function auto_canEat(toEat) {
   var checkValidity = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : true;
