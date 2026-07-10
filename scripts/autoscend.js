@@ -30624,10 +30624,16 @@ function L12_finalizeWar() {
     if (have_1 < 5) {
       var need = 5 - have_1;
       if (!(0, import_kolmafia93.toBoolean)((0, import_kolmafia93.getProperty)("auto_hippyInstead"))) {
-        need = (0, import_kolmafia93.min)(need, $coinmaster`Quartersmaster`.availableTokens / 3);
+        need = (0, import_kolmafia93.min)(
+          need,
+          Math.floor($coinmaster`Quartersmaster`.availableTokens / 3)
+        );
         (0, import_kolmafia93.cliExecute)(`make ${need} Monstar energy beverage`);
       } else {
-        need = (0, import_kolmafia93.min)(need, $coinmaster`Dimemaster`.availableTokens / 3);
+        need = (0, import_kolmafia93.min)(
+          need,
+          Math.floor($coinmaster`Dimemaster`.availableTokens / 3)
+        );
         (0, import_kolmafia93.cliExecute)(`make ${need} carbonated soy milk`);
       }
     }
@@ -30636,13 +30642,34 @@ function L12_finalizeWar() {
   if (have2 < 10 && !isActuallyEd()) {
     var _need = 10 - have2;
     if (!(0, import_kolmafia93.toBoolean)((0, import_kolmafia93.getProperty)("auto_hippyInstead"))) {
-      _need = (0, import_kolmafia93.min)(_need, $coinmaster`Quartersmaster`.availableTokens / 2);
+      _need = (0, import_kolmafia93.min)(
+        _need,
+        Math.floor($coinmaster`Quartersmaster`.availableTokens / 2)
+      );
       (0, import_kolmafia93.cliExecute)(`make ${_need} gauze garter`);
     } else {
-      _need = (0, import_kolmafia93.min)(_need, $coinmaster`Dimemaster`.availableTokens / 2);
+      _need = (0, import_kolmafia93.min)(_need, Math.floor($coinmaster`Dimemaster`.availableTokens / 2));
       (0, import_kolmafia93.cliExecute)(`make ${_need} filthy poultice`);
     }
   }
+  var purchase = (coinmaster, item, price) => {
+    var failures = 0;
+    while (coinmaster.availableTokens >= price) {
+      var lastCoins = coinmaster.availableTokens;
+      (0, import_kolmafia93.cliExecute)(
+        `make ${Math.floor(coinmaster.availableTokens / price)} ${item.name}`
+      );
+      if (lastCoins == coinmaster.availableTokens) {
+        (0, import_kolmafia93.cliExecute)("refresh inventory");
+        auto_log_warning$1(
+          `Unexpectably had ${lastCoins} reported for coinmaster ${coinmaster} instead of ${coinmaster.availableTokens}`
+        );
+        if (failures++ > 5) {
+          (0, import_kolmafia93.abort)(`Autoscend is failing to purchase items from ${coinmaster}`);
+        }
+      }
+    }
+  };
   if (possessOutfit$1("War Hippy Fatigues")) {
     if (in_wereprof()) {
       if (!(0, import_kolmafia93.haveEquipped)($item`bullet-proof corduroys`)) {
@@ -30655,21 +30682,9 @@ function L12_finalizeWar() {
         (0, import_kolmafia93.equip)($item`reinforced beaded headband`);
       }
     }
-    while ($coinmaster`Dimemaster`.availableTokens >= 5) {
-      (0, import_kolmafia93.cliExecute)(
-        `make ${$coinmaster`Dimemaster`.availableTokens / 5} fancy seashell necklace`
-      );
-    }
-    while ($coinmaster`Dimemaster`.availableTokens >= 2) {
-      (0, import_kolmafia93.cliExecute)(
-        `make ${$coinmaster`Dimemaster`.availableTokens / 2} filthy poultice`
-      );
-    }
-    while ($coinmaster`Dimemaster`.availableTokens >= 1) {
-      (0, import_kolmafia93.cliExecute)(
-        `make ${$coinmaster`Dimemaster`.availableTokens} water pipe bomb`
-      );
-    }
+    purchase($coinmaster`Dimemaster`, $item`fancy seashell necklace`, 5);
+    purchase($coinmaster`Dimemaster`, $item`filthy poultice`, 2);
+    purchase($coinmaster`Dimemaster`, $item`water pipe bomb`, 1);
   }
   if (possessOutfit$1("Frat Warrior Fatigues")) {
     if (in_wereprof()) {
@@ -30683,21 +30698,9 @@ function L12_finalizeWar() {
         (0, import_kolmafia93.equip)($item`bejeweled pledge pin`);
       }
     }
-    while ($coinmaster`Quartersmaster`.availableTokens >= 5) {
-      (0, import_kolmafia93.cliExecute)(
-        `make ${$coinmaster`Quartersmaster`.availableTokens / 5} commemorative war stein`
-      );
-    }
-    while ($coinmaster`Quartersmaster`.availableTokens >= 2) {
-      (0, import_kolmafia93.cliExecute)(
-        `make ${$coinmaster`Quartersmaster`.availableTokens / 2} gauze garter`
-      );
-    }
-    while ($coinmaster`Quartersmaster`.availableTokens >= 1) {
-      (0, import_kolmafia93.cliExecute)(
-        `make ${$coinmaster`Quartersmaster`.availableTokens} beer bomb`
-      );
-    }
+    purchase($coinmaster`Quartersmaster`, $item`commemorative war stein`, 5);
+    purchase($coinmaster`Quartersmaster`, $item`gauze garter`, 2);
+    purchase($coinmaster`Quartersmaster`, $item`beer bomb`, 1);
   }
   if ((0, import_kolmafia93.myMp)() < 40) {
     if (possessEquipment($item`Pantsgiving`)) {
