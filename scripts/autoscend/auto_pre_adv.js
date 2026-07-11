@@ -28934,7 +28934,8 @@ function auto_canDrink(toDrink) {
 }
 function meetsMinAdvPerFillReq(it) {
   if (it.fullness + it.inebriety <= 0) return true;
-  return expectedAdventuresFrom(it) / (it.fullness + it.inebriety) >= get("auto_consumeMinAdvPerFill", 0);
+  var advs = expectedAdventuresFrom(it) / (it.fullness + it.inebriety);
+  return advs === 0 || advs >= get("auto_consumeMinAdvPerFill", 0);
 }
 function auto_canEat(toEat) {
   var checkValidity = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : true;
