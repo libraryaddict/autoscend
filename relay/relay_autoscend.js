@@ -3172,7 +3172,7 @@ function handleSetting(type_1, x) {
     default:
       (0, import_kolmafia137.write)(`<tr bgcolor=${color}><td align=center>${name}</td>`);
       (0, import_kolmafia137.write)(
-        `<td><input type='text' name='${name}' value="${encodedValue}" /></td>`
+        `<td align='center'><input type='text' name='${name}' value="${encodedValue}" /></td>`
       );
       (0, import_kolmafia137.writeln)(`<td>${(0, import_kolmafia137.entityEncode)(set.description)}</td></tr>`);
       break;
@@ -3315,6 +3315,30 @@ function write_familiar() {
     }
   }
 }
+function applySettingChanges() {
+  var fields = (0, import_kolmafia137.formFields)();
+  for (var _i2 = 0, _Object$keys = Object.keys(fields); _i2 < _Object$keys.length; _i2++) {
+    var x = _Object$keys[_i2];
+    if (!x.endsWith("_oldvalue")) {
+      continue;
+    }
+    var prop = x.slice(0, -"_oldvalue".length);
+    var newSetting = prop in fields ? fields[prop] : "false";
+    var oldSetting = fields[x];
+    if (oldSetting === newSetting) {
+      if ((0, import_kolmafia137.getProperty)(prop) !== newSetting) {
+        (0, import_kolmafia137.writeln)(
+          `You did not change setting ${prop}. It changed since you last loaded the page, ignoring.<br>`
+        );
+      }
+      continue;
+    }
+    if ((0, import_kolmafia137.getProperty)(prop) !== newSetting) {
+      (0, import_kolmafia137.writeln)(`Changing setting ${prop} to ${newSetting}<br>`);
+      (0, import_kolmafia137.setProperty)(prop, newSetting);
+    }
+  }
+}
 function write_locations_visited() {
   var ranked_list = /* @__PURE__ */ new Map();
   var _iterator3 = _createForOfIteratorHelper(
@@ -3392,58 +3416,32 @@ function loadMain() {
     `<br><a href="#" onclick="document.body.insertAdjacentHTML('beforeend','<form id=f method=post action=relay_autoscend.js?relay=true><input name=extraSettings value=1></form>');f.submit();return false;">For extra settings click here</a><br><br>`
   );
   loadRelaySettings("autoscend_settings.txt");
-  var fields = new Map(
-    Object.entries((0, import_kolmafia137.formFields)()).map((_ref3) => {
-      var _ref4 = _slicedToArray(_ref3, 2), _k = _ref4[0], _v = _ref4[1];
-      return [_k, _v];
-    })
-  );
-  if (fields.size > 0) {
-    var _iterator5 = _createForOfIteratorHelper(
-      fields.keys()
-    ), _step5;
-    try {
-      for (_iterator5.s(); !(_step5 = _iterator5.n()).done; ) {
-        var x = _step5.value;
-        if (!(0, import_kolmafia137.containsText)(x, "_oldvalue")) {
-          continue;
-        }
-        var prop = (0, import_kolmafia137.substring)(x, 0, (0, import_kolmafia137.length)(x) - 9);
-        var newSetting = fields.get(prop) ?? fields.set(prop, "").get(prop);
-        if (!fields.has(prop)) {
-          newSetting = "false";
-        }
-        var oldSetting = (0, import_kolmafia137.formField)(x);
-        if (oldSetting === newSetting) {
-          if ((0, import_kolmafia137.getProperty)(prop) !== newSetting) {
-            (0, import_kolmafia137.writeln)(
-              `You did not change setting ${prop}. It changed since you last loaded the page, ignoring.<br>`
-            );
-          }
-          continue;
-        }
-        if ((0, import_kolmafia137.getProperty)(prop) !== newSetting) {
-          (0, import_kolmafia137.writeln)(`Changing setting ${prop} to ${newSetting}<br>`);
-          (0, import_kolmafia137.setProperty)(prop, newSetting);
-        }
-      }
-    } catch (err) {
-      _iterator5.e(err);
-    } finally {
-      _iterator5.f();
-    }
-  }
+  applySettingChanges();
   (0, import_kolmafia137.writeln)("<form action='' method='post'>");
   (0, import_kolmafia137.writeln)(
     "<table><tr><th width=20%>Setting</th><th width=20%>Value</th><th width=60%>Description</th></tr>"
   );
+  var get2 = (key) => s.has(key) ? s.get(key).keys() : [];
+  var _iterator5 = _createForOfIteratorHelper(
+    get2("any")
+  ), _step5;
+  try {
+    for (_iterator5.s(); !(_step5 = _iterator5.n()).done; ) {
+      var x = _step5.value;
+      handleSetting("any", x);
+    }
+  } catch (err) {
+    _iterator5.e(err);
+  } finally {
+    _iterator5.f();
+  }
   var _iterator6 = _createForOfIteratorHelper(
-    (s.get("any") ?? s.set("any", /* @__PURE__ */ new Map()).get("any")).keys()
+    get2("pre")
   ), _step6;
   try {
     for (_iterator6.s(); !(_step6 = _iterator6.n()).done; ) {
       var _x = _step6.value;
-      handleSetting("any", _x);
+      handleSetting("pre", _x);
     }
   } catch (err) {
     _iterator6.e(err);
@@ -3451,12 +3449,12 @@ function loadMain() {
     _iterator6.f();
   }
   var _iterator7 = _createForOfIteratorHelper(
-    (s.get("pre") ?? s.set("pre", /* @__PURE__ */ new Map()).get("pre")).keys()
+    get2("post")
   ), _step7;
   try {
     for (_iterator7.s(); !(_step7 = _iterator7.n()).done; ) {
       var _x2 = _step7.value;
-      handleSetting("pre", _x2);
+      handleSetting("post", _x2);
     }
   } catch (err) {
     _iterator7.e(err);
@@ -3464,12 +3462,12 @@ function loadMain() {
     _iterator7.f();
   }
   var _iterator8 = _createForOfIteratorHelper(
-    (s.get("post") ?? s.set("post", /* @__PURE__ */ new Map()).get("post")).keys()
+    get2("action")
   ), _step8;
   try {
     for (_iterator8.s(); !(_step8 = _iterator8.n()).done; ) {
       var _x3 = _step8.value;
-      handleSetting("post", _x3);
+      handleSetting("action", _x3);
     }
   } catch (err) {
     _iterator8.e(err);
@@ -3477,30 +3475,17 @@ function loadMain() {
     _iterator8.f();
   }
   var _iterator9 = _createForOfIteratorHelper(
-    (s.get("action") ?? s.set("action", /* @__PURE__ */ new Map()).get("action")).keys()
+    get2("sharing")
   ), _step9;
   try {
     for (_iterator9.s(); !(_step9 = _iterator9.n()).done; ) {
       var _x4 = _step9.value;
-      handleSetting("action", _x4);
+      handleSetting("sharing", _x4);
     }
   } catch (err) {
     _iterator9.e(err);
   } finally {
     _iterator9.f();
-  }
-  var _iterator0 = _createForOfIteratorHelper(
-    (s.get("sharing") ?? s.set("sharing", /* @__PURE__ */ new Map()).get("sharing")).keys()
-  ), _step0;
-  try {
-    for (_iterator0.s(); !(_step0 = _iterator0.n()).done; ) {
-      var _x5 = _step0.value;
-      handleSetting("sharing", _x5);
-    }
-  } catch (err) {
-    _iterator0.e(err);
-  } finally {
-    _iterator0.f();
   }
   (0, import_kolmafia137.writeln)(
     "<tr><td align=center colspan='3'><input type='submit' name='' value='Save Changes'/></td></tr></table></form>"
@@ -3595,43 +3580,32 @@ function loadExtra() {
   (0, import_kolmafia137.writeln)(
     '<br><a href="relay_autoscend.js?relay=true">Return to main autoscend page</a><br><br>'
   );
-  var fields = (0, import_kolmafia137.formFields)();
-  for (var _i2 = 0, _Object$entries = Object.entries(fields); _i2 < _Object$entries.length; _i2++) {
-    var _Object$entries$_i = _slicedToArray(_Object$entries[_i2], 1), x = _Object$entries$_i[0];
-    if (!x.includes("_oldvalue")) {
-      continue;
-    }
-    var prop = (0, import_kolmafia137.substring)(x, 0, (0, import_kolmafia137.length)(x) - 9);
-    var newSetting = fields[prop];
-    if (!Object.keys((0, import_kolmafia137.formFields)()).includes(prop)) {
-      newSetting = "false";
-    }
-    var oldSetting = (0, import_kolmafia137.formField)(x);
-    if (oldSetting === newSetting) {
-      if ((0, import_kolmafia137.getProperty)(prop) !== newSetting) {
-        (0, import_kolmafia137.writeln)(
-          `You did not change setting ${prop}. It changed since you last loaded the page, ignoring.<br>`
-        );
-      }
-      continue;
-    }
-    if ((0, import_kolmafia137.getProperty)(prop) !== newSetting) {
-      (0, import_kolmafia137.writeln)(`Changing setting ${prop} to ${newSetting}<br>`);
-      (0, import_kolmafia137.setProperty)(prop, newSetting);
-    }
-  }
+  applySettingChanges();
   (0, import_kolmafia137.writeln)("<form action='' method='post'>");
   (0, import_kolmafia137.writeln)(
     "<table><tr><th width=20%>Setting</th><th width=20%>Value</th><th width=60%>Description</th></tr>"
   );
   var get2 = (key) => s.has(key) ? s.get(key).keys() : [];
-  var _iterator1 = _createForOfIteratorHelper(
+  var _iterator0 = _createForOfIteratorHelper(
     get2("any")
+  ), _step0;
+  try {
+    for (_iterator0.s(); !(_step0 = _iterator0.n()).done; ) {
+      var x = _step0.value;
+      handleSetting("any", x);
+    }
+  } catch (err) {
+    _iterator0.e(err);
+  } finally {
+    _iterator0.f();
+  }
+  var _iterator1 = _createForOfIteratorHelper(
+    get2("pre")
   ), _step1;
   try {
     for (_iterator1.s(); !(_step1 = _iterator1.n()).done; ) {
-      var _x6 = _step1.value;
-      handleSetting("any", _x6);
+      var _x5 = _step1.value;
+      handleSetting("pre", _x5);
     }
   } catch (err) {
     _iterator1.e(err);
@@ -3639,12 +3613,12 @@ function loadExtra() {
     _iterator1.f();
   }
   var _iterator10 = _createForOfIteratorHelper(
-    get2("pre")
+    get2("post")
   ), _step10;
   try {
     for (_iterator10.s(); !(_step10 = _iterator10.n()).done; ) {
-      var _x7 = _step10.value;
-      handleSetting("pre", _x7);
+      var _x6 = _step10.value;
+      handleSetting("post", _x6);
     }
   } catch (err) {
     _iterator10.e(err);
@@ -3652,12 +3626,12 @@ function loadExtra() {
     _iterator10.f();
   }
   var _iterator11 = _createForOfIteratorHelper(
-    get2("post")
+    get2("action")
   ), _step11;
   try {
     for (_iterator11.s(); !(_step11 = _iterator11.n()).done; ) {
-      var _x8 = _step11.value;
-      handleSetting("post", _x8);
+      var _x7 = _step11.value;
+      handleSetting("action", _x7);
     }
   } catch (err) {
     _iterator11.e(err);
@@ -3665,30 +3639,17 @@ function loadExtra() {
     _iterator11.f();
   }
   var _iterator12 = _createForOfIteratorHelper(
-    get2("action")
+    get2("sharing")
   ), _step12;
   try {
     for (_iterator12.s(); !(_step12 = _iterator12.n()).done; ) {
-      var _x9 = _step12.value;
-      handleSetting("action", _x9);
+      var _x8 = _step12.value;
+      handleSetting("sharing", _x8);
     }
   } catch (err) {
     _iterator12.e(err);
   } finally {
     _iterator12.f();
-  }
-  var _iterator13 = _createForOfIteratorHelper(
-    get2("sharing")
-  ), _step13;
-  try {
-    for (_iterator13.s(); !(_step13 = _iterator13.n()).done; ) {
-      var _x0 = _step13.value;
-      handleSetting("sharing", _x0);
-    }
-  } catch (err) {
-    _iterator13.e(err);
-  } finally {
-    _iterator13.f();
   }
   (0, import_kolmafia137.writeln)(
     "<tr><td align=center colspan='3'><input type='submit' name='' value='Save Changes'/></td></tr></table></form>"

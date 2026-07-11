@@ -1069,6 +1069,7 @@ var ConsumeAction = /* @__PURE__ */ _createClass(
     var desirability = arguments.length > 4 && arguments[4] !== void 0 ? arguments[4] : 0;
     var organ = arguments.length > 5 && arguments[5] !== void 0 ? arguments[5] : 0;
     var howtoget = arguments.length > 6 && arguments[6] !== void 0 ? arguments[6] : 0;
+    var data = arguments.length > 7 ? arguments[7] : void 0;
     _classCallCheck(this, ConsumeAction2);
     this.it = it;
     this.cafeid = cafeid;
@@ -1077,6 +1078,7 @@ var ConsumeAction = /* @__PURE__ */ _createClass(
     this.desirability = desirability;
     this.organ = organ;
     this.howtoget = howtoget;
+    this.data = data;
   }
 );
 
@@ -21625,7 +21627,10 @@ function expectedAdventuresFrom(it) {
   }
   return expected;
 }
-function canOde(toDrink) {
+function canOde(toDrink, action) {
+  if (action && action.data && action.data.castOde !== void 0) {
+    return action.data.castOde;
+  }
   if (in_tcrs()) {
     return true;
   }
@@ -21634,15 +21639,12 @@ function canOde(toDrink) {
   )) {
     return false;
   }
-  if (toDrink === $item`tiny stillsuit`) {
-    return false;
-  }
   return true;
 }
 function autoDrink(howMany, toDrink) {
-  return autoDrink$1(howMany, toDrink, false);
-}
-function autoDrink$1(howMany, toDrink, silent) {
+  var _action$data;
+  var silent = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : false;
+  var action = arguments.length > 3 ? arguments[3] : void 0;
   if ((0, import_kolmafia135.toBoolean)((0, import_kolmafia135.getProperty)("auto_limitConsume"))) {
     return false;
   }
@@ -21653,48 +21655,45 @@ function autoDrink$1(howMany, toDrink, silent) {
   if (isSpeakeasy && !canDrinkSpeakeasyDrink(toDrink)) {
     return false;
   }
-  if (toDrink === $item`tiny stillsuit`) {
-    var stillsuitAdvs = auto_expectedStillsuitAdvs();
-    (0, import_kolmafia135.visitUrl)("inventory.php?action=distill&pwd");
-    (0, import_kolmafia135.visitUrl)("choice.php?pwd&whichchoice=1476&option=1");
-    handleTracker$1(toDrink.toString(), `${stillsuitAdvs}Advs`, "auto_drunken");
-    return true;
-  }
-  if ((0, import_kolmafia135.itemAmount)(toDrink) < howMany && !isSpeakeasy) {
-    return false;
-  }
-  if (!auto_canDrink(toDrink)) {
-    return false;
-  }
-  if (canOde(toDrink) && (0, import_kolmafia135.itemAmount)($item`hard rock`) > 0) {
-    (0, import_kolmafia135.use)(1, $item`hard rock`);
-  }
-  if (canOde(toDrink) && minAdvPerDrunk(toDrink) >= 5 && $familiar`Cooler Yeti`.experience >= 400 && (auto_haveSeptEmberCenser() && (0, import_kolmafia135.myLevel)() >= 15 || $familiar`Cooler Yeti`.experience > 800 || !auto_haveSeptEmberCenser())) {
-    (0, import_kolmafia135.useFamiliar)($familiar`Cooler Yeti`);
-    if ((0, import_kolmafia135.containsText)((0, import_kolmafia135.visitUrl)("main.php?talktoyeti=1"), "choiceform2")) {
-      handleTracker$1(
-        $familiar`Cooler Yeti`.toString(),
-        `Double adv of ${toDrink.toString()}`,
-        "auto_otherstuff"
-      );
-      (0, import_kolmafia135.visitUrl)("choice.php?pwd=&whichchoice=1560&option=2");
+  if ((action === null || action === void 0 || (_action$data = action.data) === null || _action$data === void 0 ? void 0 : _action$data.consume) === void 0) {
+    if ((0, import_kolmafia135.itemAmount)(toDrink) < howMany && !isSpeakeasy) {
+      return false;
+    }
+    if (!auto_canDrink(toDrink)) {
+      return false;
     }
   }
-  var expectedInebriety = toDrink.inebriety * howMany;
-  if (canOde(toDrink) && possessEquipment($item`Wrist-Boy`) && (0, import_kolmafia135.myMeat)() > 6500) {
-    if ((0, import_kolmafia135.haveEffect)($effect`Drunk and Avuncular`) < expectedInebriety && (0, import_kolmafia135.itemAmount)($item`Drunk Uncles holo-record`) === 0) {
-      auto_buyUpTo(1, $item`Drunk Uncles holo-record`);
+  if (canOde(toDrink, action)) {
+    if ((0, import_kolmafia135.itemAmount)($item`hard rock`) > 0) {
+      (0, import_kolmafia135.use)(1, $item`hard rock`);
     }
-    buffMaintain$3($effect`Drunk and Avuncular`, 0, 1, expectedInebriety);
-  }
-  if (canOde(toDrink) && auto_have_skill($skill`The Ode to Booze`)) {
-    shrugAT($effect`Ode to Booze`);
-    while (acquireMP((0, import_kolmafia135.mpCost)($skill`The Ode to Booze`), 0) && buffMaintain$3(
-      $effect`Ode to Booze`,
-      (0, import_kolmafia135.mpCost)($skill`The Ode to Booze`),
-      1,
-      expectedInebriety
-    )) {
+    if (minAdvPerDrunk(toDrink) >= 5 && $familiar`Cooler Yeti`.experience >= 400 && (auto_haveSeptEmberCenser() && (0, import_kolmafia135.myLevel)() >= 15 || $familiar`Cooler Yeti`.experience > 800 || !auto_haveSeptEmberCenser())) {
+      (0, import_kolmafia135.useFamiliar)($familiar`Cooler Yeti`);
+      if ((0, import_kolmafia135.containsText)((0, import_kolmafia135.visitUrl)("main.php?talktoyeti=1"), "choiceform2")) {
+        handleTracker$1(
+          $familiar`Cooler Yeti`.toString(),
+          `Double adv of ${toDrink.toString()}`,
+          "auto_otherstuff"
+        );
+        (0, import_kolmafia135.visitUrl)("choice.php?pwd=&whichchoice=1560&option=2");
+      }
+    }
+    var expectedInebriety = toDrink.inebriety * howMany;
+    if (possessEquipment($item`Wrist-Boy`) && (0, import_kolmafia135.myMeat)() > 6500) {
+      if ((0, import_kolmafia135.haveEffect)($effect`Drunk and Avuncular`) < expectedInebriety && (0, import_kolmafia135.itemAmount)($item`Drunk Uncles holo-record`) === 0) {
+        auto_buyUpTo(1, $item`Drunk Uncles holo-record`);
+      }
+      buffMaintain$3($effect`Drunk and Avuncular`, 0, 1, expectedInebriety);
+    }
+    if (auto_have_skill($skill`The Ode to Booze`)) {
+      shrugAT($effect`Ode to Booze`);
+      while (acquireMP((0, import_kolmafia135.mpCost)($skill`The Ode to Booze`), 0) && buffMaintain$3(
+        $effect`Ode to Booze`,
+        (0, import_kolmafia135.mpCost)($skill`The Ode to Booze`),
+        1,
+        expectedInebriety
+      )) {
+      }
     }
   }
   equipStatgainIncreasersFor(toDrink);
@@ -21706,7 +21705,10 @@ function autoDrink$1(howMany, toDrink, silent) {
   }
   var retval = false;
   while (howMany > 0) {
-    if (!isSpeakeasy) {
+    var _action$data2, _action$data3;
+    if (action !== null && action !== void 0 && (_action$data2 = action.data) !== null && _action$data2 !== void 0 && _action$data2.consume) {
+      retval = action.data.consume();
+    } else if (!isSpeakeasy) {
       if (silent) {
         retval = (0, import_kolmafia135.drinksilent)(1, toDrink);
       } else {
@@ -21715,7 +21717,7 @@ function autoDrink$1(howMany, toDrink, silent) {
     } else {
       retval = drinkSpeakeasyDrink(toDrink);
     }
-    if (retval) {
+    if (retval && (action === null || action === void 0 || (_action$data3 = action.data) === null || _action$data3 === void 0 ? void 0 : _action$data3.hasOwnTracking) !== true) {
       handleTracker(toDrink.toString(), "auto_drunken");
     }
     howMany = howMany - 1;
@@ -22184,6 +22186,7 @@ function to_debug_string(action) {
   return ret;
 }
 function autoPrepConsume(action) {
+  var _action$data4;
   auto_log_info$1(to_debug_string(action));
   if (action.howtoget === AUTO_OBTAIN_PULL) {
     auto_log_info(`autoPrepConsume: Pulling a ${action.it}`, "blue");
@@ -22197,6 +22200,9 @@ function autoPrepConsume(action) {
     auto_log_info(`autoPrepConsume: Buying a ${action.it}`, "blue");
     action.howtoget = AUTO_OBTAIN_NULL;
     return auto_buyUpTo(1, action.it);
+  } else if ((_action$data4 = action.data) !== null && _action$data4 !== void 0 && _action$data4.prep) {
+    action.howtoget = AUTO_OBTAIN_NULL;
+    return action.data.prep();
   } else if (action.howtoget === AUTO_OBTAIN_NULL) {
     auto_log_info(
       `autoPrepConsume: Doing nothing to get a ${action.it}`,
@@ -22206,13 +22212,14 @@ function autoPrepConsume(action) {
   return true;
 }
 function autoConsume(action) {
+  var _action$data5;
   if ((0, import_kolmafia135.toBoolean)((0, import_kolmafia135.getProperty)("auto_limitConsume"))) {
     return false;
   }
   if (action.howtoget !== AUTO_OBTAIN_NULL) {
     (0, import_kolmafia135.abort)(`ConsumeAction not prepped: ${to_debug_string(action)}`);
   }
-  if (action.organ === AUTO_ORGAN_LIVER && action.it !== $item`tiny stillsuit`) {
+  if (((_action$data5 = action.data) === null || _action$data5 === void 0 ? void 0 : _action$data5.castOde) ?? action.organ === AUTO_ORGAN_LIVER) {
     buffMaintain$3($effect`Ode to Booze`, 20, 1, action.size);
   }
   if (action.cafeid !== 0) {
@@ -22223,7 +22230,7 @@ function autoConsume(action) {
     }
   } else if (action.it !== import_kolmafia135.Item.none) {
     if (action.organ === AUTO_ORGAN_LIVER) {
-      return autoDrink(1, action.it);
+      return autoDrink(1, action.it, false, action);
     } else if (action.organ === AUTO_ORGAN_STOMACH) {
       return autoEat(1, action.it);
     } else {
