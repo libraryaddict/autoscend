@@ -21125,7 +21125,6 @@ function auto_interruptZoneCheck() {
 }
 function auto_interruptCheck(debug) {
   if ((0, import_kolmafia121.toBoolean)((0, import_kolmafia121.getProperty)("auto_interrupt"))) {
-    (0, import_kolmafia121.setProperty)("auto_interrupt", false.toString());
     restoreAllSettings();
     meatReserveMessage();
     (0, import_kolmafia121.abort)("auto_interrupt detected and aborting, auto_interrupt disabled.");

@@ -55459,7 +55459,6 @@ function auto_interruptZoneCheck() {
 }
 function auto_interruptCheck(debug) {
   if ((0, import_kolmafia122.toBoolean)((0, import_kolmafia122.getProperty)("auto_interrupt"))) {
-    (0, import_kolmafia122.setProperty)("auto_interrupt", false.toString());
     restoreAllSettings();
     meatReserveMessage();
     (0, import_kolmafia122.abort)("auto_interrupt detected and aborting, auto_interrupt disabled.");
@@ -66863,6 +66862,10 @@ function main() {
   )) {
     (0, import_kolmafia138.abort)("User aborted script after failed migration.");
   }
-  safe_preference_reset_wrapper(3);
+  try {
+    safe_preference_reset_wrapper(3);
+  } finally {
+    _set("auto_interrupt", false);
+  }
 }
 //!possessEquipment($item[Kekekey])
