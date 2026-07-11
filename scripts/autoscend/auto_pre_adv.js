@@ -2695,14 +2695,23 @@ function auto_cupOfThirteenAdvRemaining() {
 }
 function auto_bestCupOfThirteenAction(reqEffect) {
   var ingredients = getCupIngredients();
-  var effectScores = /* @__PURE__ */ new Map(
-    [
-      // eslint-disable-next-line libram/verify-constants
-      [$effect`Runneth Over`, 10],
-      // eslint-disable-next-line libram/verify-constants
-      [$effect`Runneth On Empty`, (0, import_kolmafia29.myMeat)() + 3e3 > meatReserve() ? 1 : 20]
-    ]
-  );
+  var effectScores = /* @__PURE__ */ new Map([
+    // eslint-disable-next-line libram/verify-constants
+    [$effect`Runneth Over`, 100],
+    // 50% item drop
+    // eslint-disable-next-line libram/verify-constants
+    [$effect`Runneth On Empty`, (0, import_kolmafia29.myMeat)() > meatReserve() + 3e3 ? 5 : 200],
+    // 100% meat drop
+    // eslint-disable-next-line libram/verify-constants
+    [$effect`Runneth a Tight Ship `, 1],
+    // +5 fam exp
+    // eslint-disable-next-line libram/verify-constants
+    [$effect`Runneth With The Pack`, 3],
+    // +5 fam weight
+    // eslint-disable-next-line libram/verify-constants
+    [$effect`Runneth Wild`, 0.1]
+    // +100 init
+  ]);
   var prices = new Map(
     ingredients.map(
       (ingredient) => [
@@ -2729,6 +2738,9 @@ function auto_bestCupOfThirteenAction(reqEffect) {
       var effScore2 = (effectScores.get(b.effect) ?? 0) * (b.effectDuration ?? 0);
       if (effScore1 !== effScore2) {
         return effScore2 - effScore1;
+      }
+      if (a.statAmount !== b.statAmount) {
+        return (b.statAmount ?? 0) - (a.statAmount ?? 0);
       }
       return prices.get(a.item) - prices.get(b.item);
     });
