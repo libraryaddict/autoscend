@@ -125,7 +125,7 @@ function _createForOfIteratorHelper(r, e) {
   }
   var o, a = true, u = false;
   return {
-    s: function s2() {
+    s: function s() {
       t = t.call(r);
     },
     n: function n() {
@@ -2405,30 +2405,30 @@ function auto_is_valid$1(fam) {
   }
   return bhy_usable(fam.toString()) && glover_usable(fam.toString()) && zombieSlayer_usable(fam) && wereprof_usable(fam.toString()) && iluh_famAllowed(fam.toString()) && (0, import_kolmafia120.isUnrestricted)(fam);
 }
-function auto_log(s2, color, log_level) {
+function auto_log(s, color, log_level) {
   if (log_level > (0, import_kolmafia120.toInt)((0, import_kolmafia120.getProperty)("auto_log_level"))) {
     return;
   }
   switch (log_level) {
     case 1:
-      (0, import_kolmafia120.print)(`[WARNING] ${s2}`, color);
+      (0, import_kolmafia120.print)(`[WARNING] ${s}`, color);
       break;
     case 2:
-      (0, import_kolmafia120.print)(`[INFO] ${s2}`, color);
+      (0, import_kolmafia120.print)(`[INFO] ${s}`, color);
       break;
     case 3:
-      (0, import_kolmafia120.print)(`[DEBUG] ${s2}`, color);
+      (0, import_kolmafia120.print)(`[DEBUG] ${s}`, color);
       break;
   }
 }
-function auto_log_info(s2, color) {
-  auto_log(s2, color, 2);
+function auto_log_info(s, color) {
+  auto_log(s, color, 2);
 }
-function auto_log_info$1(s2) {
-  auto_log(s2, "blue", 2);
+function auto_log_info$1(s) {
+  auto_log(s, "blue", 2);
 }
-function auto_log_debug(s2, color) {
-  auto_log(s2, color, 3);
+function auto_log_debug(s, color) {
+  auto_log(s, color, 3);
 }
 function auto_turbo() {
   return (0, import_kolmafia120.toBoolean)((0, import_kolmafia120.getProperty)("auto_turbo"));
@@ -2555,14 +2555,14 @@ var import_kolmafia125 = require("kolmafia");
 // src/autoscend/auto_settings.ts
 var import_kolmafia127 = require("kolmafia");
 function trackingSplitterFixer(oldSetting, day, newSetting) {
-  var setting3 = (0, import_kolmafia127.getProperty)(oldSetting);
-  if (setting3 === "") {
+  var setting = (0, import_kolmafia127.getProperty)(oldSetting);
+  if (setting === "") {
     return false;
   }
-  var cleanSpaces = new AshMatcher(", ", setting3);
-  setting3 = cleanSpaces.replaceAll(",");
+  var cleanSpaces = new AshMatcher(", ", setting);
+  setting = cleanSpaces.replaceAll(",");
   var retval = new Map(
-    (0, import_kolmafia127.splitString)(setting3, ",").map((_v, _i) => [_i, _v])
+    (0, import_kolmafia127.splitString)(setting, ",").map((_v, _i) => [_i, _v])
   );
   var _iterator = _createForOfIteratorHelper(
     retval.keys()
@@ -3115,62 +3115,68 @@ function initializeSettings() {
 }
 
 // src/relay_autoscend.ts
-var setting = /* @__PURE__ */ _createClass(
-  function setting2() {
+var Setting = /* @__PURE__ */ _createClass(
+  function Setting2() {
     var name = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : "";
     var type = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : "";
     var description = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : "";
-    _classCallCheck(this, setting2);
+    _classCallCheck(this, Setting2);
     this.name = name;
     this.type = type;
     this.description = description;
   }
 );
-var s;
-function loadRelaySettings(file) {
-  s = fileAsMap(file, [String, Number, ctor(setting)]);
-}
+var settingCategories = [
+  {
+    name: "Anytime",
+    description: "This setting can be changed at any time and takes effect immediately.",
+    color: "#00ffff"
+  },
+  {
+    name: "Iotm",
+    description: "Settings for items bound to accounts, sorted by year of release descending.",
+    color: "#00b7c4"
+  },
+  {
+    name: "Pre",
+    description: "Next time we initialize settings for autoscend this will be used to determine what we should set some Post type settings to.",
+    color: "#ffff00"
+  },
+  {
+    name: "Post",
+    description: "Settings for current ascension. Automatically reconfigured each ascension when we initialize setting for that ascension. After settings have been initialized you may change this. Under some circumstances they will be automatically changed mid ascension.",
+    color: "#00ff00"
+  },
+  {
+    name: "Action",
+    description: "This causes something to immediately (or when reasonable) happen.",
+    color: "#af6fbf"
+  },
+  {
+    name: "Sharing",
+    description: "Allows sharing game data.",
+    color: "#ff6644"
+  }
+];
 function write_styles() {
   (0, import_kolmafia137.writeln)(
     `<style type='text/css'>body {width: 95%;margin: auto;background: #EAEAEA;text-align:center;padding:0;cursor:default;user-select: none;-webkit-user- select: none;-moz-user-select: text;}h1 {font-family:times;font-size:125%;color:#000;}table, th, td {border: 1px solid black;}</style>`
   );
 }
-function handleSetting(type_1, x) {
-  var color;
-  switch (type_1) {
-    case "any":
-      color = "#00ffff";
-      break;
-    case "pre":
-      color = "#ffff00";
-      break;
-    case "post":
-      color = "#00ff00";
-      break;
-    case "action":
-      color = "#af6fbf";
-      break;
-    case "sharing":
-      color = "#ff6644";
-      break;
-    default:
-      color = "#ffffff";
-      break;
-  }
-  var set = (s.get(type_1) ?? s.set(type_1, /* @__PURE__ */ new Map()).get(type_1)).get(x) ?? (s.get(type_1) ?? s.set(type_1, /* @__PURE__ */ new Map()).get(type_1)).set(x, new setting()).get(x);
+function handleSetting(category, set) {
   var name = (0, import_kolmafia137.entityEncode)(set.name);
   var encodedValue = (0, import_kolmafia137.entityEncode)((0, import_kolmafia137.getProperty)(name));
   switch (set.type) {
     case "boolean": {
       var checked = get(name, false) ? ` checked` : ``;
       (0, import_kolmafia137.write)(
-        `<tr bgcolor=${color}><td align=center>${name}</td><td align=center><input type='checkbox' name='${name}' value='true'${checked}>`
+        `<tr bgcolor=${category.color}><td align=center>${name}</td><td align=center><input type='checkbox' name='${name}' value='true'${checked}>`
       );
       (0, import_kolmafia137.writeln)(`</td><td>${(0, import_kolmafia137.entityEncode)(set.description)}</td></tr>`);
       break;
     }
     default:
-      (0, import_kolmafia137.write)(`<tr bgcolor=${color}><td align=center>${name}</td>`);
+      (0, import_kolmafia137.write)(`<tr bgcolor=${category.color}><td align=center>${name}</td>`);
       (0, import_kolmafia137.write)(
         `<td align='center'><input type='text' name='${name}' value="${encodedValue}" /></td>`
       );
@@ -3183,21 +3189,21 @@ function handleSetting(type_1, x) {
 }
 function write_settings_key() {
   (0, import_kolmafia137.writeln)("<table><tr><th>Settings Color Codings</th></tr>");
-  (0, import_kolmafia137.writeln)(
-    "<tr bgcolor=#00ffff><td>Anytime: This setting can be changed at any time and takes effect immediately.</td></tr>"
-  );
-  (0, import_kolmafia137.writeln)(
-    "<tr bgcolor=#ffff00><td>Pre: Next time we initialize settings for autoscend this will be used to determine what we should set some Post type settings to.</td></tr>"
-  );
-  (0, import_kolmafia137.writeln)(
-    "<tr bgcolor=#00ff00><td>Post: settings for current ascension. Automatically reconfigured each ascension when we initialize setting for that ascension. After settings have been initialized you may change this. Under some circumstances they will be automatically changed mid ascension</td></tr>"
-  );
-  (0, import_kolmafia137.writeln)(
-    "<tr bgcolor=#af6fbf><td>Action: This causes something to immediately (or when reasonable) happen.</td></tr>"
-  );
-  (0, import_kolmafia137.writeln)(
-    "<tr bgcolor=#ff6644><td>Sharing: Allows sharing game data.</td></tr>"
-  );
+  var _iterator = _createForOfIteratorHelper(
+    settingCategories
+  ), _step;
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done; ) {
+      var category = _step.value;
+      (0, import_kolmafia137.writeln)(
+        `<tr bgcolor=${category.color}><td>${category.name}: ${category.description}</td></tr>`
+      );
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
   (0, import_kolmafia137.writeln)("</table>");
 }
 function generateTrackingData(tracked, print_between, stacked) {
@@ -3212,12 +3218,12 @@ function generateTrackingData(tracked, print_between, stacked) {
   var stack_counts = /* @__PURE__ */ new Map();
   var unique_idx = -1;
   var last_event = "";
-  var _iterator = _createForOfIteratorHelper(
+  var _iterator2 = _createForOfIteratorHelper(
     tracking
-  ), _step;
+  ), _step2;
   try {
-    for (_iterator.s(); !(_step = _iterator.n()).done; ) {
-      var _step$value = _slicedToArray(_step.value, 2), event = _step$value[1];
+    for (_iterator2.s(); !(_step2 = _iterator2.n()).done; ) {
+      var _step2$value = _slicedToArray(_step2.value, 2), event = _step2$value[1];
       if (last_event !== event) {
         unique_idx++;
         tracking_stacked.set(unique_idx, event);
@@ -3228,17 +3234,17 @@ function generateTrackingData(tracked, print_between, stacked) {
       }
     }
   } catch (err) {
-    _iterator.e(err);
+    _iterator2.e(err);
   } finally {
-    _iterator.f();
+    _iterator2.f();
   }
   var tracking_to_use = stacked ? tracking_stacked : tracking;
-  var _iterator2 = _createForOfIteratorHelper(
+  var _iterator3 = _createForOfIteratorHelper(
     tracking_to_use
-  ), _step2;
+  ), _step3;
   try {
-    for (_iterator2.s(); !(_step2 = _iterator2.n()).done; ) {
-      var _step2$value = _slicedToArray(_step2.value, 2), idx = _step2$value[0], rawEvent = _step2$value[1];
+    for (_iterator3.s(); !(_step3 = _iterator3.n()).done; ) {
+      var _step3$value = _slicedToArray(_step3.value, 2), idx = _step3$value[0], rawEvent = _step3$value[1];
       if (rawEvent === "") {
         continue;
       }
@@ -3257,10 +3263,10 @@ function generateTrackingData(tracked, print_between, stacked) {
         (0, import_kolmafia137.writeln)(`<b>Day ${day}:</b>`);
       }
       var toWrite = "(";
-      for (var i = 1, _last_6 = current.size - 1, _step_6 = 1, _up_6 = i <= _last_6, _inc_6 = _up_6 ? Math.abs(_step_6) : -Math.abs(_step_6); _up_6 ? i <= _last_6 : i >= _last_6; i += _inc_6) {
-        toWrite = toWrite + (current.get(i) ?? current.set(i, "").get(i));
-        if (i !== current.size - 1) {
-          toWrite = `${toWrite}:`;
+      for (var i = 1; i < current.size; i++) {
+        toWrite += current.get(i) ?? current.set(i, "").get(i);
+        if (i < current.size - 1) {
+          toWrite += ":";
         }
       }
       if (stacked) {
@@ -3272,9 +3278,9 @@ function generateTrackingData(tracked, print_between, stacked) {
       (0, import_kolmafia137.writeln)(toWrite);
     }
   } catch (err) {
-    _iterator2.e(err);
+    _iterator3.e(err);
   } finally {
-    _iterator2.f();
+    _iterator3.f();
   }
 }
 function generateTrackingData$1(tracked) {
@@ -3341,20 +3347,20 @@ function applySettingChanges() {
 }
 function write_locations_visited() {
   var ranked_list = /* @__PURE__ */ new Map();
-  var _iterator3 = _createForOfIteratorHelper(
+  var _iterator4 = _createForOfIteratorHelper(
     $locations.all()
-  ), _step3;
+  ), _step4;
   try {
-    for (_iterator3.s(); !(_step3 = _iterator3.n()).done; ) {
-      var loc = _step3.value;
+    for (_iterator4.s(); !(_step4 = _iterator4.n()).done; ) {
+      var loc = _step4.value;
       if (loc.turnsSpent > 0) {
         ranked_list.set(ranked_list.size, loc);
       }
     }
   } catch (err) {
-    _iterator3.e(err);
+    _iterator4.e(err);
   } finally {
-    _iterator3.f();
+    _iterator4.f();
   }
   ranked_list = new Map(
     _toConsumableArray(ranked_list.entries()).map((_ref) => {
@@ -3366,20 +3372,50 @@ function write_locations_visited() {
   );
   (0, import_kolmafia137.writeln)('<table style="margin-left:auto;margin-right:auto;">');
   (0, import_kolmafia137.writeln)("<tr><th>Location</th> <th>Turns</th></tr>");
-  var _iterator4 = _createForOfIteratorHelper(
+  var _iterator5 = _createForOfIteratorHelper(
     ranked_list
-  ), _step4;
+  ), _step5;
   try {
-    for (_iterator4.s(); !(_step4 = _iterator4.n()).done; ) {
-      var _step4$value = _slicedToArray(_step4.value, 2), _loc = _step4$value[1];
+    for (_iterator5.s(); !(_step5 = _iterator5.n()).done; ) {
+      var _step5$value = _slicedToArray(_step5.value, 2), _loc = _step5$value[1];
       (0, import_kolmafia137.writeln)(`<tr><td>${_loc.toString()}</td><td>${_loc.turnsSpent}</td></tr>`);
     }
   } catch (err) {
-    _iterator4.e(err);
+    _iterator5.e(err);
   } finally {
-    _iterator4.f();
+    _iterator5.f();
   }
   (0, import_kolmafia137.writeln)("</table>");
+}
+function writeSettings(filename) {
+  var fromMap = fileAsMap(filename, [String, Number, ctor(Setting)]);
+  var _iterator6 = _createForOfIteratorHelper(
+    settingCategories
+  ), _step6;
+  try {
+    for (_iterator6.s(); !(_step6 = _iterator6.n()).done; ) {
+      var category = _step6.value;
+      var settings = fromMap.get(category.name.toLowerCase());
+      if (!(settings !== null && settings !== void 0 && settings.size)) continue;
+      var _iterator7 = _createForOfIteratorHelper(
+        settings.values()
+      ), _step7;
+      try {
+        for (_iterator7.s(); !(_step7 = _iterator7.n()).done; ) {
+          var setting = _step7.value;
+          handleSetting(category, setting);
+        }
+      } catch (err) {
+        _iterator7.e(err);
+      } finally {
+        _iterator7.f();
+      }
+    }
+  } catch (err) {
+    _iterator6.e(err);
+  } finally {
+    _iterator6.f();
+  }
 }
 function main() {
   if ((0, import_kolmafia137.formFields)()["extraSettings"] === void 0) {
@@ -3415,78 +3451,12 @@ function loadMain() {
   (0, import_kolmafia137.writeln)(
     `<br><a href="#" onclick="document.body.insertAdjacentHTML('beforeend','<form id=f method=post action=relay_autoscend.js?relay=true><input name=extraSettings value=1></form>');f.submit();return false;">For extra settings click here</a><br><br>`
   );
-  loadRelaySettings("autoscend_settings.txt");
   applySettingChanges();
   (0, import_kolmafia137.writeln)("<form action='' method='post'>");
   (0, import_kolmafia137.writeln)(
     "<table><tr><th width=20%>Setting</th><th width=20%>Value</th><th width=60%>Description</th></tr>"
   );
-  var get2 = (key) => s.has(key) ? s.get(key).keys() : [];
-  var _iterator5 = _createForOfIteratorHelper(
-    get2("any")
-  ), _step5;
-  try {
-    for (_iterator5.s(); !(_step5 = _iterator5.n()).done; ) {
-      var x = _step5.value;
-      handleSetting("any", x);
-    }
-  } catch (err) {
-    _iterator5.e(err);
-  } finally {
-    _iterator5.f();
-  }
-  var _iterator6 = _createForOfIteratorHelper(
-    get2("pre")
-  ), _step6;
-  try {
-    for (_iterator6.s(); !(_step6 = _iterator6.n()).done; ) {
-      var _x = _step6.value;
-      handleSetting("pre", _x);
-    }
-  } catch (err) {
-    _iterator6.e(err);
-  } finally {
-    _iterator6.f();
-  }
-  var _iterator7 = _createForOfIteratorHelper(
-    get2("post")
-  ), _step7;
-  try {
-    for (_iterator7.s(); !(_step7 = _iterator7.n()).done; ) {
-      var _x2 = _step7.value;
-      handleSetting("post", _x2);
-    }
-  } catch (err) {
-    _iterator7.e(err);
-  } finally {
-    _iterator7.f();
-  }
-  var _iterator8 = _createForOfIteratorHelper(
-    get2("action")
-  ), _step8;
-  try {
-    for (_iterator8.s(); !(_step8 = _iterator8.n()).done; ) {
-      var _x3 = _step8.value;
-      handleSetting("action", _x3);
-    }
-  } catch (err) {
-    _iterator8.e(err);
-  } finally {
-    _iterator8.f();
-  }
-  var _iterator9 = _createForOfIteratorHelper(
-    get2("sharing")
-  ), _step9;
-  try {
-    for (_iterator9.s(); !(_step9 = _iterator9.n()).done; ) {
-      var _x4 = _step9.value;
-      handleSetting("sharing", _x4);
-    }
-  } catch (err) {
-    _iterator9.e(err);
-  } finally {
-    _iterator9.f();
-  }
+  writeSettings("autoscend_settings.txt");
   (0, import_kolmafia137.writeln)(
     "<tr><td align=center colspan='3'><input type='submit' name='' value='Save Changes'/></td></tr></table></form>"
   );
@@ -3576,7 +3546,6 @@ function loadExtra() {
   write_styles();
   (0, import_kolmafia137.writeln)("<html><head><title>autoscend extra settings</title>");
   (0, import_kolmafia137.writeln)("</head><body><h1>autoscend extra settings</h1>");
-  loadRelaySettings("autoscend_settings_extra.txt");
   (0, import_kolmafia137.writeln)(
     '<br><a href="relay_autoscend.js?relay=true">Return to main autoscend page</a><br><br>'
   );
@@ -3585,72 +3554,7 @@ function loadExtra() {
   (0, import_kolmafia137.writeln)(
     "<table><tr><th width=20%>Setting</th><th width=20%>Value</th><th width=60%>Description</th></tr>"
   );
-  var get2 = (key) => s.has(key) ? s.get(key).keys() : [];
-  var _iterator0 = _createForOfIteratorHelper(
-    get2("any")
-  ), _step0;
-  try {
-    for (_iterator0.s(); !(_step0 = _iterator0.n()).done; ) {
-      var x = _step0.value;
-      handleSetting("any", x);
-    }
-  } catch (err) {
-    _iterator0.e(err);
-  } finally {
-    _iterator0.f();
-  }
-  var _iterator1 = _createForOfIteratorHelper(
-    get2("pre")
-  ), _step1;
-  try {
-    for (_iterator1.s(); !(_step1 = _iterator1.n()).done; ) {
-      var _x5 = _step1.value;
-      handleSetting("pre", _x5);
-    }
-  } catch (err) {
-    _iterator1.e(err);
-  } finally {
-    _iterator1.f();
-  }
-  var _iterator10 = _createForOfIteratorHelper(
-    get2("post")
-  ), _step10;
-  try {
-    for (_iterator10.s(); !(_step10 = _iterator10.n()).done; ) {
-      var _x6 = _step10.value;
-      handleSetting("post", _x6);
-    }
-  } catch (err) {
-    _iterator10.e(err);
-  } finally {
-    _iterator10.f();
-  }
-  var _iterator11 = _createForOfIteratorHelper(
-    get2("action")
-  ), _step11;
-  try {
-    for (_iterator11.s(); !(_step11 = _iterator11.n()).done; ) {
-      var _x7 = _step11.value;
-      handleSetting("action", _x7);
-    }
-  } catch (err) {
-    _iterator11.e(err);
-  } finally {
-    _iterator11.f();
-  }
-  var _iterator12 = _createForOfIteratorHelper(
-    get2("sharing")
-  ), _step12;
-  try {
-    for (_iterator12.s(); !(_step12 = _iterator12.n()).done; ) {
-      var _x8 = _step12.value;
-      handleSetting("sharing", _x8);
-    }
-  } catch (err) {
-    _iterator12.e(err);
-  } finally {
-    _iterator12.f();
-  }
+  writeSettings("autoscend_settings_extra.txt");
   (0, import_kolmafia137.writeln)(
     "<tr><td align=center colspan='3'><input type='submit' name='' value='Save Changes'/></td></tr></table></form>"
   );
