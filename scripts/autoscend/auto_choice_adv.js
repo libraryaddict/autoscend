@@ -2349,14 +2349,6 @@ lowKeys.set($item`discarded bike lock key`, $location`The Overgrown Lot`);
 
 // src/kolmafia/autoscend/iotms/mr2026.ts
 var import_kolmafia53 = require("kolmafia");
-function auto_haveElfToilet() {
-  return auto_is_valid($item`Archaeologist's Spade`) && !is_werewolf() && // Werewolf doesn't have campground?
-  !in_small() && (0, import_kolmafia53.canEat)() && (0, import_kolmafia53.fullnessLimit)() > 1 && (0, import_kolmafia53.haveCampground)() && // Coerce to a boolean
-  !!auto_get_campground().get($item`Pork Elf toilet`);
-}
-function auto_elfToiletReady() {
-  return auto_haveElfToilet() && (0, import_kolmafia53.myFullness)() > 1 && !get("_porkElfToiletUsed") && (haveFreeRestAvailable() || (0, import_kolmafia53.myAdventures)() > 0);
-}
 function auto_haveArchaeologistSpade() {
   if (auto_is_valid($item`Archaeologist's Spade`) && (0, import_kolmafia53.availableAmount)($item`Archaeologist's Spade`) > 0) {
     return true;
@@ -3047,48 +3039,6 @@ function have_fireworks_shop() {
     return false;
   }
   return (0, import_kolmafia63.toBoolean)((0, import_kolmafia63.getProperty)("_fireworksShop"));
-}
-
-// src/kolmafia/autoscend/iotms/mr2023.ts
-var $_auto_haveCincho_cincho;
-function auto_haveCincho() {
-  $_auto_haveCincho_cincho ?? ($_auto_haveCincho_cincho = wrap_item($item`Cincho de Mayo`));
-  if (auto_is_valid($_auto_haveCincho_cincho) && ((0, import_kolmafia65.itemAmount)($_auto_haveCincho_cincho) > 0 || (0, import_kolmafia65.haveEquipped)($_auto_haveCincho_cincho))) {
-    return true;
-  }
-  return false;
-}
-function auto_currentCinch() {
-  if (!auto_haveCincho()) {
-    return 0;
-  }
-  return 100 - (0, import_kolmafia65.toInt)((0, import_kolmafia65.getProperty)("_cinchUsed"));
-}
-function auto_cinchFromNextRest() {
-  var cinchoRestsAlready = (0, import_kolmafia65.toInt)((0, import_kolmafia65.getProperty)("_cinchoRests"));
-  cinchoRestsAlready++;
-  return auto_cinchFromRestN(cinchoRestsAlready);
-}
-function auto_cinchFromRestN(n) {
-  var cinchGainedFromRest = 5;
-  if (n <= 5) {
-    cinchGainedFromRest = 30;
-  } else if (n === 6) {
-    cinchGainedFromRest = 25;
-  } else if (n === 7) {
-    cinchGainedFromRest = 20;
-  } else if (n === 8) {
-    cinchGainedFromRest = 15;
-  } else if (n === 9) {
-    cinchGainedFromRest = 10;
-  }
-  return cinchGainedFromRest;
-}
-function auto_cinchAfterNextRest() {
-  return auto_currentCinch() + auto_cinchFromNextRest();
-}
-function auto_nextRestOverCinch() {
-  return auto_cinchAfterNextRest() > 100;
 }
 
 // src/kolmafia/autoscend/combat/auto_combat_awol.ts
@@ -4130,14 +4080,6 @@ function auto_have_familiar(fam) {
   return (0, import_kolmafia110.haveFamiliar)(fam);
 }
 
-// src/kolmafia/autoscend/auto_restore.ts
-function haveFreeRestAvailable() {
-  if (auto_haveCincho() && auto_nextRestOverCinch()) {
-    return false;
-  }
-  return (0, import_kolmafia112.toInt)((0, import_kolmafia112.getProperty)("timesRested")) < (0, import_kolmafia112.totalFreeRests)();
-}
-
 // src/kolmafia/autoscend/iotms/mr2016.ts
 function expectGhostReport() {
   if ((0, import_kolmafia113.totalTurnsPlayed)() >= (0, import_kolmafia113.toInt)((0, import_kolmafia113.getProperty)("nextParanormalActivity"))) {
@@ -4400,78 +4342,6 @@ function effectiveDropChance(it, baseDropRate) {
     }
   }
   return (0, import_kolmafia120.max)(0, retval);
-}
-var $_auto_get_campground_didCheck;
-function auto_get_campground() {
-  if (isActuallyEd()) {
-    var empty = /* @__PURE__ */ new Map();
-    return empty;
-  }
-  var campItems = new Map(
-    Object.entries((0, import_kolmafia120.getCampground)()).map((_ref9) => {
-      var _ref0 = _slicedToArray(_ref9, 2), _k = _ref0[0], _v = _ref0[1];
-      return [import_kolmafia120.Item.get(_k), _v];
-    })
-  );
-  if (campItems.has($item`ice harvest`)) {
-    campItems.set($item`packet of winter seeds`, 1);
-  }
-  if (campItems.has($item`frost flower`)) {
-    campItems.set($item`packet of winter seeds`, 1);
-  }
-  if (campItems.has($item`handful of barley`)) {
-    campItems.set($item`packet of beer seeds`, 1);
-  }
-  if (campItems.has($item`fancy beer label`)) {
-    campItems.set($item`packet of beer seeds`, 1);
-  }
-  if (campItems.has($item`skeleton`)) {
-    campItems.set($item`packet of dragon's teeth`, 1);
-  }
-  if (campItems.has($item`giant candy cane`)) {
-    campItems.set($item`Peppermint Pip Packet`, 1);
-  }
-  if (campItems.has($item`peppermint sprout`)) {
-    campItems.set($item`Peppermint Pip Packet`, 1);
-  }
-  if (campItems.has($item`ginormous pumpkin`)) {
-    campItems.set($item`packet of pumpkin seeds`, 1);
-  }
-  if (campItems.has($item`huge pumpkin`)) {
-    campItems.set($item`packet of pumpkin seeds`, 1);
-  }
-  if (campItems.has($item`pumpkin`)) {
-    campItems.set($item`packet of pumpkin seeds`, 1);
-  }
-  if (campItems.has($item`cornucopia`)) {
-    campItems.set($item`packet of thanksgarden seeds`, 1);
-  }
-  if (campItems.has($item`megacopia`)) {
-    campItems.set($item`packet of thanksgarden seeds`, 1);
-  }
-  if (campItems.has($item`Poké-Gro fertilizer`)) {
-    campItems.set($item`packet of tall grass seeds`, 1);
-  }
-  if (campItems.has($item`Source terminal`) && !(0, import_kolmafia120.toBoolean)((0, import_kolmafia120.getProperty)("auto_haveSourceTerminal"))) {
-    (0, import_kolmafia120.setProperty)("auto_haveSourceTerminal", true.toString());
-  }
-  $_auto_get_campground_didCheck ?? ($_auto_get_campground_didCheck = false);
-  if (in_nuclear() && !$_auto_get_campground_didCheck) {
-    $_auto_get_campground_didCheck = true;
-    var temp = (0, import_kolmafia120.visitUrl)(
-      "place.php?whichplace=falloutshelter&action=vault_term"
-    );
-    if ((0, import_kolmafia120.containsText)(temp, "Source Terminal")) {
-      (0, import_kolmafia120.setProperty)("auto_haveSourceTerminal", true.toString());
-    }
-  }
-  if (!campItems.has($item`Dramatic™ range`) && (0, import_kolmafia120.toBoolean)((0, import_kolmafia120.getProperty)("auto_haveoven"))) {
-    campItems.set($item`Dramatic™ range`, 1);
-  }
-  if (!campItems.has($item`Source terminal`) && (0, import_kolmafia120.toBoolean)((0, import_kolmafia120.getProperty)("auto_haveSourceTerminal"))) {
-    campItems.set($item`Source terminal`, 1);
-  }
-  return campItems;
 }
 function auto_is_valid(it) {
   if (!glover_usable(it.toString())) {
@@ -5134,11 +5004,7 @@ function spleen_left() {
   return (0, import_kolmafia135.spleenLimit)() - (0, import_kolmafia135.mySpleenUse)();
 }
 function stomach_left() {
-  var stomachLeft = (0, import_kolmafia135.fullnessLimit)() - (0, import_kolmafia135.myFullness)();
-  if (auto_elfToiletReady()) {
-    stomachLeft++;
-  }
-  return stomachLeft;
+  return (0, import_kolmafia135.fullnessLimit)() - (0, import_kolmafia135.myFullness)();
 }
 function fullness_left() {
   return stomach_left();

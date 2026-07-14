@@ -1863,7 +1863,15 @@ function auto_haveElfToilet() {
   !!auto_get_campground().get($item`Pork Elf toilet`);
 }
 function auto_elfToiletReady() {
-  return auto_haveElfToilet() && (0, import_kolmafia28.myFullness)() > 1 && !get("_porkElfToiletUsed") && (haveFreeRestAvailable() || (0, import_kolmafia28.myAdventures)() > 0);
+  var freeOnly = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : true;
+  return auto_haveElfToilet() && (0, import_kolmafia28.myFullness)() > 1 && !get("_porkElfToiletUsed") && (haveFreeRestAvailable() || !freeOnly && auto_unreservedAdvRemaining());
+}
+function auto_useElfToilet() {
+  (0, import_kolmafia28.cliExecute)("campground rest campground");
+  if (!get("_porkElfToiletUsed") || auto_elfToiletReady()) {
+    (0, import_kolmafia28.abort)(`Expected elf toilet to have been used, but was not.`);
+  }
+  return true;
 }
 function auto_haveArchaeologistSpade() {
   if (auto_is_valid($item`Archaeologist's Spade`) && (0, import_kolmafia28.availableAmount)($item`Archaeologist's Spade`) > 0) {
@@ -15496,15 +15504,15 @@ function acquireHP$3(goal, meat_reserve, useFreeRests) {
   }
   return (0, import_kolmafia109.myHp)() >= goal;
 }
-function doRest() {
+function doRest(useCampground) {
   if (auto_haveCrimboSkeleton() && (0, import_kolmafia109.toInt)((0, import_kolmafia109.getProperty)("_knuckleboneRests")) < 5) {
     (0, import_kolmafia109.useFamiliar)($familiar`Skeleton of Crimbo Past`);
-  }
-  if (auto_elfToiletReady()) {
-    (0, import_kolmafia109.cliExecute)("campground rest campground");
-    if (!get("_porkElfToiletUsed") || auto_elfToiletReady()) {
-      (0, import_kolmafia109.abort)(`Expected elf toilet to have been used, but was not.`);
+    if ((0, import_kolmafia109.myMp)() >= (0, import_kolmafia109.myMaxmp)() && (0, import_kolmafia109.myHp)() >= (0, import_kolmafia109.myMaxhp)()) {
+      auto_burnMP(1);
     }
+  }
+  if (auto_elfToiletReady(false) && useCampground !== false) {
+    auto_useElfToilet();
   } else if (chateaumantegna_available()) {
     (0, import_kolmafia109.cliExecute)("outfit save Backup");
     chateaumantegna_nightstandSet();
@@ -15587,25 +15595,28 @@ function auto_potentialMaxFreeRests() {
 function haveAnyIotmAlternativeRestSiteAvailable() {
   return chateaumantegna_available() || auto_campawayAvailable();
 }
-function doFreeRest() {
+function doFreeRest(useCampground) {
   if (haveFreeRestAvailable()) {
-    var restorableMp = (0, import_kolmafia109.myMaxmp)() - (0, import_kolmafia109.myMp)();
-    var mpToBurn;
-    if (chateaumantegna_available() || auto_campawayAvailable()) {
-      mpToBurn = 100 - restorableMp;
-    } else if ((0, import_kolmafia109.getDwelling)() === $item`Frobozz Real-Estate Company Instant House (TM)`) {
-      mpToBurn = 40 - restorableMp;
-    } else if ((0, import_kolmafia109.getDwelling)() === $item`Newbiesport™ tent`) {
-      mpToBurn = 10 - restorableMp;
-    } else {
-      mpToBurn = 5 - restorableMp;
+    if (useCampground === void 0 && auto_elfToiletReady()) {
+      useCampground = true;
     }
-    if (mpToBurn > 0) {
-      auto_burnMP(mpToBurn);
+    var restorableMp = (0, import_kolmafia109.myMaxmp)() - (0, import_kolmafia109.myMp)();
+    var burnsMp;
+    if (useCampground !== true && (chateaumantegna_available() || auto_campawayAvailable())) {
+      burnsMp = 100;
+    } else if ((0, import_kolmafia109.getDwelling)() === $item`Frobozz Real-Estate Company Instant House (TM)`) {
+      burnsMp = 40;
+    } else if ((0, import_kolmafia109.getDwelling)() === $item`Newbiesport™ tent`) {
+      burnsMp = 10;
+    } else {
+      burnsMp = 5;
+    }
+    if (restorableMp < burnsMp) {
+      auto_burnMP(burnsMp - restorableMp);
     }
     var hpMp_before = (0, import_kolmafia109.myHp)() + (0, import_kolmafia109.myMp)();
     var rest_count = (0, import_kolmafia109.toInt)((0, import_kolmafia109.getProperty)("timesRested"));
-    var result_1 = doRest() > rest_count;
+    var result_1 = doRest(useCampground) > rest_count;
     var hpMp_after = (0, import_kolmafia109.myHp)() + (0, import_kolmafia109.myMp)();
     var success = hpMp_after > hpMp_before || result_1;
     return success;
@@ -21605,17 +21616,19 @@ function auto_advToReserve() {
   }
   return reserveadv;
 }
+function auto_unreservedAdvRemaining() {
+  if ((0, import_kolmafia134.myAdventures)() > auto_advToReserve()) {
+    return true;
+  }
+  return false;
+}
 
 // src/kolmafia/autoscend/auto_consume.ts
 function spleen_left() {
   return (0, import_kolmafia135.spleenLimit)() - (0, import_kolmafia135.mySpleenUse)();
 }
 function stomach_left() {
-  var stomachLeft = (0, import_kolmafia135.fullnessLimit)() - (0, import_kolmafia135.myFullness)();
-  if (auto_elfToiletReady()) {
-    stomachLeft++;
-  }
-  return stomachLeft;
+  return (0, import_kolmafia135.fullnessLimit)() - (0, import_kolmafia135.myFullness)();
 }
 function fullness_left() {
   return stomach_left();
@@ -21825,9 +21838,9 @@ function autoEatCafe(howmany, id) {
   return true;
 }
 function autoEat(howMany, toEat) {
-  return autoEat$1(howMany, toEat, true);
-}
-function autoEat$1(howMany, toEat, silent) {
+  var _action$data4;
+  var silent = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : true;
+  var action = arguments.length > 3 ? arguments[3] : void 0;
   if ((0, import_kolmafia135.toBoolean)((0, import_kolmafia135.getProperty)("auto_limitConsume"))) {
     return false;
   }
@@ -21853,11 +21866,13 @@ function autoEat$1(howMany, toEat, silent) {
   ) || spleen_left() < 1)) {
     switchToFamXP(400);
   }
-  if ((0, import_kolmafia135.itemAmount)(toEat) < howMany) {
-    return false;
-  }
-  if (!auto_canEat(toEat)) {
-    return false;
+  if ((action === null || action === void 0 || (_action$data4 = action.data) === null || _action$data4 === void 0 ? void 0 : _action$data4.consume) === void 0) {
+    if ((0, import_kolmafia135.itemAmount)(toEat) < howMany) {
+      return false;
+    }
+    if (!auto_canEat(toEat)) {
+      return false;
+    }
   }
   equipStatgainIncreasersFor(toEat);
   var expectedFullness = toEat.fullness * howMany;
@@ -21876,6 +21891,7 @@ function autoEat$1(howMany, toEat, silent) {
   var retval = false;
   var wasReadyToEat = false;
   while (howMany > 0) {
+    var _action$data5, _action$data6;
     buffMaintain$3($effect`Song of the Glorious Lunch`, 10, 1, toEat.fullness);
     if (auto_get_campground().has($item`portable Mayo Clinic`) && (0, import_kolmafia135.myMeat)() - meatReserve() > (0, import_kolmafia135.npcPrice)($item`Mayoflex`) && (0, import_kolmafia135.getProperty)("mayoInMouth") === "" && auto_is_valid($item`portable Mayo Clinic`)) {
       auto_buyUpTo(1, $item`Mayoflex`);
@@ -21900,20 +21916,14 @@ function autoEat$1(howMany, toEat, silent) {
     if ((0, import_kolmafia135.haveEffect)($effect`Ready to Eat`) > 0) {
       wasReadyToEat = true;
     }
-    if (toEat.fullness > (0, import_kolmafia135.fullnessLimit)() - (0, import_kolmafia135.myFullness)() && auto_elfToiletReady()) {
-      doRest();
-      if (toEat.fullness > (0, import_kolmafia135.fullnessLimit)() - (0, import_kolmafia135.myFullness)()) {
-        (0, import_kolmafia135.abort)(
-          `Expected to have lost a fullness when using elf toilet, but we still cannot eat ${toEat}`
-        );
-      }
-    }
-    if (silent) {
+    if (action !== null && action !== void 0 && (_action$data5 = action.data) !== null && _action$data5 !== void 0 && _action$data5.consume) {
+      retval = action.data.consume();
+    } else if (silent) {
       retval = (0, import_kolmafia135.eatsilent)(1, toEat);
     } else {
       retval = (0, import_kolmafia135.eat)(1, toEat);
     }
-    if (retval) {
+    if (retval && (action === null || action === void 0 || (_action$data6 = action.data) === null || _action$data6 === void 0 ? void 0 : _action$data6.hasOwnTracking) !== true) {
       var detail = "";
       if (wasReadyToEat && (0, import_kolmafia135.haveEffect)($effect`Ready to Eat`) <= 0) {
         detail = detail !== "" ? `${detail}, Red Rocketed!` : "Red Rocketed!";
@@ -22211,7 +22221,7 @@ function to_debug_string(action) {
   return ret;
 }
 function autoPrepConsume(action) {
-  var _action$data4;
+  var _action$data7;
   auto_log_info$1(to_debug_string(action));
   if (action.howtoget === AUTO_OBTAIN_PULL) {
     auto_log_info(`autoPrepConsume: Pulling a ${action.it}`, "blue");
@@ -22225,7 +22235,7 @@ function autoPrepConsume(action) {
     auto_log_info(`autoPrepConsume: Buying a ${action.it}`, "blue");
     action.howtoget = AUTO_OBTAIN_NULL;
     return auto_buyUpTo(1, action.it);
-  } else if ((_action$data4 = action.data) !== null && _action$data4 !== void 0 && _action$data4.prep) {
+  } else if ((_action$data7 = action.data) !== null && _action$data7 !== void 0 && _action$data7.prep) {
     action.howtoget = AUTO_OBTAIN_NULL;
     return action.data.prep();
   } else if (action.howtoget === AUTO_OBTAIN_NULL) {
@@ -22237,14 +22247,14 @@ function autoPrepConsume(action) {
   return true;
 }
 function autoConsume(action) {
-  var _action$data5;
+  var _action$data8;
   if ((0, import_kolmafia135.toBoolean)((0, import_kolmafia135.getProperty)("auto_limitConsume"))) {
     return false;
   }
   if (action.howtoget !== AUTO_OBTAIN_NULL) {
     (0, import_kolmafia135.abort)(`ConsumeAction not prepped: ${to_debug_string(action)}`);
   }
-  if (((_action$data5 = action.data) === null || _action$data5 === void 0 ? void 0 : _action$data5.castOde) ?? action.organ === AUTO_ORGAN_LIVER) {
+  if (((_action$data8 = action.data) === null || _action$data8 === void 0 ? void 0 : _action$data8.castOde) ?? action.organ === AUTO_ORGAN_LIVER) {
     buffMaintain$3($effect`Ode to Booze`, 20, 1, action.size);
   }
   if (action.cafeid !== 0) {
@@ -22257,7 +22267,7 @@ function autoConsume(action) {
     if (action.organ === AUTO_ORGAN_LIVER) {
       return autoDrink(1, action.it, false, action);
     } else if (action.organ === AUTO_ORGAN_STOMACH) {
-      return autoEat(1, action.it);
+      return autoEat(1, action.it, true, action);
     } else {
       (0, import_kolmafia135.abort)(`autoConsume: Unrecognized organ ${action.organ}`);
     }
