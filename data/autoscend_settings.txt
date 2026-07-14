@@ -23,15 +23,15 @@ anytime	11	auto_dontConsumeLegendPizzas	boolean	When false, will craft or pull a
 anytime	12	auto_bedtime_pulls_skip	boolean	If true will not automatically pull any items at the end of day.
 anytime	13	auto_bedtime_pulls_pvp_multi	float	Set the value of X for the formula for pull of rollover equipment. desireability = 1*rollover adventures + X*rollover PVP fights (if hippy stone is unlocked).
 anytime	14	auto_bedtime_pulls_min_desirability	float	During bedtime we pull and wear equipment that gives extra adventures and optionally PVP fights on rollover. This variable determines the minimum allowed score improvement compared to current equipment before we consider pulling it.
-anytime	15	auto_maximize_baseline	string	The string to use as the baseline for the maximizer when deciding gear. If this is blank or "default", it will use a generated maximizer statement that takes your current situation in to account somewhat.
-anytime	16	auto_equipment_override_hat	string	A semicolon separated list of overrides for the hat slot.
-anytime	17	auto_equipment_override_back	string	A semicolon separated list of overrides for the back slot.
-anytime	18	auto_equipment_override_shirt	string	A semicolon separated list of overrides for the shirt slot.
-anytime	19	auto_equipment_override_weapon	string	A semicolon separated list of overrides for the weapon slot.
-anytime	20	auto_equipment_override_off-hand	string	A semicolon separated list of overrides for the off-hand slot.
-anytime	21	auto_equipment_override_pants	string	A semicolon separated list of overrides for the pants slot.
-anytime	22	auto_equipment_override_acc	string	A semicolon separated list of overrides for the acc slots.
-anytime	23	auto_equipment_override_familiar	string	A semicolon separated list of overrides for the familiar equipment slot.
+anytime	15	auto_maximize_baseline	string	The string to use as the baseline for the maximizer when deciding gear. If this is blank or "default", it will use a generated maximizer statement that takes your current situation in to account somewhat.	equipment
+anytime	16	auto_equipment_override_hat	string	A semicolon separated list of overrides for the hat slot.	equipment
+anytime	17	auto_equipment_override_back	string	A semicolon separated list of overrides for the back slot.	equipment
+anytime	18	auto_equipment_override_shirt	string	A semicolon separated list of overrides for the shirt slot.	equipment
+anytime	19	auto_equipment_override_weapon	string	A semicolon separated list of overrides for the weapon slot.	equipment
+anytime	20	auto_equipment_override_off-hand	string	A semicolon separated list of overrides for the off-hand slot.	equipment
+anytime	21	auto_equipment_override_pants	string	A semicolon separated list of overrides for the pants slot.	equipment
+anytime	22	auto_equipment_override_acc	string	A semicolon separated list of overrides for the acc slots.	equipment
+anytime	23	auto_equipment_override_familiar	string	A semicolon separated list of overrides for the familiar equipment slot.	equipment
 anytime	24	auto_considerGalaktik	boolean	When true autoscend may automatically enable galaktik quest for this run if it decides it is needed.
 anytime	25	auto_slowSteelOrgan	boolean	When true, don't immediately go for the Steel Organ (assuming we want a steel organ).
 anytime	26	auto_skipUnlockGuild	boolean	When true, don't unlock the guild.
