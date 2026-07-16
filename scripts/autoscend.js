@@ -51008,7 +51008,7 @@ function resetMaximize() {
 }
 function addBonusToMaximize(it, amt) {
   if (possessEquipment(it) && auto_can_equip(it)) {
-    addToMaximize(`+"${amt}bonus ${it}"`);
+    addToMaximize(`+${amt}"bonus ${it}"`);
   }
 }
 function finalizeMaximize(speculative) {
