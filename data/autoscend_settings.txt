@@ -23,7 +23,7 @@ anytime	11	auto_dontConsumeLegendPizzas	boolean	When false, will craft or pull a
 anytime	12	auto_bedtime_pulls_skip	boolean	If true will not automatically pull any items at the end of day.
 anytime	13	auto_bedtime_pulls_pvp_multi	float	Set the value of X for the formula for pull of rollover equipment. desireability = 1*rollover adventures + X*rollover PVP fights (if hippy stone is unlocked).
 anytime	14	auto_bedtime_pulls_min_desirability	float	During bedtime we pull and wear equipment that gives extra adventures and optionally PVP fights on rollover. This variable determines the minimum allowed score improvement compared to current equipment before we consider pulling it.
-anytime	15	auto_maximize_baseline	string	The string to use as the baseline for the maximizer when deciding gear. If this is blank or "default", it will use a generated maximizer statement that takes your current situation in to account somewhat.	equipment
+anytime	15	auto_maximize_baseline	string	The string to use as the baseline for the maximizer when deciding gear. If this is blank or "default", it will use a generated maximizer statement that takes your current situation in to account somewhat. Use "{default}" if you want that string to be injected into your provided statement, eg if you were trying to wear an item as much as possible "+10000 bonus iotm_name, {default}" to get the best of both worlds.	equipment
 anytime	16	auto_equipment_override_hat	string	A semicolon separated list of overrides for the hat slot.	equipment
 anytime	17	auto_equipment_override_back	string	A semicolon separated list of overrides for the back slot.	equipment
 anytime	18	auto_equipment_override_shirt	string	A semicolon separated list of overrides for the shirt slot.	equipment

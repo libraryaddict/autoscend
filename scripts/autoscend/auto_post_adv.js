@@ -3621,7 +3621,7 @@ function auto_voteMonster$2(freeMon, loc) {
   }
   if (autoEquip($slot`acc3`, $item`"I Voted!" sticker`)) {
     (0, import_kolmafia57.setProperty)("auto_nextEncounter", (0, import_kolmafia57.getProperty)("_voteMonster"));
-    return autoAdv$2(loc);
+    return autoAdv(loc);
   }
   (0, import_kolmafia57.setProperty)("auto_nextEncounter", "");
   return false;
@@ -3694,7 +3694,7 @@ function auto_voidMonster$1(loc) {
   }
   if (autoEquip$1($item`cursed magnifying glass`)) {
     (0, import_kolmafia59.setProperty)("auto_nextEncounter", "void guy");
-    return autoAdv$2(loc);
+    return autoAdv(loc);
   }
   (0, import_kolmafia59.setProperty)("auto_nextEncounter", "");
   return false;
@@ -10939,7 +10939,7 @@ function auto_getCitizenZone(loc, inCombat) {
       if (wantToFreeRun()) {
         (0, import_kolmafia96.setProperty)("auto_forceFreeRun", true.toString());
       }
-      if (!autoAdv$2(loc)) {
+      if (!autoAdv(loc)) {
         auto_log_debug$1(
           `Attempted to get citizen of a zone buff for ${goal} goal however we failed.`
         );
@@ -11800,9 +11800,8 @@ function auto_haveKramcoSausageOMatic() {
   return false;
 }
 function auto_sausageGoblin() {
-  return auto_sausageGoblin$2(import_kolmafia101.Location.none, null);
-}
-function auto_sausageGoblin$2(loc, option) {
+  var loc = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : import_kolmafia101.Location.none;
+  var option = arguments.length > 1 ? arguments[1] : void 0;
   if (!auto_haveKramcoSausageOMatic()) {
     return false;
   }
@@ -11817,7 +11816,7 @@ function auto_sausageGoblin$2(loc, option) {
   }
   if (autoEquip$1(wrap_item($item`Kramco Sausage-o-Matic™`))) {
     (0, import_kolmafia101.setProperty)("auto_nextEncounter", "sausage goblin");
-    return autoAdv(1, loc, option);
+    return autoAdv(loc, option);
   }
   (0, import_kolmafia101.setProperty)("auto_nextEncounter", "");
   return false;
@@ -18660,7 +18659,7 @@ function buffMaintain$2(buff, mp_min, casts, turns, speculative) {
         }
         var savedLoc = (0, import_kolmafia116.myLocation)();
         (0, import_kolmafia116.setProperty)("auto_disableAdventureHandling", true.toString());
-        autoAdv$2(auto_availableBrickRift());
+        autoAdv(auto_availableBrickRift());
         (0, import_kolmafia116.setProperty)("auto_disableAdventureHandling", false.toString());
         (0, import_kolmafia116.setLocation)(savedLoc);
         ret = true;
@@ -21514,7 +21513,9 @@ function findMacroName(func) {
   var match = asStr.match(/^function ([^( ]+)\(/);
   return match ? match[1] : asStr;
 }
-function autoAdv(num, loc, option) {
+function autoAdv() {
+  var loc = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : import_kolmafia122.Location.none;
+  var option = arguments.length > 1 ? arguments[1] : void 0;
   if (!zone_isAvailable(loc, true)) {
     auto_log_warning(`Can't get to ${loc} right now.`, "red");
     return false;
@@ -21556,9 +21557,6 @@ function autoAdv(num, loc, option) {
     }
   }
   return advReturn;
-}
-function autoAdv$2(loc) {
-  return autoAdv(1, loc, null);
 }
 
 // src/kolmafia/autoscend/auto_bedtime.ts
@@ -22813,7 +22811,7 @@ function auto_post_adventure() {
           );
           return false;
         }
-        autoAdv$2((0, import_kolmafia137.myLocation)());
+        autoAdv((0, import_kolmafia137.myLocation)());
         return true;
       }
     }
