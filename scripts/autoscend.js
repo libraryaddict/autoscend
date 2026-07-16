@@ -50651,14 +50651,14 @@ function equipStatgainIncreasers(increaseThisStat, alwaysEquip) {
   var MPlost;
   var mostMPlost = 0;
   var speculateOneItem;
-  var speculateAllItems;
+  var speculateAllItems = "";
   var _iterator8 = _createForOfIteratorHelper(
     statgainIncreasers.keys()
   ), _step8;
   try {
     for (_iterator8.s(); !(_step8 = _iterator8.n()).done; ) {
       var _sl2 = _step8.value;
-      speculateOneItem = `equip ${_sl2.toString()} ${(statgainIncreasers.get(_sl2) ?? statgainIncreasers.set(_sl2, import_kolmafia117.Item.none).get(_sl2)).toString()}; `;
+      speculateOneItem = `"equip ${_sl2.toString()} ${(statgainIncreasers.get(_sl2) ?? statgainIncreasers.set(_sl2, import_kolmafia117.Item.none).get(_sl2)).toString()};" `;
       (0, import_kolmafia117.cliExecute)(`speculate quiet; ${speculateOneItem}`);
       HPlost = (0, import_kolmafia117.toInt)((0, import_kolmafia117.myHp)() - simValue("Buffed HP Maximum"));
       MPlost = (0, import_kolmafia117.toInt)((0, import_kolmafia117.myMp)() - simValue("Buffed MP Maximum"));
@@ -50746,7 +50746,7 @@ function equipStatgainIncreasers(increaseThisStat, alwaysEquip) {
   try {
     for (_iterator0.s(); !(_step0 = _iterator0.n()).done; ) {
       var _sl4 = _step0.value;
-      speculateOneItem = `equip ${_sl4.toString()} ${(simulatedEquipment.get(_sl4) ?? simulatedEquipment.set(_sl4, import_kolmafia117.Item.none).get(_sl4)).toString()}; `;
+      speculateOneItem = `"equip ${_sl4.toString()} ${(simulatedEquipment.get(_sl4) ?? simulatedEquipment.set(_sl4, import_kolmafia117.Item.none).get(_sl4)).toString()};" `;
       (0, import_kolmafia117.cliExecute)(`speculate quiet; ${speculateOneItem}`);
       if (simValue("Buffed HP Maximum") < (0, import_kolmafia117.myHp)()) {
         continue;
@@ -51008,7 +51008,7 @@ function resetMaximize() {
 }
 function addBonusToMaximize(it, amt) {
   if (possessEquipment(it) && auto_can_equip(it)) {
-    addToMaximize(`+${amt}bonus ${it}`);
+    addToMaximize(`+"${amt}bonus ${it}"`);
   }
 }
 function finalizeMaximize(speculative) {
