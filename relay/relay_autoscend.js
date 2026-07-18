@@ -2881,7 +2881,7 @@ var import_kolmafia128 = require("kolmafia");
 
 // src/kolmafia/autoscend/autoscend_migration.ts
 var import_kolmafia129 = require("kolmafia");
-var $_f___autoscend_version = "1.8.0";
+var $_f___autoscend_version = "2.0.0";
 function autoscend_current_version() {
   if (!(0, import_kolmafia129.propertyExists)("auto_current_version")) {
     (0, import_kolmafia129.setProperty)("auto_current_version", $_f___autoscend_version);

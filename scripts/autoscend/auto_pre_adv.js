@@ -2463,7 +2463,7 @@ function canEatSomeLegNoods() {
   return false;
 }
 function auto_willEatLegendaryNoodles() {
-  return canEatSomeLegNoods() && auto_canEat($item`Orzo di Riso`) && !(0, import_kolmafia29.toBoolean)((0, import_kolmafia29.getProperty)("auto_limitConsume")) && !in_small() && !in_plumber();
+  return canEatSomeLegNoods() && auto_canEat($item`Orzo di Riso`) && !(0, import_kolmafia29.toBoolean)((0, import_kolmafia29.getProperty)("auto_limitConsume")) && get("auto_consumeMinAdvPerFill", 0) <= 4 && !in_small() && !in_plumber();
 }
 function auto_legendaryNoodlesAvailable() {
   if (stomach_left() < 1 || !auto_willEatLegendaryNoodles()) {
@@ -2500,7 +2500,7 @@ function auto_forceCombatLegendaryNoodles() {
         prospective_dish_1,
         0,
         1,
-        5,
+        4,
         10,
         AUTO_ORGAN_STOMACH_1,
         AUTO_OBTAIN_CRAFT_1
@@ -2509,10 +2509,11 @@ function auto_forceCombatLegendaryNoodles() {
       return false;
     }
   }
-  (0, import_kolmafia29.setProperty)("auto_forceCombatWithLegendaryNoodles", true.toString());
+  _set("auto_forceCombatWithLegendaryNoodles", true);
   if (auto_autoConsumeOne(action)) {
     return true;
   }
+  _set("auto_forceCombatWithLegendaryNoodles", false);
   return false;
 }
 var CupOfThirteenData = /* @__PURE__ */ _createClass(
@@ -2625,12 +2626,6 @@ function getCupIngredients() {
   } finally {
     _iterator0.f();
   }
-  addIngredient(
-    $item`loose purse strings`,
-    () => Math.max(0, Math.floor(((0, import_kolmafia29.myMeat)() - meatReserve()) / 100)),
-    // Store has @ 100 meat
-    (count) => auto_buyUpTo(count, $item`loose purse strings`)
-  );
   if ((0, import_kolmafia29.knollAvailable)()) {
     addIngredient(
       $item`dripping meat staff`,
@@ -26458,6 +26453,7 @@ function _auto_forceNextCombat(loc, speculative) {
     }
     auto_forceCombatLegendaryNoodles();
     if (!auto_haveQueuedForcedCombat()) {
+      _set("auto_forceCombatWithLegendaryNoodles", false);
       (0, import_kolmafia121.abort)(
         "Attempted to force a combat with legendary pasta noodles but was unable to."
       );
