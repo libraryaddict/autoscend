@@ -43435,7 +43435,7 @@ function handleFaxMonster(enemy, fightIt, option) {
       }
       return true;
     }
-    auto_interruptCheck$1();
+    auto_interruptCheck();
   }
   auto_log_error(
     `Failed to use clan Fax Machine to acquire a photocopied ${enemy}`
@@ -55456,12 +55456,23 @@ function auto_interruptZoneCheck() {
   }
   return false;
 }
-function auto_interruptCheck(debug) {
+var AutoStopError = /* @__PURE__ */ _createClass(
+  function AutoStopError2() {
+    var message = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : "auto_stop requested that the script quietly stop";
+    _classCallCheck(this, AutoStopError2);
+    this.message = message;
+  }
+);
+function auto_interruptCheck() {
+  var source = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : "main";
+  var debug = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : true;
   if ((0, import_kolmafia122.toBoolean)((0, import_kolmafia122.getProperty)("auto_interrupt"))) {
     (0, import_kolmafia122.setProperty)("auto_interrupt", false.toString());
     restoreAllSettings();
     meatReserveMessage();
     (0, import_kolmafia122.abort)("auto_interrupt detected and aborting, auto_interrupt disabled.");
+  } else if (source === "main" && (0, import_kolmafia122.toBoolean)((0, import_kolmafia122.getProperty)("auto_stop"))) {
+    throw new AutoStopError();
   } else if (auto_interruptZoneCheck()) {
     (0, import_kolmafia122.abort)(
       `auto_interruptZones detected, aborting at ${(0, import_kolmafia122.myLocation)().toString()}`
@@ -55470,9 +55481,6 @@ function auto_interruptCheck(debug) {
     (0, import_kolmafia122.setProperty)("auto_interrupt", true.toString());
     auto_log_info$1("auto_debugging detected, auto_interrupt enabled.");
   }
-}
-function auto_interruptCheck$1() {
-  auto_interruptCheck(true);
 }
 function currentFlavour() {
   if ((0, import_kolmafia122.haveEffect)($effect`Spirit of Peppermint`) !== 0) {
@@ -56828,10 +56836,10 @@ function autoAdv() {
   var previousEncounter = (0, import_kolmafia123.getProperty)("lastEncounter");
   var turncount = (0, import_kolmafia123.myTurncount)();
   (0, import_kolmafia123.print)(`Doing option ${findMacroName(option)}`);
-  auto_interruptCheck(false);
+  auto_interruptCheck("main", false);
   var advReturn = (0, import_kolmafia123.adv1)(loc, -1, option);
   if (!advReturn) {
-    auto_interruptCheck(false);
+    auto_interruptCheck("main", false);
     auto_log_debug(
       "adv1 returned false for some reason. Did we actually adventure though?",
       "blue"
@@ -66439,7 +66447,7 @@ function doTasks() {
   }
   casualCheck();
   print_header();
-  auto_interruptCheck(false);
+  auto_interruptCheck("main", false);
   var delay = (0, import_kolmafia138.toInt)((0, import_kolmafia138.getProperty)("auto_delayTimer"));
   if (delay > 0) {
     auto_log_info("Delay between adventures... beep boop... ", "blue");
@@ -66877,6 +66885,20 @@ function main() {
   )) {
     (0, import_kolmafia138.abort)("User aborted script after failed migration.");
   }
-  safe_preference_reset_wrapper(3);
+  try {
+    safe_preference_reset_wrapper(3);
+  } catch (e) {
+    if (!(e instanceof AutoStopError)) {
+      throw e;
+    }
+  } finally {
+    if (get("auto_stop", false)) {
+      _set("auto_stop", false);
+      meatReserveMessage();
+      auto_log_info$1(
+        "auto_stop detected and quietly exiting, auto_stop disabled."
+      );
+    }
+  }
 }
 //!possessEquipment($item[Kekekey])

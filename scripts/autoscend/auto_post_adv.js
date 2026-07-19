@@ -21147,12 +21147,23 @@ function auto_interruptZoneCheck() {
   }
   return false;
 }
-function auto_interruptCheck(debug) {
+var AutoStopError = /* @__PURE__ */ _createClass(
+  function AutoStopError2() {
+    var message = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : "auto_stop requested that the script quietly stop";
+    _classCallCheck(this, AutoStopError2);
+    this.message = message;
+  }
+);
+function auto_interruptCheck() {
+  var source = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : "main";
+  var debug = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : true;
   if ((0, import_kolmafia121.toBoolean)((0, import_kolmafia121.getProperty)("auto_interrupt"))) {
     (0, import_kolmafia121.setProperty)("auto_interrupt", false.toString());
     restoreAllSettings();
     meatReserveMessage();
     (0, import_kolmafia121.abort)("auto_interrupt detected and aborting, auto_interrupt disabled.");
+  } else if (source === "main" && (0, import_kolmafia121.toBoolean)((0, import_kolmafia121.getProperty)("auto_stop"))) {
+    throw new AutoStopError();
   } else if (auto_interruptZoneCheck()) {
     (0, import_kolmafia121.abort)(
       `auto_interruptZones detected, aborting at ${(0, import_kolmafia121.myLocation)().toString()}`
@@ -21535,10 +21546,10 @@ function autoAdv() {
   var previousEncounter = (0, import_kolmafia122.getProperty)("lastEncounter");
   var turncount = (0, import_kolmafia122.myTurncount)();
   (0, import_kolmafia122.print)(`Doing option ${findMacroName(option)}`);
-  auto_interruptCheck(false);
+  auto_interruptCheck("main", false);
   var advReturn = (0, import_kolmafia122.adv1)(loc, -1, option);
   if (!advReturn) {
-    auto_interruptCheck(false);
+    auto_interruptCheck("main", false);
     auto_log_debug(
       "adv1 returned false for some reason. Did we actually adventure though?",
       "blue"
