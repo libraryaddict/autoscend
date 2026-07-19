@@ -63728,18 +63728,35 @@ function defaultConfig(prop, val) {
     (0, import_kolmafia129.setProperty)(prop, val);
   }
 }
+var settingDefaults = /* @__PURE__ */ new Map(
+  [
+    ["auto_delayTimer", "1"],
+    ["auto_abooclover", "true"],
+    //Are we considering using a clover at A-Boo Peak?
+    ["auto_consumablePriceLimit", "12000"],
+    // Max mall price for consumables to eat/drink (also won't exceed mafia's autobuy limit).
+    ["auto_paranoia", "-1"],
+    ["auto_inv_paranoia", "false"],
+    ["auto_save_adv_override", "-1"],
+    ["auto_log_level", "3"],
+    ["auto_log_level_restore", "0"],
+    ["auto_bedtime_pulls_skip", "false"],
+    ["auto_bedtime_pulls_pvp_multi", "0.3"],
+    ["auto_bedtime_pulls_min_desirability", "1.0"]
+  ]
+);
 function auto_settingsDefaults() {
-  defaultConfig("auto_delayTimer", "1");
-  defaultConfig("auto_abooclover", "true");
-  defaultConfig("auto_consumablePriceLimit", "12000");
-  defaultConfig("auto_paranoia", "-1");
-  defaultConfig("auto_inv_paranoia", "false");
-  defaultConfig("auto_save_adv_override", "-1");
-  defaultConfig("auto_log_level", "3");
-  defaultConfig("auto_log_level_restore", "0");
-  defaultConfig("auto_bedtime_pulls_skip", "false");
-  defaultConfig("auto_bedtime_pulls_pvp_multi", "0.3");
-  defaultConfig("auto_bedtime_pulls_min_desirability", "1.0");
+  var _iterator2 = _createForOfIteratorHelper(settingDefaults), _step2;
+  try {
+    for (_iterator2.s(); !(_step2 = _iterator2.n()).done; ) {
+      var _step2$value = _slicedToArray(_step2.value, 2), prop = _step2$value[0], val = _step2$value[1];
+      defaultConfig(prop, val);
+    }
+  } catch (err) {
+    _iterator2.e(err);
+  } finally {
+    _iterator2.f();
+  }
 }
 function auto_settings() {
   auto_settingsUpgrade();
