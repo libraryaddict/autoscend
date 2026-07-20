@@ -5565,7 +5565,7 @@ function auto_configureRetrocape(hero, tag) {
   }
   var settings = `${hero},${tag}`;
   (0, import_kolmafia29.setProperty)("auto_retrocapeSettings", settings);
-  addToMaximize("-equip unwrapped knock-off retro superhero cape");
+  addToMaximize(`-"equip unwrapped knock-off retro superhero cape"`);
   return true;
 }
 function auto_buyCrimboCommerceMallItem() {
@@ -8688,11 +8688,11 @@ function auto_forceHandleCrystalBall(loc) {
   }
   var crystal_ball = wrap_item($item`miniature crystal ball`);
   if (shouldForceEquip) {
-    addToMaximize(`+equip ${crystal_ball.toString()}`);
+    addToMaximize(`+"equip ${crystal_ball.toString()}"`);
     (0, import_kolmafia42.setProperty)("auto_nextEncounter", predicted_monster.toString());
     return true;
   } else if (!auto_allowCrystalBall(predicted_monster, loc)) {
-    addToMaximize(`-equip ${crystal_ball.toString()}`);
+    addToMaximize(`-"equip ${crystal_ball.toString()}"`);
     return true;
   }
   return false;
@@ -8757,7 +8757,7 @@ function simulatePreAdvForCrystalBall(place) {
     if (crystalBallMaximizerBonus !== 0) {
       var crystal_ball = wrap_item($item`miniature crystal ball`);
       addToMaximize(
-        `+${crystalBallMaximizerBonus}bonus ${crystal_ball.toString()}`
+        `+${crystalBallMaximizerBonus}"bonus ${crystal_ball.toString()}"`
       );
     }
   }
@@ -12163,7 +12163,7 @@ function LX_acquireEpicWeapon() {
     );
   }
   addToMaximize(
-    `-equip ${($_f_starterWeapons.get((0, import_kolmafia50.myClass)()) ?? $_f_starterWeapons.set((0, import_kolmafia50.myClass)(), import_kolmafia50.Item.none).get((0, import_kolmafia50.myClass)())).toString()}`
+    `-"equip ${($_f_starterWeapons.get((0, import_kolmafia50.myClass)()) ?? $_f_starterWeapons.set((0, import_kolmafia50.myClass)(), import_kolmafia50.Item.none).get((0, import_kolmafia50.myClass)())).toString()}"`
   );
   if (tomb_already_found()) {
     return autoAdvBypass$1("place.php?whichplace=cemetery&action=cem_advtomb");
@@ -12715,7 +12715,7 @@ function L13_towerNSContests() {
       switch (ns_crowd1()) {
         case 1:
           acquireMP(160);
-          autoMaximize$1("initiative -equip snow suit", 1500, 0, false);
+          autoMaximize$1(`initiative -"equip snow suit"`, 1500, 0, false);
           provideInitiative$2(400, $location`Noob Cave`, true);
           if (crowd1Insufficient() && (0, import_kolmafia52.getProperty)("sidequestArenaCompleted") === "fratboy") {
             (0, import_kolmafia52.cliExecute)("concert White-boy Angst");
@@ -12770,7 +12770,7 @@ function L13_towerNSContests() {
       provideStats$2(statGoal, $location`Noob Cave`, true);
       switch (crowd_stat) {
         case $stat`Moxie`:
-          autoMaximize$1("moxie -equip snow suit", 1500, 0, false);
+          autoMaximize$1(`moxie -"equip snow suit"`, 1500, 0, false);
           if ((0, import_kolmafia52.haveEffect)($effect`Ten out of Ten`) === 0 && auto_is_valid$3($effect`Ten out of Ten`)) {
             if (crowd2Insufficient()) {
               fightClubSpa$1($effect`Ten out of Ten`);
@@ -12781,7 +12781,7 @@ function L13_towerNSContests() {
           }
           break;
         case $stat`Muscle`:
-          autoMaximize$1("muscle -equip snow suit", 1500, 0, false);
+          autoMaximize$1(`muscle -"equip snow suit"`, 1500, 0, false);
           if ((0, import_kolmafia52.haveEffect)($effect`Muddled`) === 0 && auto_is_valid$3($effect`Muddled`)) {
             if (crowd2Insufficient()) {
               fightClubSpa$1($effect`Muddled`);
@@ -12792,7 +12792,7 @@ function L13_towerNSContests() {
           }
           break;
         case $stat`Mysticality`:
-          autoMaximize$1("myst -equip snow suit", 1500, 0, false);
+          autoMaximize$1(`myst -"equip snow suit"`, 1500, 0, false);
           if ((0, import_kolmafia52.haveEffect)($effect`Uncucumbered`) === 0 && auto_is_valid$3($effect`Uncucumbered`)) {
             if (crowd2Insufficient()) {
               fightClubSpa$1($effect`Uncucumbered`);
@@ -12832,7 +12832,7 @@ function L13_towerNSContests() {
       acquireMP(125);
       if (challenge !== import_kolmafia52.Element.none) {
         autoMaximize$1(
-          `${challenge} dmg, ${challenge} spell dmg -equip snow suit`,
+          `${challenge} dmg, ${challenge} spell dmg -"equip snow suit"`,
           1500,
           0,
           false
@@ -12930,7 +12930,7 @@ function L13_towerNSContests() {
           if (canPull($item`halibut`) && auto_can_equip($item`halibut`)) {
             pullXWhenHaveY($item`halibut`, 1, 0);
             autoMaximize$1(
-              `${challenge} dmg, ${challenge} spell dmg -equip snow suit`,
+              `${challenge} dmg, ${challenge} spell dmg -"equip snow suit"`,
               1500,
               0,
               false
@@ -13579,10 +13579,10 @@ function L13_towerNSTowerBones() {
     }
   }
   if (auto_remainingCandyCaneSlashes() > 0) {
-    addToMaximize(`+equip ${$item`candy cane sword cane`}`);
+    addToMaximize(`+"equip ${$item`candy cane sword cane`}"`);
   }
   if (possessEquipment($item`big hot pepper`)) {
-    addToMaximize(`+equip ${$item`big hot pepper`}`);
+    addToMaximize(`+"equip ${$item`big hot pepper`}"`);
   }
   var _iterator9 = _createForOfIteratorHelper(
     $items`Congressional Medal of Insanity, petrified wood water purifier, petrified wood wizard's pouch`
@@ -13592,7 +13592,7 @@ function L13_towerNSTowerBones() {
       var lantern = _step9.value;
       acquireOrPull(lantern);
       if (possessEquipment(lantern)) {
-        addToMaximize(`+equip ${lantern}`);
+        addToMaximize(`+"equip ${lantern}"`);
         break;
       }
     }
@@ -18835,7 +18835,7 @@ function januaryToteAcquire(it) {
   if ($items`deceased crimbo tree, broken champagne bottle, makeshift garbage shirt`.includes(
     it
   )) {
-    removeFromMaximize(`-equip ${it}`);
+    removeFromMaximize(`-"equip ${it}"`);
   }
   if ((0, import_kolmafia59.availableAmount)(it) > 0) {
     var leftover_charges = 0;
@@ -20063,14 +20063,14 @@ function L9_aBooPeak() {
     var priorBjorn = (0, import_kolmafia60.myBjornedFamiliar)();
     var lihcface = "";
     if (isActuallyEd() && possessEquipment($item`The Crown of Ed the Undying`)) {
-      lihcface = "-equip lihc face";
+      lihcface = `-"equip lihc face"`;
     }
     var parrot = ", switch exotic parrot, switch mu, switch trick-or-treating tot";
     if (!canChangeFamiliar() || in_avantGuard()) {
       parrot = "";
     }
     autoMaximize$1(
-      `spooky res, cold res, 0.01hp ${lihcface} -equip snow suit${parrot}`,
+      `spooky res, cold res, 0.01hp ${lihcface} -"equip snow suit${parrot}"`,
       0,
       0,
       true
@@ -20784,7 +20784,7 @@ function auto_configureParka(tag) {
     return false;
   }
   (0, import_kolmafia61.setProperty)("auto_parkaSetting", tag);
-  addToMaximize(`-equip ${wrap_item($item`Jurassic Parka`).toString()}`);
+  addToMaximize(`-"equip ${wrap_item($item`Jurassic Parka`).toString()}"`);
   return true;
 }
 function auto_ParkaSpikeForcesLeft() {
@@ -29916,10 +29916,10 @@ function L12_filthworms() {
   function preventFratOutfitsIfNeeded() {
     if (auto_warSide() === "fratboy" && (0, import_kolmafia94.toInt)((0, import_kolmafia94.getProperty)("hippiesDefeated")) < 64) {
       if (possessOutfit("frat warrior fatigues")) {
-        addToMaximize("-equip beer helmet");
+        addToMaximize(`-"equip beer helmet"`);
       }
       if (possessOutfit("frat boy ensemble")) {
-        addToMaximize("-equip orcish baseball cap");
+        addToMaximize(`-"equip orcish baseball cap"`);
       }
     }
   }
@@ -30004,7 +30004,7 @@ function L12_filthworms() {
     if ((0, import_kolmafia94.itemDropModifier)() < 800) {
       glandGuaranteed = false;
       if (possessEquipment($item`Retrospecs`)) {
-        addToMaximize("+2500bonus Retrospecs");
+        addToMaximize(`+2500"bonus Retrospecs"`);
       }
     }
   }
@@ -30041,7 +30041,7 @@ function L12_filthworms() {
       }
       if (glandGuaranteed) {
         if (possessEquipment($item`broken champagne bottle`) && januaryToteTurnsLeft($item`broken champagne bottle`) > 0) {
-          addToMaximize("-equip Broken Champagne Bottle");
+          addToMaximize(`-"equip Broken Champagne Bottle"`);
         }
       }
     }
@@ -30111,7 +30111,7 @@ function gremlinsFamiliar() {
         var fameq = _step2.value;
         var wrapped_fameq = wrap_item(fameq);
         if (possessEquipment(wrapped_fameq)) {
-          addToMaximize(`-equip ${wrapped_fameq.toString()}`);
+          addToMaximize(`-"equip ${wrapped_fameq.toString()}"`);
         }
       }
     } catch (err) {
@@ -39221,7 +39221,7 @@ function LX_koeInvaderHandler() {
         "Attacking the Invader, using June Cleaver and LTS.",
         "blue"
       );
-      addToMaximize("200 all res, +equip june cleaver");
+      addToMaximize(`200 all res, +"equip june cleaver"`);
       var ret = autoAdv($location`The Invader`);
       if ((0, import_kolmafia104.haveEffect)($effect`Beaten Up`) > 0) {
         (0, import_kolmafia104.abort)("We died to the invader. Do it manually please?");
@@ -39264,7 +39264,7 @@ function LX_koeInvaderHandler() {
       );
       addToMaximize("200 all res");
       if (hot_source !== import_kolmafia104.Item.none) {
-        addToMaximize(`+equip ${hot_source.toString()}`);
+        addToMaximize(`+"equip ${hot_source.toString()}"`);
       }
       var _ret = autoAdv($location`The Invader`);
       if ((0, import_kolmafia104.haveEffect)($effect`Beaten Up`) > 0) {
@@ -64968,8 +64968,8 @@ function LX_burnDelay() {
       );
       voteMonsterAvailable = false;
       sausageGoblinAvailable = false;
-      addToMaximize("-equip Kramco Sausage O-Matic");
-      addToMaximize("-equip &quot;I Voted!&quot; sticker");
+      addToMaximize(`-"equip Kramco Sausage O-Matic"`);
+      addToMaximize(`-"equip &quot;I Voted!&quot; sticker"`);
     }
   }
   if (voteMonsterAvailable && !backupTargetAvailable) {

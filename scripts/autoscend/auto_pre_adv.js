@@ -2224,7 +2224,7 @@ function auto_configureRetrocape(hero, tag) {
   }
   var settings = `${hero},${tag}`;
   (0, import_kolmafia28.setProperty)("auto_retrocapeSettings", settings);
-  addToMaximize("-equip unwrapped knock-off retro superhero cape");
+  addToMaximize(`-"equip unwrapped knock-off retro superhero cape"`);
   return true;
 }
 function auto_handleRetrocape() {
@@ -3377,11 +3377,11 @@ function auto_forceHandleCrystalBall(loc) {
   }
   var crystal_ball = wrap_item($item`miniature crystal ball`);
   if (shouldForceEquip) {
-    addToMaximize(`+equip ${crystal_ball.toString()}`);
+    addToMaximize(`+"equip ${crystal_ball.toString()}"`);
     (0, import_kolmafia41.setProperty)("auto_nextEncounter", predicted_monster.toString());
     return true;
   } else if (!auto_allowCrystalBall(predicted_monster, loc)) {
-    addToMaximize(`-equip ${crystal_ball.toString()}`);
+    addToMaximize(`-"equip ${crystal_ball.toString()}"`);
     return true;
   }
   return false;
@@ -3446,7 +3446,7 @@ function simulatePreAdvForCrystalBall(place) {
     if (crystalBallMaximizerBonus !== 0) {
       var crystal_ball = wrap_item($item`miniature crystal ball`);
       addToMaximize(
-        `+${crystalBallMaximizerBonus}bonus ${crystal_ball.toString()}`
+        `+${crystalBallMaximizerBonus}"bonus ${crystal_ball.toString()}"`
       );
     }
   }
@@ -4482,7 +4482,7 @@ function januaryToteAcquire(it) {
   if ($items`deceased crimbo tree, broken champagne bottle, makeshift garbage shirt`.includes(
     it
   )) {
-    removeFromMaximize(`-equip ${it}`);
+    removeFromMaximize(`-"equip ${it}"`);
   }
   if ((0, import_kolmafia58.availableAmount)(it) > 0) {
     var leftover_charges = 0;
@@ -5478,7 +5478,7 @@ function auto_configureParka(tag) {
     return false;
   }
   (0, import_kolmafia60.setProperty)("auto_parkaSetting", tag);
-  addToMaximize(`-equip ${wrap_item($item`Jurassic Parka`).toString()}`);
+  addToMaximize(`-"equip ${wrap_item($item`Jurassic Parka`).toString()}"`);
   return true;
 }
 function auto_handleParka() {
@@ -30401,7 +30401,7 @@ function auto_ghost_prep(place) {
     _iterator3.f();
   }
   if (auto_haveDarts() && dartEleDmg()) {
-    addToMaximize(`+equip ${$item`Everfull Dart Holster`}`);
+    addToMaximize(`+"equip ${$item`Everfull Dart Holster`}"`);
     return;
   }
   var m_hot = 1;
@@ -30732,7 +30732,7 @@ function auto_pre_adventure() {
     var crystalBallMaximizerBonus = 0 + (zoneHasUnwantedMonsters ? 300 : 0) + (zoneHasWantedMonsters ? 300 : 0);
     if (crystalBallMaximizerBonus !== 0) {
       addToMaximize(
-        `+${crystalBallMaximizerBonus}bonus ${wrap_item($item`miniature crystal ball`).toString()}`
+        `+${crystalBallMaximizerBonus}"bonus ${wrap_item($item`miniature crystal ball`).toString()}"`
       );
     }
   }

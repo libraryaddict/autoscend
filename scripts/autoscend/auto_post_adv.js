@@ -2688,11 +2688,11 @@ function auto_forceHandleCrystalBall(loc) {
   }
   var crystal_ball = wrap_item($item`miniature crystal ball`);
   if (shouldForceEquip) {
-    addToMaximize(`+equip ${crystal_ball.toString()}`);
+    addToMaximize(`+"equip ${crystal_ball.toString()}"`);
     (0, import_kolmafia41.setProperty)("auto_nextEncounter", predicted_monster.toString());
     return true;
   } else if (!auto_allowCrystalBall(predicted_monster, loc)) {
-    addToMaximize(`-equip ${crystal_ball.toString()}`);
+    addToMaximize(`-"equip ${crystal_ball.toString()}"`);
     return true;
   }
   return false;
@@ -2757,7 +2757,7 @@ function simulatePreAdvForCrystalBall(place) {
     if (crystalBallMaximizerBonus !== 0) {
       var crystal_ball = wrap_item($item`miniature crystal ball`);
       addToMaximize(
-        `+${crystalBallMaximizerBonus}bonus ${crystal_ball.toString()}`
+        `+${crystalBallMaximizerBonus}"bonus ${crystal_ball.toString()}"`
       );
     }
   }
@@ -3605,7 +3605,7 @@ function januaryToteAcquire(it) {
   if ($items`deceased crimbo tree, broken champagne bottle, makeshift garbage shirt`.includes(
     it
   )) {
-    removeFromMaximize(`-equip ${it}`);
+    removeFromMaximize(`-"equip ${it}"`);
   }
   if ((0, import_kolmafia58.availableAmount)(it) > 0) {
     var leftover_charges = 0;
