@@ -842,7 +842,7 @@ function small_initializeSettings() {
       (0, import_kolmafia20.setProperty)("auto_disregardInstantKarma", "false");
     }
   } else {
-    if (auto_have_familiar($familiar`Cookbookbat`) && (canPull$1($item`Calzone of Legend`) || canPull$1($item`Deep Dish of Legend`) || canPull$1($item`Pizza of Legend`))) {
+    if (auto_have_familiar($familiar`Cookbookbat`) && (canPull($item`Calzone of Legend`) || canPull($item`Deep Dish of Legend`) || canPull($item`Pizza of Legend`))) {
       (0, import_kolmafia20.setProperty)("auto_dontUseCookBookBat", true.toString());
     }
   }
@@ -2014,7 +2014,8 @@ function wrap_item(it) {
 var $_saucemavenApplies_saucy_foods = $items`cold hi mein, devil hair pasta, Fettris, fettucini Inconnu, fleetwood mac 'n' cheese, fusillocybin, gnocchetti di Nietzsche, haunted Hell ramen, Hell ramen, hot hi mein, libertagliatelle, linguini immondizia bianco, linguini of the sea, prescription noodles, shells a la shellfish, sleazy hi mein, spagecialetti, spaghetti con calaveras, spaghetti with Skullheads, spooky hi mein, stinky hi mein, turkish mostaccioli`;
 
 // src/kolmafia/autoscend/auto_acquire.ts
-function canPull(it, historical) {
+function canPull(it) {
+  var historical = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : false;
   if ((0, import_kolmafia123.inHardcore)()) {
     return false;
   }
@@ -2060,9 +2061,6 @@ function canPull(it, historical) {
     return true;
   }
   return false;
-}
-function canPull$1(it) {
-  return canPull(it, false);
 }
 function pulledToday(it) {
   var allPulls = new Map(

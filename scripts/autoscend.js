@@ -2102,9 +2102,7 @@ function List$5(data) {
   return retval;
 }
 function ListFind(list, what) {
-  return ListFind$1(list, what, 0);
-}
-function ListFind$1(list, what, idx) {
+  var idx = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : 0;
   if (idx < 0) {
     (0, import_kolmafia10.abort)(`Attempted index out of bounds: ${idx}`);
   }
@@ -2222,7 +2220,7 @@ function pullLegionKnife() {
   try {
     for (_iterator2.s(); !(_step2 = _iterator2.n()).done; ) {
       var it = _step2.value;
-      if (canPull$1(it)) {
+      if (canPull(it)) {
         target = it;
         break;
       }
@@ -2373,7 +2371,7 @@ function gnoob_buySkills() {
   if (internalQuestStatus("questL10Garbage") < 2 && (0, import_kolmafia12.itemAmount)($item`enchanted bean`) === 1) {
     blacklist.set($item`enchanted bean`, true);
   }
-  var available = gnoob_lister$1();
+  var available = gnoob_lister();
   var starting_absorb_count = (0, import_kolmafia12.myAbsorbs)();
   var earlyTerm = (0, import_kolmafia12.max)(
     5,
@@ -2451,7 +2449,7 @@ function gnoob_buySkills() {
             `Tried and failed to absorb [${possible.get(_i2) ?? possible.set(_i2, import_kolmafia12.Item.none).get(_i2)}]. this should not have happened and needs to be fixed`
           );
         } else {
-          available = gnoob_lister$1();
+          available = gnoob_lister();
         }
       }
     }
@@ -2467,7 +2465,8 @@ function gnoob_buySkills() {
     }
   }
 }
-function gnoob_lister(goal) {
+function gnoob_lister() {
+  var goal = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : "";
   var retval = /* @__PURE__ */ new Map();
   var _iterator3 = _createForOfIteratorHelper(
     $items.all()
@@ -2510,9 +2509,6 @@ function gnoob_absorbsLeft() {
   }
   var absorbs = (0, import_kolmafia12.min)((0, import_kolmafia12.myLevel)() + 2, 15);
   return absorbs - (0, import_kolmafia12.myAbsorbs)();
-}
-function gnoob_lister$1() {
-  return gnoob_lister("");
 }
 function LM_gnoob() {
   if (!in_gnoob()) {
@@ -3329,11 +3325,11 @@ function L13_heavyrains_towerFinal() {
   } else if (canChangeToFamiliar($familiar`Angry Goat`)) {
     (0, import_kolmafia15.useFamiliar)($familiar`Angry Goat`);
   }
-  buffMaintain$4($effect`Benetton's Medley of Diversity`);
-  buffMaintain$4($effect`Dirge of Dreadfulness (Remastered)`);
-  buffMaintain$4($effect`Dirge of Dreadfulness`);
-  buffMaintain$4($effect`Boner Battalion`);
-  buffMaintain$4($effect`Frigidalmatian`);
+  buffMaintain$2($effect`Benetton's Medley of Diversity`);
+  buffMaintain$2($effect`Dirge of Dreadfulness (Remastered)`);
+  buffMaintain$2($effect`Dirge of Dreadfulness`);
+  buffMaintain$2($effect`Boner Battalion`);
+  buffMaintain$2($effect`Frigidalmatian`);
   effectAblativeArmor(true);
   (0, import_kolmafia15.cliExecute)("outfit Birthday Suit");
   addToMaximize("1000prismatic damage, +weapon, +offhand");
@@ -3442,11 +3438,11 @@ function L13_heavyrains_towerFinal() {
     if (spell_extra_element) {
       addToMaximize("spell damage percent, +weapon");
       if ((0, import_kolmafia15.itemAmount)($item`Rain-Doh green lantern`) > 0) {
-        autoEquip($slot`off-hand`, $item`Rain-Doh green lantern`);
+        autoEquipToSlot($slot`off-hand`, $item`Rain-Doh green lantern`);
       } else if ((0, import_kolmafia15.itemAmount)($item`meteorb`) > 0) {
-        autoEquip($slot`off-hand`, $item`meteorb`);
+        autoEquipToSlot($slot`off-hand`, $item`meteorb`);
       } else if ((0, import_kolmafia15.itemAmount)($item`snow mobile`) > 0) {
-        autoEquip($slot`off-hand`, $item`snow mobile`);
+        autoEquipToSlot($slot`off-hand`, $item`snow mobile`);
       }
     } else {
       addToMaximize("spell damage percent, +weapon, +offhand");
@@ -3647,10 +3643,8 @@ var import_kolmafia65 = require("kolmafia");
 
 // src/kolmafia/c2t_apron.ts
 var import_kolmafia18 = require("kolmafia");
-function c2t_apron$1() {
-  return c2t_apron((0, import_kolmafia18.myPrimestat)());
-}
-function c2t_apron(select) {
+function c2t_apron() {
+  var select = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : (0, import_kolmafia18.myPrimestat)();
   var meal;
   var kit = $item`Black and White Apron Meal Kit`;
   var page;
@@ -4412,7 +4406,8 @@ function plumber_skillValid(sk) {
   }
   return true;
 }
-function plumber_equipTool(st, forceEquipRightNow) {
+function plumber_equipTool(st) {
+  var forceEquipRightNow = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : false;
   if (!in_plumber()) {
     return false;
   }
@@ -4421,20 +4416,20 @@ function plumber_equipTool(st, forceEquipRightNow) {
       if (forceEquipRightNow) {
         return autoForceEquip$3(to_equip);
       } else {
-        return autoEquip$1(to_equip);
+        return autoEquip(to_equip);
       }
     } else if (possessEquipment(fallback_to_equip)) {
       if (forceEquipRightNow) {
         return autoForceEquip$3(fallback_to_equip);
       } else {
-        return autoEquip$1(fallback_to_equip);
+        return autoEquip(fallback_to_equip);
       }
     } else if ((0, import_kolmafia21.itemAmount)($item`coin`) >= 20) {
       (0, import_kolmafia21.retrieveItem)(1, fallback_to_equip);
       if (forceEquipRightNow) {
         return autoForceEquip$3(fallback_to_equip);
       } else {
-        return autoEquip$1(fallback_to_equip);
+        return autoEquip(fallback_to_equip);
       }
     }
     return false;
@@ -4452,9 +4447,6 @@ function plumber_equipTool(st, forceEquipRightNow) {
   }
   return false;
 }
-function plumber_equipTool$1(st) {
-  return plumber_equipTool(st, false);
-}
 function plumber_eat_xp() {
   if (!in_plumber() || fullness_left() < 1) {
     return;
@@ -4463,7 +4455,7 @@ function plumber_eat_xp() {
     return;
   }
   var milk = $item`gallon of milk`;
-  var got_milk = (0, import_kolmafia21.creatableAmount)(milk) > 0 || (0, import_kolmafia21.itemAmount)(milk) > 0 || canPull$1(milk);
+  var got_milk = (0, import_kolmafia21.creatableAmount)(milk) > 0 || (0, import_kolmafia21.itemAmount)(milk) > 0 || canPull(milk);
   if (got_milk && fullness_left() >= 15) {
     acquireOrPull(milk);
     autoEat(1, milk);
@@ -4570,7 +4562,7 @@ function small_initializeSettings() {
       (0, import_kolmafia23.setProperty)("auto_disregardInstantKarma", "false");
     }
   } else {
-    if (auto_have_familiar($familiar`Cookbookbat`) && (canPull$1($item`Calzone of Legend`) || canPull$1($item`Deep Dish of Legend`) || canPull$1($item`Pizza of Legend`))) {
+    if (auto_have_familiar($familiar`Cookbookbat`) && (canPull($item`Calzone of Legend`) || canPull($item`Deep Dish of Legend`) || canPull($item`Pizza of Legend`))) {
       (0, import_kolmafia23.setProperty)("auto_dontUseCookBookBat", true.toString());
     }
   }
@@ -5284,7 +5276,7 @@ function auto_forceEquipPowerfulGlove() {
   if (auto_willEquipPowerfulGlove()) {
     return true;
   }
-  return autoEquip($slot`acc3`, $item`Powerful Glove`);
+  return autoEquipToSlot($slot`acc3`, $item`Powerful Glove`);
 }
 function auto_burnPowerfulGloveCharges() {
   while (auto_is_valid$2($skill`CHEAT CODE: Triple Size`) && auto_hasPowerfulGlove() && auto_powerfulGloveCharges() >= 5) {
@@ -5643,7 +5635,7 @@ function wantToClubEmBackInTime(loc, enemy) {
   if (auto_clubEmBackInTimesRemaining() === 0) {
     return false;
   }
-  if (isFreeMonster$1(enemy, loc)) {
+  if (isFreeMonster(enemy, loc)) {
     return false;
   }
   if ((0, import_kolmafia30.canInteract)()) {
@@ -6994,7 +6986,7 @@ function auto_tavern() {
   }
   function try_buff_damage(el, ef) {
     if ((0, import_kolmafia34.numericModifier)(damageModifier(el)) < 20) {
-      buffMaintain$3(ef, 20, 1, 1);
+      buffMaintain$2(ef, 20, 1, 1);
     }
   }
   try_buff_damage($element`hot`, $effect`Pyromania`);
@@ -7024,7 +7016,7 @@ function auto_tavern() {
       auto_beachCombHead(element_type);
     }
   }
-  simMaximizeWith$1(
+  simMaximizeWith(
     `80cold damage 20max,80hot damage 20max,80spooky damage 20max,80stench damage 20max,500ml ${auto_convertDesiredML(max_ml_target)}max,-200combat 25max`
   );
   function n_passed() {
@@ -7055,7 +7047,7 @@ function auto_tavern() {
       var it = _step2.value;
       if (!all_passed()) {
         if (pullXWhenHaveY(it, 1, 0)) {
-          simMaximizeWith$1(
+          simMaximizeWith(
             `80cold damage 20max,80hot damage 20max,80spooky damage 20max,80stench damage 20max,500ml ${auto_convertDesiredML(max_ml_target)}max,-200combat 25max`
           );
         }
@@ -7095,9 +7087,9 @@ function auto_tavern() {
   }
   addToMaximize(`500ml ${auto_convertDesiredML(max_ml_target)}max`);
   if (capped >= 3) {
-    providePlusNonCombat$4(auto_combatModCap(), $location`Noob Cave`);
+    providePlusNonCombat$2(auto_combatModCap(), $location`Noob Cave`);
   } else {
-    providePlusCombat$4(20, $location`Noob Cave`);
+    providePlusCombat(20, $location`Noob Cave`);
   }
   var tavern_1 = (0, import_kolmafia34.getProperty)("tavernLayout");
   if (tavern_1 === "0000000000000000000000000") {
@@ -7289,7 +7281,7 @@ function L4_batCave() {
   if (considerGrimstoneGolem(true)) {
     handleBjornify($familiar`Grimstone Golem`);
   }
-  buffMaintain$4($effect`Fishy Whiskers`);
+  buffMaintain$2($effect`Fishy Whiskers`);
   var batStatus = internalQuestStatus("questL04Bat");
   if (batStatus < 3) {
     if (auto_is_valid($item`sonar-in-a-biscuit`)) {
@@ -7330,8 +7322,8 @@ function L4_batCave() {
     }
     provideMeat$2(50, $location`The Boss Bat's Lair`, false);
     if (in_aosol()) {
-      buffMaintain$3($effect`Queso Fustulento`, 10, 1, 10);
-      buffMaintain$3($effect`Tricky Timpani`, 30, 1, 10);
+      buffMaintain$2($effect`Queso Fustulento`, 10, 1, 10);
+      buffMaintain$2($effect`Tricky Timpani`, 30, 1, 10);
       if (auto_haveGreyGoose() && $location`The Boss Bat's Lair`.turnsSpent >= 4) {
         handleFamiliar$1($familiar`Grey Goose`);
       }
@@ -7350,7 +7342,7 @@ function L4_batCave() {
     return true;
   }
   if (batStatus >= 2) {
-    bat_formBats$1();
+    bat_formBats();
     if ((0, import_kolmafia35.itemAmount)($item`enchanted bean`) === 0 && internalQuestStatus("questL10Garbage") < 2 && !isActuallyEd()) {
       autoAdv($location`The Beanbat Chamber`);
       return true;
@@ -7370,7 +7362,7 @@ function L4_batCave() {
       auto_log_debug$1("Delaying Batrat Burrow in case of Shen.");
       return false;
     }
-    bat_formBats$1();
+    bat_formBats();
     if (auto_haveGreyGoose()) {
       handleFamiliar$1($familiar`Grey Goose`);
     }
@@ -7380,7 +7372,7 @@ function L4_batCave() {
   if (!provideGuanoStenchResistance()) {
     return false;
   }
-  bat_formBats$1();
+  bat_formBats();
   if (auto_haveGreyGoose()) {
     handleFamiliar$1($familiar`Grey Goose`);
   }
@@ -7470,12 +7462,13 @@ function untinkerable(target) {
   return (0, import_kolmafia37.craftType)(target) === "Meatpasting";
 }
 function canUntinker() {
-  if (hasLegionKnife() && auto_is_valid($item`Loathing Legion universal screwdriver`)) {
-    return true;
+  var target = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : import_kolmafia37.Item.none;
+  if (target === import_kolmafia37.Item.none) {
+    if (hasLegionKnife() && auto_is_valid($item`Loathing Legion universal screwdriver`)) {
+      return true;
+    }
+    return (0, import_kolmafia37.getProperty)("questM01Untinker") === "finished";
   }
-  return (0, import_kolmafia37.getProperty)("questM01Untinker") === "finished";
-}
-function canUntinker$1(target) {
   if (!canUntinker()) {
     auto_log_debug$1(
       `We can not untinker [${target}] because we can not untinker anything right now`
@@ -7491,10 +7484,8 @@ function canUntinker$1(target) {
   return untinkerable(target);
 }
 function untinker(target) {
-  return untinker$1(1, target);
-}
-function untinker$1(amount, target) {
-  if (!canUntinker$1(target)) {
+  var amount = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : 1;
+  if (!canUntinker(target)) {
     return false;
   }
   if (amount < 1) {
@@ -7698,7 +7689,7 @@ function LX_kolhs_yearbookCameraQuest() {
   if (adv_target === import_kolmafia38.Location.none) {
     return false;
   }
-  autoEquip$1($item`Yearbook Club Camera`);
+  autoEquip($item`Yearbook Club Camera`);
   return autoAdv(adv_target);
   return false;
 }
@@ -7729,7 +7720,7 @@ function LM_kolhs() {
     return true;
   }
   if ((0, import_kolmafia38.myLevel)() < 9) {
-    if (LX_freeCombats$1(true)) {
+    if (LX_freeCombats(true)) {
       return true;
     }
   }
@@ -7781,9 +7772,9 @@ function LX_wildfire_calculateTheUniverse() {
   if ((0, import_kolmafia39.myMp)() < (0, import_kolmafia39.mpCost)($skill`Calculate the Universe`)) {
     return false;
   }
-  if (!possessOutfit$1("Frat Warrior Fatigues") && auto_warSide() === "fratboy" && auto_saberChargesAvailable() > 0) {
+  if (!possessOutfit("Frat Warrior Fatigues") && auto_warSide() === "fratboy" && auto_saberChargesAvailable() > 0) {
     if (doNumberology("battlefield", false) !== -1) {
-      autoEquip($slot`weapon`, $item`Fourth of May Cosplay Saber`);
+      autoEquipToSlot($slot`weapon`, $item`Fourth of May Cosplay Saber`);
       return doNumberology("battlefield") !== -1;
     }
     return false;
@@ -8014,7 +8005,8 @@ function LX_wildfire_hose_once(place) {
   }
   return retval;
 }
-function LX_wildfire_hose(place, target_fire) {
+function LX_wildfire_hose(place) {
+  var target_fire = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : 2;
   if (!in_wildfire()) {
     return false;
   }
@@ -8043,17 +8035,14 @@ function LX_wildfire_hose(place, target_fire) {
   }
   return retval;
 }
-function LX_wildfire_hose$1(place) {
-  return LX_wildfire_hose(place, 2);
-}
 function LX_wildfire_water() {
   if (internalQuestStatus("questL11Worship") < 3) {
-    if (LX_wildfire_hose$1($location`The Hidden Temple`)) {
+    if (LX_wildfire_hose($location`The Hidden Temple`)) {
       return true;
     }
   }
   if (!isDesertAvailable() && !inKnollSign()) {
-    if (LX_wildfire_hose$1($location`The Degrassi Knoll Garage`)) {
+    if (LX_wildfire_hose($location`The Degrassi Knoll Garage`)) {
       return true;
     }
   }
@@ -8064,17 +8053,17 @@ function LX_wildfire_water() {
     //we do not yet have it
     "questM10Azazel"
   ) > -1) {
-    if (LX_wildfire_hose$1($location`The Laugh Floor`)) {
+    if (LX_wildfire_hose($location`The Laugh Floor`)) {
       return true;
     }
-    if (LX_wildfire_hose$1($location`Infernal Rackets Backstage`)) {
+    if (LX_wildfire_hose($location`Infernal Rackets Backstage`)) {
       return true;
     }
   }
   if ((0, import_kolmafia39.myLevel)() > 10 && zone_available($location`The Hidden Bowling Alley`)) {
-    LX_wildfire_hose$1($location`The Hidden Bowling Alley`);
+    LX_wildfire_hose($location`The Hidden Bowling Alley`);
   }
-  if ((0, import_kolmafia39.inHardcore)() && !haveWarOutfit$1() && internalQuestStatus("questL12War") === 0) {
+  if ((0, import_kolmafia39.inHardcore)() && !haveWarOutfit() && internalQuestStatus("questL12War") === 0) {
     (0, import_kolmafia39.abort)(
       "Due to tracking issues you need to manually acquire the necessary war outfit and run me again"
     );
@@ -8245,7 +8234,8 @@ function summonMinions(target, meat_reserve) {
   }
   return (0, import_kolmafia40.myHp)() >= target;
 }
-function zombieSlayer_acquireMP(goal, meat_reserve) {
+function zombieSlayer_acquireMP(goal) {
+  var meat_reserve = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : meatReserve();
   if (!in_zombieSlayer()) {
     return false;
   }
@@ -8253,9 +8243,6 @@ function zombieSlayer_acquireMP(goal, meat_reserve) {
     return true;
   }
   return lureMinions(goal) || summonMinions(goal, meat_reserve);
-}
-function zombieSlayer_acquireMP$1(goal) {
-  return zombieSlayer_acquireMP(goal, meatReserve());
 }
 function zombieSlayer_acquireHP(goal) {
   if (!in_zombieSlayer()) {
@@ -8266,7 +8253,7 @@ function zombieSlayer_acquireHP(goal) {
   }
   var missingHP = goal - (0, import_kolmafia40.myHp)();
   if (auto_have_skill($skill`Devour Minions`)) {
-    while ((missingHP > (0, import_kolmafia40.floor)((0, import_kolmafia40.myMaxhp)() * 0.3) || ((0, import_kolmafia40.haveEffect)($effect`Thrice-Cursed`) > 0 || (0, import_kolmafia40.haveEffect)($effect`Twice-Cursed`) > 0 || (0, import_kolmafia40.haveEffect)($effect`Once-Cursed`) > 0) && !(internalQuestStatus("questL11Curses") > 1 || (0, import_kolmafia40.itemAmount)($item`moss-covered stone sphere`) > 0)) && zombieSlayer_acquireMP$1((0, import_kolmafia40.mpCost)($skill`Devour Minions`))) {
+    while ((missingHP > (0, import_kolmafia40.floor)((0, import_kolmafia40.myMaxhp)() * 0.3) || ((0, import_kolmafia40.haveEffect)($effect`Thrice-Cursed`) > 0 || (0, import_kolmafia40.haveEffect)($effect`Twice-Cursed`) > 0 || (0, import_kolmafia40.haveEffect)($effect`Once-Cursed`) > 0) && !(internalQuestStatus("questL11Curses") > 1 || (0, import_kolmafia40.itemAmount)($item`moss-covered stone sphere`) > 0)) && zombieSlayer_acquireMP((0, import_kolmafia40.mpCost)($skill`Devour Minions`))) {
       (0, import_kolmafia40.useSkill)(1, $skill`Devour Minions`);
       if ((0, import_kolmafia40.myHp)() >= goal) {
         break;
@@ -8279,7 +8266,7 @@ function zombieSlayer_acquireHP(goal) {
     missingHP = goal - (0, import_kolmafia40.myHp)();
   }
   if (auto_have_skill($skill`Bite Minion`)) {
-    while (missingHP > 0 && zombieSlayer_acquireMP$1((0, import_kolmafia40.mpCost)($skill`Bite Minion`))) {
+    while (missingHP > 0 && zombieSlayer_acquireMP((0, import_kolmafia40.mpCost)($skill`Bite Minion`))) {
       (0, import_kolmafia40.useSkill)(1, $skill`Bite Minion`);
       if ((0, import_kolmafia40.myHp)() >= goal) {
         break;
@@ -8313,7 +8300,8 @@ function LM_zombieSlayer() {
 }
 
 // src/kolmafia/autoscend/quests/level_07.ts
-function cyrptEvilBonus(inCombat) {
+function cyrptEvilBonus() {
+  var inCombat = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : false;
   var cyrptBonus = is_pete() && (0, import_kolmafia41.getProperty)("peteMotorbikeCowling") === "Ghost Vacuum" ? 1 : 0;
   cyrptBonus += (0, import_kolmafia41.toInt)((0, import_kolmafia41.getProperty)("_nightmareFuelCharges")) > 0 ? 2 : 0;
   if (inCombat) {
@@ -8325,9 +8313,6 @@ function cyrptEvilBonus(inCombat) {
   }
   return cyrptBonus;
 }
-function cyrptEvilBonus$1() {
-  return cyrptEvilBonus(false);
-}
 function useNightmareFuelIfPossible() {
   if (spleen_left() > 0 && (0, import_kolmafia41.itemAmount)($item`Nightmare Fuel`) > 0 && !isActuallyEd() && !(auto_havePillKeeper() && spleen_left() >= 3) && spleen_left() > 4 * (0, import_kolmafia41.min)(auto_spleenFamiliarAdvItemsPossessed(), (0, import_kolmafia41.floor)(spleen_left() / 4))) {
     autoChew(1, $item`Nightmare Fuel`);
@@ -8338,11 +8323,11 @@ function knockOffCapePrep() {
     if ((0, import_kolmafia41.haveEffect)($effect`Iron Palms`) > 0 && auto_have_skill($skill`Iron Palm Technique`)) {
       (0, import_kolmafia41.useSkill)(1, $skill`Iron Palm Technique`);
     }
-    auto_forceEquipSword$1();
+    auto_forceEquipSword();
   }
 }
 function L7_defiledAlcove() {
-  var evilBonus = cyrptEvilBonus$1();
+  var evilBonus = cyrptEvilBonus();
   if (internalQuestStatus("questL07Cyrptic") !== 0 || (0, import_kolmafia41.toInt)((0, import_kolmafia41.getProperty)("cyrptAlcoveEvilness")) === 0) {
     return false;
   }
@@ -8350,7 +8335,7 @@ function L7_defiledAlcove() {
     if (auto_backupUsesLeft() > 0) {
       return false;
     }
-    if ((0, import_kolmafia41.toInt)((0, import_kolmafia41.getProperty)("cyrptAlcoveEvilness")) <= 13 + auto_habitatFightsLeft() * (cyrptEvilBonus$1() + 5)) {
+    if ((0, import_kolmafia41.toInt)((0, import_kolmafia41.getProperty)("cyrptAlcoveEvilness")) <= 13 + auto_habitatFightsLeft() * (cyrptEvilBonus() + 5)) {
       return false;
     }
   }
@@ -8361,7 +8346,7 @@ function L7_defiledAlcove() {
     provideInitiative$2(850, $location`The Defiled Alcove`, true);
     addToMaximize("100initiative 850max");
   }
-  autoEquip$1($item`gravy boat`);
+  autoEquip($item`gravy boat`);
   knockOffCapePrep();
   if ((0, import_kolmafia41.toInt)((0, import_kolmafia41.getProperty)("cyrptAlcoveEvilness")) >= 16 + evilBonus) {
     useNightmareFuelIfPossible();
@@ -8373,7 +8358,7 @@ function L7_defiledAlcove() {
   return autoAdv($location`The Defiled Alcove`);
 }
 function L7_defiledNook() {
-  var evilBonus = cyrptEvilBonus$1();
+  var evilBonus = cyrptEvilBonus();
   (0, import_kolmafia41.cliExecute)("refresh inv");
   while ((0, import_kolmafia41.itemAmount)($item`evil eye`) > 0 && auto_is_valid($item`evil eye`) && (0, import_kolmafia41.toInt)((0, import_kolmafia41.getProperty)("cyrptNookEvilness")) > 13) {
     (0, import_kolmafia41.use)(1, $item`evil eye`);
@@ -8381,7 +8366,7 @@ function L7_defiledNook() {
   var skip_in_koe = in_koe() && (0, import_kolmafia41.toInt)((0, import_kolmafia41.getProperty)("cyrptNookEvilness")) > 13 && (0, import_kolmafia41.getProperty)("questL12HippyFrat") !== "finished";
   if ((0, import_kolmafia41.toInt)((0, import_kolmafia41.getProperty)("cyrptNookEvilness")) > 0 && lar_repeat($location`The Defiled Nook`) && !skip_in_koe) {
     auto_log_info("The Nook!", "blue");
-    autoEquip$1($item`gravy boat`);
+    autoEquip($item`gravy boat`);
     knockOffCapePrep();
     if ((0, import_kolmafia41.toInt)((0, import_kolmafia41.getProperty)("cyrptNookEvilness")) > 14 + evilBonus && auto_is_valid($item`evil eye`)) {
       provideItem$2(400, $location`The Defiled Nook`, false);
@@ -8398,9 +8383,9 @@ function L7_defiledNook() {
   return false;
 }
 function L7_defiledNiche() {
-  var evilBonus = cyrptEvilBonus$1();
+  var evilBonus = cyrptEvilBonus();
   if ((0, import_kolmafia41.toInt)((0, import_kolmafia41.getProperty)("cyrptNicheEvilness")) > 13 && auto_habitatMonster() === $monster`dirty old lihc`) {
-    if ((0, import_kolmafia41.toInt)((0, import_kolmafia41.getProperty)("cyrptNicheEvilness")) <= 13 + auto_habitatFightsLeft() * (cyrptEvilBonus$1() + 3)) {
+    if ((0, import_kolmafia41.toInt)((0, import_kolmafia41.getProperty)("cyrptNicheEvilness")) <= 13 + auto_habitatFightsLeft() * (cyrptEvilBonus() + 3)) {
       return false;
     }
   }
@@ -8408,7 +8393,7 @@ function L7_defiledNiche() {
     if ((0, import_kolmafia41.myDaycount)() === 1 && (0, import_kolmafia41.toInt)((0, import_kolmafia41.getProperty)("_hipsterAdv")) < 7 && (0, import_kolmafia41.isUnrestricted)($familiar`Artistic Goth Kid`) && auto_have_familiar($familiar`Artistic Goth Kid`)) {
       handleFamiliar$1($familiar`Artistic Goth Kid`);
     }
-    autoEquip$1($item`gravy boat`);
+    autoEquip($item`gravy boat`);
     if (auto_FireExtinguisherCombatString($location`The Defiled Niche`) === "") {
       knockOffCapePrep();
     }
@@ -8444,7 +8429,7 @@ function L7_defiledNiche() {
   return false;
 }
 function L7_defiledCranny() {
-  var evilBonus = cyrptEvilBonus$1();
+  var evilBonus = cyrptEvilBonus();
   if ((0, import_kolmafia41.toInt)((0, import_kolmafia41.getProperty)("cyrptCrannyEvilness")) > 0) {
     if (is_professor()) {
       return false;
@@ -8453,7 +8438,7 @@ function L7_defiledCranny() {
     if ((0, import_kolmafia41.myMp)() > 60) {
       handleBjornify($familiar`Grimstone Golem`);
     }
-    autoEquip$1($item`gravy boat`);
+    autoEquip($item`gravy boat`);
     knockOffCapePrep();
     if (auto_is_valid$3($effect`Emotional Vaccine`)) {
       spacegateVaccine($effect`Emotional Vaccine`);
@@ -8519,7 +8504,7 @@ function L7_crypt() {
   }
   (0, import_kolmafia41.visitUrl)("crypt.php");
   (0, import_kolmafia41.use)(1, $item`Evilometer`);
-  cyrptEvilBonus$1();
+  cyrptEvilBonus();
   if (L7_defiledAlcove()) {
     return true;
   }
@@ -8541,13 +8526,13 @@ function L7_crypt() {
     }
     if ((0, import_kolmafia41.myPrimestat)() === $stat`Muscle`) {
       auto_buyUpTo(1, $item`Ben-Gal™ Balm`);
-      buffMaintain$4($effect`Go Get 'Em, Tiger!`);
+      buffMaintain$2($effect`Go Get 'Em, Tiger!`);
       auto_buyUpTo(1, $item`blood of the Wereseal`);
-      buffMaintain$4($effect`Temporary Lycanthropy`);
+      buffMaintain$2($effect`Temporary Lycanthropy`);
     }
     if (in_aosol()) {
-      buffMaintain$3($effect`Queso Fustulento`, 10, 1, 10);
-      buffMaintain$3($effect`Tricky Timpani`, 30, 1, 10);
+      buffMaintain$2($effect`Queso Fustulento`, 10, 1, 10);
+      buffMaintain$2($effect`Tricky Timpani`, 30, 1, 10);
       if (auto_haveGreyGoose()) {
         handleFamiliar$1($familiar`Grey Goose`);
       }
@@ -8590,7 +8575,7 @@ function L7_override() {
   if ((0, import_kolmafia41.toInt)((0, import_kolmafia41.getProperty)("cyrptNookEvilness")) <= 14 && (0, import_kolmafia41.toInt)((0, import_kolmafia41.getProperty)("cyrptNicheEvilness")) <= 14) {
     return false;
   }
-  var evilBonus = cyrptEvilBonus$1();
+  var evilBonus = cyrptEvilBonus();
   if ((0, import_kolmafia41.toInt)((0, import_kolmafia41.getProperty)("cyrptNookEvilness")) > 14 + evilBonus && (0, import_kolmafia41.isBanished)($monster`party skelteon`)) {
     auto_log_info$1(
       "Trying to check on the ongoing Nook before moving on to a different task"
@@ -8823,8 +8808,8 @@ function auto_backupTarget() {
     return false;
   }
   var wantBackupLFM = (0, import_kolmafia42.itemAmount)($item`barrel of gunpowder`) < 5 && (0, import_kolmafia42.getProperty)("sidequestLighthouseCompleted") === "none" && internalQuestStatus("questL12War") === 1 && !auto_hasAutumnaton() && !in_koe();
-  var habitatZombieEvil = auto_habitatMonster() === $monster`modern zmobie` ? auto_habitatFightsLeft() * (5 + cyrptEvilBonus$1()) : 0;
-  var wantBackupZmobie = (0, import_kolmafia42.toInt)((0, import_kolmafia42.getProperty)("cyrptAlcoveEvilness")) > 14 + cyrptEvilBonus$1() + habitatZombieEvil && internalQuestStatus("questL07Cyrptic") === 0;
+  var habitatZombieEvil = auto_habitatMonster() === $monster`modern zmobie` ? auto_habitatFightsLeft() * (5 + cyrptEvilBonus()) : 0;
+  var wantBackupZmobie = (0, import_kolmafia42.toInt)((0, import_kolmafia42.getProperty)("cyrptAlcoveEvilness")) > 14 + cyrptEvilBonus() + habitatZombieEvil && internalQuestStatus("questL07Cyrptic") === 0;
   switch ((0, import_kolmafia42.toMonster)((0, import_kolmafia42.getProperty)("lastCopyableMonster"))) {
     case $monster`lobsterfrogman`:
       if (wantBackupLFM) {
@@ -8874,7 +8859,7 @@ function auto_backupToYourLastEnemy(loc) {
   if (!auto_haveBackupCamera() || auto_backupUsesLeft() === 0 || !auto_backupTarget() || loc === import_kolmafia42.Location.none) {
     return false;
   }
-  if (autoEquip($slot`acc3`, $item`backup camera`)) {
+  if (autoEquipToSlot($slot`acc3`, $item`backup camera`)) {
     (0, import_kolmafia42.setProperty)("auto_nextEncounter", (0, import_kolmafia42.getProperty)("lastCopyableMonster"));
     return autoAdv(loc);
   }
@@ -8936,9 +8921,7 @@ function totalBatteryPoints() {
   return totalPoints;
 }
 function batteryCombine(battery) {
-  return batteryCombine$1(battery, false);
-}
-function batteryCombine$1(battery, simulate) {
+  var simulate = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : false;
   if (batteryPoints(battery) === 0) {
     return false;
   }
@@ -9088,7 +9071,7 @@ function can_get_battery(target) {
   if (canUntinker()) {
     return totalBatteryPoints() >= batteryPoints(target);
   }
-  return batteryCombine$1(target, true);
+  return batteryCombine(target, true);
 }
 function auto_getBattery(target) {
   if (batteryPoints(target) === 0) {
@@ -9219,7 +9202,7 @@ function auto_FireExtinguisherCombatString(place) {
       return `skill ${$skill`Fire Extinguisher: Zone Specific`}`;
     }
   }
-  if (place === $location`Cobb's Knob Harem` && !(0, import_kolmafia42.toBoolean)((0, import_kolmafia42.getProperty)("fireExtinguisherHaremUsed")) && !possessOutfit$1("Knob Goblin Harem Girl Disguise")) {
+  if (place === $location`Cobb's Knob Harem` && !(0, import_kolmafia42.toBoolean)((0, import_kolmafia42.getProperty)("fireExtinguisherHaremUsed")) && !possessOutfit("Knob Goblin Harem Girl Disguise")) {
     return `skill ${$skill`Fire Extinguisher: Zone Specific`}`;
   }
   if (place === $location`The Defiled Niche` && !(0, import_kolmafia42.toBoolean)((0, import_kolmafia42.getProperty)("fireExtinguisherCyrptUsed"))) {
@@ -9485,7 +9468,7 @@ function bugbear_UnlockMothership(loc) {
     (0, import_kolmafia43.create)(1, $item`bugbear detector`);
   }
   if (possessEquipment($item`bugbear detector`)) {
-    autoEquip$1($item`bugbear detector`);
+    autoEquip($item`bugbear detector`);
   }
   if ((0, import_kolmafia43.toInt)((0, import_kolmafia43.getProperty)("_hipsterAdv")) < 7 && (0, import_kolmafia43.isUnrestricted)($familiar`Artistic Goth Kid`) && auto_have_familiar($familiar`Artistic Goth Kid`)) {
     auto_log_info(`Hipster Adv: ${(0, import_kolmafia43.getProperty)("_hipsterAdv")}`, "blue");
@@ -9520,7 +9503,7 @@ function LX_bugbearWasteProcessing() {
     return true;
   }
   if (possessEquipment($item`bugbear communicator badge`)) {
-    autoEquip$1($item`bugbear communicator badge`);
+    autoEquip($item`bugbear communicator badge`);
   } else {
     handleFamiliar("item");
   }
@@ -9592,19 +9575,19 @@ function LX_bugbearSpecialOps() {
   if (!possessEquipment($item`fluorescent lightbulb`) && auto_have_skill($skill`Summon Clip Art`) && (0, import_kolmafia43.toInt)((0, import_kolmafia43.getProperty)("tomeSummons")) < 3) {
     (0, import_kolmafia43.cliExecute)("make fluorescent lightbulb");
   }
-  autoEquip$1($item`UV monocular`);
+  autoEquip($item`UV monocular`);
   if (possessEquipment($item`fire`)) {
-    autoEquip$1($item`fire`);
+    autoEquip($item`fire`);
   }
   if (possessEquipment($item`fluorescent lightbulb`)) {
-    autoEquip$1($item`fluorescent lightbulb`);
+    autoEquip($item`fluorescent lightbulb`);
   }
   if (possessEquipment($item`Rain-Doh green lantern`)) {
-    autoEquip$1($item`Rain-Doh green lantern`);
+    autoEquip($item`Rain-Doh green lantern`);
   } else if (possessEquipment($item`magic lamp`)) {
-    autoEquip$1($item`magic lamp`);
+    autoEquip($item`magic lamp`);
   } else if (possessEquipment($item`oil lamp`)) {
-    autoEquip$1($item`oil lamp`);
+    autoEquip($item`oil lamp`);
   }
   auto_log_info(`Clearing Bugbear Mothership - ${loc}`, "blue");
   return autoAdv(loc);
@@ -9680,14 +9663,14 @@ function LX_bugbearBridge() {
   }
   (0, import_kolmafia43.cliExecute)("scripts/autoscend/auto_post_adv.js");
   if ((0, import_kolmafia43.myClass)() === $class`Turtle Tamer`) {
-    autoEquip$1($item`Ouija Board, Ouija Board`);
+    autoEquip($item`Ouija Board, Ouija Board`);
   }
   if ((0, import_kolmafia43.pullsRemaining)() === -1 || (0, import_kolmafia43.pullsRemaining)() > 0) {
     if ((0, import_kolmafia43.canEquip)($item`Oscus's garbage can lid`)) {
       pullXWhenHaveY($item`Oscus's garbage can lid`, 1, 0);
     }
   }
-  autoEquip($slot`off-hand`, $item`Oscus's garbage can lid`);
+  autoEquipToSlot($slot`off-hand`, $item`Oscus's garbage can lid`);
   handleFamiliar("boss");
   addToMaximize("10dr,3moxie,0.5da 1000max,-5ml,1.5hp,0item,0meat");
   if ((0, import_kolmafia43.itemAmount)($item`Jeff Goldblum larva`) > 0) {
@@ -10217,7 +10200,7 @@ function L6_friarsGetParts() {
     }
   }
   if ((0, import_kolmafia48.equippedItem)($slot`shirt`) === $item`tunac`) {
-    autoEquip($slot`shirt`, import_kolmafia48.Item.none);
+    autoEquipToSlot($slot`shirt`, import_kolmafia48.Item.none);
   }
   if (auto_have_familiar($familiar`Space Jellyfish`) && (0, import_kolmafia48.toInt)((0, import_kolmafia48.getProperty)("_spaceJellyfishDrops")) < 2) {
     handleFamiliar$1($familiar`Space Jellyfish`);
@@ -10656,7 +10639,7 @@ function LX_lockPicking() {
   if ((0, import_kolmafia49.toBoolean)((0, import_kolmafia49.getProperty)("lockPicked"))) {
     return false;
   }
-  if (towerKeyCount$1(false) >= 3) {
+  if (towerKeyCount(false) >= 3) {
     return false;
   }
   if ((0, import_kolmafia49.myMp)() < (0, import_kolmafia49.mpCost)($skill`Lock Picking`)) {
@@ -10700,7 +10683,7 @@ function estimateDailyDungeonAdvNeeded() {
   return adv_needed;
 }
 function LX_fatLootToken() {
-  if (towerKeyCount$1(false) >= 3 && !(0, import_kolmafia49.toBoolean)((0, import_kolmafia49.getProperty)("auto_forceFatLootToken"))) {
+  if (towerKeyCount(false) >= 3 && !(0, import_kolmafia49.toBoolean)((0, import_kolmafia49.getProperty)("auto_forceFatLootToken"))) {
     return false;
   }
   if (!canChangeToFamiliar($familiar`Gelatinous Cubeling`) && (0, import_kolmafia49.inHardcore)()) {
@@ -10716,7 +10699,7 @@ function LX_fatLootToken() {
       return true;
     }
   }
-  if (towerKeyCount$1(false) < 3 && (internalQuestStatus("questL13Final") === 5 || auto_turbo())) {
+  if (towerKeyCount(false) < 3 && (internalQuestStatus("questL13Final") === 5 || auto_turbo())) {
     if (!acquiredFantasyRealmToken() && (auto_haveBackupCamera() && auto_backupUsesLeft() >= 4 - fantasyBanditsFought() || auto_canHabitat()) && canSummonMonster($monster`fantasy bandit`)) {
       return summonMonster($monster`fantasy bandit`);
     }
@@ -10809,7 +10792,7 @@ function LX_dailyDungeonToken() {
   }
   auto_log_info("Doing the daily dungeon", "blue");
   if ((0, import_kolmafia49.toInt)((0, import_kolmafia49.getProperty)("_lastDailyDungeonRoom")) === 4 || (0, import_kolmafia49.toInt)((0, import_kolmafia49.getProperty)("_lastDailyDungeonRoom")) === 9) {
-    autoEquip($slot`acc3`, $item`ring of Detect Boring Doors`);
+    autoEquipToSlot($slot`acc3`, $item`ring of Detect Boring Doors`);
   }
   return autoAdv($location`The Daily Dungeon`);
 }
@@ -11027,7 +11010,7 @@ function LX_dronesOut() {
   }
   var canExtingo = auto_fireExtinguisherCharges() > 30 && canUse($skill`Fire Extinguisher: Polar Vortex`, false);
   auto_log_info$1("Have drones out so re-routing to not waste");
-  if (needStarKey() && (0, import_kolmafia49.itemAmount)($item`star`) < 7 && (0, import_kolmafia49.itemAmount)($item`line`) < 6 && zone_isAvailable$1($location`The Hole in the Sky`)) {
+  if (needStarKey() && (0, import_kolmafia49.itemAmount)($item`star`) < 7 && (0, import_kolmafia49.itemAmount)($item`line`) < 6 && zone_isAvailable($location`The Hole in the Sky`)) {
     auto_log_info$1("Going to HiTS");
     if ((0, import_kolmafia49.toLocation)((0, import_kolmafia49.getProperty)("auto_priorLocation")) !== $location`The Hole in the Sky`) {
       (0, import_kolmafia49.setProperty)("auto_skipStage2", true.toString());
@@ -11035,14 +11018,14 @@ function LX_dronesOut() {
     }
     return autoAdv($location`The Hole in the Sky`);
   }
-  if ((0, import_kolmafia49.toBoolean)((0, import_kolmafia49.getProperty)("middleChamberUnlock")) && (0, import_kolmafia49.itemAmount)($item`crumbling wooden wheel`) + (0, import_kolmafia49.itemAmount)($item`tomb ratchet`) < 10 && (0, import_kolmafia49.itemAmount)($item`tangle of rat tails`) >= 1 && zone_isAvailable$1($location`The Middle Chamber`)) {
+  if ((0, import_kolmafia49.toBoolean)((0, import_kolmafia49.getProperty)("middleChamberUnlock")) && (0, import_kolmafia49.itemAmount)($item`crumbling wooden wheel`) + (0, import_kolmafia49.itemAmount)($item`tomb ratchet`) < 10 && (0, import_kolmafia49.itemAmount)($item`tangle of rat tails`) >= 1 && zone_isAvailable($location`The Middle Chamber`)) {
     auto_log_info$1("Going to Middle Chamber");
     if ((0, import_kolmafia49.toLocation)((0, import_kolmafia49.getProperty)("auto_priorLocation")) !== $location`The Middle Chamber`) {
       (0, import_kolmafia49.setProperty)("auto_skipStage4", true.toString());
     }
     return autoAdv($location`The Middle Chamber`);
   }
-  if (internalQuestStatus("questL09Topping") >= 2 && internalQuestStatus("questL09Topping") <= 3 && hedgeTrimmersNeeded() > 1 && zone_isAvailable$1($location`Twin Peak`) && prepareForTwinPeak(true)) {
+  if (internalQuestStatus("questL09Topping") >= 2 && internalQuestStatus("questL09Topping") <= 3 && hedgeTrimmersNeeded() > 1 && zone_isAvailable($location`Twin Peak`) && prepareForTwinPeak(true)) {
     auto_log_info$1("Going to Twin Peak");
     if ((0, import_kolmafia49.toLocation)((0, import_kolmafia49.getProperty)("auto_priorLocation")) !== $location`Twin Peak`) {
       (0, import_kolmafia49.setProperty)("auto_skipStage2", true.toString());
@@ -11050,14 +11033,14 @@ function LX_dronesOut() {
     }
     return autoAdv($location`Twin Peak`);
   }
-  if (internalQuestStatus("questL11Ron") > 1 && internalQuestStatus("questL11Ron") < 5 && zone_isAvailable$1($location`The Red Zeppelin`)) {
+  if (internalQuestStatus("questL11Ron") > 1 && internalQuestStatus("questL11Ron") < 5 && zone_isAvailable($location`The Red Zeppelin`)) {
     auto_log_info$1("Going to the Red Zeppelin");
     if ((0, import_kolmafia49.toLocation)((0, import_kolmafia49.getProperty)("auto_priorLocation")) !== $location`The Red Zeppelin`) {
       (0, import_kolmafia49.setProperty)("auto_skipStage4", true.toString());
     }
     return autoAdv($location`The Red Zeppelin`);
   }
-  if (!canExtingo && (0, import_kolmafia49.toInt)((0, import_kolmafia49.getProperty)("hiddenBowlingAlleyProgress")) + (0, import_kolmafia49.itemAmount)($item`bowling ball`) < 6 && zone_isAvailable$1($location`The Hidden Bowling Alley`)) {
+  if (!canExtingo && (0, import_kolmafia49.toInt)((0, import_kolmafia49.getProperty)("hiddenBowlingAlleyProgress")) + (0, import_kolmafia49.itemAmount)($item`bowling ball`) < 6 && zone_isAvailable($location`The Hidden Bowling Alley`)) {
     auto_log_info$1("Going to the Hidden Bowling Alley");
     if ((0, import_kolmafia49.toLocation)((0, import_kolmafia49.getProperty)("auto_priorLocation")) !== $location`The Hidden Bowling Alley`) {
       (0, import_kolmafia49.setProperty)("auto_skipStage2", true.toString());
@@ -11065,7 +11048,7 @@ function LX_dronesOut() {
     }
     return autoAdv($location`The Hidden Bowling Alley`);
   }
-  if (internalQuestStatus("questL04Bat") <= 1 && zone_isAvailable$1($location`The Batrat and Ratbat Burrow`)) {
+  if (internalQuestStatus("questL04Bat") <= 1 && zone_isAvailable($location`The Batrat and Ratbat Burrow`)) {
     auto_log_info$1("Going to the Batrat and Ratbat Burrow");
     if ((0, import_kolmafia49.toLocation)((0, import_kolmafia49.getProperty)("auto_priorLocation")) !== $location`The Batrat and Ratbat Burrow`) {
       (0, import_kolmafia49.setProperty)("auto_skipStage2", true.toString());
@@ -11073,7 +11056,7 @@ function LX_dronesOut() {
     }
     return autoAdv($location`The Batrat and Ratbat Burrow`);
   }
-  if (internalQuestStatus("questL08Trapper") === 1 && zone_isAvailable$1($location`The Goatlet`)) {
+  if (internalQuestStatus("questL08Trapper") === 1 && zone_isAvailable($location`The Goatlet`)) {
     auto_log_info$1("Going to the Goatlet");
     if ((0, import_kolmafia49.toLocation)((0, import_kolmafia49.getProperty)("auto_priorLocation")) !== $location`The Goatlet`) {
       (0, import_kolmafia49.setProperty)("auto_skipStage2", true.toString());
@@ -11275,7 +11258,7 @@ function candyBlockOutfit(type_1) {
       } finally {
         _iterator7.f();
       }
-      if (possessOutfit$1("Bugbear Costume")) {
+      if (possessOutfit("Bugbear Costume")) {
         return "Bugbear Costume";
       }
     }
@@ -11386,7 +11369,7 @@ function LX_unlockThinknerdWarehouse(spend_resources) {
     if (hasShirt) {
       return;
     }
-    if (canPull$1(it2)) {
+    if (canPull(it2)) {
       if (pullXWhenHaveY(it2, 1, 0)) {
         target_shirt = it2;
         hasShirt = true;
@@ -11806,7 +11789,7 @@ function LX_pirateOutfit() {
       }
     }
   }
-  if (possessOutfit$1("Swashbuckling Getup")) {
+  if (possessOutfit("Swashbuckling Getup")) {
     if (possessOutfit("Swashbuckling Getup", true) && (0, import_kolmafia50.itemAmount)($item`The Big Book of Pirate Insults`) === 0 && (0, import_kolmafia50.myMeat)() > (0, import_kolmafia50.npcPrice)($item`The Big Book of Pirate Insults`)) {
       auto_buyUpTo(1, $item`The Big Book of Pirate Insults`);
     }
@@ -12075,7 +12058,7 @@ function LX_unlockBelowdecks() {
     return false;
   }
   auto_log_info("Swordfish? Every password was swordfish!", "blue");
-  autoEquip$1($item`pirate fledges`);
+  autoEquip($item`pirate fledges`);
   return autoAdv($location`The Poop Deck`);
 }
 function LX_pirateQuest() {
@@ -12387,9 +12370,7 @@ function need8BitPoints() {
   return needDigitalKey();
 }
 function towerKeyCount() {
-  return towerKeyCount$1(true);
-}
-function towerKeyCount$1(effective) {
+  var effective = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : true;
   if (isActuallyEd()) {
     return 3;
   }
@@ -12448,11 +12429,11 @@ function EightBitRealmHandler() {
   }
   switch (color) {
     case "black":
-      buffMaintain$4($effect`Shadow Waters`);
+      buffMaintain$2($effect`Shadow Waters`);
       adv_spent = autoAdv($location`Vanya's Castle`);
       break;
     case "red":
-      buffMaintain$4($effect`Shadow Waters`);
+      buffMaintain$2($effect`Shadow Waters`);
       if ((0, import_kolmafia52.meatDropModifier)() < 395) {
         auto_getCitizenZone$1("meat");
       }
@@ -12463,7 +12444,7 @@ function EightBitRealmHandler() {
       adv_spent = autoAdv($location`Megalo-City`);
       break;
     case "green":
-      buffMaintain$4($effect`Shadow Waters`);
+      buffMaintain$2($effect`Shadow Waters`);
       adv_spent = autoAdv($location`Hero's Field`);
       break;
     default:
@@ -12475,7 +12456,7 @@ function EightBitRealmHandler() {
 }
 function get8BitFatLootToken() {
   woods_questStart();
-  autoForceEquip$1($slot`acc3`, $item`continuum transfunctioner`);
+  autoForceEquip($slot`acc3`, $item`continuum transfunctioner`);
   if (EightBitScore() >= 2e4) {
     (0, import_kolmafia52.equip)($slot`acc3`, $item`continuum transfunctioner`);
     (0, import_kolmafia52.visitUrl)("place.php?whichplace=8bit&action=8treasure");
@@ -12511,7 +12492,7 @@ function LX_getDigitalKey() {
     }
   }
   woods_questStart();
-  autoForceEquip$1($slot`acc3`, $item`continuum transfunctioner`);
+  autoForceEquip($slot`acc3`, $item`continuum transfunctioner`);
   if (EightBitScore() >= 1e4) {
     (0, import_kolmafia52.equip)($slot`acc3`, $item`continuum transfunctioner`);
     (0, import_kolmafia52.visitUrl)("place.php?whichplace=8bit&action=8treasure");
@@ -12574,7 +12555,7 @@ function LX_getStarKey() {
   if ((0, import_kolmafia52.itemAmount)($item`star`) >= 8 && (0, import_kolmafia52.itemAmount)($item`line`) >= 7 && !(0, import_kolmafia52.inHardcore)() && !at_tower_door) {
     return false;
   }
-  if (!zone_isAvailable$1($location`The Hole in the Sky`)) {
+  if (!zone_isAvailable($location`The Hole in the Sky`)) {
     auto_log_warning(
       "The Hole In The Sky is not available, we have to do something else...",
       "red"
@@ -12861,10 +12842,10 @@ function L13_towerNSContests() {
         `5.0:Spell Damage;5.0:${challenge} Damage;5.0:${challenge} Spell Damage`
       );
       if (crowd3Insufficient()) {
-        buffMaintain$4($effect`All Glory To the Toad`);
+        buffMaintain$2($effect`All Glory To the Toad`);
       }
       if (crowd3Insufficient()) {
-        buffMaintain$3($effect`Bendin' Hell`, 120, 1, 1);
+        buffMaintain$2($effect`Bendin' Hell`, 120, 1, 1);
       }
       switch (challenge) {
         case $element`cold`:
@@ -12872,16 +12853,16 @@ function L13_towerNSContests() {
             auto_beachCombHead("cold");
           }
           if (crowd3Insufficient()) {
-            buffMaintain$4($effect`Cold Hard Skin`);
+            buffMaintain$2($effect`Cold Hard Skin`);
           }
           if (crowd3Insufficient()) {
-            buffMaintain$3($effect`Frostbeard`, 15, 1, 1);
+            buffMaintain$2($effect`Frostbeard`, 15, 1, 1);
           }
           if (crowd3Insufficient()) {
-            buffMaintain$3($effect`Icy Glare`, 10, 1, 1);
+            buffMaintain$2($effect`Icy Glare`, 10, 1, 1);
           }
           if (crowd3Insufficient()) {
-            buffMaintain$3($effect`Song of the North`, 100, 1, 1);
+            buffMaintain$2($effect`Song of the North`, 100, 1, 1);
           }
           break;
         case $element`hot`:
@@ -12889,28 +12870,28 @@ function L13_towerNSContests() {
             auto_beachCombHead("hot");
           }
           if (crowd3Insufficient()) {
-            buffMaintain$3($effect`Song of Sauce`, 100, 1, 1);
+            buffMaintain$2($effect`Song of Sauce`, 100, 1, 1);
           }
           if (crowd3Insufficient()) {
-            buffMaintain$4($effect`Flamibili Tea`);
+            buffMaintain$2($effect`Flamibili Tea`);
           }
           if (crowd3Insufficient()) {
-            buffMaintain$4($effect`Flaming Weapon`);
+            buffMaintain$2($effect`Flaming Weapon`);
           }
           if (crowd3Insufficient()) {
-            buffMaintain$4($effect`Human-Demon Hybrid`);
+            buffMaintain$2($effect`Human-Demon Hybrid`);
           }
           if (crowd3Insufficient()) {
-            buffMaintain$4($effect`Lit Up`);
+            buffMaintain$2($effect`Lit Up`);
           }
           if (crowd3Insufficient()) {
-            buffMaintain$4($effect`Fire Inside`);
+            buffMaintain$2($effect`Fire Inside`);
           }
           if (crowd3Insufficient()) {
-            buffMaintain$3($effect`Pyromania`, 15, 1, 1);
+            buffMaintain$2($effect`Pyromania`, 15, 1, 1);
           }
           if (crowd3Insufficient()) {
-            buffMaintain$3($effect`Your Fifteen Minutes`, 50, 1, 1);
+            buffMaintain$2($effect`Your Fifteen Minutes`, 50, 1, 1);
           }
           break;
         case $element`sleaze`:
@@ -12918,13 +12899,13 @@ function L13_towerNSContests() {
             auto_beachCombHead("sleaze");
           }
           if (crowd3Insufficient()) {
-            buffMaintain$3($effect`Takin' It Greasy`, 15, 1, 1);
+            buffMaintain$2($effect`Takin' It Greasy`, 15, 1, 1);
           }
           if (crowd3Insufficient()) {
-            buffMaintain$4($effect`Blood-Gorged`);
+            buffMaintain$2($effect`Blood-Gorged`);
           }
           if (crowd3Insufficient()) {
-            buffMaintain$4($effect`Greasy Peasy`);
+            buffMaintain$2($effect`Greasy Peasy`);
           }
           break;
         case $element`stench`:
@@ -12932,21 +12913,21 @@ function L13_towerNSContests() {
             auto_beachCombHead("stench");
           }
           if (crowd3Insufficient()) {
-            buffMaintain$4($effect`Drenched With Filth`);
+            buffMaintain$2($effect`Drenched With Filth`);
           }
           if (crowd3Insufficient()) {
-            buffMaintain$4($effect`Musky`);
+            buffMaintain$2($effect`Musky`);
           }
           if (crowd3Insufficient()) {
-            buffMaintain$4($effect`Stinky Hands`);
+            buffMaintain$2($effect`Stinky Hands`);
           }
           if (crowd3Insufficient()) {
-            buffMaintain$4($effect`Stinky Weapon`);
+            buffMaintain$2($effect`Stinky Weapon`);
           }
           if (crowd3Insufficient()) {
-            buffMaintain$3($effect`Rotten Memories`, 15, 1, 1);
+            buffMaintain$2($effect`Rotten Memories`, 15, 1, 1);
           }
-          if (canPull$1($item`halibut`) && auto_can_equip($item`halibut`)) {
+          if (canPull($item`halibut`) && auto_can_equip($item`halibut`)) {
             pullXWhenHaveY($item`halibut`, 1, 0);
             autoMaximize$1(
               `${challenge} dmg, ${challenge} spell dmg -equip snow suit`,
@@ -12961,34 +12942,34 @@ function L13_towerNSContests() {
             auto_beachCombHead("spooky");
           }
           if (crowd3Insufficient()) {
-            buffMaintain$4($effect`Spooky Hands`);
+            buffMaintain$2($effect`Spooky Hands`);
           }
           if (crowd3Insufficient()) {
-            buffMaintain$4($effect`Spooky Weapon`);
-          }
-          if (crowd3Insufficient()) {
-            shrugAT($effect`Dirge of Dreadfulness`);
-            buffMaintain$4($effect`Dirge of Dreadfulness (Remastered)`);
+            buffMaintain$2($effect`Spooky Weapon`);
           }
           if (crowd3Insufficient()) {
             shrugAT($effect`Dirge of Dreadfulness`);
-            buffMaintain$3($effect`Dirge of Dreadfulness`, 10, 1, 1);
+            buffMaintain$2($effect`Dirge of Dreadfulness (Remastered)`);
           }
           if (crowd3Insufficient()) {
-            buffMaintain$3($effect`Intimidating Mien`, 15, 1, 1);
+            shrugAT($effect`Dirge of Dreadfulness`);
+            buffMaintain$2($effect`Dirge of Dreadfulness`, 10, 1, 1);
           }
           if (crowd3Insufficient()) {
-            buffMaintain$4($effect`Snarl of Three Timberwolves`);
+            buffMaintain$2($effect`Intimidating Mien`, 15, 1, 1);
           }
           if (crowd3Insufficient()) {
-            buffMaintain$3($effect`Snarl of the Timberwolf`, 10, 1, 1);
+            buffMaintain$2($effect`Snarl of Three Timberwolves`);
+          }
+          if (crowd3Insufficient()) {
+            buffMaintain$2($effect`Snarl of the Timberwolf`, 10, 1, 1);
           }
           break;
       }
       var score = (0, import_kolmafia52.numericModifier)(`${challenge} damage`);
       score += (0, import_kolmafia52.numericModifier)(`${challenge} spell damage`);
       if (score > 20 && score < 85) {
-        buffMaintain$3($effect`Bendin' Hell`, 100, 1, 1);
+        buffMaintain$2($effect`Bendin' Hell`, 100, 1, 1);
       }
       score = (0, import_kolmafia52.numericModifier)(`${challenge} damage`);
       score += (0, import_kolmafia52.numericModifier)(`${challenge} spell damage`);
@@ -13384,7 +13365,7 @@ function L13_towerNSTowerSkin() {
     }
   }
   if ((0, import_kolmafia52.availableAmount)($item`tiny bowler`) > 0 && (0, import_kolmafia52.canEquip)($item`tiny bowler`)) {
-    autoEquip$1($item`tiny bowler`);
+    autoEquip($item`tiny bowler`);
     damage += 1;
   }
   uneffect($effect`Aloysius' Antiphon of Aptitude`);
@@ -13439,11 +13420,11 @@ function L13_towerNSTowerSkin() {
     var it = _arr[_i];
     if (!have(it) || !(0, import_kolmafia52.canEquip)(it)) continue;
     if (!acc1_occupied) {
-      autoEquip($slot`acc1`, it);
+      autoEquipToSlot($slot`acc1`, it);
       acc1_occupied = true;
       damage++;
     } else if (!acc2_occupied) {
-      autoEquip($slot`acc2`, it);
+      autoEquipToSlot($slot`acc2`, it);
       acc2_occupied = true;
       damage++;
     }
@@ -13556,21 +13537,21 @@ function L13_towerNSTowerBones() {
   uneffect($effect`Carlweather's Cantata of Confrontation`);
   uneffect($effect`Ode to Booze`);
   acquireMP(150, 0);
-  buffMaintain$4($effect`Jackasses' Symphony of Destruction`);
-  buffMaintain$4($effect`Stevedave's Shanty of Superiority`);
-  buffMaintain$4($effect`Seeing Colors`);
-  buffMaintain$4($effect`Glittering Eyelashes`);
-  buffMaintain$4($effect`OMG WTF`);
-  buffMaintain$4($effect`There Is A Spoon`);
-  buffMaintain$4($effect`Song of Sauce`);
-  buffMaintain$4($effect`Carol of the Hells`);
-  buffMaintain$4($effect`Sauce Monocle`);
-  buffMaintain$4($effect`Arched Eyebrow of the Archmage`);
-  buffMaintain$4($effect`Rosewater Mark`);
-  buffMaintain$4($effect`Black Eyes`);
-  buffMaintain$4($effect`Imported Strength`);
-  buffMaintain$4($effect`Mystically Oiled`);
-  buffMaintain$4($effect`Tomato Power`);
+  buffMaintain$2($effect`Jackasses' Symphony of Destruction`);
+  buffMaintain$2($effect`Stevedave's Shanty of Superiority`);
+  buffMaintain$2($effect`Seeing Colors`);
+  buffMaintain$2($effect`Glittering Eyelashes`);
+  buffMaintain$2($effect`OMG WTF`);
+  buffMaintain$2($effect`There Is A Spoon`);
+  buffMaintain$2($effect`Song of Sauce`);
+  buffMaintain$2($effect`Carol of the Hells`);
+  buffMaintain$2($effect`Sauce Monocle`);
+  buffMaintain$2($effect`Arched Eyebrow of the Archmage`);
+  buffMaintain$2($effect`Rosewater Mark`);
+  buffMaintain$2($effect`Black Eyes`);
+  buffMaintain$2($effect`Imported Strength`);
+  buffMaintain$2($effect`Mystically Oiled`);
+  buffMaintain$2($effect`Tomato Power`);
   if (canChangeFamiliar()) {
     if ((0, import_kolmafia52.haveFamiliar)($familiar`Magic Dragonfish`)) {
       (0, import_kolmafia52.useFamiliar)($familiar`Magic Dragonfish`);
@@ -13768,11 +13749,11 @@ function L13_towerNSTowerShadow() {
     }
   }
   if ((0, import_kolmafia52.myMaxhp)() < 800) {
-    buffMaintain$4($effect`Industrial Strength Starch`);
-    buffMaintain$4($effect`Truly Gritty`);
-    buffMaintain$4($effect`Superheroic`);
-    buffMaintain$4($effect`Strong Grip`);
-    buffMaintain$4($effect`Spiky Hair`);
+    buffMaintain$2($effect`Industrial Strength Starch`);
+    buffMaintain$2($effect`Truly Gritty`);
+    buffMaintain$2($effect`Superheroic`);
+    buffMaintain$2($effect`Strong Grip`);
+    buffMaintain$2($effect`Spiky Hair`);
   }
   (0, import_kolmafia52.cliExecute)("scripts/autoscend/auto_post_adv.js");
   if (!acquireFullHP()) {
@@ -13815,21 +13796,21 @@ function L13_towerNSFinal() {
     (0, import_kolmafia52.cliExecute)("scripts/autoscend/auto_post_adv.js");
   }
   if ((0, import_kolmafia52.myClass)() === $class`Turtle Tamer`) {
-    autoEquip$1($item`Ouija Board, Ouija Board`);
+    autoEquip($item`Ouija Board, Ouija Board`);
   }
   if (auto_can_equip($item`Oscus's garbage can lid`)) {
     pullXWhenHaveY($item`Oscus's garbage can lid`, 1, 0);
   }
-  autoEquip($slot`off-hand`, $item`Oscus's garbage can lid`);
+  autoEquipToSlot($slot`off-hand`, $item`Oscus's garbage can lid`);
   handleFamiliar("boss");
   addToMaximize("10dr,3moxie,0.5da 1000max,-5ml,1.5hp,0item,0meat");
-  autoEquip($slot`acc2`, $item`attorney's badge`);
+  autoEquipToSlot($slot`acc2`, $item`attorney's badge`);
   if (in_aosol()) {
-    buffMaintain$3($effect`Queso Fustulento`, 10, 1, 10);
-    buffMaintain$3($effect`Tricky Timpani`, 30, 1, 10);
+    buffMaintain$2($effect`Queso Fustulento`, 10, 1, 10);
+    buffMaintain$2($effect`Tricky Timpani`, 30, 1, 10);
   }
   if (in_amw()) {
-    buffMaintain$3($effect`Stewing`, 0, 1, 10);
+    buffMaintain$2($effect`Stewing`, 0, 1, 10);
   }
   if (internalQuestStatus("questL13Final") < 13) {
     (0, import_kolmafia52.cliExecute)("scripts/autoscend/auto_pre_adv.js");
@@ -14054,7 +14035,7 @@ function L10_airship() {
     handleFamiliar$1($familiar`Artistic Goth Kid`);
   }
   if ($location`The Penultimate Fantasy Airship`.turnsSpent < 10) {
-    bat_formBats$1();
+    bat_formBats();
   }
   if (isActuallyEd() && $location`The Penultimate Fantasy Airship`.turnsSpent < 1) {
     (0, import_kolmafia53.visitUrl)("place.php?whichplace=beanstalk");
@@ -14090,22 +14071,22 @@ function L10_basement() {
   auto_log_info("Castle (Basement) - Unlocking Ground Floor.", "blue");
   if (!(0, import_kolmafia53.inHardcore)()) {
     var amulet = $item`amulet of extreme plot significance`;
-    if (!possessEquipment(amulet) && auto_can_equip(amulet) && canPull$1(amulet)) {
+    if (!possessEquipment(amulet) && auto_can_equip(amulet) && canPull(amulet)) {
       pullXWhenHaveY(amulet, 1, 0);
     }
     if (!possessEquipment(amulet)) {
       var umbrella = $item`titanium assault umbrella`;
-      if (!possessEquipment(umbrella) && auto_can_equip(umbrella) && canPull$1(umbrella) && !possessEquipment($item`unbreakable umbrella`)) {
+      if (!possessEquipment(umbrella) && auto_can_equip(umbrella) && canPull(umbrella) && !possessEquipment($item`unbreakable umbrella`)) {
         pullXWhenHaveY(umbrella, 1, 0);
       }
     }
   }
   if ((0, import_kolmafia53.myPrimestat)() === $stat`Muscle`) {
     auto_buyUpTo(1, $item`Ben-Gal™ Balm`);
-    buffMaintain$4($effect`Go Get 'Em, Tiger!`);
+    buffMaintain$2($effect`Go Get 'Em, Tiger!`);
   }
   auto_buyUpTo(1, $item`hair spray`);
-  buffMaintain$4($effect`Butt-Rock Hair`);
+  buffMaintain$2($effect`Butt-Rock Hair`);
   if (in_gnoob() && auto_have_familiar($familiar`Robortender`)) {
     if (!(0, import_kolmafia53.haveSkill)($skill`Bendable Knees`) && (0, import_kolmafia53.itemAmount)($item`bottle of gregnadigne`) === 0) {
       handleFamiliar$1($familiar`Robortender`);
@@ -14117,9 +14098,9 @@ function L10_basement() {
   if (!NCForced && (0, import_kolmafia53.myDaycount)() < (0, import_kolmafia53.toInt)((0, import_kolmafia53.getProperty)("auto_runDayCount")) && !isAboutToPowerlevel()) {
     return false;
   }
-  if (!autoEquip$1($item`amulet of extreme plot significance`)) {
-    if (!autoEquip$1($item`unbreakable umbrella`)) {
-      autoEquip$1($item`titanium assault umbrella`);
+  if (!autoEquip($item`amulet of extreme plot significance`)) {
+    if (!autoEquip($item`unbreakable umbrella`)) {
+      autoEquip($item`titanium assault umbrella`);
     }
   }
   autoAdv($location`The Castle in the Clouds in the Sky (Basement)`);
@@ -14158,7 +14139,7 @@ function L10_topFloor() {
     return false;
   }
   auto_log_info("Castle (Top Floor) - Finishing L10 Quest.", "blue");
-  if (!possessEquipment($item`Mohawk wig`) && auto_can_equip($item`Mohawk wig`) && canPull$1($item`Mohawk wig`)) {
+  if (!possessEquipment($item`Mohawk wig`) && auto_can_equip($item`Mohawk wig`) && canPull($item`Mohawk wig`)) {
     pullXWhenHaveY($item`Mohawk wig`, 1, 0);
   }
   var NCForced = auto_forceNextNoncombat(
@@ -14167,7 +14148,7 @@ function L10_topFloor() {
   if (!NCForced && (0, import_kolmafia53.myDaycount)() < (0, import_kolmafia53.toInt)((0, import_kolmafia53.getProperty)("auto_runDayCount")) && !isAboutToPowerlevel()) {
     return false;
   }
-  autoEquip$1($item`Mohawk wig`);
+  autoEquip($item`Mohawk wig`);
   autoAdv($location`The Castle in the Clouds in the Sky (Top Floor)`);
   if (internalQuestStatus("questL10Garbage") > 9) {
     (0, import_kolmafia53.council)();
@@ -14249,7 +14230,7 @@ function robot_defaultMaximizeStatement() {
   }
   if ((0, import_kolmafia54.toInt)((0, import_kolmafia54.getProperty)("youRobotLeft")) === 4) {
     if (possessEquipment($item`Fourth of May Cosplay Saber`)) {
-      autoEquip$1($item`Fourth of May Cosplay Saber`);
+      autoEquip($item`Fourth of May Cosplay Saber`);
     } else {
       res += ",0.3weapon damage,0.2weapon damage percent,0.5elemental damage";
       if ((0, import_kolmafia54.myPrimestat)() === $stat`Muscle`) {
@@ -14515,7 +14496,8 @@ function robot_bottom(choice) {
   }
   return true;
 }
-function robot_cpu(choice, want_buy) {
+function robot_cpu(choice) {
+  var want_buy = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : true;
   var upgrade = "";
   var name = "";
   var energy_cost = 0;
@@ -14605,9 +14587,6 @@ function robot_cpu(choice, want_buy) {
   }
   return true;
 }
-function robot_cpu$1(choice) {
-  return robot_cpu(choice, true);
-}
 function robot_skillbuy() {
   if (!in_robot()) {
     return;
@@ -14616,33 +14595,33 @@ function robot_skillbuy() {
     return;
   }
   if (!robot_cpu(10, false) && (0, import_kolmafia54.myRobotEnergy)() > 80) {
-    robot_cpu$1(10);
+    robot_cpu(10);
   }
   if (!robot_cpu(10, false)) {
     return;
   }
   if (!robot_cpu(3, false) && (0, import_kolmafia54.myRobotEnergy)() > 60) {
-    robot_cpu$1(3);
+    robot_cpu(3);
   }
   if ((0, import_kolmafia54.myPrimestat)() === $stat`Mysticality` && !robot_cpu(2, false) && (0, import_kolmafia54.myRobotEnergy)() > 60) {
-    robot_cpu$1(2);
+    robot_cpu(2);
   }
   if ((0, import_kolmafia54.myPrimestat)() === $stat`Muscle` && !robot_cpu(1, false) && (0, import_kolmafia54.myRobotEnergy)() > 60) {
-    robot_cpu$1(1);
+    robot_cpu(1);
   }
   if (!robot_cpu(6, false) && (0, import_kolmafia54.myRobotEnergy)() > 70) {
-    robot_cpu$1(6);
+    robot_cpu(6);
   }
   if ((0, import_kolmafia54.toInt)((0, import_kolmafia54.getProperty)("lastSecondFloorUnlock")) === (0, import_kolmafia54.myAscensions)() && !robot_cpu(5, false) && (0, import_kolmafia54.myRobotEnergy)() > 70) {
-    robot_cpu$1(5);
+    robot_cpu(5);
   }
   if (robot_chronolith_cost() > 47) {
-    robot_cpu$1(8);
-    robot_cpu$1(4);
-    robot_cpu$1(12);
-    robot_cpu$1(11);
-    robot_cpu$1(7);
-    robot_cpu$1(9);
+    robot_cpu(8);
+    robot_cpu(4);
+    robot_cpu(12);
+    robot_cpu(11);
+    robot_cpu(7);
+    robot_cpu(9);
   }
   if (robot_cpu(9, false)) {
     (0, import_kolmafia54.setProperty)("auto_robot_skills_bought", (0, import_kolmafia54.myAscensions)().toString());
@@ -15029,7 +15008,7 @@ function robot_directive() {
   }
   var slope_ready = (0, import_kolmafia54.inHardcore)() && internalQuestStatus("questL08Trapper") === 2;
   var slope_done = (0, import_kolmafia54.inHardcore)() ? (0, import_kolmafia54.getProperty)("questL08Trapper") === "finished" : true;
-  var gob_ready = internalQuestStatus("questL05Goblin") === 1 && possessOutfit$1("Knob Goblin Harem Girl Disguise");
+  var gob_ready = internalQuestStatus("questL05Goblin") === 1 && possessOutfit("Knob Goblin Harem Girl Disguise");
   var gob_done = (0, import_kolmafia54.getProperty)("questL05Goblin") === "finished";
   var castle_ready = internalQuestStatus("questL10Garbage") === 9 || internalQuestStatus("questL10Garbage") === 10;
   var castle_wig_route = possessEquipment($item`Mohawk wig`) || !(0, import_kolmafia54.inHardcore)();
@@ -15040,9 +15019,9 @@ function robot_directive() {
   var arena_done = (0, import_kolmafia54.getProperty)("sidequestArenaCompleted") !== "none" || (0, import_kolmafia54.toInt)((0, import_kolmafia54.getProperty)("flyeredML")) > 9999 || auto_warSide() === "hippy";
   var war_can_kill_boss = (0, import_kolmafia54.myPrimestat)() !== $stat`Mysticality` || possessEquipment($item`Fourth of May Cosplay Saber`);
   var war_battlefield_cleared = auto_warEnemiesRemaining() === 0;
-  var war_have_preoutfit = possessOutfit$1("Filthy Hippy Disguise") || possessOutfit$1("Frat Boy Ensemble");
+  var war_have_preoutfit = possessOutfit("Filthy Hippy Disguise") || possessOutfit("Frat Boy Ensemble");
   var war_have_stats = (0, import_kolmafia54.myBasestat)($stat`Moxie`) >= 70 && (0, import_kolmafia54.myBasestat)($stat`Mysticality`) >= 70;
-  var war_ready1 = internalQuestStatus("questL12War") === 0 && war_have_stats && (haveWarOutfit$1() || war_have_preoutfit);
+  var war_ready1 = internalQuestStatus("questL12War") === 0 && war_have_stats && (haveWarOutfit() || war_have_preoutfit);
   var war_ready2 = internalQuestStatus("questL12War") === 1 && arena_done && !war_battlefield_cleared;
   var war_ready3 = internalQuestStatus("questL12War") === 1 && war_can_kill_boss && war_battlefield_cleared;
   var war_started = internalQuestStatus("questL12War") === 1;
@@ -15067,7 +15046,7 @@ function robot_directive() {
   }
   var desert_ready = internalQuestStatus("questL11Desert") === 0;
   var desert_done = internalQuestStatus("questL11Desert") > 0;
-  var chasm_offhand_slot_needed = possessEquipment($item`loadstone`) || canPull$1($item`loadstone`);
+  var chasm_offhand_slot_needed = possessEquipment($item`loadstone`) || canPull($item`loadstone`);
   var chasm_ready = internalQuestStatus("questL09Topping") === 0 && (0, import_kolmafia54.toInt)((0, import_kolmafia54.getProperty)("chasmBridgeProgress")) < bridgeGoal() && !shenShouldDelayZone($location`The Smut Orc Logging Camp`);
   var chasm_done = internalQuestStatus("questL09Topping") > 0;
   if (directive === "chasm" && chasm_done) {
@@ -15206,7 +15185,7 @@ function LA_robot() {
     }
     (0, import_kolmafia54.abort)(`Failed to execute directive: ${directive}`);
   }
-  if (LX_freeCombats$1(true)) {
+  if (LX_freeCombats(true)) {
     return true;
   }
   if (LX_galaktikSubQuest()) {
@@ -15263,7 +15242,7 @@ function L5_haremOutfit() {
   if (internalQuestStatus("questL05Goblin") !== 1) {
     return false;
   }
-  if (possessOutfit$1("Knob Goblin Harem Girl Disguise")) {
+  if (possessOutfit("Knob Goblin Harem Girl Disguise")) {
     return false;
   }
   if ((0, import_kolmafia55.myDaycount)() > 1) {
@@ -15276,9 +15255,9 @@ function L5_haremOutfit() {
     }
   }
   if (in_heavyrains()) {
-    buffMaintain$4($effect`Fishy Whiskers`);
+    buffMaintain$2($effect`Fishy Whiskers`);
   }
-  bat_formBats$1();
+  bat_formBats();
   auto_log_info("Looking for some sexy lingerie!", "blue");
   if (autoAdv($location`Cobb's Knob Harem`)) {
     return true;
@@ -15289,13 +15268,13 @@ function L5_goblinKing() {
   if (internalQuestStatus("questL05Goblin") !== 1) {
     return false;
   }
-  if (!canSurvive$1(3)) {
+  if (!canSurvive(3)) {
     return false;
   }
   if ((0, import_kolmafia55.myAdventures)() <= 2) {
     return false;
   }
-  if (!possessOutfit$1("Knob Goblin Harem Girl Disguise")) {
+  if (!possessOutfit("Knob Goblin Harem Girl Disguise")) {
     return false;
   }
   if (robot_delay("outfit")) {
@@ -15305,7 +15284,7 @@ function L5_goblinKing() {
   if (!autoOutfit("Knob Goblin Harem Girl Disguise")) {
     (0, import_kolmafia55.abort)("Could not put on Knob Goblin Harem Girl Disguise, aborting");
   }
-  buffMaintain$4($effect`Knob Goblin Perfume`);
+  buffMaintain$2($effect`Knob Goblin Perfume`);
   if ((0, import_kolmafia55.haveEffect)($effect`Knob Goblin Perfume`) === 0) {
     var advSpent_1 = autoAdv($location`Cobb's Knob Harem`);
     if ((0, import_kolmafia55.haveEffect)($effect`Knob Goblin Perfume`) === 0) {
@@ -15315,17 +15294,17 @@ function L5_goblinKing() {
   }
   if ((0, import_kolmafia55.myPrimestat)() === $stat`Muscle`) {
     auto_buyUpTo(1, $item`Ben-Gal™ Balm`);
-    buffMaintain$4($effect`Go Get 'Em, Tiger!`);
+    buffMaintain$2($effect`Go Get 'Em, Tiger!`);
   }
   auto_buyUpTo(1, $item`hair spray`);
-  buffMaintain$4($effect`Butt-Rock Hair`);
+  buffMaintain$2($effect`Butt-Rock Hair`);
   if ((0, import_kolmafia55.myClass)() === $class`Seal Clubber` || (0, import_kolmafia55.myClass)() === $class`Turtle Tamer`) {
     auto_buyUpTo(1, $item`blood of the Wereseal`);
-    buffMaintain$4($effect`Temporary Lycanthropy`);
+    buffMaintain$2($effect`Temporary Lycanthropy`);
   }
   if (in_aosol()) {
-    buffMaintain$3($effect`Queso Fustulento`, 10, 1, 10);
-    buffMaintain$3($effect`Tricky Timpani`, 30, 1, 10);
+    buffMaintain$2($effect`Queso Fustulento`, 10, 1, 10);
+    buffMaintain$2($effect`Tricky Timpani`, 30, 1, 10);
   }
   if (!in_plumber()) {
     auto_change_mcd(10);
@@ -15452,7 +15431,7 @@ function lowkey_nextKeyLocation(checkAvailable) {
       var key = _step2.value;
       var loc = lowKeys.get(key) ?? lowKeys.set(key, import_kolmafia56.Location.none).get(key);
       if (lowkey_needKey(key)) {
-        if (!checkAvailable || zone_isAvailable$1(loc)) {
+        if (!checkAvailable || zone_isAvailable(loc)) {
           return lowKeys.get(key) ?? lowKeys.set(key, import_kolmafia56.Location.none).get(key);
         }
       }
@@ -15478,7 +15457,7 @@ function lowkey_nextAvailableKeyDelayLocation() {
     for (_iterator3.s(); !(_step3 = _iterator3.n()).done; ) {
       var key = _step3.value;
       var loc = lowKeys.get(key) ?? lowKeys.set(key, import_kolmafia56.Location.none).get(key);
-      if (lowkey_needKey(key) && zone_isAvailable$1(loc) && lowkey_keyDelayRemaining(loc) > 0 && loc.wanderers) {
+      if (lowkey_needKey(key) && zone_isAvailable(loc) && lowkey_keyDelayRemaining(loc) > 0 && loc.wanderers) {
         return loc;
       }
     }
@@ -15494,16 +15473,16 @@ function lowkey_keyAdv(key) {
     return false;
   }
   var loc = lowKeys.get(key) ?? lowKeys.set(key, import_kolmafia56.Location.none).get(key);
-  if (!zone_isAvailable$1(loc)) {
+  if (!zone_isAvailable(loc)) {
     return false;
   }
   if ($locations`The F'c'le, Belowdecks`.includes(loc)) {
     if (possessEquipment($item`pirate fledges`)) {
-      autoEquip$1($item`pirate fledges`);
+      autoEquip($item`pirate fledges`);
     } else if ((0, import_kolmafia56.haveOutfit)("swashbuckling getup")) {
-      autoEquip$1($item`eyepatch`);
-      autoEquip$1($item`swashbuckling pants`);
-      autoEquip$1($item`stuffed shoulder parrot`);
+      autoEquip($item`eyepatch`);
+      autoEquip($item`swashbuckling pants`);
+      autoEquip($item`stuffed shoulder parrot`);
     } else {
       return false;
     }
@@ -15545,7 +15524,7 @@ function LX_findHelpfulLowKey() {
   }
   if (!possessEquipment($item`black rose key`)) {
     if ((0, import_kolmafia56.myBuffedstat)($stat`Moxie`) < (0, import_kolmafia56.monsterAttack)($monster`skeletal cat`)) {
-      buffMaintain$4($effect`Vital`);
+      buffMaintain$2($effect`Vital`);
     }
     if (lowkey_keyAdv($item`black rose key`)) {
       return true;
@@ -15729,7 +15708,7 @@ function LX_lowkeySummer() {
   if ((0, import_kolmafia56.myLevel)() < 12) {
     if ((0, import_kolmafia56.myPrimestat)() === $stat`Mysticality` && possessEquipment($item`key sausage`)) {
       if (!possessEquipment($item`demonic key`) && (0, import_kolmafia56.myBuffedstat)($stat`Moxie`) < (0, import_kolmafia56.monsterAttack)($monster`Hellion`)) {
-        buffMaintain$4($effect`Vital`);
+        buffMaintain$2($effect`Vital`);
       }
       if (L6_friarsGetParts()) {
         return true;
@@ -15921,7 +15900,7 @@ function LX_lowkeySummer() {
     return true;
   }
   if (possessEquipment($item`aquí`) && possessEquipment($item`batting cage key`)) {
-    if (LX_unlockHauntedBilliardsRoom$1()) {
+    if (LX_unlockHauntedBilliardsRoom()) {
       return true;
     }
   } else {
@@ -16226,7 +16205,8 @@ function useILoveMeVolI() {
   }
   return false;
 }
-function LX_unlockHauntedBilliardsRoom(delayKitchen) {
+function LX_unlockHauntedBilliardsRoom() {
+  var delayKitchen = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : true;
   if (internalQuestStatus("questM20Necklace") !== 0) {
     return false;
   }
@@ -16279,9 +16259,6 @@ function LX_unlockHauntedBilliardsRoom(delayKitchen) {
   }
   return false;
 }
-function LX_unlockHauntedBilliardsRoom$1() {
-  return LX_unlockHauntedBilliardsRoom(true);
-}
 function LX_unlockHauntedLibrary() {
   if (internalQuestStatus("questM20Necklace") < 1 || internalQuestStatus("questM20Necklace") > 2) {
     return false;
@@ -16304,16 +16281,16 @@ function LX_unlockHauntedLibrary() {
     auto_log_info("I don't need to equip a cue to beat this ghostie.", "blue");
   } else {
     if (possessEquipment(staffOfFats)) {
-      autoEquip$1(staffOfFats);
+      autoEquip(staffOfFats);
       expectPool += 5;
     } else if (possessEquipment(EdStaffOfEd) && expectPool + 5 > 13) {
-      autoEquip$1(EdStaffOfEd);
+      autoEquip(EdStaffOfEd);
       expectPool += 5;
     } else if (possessEquipment(EdStaffOfFats) && expectPool + 5 > 13) {
-      autoEquip$1(EdStaffOfFats);
+      autoEquip(EdStaffOfFats);
       expectPool += 5;
     } else if (possessEquipment($item`pool cue`) && expectPool + 3 > 13) {
-      autoEquip$1($item`pool cue`);
+      autoEquip($item`pool cue`);
       expectPool += 3;
     }
   }
@@ -16349,7 +16326,7 @@ function LX_unlockHauntedLibrary() {
       return false;
     }
   }
-  buffMaintain$4($effect`Chalky Hand`);
+  buffMaintain$2($effect`Chalky Hand`);
   if (internalQuestStatus("questM20Necklace") === 2) {
     var NCForced = auto_forceNextNoncombat(
       $location`The Haunted Billiards Room`
@@ -16408,7 +16385,7 @@ function LX_spookyravenManorFirstFloor() {
   if ((0, import_kolmafia57.toInt)((0, import_kolmafia57.getProperty)("lastSecondFloorUnlock")) >= (0, import_kolmafia57.myAscensions)()) {
     return false;
   }
-  if (LX_unlockManorSecondFloor() || LX_unlockHauntedLibrary() || LX_unlockHauntedBilliardsRoom$1()) {
+  if (LX_unlockManorSecondFloor() || LX_unlockHauntedLibrary() || LX_unlockHauntedBilliardsRoom()) {
     return true;
   }
   return false;
@@ -16562,14 +16539,14 @@ function L11_blackMarket() {
   if (internalQuestStatus("questL11Black") === 0 && (0, import_kolmafia57.itemAmount)($item`black map`) === 0) {
     (0, import_kolmafia57.council)();
     var galoshes = $item`blackberry galoshes`;
-    if (!possessEquipment(galoshes) && auto_can_equip(galoshes) && canPull$1(galoshes)) {
+    if (!possessEquipment(galoshes) && auto_can_equip(galoshes) && canPull(galoshes)) {
       pullXWhenHaveY(galoshes, 1, 0);
     }
   }
   if ((0, import_kolmafia57.itemAmount)($item`beehive`) > 0) {
     (0, import_kolmafia57.setProperty)("auto_getBeehive", false.toString());
   }
-  autoEquip($slot`acc3`, $item`blackberry galoshes`);
+  autoEquipToSlot($slot`acc3`, $item`blackberry galoshes`);
   if ((0, import_kolmafia57.toBoolean)((0, import_kolmafia57.getProperty)("auto_getBeehive")) && (0, import_kolmafia57.myAdventures)() < 3) {
     return false;
   }
@@ -16765,7 +16742,7 @@ function L11_aridDesert() {
       return false;
     }
   }
-  if (LX_ornateDowsingRod$1(true)) {
+  if (LX_ornateDowsingRod(true)) {
     return true;
   }
   if (L11_getUVCompass()) {
@@ -16941,7 +16918,7 @@ function L11_aridDesert() {
   if ((0, import_kolmafia57.haveEffect)($effect`Ultrahydrated`) > 0 || (0, import_kolmafia57.toInt)((0, import_kolmafia57.getProperty)("desertExploration")) === 0) {
     auto_log_info("Searching for the pyramid", "blue");
     if (in_heavyrains()) {
-      autoEquip$1($item`Thor's Pliers`);
+      autoEquip($item`Thor's Pliers`);
     }
     if (possessEquipment($item`reinforced beaded headband`) && possessEquipment($item`bullet-proof corduroys`) && possessEquipment($item`round purple sunglasses`)) {
       var _iterator5 = _createForOfIteratorHelper(
@@ -16959,12 +16936,12 @@ function L11_aridDesert() {
       }
     }
     auto_buyUpTo(1, $item`hair spray`);
-    buffMaintain$4($effect`Butt-Rock Hair`);
+    buffMaintain$2($effect`Butt-Rock Hair`);
     if ((0, import_kolmafia57.myPrimestat)() === $stat`Muscle`) {
       auto_buyUpTo(1, $item`Ben-Gal™ Balm`);
-      buffMaintain$4($effect`Go Get 'Em, Tiger!`);
+      buffMaintain$2($effect`Go Get 'Em, Tiger!`);
       auto_buyUpTo(1, $item`blood of the Wereseal`);
-      buffMaintain$4($effect`Temporary Lycanthropy`);
+      buffMaintain$2($effect`Temporary Lycanthropy`);
     }
     if ((0, import_kolmafia57.myMp)() > 30 && (0, import_kolmafia57.myHp)() < (0, import_kolmafia57.myMaxhp)() * 0.5) {
       acquireHP();
@@ -17000,13 +16977,13 @@ function L11_aridDesert() {
       }
     }
     if (dbr.weapon !== import_kolmafia57.Item.none) {
-      autoEquip($slot`weapon`, dbr.weapon);
+      autoEquipToSlot($slot`weapon`, dbr.weapon);
     }
     if (dbr.offhand !== import_kolmafia57.Item.none) {
-      autoEquip($slot`off-hand`, dbr.offhand);
+      autoEquipToSlot($slot`off-hand`, dbr.offhand);
     }
     if (dbr.famEquip !== import_kolmafia57.Item.none) {
-      autoEquip($slot`familiar`, dbr.famEquip);
+      autoEquipToSlot($slot`familiar`, dbr.famEquip);
     }
     (0, import_kolmafia57.setProperty)("choiceAdventure805", 1 .toString());
     var need = 100 - (0, import_kolmafia57.toInt)((0, import_kolmafia57.getProperty)("desertExploration"));
@@ -17152,7 +17129,7 @@ function L11_unlockHiddenCity() {
     if ((0, import_kolmafia57.itemAmount)($item`stone wool`) === 0 && (0, import_kolmafia57.haveEffect)($effect`Stone-Faced`) === 0) {
       pullXWhenHaveY($item`stone wool`, 1, 0);
     }
-    buffMaintain$4($effect`Stone-Faced`);
+    buffMaintain$2($effect`Stone-Faced`);
     if ((0, import_kolmafia57.haveEffect)($effect`Stone-Faced`) === 0) {
       if (isAboutToPowerlevel()) {
         (0, import_kolmafia57.abort)(
@@ -17172,9 +17149,7 @@ function L11_unlockHiddenCity() {
   return autoAdv($location`The Hidden Temple`);
 }
 function L11_hiddenTavernUnlock() {
-  return L11_hiddenTavernUnlock$1(false);
-}
-function L11_hiddenTavernUnlock$1(force) {
+  var force = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : false;
   if (!auto_is_valid($item`book of matches`)) {
     return false;
   }
@@ -17274,7 +17249,7 @@ function L11_hiddenCity() {
         if (canDrinkCursedPunch) {
           var canBuyCursedPunch = (0, import_kolmafia57.myMeat)() >= cursesNeeded * 500 * npcStoreDiscountMulti() && !is_werewolf();
           if (canBuyCursedPunch) {
-            L11_hiddenTavernUnlock$1(true);
+            L11_hiddenTavernUnlock(true);
             if ((0, import_kolmafia57.myAscensions)() === (0, import_kolmafia57.toInt)((0, import_kolmafia57.getProperty)("hiddenTavernUnlock"))) {
               shouldForceElevatorAction = true;
             }
@@ -17319,7 +17294,7 @@ function L11_hiddenCity() {
     } else {
       if ((0, import_kolmafia57.haveEffect)($effect`Thrice-Cursed`) === 0) {
         if (canDrinkCursedPunch) {
-          L11_hiddenTavernUnlock$1(true);
+          L11_hiddenTavernUnlock(true);
           if ((0, import_kolmafia57.myAscensions)() === (0, import_kolmafia57.toInt)((0, import_kolmafia57.getProperty)("hiddenTavernUnlock")) && !is_werewolf()) {
             auto_buyUpTo(cursesNeeded, $item`Cursed Punch`);
             if ((0, import_kolmafia57.itemAmount)($item`Cursed Punch`) < cursesNeeded) {
@@ -17410,7 +17385,7 @@ function L11_hiddenCity() {
   }
   if (internalQuestStatus("questL11Spare") === 0) {
     auto_log_info("The idden [sic] bowling alley!", "blue");
-    L11_hiddenTavernUnlock$1(true);
+    L11_hiddenTavernUnlock(true);
     if ((0, import_kolmafia57.myAscensions)() === (0, import_kolmafia57.toInt)((0, import_kolmafia57.getProperty)("hiddenTavernUnlock"))) {
       if ((0, import_kolmafia57.itemAmount)($item`Bowl of Scorpions`) === 0 && !is_werewolf()) {
         auto_buyUpTo(1, $item`Bowl of Scorpions`);
@@ -17419,7 +17394,7 @@ function L11_hiddenCity() {
         }
       }
     }
-    buffMaintain$4($effect`Fishy Whiskers`);
+    buffMaintain$2($effect`Fishy Whiskers`);
     auto_log_info(
       `Hidden Bowling Alley Progress: ${(0, import_kolmafia57.getProperty)("hiddenBowlingAlleyProgress")}`,
       "blue"
@@ -17454,11 +17429,11 @@ function L11_hiddenCity() {
       return true;
     }
     auto_log_info("The idden [sic] ospital!", "blue");
-    autoEquip$1($item`bloodied surgical dungarees`);
-    autoEquip$1($item`half-size scalpel`);
-    autoEquip$1($item`surgical apron`);
-    autoEquip($slot`acc3`, $item`head mirror`);
-    autoEquip($slot`acc2`, $item`surgical mask`);
+    autoEquip($item`bloodied surgical dungarees`);
+    autoEquip($item`half-size scalpel`);
+    autoEquip($item`surgical apron`);
+    autoEquipToSlot($slot`acc3`, $item`head mirror`);
+    autoEquipToSlot($slot`acc2`, $item`surgical mask`);
     var surgeonGearWanted = 0;
     var _iterator7 = _createForOfIteratorHelper(
       $items`bloodied surgical dungarees, half-size scalpel, surgical apron, head mirror, surgical mask`
@@ -17510,8 +17485,8 @@ function L11_hiddenCity() {
     auto_log_info("Fighting the out-of-work spirit", "blue");
     acquireHP();
     if (in_aosol()) {
-      buffMaintain$3($effect`Queso Fustulento`, 10, 1, 10);
-      buffMaintain$3($effect`Tricky Timpani`, 30, 1, 10);
+      buffMaintain$2($effect`Queso Fustulento`, 10, 1, 10);
+      buffMaintain$2($effect`Tricky Timpani`, 30, 1, 10);
     }
     (0, import_kolmafia57.setProperty)("auto_nextEncounter", "Protector Spectre");
     handleFamiliar("boss");
@@ -17534,13 +17509,13 @@ function L11_hiddenCityZones() {
     if (auto_can_equip($item`antique machete`)) {
       if (possessEquipment($item`antique machete`)) {
         return autoForceEquip$3($item`antique machete`);
-      } else if (!possessEquipment($item`muculent machete`) && canPull$1($item`antique machete`)) {
+      } else if (!possessEquipment($item`muculent machete`) && canPull($item`antique machete`)) {
         pullXWhenHaveY($item`antique machete`, 1, 0);
         return autoForceEquip$3($item`antique machete`);
       }
     }
     if (auto_can_equip($item`muculent machete`)) {
-      if (!possessEquipment($item`muculent machete`) && canPull$1($item`muculent machete`)) {
+      if (!possessEquipment($item`muculent machete`) && canPull($item`muculent machete`)) {
         pullXWhenHaveY($item`muculent machete`, 1, 0);
       }
       return autoForceEquip$3($item`muculent machete`);
@@ -17650,8 +17625,8 @@ function L11_mauriceSpookyraven() {
     }
     auto_log_info("Down with the tyrant of Spookyraven!", "blue");
     if (in_aosol()) {
-      buffMaintain$3($effect`Queso Fustulento`, 10, 1, 10);
-      buffMaintain$3($effect`Tricky Timpani`, 30, 1, 10);
+      buffMaintain$2($effect`Queso Fustulento`, 10, 1, 10);
+      buffMaintain$2($effect`Tricky Timpani`, 30, 1, 10);
     }
     acquireHP();
     var resGoal = /* @__PURE__ */ new Map();
@@ -17776,7 +17751,7 @@ function L11_mauriceSpookyraven() {
     }
     auto_log_info("Searching for vinegar", "blue");
     if (!bat_wantHowl($location`The Haunted Wine Cellar`)) {
-      bat_formBats$1();
+      bat_formBats();
     }
     if ((0, import_kolmafia57.friarsAvailable)() && !(0, import_kolmafia57.toBoolean)((0, import_kolmafia57.getProperty)("friarsBlessingReceived"))) {
       (0, import_kolmafia57.cliExecute)("friars booze");
@@ -17798,7 +17773,7 @@ function L11_mauriceSpookyraven() {
     }
     auto_log_info("Searching for baking soda, I mean, blasting pop.", "blue");
     if (!bat_wantHowl($location`The Haunted Wine Cellar`)) {
-      bat_formBats$1();
+      bat_formBats();
     }
     auto_lostStomach(true);
     if (canSniff(
@@ -17822,16 +17797,16 @@ function L11_mauriceSpookyraven() {
     addToMaximize(`500ml ${auto_convertDesiredML(82)}max`);
     if (in_picky() && (0, import_kolmafia57.itemAmount)($item`gumshoes`) > 0) {
       auto_change_mcd(0);
-      autoEquip($slot`acc2`, $item`gumshoes`);
+      autoEquipToSlot($slot`acc2`, $item`gumshoes`);
     }
     if (is_professor()) {
       auto_change_mcd(0);
       removeFromMaximize(`500ml ${auto_convertDesiredML(82)}max`);
     }
     if ((0, import_kolmafia57.monsterLevelAdjustment)() < 57) {
-      buffMaintain$4($effect`Sweetbreads Flambé`);
+      buffMaintain$2($effect`Sweetbreads Flambé`);
     }
-    if (!autoForceEquip$1($slot`off-hand`, $item`unstable fulminate`)) {
+    if (!autoForceEquip($slot`off-hand`, $item`unstable fulminate`)) {
       (0, import_kolmafia57.abort)(
         "Unstable Fulminate was not equipped. Please report this and include the following: Equipped items and if you have or don't have an Unstable Fulminate. For now, get the wine bomb manually, and run again."
       );
@@ -17858,9 +17833,9 @@ function L11_redZeppelin() {
     (0, import_kolmafia57.setProperty)("choiceAdventure857", 1 .toString());
   }
   (0, import_kolmafia57.setProperty)("choiceAdventure858", 1 .toString());
-  buffMaintain$4($effect`Greasy Peasy`);
-  buffMaintain$4($effect`Musky`);
-  buffMaintain$4($effect`Blood-Gorged`);
+  buffMaintain$2($effect`Greasy Peasy`);
+  buffMaintain$2($effect`Musky`);
+  buffMaintain$2($effect`Blood-Gorged`);
   if (!in_wotsf()) {
     pullXWhenHaveY($item`deck of lewd playing cards`, 1, 0);
   }
@@ -17900,7 +17875,7 @@ function L11_redZeppelin() {
   if ((0, import_kolmafia57.toInt)((0, import_kolmafia57.getProperty)("zeppelinProtestors")) < 75 && cloversAvailable$1() > 0) {
     if (cloversAvailable$1() >= 3) {
       if (!in_koe() || (0, import_kolmafia57.myDaycount)() > 1) {
-        buffMaintain$3($effect`Bendin' Hell`, 0, 0, 1);
+        buffMaintain$2($effect`Bendin' Hell`, 0, 0, 1);
       }
       var _iterator0 = _createForOfIteratorHelper(
         $effects`Dirty Pear, Fifty Ways to Bereave Your Lover`
@@ -17970,7 +17945,7 @@ function L11_redZeppelin() {
         try {
           for (_iterator10.s(); !(_step10 = _iterator10.n()).done; ) {
             var it = _step10.value;
-            autoEquip$1(it);
+            autoEquip(it);
           }
         } catch (err) {
           _iterator10.e(err);
@@ -18031,7 +18006,7 @@ function L11_ronCopperhead() {
         auto_buyUpTo(1, $item`Red Zeppelin ticket`);
       }
     }
-    bat_formBats$1();
+    bat_formBats();
     if (canSniff($monster`red butler`, $location`The Red Zeppelin`) && auto_mapTheMonsters()) {
       auto_log_info$1(
         "Attemping to use Map the Monsters to olfact a Red Butler."
@@ -18184,7 +18159,7 @@ function L11_shenCopperhead() {
     if (goal === import_kolmafia57.Location.none) {
       (0, import_kolmafia57.abort)("Could not parse Shen event");
     }
-    if (!zone_isAvailable$1(goal)) {
+    if (!zone_isAvailable(goal)) {
       if (goal === $location`The Hole in the Sky`) {
         if (!(0, import_kolmafia57.toBoolean)((0, import_kolmafia57.getProperty)("auto_holeinthesky"))) {
           (0, import_kolmafia57.setProperty)("auto_holeinthesky", true.toString());
@@ -18327,8 +18302,8 @@ function L11_palindome() {
       (0, import_kolmafia57.setProperty)("screechDelay", "beast");
       return false;
     }
-    providePlusCombat$2(15, $location`Whitey's Grove`, false);
-    bat_formBats$1();
+    providePlusCombat(15, $location`Whitey's Grove`, false);
+    bat_formBats();
     auto_lostStomach(true);
     auto_log_info("Off to the grove for some doofy food!", "blue");
     return autoAdv($location`Whitey's Grove`);
@@ -18351,7 +18326,7 @@ function L11_palindome() {
         return doWhiteys();
       } else if ((0, import_kolmafia57.itemAmount)($item`stunt nuts`) === 0) {
         auto_log_info("We got no nuts!! :O", "Blue");
-        autoEquip($slot`acc3`, $item`Talisman o' Namsilat`);
+        autoEquipToSlot($slot`acc3`, $item`Talisman o' Namsilat`);
         return autoAdv($location`Inside the Palindome`);
       } else {
         (0, import_kolmafia57.abort)("Some sort of Wet Stunt Nut Stew error. Try making it yourself?");
@@ -18418,8 +18393,8 @@ function L11_palindome() {
       );
       return false;
     }
-    autoEquip($slot`acc2`, $item`Mega Gem`);
-    autoEquip($slot`acc3`, $item`Talisman o' Namsilat`);
+    autoEquipToSlot($slot`acc2`, $item`Mega Gem`);
+    autoEquipToSlot($slot`acc3`, $item`Talisman o' Namsilat`);
     var palinChoice = (0, import_kolmafia57.random)(3) + 1;
     (0, import_kolmafia57.setProperty)("choiceAdventure131", palinChoice.toString());
     auto_log_info("War sir is raw!!", "blue");
@@ -18428,8 +18403,8 @@ function L11_palindome() {
     pages.set(1, `choice.php?pwd&whichchoice=131&option=${palinChoice}`);
     (0, import_kolmafia57.setProperty)("auto_nextEncounter", "Dr. Awkward");
     if (in_aosol()) {
-      buffMaintain$3($effect`Queso Fustulento`, 10, 1, 10);
-      buffMaintain$3($effect`Tricky Timpani`, 30, 1, 10);
+      buffMaintain$2($effect`Queso Fustulento`, 10, 1, 10);
+      buffMaintain$2($effect`Tricky Timpani`, 30, 1, 10);
     }
     autoAdvBypass(0, pages, $location`Noob Cave`);
     return true;
@@ -18472,7 +18447,7 @@ function L11_palindome() {
         dudesToDown = 10;
       }
     }
-    autoEquip($slot`acc3`, $item`Talisman o' Namsilat`);
+    autoEquipToSlot($slot`acc3`, $item`Talisman o' Namsilat`);
     if (handleFamiliar$1($familiar`Red-Nosed Snapper`)) {
       auto_changeSnapperPhylum($phylum`dude`);
     } else if (auto_have_familiar($familiar`Nosy Nose`) && auto_is_valid$2($skill`Get a Good Whiff of This Guy`)) {
@@ -18654,7 +18629,7 @@ function L11_unlockEd() {
   }
   if (auto_can_equip($item`pro skateboard`) && equipmentAmount($item`pro skateboard`) > 0 && (0, import_kolmafia57.itemAmount)($item`tangle of rat tails`) >= 1 && !(0, import_kolmafia57.toBoolean)((0, import_kolmafia57.getProperty)("_epicMcTwistUsed")) && !in_pokefam()) {
     auto_log_info$1("Be like Tony Hawk on a Tomb Rat King!");
-    autoEquip$1($item`pro skateboard`);
+    autoEquip($item`pro skateboard`);
   }
   return autoAdv($location`The Middle Chamber`);
 }
@@ -18694,14 +18669,14 @@ function L11_defeatEd() {
     }
     uneffect($effect`Ur-Kel's Aria of Annoyance`);
     if (possessEquipment($item`beer helmet`)) {
-      autoEquip$1($item`beer helmet`);
+      autoEquip($item`beer helmet`);
     }
   }
   if (in_koe()) {
     (0, import_kolmafia57.retrieveItem)(1, $item`low-pressure oxygen tank`);
     autoForceEquip$3($item`low-pressure oxygen tank`);
   }
-  plumber_equipTool$1($stat`Moxie`);
+  plumber_equipTool($stat`Moxie`);
   auto_log_info("Time to waste all of Ed's Ka Coins :(", "blue");
   (0, import_kolmafia57.setProperty)("auto_nextEncounter", "Ed the Undying");
   (0, import_kolmafia57.setProperty)("auto_nonAdvLoc", true.toString());
@@ -19056,7 +19031,7 @@ function fantasyRealmToken() {
     return false;
   }
   if (possessEquipment($item`FantasyRealm G. E. M.`)) {
-    autoEquip($slot`acc3`, $item`FantasyRealm G. E. M.`);
+    autoEquipToSlot($slot`acc3`, $item`FantasyRealm G. E. M.`);
   }
   return autoAdv($location`The Bandit Crossroads`);
 }
@@ -19447,7 +19422,7 @@ function neverendingPartyCombat() {
   }
   if (hasTorso() && januaryToteTurnsLeft($item`makeshift garbage shirt`) > 0 && auto_is_valid($item`makeshift garbage shirt`)) {
     januaryToteAcquire($item`makeshift garbage shirt`);
-    autoEquip($slot`shirt`, $item`makeshift garbage shirt`);
+    autoEquipToSlot($slot`shirt`, $item`makeshift garbage shirt`);
   }
   return autoAdv($location`The Neverending Party`);
 }
@@ -19713,14 +19688,10 @@ function auto_latteRefill(want1, want2, want3, force) {
 function auto_latteRefill$2(want1, want2, force) {
   return auto_latteRefill(want1, want2, "", force);
 }
-function auto_latteRefill$4(want1, force) {
+function auto_latteRefill$4() {
+  var want1 = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : "";
+  var force = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : false;
   return auto_latteRefill$2(want1, "", force);
-}
-function auto_latteRefill$5(want1) {
-  return auto_latteRefill$4(want1, false);
-}
-function auto_latteRefill$6() {
-  return auto_latteRefill$5("");
 }
 function auto_haveVotingBooth() {
   return ((0, import_kolmafia59.toBoolean)((0, import_kolmafia59.getProperty)("_voteToday")) || (0, import_kolmafia59.toBoolean)((0, import_kolmafia59.getProperty)("voteAlways"))) && (0, import_kolmafia59.isUnrestricted)($item`voter registration form`);
@@ -19767,12 +19738,8 @@ function auto_voteSetup(candidate, first, second) {
   return true;
 }
 function auto_voteMonster() {
-  return auto_voteMonster$1(false);
-}
-function auto_voteMonster$1(freeMon) {
-  return auto_voteMonster$2(freeMon, import_kolmafia59.Location.none);
-}
-function auto_voteMonster$2(freeMon, loc) {
+  var freeMon = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : false;
+  var loc = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : import_kolmafia59.Location.none;
   if (!auto_haveVotingBooth()) {
     return false;
   }
@@ -19794,7 +19761,7 @@ function auto_voteMonster$2(freeMon, loc) {
   if (loc === import_kolmafia59.Location.none) {
     return true;
   }
-  if (autoEquip($slot`acc3`, $item`"I Voted!" sticker`)) {
+  if (autoEquipToSlot($slot`acc3`, $item`"I Voted!" sticker`)) {
     (0, import_kolmafia59.setProperty)("auto_nextEncounter", (0, import_kolmafia59.getProperty)("_voteMonster"));
     return autoAdv(loc);
   }
@@ -20218,23 +20185,23 @@ function L9_aBooPeak() {
       doThisBoo = true;
     }
     if (doThisBoo) {
-      buffMaintain$4($effect`Go Get 'Em, Tiger!`);
-      bat_formMist$1();
+      buffMaintain$2($effect`Go Get 'Em, Tiger!`);
+      bat_formMist();
       if (0 === (0, import_kolmafia60.haveEffect)($effect`Mist Form`)) {
-        buffMaintain$3($effect`Spectral Awareness`, 10, 1, 1);
+        buffMaintain$2($effect`Spectral Awareness`, 10, 1, 1);
       }
       addToMaximize(`1000spooky res,1000cold res,10hp${parrot}`);
       adjustEdHat("ml");
-      buffMaintain$3($effect`Astral Shell`, 10, 1, 1);
-      buffMaintain$3($effect`Elemental Saucesphere`, 10, 1, 1);
-      buffMaintain$3($effect`Scariersauce`, 10, 1, 1);
-      buffMaintain$3($effect`Scarysauce`, 10, 1, 1);
-      buffMaintain$4($effect`Spookypants`);
-      buffMaintain$4($effect`Hyphemariffic`);
-      buffMaintain$4($effect`Insulated Trousers`);
-      buffMaintain$4($effect`Balls of Ectoplasm`);
-      buffMaintain$4($effect`Red Door Syndrome`);
-      buffMaintain$4($effect`Well-Oiled`);
+      buffMaintain$2($effect`Astral Shell`, 10, 1, 1);
+      buffMaintain$2($effect`Elemental Saucesphere`, 10, 1, 1);
+      buffMaintain$2($effect`Scariersauce`, 10, 1, 1);
+      buffMaintain$2($effect`Scarysauce`, 10, 1, 1);
+      buffMaintain$2($effect`Spookypants`);
+      buffMaintain$2($effect`Hyphemariffic`);
+      buffMaintain$2($effect`Insulated Trousers`);
+      buffMaintain$2($effect`Balls of Ectoplasm`);
+      buffMaintain$2($effect`Red Door Syndrome`);
+      buffMaintain$2($effect`Well-Oiled`);
       if (auto_is_valid$3($effect`Cold as Nice`)) {
         auto_beachCombHead("cold");
       }
@@ -20364,7 +20331,7 @@ function prepareForTwinPeak(speculative) {
     }
     if (food_drop < 50 && (0, import_kolmafia60.itemAmount)($item`resolution: be happier`) > 0 && (0, import_kolmafia60.haveEffect)($effect`Joyful Resolve`) === 0 && auto_is_valid($item`resolution: be happier`)) {
       if (!speculative) {
-        buffMaintain$4($effect`Joyful Resolve`);
+        buffMaintain$2($effect`Joyful Resolve`);
       }
       food_drop = food_drop + 15;
     }
@@ -20405,8 +20372,8 @@ function L9_twinPeak() {
   if ((0, import_kolmafia60.myMp)() > 60 || considerGrimstoneGolem(true)) {
     handleBjornify($familiar`Grimstone Golem`);
   }
-  buffMaintain$4($effect`Fishy Whiskers`);
-  buffMaintain$4($effect`Float Like a Butterfly, Smell Like a Bee`);
+  buffMaintain$2($effect`Fishy Whiskers`);
+  buffMaintain$2($effect`Float Like a Butterfly, Smell Like a Bee`);
   if (in_bhy()) {
     return autoAdv($location`Twin Peak`);
   }
@@ -20497,21 +20464,21 @@ function L9_oilPeak() {
     }
     auto_log_info("Oil Peak is finished but we need more crude!", "blue");
   }
-  buffMaintain$4($effect`Fishy Whiskers`);
+  buffMaintain$2($effect`Fishy Whiskers`);
   auto_MaxMLToCap(auto_convertDesiredML(100), true);
   if ((0, import_kolmafia60.monsterLevelAdjustment)() < 50) {
-    buffMaintain$4($effect`The Dinsey Look`);
+    buffMaintain$2($effect`The Dinsey Look`);
   }
   if ((0, import_kolmafia60.monsterLevelAdjustment)() < 60) {
     if ((0, import_kolmafia60.itemAmount)($item`dress pants`) > 0) {
-      autoEquip($slot`pants`, $item`dress pants`);
+      autoEquipToSlot($slot`pants`, $item`dress pants`);
     } else {
       januaryToteAcquire($item`tinsel tights`);
     }
   }
   if ((0, import_kolmafia60.haveEffect)($effect`Driving Recklessly`) === 0 && (0, import_kolmafia60.haveEffect)($effect`Driving Wastefully`) === 0) {
     var loc = $location`Oil Peak`;
-    if ((simMaximizeWith(loc, "1000ml 75min") && !simMaximizeWith(loc, "1000ml 100min") || simMaximizeWith(loc, "1000ml 25min") && !simMaximizeWith(loc, "1000ml 50min") || !simMaximizeWith(loc, "1000ml 11min")) && (0, import_kolmafia60.haveEffect)($effect`Driving Wastefully`) === 0) {
+    if ((simMaximizeWith("1000ml 75min", loc) && !simMaximizeWith("1000ml 100min", loc) || simMaximizeWith("1000ml 25min", loc) && !simMaximizeWith("1000ml 50min", loc) || !simMaximizeWith("1000ml 11min", loc)) && (0, import_kolmafia60.haveEffect)($effect`Driving Wastefully`) === 0) {
       asdonBuff($effect`Driving Recklessly`);
     } else if ((0, import_kolmafia60.haveEffect)($effect`Driving Recklessly`) === 0) {
       asdonBuff($effect`Driving Wastefully`);
@@ -20581,9 +20548,7 @@ function auto_haveCursedMagnifyingGlass() {
   return false;
 }
 function auto_voidMonster() {
-  return auto_voidMonster$1(import_kolmafia61.Location.none);
-}
-function auto_voidMonster$1(loc) {
+  var loc = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : import_kolmafia61.Location.none;
   if (!auto_haveCursedMagnifyingGlass()) {
     return false;
   }
@@ -20596,7 +20561,7 @@ function auto_voidMonster$1(loc) {
   if (loc === import_kolmafia61.Location.none) {
     return true;
   }
-  if (autoEquip$1($item`cursed magnifying glass`)) {
+  if (autoEquip($item`cursed magnifying glass`)) {
     (0, import_kolmafia61.setProperty)("auto_nextEncounter", "void guy");
     return autoAdv(loc);
   }
@@ -20779,7 +20744,7 @@ function auto_juneCleaverAdventure() {
   if (!auto_canUseJuneCleaver() || (0, import_kolmafia61.toInt)((0, import_kolmafia61.getProperty)("_juneCleaverFightsLeft")) > 0) {
     return false;
   }
-  if (autoEquip($slot`weapon`, $item`June cleaver`)) {
+  if (autoEquipToSlot($slot`weapon`, $item`June cleaver`)) {
     var cleaverLoc = $location`The Dire Warren`;
     if (in_koe()) {
       cleaverLoc = $location`Cobb's Knob Treasury`;
@@ -21188,7 +21153,7 @@ function zoo_d2Pulls() {
     return;
   }
   var ml_target = (0, import_kolmafia62.toInt)(100);
-  simMaximizeWith$1("monster level");
+  simMaximizeWith("monster level");
   var curr_ml = (0, import_kolmafia62.toInt)((0, import_kolmafia62.numericModifier)(import_kolmafia62.Modifier.get("Monster Level")));
   function try_ml_pull(it2) {
     if (!(0, import_kolmafia62.canEquip)(it2) || (0, import_kolmafia62.availableAmount)(it2) > 0 || !auto_is_valid(it2)) {
@@ -22176,9 +22141,7 @@ function getZooKickInstaKill() {
   return import_kolmafia62.Skill.none;
 }
 function getZooBestPunch() {
-  return getZooBestPunch$1($monster`fluffy bunny`);
-}
-function getZooBestPunch$1(m) {
+  var m = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : $monster`fluffy bunny`;
   if ((0, import_kolmafia62.haveSkill)($skill`Left %n Punch`)) {
     return $skill`Left %n Punch`;
   } else {
@@ -22409,11 +22372,11 @@ function LX_zootoFight() {
       return true;
     }
     if (yellowRayCombatString$1(import_kolmafia62.Monster.none, false) !== "") {
-      if ((0, import_kolmafia62.toBoolean)((0, import_kolmafia62.getProperty)("auto_hippyInstead")) && !possessOutfit$1("War Hippy Fatigues")) {
-        adjustForYellowRayIfPossible$1();
+      if ((0, import_kolmafia62.toBoolean)((0, import_kolmafia62.getProperty)("auto_hippyInstead")) && !possessOutfit("War Hippy Fatigues")) {
+        adjustForYellowRayIfPossible();
         return summonMonster($monster`War Hippy Airborne Commander`);
-      } else if (!possessOutfit$1("Frat Warrior Fatigues")) {
-        adjustForYellowRayIfPossible$1();
+      } else if (!possessOutfit("Frat Warrior Fatigues")) {
+        adjustForYellowRayIfPossible();
         return summonMonster($monster`War Frat Mobile Grill Unit`);
       }
     }
@@ -22495,11 +22458,11 @@ function auto_equipAllMcHugeLarge() {
   if (!possessEquipment($item`McHugeLarge right pole`)) {
     auto_openMcLargeHugeSkis();
   }
-  autoForceEquip$1($slot`back`, $item`McHugeLarge duffel bag`);
-  autoForceEquip$1($slot`weapon`, $item`McHugeLarge right pole`);
-  autoForceEquip$1($slot`off-hand`, $item`McHugeLarge left pole`);
-  autoForceEquip$1($slot`acc1`, $item`McHugeLarge left ski`);
-  autoForceEquip$1($slot`acc2`, $item`McHugeLarge right ski`);
+  autoForceEquip($slot`back`, $item`McHugeLarge duffel bag`);
+  autoForceEquip($slot`weapon`, $item`McHugeLarge right pole`);
+  autoForceEquip($slot`off-hand`, $item`McHugeLarge left pole`);
+  autoForceEquip($slot`acc1`, $item`McHugeLarge left ski`);
+  autoForceEquip($slot`acc2`, $item`McHugeLarge right ski`);
   return true;
 }
 function auto_openMcLargeHugeSkis() {
@@ -22727,7 +22690,7 @@ function haveUsedPeridot(loc) {
   try {
     for (_iterator4.s(); !(_step4 = _iterator4.n()).done; ) {
       var _step4$value = _slicedToArray(_step4.value, 2), str = _step4$value[1];
-      if (loc === (0, import_kolmafia63.toInt)(str)) {
+      if ((0, import_kolmafia63.toInt)(loc) === (0, import_kolmafia63.toInt)(str)) {
         return true;
       }
     }
@@ -22737,9 +22700,6 @@ function haveUsedPeridot(loc) {
     _iterator4.f();
   }
   return false;
-}
-function haveUsedPeridot$1(loc) {
-  return haveUsedPeridot((0, import_kolmafia63.toInt)(loc));
 }
 function auto_havePrismaticBeret() {
   var pb = $item`prismatic beret`;
@@ -23205,7 +23165,7 @@ function auto_talkToSomeFish(loc, enemy) {
   if (!auto_is_valid$2($skill`Sea *dent: Talk to Some Fish`)) {
     return false;
   }
-  if (isFreeMonster$1(enemy, loc)) {
+  if (isFreeMonster(enemy, loc)) {
     return false;
   }
   if (enemy === $monster`some fish`) {
@@ -23358,7 +23318,7 @@ function auto_bczRefractedGaze() {
   if (!auto_wantToBCZ($skill`BCZ: Refracted Gaze`)) {
     return false;
   }
-  if (auto_havePeridot() && !haveUsedPeridot$1((0, import_kolmafia63.myLocation)())) {
+  if (auto_havePeridot() && !haveUsedPeridot((0, import_kolmafia63.myLocation)())) {
     return false;
   }
   if ((0, import_kolmafia63.myLocation)() === $location`The Smut Orc Logging Camp` && lumberCount() < bridgeGoal() && fastenerCount() < bridgeGoal() || (0, import_kolmafia63.myLocation)() === $location`The Penultimate Fantasy Airship` && (0, import_kolmafia63.itemAmount)($item`Mohawk wig`) < 1 && (0, import_kolmafia63.itemAmount)($item`amulet of extreme plot significance`) < 1 || (0, import_kolmafia63.myLocation)() === $location`The Battlefield (Frat Uniform)` || (0, import_kolmafia63.myLocation)() === $location`A-Boo Peak` && (0, import_kolmafia63.itemAmount)($item`A-Boo clue`) * 30 < (0, import_kolmafia63.toInt)((0, import_kolmafia63.getProperty)("booPeakProgress")) || (0, import_kolmafia63.myLocation)() === $location`Cobb's Knob Harem` && ((0, import_kolmafia63.lastMonster)() === $monster`Knob Goblin Harem Guard` || (0, import_kolmafia63.lastMonster)() === $monster`some fish`) || (0, import_kolmafia63.myLocation)() === $location`Twin Peak` && (0, import_kolmafia63.itemAmount)($item`rusty hedge trimmers`) < 4 || (0, import_kolmafia63.myLocation)() === $location`The Black Forest` && !(0, import_kolmafia63.blackMarketAvailable)() && (0, import_kolmafia63.itemAmount)($item`reassembled blackbird`) === 0 && (0, import_kolmafia63.monsterPhylum)() !== $phylum`beast` || (0, import_kolmafia63.myLocation)() === $location`Whitey's Grove` && (0, import_kolmafia63.itemAmount)($item`lion oil`) === 0 && (0, import_kolmafia63.itemAmount)($item`bird rib`) === 0 && (0, import_kolmafia63.itemAmount)($item`wet stew`) === 0 && (0, import_kolmafia63.itemAmount)($item`wet stunt nut stew`) === 0 && (0, import_kolmafia63.monsterPhylum)() !== $phylum`beast` || (0, import_kolmafia63.myLocation)() === $location`The Hidden Apartment Building` && ((0, import_kolmafia63.lastMonster)() === $monster`pygmy shaman` || (0, import_kolmafia63.lastMonster)() === $monster`some fish`) || (0, import_kolmafia63.myLocation)() === $location`The Defiled Nook` && ((0, import_kolmafia63.lastMonster)() === $monster`party skelteon` || (0, import_kolmafia63.lastMonster)() === $monster`some fish`) || (0, import_kolmafia63.myLocation)() === $location`The Hole in the Sky` && needStarKey() && ((0, import_kolmafia63.monsterPhylum)() === $phylum`constellation` && (0, import_kolmafia63.lastMonster)() !== $monster`Astronomer` || (0, import_kolmafia63.lastMonster)() === $monster`some fish`) || (0, import_kolmafia63.myLocation)() === $location`Guano Junction` && internalQuestStatus("questL04Bat") < 3) {
@@ -23465,7 +23425,8 @@ function amw_advPerTrade() {
   }
   return advs_per_trade;
 }
-function amw_advBundleCost(adv_bundles, cumulative) {
+function amw_advBundleCost(adv_bundles) {
+  var cumulative = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : true;
   if (adv_bundles > 5 || adv_bundles < 1) {
     (0, import_kolmafia64.abort)(
       `I can't calculate the cost of the ${adv_bundles.toString()}-th bundle!`
@@ -23488,12 +23449,9 @@ function amw_advBundleCost(adv_bundles, cumulative) {
   }
   return meat_cost;
 }
-function amw_advBundleCost$1(adv_bundles) {
-  return amw_advBundleCost(adv_bundles, true);
-}
 function amw_buyAdv() {
   var starting_meat = (0, import_kolmafia64.myMeat)();
-  if (starting_meat + 50 < amw_advBundleCost$1(1) || isAboutToPowerlevel() && amw_advBundleCost$1(
+  if (starting_meat + 50 < amw_advBundleCost(1) || isAboutToPowerlevel() && amw_advBundleCost(
     // if true, can't afford adventures
     1
   ) > 2e3 && (0, import_kolmafia64.myLevel)() < 13) {
@@ -23692,7 +23650,8 @@ function amw_substatsBuyable(goal, meatleveling) {
     return 0;
   }
 }
-function amw_buyStats(meatleveling) {
+function amw_buyStats() {
+  var meatleveling = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : false;
   var next;
   if (meatleveling) {
     next = amw_nextLevelSubstats();
@@ -23707,10 +23666,8 @@ function amw_buyStats(meatleveling) {
   }
   return false;
 }
-function amw_buyStats$1() {
-  return amw_buyStats(false);
-}
-function LX_attemptPowerLevelMeat$1(skills) {
+function LX_attemptPowerLevelMeat() {
+  var skills = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : false;
   if (!isAboutToPowerlevel()) {
     auto_log_warning(
       "Hmmm, we need to stop being so feisty about quests...",
@@ -23745,9 +23702,6 @@ function LX_attemptPowerLevelMeat$1(skills) {
   }
   return false;
 }
-function LX_attemptPowerLevelMeat() {
-  return LX_attemptPowerLevelMeat$1(false);
-}
 function LX_needMeatSkills() {
   if ((0, import_kolmafia64.toBoolean)((0, import_kolmafia64.getProperty)("auto_shouldMeatLevel")) && (0, import_kolmafia64.myLevel)() < 12) {
     return true;
@@ -23766,7 +23720,7 @@ function LM_adventurerMeatsWorld() {
     }
   }
   if ((0, import_kolmafia64.toBoolean)((0, import_kolmafia64.getProperty)("auto_shouldMeatLevel")) && cloversAvailable$1() > 1 && (0, import_kolmafia64.myBuffedstat)($stat`Moxie`) > 25 && (0, import_kolmafia64.myLevel)() < 12 && zone_isAvailable($location`Cobb's Knob Treasury`, true)) {
-    if (amw_buyStats$1()) {
+    if (amw_buyStats()) {
       return true;
     }
     if ((0, import_kolmafia64.itemAmount)($item`Cobb's Knob lab key`) < 1) {
@@ -23774,12 +23728,12 @@ function LM_adventurerMeatsWorld() {
     }
     return autoLuckyAdv$1($location`Cobb's Knob Treasury`);
   }
-  if (amw_buyStats$1()) {
+  if (amw_buyStats()) {
     return true;
   }
   if ((0, import_kolmafia64.turnsPlayed)() > 8 && (0, import_kolmafia64.myBasestat)($stat`Mysticality`) < 30 && !auto_haveMobiusRing()) {
     auto_log_info$1("Low skills after 8 turns, going to meatfarm");
-    return LX_attemptPowerLevelMeat$1(true);
+    return LX_attemptPowerLevelMeat(true);
   }
   return false;
 }
@@ -23810,7 +23764,7 @@ function consumeBlackAndWhiteApronKit() {
     allowList += ",186";
   }
   (0, import_kolmafia65.setProperty)("c2t_apron_allowlist", allowList);
-  return c2t_apron$1();
+  return c2t_apron();
 }
 function auto_haveSpringShoes() {
   if (auto_is_valid($item`spring shoes`) && (0, import_kolmafia65.availableAmount)($item`spring shoes`) > 0) {
@@ -24752,7 +24706,7 @@ function amw_wanttoPP() {
   if (!in_amw() || !auto_have_skill($skill`Chicken Fingers`)) {
     return false;
   }
-  if (!canSurvive$1(8)) {
+  if (!canSurvive(8)) {
     return false;
   }
   return true;
@@ -24764,7 +24718,7 @@ function auto_combatMeatGolemStage3(round_1, enemy, text) {
   if (((0, import_kolmafia68.monsterHp)() - (0, import_kolmafia68.myBuffedstat)($stat`Muscle`)) / (0, import_kolmafia68.monsterHp)() < 0.55) {
     return "";
   }
-  if (canUse($skill`Meat Cleaver`, true, true) && ((!canSurvive$1(8) || (0, import_kolmafia68.monsterHp)() >= 500) && canSurvive$1(0.7) || enemy === $monster`The Manwich` || enemy === $monster`The Big Mac Wisniewski` || enemy === $monster`Naughty Sorceress, all sausage`)) {
+  if (canUse($skill`Meat Cleaver`, true, true) && ((!canSurvive(8) || (0, import_kolmafia68.monsterHp)() >= 500) && canSurvive(0.7) || enemy === $monster`The Manwich` || enemy === $monster`The Big Mac Wisniewski` || enemy === $monster`Naughty Sorceress, all sausage`)) {
     return auto_useSkill($skill`Meat Cleaver`);
   }
   return "";
@@ -24773,7 +24727,7 @@ function auto_combatMeatGolemStage5(round_1, enemy, text) {
   if (!in_amw()) {
     return "";
   }
-  if ((!canSurvive$1(1.4) || (0, import_kolmafia68.myHp)() < 0.5 * (0, import_kolmafia68.myMaxhp)()) && canUse($skill`Chew the Fat`, false) && (0, import_kolmafia68.myHp)() < (0, import_kolmafia68.myMaxhp)() * 0.95) {
+  if ((!canSurvive(1.4) || (0, import_kolmafia68.myHp)() < 0.5 * (0, import_kolmafia68.myMaxhp)()) && canUse($skill`Chew the Fat`, false) && (0, import_kolmafia68.myHp)() < (0, import_kolmafia68.myMaxhp)() * 0.95) {
     return auto_useSkill($skill`Chew the Fat`, false);
   }
   if (canUse($skill`Steak Through the Heart`, true) && (0, import_kolmafia68.combatSkillAvailable)($skill`Steak Through the Heart`) && round_1 > 12) {
@@ -24820,7 +24774,7 @@ var import_kolmafia69 = require("kolmafia");
 function auto_combatBHYStage1(round_1, enemy, text) {
   if (enemy === $monster`Guy Made Of Bees`) {
     if (canUse$3($item`antique hand mirror`)) {
-      return useItem$1($item`antique hand mirror`);
+      return useItem($item`antique hand mirror`);
     } else {
       (0, import_kolmafia69.abort)(
         "We attacked [Guy Made Of Bees] without an [antique hand mirror]. Report this then get the mirror before running autoscend again"
@@ -24864,7 +24818,7 @@ function auto_combatDisguisesStage1(round_1, enemy, text) {
     return auto_useSkill($skill`Swap Mask`);
   }
   if (disguises === 3) {
-    if (canSurvive$1(1.5)) {
+    if (canSurvive(1.5)) {
       return "attack with weapon";
     }
     (0, import_kolmafia70.abort)(
@@ -24895,7 +24849,7 @@ function auto_combatDisguisesStage5(round_1, enemy, text) {
         "Not sure how to handle a physically resistent enemy wearing a welding mask."
       );
     }
-    if (canSurvive$1(1.5) && round_1 < 10) {
+    if (canSurvive(1.5) && round_1 < 10) {
       return "attack with weapon";
     }
     if (canUse($skill`Implode Universe`)) {
@@ -24977,7 +24931,7 @@ function auto_combatFallOfTheDinosaursStage5(round_1, enemy, text) {
         "Not sure how to handle a physically resistent enemy eaten by a glass-shelled archelon."
       );
     }
-    if (canSurvive$1(1.5) && round_1 < 25) {
+    if (canSurvive(1.5) && round_1 < 25) {
       return "attack with weapon";
     }
     if (canUse($skill`Implode Universe`)) {
@@ -25145,7 +25099,7 @@ function auto_combatExploathingStage1(round_1, enemy, text) {
   }
   if (enemy === $monster`skeleton astronaut`) {
     if ((0, import_kolmafia73.myDaycount)() === 1 && canUse$3($item`exploding cigar`, false)) {
-      return useItem$1($item`exploding cigar`);
+      return useItem($item`exploding cigar`);
     }
     var dmg = 0;
     var _iterator = _createForOfIteratorHelper(
@@ -25183,7 +25137,7 @@ function auto_combat_nanorhinoBuff(round_1, enemy, text) {
   var target_mark = false;
   switch ((0, import_kolmafia74.myPrimestat)()) {
     case $stat`Muscle`:
-      if (target === import_kolmafia74.Skill.none && in_glover() && canUse($skill`Lunge Smack`) && canSurvive$1(4)) {
+      if (target === import_kolmafia74.Skill.none && in_glover() && canUse($skill`Lunge Smack`) && canSurvive(4)) {
         target = $skill`Lunge Smack`;
       }
       if (target === import_kolmafia74.Skill.none && canUse($skill`Shell Up`)) {
@@ -25192,7 +25146,7 @@ function auto_combat_nanorhinoBuff(round_1, enemy, text) {
       if (target === import_kolmafia74.Skill.none && stunnable(enemy) && canUse($skill`Club Foot`) && (0, import_kolmafia74.myClass)() === $class`Seal Clubber` && (0, import_kolmafia74.myMp)() > 25) {
         target = $skill`Club Foot`;
       }
-      if (target === import_kolmafia74.Skill.none && canSurvive$1(4)) {
+      if (target === import_kolmafia74.Skill.none && canSurvive(4)) {
         var _iterator = _createForOfIteratorHelper($skills`Toss, Clobber, Lunge Smack, Thrust-Smack, Headbutt, Kneebutt, Lunging Thrust-Smack, Club Foot, Shieldbutt, Spirit Snap, Cavalcade of Fury, Northern Explosion, Spectral Snapper`), _step;
         try {
           for (_iterator.s(); !(_step = _iterator.n()).done; ) {
@@ -25230,7 +25184,7 @@ function auto_combat_nanorhinoBuff(round_1, enemy, text) {
         target = $skill`Accordion Bash`;
         target_mark = true;
       }
-      if (!canSurvive$1(4)) {
+      if (!canSurvive(4)) {
         break;
       }
       if (target === import_kolmafia74.Skill.none && canUse($skill`Cadenza`)) {
@@ -25264,7 +25218,7 @@ function auto_combat_nanorhinoBuff(round_1, enemy, text) {
 // src/kolmafia/autoscend/combat/auto_combat_pete.ts
 var import_kolmafia75 = require("kolmafia");
 function auto_combatPeteStage1(round_1, enemy, text) {
-  if ((0, import_kolmafia75.myClass)() === $class`Avatar of Sneaky Pete` && canSurvive$1(3)) {
+  if ((0, import_kolmafia75.myClass)() === $class`Avatar of Sneaky Pete` && canSurvive(3)) {
     var maxAudience = 30;
     if ($items`Sneaky Pete's leather jacket, Sneaky Pete's leather jacket (collar popped)`.includes(
       (0, import_kolmafia75.equippedItem)($slot`shirt`)
@@ -25398,7 +25352,7 @@ function auto_combatWereProfessorStage5(round_1, enemy, text) {
     if ((0, import_kolmafia77.haveEquipped)($item`Everfull Dart Holster`) && (0, import_kolmafia77.toInt)((0, import_kolmafia77.getProperty)("_dartsLeft")) > 0) {
       return auto_useSkill(dartSkill());
     } else if (auto_haveCosmicBowlingBall() && canUse$3($item`cosmic bowling ball`) && !enemy_physical_immune && (0, import_kolmafia77.monsterHp)() < 100) {
-      return useItem$1($item`cosmic bowling ball`);
+      return useItem($item`cosmic bowling ball`);
     } else {
       return "runaway";
     }
@@ -25488,7 +25442,7 @@ function auto_combatDefaultStage1(round_1, enemy, text) {
       $item`waffle`.toString(),
       "auto_replaces"
     );
-    return useItems$1($item`waffle`, import_kolmafia79.Item.none);
+    return useItems($item`waffle`, import_kolmafia79.Item.none);
   }
   if (enemy === $monster`Your Shadow`) {
     if (in_amw() && canUse($skill`Chew the Fat`, false)) {
@@ -25599,7 +25553,7 @@ function auto_combatDefaultStage1(round_1, enemy, text) {
   var ableToPickpocket = $classes`Accordion Thief, Avatar of Sneaky Pete, Disco Bandit, Gelatinous Noob`.includes(
     (0, import_kolmafia79.myClass)()
   ) || (0, import_kolmafia79.haveEffect)($effect`Riboflavin'`) > 0 || amw_wanttoPP();
-  if (!combat_status_check("pickpocket") && ableToPickpocket && (0, import_kolmafia79.containsText)(text, 'value="Pick') && canSurvive$1(4)) {
+  if (!combat_status_check("pickpocket") && ableToPickpocket && (0, import_kolmafia79.containsText)(text, 'value="Pick') && canSurvive(4)) {
     var tryIt = false;
     var _iterator2 = _createForOfIteratorHelper(
       (0, import_kolmafia79.itemDropsArray)(enemy).entries()
@@ -25614,7 +25568,7 @@ function auto_combatDefaultStage1(round_1, enemy, text) {
           tryIt = true;
         }
         if (tryIt) {
-          if (auto_have_skill($skill`Sticky Fingers`) && canSurvive$1(8)) {
+          if (auto_have_skill($skill`Sticky Fingers`) && canSurvive(8)) {
           } else if (drop.type !== "p" && effectiveDropChance(drop.drop, (0, import_kolmafia79.toFloat)(drop.rate)) >= 100) {
             tryIt = false;
           }
@@ -25749,13 +25703,13 @@ function auto_combatDefaultStage2(round_1, enemy, text) {
       )
     );
   }
-  if (auto_wantToSniff(enemy, (0, import_kolmafia81.myLocation)()) && getSniffer$1(enemy) !== import_kolmafia81.Skill.none && !ag_is_bodyguard()) {
+  if (auto_wantToSniff(enemy, (0, import_kolmafia81.myLocation)()) && getSniffer(enemy) !== import_kolmafia81.Skill.none && !ag_is_bodyguard()) {
     auto_log_debug$1(
       `Skipping stage 2 of combat for now as we intend to olfact [${enemy}]`
     );
     return "";
   }
-  if ((0, import_kolmafia81.myLocation)() === $location`The Daily Dungeon` && (0, import_kolmafia81.itemAmount)($item`daily dungeon malware`) > 0 && auto_is_valid($item`daily dungeon malware`) && towerKeyCount$1(false) < 2 && !(0, import_kolmafia81.toBoolean)((0, import_kolmafia81.getProperty)("_dailyDungeonMalwareUsed"))) {
+  if ((0, import_kolmafia81.myLocation)() === $location`The Daily Dungeon` && (0, import_kolmafia81.itemAmount)($item`daily dungeon malware`) > 0 && auto_is_valid($item`daily dungeon malware`) && towerKeyCount(false) < 2 && !(0, import_kolmafia81.toBoolean)((0, import_kolmafia81.getProperty)("_dailyDungeonMalwareUsed"))) {
     auto_log_debug$1(
       "Skipping stage 2 of combat for now as we intend to use Daily Dungeon Malware"
     );
@@ -25792,7 +25746,7 @@ function auto_combatDefaultStage2(round_1, enemy, text) {
         $item`glark cable`.toString(),
         "auto_instakill"
       );
-      return useItem$1($item`glark cable`);
+      return useItem($item`glark cable`);
     }
   }
   if (canUse$3($item`cigarette lighter`) && (0, import_kolmafia81.myLocation)() === $location`A Mob of Zeppelin Protesters` && (0, import_kolmafia81.getProperty)("questL11Ron") === "step1") {
@@ -25801,7 +25755,7 @@ function auto_combatDefaultStage2(round_1, enemy, text) {
       $item`cigarette lighter`.toString(),
       "auto_instakill"
     );
-    return useItems$1($item`cigarette lighter`, import_kolmafia81.Item.none);
+    return useItems($item`cigarette lighter`, import_kolmafia81.Item.none);
   }
   if ((0, import_kolmafia81.toBoolean)((0, import_kolmafia81.getProperty)("auto_usePowerPill")) && (0, import_kolmafia81.toInt)((0, import_kolmafia81.getProperty)("_powerPillUses")) < 20 && instakillable(enemy)) {
     if ((0, import_kolmafia81.itemAmount)($item`power pill`) > 0) {
@@ -25908,7 +25862,7 @@ function auto_combatDefaultStage2(round_1, enemy, text) {
       $item`groveling gravel`.toString(),
       "auto_instakill"
     );
-    return useItem$1($item`groveling gravel`);
+    return useItem($item`groveling gravel`);
   }
   if (!combat_status_check("banishercheck") && !combat_status_check("droptablereplaced") && auto_wantToBanish(enemy, (0, import_kolmafia81.myLocation)())) {
     var freeRunAction = freeRunCombatStringPreBanish(
@@ -26163,7 +26117,7 @@ function auto_combatDefaultStage2(round_1, enemy, text) {
   } else if ($monsters`dirty thieving brigand`.includes(enemy)) {
     couldInstaKill = false;
   }
-  if (instakillable(enemy) && !isFreeMonster$1(enemy, (0, import_kolmafia81.myLocation)()) && couldInstaKill) {
+  if (instakillable(enemy) && !isFreeMonster(enemy, (0, import_kolmafia81.myLocation)()) && couldInstaKill) {
     var wantFreeKillNowEspecially = false;
     var waitForDesert = false;
     if ((0, import_kolmafia81.toInt)((0, import_kolmafia81.getProperty)("desertExploration")) < 100 && !isActuallyEd()) {
@@ -26288,7 +26242,7 @@ function auto_combatDefaultStage2(round_1, enemy, text) {
           "auto_instakill"
         );
         loopHandlerDelayAll();
-        return useItem$1($item`replica bat-oomerang`);
+        return useItem($item`replica bat-oomerang`);
       }
     }
     if (canUse$3($item`shadow brick`) && (0, import_kolmafia81.toInt)((0, import_kolmafia81.getProperty)("_shadowBricksUsed")) < 13 && !reserveFreekills) {
@@ -26298,14 +26252,14 @@ function auto_combatDefaultStage2(round_1, enemy, text) {
         "auto_instakill"
       );
       loopHandlerDelayAll();
-      return useItems$1($item`shadow brick`, import_kolmafia81.Item.none);
+      return useItems($item`shadow brick`, import_kolmafia81.Item.none);
     }
   }
   if (canUse($skill`Slay the Dead`) && enemy.phylum === $phylum`undead`) {
     return auto_useSkill($skill`Slay the Dead`);
   }
   if (canUse$3($item`exploding cigar`) && haveUsed($skill`Duplicate`)) {
-    return useItem$1($item`exploding cigar`);
+    return useItem($item`exploding cigar`);
   }
   if (canUse($skill`Slaughter`) && (0, import_kolmafia81.haveEffect)($effect`Everything Looks Red`) === 0) {
     (0, import_kolmafia81.setProperty)("auto_instakillSource", "slaughter");
@@ -26331,10 +26285,10 @@ function auto_combatZombieSlayerStage3(round_1, enemy, text) {
   if (!in_zombieSlayer()) {
     return "";
   }
-  if (canUse($skill`Infectious Bite`) && canSurvive$1(4)) {
+  if (canUse($skill`Infectious Bite`) && canSurvive(4)) {
     return auto_useSkill($skill`Infectious Bite`);
   }
-  if (canUse($skill`Meat Shields`) && enemy.boss && canSurvive$1(4)) {
+  if (canUse($skill`Meat Shields`) && enemy.boss && canSurvive(4)) {
     return auto_useSkill($skill`Meat Shields`);
   }
   if (canUse($skill`Bear-ly Legal`) && !wantBearHug(enemy) && !wantKodiakMoment(enemy)) {
@@ -26346,7 +26300,7 @@ function auto_combatZombieSlayerStage4(round_1, enemy, text) {
   if (!in_zombieSlayer()) {
     return "";
   }
-  if (canUse($skill`Smash & Graaagh`) && (0, import_kolmafia82.toInt)((0, import_kolmafia82.getProperty)("_zombieSmashPocketsUsed")) < 30 && canSurvive$1(2)) {
+  if (canUse($skill`Smash & Graaagh`) && (0, import_kolmafia82.toInt)((0, import_kolmafia82.getProperty)("_zombieSmashPocketsUsed")) < 30 && canSurvive(2)) {
     var doSmash = false;
     if (enemy === $monster`Big Wheelin' Twins` && !possessEquipment($item`badge of authority`)) {
       doSmash = true;
@@ -26459,7 +26413,7 @@ function auto_combatZombieSlayerStage5(round_1, enemy, text) {
   if (wantBearHug(enemy)) {
     return auto_useSkill($skill`Bear Hug`);
   }
-  if (round_1 < 20 && canSurvive$1(5) && auto_have_skill($skill`Plague Claws`) && enemy.physicalResistance < 80) {
+  if (round_1 < 20 && canSurvive(5) && auto_have_skill($skill`Plague Claws`) && enemy.physicalResistance < 80) {
     return auto_useSkill($skill`Plague Claws`);
   }
   if (wantKodiakMoment(enemy)) {
@@ -26663,7 +26617,7 @@ function auto_combatDefaultStage3(round_1, enemy, text) {
         return auto_useSkill($skill`Surprisingly Sweet Slash`);
       }
       if (canUse$3($item`autumnic bomb`)) {
-        return useItem$1($item`autumnic bomb`);
+        return useItem($item`autumnic bomb`);
       }
     }
     if (canUse($skill`Surprisingly Sweet Slash`) && !in_avantGuard() && auto_remainingCandyCaneSlashes() > 1) {
@@ -26674,9 +26628,7 @@ function auto_combatDefaultStage3(round_1, enemy, text) {
     }
     if ($item`Daily Affirmation: Keep Free Hate in your Heart`.combat) {
       if (canUse$3($item`Daily Affirmation: Keep Free Hate in your Heart`) && inAftercore() && (0, import_kolmafia83.hippyStoneBroken)() && !(0, import_kolmafia83.toBoolean)((0, import_kolmafia83.getProperty)("_affirmationHateUsed"))) {
-        return useItem$1(
-          $item`Daily Affirmation: Keep Free Hate in your Heart`
-        );
+        return useItem($item`Daily Affirmation: Keep Free Hate in your Heart`);
       }
     }
     if (canUse($skill`Canhandle`)) {
@@ -26732,17 +26684,17 @@ function auto_combatDefaultStage3(round_1, enemy, text) {
       if ($monsters`caugr, moomy, Pharaoh Amoon-Ra Cowtep, pyrobove, spidercow`.includes(
         enemy
       )) {
-        return useItem$1($item`cow poker`);
+        return useItem($item`cow poker`);
       }
     }
     if (canUse$3($item`western-style skinning knife`)) {
       if ($monsters`caugr, coal snake, diamondback rattler, frontwinder, grizzled bear, mountain lion`.includes(
         enemy
       )) {
-        return useItem$1($item`western-style skinning knife`);
+        return useItem($item`western-style skinning knife`);
       }
     }
-    if ((0, import_kolmafia83.myLocation)() === $location`The Smut Orc Logging Camp` && canSurvive$1(1) && (0, import_kolmafia83.toInt)((0, import_kolmafia83.getProperty)("chasmBridgeProgress")) < bridgeGoal()) {
+    if ((0, import_kolmafia83.myLocation)() === $location`The Smut Orc Logging Camp` && canSurvive(1) && (0, import_kolmafia83.toInt)((0, import_kolmafia83.getProperty)("chasmBridgeProgress")) < bridgeGoal()) {
       var coldMortarShell = canUse($skill`Stuffed Mortar Shell`) && (0, import_kolmafia83.haveEffect)($effect`Spirit of Peppermint`) !== 0;
       var coldSkillToUse = import_kolmafia83.Skill.none;
       var coldAttackDamageMultiplier = 1;
@@ -26883,15 +26835,15 @@ function auto_combatDefaultStage3(round_1, enemy, text) {
       return auto_useSkill($skill`Ply Reality`);
     }
     if (canUse$3($item`Rain-Doh indigo cup`)) {
-      return useItem$1($item`Rain-Doh indigo cup`);
+      return useItem($item`Rain-Doh indigo cup`);
     }
     if (canUse($skill`Summon Love Mosquito`)) {
       return auto_useSkill($skill`Summon Love Mosquito`);
     }
     if (canUse$3($item`tomayohawk-style reflex hammer`)) {
-      return useItem$1($item`tomayohawk-style reflex hammer`);
+      return useItem($item`tomayohawk-style reflex hammer`);
     }
-    if (canUse($skill`Tear Away your Pants!`) && ((0, import_kolmafia83.getProperty)("auto_forceNonCombatSource") === "" && !(auto_wantToSniff(enemy, (0, import_kolmafia83.myLocation)()) && getSniffer$1(enemy) !== import_kolmafia83.Skill.none) || (0, import_kolmafia83.monsterPhylum)() === $phylum`plant`)) {
+    if (canUse($skill`Tear Away your Pants!`) && ((0, import_kolmafia83.getProperty)("auto_forceNonCombatSource") === "" && !(auto_wantToSniff(enemy, (0, import_kolmafia83.myLocation)()) && getSniffer(enemy) !== import_kolmafia83.Skill.none) || (0, import_kolmafia83.monsterPhylum)() === $phylum`plant`)) {
       return auto_useSkill($skill`Tear Away your Pants!`);
     }
     if (canUse($skill`Disarming Thrust`)) {
@@ -26907,10 +26859,10 @@ function auto_combatDefaultStage3(round_1, enemy, text) {
         return auto_useSkill($skill`Cadenza`);
       }
     }
-    if (canUse($skill`Extract`) && (0, import_kolmafia83.myMp)() > (0, import_kolmafia83.mpCost)($skill`Extract`) * 3 && (0, import_kolmafia83.itemAmount)($item`Source essence`) <= 60 && canSurvive$1(2)) {
+    if (canUse($skill`Extract`) && (0, import_kolmafia83.myMp)() > (0, import_kolmafia83.mpCost)($skill`Extract`) * 3 && (0, import_kolmafia83.itemAmount)($item`Source essence`) <= 60 && canSurvive(2)) {
       return auto_useSkill($skill`Extract`);
     }
-    if (canUse($skill`Extract Jelly`) && (0, import_kolmafia83.myMp)() > (0, import_kolmafia83.mpCost)($skill`Extract Jelly`) * 3 && canSurvive$1(2) && (0, import_kolmafia83.myFamiliar)() === $familiar`Space Jellyfish` && (0, import_kolmafia83.toInt)((0, import_kolmafia83.getProperty)("_spaceJellyfishDrops")) < 3 && $elements`hot, spooky, stench`.includes((0, import_kolmafia83.monsterElement)(enemy))) {
+    if (canUse($skill`Extract Jelly`) && (0, import_kolmafia83.myMp)() > (0, import_kolmafia83.mpCost)($skill`Extract Jelly`) * 3 && canSurvive(2) && (0, import_kolmafia83.myFamiliar)() === $familiar`Space Jellyfish` && (0, import_kolmafia83.toInt)((0, import_kolmafia83.getProperty)("_spaceJellyfishDrops")) < 3 && $elements`hot, spooky, stench`.includes((0, import_kolmafia83.monsterElement)(enemy))) {
       return auto_useSkill($skill`Extract Jelly`);
     }
     if (canUse($skill`Science! Fight with Medicine`) && (0, import_kolmafia83.myHp)() * 2 < (0, import_kolmafia83.myMaxhp)()) {
@@ -26920,23 +26872,23 @@ function auto_combatDefaultStage3(round_1, enemy, text) {
       return auto_useSkill($skill`Science! Fight with Rational Thought`);
     }
     if (canUse$3($item`Time-Spinner`)) {
-      return useItem$1($item`Time-Spinner`);
+      return useItem($item`Time-Spinner`);
     }
     if (canUse($skill`Sing Along`)) {
-      if (canSurvive$1(2) && (0, import_kolmafia83.getProperty)("boomBoxSong") === "Remainin' Alive") {
+      if (canSurvive(2) && (0, import_kolmafia83.getProperty)("boomBoxSong") === "Remainin' Alive") {
         return auto_useSkill($skill`Sing Along`);
       }
-      if (canSurvive$1(5) && (0, import_kolmafia83.getProperty)("boomBoxSong") === "Total Eclipse of Your Meat" && (0, import_kolmafia83.expectedDamage)() < 10 && !in_wotsf()) {
+      if (canSurvive(5) && (0, import_kolmafia83.getProperty)("boomBoxSong") === "Total Eclipse of Your Meat" && (0, import_kolmafia83.expectedDamage)() < 10 && !in_wotsf()) {
         return auto_useSkill($skill`Sing Along`);
       }
-      if (canSurvive$1(3) && (0, import_kolmafia83.getProperty)("boomBoxSong") === "Total Eclipse of Your Meat" && $monsters`dirty thieving brigand, wall of meat`.includes(enemy)) {
+      if (canSurvive(3) && (0, import_kolmafia83.getProperty)("boomBoxSong") === "Total Eclipse of Your Meat" && $monsters`dirty thieving brigand, wall of meat`.includes(enemy)) {
         return auto_useSkill($skill`Sing Along`);
       }
     }
   }
   if (enemy_la < 100 && stunnable(enemy)) {
     if (canUse$3($item`Rain-Doh blue balls`)) {
-      return useItem$1($item`Rain-Doh blue balls`);
+      return useItem($item`Rain-Doh blue balls`);
     }
     if (canUse($skill`Summon Love Gnats`)) {
       return auto_useSkill($skill`Summon Love Gnats`);
@@ -26955,18 +26907,18 @@ function auto_combatDefaultStage3(round_1, enemy, text) {
       return auto_useSkill($skill`Spirit Snap`);
     }
   }
-  if (canUse($skill`Thunderstrike`) && enemy_la <= 150 && !canSurvive$1(5)) {
+  if (canUse($skill`Thunderstrike`) && enemy_la <= 150 && !canSurvive(5)) {
     combat_status_add("stunned");
     return auto_useSkill($skill`Thunderstrike`);
   }
-  if (enemy_la <= 100 && stunnable(enemy) && (!canSurvive$1(5) || $monsters`Groar`.includes(enemy))) {
+  if (enemy_la <= 100 && stunnable(enemy) && (!canSurvive(5) || $monsters`Groar`.includes(enemy))) {
     var stunner = getStunner(enemy);
     if (stunner !== import_kolmafia83.Skill.none) {
       combat_status_add("stunned");
       return auto_useSkill(stunner);
     }
   }
-  if (auto_wantToBCZ($skill`BCZ: Blood Geyser`) && canUse($skill`BCZ: Blood Geyser`) && enemy_la <= 150 && !canSurvive$1(5)) {
+  if (auto_wantToBCZ($skill`BCZ: Blood Geyser`) && canUse($skill`BCZ: Blood Geyser`) && enemy_la <= 150 && !canSurvive(5)) {
     combat_status_add("stunned");
     return auto_useSkill($skill`BCZ: Blood Geyser`);
   }
@@ -26979,7 +26931,7 @@ var import_kolmafia85 = require("kolmafia");
 // src/kolmafia/autoscend/combat/auto_combat_license_to_adventure.ts
 var import_kolmafia84 = require("kolmafia");
 function auto_combatLicenseToAdventureStage4(round_1, enemy, text) {
-  if ((0, import_kolmafia84.myLocation)() === $location`Super Villain's Lair` && in_lta() && canSurvive$1(2) && enemy === $monster`Villainous Minion`) {
+  if ((0, import_kolmafia84.myLocation)() === $location`Super Villain's Lair` && in_lta() && canSurvive(2) && enemy === $monster`Villainous Minion`) {
     if (!(0, import_kolmafia84.toBoolean)((0, import_kolmafia84.getProperty)("_villainLairCanLidUsed")) && (0, import_kolmafia84.itemAmount)($item`razor-sharp can lid`) > 0) {
       return `item ${$item`razor-sharp can lid`}`;
     }
@@ -27018,7 +26970,7 @@ function auto_combatDefaultStage4(round_1, enemy, text) {
     return "";
   }
   if (auto_wantToSniff(enemy, (0, import_kolmafia85.myLocation)()) && !ag_is_bodyguard()) {
-    var sniffer = getSniffer$1(enemy);
+    var sniffer = getSniffer(enemy);
     if (sniffer !== import_kolmafia85.Skill.none) {
       if (sniffer === $skill`Perceive Soul`) {
         (0, import_kolmafia85.setProperty)("auto_bat_soulmonster", enemy.toString());
@@ -27061,7 +27013,7 @@ function auto_combatDefaultStage4(round_1, enemy, text) {
     (0, import_kolmafia85.setProperty)("auto_doCombatCopy", "no");
   }
   if ((0, import_kolmafia85.myLocation)() === $location`The Daily Dungeon`) {
-    if (towerKeyCount$1(false) < 2 && !(0, import_kolmafia85.toBoolean)((0, import_kolmafia85.getProperty)("_dailyDungeonMalwareUsed")) && (0, import_kolmafia85.itemAmount)($item`daily dungeon malware`) > 0) {
+    if (towerKeyCount(false) < 2 && !(0, import_kolmafia85.toBoolean)((0, import_kolmafia85.getProperty)("_dailyDungeonMalwareUsed")) && (0, import_kolmafia85.itemAmount)($item`daily dungeon malware`) > 0) {
       if ($monsters`apathetic lizardman, dairy ooze, dodecapede, giant giant moth, mayonnaise wasp, pencil golem, sabre-toothed lime, tonic water elemental, vampire clam`.includes(
         enemy
       )) {
@@ -27094,7 +27046,7 @@ function auto_combatDefaultStage4(round_1, enemy, text) {
     }
   }
   if (auto_wantToCopy(enemy, (0, import_kolmafia85.myLocation)()) && !ag_is_bodyguard()) {
-    var copier = getCopier$1(enemy);
+    var copier = getCopier(enemy);
     if (copier !== import_kolmafia85.Skill.none && canUse(copier)) {
       if (copier === $skill`Blow the Purple Candle!`) {
         (0, import_kolmafia85.setProperty)("auto_purple_candled", enemy.toString());
@@ -27104,17 +27056,17 @@ function auto_combatDefaultStage4(round_1, enemy, text) {
       return auto_useSkill(copier);
     }
   }
-  if (canUse($skill`Steal Accordion`) && (0, import_kolmafia85.myClass)() === $class`Accordion Thief` && canSurvive$1(2)) {
+  if (canUse($skill`Steal Accordion`) && (0, import_kolmafia85.myClass)() === $class`Accordion Thief` && canSurvive(2)) {
     return auto_useSkill($skill`Steal Accordion`);
   }
   if (canUse$3($item`abstraction: sensation`) && enemy === $monster`Performer of Actions`) {
-    return useItem$1($item`abstraction: sensation`);
+    return useItem($item`abstraction: sensation`);
   }
   if (canUse$3($item`abstraction: thought`) && enemy === $monster`Perceiver of Sensations`) {
-    return useItem$1($item`abstraction: thought`);
+    return useItem($item`abstraction: thought`);
   }
   if (canUse$3($item`abstraction: action`) && enemy === $monster`Thinker of Thoughts`) {
-    return useItem$1($item`abstraction: action`);
+    return useItem($item`abstraction: action`);
   }
   if ((0, import_kolmafia85.monsterLevelAdjustment)() <= 150) {
     if (canUse($skill`Loofah Leglifts`)) {
@@ -27127,7 +27079,7 @@ function auto_combatDefaultStage4(round_1, enemy, text) {
       return auto_useSkill($skill`Loofah Head-Scratch`);
     }
   }
-  if ((0, import_kolmafia85.myFamiliar)() === $familiar`Stocking Mimic` && round_1 < 12 && canSurvive$1(1.5)) {
+  if ((0, import_kolmafia85.myFamiliar)() === $familiar`Stocking Mimic` && round_1 < 12 && canSurvive(1.5)) {
     if ((0, import_kolmafia85.itemAmount)($item`seal tooth`) > 0) {
       return `item ${$item`seal tooth`}`;
     }
@@ -27148,7 +27100,7 @@ function auto_combatDefaultStage4(round_1, enemy, text) {
     if ($locations`Barrrney's Barrr, The Obligatory Pirate's Cove`.includes(
       (0, import_kolmafia85.myLocation)()
     )) {
-      return useItem$1($item`The Big Book of Pirate Insults`);
+      return useItem($item`The Big Book of Pirate Insults`);
     }
   }
   if ((0, import_kolmafia85.itemAmount)($item`cocktail napkin`) > 0) {
@@ -27198,26 +27150,26 @@ function auto_combatDefaultStage4(round_1, enemy, text) {
         return auto_useSkill(stunner);
       }
     }
-    if (canSurvive$1(3) || stunned || staggeringFlyer) {
+    if (canSurvive(3) || stunned || staggeringFlyer) {
       shouldFlyer = true;
     }
     if (shouldFlyer) {
       if (flyerWith !== import_kolmafia85.Item.none) {
-        return useItems$1(flyer, flyerWith);
+        return useItems(flyer, flyerWith);
       } else {
-        return useItem$1(flyer);
+        return useItem(flyer);
       }
     }
   }
   if (canUse$3($item`chaos butterfly`) && !(0, import_kolmafia85.toBoolean)((0, import_kolmafia85.getProperty)("chaosButterflyThrown")) && !(0, import_kolmafia85.toBoolean)((0, import_kolmafia85.getProperty)("auto_skipL12Farm"))) {
     if (canUse$3($item`Time-Spinner`) && auto_have_skill($skill`Ambidextrous Funkslinging`)) {
-      return useItems$1($item`chaos butterfly`, $item`Time-Spinner`);
+      return useItems($item`chaos butterfly`, $item`Time-Spinner`);
     }
-    return useItem$1($item`chaos butterfly`);
+    return useItem($item`chaos butterfly`);
   }
   if (canUse$3($item`disposable instant camera`)) {
     if ($monsters`Bob Racecar, Racecar Bob`.includes(enemy)) {
-      return useItem$1($item`disposable instant camera`);
+      return useItem($item`disposable instant camera`);
     }
   }
   if ((0, import_kolmafia85.itemAmount)($item`Duskwalker syringe`) > 0) {
@@ -27227,7 +27179,7 @@ function auto_combatDefaultStage4(round_1, enemy, text) {
   }
   if (canUse$3($item`DNA extraction syringe`) && (0, import_kolmafia85.monsterLevelAdjustment)() < 150) {
     if ((0, import_kolmafia85.monsterPhylum)(enemy) !== (0, import_kolmafia85.toPhylum)((0, import_kolmafia85.getProperty)("dnaSyringe"))) {
-      return useItem$1($item`DNA extraction syringe`);
+      return useItem($item`DNA extraction syringe`);
     }
   }
   if (!in_plumber() && !in_darkGyffte() && !in_zombieSlayer() && canUse(
@@ -27247,11 +27199,11 @@ function auto_combatDefaultStage4(round_1, enemy, text) {
       return auto_useSkill($skill`Summon Love Stinkbug`);
     }
   }
-  if (fullness_left() > 0 && canUse$3($item`red rocket`) && (0, import_kolmafia85.haveEffect)($effect`Everything Looks Red`) <= 0 && (0, import_kolmafia85.haveEffect)($effect`Ready to Eat`) <= 0 && canSurvive$1(5) && (0, import_kolmafia85.myAdventures)() < 100) {
+  if (fullness_left() > 0 && canUse$3($item`red rocket`) && (0, import_kolmafia85.haveEffect)($effect`Everything Looks Red`) <= 0 && (0, import_kolmafia85.haveEffect)($effect`Ready to Eat`) <= 0 && canSurvive(5) && (0, import_kolmafia85.myAdventures)() < 100) {
     if (in_plumber()) {
-      return useItem$1($item`red rocket`);
+      return useItem($item`red rocket`);
     }
-    return useItem$1($item`red rocket`);
+    return useItem($item`red rocket`);
   }
   if (auto_bowlingBallCombatString((0, import_kolmafia85.myLocation)(), true) !== "" && !enemy.boss) {
     return auto_bowlingBallCombatString((0, import_kolmafia85.myLocation)(), false);
@@ -27264,7 +27216,7 @@ function auto_combatDefaultStage4(round_1, enemy, text) {
     (0, import_kolmafia85.setProperty)("auto_parkaSpikesDeployed", true.toString());
     return auto_useSkill($skill`Launch spikolodon spikes`);
   }
-  if (shouldCinchoConfetti() && canSurvive$1(5)) {
+  if (shouldCinchoConfetti() && canSurvive(5)) {
     return auto_useSkill($skill`Cincho: Confetti Extravaganza`);
   }
   return "";
@@ -27337,32 +27289,32 @@ function auto_combat_robot_stage5(round_1, enemy, text) {
   if (canUse($skill`Snipe`, false) && !enemy_physical_immune) {
     var better_than_crotch_burn = (0, import_kolmafia87.monsterHp)() > 40 || enemy_hot_immune;
     dmg = (0, import_kolmafia87.myBuffedstat)($stat`Mysticality`) * enemy_physical_res;
-    if (canSurvive$1(turns_to_kill(dmg)) && better_than_crotch_burn) {
+    if (canSurvive(turns_to_kill(dmg)) && better_than_crotch_burn) {
       return auto_useSkill($skill`Snipe`, false);
     }
   }
   if (canUse($skill`Blow Snow`, false) && $monsters`smut orc jacker, smut orc nailer, smut orc pipelayer, smut orc screwer`.includes(
     enemy
   )) {
-    if (canSurvive$1(turns_to_kill((0, import_kolmafia87.myBuffedstat)($stat`Muscle`)))) {
+    if (canSurvive(turns_to_kill((0, import_kolmafia87.myBuffedstat)($stat`Muscle`)))) {
       return auto_useSkill($skill`Blow Snow`, false);
     }
   }
   if (canUse($skill`Swing Pound-O-Tron`, false) && !enemy_physical_immune) {
     dmg = (20 + 0.1 * (0, import_kolmafia87.myBuffedstat)($stat`Muscle`)) * enemy_physical_res;
-    if (canSurvive$1(turns_to_kill(dmg))) {
+    if (canSurvive(turns_to_kill(dmg))) {
       return auto_useSkill($skill`Swing Pound-O-Tron`, false);
     }
   }
   if (canUse($skill`Crotch Burn`, false) && !enemy_hot_immune) {
     dmg = 20 + 0.1 * (0, import_kolmafia87.myBuffedstat)($stat`Mysticality`);
-    if (canSurvive$1(turns_to_kill(dmg))) {
+    if (canSurvive(turns_to_kill(dmg))) {
       return auto_useSkill($skill`Crotch Burn`, false);
     }
   }
   if (canUse($skill`Shoot Pea`, false) && !enemy_physical_immune) {
     dmg = (20 + 0.1 * (0, import_kolmafia87.myBuffedstat)($stat`Moxie`)) * enemy_physical_res;
-    if (canSurvive$1(turns_to_kill(dmg))) {
+    if (canSurvive(turns_to_kill(dmg))) {
       return auto_useSkill($skill`Shoot Pea`, false);
     }
   }
@@ -27433,7 +27385,7 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
     }
     if (enemy === $monster`mother hellseal`) {
       if (canUse$3($item`Rain-Doh indigo cup`)) {
-        return useItem$1($item`Rain-Doh indigo cup`);
+        return useItem($item`Rain-Doh indigo cup`);
       }
       return auto_useSkill($skill`Lunging Thrust-Smack`, false);
     }
@@ -27477,7 +27429,7 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
     return auto_useSkill(auto_spoonCombatSkill());
   }
   if (auto_haveCosmicBowlingBall() && canUse$3($item`cosmic bowling ball`) && (0, import_kolmafia88.monsterHp)() < 100) {
-    return useItem$1($item`cosmic bowling ball`);
+    return useItem($item`cosmic bowling ball`);
   }
   if (canUse($skill`Surprisingly Sweet Stab`)) {
     return auto_useSkill($skill`Surprisingly Sweet Stab`);
@@ -27485,7 +27437,7 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
   if ((0, import_kolmafia88.haveEquipped)($item`Everfull Dart Holster`) && (0, import_kolmafia88.toInt)((0, import_kolmafia88.getProperty)("_dartsLeft")) > 0 && !$monsters`Naughty Sorceress, Naughty Sorceress (2)`.includes(enemy)) {
     return auto_useSkill(dartSkill(), false);
   }
-  if (canUse($skill`Stuffed Mortar Shell`) && (0, import_kolmafia88.myClass)() === $class`Sauceror` && canSurvive$1(2) && (currentFlavour() !== (0, import_kolmafia88.monsterElement)(enemy) || currentFlavour() === import_kolmafia88.Element.none)) {
+  if (canUse($skill`Stuffed Mortar Shell`) && (0, import_kolmafia88.myClass)() === $class`Sauceror` && canSurvive(2) && (currentFlavour() !== (0, import_kolmafia88.monsterElement)(enemy) || currentFlavour() === import_kolmafia88.Element.none)) {
     (0, import_kolmafia88.setProperty)("_auto_combatTracker_MortarRound", round_1.toString());
     return auto_useSkill($skill`Stuffed Mortar Shell`);
   }
@@ -27640,7 +27592,7 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
         var mortar_round = (0, import_kolmafia88.toInt)(
           (0, import_kolmafia88.getProperty)("_auto_combatTracker_MortarRound")
         );
-        if (mortar_round > -1 && mortar_round === round_1 - 1 && canSurvive$1(2)) {
+        if (mortar_round > -1 && mortar_round === round_1 - 1 && canSurvive(2)) {
           if ((0, import_kolmafia88.monsterHp)() > 1 && canUse$3($item`seal tooth`, false)) {
             return useItem($item`seal tooth`, false);
           }
@@ -27772,7 +27724,7 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
         break;
       }
       case $class`Accordion Thief`: {
-        if (canUse($skill`Cadenza`) && (0, import_kolmafia88.itemType)((0, import_kolmafia88.equippedItem)($slot`weapon`)) === "accordion" && canSurvive$1(2)) {
+        if (canUse($skill`Cadenza`) && (0, import_kolmafia88.itemType)((0, import_kolmafia88.equippedItem)($slot`weapon`)) === "accordion" && canSurvive(2)) {
           if ($items`accordion file, alarm accordion, autocalliope, Bal-musette accordion, baritone accordion, Cajun accordion, ghost accordion, peace accordion, pentatonic accordion, pygmy concertinette, Skipper's accordion, Squeezebox of the Ages, The Trickster's Trikitixa`.includes(
             (0, import_kolmafia88.equippedItem)($slot`weapon`)
           )) {
@@ -28039,7 +27991,7 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
         }
         break;
       case $class`Zootomist`: {
-        var punch = getZooBestPunch$1(enemy);
+        var punch = getZooBestPunch(enemy);
         if (punch === import_kolmafia88.Skill.none) {
           return "attack with weapon";
         }
@@ -28075,13 +28027,13 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
       return auto_useSkill($skill`Northern Explosion`);
     }
     if (!combat_status_check("last attempt") && (0, import_kolmafia88.myMp)() >= costMajor) {
-      if (canSurvive$1(1.4)) {
+      if (canSurvive(1.4)) {
         combat_status_add("last attempt");
         auto_log_warning("Uh oh, I'm having trouble in combat.", "red");
       }
       return attackMajor;
     }
-    if (canSurvive$1(2.5)) {
+    if (canSurvive(2.5)) {
       auto_log_warning(
         "Hmmm, I don't really know what to do in this combat but it looks like I'll live.",
         "red"
@@ -28538,10 +28490,10 @@ function auto_edCombatHandler(round_1, enemy, text) {
     return auto_useSkill($skill`Summon Love Scarabs`);
   }
   if (canUse$3($item`Time-Spinner`)) {
-    return useItem$1($item`Time-Spinner`);
+    return useItem($item`Time-Spinner`);
   }
   if (canUse($skill`Sing Along`)) {
-    if ((0, import_kolmafia91.getProperty)("boomBoxSong") === "Remainin' Alive" || (0, import_kolmafia91.getProperty)("boomBoxSong") === "Total Eclipse of Your Meat" && canSurvive$1(2)) {
+    if ((0, import_kolmafia91.getProperty)("boomBoxSong") === "Remainin' Alive" || (0, import_kolmafia91.getProperty)("boomBoxSong") === "Total Eclipse of Your Meat" && canSurvive(2)) {
       return auto_useSkill($skill`Sing Along`);
     }
   }
@@ -28554,7 +28506,7 @@ function auto_edCombatHandler(round_1, enemy, text) {
     var shots_takens = usedCount($skill`Shoot Ghost`);
     if (canUse($skill`Shoot Ghost`, false) && shots_takens < 3) {
       var survive_needed = 3.05 - (0, import_kolmafia91.toFloat)(shots_takens);
-      if (canSurvive$1(survive_needed)) {
+      if (canSurvive(survive_needed)) {
         markAsUsed($skill`Shoot Ghost`);
         return auto_useSkill($skill`Shoot Ghost`, false);
       } else {
@@ -28587,7 +28539,7 @@ function auto_edCombatHandler(round_1, enemy, text) {
     }
   } else if ((0, import_kolmafia91.getProperty)("auto_edStatus") === "dying") {
     var doStunner = true;
-    if ((0, import_kolmafia91.monsterLevelAdjustment)() > 50 && canSurvive$1(1.15)) {
+    if ((0, import_kolmafia91.monsterLevelAdjustment)() > 50 && canSurvive(1.15)) {
       doStunner = false;
     }
     if (doStunner) {
@@ -28609,17 +28561,17 @@ function auto_edCombatHandler(round_1, enemy, text) {
       if ((0, import_kolmafia91.toInt)((0, import_kolmafia91.getProperty)("_edDefeats")) < 2 && (0, import_kolmafia91.getProperty)("auto_edStatus") === "dying") {
         (0, import_kolmafia91.setProperty)("auto_edStatus", "UNDYING!");
       }
-      return useItem$1($item`rock band flyers`);
+      return useItem($item`rock band flyers`);
     }
     if (canUse$3($item`jam band flyers`) && (0, import_kolmafia91.toInt)((0, import_kolmafia91.getProperty)("flyeredML")) < 1e4) {
       if ((0, import_kolmafia91.toInt)((0, import_kolmafia91.getProperty)("_edDefeats")) < 2 && (0, import_kolmafia91.getProperty)("auto_edStatus") === "dying") {
         (0, import_kolmafia91.setProperty)("auto_edStatus", "UNDYING!");
       }
-      return useItem$1($item`jam band flyers`);
+      return useItem($item`jam band flyers`);
     }
   }
   if (canUse$3($item`chaos butterfly`) && !(0, import_kolmafia91.toBoolean)((0, import_kolmafia91.getProperty)("chaosButterflyThrown")) && !(0, import_kolmafia91.toBoolean)((0, import_kolmafia91.getProperty)("auto_skipL12Farm"))) {
-    return useItem$1($item`chaos butterfly`);
+    return useItem($item`chaos butterfly`);
   }
   if (enemy === $monster`dirty thieving brigand` && canUse($skill`Curse of Fortune`)) {
     if ((0, import_kolmafia91.itemAmount)($item`Ka coin`) > 0 && (0, import_kolmafia91.myHp)() > (0, import_kolmafia91.expectedDamage)() + 15) {
@@ -28849,7 +28801,7 @@ function auto_edCombatHandler(round_1, enemy, text) {
     combat_status_add("replacercheck");
   }
   if (canUse$3($item`disposable instant camera`) && $monsters`Bob Racecar, Racecar Bob`.includes(enemy)) {
-    return useItem$1($item`disposable instant camera`);
+    return useItem($item`disposable instant camera`);
   }
   if ((0, import_kolmafia91.myLocation)() === $location`Oil Peak` && canUse$3($item`Duskwalker syringe`)) {
     var oilProgress = (0, import_kolmafia91.toInt)((0, import_kolmafia91.getProperty)("twinPeakProgress"));
@@ -28858,14 +28810,14 @@ function auto_edCombatHandler(round_1, enemy, text) {
       wantCrude = false;
     }
     if (wantCrude) {
-      return useItem$1($item`Duskwalker syringe`);
+      return useItem($item`Duskwalker syringe`);
     }
   }
   if (canUse$3($item`glark cable`) && (0, import_kolmafia91.myLocation)() === $location`The Red Zeppelin` && internalQuestStatus("questL11Ron") === 3 && (0, import_kolmafia91.toInt)((0, import_kolmafia91.getProperty)("_glarkCableUses")) < 5 && (0, import_kolmafia91.getProperty)("auto_edStatus") === "dying") {
     if ($monsters`man with the red buttons, red butler, Red Fox, red skeleton`.includes(
       enemy
     )) {
-      return useItem$1($item`glark cable`);
+      return useItem($item`glark cable`);
     }
   }
   if (!(0, import_kolmafia91.toBoolean)((0, import_kolmafia91.getProperty)("edUsedLash")) && canUse($skill`Lash of the Cobra`) && (0, import_kolmafia91.toInt)((0, import_kolmafia91.getProperty)("_edLashCount")) < 30) {
@@ -29046,14 +28998,14 @@ function auto_edCombatHandler(round_1, enemy, text) {
       combat_status_add("talismanofrenenutet");
       handleTracker(enemy.toString(), "auto_renenutet");
       (0, import_kolmafia91.setProperty)("auto_edStatus", "dying");
-      return useItem$1($item`talisman of Renenutet`);
+      return useItem($item`talisman of Renenutet`);
     }
   }
   if (canUse$3($item`cigarette lighter`) && (0, import_kolmafia91.myLocation)() === $location`A Mob of Zeppelin Protesters` && internalQuestStatus("questL11Ron") === 1 && (0, import_kolmafia91.getProperty)("auto_edStatus") === "dying") {
-    return useItem$1($item`cigarette lighter`);
+    return useItem($item`cigarette lighter`);
   }
   if (enemy === $monster`pygmy orderlies` && canUse$3($item`short writ of habeas corpus`, false) && (0, import_kolmafia91.haveEffect)($effect`Everything Looks Green`) === 0) {
-    return useItem$1($item`short writ of habeas corpus`);
+    return useItem($item`short writ of habeas corpus`);
   }
   if (canUse($skill`Darts: Aim for the Bullseye`) && (0, import_kolmafia91.haveEffect)($effect`Everything Looks Red`) === 0 && dartELRcd() <= 40) {
     (0, import_kolmafia91.setProperty)("auto_instakillSource", "darts bullseye");
@@ -29072,7 +29024,7 @@ function auto_edCombatHandler(round_1, enemy, text) {
     (0, import_kolmafia91.setProperty)("auto_parkaSpikesDeployed", true.toString());
     return auto_useSkill($skill`Launch spikolodon spikes`);
   }
-  if (instakillable(enemy) && !isFreeMonster$1(enemy, (0, import_kolmafia91.myLocation)()) && doInstaKill) {
+  if (instakillable(enemy) && !isFreeMonster(enemy, (0, import_kolmafia91.myLocation)()) && doInstaKill) {
     if (!combat_status_check("batoomerang") && (0, import_kolmafia91.itemAmount)($item`replica bat-oomerang`) > 0) {
       if ((0, import_kolmafia91.toInt)((0, import_kolmafia91.getProperty)("auto_batoomerangDay")) !== (0, import_kolmafia91.myDaycount)()) {
         (0, import_kolmafia91.setProperty)("auto_batoomerangDay", (0, import_kolmafia91.myDaycount)().toString());
@@ -29100,7 +29052,7 @@ function auto_edCombatHandler(round_1, enemy, text) {
         "auto_instakill"
       );
       loopHandlerDelayAll();
-      return useItems$1($item`shadow brick`, import_kolmafia91.Item.none);
+      return useItems($item`shadow brick`, import_kolmafia91.Item.none);
     }
     if (!combat_status_check("jokesterGun") && (0, import_kolmafia91.equippedItem)($slot`weapon`) === $item`The Jokester's gun` && !(0, import_kolmafia91.toBoolean)((0, import_kolmafia91.getProperty)("_firedJokestersGun")) && auto_have_skill($skill`Fire the Jokester's Gun`)) {
       combat_status_add("jokesterGun");
@@ -29175,19 +29127,19 @@ function auto_edCombatHandler(round_1, enemy, text) {
     return auto_useSkill($skill`Fist of the Mummy`, false);
   }
   var fightStat = (0, import_kolmafia91.myBuffedstat)((0, import_kolmafia91.weaponType)((0, import_kolmafia91.equippedItem)($slot`weapon`))) - 20;
-  if (fightStat > (0, import_kolmafia91.monsterDefense)() && round_1 < 20 && canSurvive$1(1.1) && (0, import_kolmafia91.getProperty)("auto_edStatus") === "UNDYING!") {
+  if (fightStat > (0, import_kolmafia91.monsterDefense)() && round_1 < 20 && canSurvive(1.1) && (0, import_kolmafia91.getProperty)("auto_edStatus") === "UNDYING!") {
     return "attack with weapon";
   }
   if (canUse($skill`Cowboy Kick`)) {
     return auto_useSkill($skill`Cowboy Kick`);
   }
   if (canUse$3($item`ice-cold Cloaca Zero`) && (0, import_kolmafia91.myMp)() < 15 && (0, import_kolmafia91.myMaxmp)() > 200) {
-    return useItem$1($item`ice-cold Cloaca Zero`);
+    return useItem($item`ice-cold Cloaca Zero`);
   }
   if (canUse($skill`Storm of the Scarab`, false) && (0, import_kolmafia91.myBuffedstat)($stat`Mysticality`) > 35) {
     return auto_useSkill($skill`Storm of the Scarab`, false);
   }
-  if (enemy.physicalResistance >= 100 || round_1 >= 25 || canSurvive$1(1.25)) {
+  if (enemy.physicalResistance >= 100 || round_1 >= 25 || canSurvive(1.25)) {
     if (canUse($skill`Fist of the Mummy`, false)) {
       return auto_useSkill($skill`Fist of the Mummy`, false);
     }
@@ -29214,7 +29166,7 @@ function auto_edCombatHandler(round_1, enemy, text) {
       "About to UNDYING too much but have no other combat resolution. Please report this."
     );
   }
-  if (fightStat > (0, import_kolmafia91.monsterDefense)() && round_1 < 20 && canSurvive$1(1.1) && (0, import_kolmafia91.getProperty)("auto_edStatus") === "dying") {
+  if (fightStat > (0, import_kolmafia91.monsterDefense)() && round_1 < 20 && canSurvive(1.1) && (0, import_kolmafia91.getProperty)("auto_edStatus") === "dying") {
     auto_log_warning(
       `Attacking with weapon because we don't have enough MP. Expected damage: ${(0, import_kolmafia91.expectedDamage)()}, current hp: ${(0, import_kolmafia91.myHp)()}`,
       "red"
@@ -29251,7 +29203,7 @@ function auto_JunkyardCombatHandler(round_1, enemy, text) {
     if (canUse$3($item`molybdenum magnet`) && $monsters`batwinged gremlin (tool), erudite gremlin (tool), spider gremlin (tool), vegetable gremlin (tool)`.includes(
       enemy
     )) {
-      return useItem$1($item`molybdenum magnet`);
+      return useItem($item`molybdenum magnet`);
     }
     return auto_combatHandler(round_1, enemy, text);
   }
@@ -29264,12 +29216,12 @@ function auto_JunkyardCombatHandler(round_1, enemy, text) {
     return "attack with weapon";
   }
   if ((0, import_kolmafia92.containsText)(text, "<!--moly1-->") || (0, import_kolmafia92.containsText)(text, "<!--moly2-->") || (0, import_kolmafia92.containsText)(text, "<!--moly3-->") || (0, import_kolmafia92.containsText)(text, "<!--moly4-->")) {
-    return useItem$1($item`molybdenum magnet`);
+    return useItem($item`molybdenum magnet`);
   }
   if (canUse($skill`Summon Love Scarabs`)) {
     return auto_useSkill($skill`Summon Love Scarabs`);
   }
-  if (canUse($skill`Good Medicine`) && canSurvive$1(2.1)) {
+  if (canUse($skill`Good Medicine`) && canSurvive(2.1)) {
     return auto_useSkill($skill`Good Medicine`);
   }
   var flyer = $item`rock band flyers`;
@@ -29319,14 +29271,14 @@ function auto_JunkyardCombatHandler(round_1, enemy, text) {
     if (isActuallyEd()) {
       (0, import_kolmafia92.setProperty)("auto_edStatus", "UNDYING!");
     }
-    if (canSurvive$1(3) || stunned || staggeringFlyer) {
+    if (canSurvive(3) || stunned || staggeringFlyer) {
       shouldFlyer = true;
     }
     if (shouldFlyer) {
       if (flyerWith !== import_kolmafia92.Item.none) {
-        return useItems$1(flyer, flyerWith);
+        return useItems(flyer, flyerWith);
       } else {
-        return useItem$1(flyer);
+        return useItem(flyer);
       }
     }
   }
@@ -29341,7 +29293,7 @@ function auto_JunkyardCombatHandler(round_1, enemy, text) {
       return findBanisher(round_1, enemy, text);
     }
   }
-  if (!canSurvive$1(1.5)) {
+  if (!canSurvive(1.5)) {
     if (!isActuallyEd() || (0, import_kolmafia92.toInt)((0, import_kolmafia92.getProperty)("_edDefeats")) >= 2) {
       (0, import_kolmafia92.abort)("I am too weak to safely stasis this gremlin");
     }
@@ -29500,11 +29452,11 @@ function auto_estimatedAdventuresForChaosButterfly() {
   if ((0, import_kolmafia94.toBoolean)((0, import_kolmafia94.getProperty)("chaosButterflyThrown")) || (0, import_kolmafia94.itemAmount)($item`chaos butterfly`) > 0) {
     return 0;
   }
-  if (canPull$1($item`chaos butterfly`)) {
+  if (canPull($item`chaos butterfly`)) {
     return 0;
   }
   var expected_turns_until_fight = 4;
-  if (canYellowRay$1()) {
+  if (canYellowRay()) {
     return expected_turns_until_fight;
   }
   $_auto_estimatedAdventuresForChaosButterfly_expectedItemDropMulti ?? ($_auto_estimatedAdventuresForChaosButterfly_expectedItemDropMulti = 0);
@@ -29515,8 +29467,8 @@ function auto_estimatedAdventuresForChaosButterfly() {
     );
     handleFamiliar("item");
     simMaximizeWith(
-      $location`The Castle in the Clouds in the Sky (Ground Floor)`,
-      "20 item"
+      "20 item",
+      $location`The Castle in the Clouds in the Sky (Ground Floor)`
     );
     $_auto_estimatedAdventuresForChaosButterfly_expectedItemDropMulti = 1 + simValue("Item Drop") / 100;
     $_static_0 = true;
@@ -29621,7 +29573,7 @@ function auto_bestWarPlan() {
     if (considerFarm) {
       copy_warplan(test, retval);
       test.doFarm = true;
-      profit = auto_warTotalBattles$1(retval) - auto_warTotalBattles$1(test) - advCostFarm;
+      profit = auto_warTotalBattles(retval) - auto_warTotalBattles(test) - advCostFarm;
       if (profit > bestQuestProfit) {
         bestQuestProfit = profit;
         copy_warplan(prospective_plan, test);
@@ -29630,7 +29582,7 @@ function auto_bestWarPlan() {
     if (considerNuns) {
       copy_warplan(test, retval);
       test.doNuns = true;
-      profit = auto_warTotalBattles$1(retval) - auto_warTotalBattles$1(test) - advCostNuns;
+      profit = auto_warTotalBattles(retval) - auto_warTotalBattles(test) - advCostNuns;
       if (profit > bestQuestProfit) {
         bestQuestProfit = profit;
         copy_warplan(prospective_plan, test);
@@ -29639,7 +29591,7 @@ function auto_bestWarPlan() {
     if (considerOrchard) {
       copy_warplan(test, retval);
       test.doOrchard = true;
-      profit = auto_warTotalBattles$1(retval) - auto_warTotalBattles$1(test) - advCostOrchard;
+      profit = auto_warTotalBattles(retval) - auto_warTotalBattles(test) - advCostOrchard;
       if (profit > bestQuestProfit) {
         bestQuestProfit = profit;
         copy_warplan(prospective_plan, test);
@@ -29648,7 +29600,7 @@ function auto_bestWarPlan() {
     if (considerLighthouse) {
       copy_warplan(test, retval);
       test.doLighthouse = true;
-      profit = auto_warTotalBattles$1(retval) - auto_warTotalBattles$1(test) - advCostLighthouse;
+      profit = auto_warTotalBattles(retval) - auto_warTotalBattles(test) - advCostLighthouse;
       if (profit > bestQuestProfit) {
         bestQuestProfit = profit;
         copy_warplan(prospective_plan, test);
@@ -29657,7 +29609,7 @@ function auto_bestWarPlan() {
     if (considerJunkyard) {
       copy_warplan(test, retval);
       test.doJunkyard = true;
-      profit = auto_warTotalBattles$1(retval) - auto_warTotalBattles$1(test) - advCostJunkyard;
+      profit = auto_warTotalBattles(retval) - auto_warTotalBattles(test) - advCostJunkyard;
       if (profit > bestQuestProfit) {
         bestQuestProfit = profit;
         copy_warplan(prospective_plan, test);
@@ -29666,7 +29618,7 @@ function auto_bestWarPlan() {
     if (considerArena) {
       copy_warplan(test, retval);
       test.doArena = true;
-      profit = auto_warTotalBattles$1(retval) - auto_warTotalBattles$1(test) - advCostArena;
+      profit = auto_warTotalBattles(retval) - auto_warTotalBattles(test) - advCostArena;
       if (profit > bestQuestProfit) {
         copy_warplan(prospective_plan, test);
       }
@@ -29700,11 +29652,9 @@ function __auto_warTotalBattles(plan, remaining) {
   fightUntilRemaining(0);
   return total_battles;
 }
-function auto_warTotalBattles(plan, remaining) {
+function auto_warTotalBattles(plan) {
+  var remaining = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : auto_warEnemiesRemaining();
   return __auto_warTotalBattles(bitmask_from_warplan(plan), remaining);
-}
-function auto_warTotalBattles$1(plan) {
-  return auto_warTotalBattles(plan, auto_warEnemiesRemaining());
 }
 function equipWarOutfit() {
   equipWarOutfit$1(true);
@@ -29755,16 +29705,14 @@ function equipWarOutfit$1(lock) {
     _iterator.f();
   }
 }
-function haveWarOutfit(canWear) {
+function haveWarOutfit() {
+  var canWear = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : false;
   if (!(0, import_kolmafia94.toBoolean)((0, import_kolmafia94.getProperty)("auto_hippyInstead"))) {
     return possessOutfit("Frat Warrior Fatigues", canWear);
   } else {
     return possessOutfit("War Hippy Fatigues", canWear);
   }
   return true;
-}
-function haveWarOutfit$1() {
-  return haveWarOutfit(false);
 }
 function warAdventure() {
   if (auto_have_familiar($familiar`Space Jellyfish`) && (0, import_kolmafia94.toInt)((0, import_kolmafia94.getProperty)("_spaceJellyfishDrops")) < 3) {
@@ -29799,7 +29747,7 @@ function L12_getOutfit() {
   if (internalQuestStatus("questL12War") !== 0) {
     return false;
   }
-  if (haveWarOutfit$1()) {
+  if (haveWarOutfit()) {
     return false;
   }
   if (!(0, import_kolmafia94.inHardcore)() && in_heavyrains()) {
@@ -29825,17 +29773,17 @@ function L12_getOutfit() {
       pullXWhenHaveY($item`distressed denim pants`, 1, 0);
     }
   }
-  if (haveWarOutfit$1()) {
+  if (haveWarOutfit()) {
     return true;
   }
   if (!(0, import_kolmafia94.inHardcore)() && !in_lol()) {
     return false;
   }
-  if (auto_warSide() === "fratboy" && possessOutfit$1("Filthy Hippy Disguise")) {
+  if (auto_warSide() === "fratboy" && possessOutfit("Filthy Hippy Disguise")) {
     autoOutfit("Filthy Hippy Disguise");
     return autoAdv($location`Wartime Frat House (Hippy Disguise)`);
   }
-  if (auto_warSide() === "hippy" && possessOutfit$1("Frat Boy Ensemble")) {
+  if (auto_warSide() === "hippy" && possessOutfit("Frat Boy Ensemble")) {
     autoOutfit("Frat Boy Ensemble");
     return autoAdv($location`Wartime Hippy Camp (Frat Disguise)`);
   }
@@ -29854,24 +29802,24 @@ function L12_preOutfit() {
   if ((0, import_kolmafia94.myLevel)() < 9) {
     return false;
   }
-  if (haveWarOutfit$1()) {
+  if (haveWarOutfit()) {
     return false;
   }
-  if (!(0, import_kolmafia94.toBoolean)((0, import_kolmafia94.getProperty)("auto_hippyInstead")) && possessOutfit$1("Filthy Hippy Disguise")) {
+  if (!(0, import_kolmafia94.toBoolean)((0, import_kolmafia94.getProperty)("auto_hippyInstead")) && possessOutfit("Filthy Hippy Disguise")) {
     return false;
   }
-  if ((0, import_kolmafia94.toBoolean)((0, import_kolmafia94.getProperty)("auto_hippyInstead")) && possessOutfit$1("Frat Boy Ensemble")) {
+  if ((0, import_kolmafia94.toBoolean)((0, import_kolmafia94.getProperty)("auto_hippyInstead")) && possessOutfit("Frat Boy Ensemble")) {
     return false;
   }
   if (isActuallyEd()) {
-    if (!canYellowRay$1() && (0, import_kolmafia94.myLevel)() < 12) {
+    if (!canYellowRay() && (0, import_kolmafia94.myLevel)() < 12) {
       return false;
     }
   }
   if ((0, import_kolmafia94.haveSkill)($skill`Calculate the Universe`) && (0, import_kolmafia94.myDaycount)() === 1 && (0, import_kolmafia94.toInt)((0, import_kolmafia94.getProperty)("_universeCalculated")) < (0, import_kolmafia94.min)(3, (0, import_kolmafia94.toInt)((0, import_kolmafia94.getProperty)("skillLevel144")))) {
     return false;
   }
-  if (canSummonMonster($monster`Orcish Frat Boy Spy`) && canYellowRay$1()) {
+  if (canSummonMonster($monster`Orcish Frat Boy Spy`) && canYellowRay()) {
     var summonTarget = $monster`War Hippy Spy`;
     if (!(0, import_kolmafia94.toBoolean)((0, import_kolmafia94.getProperty)("auto_hippyInstead"))) {
       summonTarget = $monster`Orcish Frat Boy Spy`;
@@ -29967,10 +29915,10 @@ function L12_filthworms() {
   }
   function preventFratOutfitsIfNeeded() {
     if (auto_warSide() === "fratboy" && (0, import_kolmafia94.toInt)((0, import_kolmafia94.getProperty)("hippiesDefeated")) < 64) {
-      if (possessOutfit$1("frat warrior fatigues")) {
+      if (possessOutfit("frat warrior fatigues")) {
         addToMaximize("-equip beer helmet");
       }
-      if (possessOutfit$1("frat boy ensemble")) {
+      if (possessOutfit("frat boy ensemble")) {
         addToMaximize("-equip orcish baseball cap");
       }
     }
@@ -30259,7 +30207,7 @@ function L12_gremlins() {
   autoForceEquip$3($item`Peridot of Peril`);
   acquireHP();
   if (!bat_wantHowl($location`Over Where the Old Tires Are`)) {
-    bat_formMist$1();
+    bat_formMist();
   }
   songboomSetting("dr");
   if ((0, import_kolmafia94.itemAmount)($item`molybdenum hammer`) === 0) {
@@ -30391,13 +30339,13 @@ function L12_sonofaPrefix() {
     return false;
   }
   if (!auto_get_campground().has($item`Source terminal`)) {
-    if ((auto_voteMonster() || auto_sausageGoblin()) && adjustForReplaceIfPossible$1()) {
+    if ((auto_voteMonster() || auto_sausageGoblin()) && adjustForReplaceIfPossible()) {
       try {
         if ((0, import_kolmafia94.itemAmount)($item`barrel of gunpowder`) < 4) {
           (0, import_kolmafia94.setProperty)("auto_doCombatCopy", "yes");
         }
-        if (auto_voteMonster() && !auto_voteMonster$1(true)) {
-          auto_voteMonster$2(false, $location`Sonofa Beach`);
+        if (auto_voteMonster() && !auto_voteMonster(true)) {
+          auto_voteMonster(false, $location`Sonofa Beach`);
           return true;
         } else if (auto_sausageGoblin() && !auto_haveVotingBooth()) {
           auto_sausageGoblin($location`Sonofa Beach`);
@@ -30423,7 +30371,7 @@ function L12_sonofaPrefix() {
     pulverizeThing($item`goatskin umbrella`);
   }
   var CForced = false;
-  if (!auto_havePeridot() || haveUsedPeridot$1($location`Sonofa Beach`)) {
+  if (!auto_havePeridot() || haveUsedPeridot($location`Sonofa Beach`)) {
     if (auto_haveQueuedForcedCombat()) {
       CForced = true;
       auto_log_info$1(
@@ -30464,7 +30412,7 @@ function L12_sonofaPrefix() {
     if ((0, import_kolmafia94.haveSkill)($skill`Meteor Lore`) && (0, import_kolmafia94.toInt)((0, import_kolmafia94.getProperty)("_macrometeoriteUses")) < 10) {
       if (auto_voteMonster()) {
         (0, import_kolmafia94.setProperty)("auto_combatDirective", "start;skill macrometeorite");
-        autoEquip($slot`acc3`, $item`"I Voted!" sticker`);
+        autoEquipToSlot($slot`acc3`, $item`"I Voted!" sticker`);
       } else {
         return false;
       }
@@ -30489,7 +30437,7 @@ function L12_sonofaFinish() {
   if ((0, import_kolmafia94.itemAmount)($item`barrel of gunpowder`) < 5) {
     return false;
   }
-  if (!haveWarOutfit$1()) {
+  if (!haveWarOutfit()) {
     return false;
   }
   if ((0, import_kolmafia94.toInt)((0, import_kolmafia94.getProperty)("fratboysDefeated")) < 64 && (0, import_kolmafia94.toBoolean)((0, import_kolmafia94.getProperty)("auto_hippyInstead"))) {
@@ -30516,7 +30464,7 @@ function L12_flyerBackup() {
   if ((0, import_kolmafia94.toBoolean)((0, import_kolmafia94.getProperty)("auto_ignoreFlyer"))) {
     return false;
   }
-  return LX_freeCombats$1(true);
+  return LX_freeCombats(true);
 }
 function L12_lastDitchFlyer() {
   if ((0, import_kolmafia94.toBoolean)((0, import_kolmafia94.getProperty)("auto_ignoreFlyer"))) {
@@ -30538,7 +30486,7 @@ function L12_lastDitchFlyer() {
     "Not enough flyer ML but we are ready for the war... uh oh",
     "blue"
   );
-  if (LX_freeCombats$1(true)) {
+  if (LX_freeCombats(true)) {
     return true;
   }
   var scalezone = highestScalingZone();
@@ -30561,7 +30509,7 @@ function L12_lastDitchFlyer() {
   plan_do_arena.doArena = true;
   var plan_no_arena = auto_bestWarPlan();
   plan_no_arena.doArena = false;
-  var adv_saved = auto_warTotalBattles$1(plan_no_arena) - auto_warTotalBattles$1(plan_do_arena);
+  var adv_saved = auto_warTotalBattles(plan_no_arena) - auto_warTotalBattles(plan_do_arena);
   if (adv_needed > adv_saved) {
     return false;
   }
@@ -30648,7 +30596,7 @@ function L12_themtharHills() {
       var bonusMeat = 0;
       var getInhaler = false;
       var doRufus = false;
-      if ((0, import_kolmafia94.haveEffect)($effect`Sinuses For Miles`) <= 0 && (0, import_kolmafia94.itemAmount)($item`Mick's IcyVapoHotness Inhaler`) < 1 && auto_is_valid($item`Mick's IcyVapoHotness Inhaler`) && cloversAvailable$1() > 0 && zone_isAvailable$1(
+      if ((0, import_kolmafia94.haveEffect)($effect`Sinuses For Miles`) <= 0 && (0, import_kolmafia94.itemAmount)($item`Mick's IcyVapoHotness Inhaler`) < 1 && auto_is_valid($item`Mick's IcyVapoHotness Inhaler`) && cloversAvailable$1() > 0 && zone_isAvailable(
         $location`The Castle in the Clouds in the Sky (Top Floor)`
       )) {
         bonusMeat += 200;
@@ -30677,7 +30625,7 @@ function L12_themtharHills() {
     }
   }
   var considerCloverForInhaler = (in_avantGuard() || auto_totalEffectWishesAvailable() < 3) && auto_is_valid($item`Mick's IcyVapoHotness Inhaler`);
-  considerCloverForInhaler = considerCloverForInhaler && zone_isAvailable$1(
+  considerCloverForInhaler = considerCloverForInhaler && zone_isAvailable(
     $location`The Castle in the Clouds in the Sky (Top Floor)`
   );
   var meat_need = 400;
@@ -30783,7 +30731,7 @@ function LX_obtainChaosButterfly() {
   if (internalQuestStatus("questL10Garbage") < 8) {
     return false;
   }
-  if (canPull$1($item`chaos butterfly`) && !(0, import_kolmafia94.toBoolean)((0, import_kolmafia94.getProperty)("chaosButterflyThrown")) && (0, import_kolmafia94.itemAmount)($item`chaos butterfly`) === 0) {
+  if (canPull($item`chaos butterfly`) && !(0, import_kolmafia94.toBoolean)((0, import_kolmafia94.getProperty)("chaosButterflyThrown")) && (0, import_kolmafia94.itemAmount)($item`chaos butterfly`) === 0) {
     if (pullXWhenHaveY($item`chaos butterfly`, 1, 0)) {
       return true;
     } else {
@@ -30984,7 +30932,7 @@ function L12_finalizeWar() {
   if (is_professor()) {
     return false;
   }
-  if (possessOutfit$1("War Hippy Fatigues")) {
+  if (possessOutfit("War Hippy Fatigues")) {
     auto_log_info("Getting dimes.", "blue");
     if (in_wereprof()) {
       if (!(0, import_kolmafia94.haveEquipped)($item`bullet-proof corduroys`)) {
@@ -31041,7 +30989,7 @@ function L12_finalizeWar() {
       }
     }
   }
-  if (possessOutfit$1("Frat Warrior Fatigues")) {
+  if (possessOutfit("Frat Warrior Fatigues")) {
     auto_log_info("Getting quarters.", "blue");
     if (in_wereprof()) {
       if (!(0, import_kolmafia94.haveEquipped)($item`beer helmet`)) {
@@ -31149,7 +31097,7 @@ function L12_finalizeWar() {
       }
     }
   };
-  if (possessOutfit$1("War Hippy Fatigues")) {
+  if (possessOutfit("War Hippy Fatigues")) {
     if (in_wereprof()) {
       if (!(0, import_kolmafia94.haveEquipped)($item`bullet-proof corduroys`)) {
         (0, import_kolmafia94.equip)($item`bullet-proof corduroys`);
@@ -31165,7 +31113,7 @@ function L12_finalizeWar() {
     purchase($coinmaster`Dimemaster`, $item`filthy poultice`, 2);
     purchase($coinmaster`Dimemaster`, $item`water pipe bomb`, 1);
   }
-  if (possessOutfit$1("Frat Warrior Fatigues")) {
+  if (possessOutfit("Frat Warrior Fatigues")) {
     if (in_wereprof()) {
       if (!(0, import_kolmafia94.haveEquipped)($item`beer helmet`)) {
         (0, import_kolmafia94.equip)($item`beer helmet`);
@@ -31189,11 +31137,11 @@ function L12_finalizeWar() {
   }
   equipWarOutfit();
   if (in_aosol()) {
-    buffMaintain$3($effect`Queso Fustulento`, 10, 1, 10);
-    buffMaintain$3($effect`Tricky Timpani`, 30, 1, 10);
+    buffMaintain$2($effect`Queso Fustulento`, 10, 1, 10);
+    buffMaintain$2($effect`Tricky Timpani`, 30, 1, 10);
   }
   if (in_amw()) {
-    buffMaintain$3($effect`Stewing`, 0, 1, 10);
+    buffMaintain$2($effect`Stewing`, 0, 1, 10);
   }
   acquireHP();
   auto_log_info("Let's fight the boss!", "blue");
@@ -31334,25 +31282,21 @@ function bat_formWolf(speculative) {
   (0, import_kolmafia95.setProperty)("auto_bat_desiredForm", "wolf");
   return bat_switchForm($effect`Wolf Form`, speculative);
 }
-function bat_formMist(speculative) {
+function bat_formMist() {
+  var speculative = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : false;
   if (!in_darkGyffte()) {
     return false;
   }
   (0, import_kolmafia95.setProperty)("auto_bat_desiredForm", "mist");
   return bat_switchForm($effect`Mist Form`, speculative);
 }
-function bat_formMist$1() {
-  return bat_formMist(false);
-}
-function bat_formBats(speculative) {
+function bat_formBats() {
+  var speculative = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : false;
   if (!in_darkGyffte()) {
     return false;
   }
   (0, import_kolmafia95.setProperty)("auto_bat_desiredForm", "bats");
   return bat_switchForm($effect`Bats Form`, speculative);
-}
-function bat_formBats$1() {
-  return bat_formBats(false);
 }
 function bat_clearForms() {
   var _iterator2 = _createForOfIteratorHelper(
@@ -31371,7 +31315,8 @@ function bat_clearForms() {
     _iterator2.f();
   }
 }
-function bat_switchForm(form, speculative) {
+function bat_switchForm(form) {
+  var speculative = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : false;
   if (0 !== (0, import_kolmafia95.haveEffect)(form)) {
     return true;
   }
@@ -31638,7 +31583,7 @@ function bat_shouldEnsorcel(m) {
   if (!in_darkGyffte() || !auto_have_skill($skill`Ensorcel`)) {
     return false;
   }
-  if ((0, import_kolmafia95.monsterPhylum)(m) === $phylum`goblin` && !isFreeMonster$1(m, (0, import_kolmafia95.myLocation)()) && !bat_haveEnsorcelee()) {
+  if ((0, import_kolmafia95.monsterPhylum)(m) === $phylum`goblin` && !isFreeMonster(m, (0, import_kolmafia95.myLocation)()) && !bat_haveEnsorcelee()) {
     return true;
   }
   return false;
@@ -31904,7 +31849,7 @@ function bat_consumption() {
   if (!in_darkGyffte()) {
     return false;
   }
-  if (possessOutfit$1("War Hippy Fatigues") && (0, import_kolmafia95.isAccessible)($coinmaster`Dimemaster`)) {
+  if (possessOutfit("War Hippy Fatigues") && (0, import_kolmafia95.isAccessible)($coinmaster`Dimemaster`)) {
     (0, import_kolmafia95.sell)(
       $item`PADL Phone`.buyer,
       (0, import_kolmafia95.itemAmount)($item`PADL Phone`),
@@ -31926,7 +31871,7 @@ function bat_consumption() {
       $item`white class ring`
     );
   }
-  if (possessOutfit$1("Frat Warrior Fatigues") && (0, import_kolmafia95.isAccessible)($coinmaster`Quartersmaster`)) {
+  if (possessOutfit("Frat Warrior Fatigues") && (0, import_kolmafia95.isAccessible)($coinmaster`Quartersmaster`)) {
     (0, import_kolmafia95.sell)(
       $item`pink clay bead`.buyer,
       (0, import_kolmafia95.itemAmount)($item`pink clay bead`),
@@ -32198,7 +32143,8 @@ function mummifyFamiliar(fam, bonus) {
   }
   return true;
 }
-function mummifyFamiliar$1(fam) {
+function mummifyFamiliar$2() {
+  var fam = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : (0, import_kolmafia96.myFamiliar)();
   if (!auto_hasMummingTrunk() || !auto_checkFamiliarMummery(fam)) {
     return false;
   }
@@ -32221,9 +32167,6 @@ function mummifyFamiliar$1(fam) {
       break;
   }
   return mummifyFamiliar(fam, targetBonus);
-}
-function mummifyFamiliar$2() {
-  return mummifyFamiliar$1((0, import_kolmafia96.myFamiliar)());
 }
 function pantogramPants(st, el, hpmp, meatItemStats, misc) {
   if (!auto_is_valid($item`portable pantogram`)) {
@@ -32821,18 +32764,14 @@ function kgbSetup() {
   }
   (0, import_kolmafia96.setProperty)("auto_kgbAscension", (0, import_kolmafia96.myAscensions)().toString());
   (0, import_kolmafia96.setProperty)("auto_kgbButton100", button.toString());
-  if (!kgb_getMartini$1(page)) {
+  if (!kgb_getMartini(page)) {
     auto_log_warning("Failed to get martini", "red");
   }
   return true;
 }
 function kgb_getMartini() {
-  return kgb_getMartini$2("", false);
-}
-function kgb_getMartini$1(page) {
-  return kgb_getMartini$2(page, false);
-}
-function kgb_getMartini$2(page, dontCare) {
+  var page = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : "";
+  var dontCare = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : false;
   if (!possessEquipment($item`Kremlin's Greatest Briefcase`)) {
     return false;
   }
@@ -33082,9 +33021,7 @@ function asdonBuff(goal) {
   return true;
 }
 function asdonAutoFeed() {
-  return asdonAutoFeed$1(-1);
-}
-function asdonAutoFeed$1(goal) {
+  var goal = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : -1;
   if ((0, import_kolmafia96.myClass)() === $class`Ed the Undying`) {
     return false;
   }
@@ -33712,7 +33649,8 @@ function auto_useSkill(sk) {
   }
   return `skill ${sk.name}`;
 }
-function useItem(it, mark) {
+function useItem(it) {
+  var mark = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : true;
   if (mark) {
     markAsUsed$1(it);
   }
@@ -33721,18 +33659,13 @@ function useItem(it, mark) {
   }
   return `item ${it}`;
 }
-function useItem$1(it) {
-  return useItem(it, true);
-}
-function useItems(it1, it2, mark) {
+function useItems(it1, it2) {
+  var mark = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : true;
   if (mark) {
     markAsUsed$1(it1);
     markAsUsed$1(it2);
   }
   return `item ${it1}, ${it2}`;
-}
-function useItems$1(it1, it2) {
-  return useItems(it1, it2, true);
 }
 function isSniffed(enemy, sk) {
   var search;
@@ -33775,7 +33708,8 @@ function isSniffed$1(enemy) {
   }
   return false;
 }
-function getSniffer(enemy, inCombat) {
+function getSniffer(enemy) {
+  var inCombat = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : true;
   if (canUse($skill`Transcendent Olfaction`, true, inCombat) && (0, import_kolmafia97.toInt)((0, import_kolmafia97.getProperty)("_olfactionsUsed")) < 3 && !isSniffed(enemy, $skill`Transcendent Olfaction`)) {
     return $skill`Transcendent Olfaction`;
   }
@@ -33827,10 +33761,8 @@ function getSniffer(enemy, inCombat) {
   }
   return import_kolmafia97.Skill.none;
 }
-function getSniffer$1(enemy) {
-  return getSniffer(enemy, true);
-}
-function getCopier(enemy, inCombat) {
+function getCopier(enemy) {
+  var inCombat = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : true;
   if (auto_haveRoman() && (0, import_kolmafia97.haveEffect)($effect`Everything Looks Purple`) === 0 || (0, import_kolmafia97.haveEquipped)($item`Roman Candelabra`) && canUse($skill`Blow the Purple Candle!`, true, inCombat) && (0, import_kolmafia97.haveEffect)($effect`Everything Looks Purple`) === 0) {
     return $skill`Blow the Purple Candle!`;
   }
@@ -33838,9 +33770,6 @@ function getCopier(enemy, inCombat) {
     return $skill`%fn, fire a Red, White and Blue Blast`;
   }
   return import_kolmafia97.Skill.none;
-}
-function getCopier$1(enemy) {
-  return getCopier(enemy, true);
 }
 function getStunner(enemy) {
   if (canUse($skill`Blow the Blue Candle!`) && (0, import_kolmafia97.haveEffect)($effect`Everything Looks Blue`) === 0) {
@@ -33945,14 +33874,12 @@ function enemyCanBlocksSkills() {
   }
   return false;
 }
-function canSurvive(mult, add_1) {
+function canSurvive(mult) {
+  var add_1 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : 0;
   var damage = (0, import_kolmafia97.expectedDamage)();
   damage *= (0, import_kolmafia97.toInt)(mult);
   damage += add_1;
   return damage < (0, import_kolmafia97.myHp)();
-}
-function canSurvive$1(mult) {
-  return canSurvive(mult, 0);
 }
 function hasClubEquipped() {
   return (0, import_kolmafia97.itemType)((0, import_kolmafia97.equippedItem)($slot`weapon`)) === "club" || (0, import_kolmafia97.itemType)((0, import_kolmafia97.equippedItem)($slot`weapon`)) === "sword" && (0, import_kolmafia97.haveEffect)($effect`Iron Palms`) > 0;
@@ -33990,7 +33917,8 @@ function findBanisher(round_1, enemy, text) {
   }
   return auto_combatHandler(round_1, enemy, text);
 }
-function banisherCombatString(enemyPhylum, loc, inCombat) {
+function banisherCombatString(enemyPhylum, loc) {
+  var inCombat = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : false;
   if (inAftercore()) {
     return "";
   }
@@ -34011,7 +33939,8 @@ function banisherCombatString(enemyPhylum, loc, inCombat) {
   }
   return "";
 }
-function banisherCombatString$1(enemy, loc, inCombat) {
+function banisherCombatString$1(enemy, loc) {
+  var inCombat = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : false;
   if (inAftercore()) {
     return "";
   }
@@ -34214,7 +34143,7 @@ function yellowRayCombatString(target, inCombat, noForceDrop) {
       return `skill ${kick}`;
     }
   }
-  var free_monster = isFreeMonster$1(target, (0, import_kolmafia97.myLocation)()) || (0, import_kolmafia97.toInt)((0, import_kolmafia97.getProperty)("breathitinCharges")) > 0 && (0, import_kolmafia97.myLocation)().environment === "outdoor";
+  var free_monster = isFreeMonster(target, (0, import_kolmafia97.myLocation)()) || (0, import_kolmafia97.toInt)((0, import_kolmafia97.getProperty)("breathitinCharges")) > 0 && (0, import_kolmafia97.myLocation)().environment === "outdoor";
   if ((0, import_kolmafia97.haveEffect)($effect`Everything Looks Yellow`) <= 0) {
     if (auto_have_skill($skill`Fondeluge`) && (0, import_kolmafia97.myMp)() >= (0, import_kolmafia97.mpCost)($skill`Fondeluge`)) {
       return `skill ${$skill`Fondeluge`}`;
@@ -34300,7 +34229,8 @@ function yellowRayCombatString(target, inCombat, noForceDrop) {
 function yellowRayCombatString$1(target, inCombat) {
   return yellowRayCombatString(target, inCombat, false);
 }
-function replaceMonsterCombatString(target, inCombat) {
+function replaceMonsterCombatString(target) {
+  var inCombat = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : false;
   if (in_pokefam()) {
     return "";
   }
@@ -34311,12 +34241,9 @@ function replaceMonsterCombatString(target, inCombat) {
     return `skill ${$skill`CHEAT CODE: Replace Enemy`}`;
   }
   if (canUse$3($item`waffle`) && !in_avantGuard()) {
-    return useItems$1($item`waffle`, import_kolmafia97.Item.none);
+    return useItems($item`waffle`, import_kolmafia97.Item.none);
   }
   return "";
-}
-function replaceMonsterCombatString$1(target) {
-  return replaceMonsterCombatString(target, false);
 }
 function turns_to_kill(dmg) {
   return (0, import_kolmafia97.toFloat)((0, import_kolmafia97.monsterHp)()) / dmg;
@@ -34539,7 +34466,7 @@ function wantToThrowGravel(loc, enemy) {
   if (!auto_is_valid($item`groveling gravel`)) {
     return false;
   }
-  if (isFreeMonster$1(enemy, loc)) {
+  if (isFreeMonster(enemy, loc)) {
     return false;
   }
   if ((0, import_kolmafia98.canInteract)()) {
@@ -34708,7 +34635,7 @@ function auto_doPhoneQuest() {
       return false;
     }
   }
-  if (isFreeMonster$1($monster`shadow slab`, auto_availableBrickRift()) && (0, import_kolmafia98.haveEffect)($effect`Shadow Affinity`) === 0) {
+  if (isFreeMonster($monster`shadow slab`, auto_availableBrickRift()) && (0, import_kolmafia98.haveEffect)($effect`Shadow Affinity`) === 0) {
     return false;
   }
   if (!auto_getPhoneQuest()) {
@@ -35052,7 +34979,7 @@ function auto_scepterSkills() {
       (0, import_kolmafia98.useSkill)($skill`Aug. 28th: Race Your Mouse Day!`);
     }
   }
-  simMaximizeWith$1("-1000mana cost");
+  simMaximizeWith("-1000mana cost");
   var manaCostMaximize = (0, import_kolmafia98.toInt)(simValue("Mana Cost"));
   if (!auto_turbo()) {
     if (manaCostMaximize < 3 && canUse($skill`Aug. 30th: Beach Day!`) && !(0, import_kolmafia98.toBoolean)((0, import_kolmafia98.getProperty)("_aug30Cast")) && (0, import_kolmafia98.toInt)((0, import_kolmafia98.getProperty)("_augSkillsCast")) < 5) {
@@ -35131,9 +35058,9 @@ function auto_habitatTarget(target) {
       case $monster`fantasy bandit`:
         return fantasyBanditsFought() === 0;
       case $monster`modern zmobie`:
-        return (0, import_kolmafia98.toInt)((0, import_kolmafia98.getProperty)("cyrptAlcoveEvilness")) - 5 * (5 + cyrptEvilBonus$1()) > 13;
+        return (0, import_kolmafia98.toInt)((0, import_kolmafia98.getProperty)("cyrptAlcoveEvilness")) - 5 * (5 + cyrptEvilBonus()) > 13;
       case $monster`dirty old lihc`:
-        return in_avantGuard() && (0, import_kolmafia98.toInt)((0, import_kolmafia98.getProperty)("cyrptNicheEvilness")) - 5 * (3 + cyrptEvilBonus$1()) > 13;
+        return in_avantGuard() && (0, import_kolmafia98.toInt)((0, import_kolmafia98.getProperty)("cyrptNicheEvilness")) - 5 * (3 + cyrptEvilBonus()) > 13;
       case $monster`lobsterfrogman`: {
         var sonofa_complete = (0, import_kolmafia98.getProperty)("sidequestLighthouseCompleted") === "hippy" || (0, import_kolmafia98.getProperty)("sidequestLighthouseCompleted") === "fratboy";
         return !sonofa_complete && (0, import_kolmafia98.itemAmount)($item`barrel of gunpowder`) < 4;
@@ -35288,9 +35215,9 @@ function auto_RWBBlastTarget(target) {
   }
   switch (target) {
     case $monster`modern zmobie`:
-      return (0, import_kolmafia98.toInt)((0, import_kolmafia98.getProperty)("cyrptAlcoveEvilness")) - 3 * (5 + cyrptEvilBonus$1()) > 13;
+      return (0, import_kolmafia98.toInt)((0, import_kolmafia98.getProperty)("cyrptAlcoveEvilness")) - 3 * (5 + cyrptEvilBonus()) > 13;
     case $monster`dirty old lihc`:
-      return (0, import_kolmafia98.toInt)((0, import_kolmafia98.getProperty)("cyrptNicheEvilness")) - 3 * (3 + cyrptEvilBonus$1()) > 13;
+      return (0, import_kolmafia98.toInt)((0, import_kolmafia98.getProperty)("cyrptNicheEvilness")) - 3 * (3 + cyrptEvilBonus()) > 13;
     default:
       return (0, import_kolmafia98.toMonster)((0, import_kolmafia98.getProperty)("rwbMonster")) === target;
   }
@@ -35441,7 +35368,7 @@ function auto_getCitizenZone(loc, inCombat) {
     return false;
   }
   function wantToFreeRun() {
-    if (loc === solveDelayZone$1()) {
+    if (loc === solveDelayZone()) {
       return true;
     }
     return false;
@@ -36803,7 +36730,7 @@ function chateauPainting() {
     paintingLevel = 9;
   }
   if ((0, import_kolmafia100.myLevel)() >= paintingLevel && chateaumantegna_havePainting() && !(0, import_kolmafia100.toBoolean)((0, import_kolmafia100.getProperty)("chateauMonsterFought")) && isActuallyEd() && (0, import_kolmafia100.myDaycount)() <= 3) {
-    if (canYellowRay$1()) {
+    if (canYellowRay()) {
       auto_sourceTerminalEducate($skill`Extract`, $skill`Digitize`);
       if (chateaumantegna_usePainting()) {
         return true;
@@ -37431,12 +37358,12 @@ function ed_doResting() {
   if (isActuallyEd()) {
     var maxBuff = 675 - (0, import_kolmafia102.myTurncount)();
     while (haveAnyIotmAlternativeRestSiteAvailable() && doFreeRest()) {
-      buffMaintain$3($effect`Purr of the Feline`, 30, 3, maxBuff);
-      buffMaintain$3($effect`Hide of Sobek`, 30, 3, maxBuff);
-      buffMaintain$3($effect`Bounty of Renenutet`, 30, 3, maxBuff);
-      buffMaintain$3($effect`Prayer of Seshat`, 15, 3, maxBuff);
-      buffMaintain$3($effect`Wisdom of Thoth`, 15, 3, maxBuff);
-      buffMaintain$3($effect`Power of Heka`, 15, 3, maxBuff);
+      buffMaintain$2($effect`Purr of the Feline`, 30, 3, maxBuff);
+      buffMaintain$2($effect`Hide of Sobek`, 30, 3, maxBuff);
+      buffMaintain$2($effect`Bounty of Renenutet`, 30, 3, maxBuff);
+      buffMaintain$2($effect`Prayer of Seshat`, 15, 3, maxBuff);
+      buffMaintain$2($effect`Wisdom of Thoth`, 15, 3, maxBuff);
+      buffMaintain$2($effect`Power of Heka`, 15, 3, maxBuff);
     }
     return true;
   }
@@ -38032,10 +37959,10 @@ function L1_ed_island() {
     (0, import_kolmafia102.setProperty)("choiceAdventure988", 2 .toString());
   }
   if ((0, import_kolmafia102.itemAmount)($item`gore bucket`) > 0) {
-    autoEquip$1($item`gore bucket`);
+    autoEquip($item`gore bucket`);
   }
   if ((0, import_kolmafia102.itemAmount)($item`Personal Ventilation Unit`) > 0) {
-    autoEquip($slot`acc2`, $item`Personal Ventilation Unit`);
+    autoEquipToSlot($slot`acc2`, $item`Personal Ventilation Unit`);
   }
   if (possessEquipment($item`gore bucket`) && (0, import_kolmafia102.toInt)((0, import_kolmafia102.getProperty)("goreCollected")) >= 100) {
     (0, import_kolmafia102.visitUrl)("place.php?whichplace=airport_spooky&action=airport2_radio");
@@ -38047,7 +37974,7 @@ function L1_ed_island() {
     (0, import_kolmafia102.use)(need, $item`Doc Galaktik's Invigorating Tonic`);
     (0, import_kolmafia102.cliExecute)("auto_post_adv.js");
   }
-  buffMaintain$4($effect`Experimental Effect G-9`);
+  buffMaintain$2($effect`Experimental Effect G-9`);
   (0, import_kolmafia102.setProperty)("_auto_farmingKaAsEd", true.toString());
   autoAdv($location`The Secret Government Laboratory`);
   if ((0, import_kolmafia102.itemAmount)($item`bottle-opener keycard`) > 0) {
@@ -38107,7 +38034,7 @@ function L1_ed_islandFallback() {
     );
   }
   if ((0, import_kolmafia102.myServant)() === $servant`Priest` && (0, import_kolmafia102.myServant)().experience < 196) {
-    buffMaintain$3($effect`Purr of the Feline`, 10, 1, 10);
+    buffMaintain$2($effect`Purr of the Feline`, 10, 1, 10);
   }
   if ((0, import_kolmafia102.haveSkill)($skill`Upgraded Legs`) || (0, import_kolmafia102.itemAmount)($item`Ka coin`) >= 10) {
     auto_change_mcd(11);
@@ -38456,9 +38383,7 @@ function auto_sausageWanted() {
   return false;
 }
 function auto_sausageGrind(numSaus) {
-  return auto_sausageGrind$1(numSaus, false);
-}
-function auto_sausageGrind$1(numSaus, failIfCantMakeAll) {
+  var failIfCantMakeAll = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : false;
   if ((0, import_kolmafia103.myTurncount)() < 90 || !isDesertAvailable()) {
     return false;
   }
@@ -38575,7 +38500,7 @@ function auto_sausageGoblin() {
   if (loc === import_kolmafia103.Location.none) {
     return true;
   }
-  if (autoEquip$1(wrap_item($item`Kramco Sausage-o-Matic™`))) {
+  if (autoEquip(wrap_item($item`Kramco Sausage-o-Matic™`))) {
     (0, import_kolmafia103.setProperty)("auto_nextEncounter", "sausage goblin");
     return autoAdv(loc, option);
   }
@@ -38796,7 +38721,7 @@ function auto_spoonReadyToTuneMoon() {
       "Something weird is going on with auto_spoonsign. It's not an invalid/blank value, but also not a knoll, canadia, or gnomad sign? This is impossible."
     );
   }
-  if ((0, import_kolmafia103.mySign)() === "Vole" && ((0, import_kolmafia103.toInt)((0, import_kolmafia103.getProperty)("cyrptAlcoveEvilness")) > 14 + cyrptEvilBonus$1() || (0, import_kolmafia103.getProperty)("questL07Cyrptic") === "unstarted")) {
+  if ((0, import_kolmafia103.mySign)() === "Vole" && ((0, import_kolmafia103.toInt)((0, import_kolmafia103.getProperty)("cyrptAlcoveEvilness")) > 14 + cyrptEvilBonus() || (0, import_kolmafia103.getProperty)("questL07Cyrptic") === "unstarted")) {
     return false;
   }
   if (inKnollSign() && !toKnoll) {
@@ -39223,19 +39148,19 @@ function LX_koeInvaderHandler() {
   if ((0, import_kolmafia104.haveEffect)($effect`Flared Nostrils`) > 0) {
     return false;
   }
-  buffMaintain$3($effect`Astral Shell`, 10, 1, 1);
-  buffMaintain$3($effect`Elemental Saucesphere`, 10, 1, 1);
-  buffMaintain$3($effect`Scariersauce`, 10, 1, 1);
-  buffMaintain$3($effect`Scarysauce`, 10, 1, 1);
-  buffMaintain$4($effect`Oiled-Up`);
-  buffMaintain$4($effect`Minor Invulnerability`);
-  buffMaintain$4($effect`Feeling Peaceful`);
-  buffMaintain$4($effect`Covered in the Rainbow`);
+  buffMaintain$2($effect`Astral Shell`, 10, 1, 1);
+  buffMaintain$2($effect`Elemental Saucesphere`, 10, 1, 1);
+  buffMaintain$2($effect`Scariersauce`, 10, 1, 1);
+  buffMaintain$2($effect`Scarysauce`, 10, 1, 1);
+  buffMaintain$2($effect`Oiled-Up`);
+  buffMaintain$2($effect`Minor Invulnerability`);
+  buffMaintain$2($effect`Feeling Peaceful`);
+  buffMaintain$2($effect`Covered in the Rainbow`);
   resetMaximize();
   if (acquireOrPull($item`meteorb`)) {
-    autoEquip($slot`off-hand`, $item`meteorb`);
+    autoEquipToSlot($slot`off-hand`, $item`meteorb`);
   }
-  simMaximizeWith(import_kolmafia104.Location.none, "200 all res");
+  simMaximizeWith("200 all res", import_kolmafia104.Location.none);
   var damagePerRound = 0;
   var baseDamage = 1 - 0.1 * (0, import_kolmafia104.myDaycount)();
   var _iterator = _createForOfIteratorHelper(
@@ -39284,7 +39209,7 @@ function LX_koeInvaderHandler() {
     }
     if (have_10_each) {
       if ((0, import_kolmafia104.haveSkill)($skill`Bend Hell`) && auto_is_valid$2($skill`Bend Hell`) && !have_19_each) {
-        buffMaintain$4($effect`Bendin' Hell`);
+        buffMaintain$2($effect`Bendin' Hell`);
       }
       if ((0, import_kolmafia104.haveEffect)($effect`Bendin' Hell`) > 0) {
         have_19_each = true;
@@ -39329,9 +39254,9 @@ function LX_koeInvaderHandler() {
         _iterator3.f();
       }
       setFlavour($element`cold`);
-      buffMaintain$3($effect`Carol of the Hells`, 50, 1, 1);
-      buffMaintain$3($effect`Song of Sauce`, 150, 1, 1);
-      buffMaintain$4($effect`Glittering Eyelashes`);
+      buffMaintain$2($effect`Carol of the Hells`, 50, 1, 1);
+      buffMaintain$2($effect`Song of Sauce`, 150, 1, 1);
+      buffMaintain$2($effect`Glittering Eyelashes`);
       acquireMP(100, 0);
       auto_log_info(
         "Attacking the Invader, using Weapon of the Pastalord.",
@@ -39410,7 +39335,7 @@ function L12_koe_clearBattlefield() {
   var warKillDoubler = (0, import_kolmafia104.myPrimestat)() === $stat`Mysticality` ? $item`Jacob's rung` : $item`haunted paddle-ball`;
   pullXWhenHaveY(warKillDoubler, 1, 0);
   if (possessEquipment(warKillDoubler)) {
-    autoEquip($slot`weapon`, warKillDoubler);
+    autoEquipToSlot($slot`weapon`, warKillDoubler);
   }
   return autoAdv($location`The Exploaded Battlefield`);
 }
@@ -39456,7 +39381,7 @@ function L13_koe_towerNSNagamar() {
     return false;
   }
   if (!(0, import_kolmafia104.inHardcore)()) {
-    if (canPull$1($item`WA`) && canPull$1($item`ND`) && (0, import_kolmafia104.pullsRemaining)() > 1) {
+    if (canPull($item`WA`) && canPull($item`ND`) && (0, import_kolmafia104.pullsRemaining)() > 1) {
       acquireOrPull($item`WA`);
       acquireOrPull($item`ND`);
       if ((0, import_kolmafia104.create)(1, $item`Wand of Nagamar`)) {
@@ -40490,7 +40415,7 @@ function LX_ghostBusting() {
     );
   }
   if (goal === $location`Inside the Palindome`) {
-    autoForceEquip$1($slot`acc3`, $item`Talisman o' Namsilat`);
+    autoForceEquip($slot`acc3`, $item`Talisman o' Namsilat`);
   }
   acquireHP();
   return autoAdv(goal);
@@ -40607,9 +40532,7 @@ function auto_chapeau() {
   }
 }
 function rethinkingCandy(acquire) {
-  return rethinkingCandy$1(acquire, false);
-}
-function rethinkingCandy$1(acquire, simulate) {
+  var simulate = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : false;
   if ((!(0, import_kolmafia105.haveSkill)($skill`Sweet Synthesis`) || !auto_is_valid$2($skill`Sweet Synthesis`)) && !simulate) {
     return false;
   }
@@ -40830,7 +40753,8 @@ function zone_unlock(loc) {
   }
   return unlocked;
 }
-function zone_isAvailable(loc, unlockIfPossible) {
+function zone_isAvailable(loc) {
+  var unlockIfPossible = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : true;
   if (zone_available(loc)) {
     return true;
   }
@@ -40838,9 +40762,6 @@ function zone_isAvailable(loc, unlockIfPossible) {
     zone_unlock(loc);
   }
   return zone_available(loc);
-}
-function zone_isAvailable$1(loc) {
-  return zone_isAvailable(loc, true);
 }
 function zone_delayable() {
   var retval = /* @__PURE__ */ new Map();
@@ -40851,7 +40772,7 @@ function zone_delayable() {
     for (_iterator.s(); !(_step = _iterator.n()).done; ) {
       var loc = _step.value;
       var locValue = zone_delay(loc);
-      if (locValue._boolean && zone_isAvailable$1(loc)) {
+      if (locValue._boolean && zone_isAvailable(loc)) {
         retval.set(loc, locValue._int);
       }
     }
@@ -40880,12 +40801,12 @@ function zone_needItem(loc) {
         value = 5;
         break;
       case $location`Wartime Frat House`:
-        if (!possessOutfit$1("Frat Warrior Fatigues") && !(0, import_kolmafia106.isWearingOutfit)("War Hippy Fatigues")) {
+        if (!possessOutfit("Frat Warrior Fatigues") && !(0, import_kolmafia106.isWearingOutfit)("War Hippy Fatigues")) {
           value = 5;
         }
         break;
       case $location`Wartime Hippy Camp`:
-        if (!possessOutfit$1("War Hippy Fatigues") && !(0, import_kolmafia106.isWearingOutfit)("Frat Warrior Fatigues")) {
+        if (!possessOutfit("War Hippy Fatigues") && !(0, import_kolmafia106.isWearingOutfit)("Frat Warrior Fatigues")) {
           value = 5;
         }
         break;
@@ -41000,7 +40921,7 @@ function zone_needItem(loc) {
         }
         break;
       case $location`Itznotyerzitz Mine`:
-        if (!possessOutfit$1("Mining Gear") && cloversAvailable$1() === 0) {
+        if (!possessOutfit("Mining Gear") && cloversAvailable$1() === 0) {
           value = 10;
         }
         break;
@@ -41019,7 +40940,7 @@ function zone_needItem(loc) {
         break;
       }
       case $location`The eXtreme Slope`:
-        if (!possessOutfit$1("eXtreme Cold-Weather Gear")) {
+        if (!possessOutfit("eXtreme Cold-Weather Gear")) {
           value = 10;
         }
         break;
@@ -41045,7 +40966,7 @@ function zone_needItem(loc) {
         if ((0, import_kolmafia106.itemAmount)($item`Knob Goblin perfume`) === 0) {
           value = 25;
         }
-        if (!possessOutfit$1("Knob Goblin Harem Girl Disguise")) {
+        if (!possessOutfit("Knob Goblin Harem Girl Disguise")) {
           value = 20;
         }
         break;
@@ -41091,7 +41012,7 @@ function zone_needItem(loc) {
         }
         break;
       case $location`The Obligatory Pirate's Cove`:
-        if (!possessOutfit$1("Swashbuckling Getup") && !possessEquipment($item`pirate fledges`)) {
+        if (!possessOutfit("Swashbuckling Getup") && !possessEquipment($item`pirate fledges`)) {
           value = 10;
         }
         break;
@@ -41105,7 +41026,7 @@ function zone_needItem(loc) {
         retval._float = 15;
         break;
       case $location`The Velvet / Gold Mine`:
-        if (!canYellowRay$1()) {
+        if (!canYellowRay()) {
           retval._float = 10;
         }
         break;
@@ -41357,7 +41278,7 @@ function zone_combatMod(loc) {
       value = -95;
       break;
     case $location`Itznotyerzitz Mine`:
-      if (!possessOutfit$1("Mining Gear") && cloversAvailable$1() === 0) {
+      if (!possessOutfit("Mining Gear") && cloversAvailable$1() === 0) {
         value = -90;
       }
       break;
@@ -41408,7 +41329,7 @@ function zone_combatMod(loc) {
       value = -80;
       break;
     case $location`The Obligatory Pirate's Cove`:
-      if (!possessOutfit$1("Swashbuckling Getup")) {
+      if (!possessOutfit("Swashbuckling Getup")) {
         if ((0, import_kolmafia106.itemAmount)($item`The Big Book of Pirate Insults`) > 0 && numPirateInsults() < 3) {
           value = 0;
         } else {
@@ -42311,7 +42232,8 @@ function auto_swoopLocations() {
 }
 
 // src/kolmafia/autoscend/auto_routing.ts
-function solveDelayZone(skipOutdoorZones) {
+function solveDelayZone() {
+  var skipOutdoorZones = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : false;
   var delayableZones = zone_delayable();
   var burnZone = import_kolmafia107.Location.none;
   if (delayableZones.size > 0) {
@@ -42341,7 +42263,7 @@ function solveDelayZone(skipOutdoorZones) {
   if (burnZone !== import_kolmafia107.Location.none) {
     return burnZone;
   }
-  if (!skipOutdoorZones && zone_isAvailable$1($location`The Arid, Extra-Dry Desert`) && $location`The Arid, Extra-Dry Desert`.turnsSpent >= 1 && $location`The Arid, Extra-Dry Desert`.turnsSpent < 10) {
+  if (!skipOutdoorZones && zone_isAvailable($location`The Arid, Extra-Dry Desert`) && $location`The Arid, Extra-Dry Desert`.turnsSpent >= 1 && $location`The Arid, Extra-Dry Desert`.turnsSpent < 10) {
     burnZone = $location`The Arid, Extra-Dry Desert`;
   }
   if (in_koe() && $location`The Exploaded Battlefield`.turnsSpent < 5) {
@@ -42351,9 +42273,6 @@ function solveDelayZone(skipOutdoorZones) {
     burnZone = lowkey_nextAvailableKeyDelayLocation();
   }
   return burnZone;
-}
-function solveDelayZone$1() {
-  return solveDelayZone(false);
 }
 function allowSoftblockDelay() {
   return (0, import_kolmafia107.toInt)((0, import_kolmafia107.getProperty)("auto_delayLastLevel")) < (0, import_kolmafia107.myLevel)();
@@ -42847,16 +42766,16 @@ function L8_mountainManSummon() {
     handleFamiliar$1($familiar`Cat Burglar`);
     return summonMonster($monster`mountain man`);
   }
-  if (canSummonMonster($monster`mountain man`) && canYellowRay$1()) {
+  if (canSummonMonster($monster`mountain man`) && canYellowRay()) {
     var need_dupe = current_ore < 1;
     var can_mctwist = auto_can_equip($item`pro skateboard`) && !(0, import_kolmafia108.toBoolean)((0, import_kolmafia108.getProperty)("_epicMcTwistUsed"));
     var will_mctwist = can_mctwist && need_dupe;
     auto_log_info$1(
       `Trying to summon a mountain man, which we will YR${will_mctwist ? " and McTwist." : "."}`
     );
-    adjustForYellowRayIfPossible$1();
+    adjustForYellowRayIfPossible();
     if (will_mctwist) {
-      autoEquip$1($item`pro skateboard`);
+      autoEquip($item`pro skateboard`);
       return summonMonster($monster`mountain man`);
     } else if (!need_dupe) {
       return summonMonster($monster`mountain man`);
@@ -42878,7 +42797,7 @@ function L8_getMineOres() {
     return false;
   }
   L8_mountainManSummon();
-  if (canPull$1(oreGoal)) {
+  if (canPull(oreGoal)) {
     pullXWhenHaveY(oreGoal, 1, (0, import_kolmafia108.itemAmount)(oreGoal));
     if ((0, import_kolmafia108.itemAmount)(oreGoal) === 3) {
       return true;
@@ -42891,13 +42810,13 @@ function L8_getMineOres() {
     return true;
   }
   if (isAboutToPowerlevel()) {
-    if (!possessOutfit$1("Mining Gear")) {
+    if (!possessOutfit("Mining Gear")) {
       auto_log_info("Getting Mining Gear.", "blue");
       return autoAdv($location`Itznotyerzitz Mine`);
     } else if (possessOutfit("Mining Gear", true)) {
       equipMaximizedGear();
       (0, import_kolmafia108.outfit)("Mining Gear");
-      acquireHP$1(1);
+      acquireHP$3(1);
       auto_log_info("Mining in Itznotyerzitz Mine for Trapper ore", "blue");
       var cell = getCellToMine(oreGoal);
       if (cell !== 0) {
@@ -42922,7 +42841,7 @@ function L8_trapperExtreme() {
   if (auto_haveMcHugeLargeSkis()) {
     auto_equipAllMcHugeLarge();
     if (in_plumber()) {
-      autoForceEquip$1($slot`acc3`, $item`work boots`);
+      autoForceEquip($slot`acc3`, $item`work boots`);
     }
   } else if (possessOutfit(
     // we should equip the extreme outfit if we have it
@@ -42930,7 +42849,7 @@ function L8_trapperExtreme() {
     true
   )) {
     autoOutfit("eXtreme Cold-Weather Gear");
-  } else if (possessOutfit$1("eXtreme Cold-Weather Gear")) {
+  } else if (possessOutfit("eXtreme Cold-Weather Gear")) {
     auto_log_warning(
       "I can not wear the eXtreme Gear, I'm just not awesome enough :(",
       "red"
@@ -43065,8 +42984,8 @@ function L8_trapperGroar() {
     auto_log_info("Time to take out Gargle, sure, Gargle (Groar)", "blue");
     equipMaximizedGear();
     if (in_aosol()) {
-      buffMaintain$3($effect`Queso Fustulento`, 10, 1, 10);
-      buffMaintain$3($effect`Tricky Timpani`, 30, 1, 10);
+      buffMaintain$2($effect`Queso Fustulento`, 10, 1, 10);
+      buffMaintain$2($effect`Tricky Timpani`, 30, 1, 10);
     }
     if ($location`Mist-Shrouded Peak`.turnsSpent >= 3) {
       (0, import_kolmafia108.setProperty)("auto_nextEncounter", "Groar");
@@ -45544,13 +45463,13 @@ function acquireMP(goal) {
   } else if ((0, import_kolmafia111.myMp)() >= goal) {
     return true;
   }
-  buffMaintain$4($effect`The Odour of Magick`);
-  buffMaintain$4($effect`Using Protection`);
-  buffMaintain$4($effect`Tingly Tongue`);
-  buffMaintain$4($effect`Tingling Insides`);
-  buffMaintain$4($effect`Wisdom of the Autumn Years`);
+  buffMaintain$2($effect`The Odour of Magick`);
+  buffMaintain$2($effect`Using Protection`);
+  buffMaintain$2($effect`Tingly Tongue`);
+  buffMaintain$2($effect`Tingling Insides`);
+  buffMaintain$2($effect`Wisdom of the Autumn Years`);
   if (auto_equipAprilShieldBuff() && !(0, import_kolmafia111.toBoolean)((0, import_kolmafia111.getProperty)("_aprilShowerSimmer"))) {
-    buffMaintain$4($effect`Simmering`);
+    buffMaintain$2($effect`Simmering`);
   }
   if ((0, import_kolmafia111.myMaxmp)() - (0, import_kolmafia111.myMp)() > 300) {
     if (!auto_sausageBlocked()) {
@@ -45614,18 +45533,14 @@ function acquireHP() {
   if (in_amw()) {
     goal = (0, import_kolmafia111.toInt)((0, import_kolmafia111.myMaxhp)() * 0.6);
   }
-  return acquireHP$1(goal);
+  return acquireHP$3(goal);
 }
 function acquireFullHP() {
-  return acquireHP$1((0, import_kolmafia111.myMaxhp)());
+  return acquireHP$3((0, import_kolmafia111.myMaxhp)());
 }
-function acquireHP$1(goal) {
-  return acquireHP$2(goal, meatReserve());
-}
-function acquireHP$2(goal, meat_reserve) {
-  return acquireHP$3(goal, meat_reserve, true);
-}
-function acquireHP$3(goal, meat_reserve, useFreeRests) {
+function acquireHP$3(goal) {
+  var meat_reserve = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : meatReserve();
+  var useFreeRests = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : true;
   if (isActuallyEd()) {
     return edAcquireHP();
   }
@@ -45664,7 +45579,7 @@ function acquireHP$3(goal, meat_reserve, useFreeRests) {
   } else if ((0, import_kolmafia111.myHp)() >= goal * 0.95) {
     return true;
   }
-  buffMaintain$4($effect`Extra-Green`);
+  buffMaintain$2($effect`Extra-Green`);
   if ((0, import_kolmafia111.myClass)() === $class`Pig Skinner` && (0, import_kolmafia111.haveSkill)($skill`Second Wind`)) {
     return auto_pigSkinnerAcquireHP((0, import_kolmafia111.toInt)(0.7 * goal));
   }
@@ -45945,7 +45860,9 @@ function ARBSupplyDrop(req) {
 }
 
 // src/kolmafia/autoscend/auto_providers.ts
-function providePlusCombat(amt, loc, doEquips, speculative) {
+function providePlusCombat(amt, loc) {
+  var doEquips = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : true;
+  var speculative = arguments.length > 3 && arguments[3] !== void 0 ? arguments[3] : false;
   auto_log_info(
     `${speculative ? "Checking if we can" : "Trying to"} provide ${amt} positive combat rate, ${doEquips ? "with" : "without"} equipment`,
     "blue"
@@ -45969,7 +45886,7 @@ function providePlusCombat(amt, loc, doEquips, speculative) {
   if (doEquips) {
     var max_1 = `200combat ${amt}max`;
     if (speculative) {
-      simMaximizeWith(loc, max_1);
+      simMaximizeWith(max_1, loc);
     } else {
       addToMaximize(max_1);
       simMaximize$1(loc);
@@ -46141,13 +46058,10 @@ function providePlusCombat(amt, loc, doEquips, speculative) {
   }
   return result$4();
 }
-function providePlusCombat$2(amt, loc, doEquips) {
-  return providePlusCombat(amt, loc, doEquips, false) >= amt;
-}
-function providePlusCombat$4(amt, loc) {
-  return providePlusCombat$2(amt, loc, true);
-}
-function providePlusNonCombat(amt, loc, doEquips, speculative) {
+function providePlusNonCombat(amt) {
+  var loc = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : (0, import_kolmafia113.myLocation)();
+  var doEquips = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : true;
+  var speculative = arguments.length > 3 && arguments[3] !== void 0 ? arguments[3] : false;
   auto_log_info(
     `${speculative ? "Checking if we can" : "Trying to"} provide ${amt} negative combat rate, ${doEquips ? "with" : "without"} equipment`,
     "blue"
@@ -46171,7 +46085,7 @@ function providePlusNonCombat(amt, loc, doEquips, speculative) {
   if (doEquips) {
     var max_1 = `-200combat ${amt}max`;
     if (speculative) {
-      simMaximizeWith$1(max_1);
+      simMaximizeWith(max_1);
     } else {
       addToMaximize(max_1);
       simMaximize();
@@ -46390,17 +46304,18 @@ function providePlusNonCombat(amt, loc, doEquips, speculative) {
   }
   return result$5();
 }
-function providePlusNonCombat$1(amt, doEquips, speculative) {
+function providePlusNonCombat$1(amt) {
+  var doEquips = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : true;
+  var speculative = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : false;
   return providePlusNonCombat(amt, (0, import_kolmafia113.myLocation)(), doEquips, speculative);
 }
-function providePlusNonCombat$2(amt, loc, doEquips) {
+function providePlusNonCombat$2(amt) {
+  var loc = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : (0, import_kolmafia113.myLocation)();
+  var doEquips = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : true;
   return providePlusNonCombat(amt, loc, doEquips, false) >= amt;
 }
 function providePlusNonCombat$3(amt, doEquips) {
   return providePlusNonCombat$2(amt, (0, import_kolmafia113.myLocation)(), doEquips);
-}
-function providePlusNonCombat$4(amt, loc) {
-  return providePlusNonCombat$2(amt, loc, true);
 }
 function provideInitiative(amt, loc, doEquips, speculative) {
   auto_log_info(
@@ -46423,7 +46338,7 @@ function provideInitiative(amt, loc, doEquips, speculative) {
   if (doEquips) {
     var max_1 = `500initiative ${amt}max`;
     if (speculative) {
-      simMaximizeWith(loc, max_1);
+      simMaximizeWith(max_1, loc);
     } else {
       addToMaximize(max_1);
       simMaximize$1(loc);
@@ -46802,7 +46717,7 @@ function provideResistances(amt, loc, doEquips, doAll, speculative) {
       } finally {
         _iterator14.f();
       }
-      simMaximizeWith(loc, max_1);
+      simMaximizeWith(max_1, loc);
     } else {
       var _iterator15 = _createForOfIteratorHelper(
         amt
@@ -46925,14 +46840,14 @@ function provideResistances(amt, loc, doEquips, doAll, speculative) {
       _iterator19.f();
     }
     if (resfam !== import_kolmafia113.Familiar.none) {
-      buffMaintain$4($effect`Leash of Linguini`);
-      buffMaintain$4($effect`Thoughtful Empathy`);
-      buffMaintain$4($effect`Empathy`);
-      buffMaintain$4($effect`Blood Bond`);
-      buffMaintain$4($effect`Only Dogs Love a Drunken Sailor`);
-      buffMaintain$4($effect`Best Pals`);
+      buffMaintain$2($effect`Leash of Linguini`);
+      buffMaintain$2($effect`Thoughtful Empathy`);
+      buffMaintain$2($effect`Empathy`);
+      buffMaintain$2($effect`Blood Bond`);
+      buffMaintain$2($effect`Only Dogs Love a Drunken Sailor`);
+      buffMaintain$2($effect`Best Pals`);
       if (auto_haveCoolerYeti() && amt.size === 1 && (amt.get($element`cold`) ?? amt.set($element`cold`, 0).get($element`cold`)) > 0) {
-        if ((resfam === $familiar`Mu` || resfam === $familiar`Exotic Parrot`) && (0, import_kolmafia113.floor)((auto_famWeight$1(resfam) - 5) / 20 + 1) < (0, import_kolmafia113.floor)(auto_famWeight$1($familiar`Cooler Yeti`) / 11) || 5 < (0, import_kolmafia113.floor)(auto_famWeight$1($familiar`Cooler Yeti`) / 11)) {
+        if ((resfam === $familiar`Mu` || resfam === $familiar`Exotic Parrot`) && (0, import_kolmafia113.floor)((auto_famWeight(resfam) - 5) / 20 + 1) < (0, import_kolmafia113.floor)(auto_famWeight($familiar`Cooler Yeti`) / 11) || 5 < (0, import_kolmafia113.floor)(auto_famWeight($familiar`Cooler Yeti`) / 11)) {
           resfam = $familiar`Cooler Yeti`;
         }
       }
@@ -47190,7 +47105,7 @@ function provideStats(amt, loc, doEquips, speculative) {
       } finally {
         _iterator27.f();
       }
-      simMaximizeWith(loc, max_1);
+      simMaximizeWith(max_1, loc);
     } else {
       var _iterator28 = _createForOfIteratorHelper(
         amt
@@ -47497,7 +47412,7 @@ function provideMeat(amt, loc, doEverything, speculative) {
   if (doEverything) {
     var max_1 = `500meat ${amt + 100}max`;
     if (speculative) {
-      simMaximizeWith(loc, max_1);
+      simMaximizeWith(max_1, loc);
     } else {
       addToMaximize(max_1);
       simMaximize$1(loc);
@@ -47686,7 +47601,7 @@ function provideMeat(amt, loc, doEverything, speculative) {
   }
   if ((0, import_kolmafia113.availableAmount)($item`li'l pirate costume`) > 0 && canChangeToFamiliar($familiar`Trick-or-Treating Tot`) && !in_heavyrains()) {
     (0, import_kolmafia113.useFamiliar)($familiar`Trick-or-Treating Tot`);
-    autoEquip$1($item`li'l pirate costume`);
+    autoEquip($item`li'l pirate costume`);
     handleFamiliar$1($familiar`Trick-or-Treating Tot`);
     if (pass$3()) {
       return result$3();
@@ -47727,7 +47642,7 @@ function provideMeat(amt, loc, doEverything, speculative) {
     }
     var _max_ = `500meat ${amt + 100}max`;
     if (speculative) {
-      simMaximizeWith(loc, _max_);
+      simMaximizeWith(_max_, loc);
     } else {
       addToMaximize(_max_);
       simMaximize$1(loc);
@@ -47953,7 +47868,7 @@ function provideItem(amt, loc, doEverything, speculative) {
   if (doEverything) {
     var max_1 = `500item ${amt + 100}max`;
     if (speculative) {
-      simMaximizeWith(loc, max_1);
+      simMaximizeWith(max_1, loc);
     } else {
       addToMaximize(max_1);
       simMaximize$1(loc);
@@ -48011,7 +47926,7 @@ function provideItem(amt, loc, doEverything, speculative) {
     return false;
   }
   if (in_heavyrains()) {
-    buffMaintain$4($effect`Fishy Whiskers`);
+    buffMaintain$2($effect`Fishy Whiskers`);
   }
   if (in_amw() && amw_canAfford($skill`Beef Goggles`)) {
     if (tryEffects$3(/* @__PURE__ */ new Map([[$effect`Beef Goggles`, true]]))) {
@@ -48142,7 +48057,7 @@ function provideItem(amt, loc, doEverything, speculative) {
     }
     var _max_2 = `500item ${amt + 100}max`;
     if (speculative) {
-      simMaximizeWith(loc, _max_2);
+      simMaximizeWith(_max_2, loc);
     } else {
       addToMaximize(_max_2);
       simMaximize$1(loc);
@@ -48340,7 +48255,7 @@ function provideFamExp(amt, loc, doEquips, doEverything, speculative) {
   if (doEquips || doEverything) {
     var max_1 = `1000familiar experience ${amt + 10}max`;
     if (speculative) {
-      simMaximizeWith(loc, max_1);
+      simMaximizeWith(max_1, loc);
     } else {
       addToMaximize(max_1);
       simMaximize$1(loc);
@@ -48403,10 +48318,10 @@ function provideFamExp(amt, loc, doEquips, doEverything, speculative) {
     return result();
   }
   if (doEverything) {
-    auto_latteRefill$5("famxp");
+    auto_latteRefill$4("famxp");
     var _max_3 = `1000familiar experience ${amt + 100}max`;
     if (speculative) {
-      simMaximizeWith(loc, _max_3);
+      simMaximizeWith(_max_3, loc);
     } else {
       addToMaximize(_max_3);
       simMaximize$1(loc);
@@ -48617,7 +48532,7 @@ function LX_attemptPowerLevel() {
     delay = 10;
   }
   (0, import_kolmafia114.wait)(delay);
-  if (LX_freeCombats$1(true)) {
+  if (LX_freeCombats(true)) {
     return true;
   }
   if (chateaumantegna_available() && // If we have elf toilet, save a rest for it
@@ -48712,9 +48627,7 @@ function disregardInstantKarma() {
   return (0, import_kolmafia114.toBoolean)((0, import_kolmafia114.getProperty)("auto_disregardInstantKarma"));
 }
 function auto_freeCombatsRemaining() {
-  return auto_freeCombatsRemaining$1(false);
-}
-function auto_freeCombatsRemaining$1(print_remaining_fights) {
+  var print_remaining_fights = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : false;
   if (in_avantGuard()) {
     return 0;
   }
@@ -48782,10 +48695,8 @@ function auto_freeCombatsRemaining$1(print_remaining_fights) {
   return count_1;
 }
 function LX_freeCombats() {
-  return LX_freeCombats$1(disregardInstantKarma());
-}
-function LX_freeCombats$1(powerlevel) {
   var _appearanceRates, _toString;
+  var powerlevel = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : disregardInstantKarma();
   if (auto_freeCombatsRemaining() === 0) {
     auto_log_debug$1("Could not use free combats because you have none");
     return false;
@@ -48802,7 +48713,7 @@ function LX_freeCombats$1(powerlevel) {
     return false;
   }
   if ((0, import_kolmafia114.myAdventures)() < 2) {
-    auto_freeCombatsRemaining$1(true);
+    auto_freeCombatsRemaining(true);
     auto_log_warning(
       "Too few adventures to safely automate free combats",
       "red"
@@ -48929,7 +48840,7 @@ function LX_freeCombats$1(powerlevel) {
     auto_log_debug$1(
       "I reached the end of LX_freeCombats() but I think the following free combats were not used for some reason:"
     );
-    auto_freeCombatsRemaining$1(true);
+    auto_freeCombatsRemaining(true);
   }
   return false;
 }
@@ -49209,7 +49120,8 @@ function dna_bedtime() {
   }
   return false;
 }
-function LX_ornateDowsingRod$1(doing_desert_now) {
+function LX_ornateDowsingRod() {
+  var doing_desert_now = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : false;
   if (!(0, import_kolmafia115.toBoolean)((0, import_kolmafia115.getProperty)("auto_grimstoneOrnateDowsingRod"))) {
     return false;
   }
@@ -49237,8 +49149,8 @@ function LX_ornateDowsingRod$1(doing_desert_now) {
   if (!doing_desert_now && ((0, import_kolmafia115.myLevel)() < 8 || (0, import_kolmafia115.myDaycount)() < 2)) {
     return false;
   }
-  if ((0, import_kolmafia115.itemAmount)($item`grimstone mask`) === 0 && !canChangeToFamiliar($familiar`Grimstone Golem`) && canPull$1($item`grimstone mask`)) {
-    if (canPull$1($item`Shore Inc. Ship Trip Scrip`) && (0, import_kolmafia115.storageAmount)($item`Shore Inc. Ship Trip Scrip`) > 2) {
+  if ((0, import_kolmafia115.itemAmount)($item`grimstone mask`) === 0 && !canChangeToFamiliar($familiar`Grimstone Golem`) && canPull($item`grimstone mask`)) {
+    if (canPull($item`Shore Inc. Ship Trip Scrip`) && (0, import_kolmafia115.storageAmount)($item`Shore Inc. Ship Trip Scrip`) > 2) {
       return false;
     }
     pullXWhenHaveY($item`grimstone mask`, 1, 0);
@@ -49294,9 +49206,6 @@ function LX_ornateDowsingRod$1(doing_desert_now) {
     );
   }
   return false;
-}
-function LX_ornateDowsingRod() {
-  return LX_ornateDowsingRod$1(false);
 }
 function fancyOilPainting() {
   if ((0, import_kolmafia115.toInt)((0, import_kolmafia115.getProperty)("chasmBridgeProgress")) >= bridgeGoal()) {
@@ -49505,7 +49414,7 @@ function auto_famKill(fam, place) {
       if (freq <= 0) {
         continue;
       }
-      if (mon !== import_kolmafia116.Monster.none && (0, import_kolmafia116.monsterHp)(mon) < (0, import_kolmafia116.floor)(1.5 * (auto_famWeight$1(fam) + 3)) + passiveDamage) {
+      if (mon !== import_kolmafia116.Monster.none && (0, import_kolmafia116.monsterHp)(mon) < (0, import_kolmafia116.floor)(1.5 * (auto_famWeight(fam) + 3)) + passiveDamage) {
         return true;
       }
     }
@@ -49843,7 +49752,7 @@ function autoChooseFamiliar(place) {
   if ($location`The Defiled Nook` === place && (0, import_kolmafia116.toInt)((0, import_kolmafia116.getProperty)("cyrptNookEvilness")) > 14) {
     famChoice = lookupFamiliarDatafile("item");
   }
-  if ($location`The Obligatory Pirate's Cove` === place && !possessOutfit$1("Swashbuckling Getup")) {
+  if ($location`The Obligatory Pirate's Cove` === place && !possessOutfit("Swashbuckling Getup")) {
     famChoice = lookupFamiliarDatafile("item");
   }
   if ($location`The F'c'le` === place && internalQuestStatus("questM12Pirate") < 6) {
@@ -49866,7 +49775,7 @@ function autoChooseFamiliar(place) {
   } else if ($location`The Batrat and Ratbat Burrow` === place && internalQuestStatus("questL04Bat") < 3) {
     famChoice = lookupFamiliarDatafile("item");
   }
-  if ($location`The eXtreme Slope` === place && !possessOutfit$1("eXtreme Cold-Weather Gear")) {
+  if ($location`The eXtreme Slope` === place && !possessOutfit("eXtreme Cold-Weather Gear")) {
     famChoice = lookupFamiliarDatafile("item");
   }
   if ($location`A-Boo Peak` === place && (0, import_kolmafia116.toInt)((0, import_kolmafia116.getProperty)("auto_aboopending")) === 0) {
@@ -49893,7 +49802,7 @@ function autoChooseFamiliar(place) {
     famChoice = lookupFamiliarDatafile("item");
   }
   if ($locations`Wartime Frat House, Wartime Hippy Camp`.includes(place)) {
-    if (!possessOutfit$1("Frat Warrior Fatigues") || !possessOutfit$1("War Hippy Fatigues")) {
+    if (!possessOutfit("Frat Warrior Fatigues") || !possessOutfit("War Hippy Fatigues")) {
       famChoice = lookupFamiliarDatafile("item");
     }
   }
@@ -50138,7 +50047,7 @@ function preAdvUpdateFamiliar(place) {
   }
   if (in_heavyrains()) {
     if (famChoice !== $familiar`Left-Hand Man`) {
-      autoEquip($slot`familiar`, $item`miniature life preserver`);
+      autoEquipToSlot($slot`familiar`, $item`miniature life preserver`);
     }
   }
   if ((0, import_kolmafia116.myFamiliar)() === $familiar`Reagnimated Gnome`) {
@@ -50164,7 +50073,7 @@ function preAdvUpdateFamiliar(place) {
       (0, import_kolmafia116.runChoice)(-1);
       (0, import_kolmafia116.setProperty)("_auto_gnomeArenaVisited", "true");
     }
-    autoEquip($slot`familiar`, $item`gnomish housemaid's kgnee`);
+    autoEquipToSlot($slot`familiar`, $item`gnomish housemaid's kgnee`);
   }
   if ((0, import_kolmafia116.myFamiliar)() === $familiar`Baby Bugged Bugbear`) {
     if (!possessEquipment($item`bugged beanie`)) {
@@ -50182,7 +50091,7 @@ function preAdvUpdateFamiliar(place) {
   }
   if ((0, import_kolmafia116.myFamiliar)() === $familiar`Jill-of-All-Trades` && possessEquipment($item`LED candle`)) {
     auto_handleJillOfAllTrades();
-    autoEquip$1($item`LED candle`);
+    autoEquip($item`LED candle`);
   }
   if (auto_checkFamiliarMummery((0, import_kolmafia116.myFamiliar)())) {
     mummifyFamiliar$2();
@@ -50200,7 +50109,9 @@ function auto_needsGoodFamiliarEquipment() {
   }
   return true;
 }
-function auto_famWeight(fam, include_equip) {
+function auto_famWeight() {
+  var fam = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : (0, import_kolmafia116.myFamiliar)();
+  var include_equip = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : true;
   var famEquipWeight = 0;
   if (fam === import_kolmafia116.Familiar.none) {
     return 0;
@@ -50211,9 +50122,6 @@ function auto_famWeight(fam, include_equip) {
     );
   }
   return (0, import_kolmafia116.familiarWeight)(fam) + (0, import_kolmafia116.weightAdjustment)() - famEquipWeight;
-}
-function auto_famWeight$1(fam) {
-  return auto_famWeight(fam, true);
 }
 function auto_famModifiers(fam, mod, famEquip) {
   if (fam === import_kolmafia116.Familiar.none) {
@@ -50264,7 +50172,7 @@ function getMaximizeSlotPref(s) {
 function getTentativeMaximizeEquip(s) {
   return (0, import_kolmafia117.toItem)((0, import_kolmafia117.getProperty)(getMaximizeSlotPref(s)));
 }
-function autoEquip(s, it) {
+function autoEquipToSlot(s, it) {
   if (!possessEquipment(it) || !auto_can_equip(it)) {
     return false;
   }
@@ -50291,10 +50199,11 @@ function autoEquip(s, it) {
   auto_log_info(`Equipping ${it} to slot ${s}`, "gold");
   return tryAddItemToMaximize(s, it);
 }
-function autoEquip$1(it) {
-  return autoEquip((0, import_kolmafia117.toSlot)(it), it);
+function autoEquip(it) {
+  return autoEquipToSlot((0, import_kolmafia117.toSlot)(it), it);
 }
-function autoForceEquip(s, it, noMaximize) {
+function autoForceEquip(s, it) {
+  var noMaximize = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : false;
   if (it === import_kolmafia117.Item.none) {
     return (0, import_kolmafia117.equip)(s, it);
   }
@@ -50304,27 +50213,24 @@ function autoForceEquip(s, it, noMaximize) {
   if ($slot`off-hand` === s) {
     if ((0, import_kolmafia117.weaponHands)((0, import_kolmafia117.equippedItem)($slot`weapon`)) > 1) {
       if (!noMaximize) {
-        removeFromMaximize(`+equip ${(0, import_kolmafia117.equippedItem)($slot`weapon`)}`);
+        removeFromMaximize(`+"equip ${(0, import_kolmafia117.equippedItem)($slot`weapon`)}"`);
       }
       (0, import_kolmafia117.equip)($slot`weapon`, import_kolmafia117.Item.none);
     }
     if (!noMaximize) {
-      removeFromMaximize(`-equip ${it}`);
+      removeFromMaximize(`-"equip ${it}"`);
       addToMaximize("-off-hand, 1hand");
     }
     return (0, import_kolmafia117.equip)($slot`off-hand`, it);
   }
   if ((0, import_kolmafia117.equip)(s, it)) {
     if (!noMaximize) {
-      removeFromMaximize(`-equip ${it}`);
+      removeFromMaximize(`-"equip ${it}"`);
       addToMaximize(`-${s}`);
     }
     return true;
   }
   return false;
-}
-function autoForceEquip$1(s, it) {
-  return autoForceEquip(s, it, false);
 }
 function autoForceEquip$2(it, noMaximize) {
   if ((0, import_kolmafia117.toSlot)(it) === $slot`acc1`) {
@@ -50334,7 +50240,7 @@ function autoForceEquip$2(it, noMaximize) {
 }
 function autoForceEquip$3(it) {
   if ((0, import_kolmafia117.toSlot)(it) === $slot`acc1`) {
-    return autoForceEquip$1($slot`acc3`, it);
+    return autoForceEquip($slot`acc3`, it);
   }
   return autoForceEquip$2(it, false);
 }
@@ -50352,9 +50258,9 @@ function autoOutfit(toWear) {
     for (_iterator.s(); !(_step = _iterator.n()).done; ) {
       var _step$value = _slicedToArray(_step.value, 2), it = _step$value[1];
       if (CommonOutfitAccessories.includes(it)) {
-        pass_1 = pass_1 && autoEquip($slot`acc3`, it);
+        pass_1 = pass_1 && autoEquipToSlot($slot`acc3`, it);
       } else {
-        pass_1 = pass_1 && autoEquip$1(it);
+        pass_1 = pass_1 && autoEquip(it);
       }
     }
   } catch (err) {
@@ -50929,7 +50835,7 @@ function resetMaximize() {
     if (res !== "") {
       res += ",";
     }
-    res += `-equip ${it2}`;
+    res += `-"equip ${it2}"`;
   }
   var _iterator11 = _createForOfIteratorHelper($items`sword behind inappropriate prepositions, staph of homophones, Snow Suit, little bitty bathysphere`), _step11;
   try {
@@ -51019,20 +50925,20 @@ function finalizeMaximize(speculative) {
   var nextMonster = (0, import_kolmafia117.toMonster)((0, import_kolmafia117.getProperty)("auto_nextEncounter"));
   var nextMonsterIsFree = nextMonster !== import_kolmafia117.Monster.none && isFreeMonster(nextMonster) || (0, import_kolmafia117.toInt)((0, import_kolmafia117.getProperty)("breathitinCharges")) > 0 && (0, import_kolmafia117.myLocation)().environment === "outdoor";
   if (auto_haveKramcoSausageOMatic()) {
-    var saveGoblinForDelay = auto_sausageFightsToday() < 8 && !zone_delay((0, import_kolmafia117.myLocation)())._boolean && solveDelayZone$1() !== import_kolmafia117.Location.none;
+    var saveGoblinForDelay = auto_sausageFightsToday() < 8 && !zone_delay((0, import_kolmafia117.myLocation)())._boolean && solveDelayZone() !== import_kolmafia117.Location.none;
     var dontSausageBackups = auto_backupTarget() && !$monsters`sausage goblin, Eldritch Tentacle`.includes(
       (0, import_kolmafia117.toMonster)((0, import_kolmafia117.getProperty)("lastCopyableMonster"))
     );
     if (saveGoblinForDelay || dontSausageBackups || (0, import_kolmafia117.toBoolean)((0, import_kolmafia117.getProperty)("mappingMonsters"))) {
       addToMaximize(
-        `-equip ${wrap_item($item`Kramco Sausage-o-Matic™`).toString()}`
+        `-"equip ${wrap_item($item`Kramco Sausage-o-Matic™`).toString()}"`
       );
     }
   }
   if (auto_haveMobiusRing()) {
     if (auto_timeCopFights() >= 11) {
       if ((0, import_kolmafia117.toBoolean)((0, import_kolmafia117.getProperty)("mappingMonsters")) || auto_backupTarget() || !(0, import_kolmafia117.inHardcore)()) {
-        addToMaximize(`-equip ${$item`Möbius ring`.toString()}`);
+        addToMaximize(`-"equip ${$item`Möbius ring`.toString()}"`);
       }
     } else {
       var mobius_bonus = 200;
@@ -51056,11 +50962,14 @@ function finalizeMaximize(speculative) {
   if (auto_haveCursedMagnifyingGlass()) {
     if ((0, import_kolmafia117.toInt)((0, import_kolmafia117.getProperty)("cursedMagnifyingGlassCount")) === 13) {
       if ((0, import_kolmafia117.toBoolean)((0, import_kolmafia117.getProperty)("mappingMonsters")) || auto_backupTarget() || (0, import_kolmafia117.toInt)((0, import_kolmafia117.getProperty)("_voidFreeFights")) >= 5 && (0, import_kolmafia117.toInt)((0, import_kolmafia117.getProperty)("cursedMagnifyingGlassCount")) >= 13 && !(0, import_kolmafia117.inHardcore)()) {
-        addToMaximize(`-equip ${$item`cursed magnifying glass`.toString()}`);
+        addToMaximize(`-"equip ${$item`cursed magnifying glass`.toString()}"`);
       }
-    } else if (!nextMonsterIsFree && (0, import_kolmafia117.toInt)((0, import_kolmafia117.getProperty)("cursedMagnifyingGlassCount")) < 13 && solveDelayZone$1() !== import_kolmafia117.Location.none) {
+    } else if (!nextMonsterIsFree && (0, import_kolmafia117.toInt)((0, import_kolmafia117.getProperty)("cursedMagnifyingGlassCount")) < 13 && solveDelayZone() !== import_kolmafia117.Location.none) {
       addBonusToMaximize($item`cursed magnifying glass`, 200);
     }
+  }
+  if (have($item`Cup of 13s`) && (0, import_kolmafia117.inebrietyLimit)() > 6 && !in_small() && !in_plumber()) {
+    addBonusToMaximize($item`Cup of 13s`, (0, import_kolmafia117.inebrietyLimit)() * 7);
   }
   var _iterator16 = _createForOfIteratorHelper(
     $slots`hat, back, shirt, weapon, off-hand, pants, acc1, acc2, acc3, familiar`
@@ -51071,8 +50980,8 @@ function finalizeMaximize(speculative) {
       var pref = getMaximizeSlotPref(s);
       var toEquip = (0, import_kolmafia117.getProperty)(pref);
       if (toEquip !== "") {
-        removeFromMaximize(`-equip ${toEquip}`);
-        addToMaximize(`+equip ${toEquip}`);
+        removeFromMaximize(`-"equip ${toEquip}"`);
+        addToMaximize(`+"equip ${toEquip}"`);
       }
     }
   } catch (err) {
@@ -51084,7 +50993,7 @@ function finalizeMaximize(speculative) {
     if (is_werewolf()) {
       addBonusToMaximize($item`Everfull Dart Holster`, 1e3);
     } else {
-      addToMaximize(`+equip ${$item`Everfull Dart Holster`}`);
+      addToMaximize(`+"equip ${$item`Everfull Dart Holster`}"`);
     }
   }
   if (is_professor() && (possessEquipment($item`biphasic molecular oculus`) || possessEquipment($item`triphasic molecular oculus`))) {
@@ -51141,9 +51050,9 @@ function finalizeMaximize(speculative) {
     }
     if (!nooculus) {
       if (possessEquipment($item`biphasic molecular oculus`)) {
-        addToMaximize(`+equip ${$item`biphasic molecular oculus`}`);
+        addToMaximize(`+"equip ${$item`biphasic molecular oculus`}"`);
       } else {
-        addToMaximize(`+equip ${$item`triphasic molecular oculus`}`);
+        addToMaximize(`+"equip ${$item`triphasic molecular oculus`}"`);
       }
     }
   }
@@ -51152,11 +51061,11 @@ function finalizeMaximize(speculative) {
       (0, import_kolmafia117.myLocation)()
     )) {
       if (possessEquipment($item`high-tension exoskeleton`)) {
-        addToMaximize(`+equip ${$item`high-tension exoskeleton`}`);
+        addToMaximize(`+"equip ${$item`high-tension exoskeleton`}"`);
       } else if (possessEquipment($item`ultra-high-tension exoskeleton`)) {
-        addToMaximize(`+equip ${$item`ultra-high-tension exoskeleton`}`);
+        addToMaximize(`+"equip ${$item`ultra-high-tension exoskeleton`}"`);
       } else {
-        addToMaximize(`+equip ${$item`irresponsible-tension exoskeleton`}`);
+        addToMaximize(`+"equip ${$item`irresponsible-tension exoskeleton`}"`);
       }
     }
   }
@@ -51190,7 +51099,7 @@ function finalizeMaximize(speculative) {
   }
   if (possessEquipment($item`carnivorous potted plant`)) {
     if ((0, import_kolmafia117.toBoolean)((0, import_kolmafia117.getProperty)("mappingMonsters")) || auto_backupTarget()) {
-      addToMaximize(`-equip ${$item`carnivorous potted plant`.toString()}`);
+      addToMaximize(`-"equip ${$item`carnivorous potted plant`.toString()}"`);
     } else if ((nextMonster === import_kolmafia117.Monster.none || instakillable(nextMonster)) && !in_pokefam() && (0, import_kolmafia117.getProperty)("auto_MLSafetyLimit") === "" || (0, import_kolmafia117.toInt)((0, import_kolmafia117.getProperty)("auto_MLSafetyLimit")) >= 25) {
       addBonusToMaximize($item`carnivorous potted plant`, 200);
     }
@@ -51216,7 +51125,7 @@ function finalizeMaximize(speculative) {
     }
   }
   if ((0, import_kolmafia117.myLocation)() === (0, import_kolmafia117.toLocation)((0, import_kolmafia117.getProperty)("_seadentWaveZone"))) {
-    addToMaximize(`+equip ${$item`Monodent of the Sea`}`);
+    addToMaximize(`+"equip ${$item`Monodent of the Sea`}"`);
   }
   if (!in_plumber() && (0, import_kolmafia117.getProperty)(getMaximizeSlotPref($slot`weapon`)) === "" && !maximizeContains("-weapon") && (0, import_kolmafia117.myPrimestat)() !== $stat`Mysticality`) {
     if ((0, import_kolmafia117.myClass)() === $class`Seal Clubber` && in_glover()) {
@@ -51251,7 +51160,7 @@ function finalizeMaximize(speculative) {
     }
   }
   if ((0, import_kolmafia117.myFamiliar)() !== $familiar`Jill-of-All-Trades`) {
-    var candle_force = `+equip ${$item`LED candle`}`;
+    var candle_force = `+"equip ${$item`LED candle`}"`;
     if (maximizeContains(candle_force)) {
       removeFromMaximize(candle_force);
     }
@@ -51318,16 +51227,14 @@ function simMaximize$1(loc) {
   }
   return res;
 }
-function simMaximizeWith(loc, add_1) {
+function simMaximizeWith(add_1) {
+  var loc = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : (0, import_kolmafia117.myLocation)();
   var backup = (0, import_kolmafia117.getProperty)("auto_maximize_current");
   addToMaximize(add_1);
   auto_log_debug(`Simulating: ${(0, import_kolmafia117.getProperty)("auto_maximize_current")}`, "gold");
   var res = simMaximize$1(loc);
   (0, import_kolmafia117.setProperty)("auto_maximize_current", backup);
   return res;
-}
-function simMaximizeWith$1(add_1) {
-  return simMaximizeWith((0, import_kolmafia117.myLocation)(), add_1);
 }
 function simValue(mod) {
   return (0, import_kolmafia117.numericModifier)("Generated:_spec", mod);
@@ -51394,7 +51301,8 @@ function possessEquipment(equipment) {
 function possessUnrestricted(it) {
   return possessEquipment(it) && (0, import_kolmafia117.isUnrestricted)(it);
 }
-function possessOutfit(outfitToCheck, checkCanEquip) {
+function possessOutfit(outfitToCheck) {
+  var checkCanEquip = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : false;
   if ((0, import_kolmafia117.outfitPieces)(outfitToCheck).length === 0) {
     auto_log_warning$1(`${outfitToCheck} is not a valid outfit!`);
     return false;
@@ -51419,9 +51327,6 @@ function possessOutfit(outfitToCheck, checkCanEquip) {
   }
   return true;
 }
-function possessOutfit$1(outfitToCheck) {
-  return possessOutfit(outfitToCheck, false);
-}
 function equipBaseline() {
   equipMaximizedGear();
 }
@@ -51434,7 +51339,7 @@ function ensureSealClubs() {
     for (_iterator23.s(); !(_step23 = _iterator23.n()).done; ) {
       var club = _step23.value;
       if (possessEquipment(club)) {
-        autoForceEquip$1($slot`weapon`, club);
+        autoForceEquip($slot`weapon`, club);
         return;
       }
     }
@@ -51478,7 +51383,8 @@ function equipRollover(silent) {
     );
   }
 }
-function auto_forceEquipSword(speculative) {
+function auto_forceEquipSword() {
+  var speculative = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : false;
   var swordToEquip = import_kolmafia117.Item.none;
   if (possessEquipment($item`ebony epee`)) {
     swordToEquip = $item`ebony epee`;
@@ -51507,7 +51413,7 @@ function auto_forceEquipSword(speculative) {
   if (swordToEquip === import_kolmafia117.Item.none) {
     return false;
   }
-  if ((0, import_kolmafia117.toItem)((0, import_kolmafia117.getProperty)("auto_equipment_override_weapon")) !== import_kolmafia117.Item.none && auto_can_equip$1(
+  if ((0, import_kolmafia117.toItem)((0, import_kolmafia117.getProperty)("auto_equipment_override_weapon")) !== import_kolmafia117.Item.none && auto_can_equip(
     (0, import_kolmafia117.toItem)((0, import_kolmafia117.getProperty)("auto_equipment_override_weapon")),
     $slot`weapon`
   )) {
@@ -51522,12 +51428,9 @@ function auto_forceEquipSword(speculative) {
     }
   }
   if (speculative) {
-    return auto_can_equip$1(swordToEquip, $slot`weapon`);
+    return auto_can_equip(swordToEquip, $slot`weapon`);
   }
-  return autoForceEquip$1($slot`weapon`, swordToEquip);
-}
-function auto_forceEquipSword$1() {
-  return auto_forceEquipSword(false);
+  return autoForceEquip($slot`weapon`, swordToEquip);
 }
 function is_watch(it) {
   return (0, import_kolmafia117.booleanModifier)(it, import_kolmafia117.Modifier.get("Nonstackable Watch"));
@@ -52126,9 +52029,7 @@ function loopHandler(turnSetting, counterSetting, abortMessage, threshold) {
   return false;
 }
 function loopHandlerDelay(counterSetting) {
-  return loopHandlerDelay$1(counterSetting, 3);
-}
-function loopHandlerDelay$1(counterSetting, threshold) {
+  var threshold = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : 3;
   if ((0, import_kolmafia122.toInt)((0, import_kolmafia122.getProperty)(counterSetting)) >= threshold) {
     (0, import_kolmafia122.setProperty)(
       counterSetting,
@@ -52194,7 +52095,8 @@ function internalQuestStatus(prop) {
   }
   return -1;
 }
-function canYellowRay(target) {
+function canYellowRay() {
+  var target = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : import_kolmafia122.Monster.none;
   if (in_pokefam()) {
     return false;
   }
@@ -52307,9 +52209,6 @@ function canYellowRay(target) {
       target
     )
   ) !== "";
-}
-function canYellowRay$1() {
-  return canYellowRay(import_kolmafia122.Monster.none);
 }
 function auto_combat_appearance_rates(place, queue) {
   var res_including_noncombat = new Map(
@@ -52451,7 +52350,7 @@ function auto_wantToFreeRun(enemy, loc) {
   return monstersToFreeRun.get(enemy) ?? monstersToFreeRun.set(enemy, false).get(enemy);
 }
 function freeRunCombatStringPreBanish(enemy, loc, inCombat) {
-  if (isFreeMonster$1(enemy, loc)) {
+  if (isFreeMonster(enemy, loc)) {
     return "";
   }
   if (is_werewolf()) {
@@ -52459,18 +52358,18 @@ function freeRunCombatStringPreBanish(enemy, loc, inCombat) {
   }
   if (!inAftercore() && (0, import_kolmafia122.haveEffect)($effect`Everything Looks Green`) === 0) {
     if (isGhost(enemy) && canUse$3($item`T.U.R.D.S. Key`) && (0, import_kolmafia122.itemAmount)($item`T.U.R.D.S. Key`) > 0) {
-      return useItem$1($item`T.U.R.D.S. Key`);
+      return useItem($item`T.U.R.D.S. Key`);
     }
     if (canUse$3($item`short writ of habeas corpus`) && (0, import_kolmafia122.itemAmount)($item`short writ of habeas corpus`) > 0 && $monsters`pygmy orderlies, pygmy witch lawyer, pygmy witch nurse`.includes(
       enemy
     )) {
-      return useItem$1($item`short writ of habeas corpus`);
+      return useItem($item`short writ of habeas corpus`);
     }
   }
   return "";
 }
 function freeRunCombatString(enemy, loc, inCombat) {
-  if (isFreeMonster$1(enemy, (0, import_kolmafia122.myLocation)())) {
+  if (isFreeMonster(enemy, (0, import_kolmafia122.myLocation)())) {
     return "";
   }
   if (is_werewolf()) {
@@ -52483,7 +52382,7 @@ function freeRunCombatString(enemy, loc, inCombat) {
   if (!inAftercore() && (0, import_kolmafia122.haveEffect)($effect`Everything Looks Green`) === 0) {
     if (auto_haveSpringShoes() && auto_is_valid$2($skill`Spring Away`)) {
       if (!inCombat) {
-        autoEquip$1($item`spring shoes`);
+        autoEquip($item`spring shoes`);
         return `skill ${$skill`Spring Away`}`;
       } else {
         if (canUse($skill`Spring Away`)) {
@@ -52493,7 +52392,7 @@ function freeRunCombatString(enemy, loc, inCombat) {
     }
     if (auto_haveRoman() && auto_is_valid$2($skill`Blow the Green Candle!`)) {
       if (!inCombat) {
-        autoEquip$1($item`Roman Candelabra`);
+        autoEquip($item`Roman Candelabra`);
         return `skill ${$skill`Blow the Green Candle!`}`;
       } else {
         if (canUse($skill`Blow the Green Candle!`)) {
@@ -52508,7 +52407,7 @@ function freeRunCombatString(enemy, loc, inCombat) {
       for (_iterator10.s(); !(_step10 = _iterator10.n()).done; ) {
         var it = _step10.value;
         if (canUse$3(it) && (0, import_kolmafia122.itemAmount)(it) > 0) {
-          return useItem$1(it);
+          return useItem(it);
         }
       }
     } catch (err) {
@@ -52518,12 +52417,12 @@ function freeRunCombatString(enemy, loc, inCombat) {
     }
   }
   if (canChangeToFamiliar($familiar`Frumious Bandersnatch`)) {
-    var banderRunsLeft = (0, import_kolmafia122.floor)(auto_famWeight$1($familiar`Frumious Bandersnatch`) / 5) - (0, import_kolmafia122.toInt)((0, import_kolmafia122.getProperty)("_banderRunaways"));
+    var banderRunsLeft = (0, import_kolmafia122.floor)(auto_famWeight($familiar`Frumious Bandersnatch`) / 5) - (0, import_kolmafia122.toInt)((0, import_kolmafia122.getProperty)("_banderRunaways"));
     if (is_professor()) {
       return "";
     }
     if (!inCombat) {
-      if (auto_have_skill($skill`The Ode to Booze`) && banderRunsLeft > 0 && ((0, import_kolmafia122.haveEffect)($effect`Ode to Booze`) > 0 || buffMaintain$4($effect`Ode to Booze`)) && handleFamiliar$1($familiar`Frumious Bandersnatch`)) {
+      if (auto_have_skill($skill`The Ode to Booze`) && banderRunsLeft > 0 && ((0, import_kolmafia122.haveEffect)($effect`Ode to Booze`) > 0 || buffMaintain$2($effect`Ode to Booze`)) && handleFamiliar$1($familiar`Frumious Bandersnatch`)) {
         (0, import_kolmafia122.useFamiliar)($familiar`Frumious Bandersnatch`);
         return `runaway familiar ${$familiar`Frumious Bandersnatch`}`;
       }
@@ -52534,7 +52433,7 @@ function freeRunCombatString(enemy, loc, inCombat) {
     }
   }
   if (canChangeToFamiliar($familiar`Pair of Stomping Boots`)) {
-    var _banderRunsLeft = (0, import_kolmafia122.floor)(auto_famWeight$1($familiar`Pair of Stomping Boots`) / 5) - (0, import_kolmafia122.toInt)((0, import_kolmafia122.getProperty)("_banderRunaways"));
+    var _banderRunsLeft = (0, import_kolmafia122.floor)(auto_famWeight($familiar`Pair of Stomping Boots`) / 5) - (0, import_kolmafia122.toInt)((0, import_kolmafia122.getProperty)("_banderRunaways"));
     if (is_professor()) {
       return "";
     }
@@ -52552,9 +52451,9 @@ function freeRunCombatString(enemy, loc, inCombat) {
   if (auto_hasNavelRing()) {
     if (!inCombat && auto_navelFreeRunChance() >= 80) {
       if (in_lol()) {
-        autoEquip$1($item`replica navel ring of navel gazing`);
+        autoEquip($item`replica navel ring of navel gazing`);
       } else {
-        autoEquip$1($item`navel ring of navel gazing`);
+        autoEquip($item`navel ring of navel gazing`);
       }
       return `runaway item ${$item`navel ring of navel gazing`}`;
     } else {
@@ -52581,7 +52480,7 @@ function freeRunCombatString(enemy, loc, inCombat) {
       for (_iterator11.s(); !(_step11 = _iterator11.n()).done; ) {
         var _it = _step11.value;
         if (canUse$3(_it) && (0, import_kolmafia122.itemAmount)(_it) > 0) {
-          return useItem$1(_it);
+          return useItem(_it);
         }
       }
     } catch (err) {
@@ -52598,7 +52497,7 @@ function adjustForYellowRay(combat_string) {
     return true;
   }
   if (combat_string === `skill ${$skill`Use the Force`}`) {
-    return autoEquip(
+    return autoEquipToSlot(
       $slot`weapon`,
       wrap_item($item`Fourth of May Cosplay Saber`)
     );
@@ -52610,7 +52509,7 @@ function adjustForYellowRay(combat_string) {
     auto_configureRetrocape("heck", "kiss");
   }
   if (combat_string === `skill ${$skill`Blow the Yellow Candle!`}`) {
-    return autoEquip($slot`off-hand`, wrap_item($item`Roman Candelabra`));
+    return autoEquipToSlot($slot`off-hand`, wrap_item($item`Roman Candelabra`));
   }
   if (combat_string === `skill ${$skill`Shocking Lick`}` && (0, import_kolmafia122.toInt)((0, import_kolmafia122.getProperty)("shockingLickCharges")) < 1) {
     if (auto_getBattery($item`battery (9-Volt)`)) {
@@ -52622,11 +52521,12 @@ function adjustForYellowRay(combat_string) {
     }
   }
   if (combat_string === `skill ${$skill`Northern Explosion`}`) {
-    return autoEquip$1($item`April Shower Thoughts shield`);
+    return autoEquip($item`April Shower Thoughts shield`);
   }
   return true;
 }
-function adjustForYellowRayIfPossible(target) {
+function adjustForYellowRayIfPossible() {
+  var target = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : import_kolmafia122.Monster.none;
   if (canYellowRay(target)) {
     var yr_string = yellowRayCombatString(
       target,
@@ -52643,11 +52543,8 @@ function adjustForYellowRayIfPossible(target) {
   }
   return false;
 }
-function adjustForYellowRayIfPossible$1() {
-  return adjustForYellowRayIfPossible(import_kolmafia122.Monster.none);
-}
 function canReplace(target) {
-  return replaceMonsterCombatString$1(target) !== "";
+  return replaceMonsterCombatString(target) !== "";
 }
 function adjustForReplace(combat_string) {
   if (combat_string === `skill ${$skill`Macrometeorite`}`) {
@@ -52658,9 +52555,10 @@ function adjustForReplace(combat_string) {
   }
   return false;
 }
-function adjustForReplaceIfPossible(target) {
+function adjustForReplaceIfPossible() {
+  var target = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : import_kolmafia122.Monster.none;
   if (canReplace(target)) {
-    var rep_string = replaceMonsterCombatString$1(target);
+    var rep_string = replaceMonsterCombatString(target);
     auto_log_info(
       `Adjusting to have replace available for ${target}: ${rep_string}`,
       "blue"
@@ -52668,9 +52566,6 @@ function adjustForReplaceIfPossible(target) {
     return adjustForReplace(rep_string);
   }
   return false;
-}
-function adjustForReplaceIfPossible$1() {
-  return adjustForReplaceIfPossible(import_kolmafia122.Monster.none);
 }
 function canSniff(enemy, loc) {
   if (!auto_wantToSniff(enemy, loc)) {
@@ -52681,7 +52576,7 @@ function canSniff(enemy, loc) {
 function adjustForCopyIfPossible(target) {
   var copier = getCopier(target, false);
   if (copier === $skill`Blow the Purple Candle!`) {
-    return autoEquip$1($item`Roman Candelabra`);
+    return autoEquip($item`Roman Candelabra`);
   }
   if (copier === $skill`%fn, fire a Red, White and Blue Blast`) {
     handleFamiliar$1($familiar`Patriotic Eagle`);
@@ -53703,9 +53598,7 @@ function auto_freeCrafts() {
   return retval;
 }
 function isFreeMonster(mon) {
-  return isFreeMonster$1(mon, import_kolmafia122.Location.none);
-}
-function isFreeMonster$1(mon, loc) {
+  var loc = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : import_kolmafia122.Location.none;
   if (in_avantGuard()) {
     return false;
   }
@@ -53750,7 +53643,7 @@ function isFreeMonster$1(mon, loc) {
   return false;
 }
 function auto_burningDelay() {
-  if ((auto_voteMonster$1(true) || isOverdueDigitize() || auto_sausageGoblin() || auto_backupTarget() || auto_voidMonster()) && (0, import_kolmafia122.myLocation)() === solveDelayZone$1()) {
+  if ((auto_voteMonster(true) || isOverdueDigitize() || auto_sausageGoblin() || auto_backupTarget() || auto_voidMonster()) && (0, import_kolmafia122.myLocation)() === solveDelayZone()) {
     return true;
   }
   return false;
@@ -53810,8 +53703,8 @@ function LX_summonMonster() {
     }
   }
   var oreGoal = (0, import_kolmafia122.toItem)((0, import_kolmafia122.getProperty)("trapperOre"));
-  if (internalQuestStatus("questL08Trapper") < 2 && auto_haveTrainSet() && oreGoal !== import_kolmafia122.Item.none && (0, import_kolmafia122.itemAmount)(oreGoal) < 2 && canYellowRay$1() && canSummonMonster($monster`mountain man`)) {
-    adjustForYellowRayIfPossible$1();
+  if (internalQuestStatus("questL08Trapper") < 2 && auto_haveTrainSet() && oreGoal !== import_kolmafia122.Item.none && (0, import_kolmafia122.itemAmount)(oreGoal) < 2 && canYellowRay() && canSummonMonster($monster`mountain man`)) {
+    adjustForYellowRayIfPossible();
     var need_dupe = (0, import_kolmafia122.itemAmount)(oreGoal) < 1;
     var can_mctwist = auto_can_equip($item`pro skateboard`) && !(0, import_kolmafia122.toBoolean)((0, import_kolmafia122.getProperty)("_epicMcTwistUsed"));
     var will_mctwist = can_mctwist && need_dupe;
@@ -53819,7 +53712,7 @@ function LX_summonMonster() {
       `Trying to summon a mountain man${will_mctwist ? " which we will McTwist." : "."}`
     );
     if (will_mctwist) {
-      autoEquip$1($item`pro skateboard`);
+      autoEquip($item`pro skateboard`);
     }
     if (summonMonster($monster`mountain man`)) {
       return true;
@@ -53842,8 +53735,8 @@ function LX_summonMonster() {
       return true;
     }
   }
-  if (!possessOutfit$1("Frat Warrior Fatigues") && auto_warSide() === "fratboy" && canYellowRay$1() && (0, import_kolmafia122.myLevel)() >= 9 && (canSummonMonster($monster`War Frat 151st Infantryman`) || canSummonMonster($monster`War Frat Mobile Grill Unit`) || canSummonMonster($monster`Orcish Frat Boy Spy`))) {
-    adjustForYellowRayIfPossible$1();
+  if (!possessOutfit("Frat Warrior Fatigues") && auto_warSide() === "fratboy" && canYellowRay() && (0, import_kolmafia122.myLevel)() >= 9 && (canSummonMonster($monster`War Frat 151st Infantryman`) || canSummonMonster($monster`War Frat Mobile Grill Unit`) || canSummonMonster($monster`Orcish Frat Boy Spy`))) {
+    adjustForYellowRayIfPossible();
     if (summonMonster($monster`War Frat 151st Infantryman`)) {
       return true;
     }
@@ -53854,8 +53747,8 @@ function LX_summonMonster() {
       return true;
     }
   }
-  if (!possessOutfit$1("War Hippy Fatigues") && auto_warSide() === "hippy" && canYellowRay$1() && (0, import_kolmafia122.myLevel)() >= 12 && (canSummonMonster($monster`War Hippy Airborne Commander`) || canSummonMonster($monster`War Hippy Spy`))) {
-    adjustForYellowRayIfPossible$1();
+  if (!possessOutfit("War Hippy Fatigues") && auto_warSide() === "hippy" && canYellowRay() && (0, import_kolmafia122.myLevel)() >= 12 && (canSummonMonster($monster`War Hippy Airborne Commander`) || canSummonMonster($monster`War Hippy Spy`))) {
+    adjustForYellowRayIfPossible();
     if (summonMonster($monster`War Hippy Airborne Commander`)) {
       return true;
     }
@@ -53897,12 +53790,10 @@ function LX_summonMonster() {
   return false;
 }
 function canSummonMonster(mon) {
-  return summonMonster$1(mon, true);
+  return summonMonster(mon, true);
 }
 function summonMonster(mon) {
-  return summonMonster$1(mon, false);
-}
-function summonMonster$1(mon, speculative) {
+  var speculative = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : false;
   if (!speculative) {
     auto_log_debug(`Trying to summon ${mon}`, "blue");
     (0, import_kolmafia122.setProperty)("auto_nonAdvLoc", true.toString());
@@ -53913,7 +53804,7 @@ function summonMonster$1(mon, speculative) {
         `We want to get the "${mon}" monster into the combat lover's locket from summoning, so we're bringing it along.`,
         "blue"
       );
-      autoEquip$1($item`combat lover's locket`);
+      autoEquip($item`combat lover's locket`);
     }
     if (auto_wantToCopy$1(mon)) {
       auto_log_info$1(
@@ -54096,9 +53987,7 @@ function highest_available_mcd() {
   return (0, import_kolmafia122.currentMcd)();
 }
 function auto_change_mcd(mcd) {
-  return auto_change_mcd$1(mcd, false);
-}
-function auto_change_mcd$1(mcd, immediately) {
+  var immediately = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : false;
   var best = highest_available_mcd();
   if ((0, import_kolmafia122.inBadMoon)()) {
     best = 11;
@@ -54937,9 +54826,7 @@ function auto_turbo() {
   return (0, import_kolmafia122.toBoolean)((0, import_kolmafia122.getProperty)("auto_turbo"));
 }
 function auto_can_equip(it) {
-  return auto_can_equip$1(it, (0, import_kolmafia122.toSlot)(it));
-}
-function auto_can_equip$1(it, s) {
+  var s = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : (0, import_kolmafia122.toSlot)(it);
   if (s === $slot`shirt` && !hasTorso()) {
     return false;
   }
@@ -55903,7 +55790,7 @@ function UrKelCheck(UrKelToML, UrKelUpperLimit, UrKelLowerLimit) {
   if ((0, import_kolmafia122.haveEffect)($effect`Ur-Kel's Aria of Annoyance`) === 0 && (0, import_kolmafia122.monsterLevelAdjustment)() + 2 * (0, import_kolmafia122.myLevel)() <= auto_convertDesiredML(UrKelToML)) {
     if ((0, import_kolmafia122.getProperty)("auto_MLSafetyLimit") === "" || 2 * (0, import_kolmafia122.myLevel)() <= UrKelUpperLimit && 2 * (0, import_kolmafia122.myLevel)() >= UrKelLowerLimit) {
       shrugAT($effect`Ur-Kel's Aria of Annoyance`);
-      buffMaintain$3($effect`Ur-Kel's Aria of Annoyance`, 0, 1, 10);
+      buffMaintain$2($effect`Ur-Kel's Aria of Annoyance`, 0, 1, 10);
     }
   }
   return true;
@@ -55915,7 +55802,7 @@ function angryAgateCheck(angryAgateToML, angryAgateUpperLimit, angryAgateLowerLi
   if ((0, import_kolmafia122.haveEffect)($effect`Misplaced Rage`) === 0 && (0, import_kolmafia122.monsterLevelAdjustment)() + 3 * (0, import_kolmafia122.myLevel)() <= auto_convertDesiredML(angryAgateToML)) {
     if ((0, import_kolmafia122.getProperty)("auto_MLSafetyLimit") === "" || 3 * (0, import_kolmafia122.myLevel)() <= angryAgateUpperLimit && 3 * (0, import_kolmafia122.myLevel)() >= angryAgateLowerLimit) {
       uneffect($effect`Misplaced Rage`);
-      buffMaintain$4($effect`Misplaced Rage`);
+      buffMaintain$2($effect`Misplaced Rage`);
     }
   }
   return true;
@@ -55929,7 +55816,7 @@ function auto_MaxMLToCap(ToML, doAltML) {
       for (_iterator66.s(); !(_step66 = _iterator66.n()).done; ) {
         var eff = _step66.value;
         if ((0, import_kolmafia122.monsterLevelAdjustment)() + (0, import_kolmafia122.numericModifier)(eff, "Monster Level") <= auto_convertDesiredML(ToML)) {
-          buffMaintain$4(eff);
+          buffMaintain$2(eff);
         }
       }
     } catch (err) {
@@ -56000,7 +55887,8 @@ function auto_MaxMLToCap(ToML, doAltML) {
   }
   return true;
 }
-function _auto_forceNextNoncombat(loc, speculative) {
+function _auto_forceNextNoncombat(loc) {
+  var speculative = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : false;
   if (auto_haveQueuedForcedNonCombat()) {
     return true;
   }
@@ -56106,9 +55994,6 @@ function _auto_forceNextNoncombat(loc, speculative) {
 function auto_canForceNextNoncombat() {
   return _auto_forceNextNoncombat(import_kolmafia122.Location.none, true);
 }
-function _auto_forceNextNoncombat$1(loc) {
-  return _auto_forceNextNoncombat(loc, false);
-}
 function auto_forceNextNoncombat(loc) {
   if (auto_haveQueuedForcedNonCombat()) {
     auto_log_warning(
@@ -56117,7 +56002,7 @@ function auto_forceNextNoncombat(loc) {
     );
     return true;
   }
-  if (_auto_forceNextNoncombat$1(loc)) {
+  if (_auto_forceNextNoncombat(loc)) {
     var forceNCMethod = (0, import_kolmafia122.getProperty)("auto_forceNonCombatSource");
     if (forceNCMethod === "jurassic parka") {
       auto_log_info(
@@ -56137,7 +56022,8 @@ function auto_forceNextNoncombat(loc) {
 function auto_haveQueuedForcedNonCombat() {
   return (0, import_kolmafia122.toBoolean)((0, import_kolmafia122.getProperty)("noncombatForcerActive"));
 }
-function _auto_forceNextCombat(loc, speculative) {
+function _auto_forceNextCombat(loc) {
+  var speculative = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : false;
   if (auto_haveQueuedForcedCombat()) {
     return true;
   }
@@ -56160,9 +56046,6 @@ function _auto_forceNextCombat(loc, speculative) {
 function auto_canForceNextCombat() {
   return _auto_forceNextCombat(import_kolmafia122.Location.none, true);
 }
-function _auto_forceNextCombat$1(loc) {
-  return _auto_forceNextCombat(loc, false);
-}
 function auto_forceNextCombat$1(loc) {
   if (auto_haveQueuedForcedCombat()) {
     auto_log_warning(
@@ -56171,7 +56054,7 @@ function auto_forceNextCombat$1(loc) {
     );
     return true;
   }
-  if (_auto_forceNextCombat$1(loc)) {
+  if (_auto_forceNextCombat(loc)) {
     var forceCMethod = (0, import_kolmafia122.getProperty)("auto_forceCombatSource");
     auto_log_info(
       `Next combat adventure has been forced with ${forceCMethod}`,
@@ -56282,52 +56165,52 @@ function effectAblativeArmor(passive_dmg_allowed) {
   addToMaximize("-1000mana cost, -tie");
   equipMaximizedGear();
   if (passive_dmg_allowed) {
-    buffMaintain$4($effect`Spiky Shell`);
-    buffMaintain$4($effect`Jalapeño Saucesphere`);
-    buffMaintain$4($effect`Scariersauce`);
-    buffMaintain$4($effect`Scarysauce`);
+    buffMaintain$2($effect`Spiky Shell`);
+    buffMaintain$2($effect`Jalapeño Saucesphere`);
+    buffMaintain$2($effect`Scariersauce`);
+    buffMaintain$2($effect`Scarysauce`);
     if (in_aosol()) {
-      buffMaintain$4($effect`Queso Fustulento`);
-      buffMaintain$4($effect`Tricky Timpani`);
+      buffMaintain$2($effect`Queso Fustulento`);
+      buffMaintain$2($effect`Tricky Timpani`);
     }
   }
-  buffMaintain$4($effect`Seal Clubbing Frenzy`);
-  buffMaintain$4($effect`Patience of the Tortoise`);
-  buffMaintain$4($effect`Pasta Oneness`);
-  buffMaintain$4($effect`Saucemastery`);
-  buffMaintain$4($effect`Disco State of Mind`);
-  buffMaintain$4($effect`Mariachi Mood`);
-  buffMaintain$4($effect`Blubbered Up`);
-  buffMaintain$4($effect`Rage of the Reindeer`);
-  buffMaintain$4($effect`A Few Extra Pounds`);
+  buffMaintain$2($effect`Seal Clubbing Frenzy`);
+  buffMaintain$2($effect`Patience of the Tortoise`);
+  buffMaintain$2($effect`Pasta Oneness`);
+  buffMaintain$2($effect`Saucemastery`);
+  buffMaintain$2($effect`Disco State of Mind`);
+  buffMaintain$2($effect`Mariachi Mood`);
+  buffMaintain$2($effect`Blubbered Up`);
+  buffMaintain$2($effect`Rage of the Reindeer`);
+  buffMaintain$2($effect`A Few Extra Pounds`);
   if (!hasTTBlessing()) {
-    buffMaintain$4($effect`Blessing of the War Snapper`);
+    buffMaintain$2($effect`Blessing of the War Snapper`);
   }
-  buffMaintain$4($effect`Springy Fusilli`);
-  buffMaintain$4($effect`Shield of the Pastalord`);
-  buffMaintain$4($effect`Leash of Linguini`);
-  buffMaintain$4($effect`Sauce Monocle`);
-  buffMaintain$4($effect`Disco Fever`);
-  buffMaintain$4($effect`Ghostly Shell`);
-  buffMaintain$4($effect`Tenacity of the Snapper`);
-  buffMaintain$4($effect`Empathy`);
-  buffMaintain$4($effect`Thoughtful Empathy`);
-  buffMaintain$4($effect`Reptilian Fortitude`);
-  buffMaintain$4($effect`Astral Shell`);
-  buffMaintain$4($effect`Jingle Jangle Jingle`);
-  buffMaintain$4($effect`Curiosity of Br'er Tarrypin`);
-  buffMaintain$4($effect`Elemental Saucesphere`);
-  buffMaintain$4($effect`Antibiotic Saucesphere`);
-  buffMaintain$4($effect`The Moxious Madrigal`);
-  buffMaintain$4($effect`The Magical Mojomuscular Melody`);
-  buffMaintain$4($effect`Cletus's Canticle of Celerity`);
-  buffMaintain$4($effect`Power Ballad of the Arrowsmith`);
-  buffMaintain$4($effect`Polka of Plenty`);
+  buffMaintain$2($effect`Springy Fusilli`);
+  buffMaintain$2($effect`Shield of the Pastalord`);
+  buffMaintain$2($effect`Leash of Linguini`);
+  buffMaintain$2($effect`Sauce Monocle`);
+  buffMaintain$2($effect`Disco Fever`);
+  buffMaintain$2($effect`Ghostly Shell`);
+  buffMaintain$2($effect`Tenacity of the Snapper`);
+  buffMaintain$2($effect`Empathy`);
+  buffMaintain$2($effect`Thoughtful Empathy`);
+  buffMaintain$2($effect`Reptilian Fortitude`);
+  buffMaintain$2($effect`Astral Shell`);
+  buffMaintain$2($effect`Jingle Jangle Jingle`);
+  buffMaintain$2($effect`Curiosity of Br'er Tarrypin`);
+  buffMaintain$2($effect`Elemental Saucesphere`);
+  buffMaintain$2($effect`Antibiotic Saucesphere`);
+  buffMaintain$2($effect`The Moxious Madrigal`);
+  buffMaintain$2($effect`The Magical Mojomuscular Melody`);
+  buffMaintain$2($effect`Cletus's Canticle of Celerity`);
+  buffMaintain$2($effect`Power Ballad of the Arrowsmith`);
+  buffMaintain$2($effect`Polka of Plenty`);
   if ((0, import_kolmafia122.haveEffect)($effect`Musk of the Moose`) === 0 && (0, import_kolmafia122.haveEffect)($effect`Hippy Stench`) === 0) {
-    buffMaintain$4($effect`Smooth Movements`);
+    buffMaintain$2($effect`Smooth Movements`);
   }
   if ((0, import_kolmafia122.haveEffect)($effect`Smooth Movements`) === 0 && (0, import_kolmafia122.haveEffect)($effect`Fresh Scent`) === 0) {
-    buffMaintain$4($effect`Musk of the Moose`);
+    buffMaintain$2($effect`Musk of the Moose`);
   }
 }
 function hasUsefulShirt() {
@@ -56593,11 +56476,11 @@ function auto_equalizeStats() {
   }
   switch (highest_basestat) {
     case $stat`Muscle`:
-      return buffMaintain$4($effect`Stabilizing Oiliness`);
+      return buffMaintain$2($effect`Stabilizing Oiliness`);
     case $stat`Mysticality`:
-      return buffMaintain$4($effect`Expert Oiliness`);
+      return buffMaintain$2($effect`Expert Oiliness`);
     case $stat`Moxie`:
-      return buffMaintain$4($effect`Slippery Oiliness`);
+      return buffMaintain$2($effect`Slippery Oiliness`);
   }
   return false;
 }
@@ -57099,7 +56982,11 @@ function buffMaintain$1(source, buff, uses, turns, speculative) {
   }
   return true;
 }
-function buffMaintain$2(buff, mp_min, casts, turns, speculative) {
+function buffMaintain$2(buff) {
+  var mp_min = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : 0;
+  var casts = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : 1;
+  var turns = arguments.length > 3 && arguments[3] !== void 0 ? arguments[3] : 1;
+  var speculative = arguments.length > 4 && arguments[4] !== void 0 ? arguments[4] : false;
   var useSkill_1 = import_kolmafia124.Skill.none;
   var useItem_1 = import_kolmafia124.Item.none;
   var mustEquip = import_kolmafia124.Item.none;
@@ -59174,12 +59061,6 @@ function buffMaintain$2(buff, mp_min, casts, turns, speculative) {
   }
   return ret;
 }
-function buffMaintain$3(buff, mp_min, casts, turns) {
-  return buffMaintain$2(buff, mp_min, casts, turns, false);
-}
-function buffMaintain$4(buff) {
-  return buffMaintain$3(buff, 0, 1, 1);
-}
 
 // src/kolmafia/autoscend/auto_consume.ts
 function spleen_left() {
@@ -59308,11 +59189,11 @@ function autoDrink(howMany, toDrink) {
       if ((0, import_kolmafia125.haveEffect)($effect`Drunk and Avuncular`) < expectedInebriety && (0, import_kolmafia125.itemAmount)($item`Drunk Uncles holo-record`) === 0) {
         auto_buyUpTo(1, $item`Drunk Uncles holo-record`);
       }
-      buffMaintain$3($effect`Drunk and Avuncular`, 0, 1, expectedInebriety);
+      buffMaintain$2($effect`Drunk and Avuncular`, 0, 1, expectedInebriety);
     }
     if (auto_have_skill($skill`The Ode to Booze`)) {
       shrugAT($effect`Ode to Booze`);
-      while (acquireMP((0, import_kolmafia125.mpCost)($skill`The Ode to Booze`), 0) && buffMaintain$3(
+      while (acquireMP((0, import_kolmafia125.mpCost)($skill`The Ode to Booze`), 0) && buffMaintain$2(
         $effect`Ode to Booze`,
         (0, import_kolmafia125.mpCost)($skill`The Ode to Booze`),
         1,
@@ -59500,13 +59381,13 @@ function autoEat(howMany, toEat) {
     if ((0, import_kolmafia125.haveEffect)($effect`Record Hunger`) < expectedFullness && (0, import_kolmafia125.itemAmount)($item`The Pigs holo-record`) === 0) {
       auto_buyUpTo(1, $item`The Pigs holo-record`);
     }
-    buffMaintain$3($effect`Record Hunger`, 0, 1, expectedFullness);
+    buffMaintain$2($effect`Record Hunger`, 0, 1, expectedFullness);
   }
   var retval = false;
   var wasReadyToEat = false;
   while (howMany > 0) {
     var _action$data5, _action$data6;
-    buffMaintain$3($effect`Song of the Glorious Lunch`, 10, 1, toEat.fullness);
+    buffMaintain$2($effect`Song of the Glorious Lunch`, 10, 1, toEat.fullness);
     if (auto_get_campground().has($item`portable Mayo Clinic`) && (0, import_kolmafia125.myMeat)() - meatReserve() > (0, import_kolmafia125.npcPrice)($item`Mayoflex`) && (0, import_kolmafia125.getProperty)("mayoInMouth") === "" && auto_is_valid($item`portable Mayo Clinic`)) {
       auto_buyUpTo(1, $item`Mayoflex`);
       (0, import_kolmafia125.use)(1, $item`Mayoflex`);
@@ -59875,7 +59756,7 @@ function autoConsume(action) {
     (0, import_kolmafia125.abort)(`ConsumeAction not prepped: ${to_debug_string(action)}`);
   }
   if (((_action$data8 = action.data) === null || _action$data8 === void 0 ? void 0 : _action$data8.castOde) ?? action.organ === AUTO_ORGAN_LIVER) {
-    buffMaintain$3($effect`Ode to Booze`, 20, 1, action.size);
+    buffMaintain$2($effect`Ode to Booze`, 20, 1, action.size);
   }
   if (action.cafeid !== 0) {
     if (action.organ === AUTO_ORGAN_LIVER) {
@@ -60193,7 +60074,7 @@ function loadConsumables(_type, actions) {
           potentialTurnGain.set(_it9, 0.75);
         }
       }
-      if (!isSpeakeasyDrink(_it9) && canPull$1(_it9)) {
+      if (!isSpeakeasyDrink(_it9) && canPull(_it9)) {
         if (!(0, import_kolmafia125.canInteract)()) {
           pullables.set(_it9, 1);
         } else {
@@ -60477,7 +60358,7 @@ function loadConsumables(_type, actions) {
     );
   }
   var apronKit = $item`Black and White Apron Meal Kit`;
-  if (type_1 === AUTO_ORGAN_STOMACH && ((0, import_kolmafia125.itemAmount)(apronKit) > 0 || canPull$1(apronKit)) && auto_is_valid(apronKit)) {
+  if (type_1 === AUTO_ORGAN_STOMACH && ((0, import_kolmafia125.itemAmount)(apronKit) > 0 || canPull(apronKit)) && auto_is_valid(apronKit)) {
     var _size = 3;
     var _adv = 12;
     var obtainMethod = (0, import_kolmafia125.itemAmount)(apronKit) > 0 ? AUTO_OBTAIN_NULL : AUTO_OBTAIN_PULL;
@@ -61260,7 +61141,7 @@ function acquireOrPull(it) {
   if ((0, import_kolmafia126.retrieveItem)(1, it)) {
     return true;
   }
-  if (canPull$1(it)) {
+  if (canPull(it)) {
     if (pullXWhenHaveY(it, 1, 0)) {
       return true;
     }
@@ -61268,7 +61149,7 @@ function acquireOrPull(it) {
   if ($items`asteroid belt, meteorb, shooting morning star, meteorite guard, meteortarboard, meteorthopedic shoes`.includes(
     it
   )) {
-    if (canPull$1($item`metal meteoroid`)) {
+    if (canPull($item`metal meteoroid`)) {
       if (pullXWhenHaveY($item`metal meteoroid`, 1, 0)) {
         if ((0, import_kolmafia126.retrieveItem)(1, it)) {
           return true;
@@ -61278,7 +61159,8 @@ function acquireOrPull(it) {
   }
   return false;
 }
-function canPull(it, historical) {
+function canPull(it) {
+  var historical = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : false;
   if ((0, import_kolmafia126.inHardcore)()) {
     return false;
   }
@@ -61324,9 +61206,6 @@ function canPull(it, historical) {
     return true;
   }
   return false;
-}
-function canPull$1(it) {
-  return canPull(it, false);
 }
 function pulledToday(it) {
   var allPulls = new Map(
@@ -61423,7 +61302,7 @@ function pullXWhenHaveY(it, howMany, whenHave) {
   if ((0, import_kolmafia126.canInteract)()) {
     return pullXWhenHaveYCasual(it, howMany, whenHave);
   }
-  if (!canPull$1(it)) {
+  if (!canPull(it)) {
     return false;
   }
   if ((0, import_kolmafia126.itemAmount)(it) + (0, import_kolmafia126.equippedAmount)(it) === whenHave) {
@@ -61927,7 +61806,7 @@ function handlePulls(day) {
     ag_pulls();
     zoo_d2Pulls();
   }
-  if (canPull$1($item`smut orc keepsake box`) && (0, import_kolmafia126.toInt)((0, import_kolmafia126.getProperty)("chasmBridgeProgress")) + (0, import_kolmafia126.min)(lumberCount(), fastenerCount()) < bridgeGoal()) {
+  if (canPull($item`smut orc keepsake box`) && (0, import_kolmafia126.toInt)((0, import_kolmafia126.getProperty)("chasmBridgeProgress")) + (0, import_kolmafia126.min)(lumberCount(), fastenerCount()) < bridgeGoal()) {
     if (pullXWhenHaveY($item`smut orc keepsake box`, 1, 0)) {
       (0, import_kolmafia126.use)(1, $item`smut orc keepsake box`);
     }
@@ -62821,20 +62700,20 @@ function doBedtime() {
       if (!(0, import_kolmafia128.inHardcore)()) {
         auto_log_info(`Pulls remaining: ${(0, import_kolmafia128.pullsRemaining)()}`, "olive");
       }
-      if (!possessOutfit$1("frat warrior fatigues") && !(0, import_kolmafia128.toBoolean)((0, import_kolmafia128.getProperty)("auto_hippyInstead"))) {
+      if (!possessOutfit("frat warrior fatigues") && !(0, import_kolmafia128.toBoolean)((0, import_kolmafia128.getProperty)("auto_hippyInstead"))) {
         auto_log_info(
           "Please consider an orcish frat boy spy (You want Frat Warrior Fatigues).",
           "blue"
         );
-        if (canYellowRay$1()) {
+        if (canYellowRay()) {
           auto_log_info("Make sure to Ball Lightning the spy!!", "red");
         }
-      } else if (!possessOutfit$1("War Hippy Fatigues") && (0, import_kolmafia128.toBoolean)((0, import_kolmafia128.getProperty)("auto_hippyInstead"))) {
+      } else if (!possessOutfit("War Hippy Fatigues") && (0, import_kolmafia128.toBoolean)((0, import_kolmafia128.getProperty)("auto_hippyInstead"))) {
         auto_log_info(
           "Please consider a Bailey's Beetle (You want War Hippy Fatigues).",
           "blue"
         );
-        if (canYellowRay$1()) {
+        if (canYellowRay()) {
           auto_log_info("Make sure to Ball Lightning the hippy!!", "red");
         }
       } else {
@@ -62868,7 +62747,7 @@ function doBedtime() {
       makeGeniePocket();
     }
   }
-  if (canGenieCombat($monster`Orcish Frat Boy Spy`) && !possessOutfit$1("frat warrior fatigues")) {
+  if (canGenieCombat($monster`Orcish Frat Boy Spy`) && !possessOutfit("frat warrior fatigues")) {
     auto_log_info(
       "Please consider genie wishing for an orcish frat boy spy (You want Frat Warrior Fatigues).",
       "blue"
@@ -62876,7 +62755,7 @@ function doBedtime() {
   }
   if ((0, import_kolmafia128.itemAmount)($item`infinite BACON machine`) > 0 && !(0, import_kolmafia128.toBoolean)((0, import_kolmafia128.getProperty)("_internetViralVideoBought")) && !(0, import_kolmafia128.canInteract)()) {
     var hasDisintegrate = auto_have_skill($skill`Disintegrate`) && (0, import_kolmafia128.myMaxmp)() >= 1.5 * (0, import_kolmafia128.mpCost)($skill`Disintegrate`);
-    var notNeeded = (0, import_kolmafia128.haveEffect)($effect`Everything Looks Yellow`) > 0 || hasDisintegrate || canYellowRay$1();
+    var notNeeded = (0, import_kolmafia128.haveEffect)($effect`Everything Looks Yellow`) > 0 || hasDisintegrate || canYellowRay();
     var baconUnused = (0, import_kolmafia128.itemAmount)($item`BACON`) >= 100 * (0, import_kolmafia128.myDaycount)() - 20 * ((0, import_kolmafia128.myDaycount)() - 1);
     if (auto_is_valid($item`viral video`) && !notNeeded && baconUnused && !in_koe() && !is_werewolf()) {
       (0, import_kolmafia128.create)(1, $item`viral video`);
@@ -63334,7 +63213,7 @@ function doBedtime() {
     );
     if ((0, import_kolmafia128.haveSkill)($skill`The Ode to Booze`)) {
       shrugAT($effect`Ode to Booze`);
-      buffMaintain$4($effect`Ode to Booze`);
+      buffMaintain$2($effect`Ode to Booze`);
     }
     return false;
   } else {
@@ -64325,7 +64204,7 @@ function makeStartingSmiths() {
   if ((0, import_kolmafia133.knollAvailable)() && !possessEquipment($item`Hairpiece On Fire`) && (0, import_kolmafia133.itemAmount)($item`lump of Brituminous coal`) > 0) {
     autoCraft("smith", 1, $item`lump of Brituminous coal`, $item`maiden wig`);
   }
-  buffMaintain$3($effect`Merry Smithsness`, 0, 1, 10);
+  buffMaintain$2($effect`Merry Smithsness`, 0, 1, 10);
 }
 function didWePlantHere(loc) {
   var places = new Map(
@@ -65073,7 +64952,7 @@ function auto_unreservedAdvRemaining() {
   return false;
 }
 function LX_burnDelay() {
-  var voteMonsterAvailable = auto_voteMonster$1(true);
+  var voteMonsterAvailable = auto_voteMonster(true);
   var digitizeMonsterNext = isOverdueDigitize();
   var sausageGoblinAvailable = auto_sausageGoblin();
   var backupTargetAvailable = auto_backupTarget();
@@ -65103,7 +64982,7 @@ function LX_burnDelay() {
         "green"
       );
       (0, import_kolmafia138.setProperty)("auto_nextEncounter", (0, import_kolmafia138.getProperty)("_voteMonster"));
-      if (auto_voteMonster$2(true, voterZone)) {
+      if (auto_voteMonster(true, voterZone)) {
         return true;
       }
       (0, import_kolmafia138.setProperty)("auto_nextEncounter", "");
@@ -65166,7 +65045,7 @@ function LX_burnDelay() {
         `Fighting a Void monster in ${voidZone.toString()} to burn delay!`,
         "green"
       );
-      if (auto_voidMonster$1(voidZone)) {
+      if (auto_voidMonster(voidZone)) {
         return true;
       }
     }
@@ -65227,7 +65106,7 @@ function LX_calculateTheUniverse(speculative) {
   if ((0, import_kolmafia138.toInt)((0, import_kolmafia138.getProperty)("_universeCalculated")) >= (0, import_kolmafia138.min)(3, (0, import_kolmafia138.toInt)((0, import_kolmafia138.getProperty)("skillLevel144")))) {
     return false;
   }
-  if (!possessOutfit$1("Frat Warrior Fatigues") && auto_warSide() === "fratboy") {
+  if (!possessOutfit("Frat Warrior Fatigues") && auto_warSide() === "fratboy") {
     if (doNumberology("battlefield", false) !== -1 && adjustForYellowRayIfPossible($monster`War Frat 151st Infantryman`)) {
       if (speculative) {
         return true;
@@ -65307,7 +65186,7 @@ function LX_doVacation() {
     return false;
   }
   if (in_plumber()) {
-    plumber_equipTool$1($stat`Moxie`);
+    plumber_equipTool($stat`Moxie`);
     equipMaximizedGear();
   }
   return autoAdv($location`The Shore, Inc. Travel Agency`);
@@ -65328,7 +65207,7 @@ function auto_doTempleSummit() {
     );
     return false;
   }
-  buffMaintain$4($effect`Stone-Faced`);
+  buffMaintain$2($effect`Stone-Faced`);
   if ((0, import_kolmafia138.haveEffect)($effect`Stone-Faced`) === 0) {
     return false;
   }
@@ -66501,7 +66380,7 @@ function doTasks() {
   ht_equip_hats();
   oldPeoplePlantStuff();
   use_barrels();
-  auto_latteRefill$6();
+  auto_latteRefill$4();
   auto_buyCrimboCommerceMallItem();
   houseUpgrade();
   if (LM_glover()) {

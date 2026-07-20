@@ -1989,7 +1989,8 @@ function dailyDungeonChoiceHandler(choice, options) {
 function in_robot() {
   return (0, import_kolmafia45.myPath)() === $path`You, Robot`;
 }
-function robot_cpu(choice, want_buy) {
+function robot_cpu(choice) {
+  var want_buy = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : true;
   var upgrade = "";
   var name = "";
   var energy_cost = 0;
@@ -3145,16 +3146,14 @@ function iluh_famAllowed(fam) {
 }
 
 // src/kolmafia/autoscend/quests/level_12.ts
-function haveWarOutfit(canWear) {
+function haveWarOutfit() {
+  var canWear = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : false;
   if (!(0, import_kolmafia94.toBoolean)((0, import_kolmafia94.getProperty)("auto_hippyInstead"))) {
     return possessOutfit("Frat Warrior Fatigues", canWear);
   } else {
     return possessOutfit("War Hippy Fatigues", canWear);
   }
   return true;
-}
-function haveWarOutfit$1() {
-  return haveWarOutfit(false);
 }
 
 // src/kolmafia/autoscend/paths/dark_gyffte.ts
@@ -3891,7 +3890,7 @@ function itznotyerzitzMineChoiceHandler(choice) {
       (0, import_kolmafia103.runChoice)(1);
     }
   } else if (choice === 556) {
-    if (!possessOutfit$1("Mining Gear")) {
+    if (!possessOutfit("Mining Gear")) {
       (0, import_kolmafia103.runChoice)(1);
     } else {
       (0, import_kolmafia103.runChoice)(2);
@@ -3938,7 +3937,7 @@ function theeXtremeSlopeChoiceHandler(choice) {
   } else if (choice === 575) {
     if ((0, import_kolmafia103.haveEquipped)($item`candy cane sword cane`)) {
       (0, import_kolmafia103.runChoice)(5);
-    } else if (!possessOutfit$1("eXtreme Cold-Weather Gear")) {
+    } else if (!possessOutfit("eXtreme Cold-Weather Gear")) {
       (0, import_kolmafia103.runChoice)(1);
     } else {
       if (isActuallyEd()) {
@@ -5157,7 +5156,8 @@ function equipmentAmount(equipment) {
 function possessEquipment(equipment) {
   return equipmentAmount(equipment) > 0;
 }
-function possessOutfit(outfitToCheck, checkCanEquip) {
+function possessOutfit(outfitToCheck) {
+  var checkCanEquip = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : false;
   if ((0, import_kolmafia136.outfitPieces)(outfitToCheck).length === 0) {
     auto_log_warning$1(`${outfitToCheck} is not a valid outfit!`);
     return false;
@@ -5181,9 +5181,6 @@ function possessOutfit(outfitToCheck, checkCanEquip) {
     _iterator22.f();
   }
   return true;
-}
-function possessOutfit$1(outfitToCheck) {
-  return possessOutfit(outfitToCheck, false);
 }
 
 // src/kolmafia/autoscend/auto_choice_adv.ts
@@ -5286,14 +5283,14 @@ function auto_run_choice(choice, page) {
         hiddenTempleChoiceHandler(choice, page);
         break;
       case 139:
-        if (options.has(4) && haveWarOutfit$1()) {
+        if (options.has(4) && haveWarOutfit()) {
           (0, import_kolmafia137.runChoice)(4);
         } else {
           (0, import_kolmafia137.runChoice)(3);
         }
         break;
       case 140:
-        if (options.has(4) && haveWarOutfit$1()) {
+        if (options.has(4) && haveWarOutfit()) {
           (0, import_kolmafia137.runChoice)(4);
         } else {
           (0, import_kolmafia137.runChoice)(3);
@@ -5306,14 +5303,14 @@ function auto_run_choice(choice, page) {
         (0, import_kolmafia137.runChoice)(3);
         break;
       case 143:
-        if (options.has(4) && haveWarOutfit$1()) {
+        if (options.has(4) && haveWarOutfit()) {
           (0, import_kolmafia137.runChoice)(4);
         } else {
           (0, import_kolmafia137.runChoice)(3);
         }
         break;
       case 144:
-        if (options.has(4) && haveWarOutfit$1()) {
+        if (options.has(4) && haveWarOutfit()) {
           (0, import_kolmafia137.runChoice)(4);
         } else {
           (0, import_kolmafia137.runChoice)(3);
