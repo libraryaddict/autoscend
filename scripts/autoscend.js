@@ -25108,7 +25108,15 @@ function auto_meggFight(mon, speculative) {
     auto_log_error(`${mon} not found to fight`);
     return false;
   }
-  if (autoAdvBypass$1(`choice.php?pwd&whichchoice=1516&option=1&mid=${monstring}`)) {
+  if (autoAdvBypass(
+    0,
+    /* @__PURE__ */ new Map(
+      [
+        [0, `inv_use.php?pwd=${(0, import_kolmafia66.myHash)()}&which=3&whichitem=${egg.id}`],
+        [1, `choice.php?pwd&whichchoice=1516&option=1&mid=${monstring}`]
+      ]
+    )
+  )) {
     handleTracker$1(
       mon.toString(),
       $familiar`Chest Mimic`.toString(),
@@ -57256,7 +57264,9 @@ function autoLuckyAdv(loc, override) {
 function autoLuckyAdv$1(loc) {
   return autoLuckyAdv(loc, false);
 }
-function autoAdvBypass(urlGetFlags, url, loc, option) {
+function autoAdvBypass(urlGetFlags, url) {
+  var loc = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : $location`Noob Cave`;
+  var option = arguments.length > 3 ? arguments[3] : void 0;
   if (!zone_isAvailable(loc, true)) {
     auto_log_warning(`Can't get to ${loc} right now.`, "red");
     return false;
