@@ -574,12 +574,12 @@ var PropertiesManager = /* @__PURE__ */ (function() {
      */
   }, {
     key: "clamp",
-    value: function clamp2(property, min37, max25) {
-      if (max25 < min37)
+    value: function clamp2(property, min38, max26) {
+      if (max26 < min38)
         return false;
       var start = get(property);
-      this.setMinimumValue(property, min37);
-      this.setMaximumValue(property, max25);
+      this.setMinimumValue(property, min38);
+      this.setMaximumValue(property, max26);
       return start !== get(property);
     }
     /**
@@ -1707,6 +1707,12 @@ function in_hattrick() {
   return (0, import_kolmafia19.myPath)() === $path`Hat Trick`;
 }
 
+// src/kolmafia/autoscend/paths/small.ts
+var import_kolmafia20 = require("kolmafia");
+function in_small() {
+  return (0, import_kolmafia20.myPath)() === $path`A Shrunken Adventurer am I`;
+}
+
 // src/kolmafia/autoscend/paths/zootomist.ts
 var import_kolmafia61 = require("kolmafia");
 
@@ -1714,18 +1720,18 @@ var import_kolmafia61 = require("kolmafia");
 var import_kolmafia60 = require("kolmafia");
 
 // src/kolmafia/autoscend/paths/path_of_the_plumber.ts
-var import_kolmafia20 = require("kolmafia");
+var import_kolmafia21 = require("kolmafia");
 function in_plumber() {
-  return (0, import_kolmafia20.myPath)() === $path`Path of the Plumber`;
+  return (0, import_kolmafia21.myPath)() === $path`Path of the Plumber`;
 }
 function plumber_equippedHammer() {
-  return (0, import_kolmafia20.equippedItem)($slot`weapon`) === $item`hammer` || (0, import_kolmafia20.equippedItem)($slot`weapon`) === $item`heavy hammer`;
+  return (0, import_kolmafia21.equippedItem)($slot`weapon`) === $item`hammer` || (0, import_kolmafia21.equippedItem)($slot`weapon`) === $item`heavy hammer`;
 }
 function plumber_equippedFlower() {
-  return (0, import_kolmafia20.equippedItem)($slot`weapon`) === $item`[10462]fire flower` || (0, import_kolmafia20.equippedItem)($slot`weapon`) === $item`bonfire flower`;
+  return (0, import_kolmafia21.equippedItem)($slot`weapon`) === $item`[10462]fire flower` || (0, import_kolmafia21.equippedItem)($slot`weapon`) === $item`bonfire flower`;
 }
 function plumber_equippedBoots() {
-  return (0, import_kolmafia20.haveEquipped)($item`work boots`) || (0, import_kolmafia20.haveEquipped)($item`fancy boots`);
+  return (0, import_kolmafia21.haveEquipped)($item`work boots`) || (0, import_kolmafia21.haveEquipped)($item`fancy boots`);
 }
 function plumber_ppCost(sk) {
   switch (sk) {
@@ -1745,7 +1751,7 @@ function plumber_skillValid(sk) {
   if (!in_plumber()) {
     return true;
   }
-  if (import_kolmafia20.Skill.get(
+  if (import_kolmafia21.Skill.get(
     [
       "Jump Attack",
       "[25005]Spin Jump",
@@ -1753,7 +1759,7 @@ function plumber_skillValid(sk) {
     ]
   ).includes(sk)) {
     return plumber_equippedBoots();
-  } else if (import_kolmafia20.Skill.get(
+  } else if (import_kolmafia21.Skill.get(
     [
       "Fireball Toss",
       "[25003]Juggle Fireballs",
@@ -1761,7 +1767,7 @@ function plumber_skillValid(sk) {
     ]
   ).includes(sk)) {
     return plumber_equippedFlower();
-  } else if (import_kolmafia20.Skill.get(
+  } else if (import_kolmafia21.Skill.get(
     [
       "Hammer Smash",
       "[25001]Hammer Throw",
@@ -1774,15 +1780,9 @@ function plumber_skillValid(sk) {
 }
 
 // src/kolmafia/autoscend/paths/pocket_familiars.ts
-var import_kolmafia21 = require("kolmafia");
-function in_pokefam() {
-  return (0, import_kolmafia21.myPath)() === $path`Pocket Familiars`;
-}
-
-// src/kolmafia/autoscend/paths/small.ts
 var import_kolmafia22 = require("kolmafia");
-function in_small() {
-  return (0, import_kolmafia22.myPath)() === $path`A Shrunken Adventurer am I`;
+function in_pokefam() {
+  return (0, import_kolmafia22.myPath)() === $path`Pocket Familiars`;
 }
 
 // src/kolmafia/autoscend/paths/two_crazy_random_summer.ts
@@ -4408,6 +4408,69 @@ function auto_haveCupidBow() {
   var bow = $item`toy Cupid bow`;
   return auto_is_valid(bow) && possessEquipment(bow);
 }
+var LEPRECONDO_RESULTS_SCORE = /* @__PURE__ */ new Map([
+  [
+    $effect`Your Days Are Numbed`,
+    !pathHasFamiliar() || in_avantGuard() ? 0 : 100
+  ],
+  // +5 fam weight & exp effect
+  [$effect`Vicarious Sweat`, 90],
+  // +30hp, 15% item drop effect
+  [$effect`Counter Intelligence`, 80],
+  // +30% meat effect
+  [$item`crafting plans`, 70],
+  // crafting plans
+  [$effect`Spacious Night's Sleep`, 50],
+  // 100% init, all stats +10% effect
+  [$effect`Sur La Table`, 50],
+  // mp/hp regen effect
+  [$effect`Wasting Time`, 40],
+  // Moxie effect
+  [
+    $effect`Alone with Your Thoughts`,
+    (0, import_kolmafia62.myPrimestat)() === $stat`Mysticality` ? 40 : 11
+  ],
+  // 20 myst & spell dmg, 50% max mp effect
+  [$effect`Work Out Smarter, Not Harder`, 40],
+  // 20 mus & weapon dmg, 50% max hp effect
+  [$effect`Well Stimulated`, 40],
+  // Myst effect
+  [$effect`Gym Bros`, 40],
+  // Muscles effect
+  [
+    $effect`You Might Have Gotten Wet`,
+    (0, import_kolmafia62.myPrimestat)() === $stat`Moxie` ? 40 : 10
+  ],
+  // 20 mox & ranged dmg, 10 dr effect
+  [$item`phosphor traces`, 10],
+  // phosphor traces
+  [$effect`Moist Night's Sleep`, 10],
+  // 50% init, 2 hot res, 10 cold dmg effect
+  [$effect`Quiet Night's Sleep`, 10],
+  // 50% init, mp regen effect
+  [$effect`Good Night's Sleep`, 10],
+  // +25 init
+  [$item`table tennis ball`, 10],
+  // table tennis ball
+  [$item`bar dart`, 0],
+  // bar dart
+  [$item`scoop of pre-workout powder`, 0],
+  // scoop of pre-workout powder
+  [$item`leprechaun antidepressant pill`, 0],
+  // leprechaun antidepressant pill
+  [$effect`Tired Muscles`, -10]
+  // -combat effect
+]);
+function auto_canTracesBandit() {
+  return !acquiredFantasyRealmToken() && towerKeyCount(false) < 3 && ((0, import_kolmafia62.lastMonster)() === $monster`fantasy bandit` || internalQuestStatus("questL13Final") === 5);
+}
+function auto_tracesUsesLeft() {
+  return get("phosphorTracesUses");
+}
+function auto_tracesTarget(target) {
+  return auto_canTracesBandit() && target === $monster`fantasy bandit` && auto_tracesUsesLeft() > 0 && // Fought count only ticks up after each kill, so this is still 4 during the 5th (final) fight - don't chain a 6th.
+  fantasyBanditsFought() < 4;
+}
 function auto_haveAprilShowerShield() {
   var shield = $item`April Shower Thoughts shield`;
   return auto_is_valid(shield) && possessEquipment(shield);
@@ -4447,20 +4510,20 @@ function haveUsedPeridot(loc) {
   var perilLocs = new Map(
     (0, import_kolmafia62.splitString)((0, import_kolmafia62.getProperty)("_perilLocations"), ",").map((_v, _i) => [_i, _v])
   );
-  var _iterator4 = _createForOfIteratorHelper(
+  var _iterator6 = _createForOfIteratorHelper(
     perilLocs
-  ), _step4;
+  ), _step6;
   try {
-    for (_iterator4.s(); !(_step4 = _iterator4.n()).done; ) {
-      var _step4$value = _slicedToArray(_step4.value, 2), str = _step4$value[1];
+    for (_iterator6.s(); !(_step6 = _iterator6.n()).done; ) {
+      var _step6$value = _slicedToArray(_step6.value, 2), str = _step6$value[1];
       if ((0, import_kolmafia62.toInt)(loc) === (0, import_kolmafia62.toInt)(str)) {
         return true;
       }
     }
   } catch (err) {
-    _iterator4.e(err);
+    _iterator6.e(err);
   } finally {
-    _iterator4.f();
+    _iterator6.f();
   }
   return false;
 }
@@ -4666,12 +4729,12 @@ function auto_wantToShrunkenHead(enemy) {
     return false;
   }
   var hasItem = false;
-  var _iterator20 = _createForOfIteratorHelper(
+  var _iterator22 = _createForOfIteratorHelper(
     (0, import_kolmafia62.shrunkenHeadZombie)(enemy).entries()
-  ), _step20;
+  ), _step22;
   try {
-    for (_iterator20.s(); !(_step20 = _iterator20.n()).done; ) {
-      var _step20$value = _slicedToArray(_step20.value, 2), bonus = _step20$value[1];
+    for (_iterator22.s(); !(_step22 = _iterator22.n()).done; ) {
+      var _step22$value = _slicedToArray(_step22.value, 2), bonus = _step22$value[1];
       if ((0, import_kolmafia62.containsText)(bonus, "Attack")) {
         return false;
       }
@@ -4680,9 +4743,9 @@ function auto_wantToShrunkenHead(enemy) {
       }
     }
   } catch (err) {
-    _iterator20.e(err);
+    _iterator22.e(err);
   } finally {
-    _iterator20.f();
+    _iterator22.f();
   }
   return hasItem;
 }
@@ -5839,6 +5902,15 @@ function auto_combatDefaultStage1(round_1, enemy, text) {
     );
     return auto_useSkill($skill`Recall Facts: Monster Habitats`);
   }
+  if (auto_tracesTarget(enemy) && canUse($skill`Create an Afterimage`) && !ag_is_bodyguard()) {
+    handleTracker$1(
+      $skill`Create an Afterimage`.toString(),
+      enemy.toString(),
+      "auto_copies"
+    );
+    combat_status_add("copied");
+    return auto_useSkill($skill`Create an Afterimage`);
+  }
   if (auto_canRWBBlast() && auto_RWBBlastTarget(enemy) && canUse($skill`%fn, fire a Red, White and Blue Blast`)) {
     handleTracker$1(
       $skill`%fn, fire a Red, White and Blue Blast`.toString(),
@@ -6027,8 +6099,8 @@ function auto_combatDefaultStage2(round_1, enemy, text) {
   }
   if (auto_wantToShrunkenHead(enemy)) {
     handleTracker$1(
-      enemy.toString(),
       $skill`Prepare to reanimate your Foe`.toString(),
+      enemy.toString(),
       "auto_otherstuff"
     );
     return auto_useSkill($skill`Prepare to reanimate your Foe`);
@@ -16892,7 +16964,10 @@ function finalizeMaximize(speculative) {
       addBonusToMaximize($item`cursed magnifying glass`, 200);
     }
   }
-  if (have($item`Cup of 13s`) && (0, import_kolmafia116.inebrietyLimit)() > 6 && !in_small() && !in_plumber()) {
+  if (
+    // eslint-disable-next-line libram/verify-constants
+    have($item`Cup of 13s`) && (0, import_kolmafia116.inebrietyLimit)() > 6 && !in_small() && !in_plumber()
+  ) {
     addBonusToMaximize($item`Cup of 13s`, (0, import_kolmafia116.inebrietyLimit)() * 7);
   }
   var _iterator16 = _createForOfIteratorHelper(

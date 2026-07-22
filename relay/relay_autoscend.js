@@ -777,6 +777,42 @@ var import_kolmafia60 = require("kolmafia");
 // src/kolmafia/autoscend/paths/hattrick.ts
 var import_kolmafia17 = require("kolmafia");
 
+// src/kolmafia/autoscend/paths/small.ts
+var import_kolmafia18 = require("kolmafia");
+function in_small() {
+  return (0, import_kolmafia18.myPath)() === $path`A Shrunken Adventurer am I`;
+}
+function small_initializeSettings() {
+  if (!in_small()) {
+    return;
+  }
+  (0, import_kolmafia18.setProperty)("auto_wandOfNagamar", true.toString());
+  (0, import_kolmafia18.setProperty)("auto_getBeehive", true.toString());
+  (0, import_kolmafia18.setProperty)("auto_getBoningKnife", true.toString());
+  (0, import_kolmafia18.setProperty)("auto_getSteelOrgan", false.toString());
+  if ((0, import_kolmafia18.inHardcore)()) {
+    var MLCap = 50;
+    var MLSafetyLimit = (0, import_kolmafia18.getProperty)("auto_MLSafetyLimit");
+    if (MLSafetyLimit === "") {
+      (0, import_kolmafia18.setProperty)("auto_MLSafetyLimitBackup", "empty");
+      (0, import_kolmafia18.setProperty)("auto_MLSafetyLimit", MLCap.toString());
+    }
+    if ((0, import_kolmafia18.toInt)(MLSafetyLimit) > MLCap) {
+      (0, import_kolmafia18.setProperty)("auto_MLSafetyLimitBackup", MLSafetyLimit);
+      (0, import_kolmafia18.setProperty)("auto_MLSafetyLimit", MLCap.toString());
+    }
+    var disregardKarma = (0, import_kolmafia18.getProperty)("auto_disregardInstantKarma");
+    if (disregardKarma === "true") {
+      (0, import_kolmafia18.setProperty)("auto_disregardInstantKarmaBackup", "true");
+      (0, import_kolmafia18.setProperty)("auto_disregardInstantKarma", "false");
+    }
+  } else {
+    if (auto_have_familiar($familiar`Cookbookbat`) && (canPull($item`Calzone of Legend`) || canPull($item`Deep Dish of Legend`) || canPull($item`Pizza of Legend`))) {
+      (0, import_kolmafia18.setProperty)("auto_dontUseCookBookBat", true.toString());
+    }
+  }
+}
+
 // src/kolmafia/autoscend/paths/zootomist.ts
 var import_kolmafia59 = require("kolmafia");
 
@@ -784,67 +820,31 @@ var import_kolmafia59 = require("kolmafia");
 var import_kolmafia58 = require("kolmafia");
 
 // src/kolmafia/autoscend/paths/path_of_the_plumber.ts
-var import_kolmafia18 = require("kolmafia");
+var import_kolmafia19 = require("kolmafia");
 function in_plumber() {
-  return (0, import_kolmafia18.myPath)() === $path`Path of the Plumber`;
+  return (0, import_kolmafia19.myPath)() === $path`Path of the Plumber`;
 }
 function plumber_initializeSettings() {
   if (in_plumber()) {
-    (0, import_kolmafia18.setProperty)("auto_getBeehive", true.toString());
-    (0, import_kolmafia18.setProperty)("auto_wandOfNagamar", false.toString());
-    (0, import_kolmafia18.setProperty)("auto_paranoia", 1 .toString());
+    (0, import_kolmafia19.setProperty)("auto_getBeehive", true.toString());
+    (0, import_kolmafia19.setProperty)("auto_wandOfNagamar", false.toString());
+    (0, import_kolmafia19.setProperty)("auto_paranoia", 1 .toString());
   }
   return false;
 }
 
 // src/kolmafia/autoscend/paths/pocket_familiars.ts
-var import_kolmafia19 = require("kolmafia");
+var import_kolmafia20 = require("kolmafia");
 function in_pokefam() {
-  return (0, import_kolmafia19.myPath)() === $path`Pocket Familiars`;
+  return (0, import_kolmafia20.myPath)() === $path`Pocket Familiars`;
 }
 function pokefam_initializeSettings() {
   if (in_pokefam()) {
-    (0, import_kolmafia19.setProperty)("auto_ignoreRestoreFailure", true.toString());
-    (0, import_kolmafia19.setProperty)("auto_getBeehive", false.toString());
-    (0, import_kolmafia19.setProperty)("auto_ignoreFlyer", true.toString());
-    (0, import_kolmafia19.setProperty)("auto_wandOfNagamar", false.toString());
-    (0, import_kolmafia19.setProperty)("auto_runDayCount", 3 .toString());
-  }
-}
-
-// src/kolmafia/autoscend/paths/small.ts
-var import_kolmafia20 = require("kolmafia");
-function in_small() {
-  return (0, import_kolmafia20.myPath)() === $path`A Shrunken Adventurer am I`;
-}
-function small_initializeSettings() {
-  if (!in_small()) {
-    return;
-  }
-  (0, import_kolmafia20.setProperty)("auto_wandOfNagamar", true.toString());
-  (0, import_kolmafia20.setProperty)("auto_getBeehive", true.toString());
-  (0, import_kolmafia20.setProperty)("auto_getBoningKnife", true.toString());
-  (0, import_kolmafia20.setProperty)("auto_getSteelOrgan", false.toString());
-  if ((0, import_kolmafia20.inHardcore)()) {
-    var MLCap = 50;
-    var MLSafetyLimit = (0, import_kolmafia20.getProperty)("auto_MLSafetyLimit");
-    if (MLSafetyLimit === "") {
-      (0, import_kolmafia20.setProperty)("auto_MLSafetyLimitBackup", "empty");
-      (0, import_kolmafia20.setProperty)("auto_MLSafetyLimit", MLCap.toString());
-    }
-    if ((0, import_kolmafia20.toInt)(MLSafetyLimit) > MLCap) {
-      (0, import_kolmafia20.setProperty)("auto_MLSafetyLimitBackup", MLSafetyLimit);
-      (0, import_kolmafia20.setProperty)("auto_MLSafetyLimit", MLCap.toString());
-    }
-    var disregardKarma = (0, import_kolmafia20.getProperty)("auto_disregardInstantKarma");
-    if (disregardKarma === "true") {
-      (0, import_kolmafia20.setProperty)("auto_disregardInstantKarmaBackup", "true");
-      (0, import_kolmafia20.setProperty)("auto_disregardInstantKarma", "false");
-    }
-  } else {
-    if (auto_have_familiar($familiar`Cookbookbat`) && (canPull($item`Calzone of Legend`) || canPull($item`Deep Dish of Legend`) || canPull($item`Pizza of Legend`))) {
-      (0, import_kolmafia20.setProperty)("auto_dontUseCookBookBat", true.toString());
-    }
+    (0, import_kolmafia20.setProperty)("auto_ignoreRestoreFailure", true.toString());
+    (0, import_kolmafia20.setProperty)("auto_getBeehive", false.toString());
+    (0, import_kolmafia20.setProperty)("auto_ignoreFlyer", true.toString());
+    (0, import_kolmafia20.setProperty)("auto_wandOfNagamar", false.toString());
+    (0, import_kolmafia20.setProperty)("auto_runDayCount", 3 .toString());
   }
 }
 
@@ -1286,6 +1286,61 @@ function qt_initializeSettings() {
     (0, import_kolmafia55.setProperty)("auto_skipNuns", true.toString());
   }
 }
+
+// src/kolmafia/autoscend/iotms/mr2025.ts
+var LEPRECONDO_RESULTS_SCORE = /* @__PURE__ */ new Map([
+  [
+    $effect`Your Days Are Numbed`,
+    !pathHasFamiliar() || in_avantGuard() ? 0 : 100
+  ],
+  // +5 fam weight & exp effect
+  [$effect`Vicarious Sweat`, 90],
+  // +30hp, 15% item drop effect
+  [$effect`Counter Intelligence`, 80],
+  // +30% meat effect
+  [$item`crafting plans`, 70],
+  // crafting plans
+  [$effect`Spacious Night's Sleep`, 50],
+  // 100% init, all stats +10% effect
+  [$effect`Sur La Table`, 50],
+  // mp/hp regen effect
+  [$effect`Wasting Time`, 40],
+  // Moxie effect
+  [
+    $effect`Alone with Your Thoughts`,
+    (0, import_kolmafia60.myPrimestat)() === $stat`Mysticality` ? 40 : 11
+  ],
+  // 20 myst & spell dmg, 50% max mp effect
+  [$effect`Work Out Smarter, Not Harder`, 40],
+  // 20 mus & weapon dmg, 50% max hp effect
+  [$effect`Well Stimulated`, 40],
+  // Myst effect
+  [$effect`Gym Bros`, 40],
+  // Muscles effect
+  [
+    $effect`You Might Have Gotten Wet`,
+    (0, import_kolmafia60.myPrimestat)() === $stat`Moxie` ? 40 : 10
+  ],
+  // 20 mox & ranged dmg, 10 dr effect
+  [$item`phosphor traces`, 10],
+  // phosphor traces
+  [$effect`Moist Night's Sleep`, 10],
+  // 50% init, 2 hot res, 10 cold dmg effect
+  [$effect`Quiet Night's Sleep`, 10],
+  // 50% init, mp regen effect
+  [$effect`Good Night's Sleep`, 10],
+  // +25 init
+  [$item`table tennis ball`, 10],
+  // table tennis ball
+  [$item`bar dart`, 0],
+  // bar dart
+  [$item`scoop of pre-workout powder`, 0],
+  // scoop of pre-workout powder
+  [$item`leprechaun antidepressant pill`, 0],
+  // leprechaun antidepressant pill
+  [$effect`Tired Muscles`, -10]
+  // -combat effect
+]);
 
 // src/kolmafia/autoscend/paths/adventurer_meats_world.ts
 function in_amw() {

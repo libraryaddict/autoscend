@@ -571,12 +571,12 @@ var PropertiesManager = /* @__PURE__ */ (function() {
      */
   }, {
     key: "clamp",
-    value: function clamp(property, min36, max25) {
-      if (max25 < min36)
+    value: function clamp(property, min37, max26) {
+      if (max26 < min37)
         return false;
       var start = get(property);
-      this.setMinimumValue(property, min36);
-      this.setMaximumValue(property, max25);
+      this.setMinimumValue(property, min37);
+      this.setMaximumValue(property, max26);
       return start !== get(property);
     }
     /**
@@ -2383,6 +2383,59 @@ function legendaryNoodlesChoiceHandler() {
 }
 
 // src/kolmafia/autoscend/iotms/mr2025.ts
+var LEPRECONDO_RESULTS_SCORE = /* @__PURE__ */ new Map([
+  [
+    $effect`Your Days Are Numbed`,
+    !pathHasFamiliar() || in_avantGuard() ? 0 : 100
+  ],
+  // +5 fam weight & exp effect
+  [$effect`Vicarious Sweat`, 90],
+  // +30hp, 15% item drop effect
+  [$effect`Counter Intelligence`, 80],
+  // +30% meat effect
+  [$item`crafting plans`, 70],
+  // crafting plans
+  [$effect`Spacious Night's Sleep`, 50],
+  // 100% init, all stats +10% effect
+  [$effect`Sur La Table`, 50],
+  // mp/hp regen effect
+  [$effect`Wasting Time`, 40],
+  // Moxie effect
+  [
+    $effect`Alone with Your Thoughts`,
+    (0, import_kolmafia54.myPrimestat)() === $stat`Mysticality` ? 40 : 11
+  ],
+  // 20 myst & spell dmg, 50% max mp effect
+  [$effect`Work Out Smarter, Not Harder`, 40],
+  // 20 mus & weapon dmg, 50% max hp effect
+  [$effect`Well Stimulated`, 40],
+  // Myst effect
+  [$effect`Gym Bros`, 40],
+  // Muscles effect
+  [
+    $effect`You Might Have Gotten Wet`,
+    (0, import_kolmafia54.myPrimestat)() === $stat`Moxie` ? 40 : 10
+  ],
+  // 20 mox & ranged dmg, 10 dr effect
+  [$item`phosphor traces`, 10],
+  // phosphor traces
+  [$effect`Moist Night's Sleep`, 10],
+  // 50% init, 2 hot res, 10 cold dmg effect
+  [$effect`Quiet Night's Sleep`, 10],
+  // 50% init, mp regen effect
+  [$effect`Good Night's Sleep`, 10],
+  // +25 init
+  [$item`table tennis ball`, 10],
+  // table tennis ball
+  [$item`bar dart`, 0],
+  // bar dart
+  [$item`scoop of pre-workout powder`, 0],
+  // scoop of pre-workout powder
+  [$item`leprechaun antidepressant pill`, 0],
+  // leprechaun antidepressant pill
+  [$effect`Tired Muscles`, -10]
+  // -combat effect
+]);
 function auto_havePeridot() {
   var pop = $item`Peridot of Peril`;
   return auto_is_valid(pop) && possessEquipment(pop);
@@ -2483,24 +2536,24 @@ function mobiusChoiceHandler(choice, page) {
     (0, import_kolmafia54.runChoice)(1);
   }
   var choices = new Map(
-    Object.entries((0, import_kolmafia54.availableChoiceOptions)()).map((_ref3) => {
-      var _ref4 = _slicedToArray(_ref3, 2), _k = _ref4[0], _v = _ref4[1];
+    Object.entries((0, import_kolmafia54.availableChoiceOptions)()).map((_ref4) => {
+      var _ref5 = _slicedToArray(_ref4, 2), _k = _ref5[0], _v = _ref5[1];
       return [(0, import_kolmafia54.toInt)(_k), _v];
     })
   );
   var choiceMap = /* @__PURE__ */ new Map();
-  var _iterator19 = _createForOfIteratorHelper(
+  var _iterator21 = _createForOfIteratorHelper(
     choices
-  ), _step19;
+  ), _step21;
   try {
-    for (_iterator19.s(); !(_step19 = _iterator19.n()).done; ) {
-      var _step19$value = _slicedToArray(_step19.value, 2), idx = _step19$value[0], text = _step19$value[1];
+    for (_iterator21.s(); !(_step21 = _iterator21.n()).done; ) {
+      var _step21$value = _slicedToArray(_step21.value, 2), idx = _step21$value[0], text = _step21$value[1];
       choiceMap.set(text, idx);
     }
   } catch (err) {
-    _iterator19.e(err);
+    _iterator21.e(err);
   } finally {
-    _iterator19.f();
+    _iterator21.f();
   }
   function mobiusChoice(opt) {
     var num = choiceMap.get(opt) ?? choiceMap.set(opt, 0).get(opt);
@@ -2596,7 +2649,7 @@ function mobiusChoiceHandler(choice, page) {
     }
   }
   if (auto_paradoxicity() < 15) {
-    for (var _i2 = 0, _arr = [
+    for (var _i9 = 0, _arr3 = [
       "Stop your arch-nemesis as a baby",
       "Borrow meat from your future",
       "Hey, free gun!",
@@ -2616,8 +2669,8 @@ function mobiusChoiceHandler(choice, page) {
       "Play Schroedinger's Prank on yourself",
       "Peek in on your future",
       "Give your past self investment tips"
-    ]; _i2 < _arr.length; _i2++) {
-      var str = _arr[_i2];
+    ]; _i9 < _arr3.length; _i9++) {
+      var str = _arr3[_i9];
       if (choiceMap.has(str)) {
         mobiusChoice(str);
         return;
@@ -3040,6 +3093,11 @@ function have_fireworks_shop() {
     return false;
   }
   return (0, import_kolmafia63.toBoolean)((0, import_kolmafia63.getProperty)("_fireworksShop"));
+}
+
+// src/kolmafia/autoscend/paths/avant_guard.ts
+function in_avantGuard() {
+  return (0, import_kolmafia66.myPath)() === $path`Avant Guard`;
 }
 
 // src/kolmafia/autoscend/combat/auto_combat_awol.ts
