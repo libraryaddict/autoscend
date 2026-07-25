@@ -58,41 +58,13 @@ var require_tracking = __commonJS({
   }
 });
 
-// src/relay/relay_autoscend.ts
+// packages/relay/src/relay_autoscend.ts
 var relay_autoscend_exports = {};
 __export(relay_autoscend_exports, {
   main: () => main
 });
 module.exports = __toCommonJS(relay_autoscend_exports);
 var import_kolmafia140 = require("kolmafia");
-
-// node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js
-function _arrayWithHoles(r) {
-  if (Array.isArray(r)) return r;
-}
-
-// node_modules/@babel/runtime/helpers/esm/iterableToArrayLimit.js
-function _iterableToArrayLimit(r, l) {
-  var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
-  if (null != t) {
-    var e, n, i, u, a = [], f = true, o = false;
-    try {
-      if (i = (t = t.call(r)).next, 0 === l) {
-        if (Object(t) !== t) return;
-        f = false;
-      } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = true) ;
-    } catch (r2) {
-      o = true, n = r2;
-    } finally {
-      try {
-        if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return;
-      } finally {
-        if (o) throw n;
-      }
-    }
-    return a;
-  }
-}
 
 // node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js
 function _arrayLikeToArray(r, a) {
@@ -108,16 +80,6 @@ function _unsupportedIterableToArray(r, a) {
     var t = {}.toString.call(r).slice(8, -1);
     return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0;
   }
-}
-
-// node_modules/@babel/runtime/helpers/esm/nonIterableRest.js
-function _nonIterableRest() {
-  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-
-// node_modules/@babel/runtime/helpers/esm/slicedToArray.js
-function _slicedToArray(r, e) {
-  return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest();
 }
 
 // node_modules/@babel/runtime/helpers/esm/createForOfIteratorHelper.js
@@ -168,7 +130,45 @@ function _createForOfIteratorHelper(r, e) {
   };
 }
 
-// src/kolmafia/autoscend.ts
+// node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js
+function _arrayWithHoles(r) {
+  if (Array.isArray(r)) return r;
+}
+
+// node_modules/@babel/runtime/helpers/esm/iterableToArrayLimit.js
+function _iterableToArrayLimit(r, l) {
+  var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
+  if (null != t) {
+    var e, n, i, u, a = [], f = true, o = false;
+    try {
+      if (i = (t = t.call(r)).next, 0 === l) {
+        if (Object(t) !== t) return;
+        f = false;
+      } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = true) ;
+    } catch (r2) {
+      o = true, n = r2;
+    } finally {
+      try {
+        if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return;
+      } finally {
+        if (o) throw n;
+      }
+    }
+    return a;
+  }
+}
+
+// node_modules/@babel/runtime/helpers/esm/nonIterableRest.js
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+// node_modules/@babel/runtime/helpers/esm/slicedToArray.js
+function _slicedToArray(r, e) {
+  return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest();
+}
+
+// packages/kolmafia/src/autoscend.ts
 var import_kolmafia135 = require("kolmafia");
 
 // node_modules/@babel/runtime/helpers/esm/classCallCheck.js
@@ -373,46 +373,46 @@ var $stats = createPluralConstant(import_kolmafia.Stat);
 var $thrall = createSingleConstant(import_kolmafia.Thrall, import_kolmafia.toThrall);
 var $thralls = createPluralConstant(import_kolmafia.Thrall);
 
-// src/kolmafia/autoscend/auto_acquire.ts
+// packages/kolmafia/src/autoscend/auto_acquire.ts
 var import_kolmafia123 = require("kolmafia");
 
-// src/kolmafia/autoscend/auto_consume.ts
+// packages/kolmafia/src/autoscend/auto_consume.ts
 var import_kolmafia122 = require("kolmafia");
 
-// src/kolmafia/autoscend/auto_buff.ts
+// packages/kolmafia/src/autoscend/auto_buff.ts
 var import_kolmafia121 = require("kolmafia");
 
-// src/kolmafia/autoscend/auto_adventure.ts
+// packages/kolmafia/src/autoscend/auto_adventure.ts
 var import_kolmafia120 = require("kolmafia");
 
-// src/kolmafia/autoscend/auto_util.ts
+// packages/kolmafia/src/autoscend/auto_util.ts
 var import_kolmafia119 = require("kolmafia");
 
-// src/kolmafia/autoscend/auto_equipment.ts
+// packages/kolmafia/src/autoscend/auto_equipment.ts
 var import_kolmafia114 = require("kolmafia");
 
-// src/kolmafia/autoscend/auto_familiar.ts
+// packages/kolmafia/src/autoscend/auto_familiar.ts
 var import_kolmafia113 = require("kolmafia");
 
-// src/kolmafia/autoscend/iotms/mr2014.ts
+// packages/kolmafia/src/autoscend/iotms/mr2014.ts
 var import_kolmafia112 = require("kolmafia");
 
-// src/kolmafia/autoscend/auto_powerlevel.ts
+// packages/kolmafia/src/autoscend/auto_powerlevel.ts
 var import_kolmafia111 = require("kolmafia");
 
-// src/kolmafia/autoscend/auto_providers.ts
+// packages/kolmafia/src/autoscend/auto_providers.ts
 var import_kolmafia110 = require("kolmafia");
 
-// src/kolmafia/autoscend/auto_restore.ts
+// packages/kolmafia/src/autoscend/auto_restore.ts
 var import_kolmafia108 = require("kolmafia");
 
-// src/kolmafia/autoscend/iotms/clan.ts
+// packages/kolmafia/src/autoscend/iotms/clan.ts
 var import_kolmafia107 = require("kolmafia");
 
-// src/kolmafia/autoscend/paths/avatar_of_boris.ts
+// packages/kolmafia/src/autoscend/paths/avatar_of_boris.ts
 var import_kolmafia3 = require("kolmafia");
 
-// src/kolmafia/autoscend/utils/kolmafiaUtils.ts
+// packages/kolmafia/src/autoscend/utils/kolmafiaUtils.ts
 var import_kolmafia2 = require("kolmafia");
 var AshMatcher = /* @__PURE__ */ (function() {
   function AshMatcher2(pattern, string) {
@@ -528,7 +528,7 @@ var AshMatcher = /* @__PURE__ */ (function() {
   } }]);
 })();
 
-// src/kolmafia/autoscend/paths/avatar_of_boris.ts
+// packages/kolmafia/src/autoscend/paths/avatar_of_boris.ts
 function is_boris() {
   return (0, import_kolmafia3.myPath)() === $path`Avatar of Boris`;
 }
@@ -542,7 +542,7 @@ function boris_initializeSettings() {
   }
 }
 
-// src/kolmafia/autoscend/paths/avatar_of_jarlsberg.ts
+// packages/kolmafia/src/autoscend/paths/avatar_of_jarlsberg.ts
 var import_kolmafia4 = require("kolmafia");
 function is_jarlsberg() {
   return (0, import_kolmafia4.myPath)() === $path`Avatar of Jarlsberg`;
@@ -554,7 +554,7 @@ function jarlsberg_initializeSettings() {
   }
 }
 
-// src/kolmafia/autoscend/paths/avatar_of_sneaky_pete.ts
+// packages/kolmafia/src/autoscend/paths/avatar_of_sneaky_pete.ts
 var import_kolmafia5 = require("kolmafia");
 function is_pete() {
   return (0, import_kolmafia5.myPath)() === $path`Avatar of Sneaky Pete`;
@@ -566,49 +566,49 @@ function pete_initializeSettings() {
   }
 }
 
-// src/kolmafia/autoscend/paths/casual.ts
+// packages/kolmafia/src/autoscend/paths/casual.ts
 var import_kolmafia106 = require("kolmafia");
 
-// src/kolmafia/autoscend/quests/level_08.ts
+// packages/kolmafia/src/autoscend/quests/level_08.ts
 var import_kolmafia105 = require("kolmafia");
 
-// src/kolmafia/autoscend/auto_routing.ts
+// packages/kolmafia/src/autoscend/auto_routing.ts
 var import_kolmafia104 = require("kolmafia");
 
-// src/kolmafia/autoscend/auto_zone.ts
+// packages/kolmafia/src/autoscend/auto_zone.ts
 var import_kolmafia103 = require("kolmafia");
 
-// src/kolmafia/autoscend/autoscend_record.ts
+// packages/kolmafia/src/autoscend/autoscend_record.ts
 var import_kolmafia6 = require("kolmafia");
 
-// src/kolmafia/autoscend/iotms/mr2016.ts
+// packages/kolmafia/src/autoscend/iotms/mr2016.ts
 var import_kolmafia102 = require("kolmafia");
 
-// src/kolmafia/autoscend/auto_list.ts
+// packages/kolmafia/src/autoscend/auto_list.ts
 var import_kolmafia7 = require("kolmafia");
 
-// src/kolmafia/autoscend/paths/gelatinous_noob.ts
+// packages/kolmafia/src/autoscend/paths/gelatinous_noob.ts
 var import_kolmafia9 = require("kolmafia");
 
-// src/kolmafia/autoscend/iotms/mr2011.ts
+// packages/kolmafia/src/autoscend/iotms/mr2011.ts
 var import_kolmafia8 = require("kolmafia");
 
-// src/kolmafia/autoscend/paths/kingdom_of_exploathing.ts
+// packages/kolmafia/src/autoscend/paths/kingdom_of_exploathing.ts
 var import_kolmafia101 = require("kolmafia");
 
-// src/kolmafia/autoscend/iotms/mr2019.ts
+// packages/kolmafia/src/autoscend/iotms/mr2019.ts
 var import_kolmafia100 = require("kolmafia");
 
-// src/kolmafia/autoscend/paths/actually_ed_the_undying.ts
+// packages/kolmafia/src/autoscend/paths/actually_ed_the_undying.ts
 var import_kolmafia99 = require("kolmafia");
 
-// src/kolmafia/autoscend/iotms/elementalPlanes.ts
+// packages/kolmafia/src/autoscend/iotms/elementalPlanes.ts
 var import_kolmafia10 = require("kolmafia");
 
-// src/kolmafia/autoscend/iotms/mr2015.ts
+// packages/kolmafia/src/autoscend/iotms/mr2015.ts
 var import_kolmafia97 = require("kolmafia");
 
-// src/kolmafia/autoscend/paths/avatar_of_west_of_loathing.ts
+// packages/kolmafia/src/autoscend/paths/avatar_of_west_of_loathing.ts
 var import_kolmafia11 = require("kolmafia");
 function in_awol() {
   return (0, import_kolmafia11.myPath)() === $path`Avatar of West of Loathing`;
@@ -621,7 +621,7 @@ function awol_initializeSettings() {
   return false;
 }
 
-// src/kolmafia/autoscend/paths/heavy_rains.ts
+// packages/kolmafia/src/autoscend/paths/heavy_rains.ts
 var import_kolmafia12 = require("kolmafia");
 function in_heavyrains() {
   return (0, import_kolmafia12.myPath)() === $path`Heavy Rains`;
@@ -642,28 +642,28 @@ function heavyrains_initializeSettings() {
   }
 }
 
-// src/kolmafia/autoscend/paths/legacy_of_loathing.ts
+// packages/kolmafia/src/autoscend/paths/legacy_of_loathing.ts
 var import_kolmafia96 = require("kolmafia");
 
-// src/kolmafia/autoscend/iotms/mr2023.ts
+// packages/kolmafia/src/autoscend/iotms/mr2023.ts
 var import_kolmafia95 = require("kolmafia");
 
-// src/kolmafia/autoscend/combat/auto_combat_util.ts
+// packages/kolmafia/src/autoscend/combat/auto_combat_util.ts
 var import_kolmafia94 = require("kolmafia");
 
-// src/kolmafia/autoscend/iotms/mr2017.ts
+// packages/kolmafia/src/autoscend/iotms/mr2017.ts
 var import_kolmafia93 = require("kolmafia");
 
-// src/kolmafia/autoscend/paths/dark_gyffte.ts
+// packages/kolmafia/src/autoscend/paths/dark_gyffte.ts
 var import_kolmafia92 = require("kolmafia");
 
-// src/kolmafia/autoscend/quests/level_12.ts
+// packages/kolmafia/src/autoscend/quests/level_12.ts
 var import_kolmafia91 = require("kolmafia");
 
-// src/kolmafia/autoscend/combat/auto_combat_quest.ts
+// packages/kolmafia/src/autoscend/combat/auto_combat_quest.ts
 var import_kolmafia89 = require("kolmafia");
 
-// src/kolmafia/autoscend/paths/fall_of_the_dinosaurs.ts
+// packages/kolmafia/src/autoscend/paths/fall_of_the_dinosaurs.ts
 var import_kolmafia13 = require("kolmafia");
 function in_fotd() {
   return (0, import_kolmafia13.myPath)() === $path`Fall of the Dinosaurs`;
@@ -676,7 +676,7 @@ function fotd_initializeSettings() {
   }
 }
 
-// src/kolmafia/autoscend/paths/g_lover.ts
+// packages/kolmafia/src/autoscend/paths/g_lover.ts
 var import_kolmafia14 = require("kolmafia");
 function in_glover() {
   return (0, import_kolmafia14.myPath)() === $path`G-Lover`;
@@ -751,118 +751,147 @@ function glover_usable(it) {
   return false;
 }
 
-// src/kolmafia/autoscend/combat/auto_combat.ts
+// packages/kolmafia/src/autoscend/combat/auto_combat.ts
 var import_kolmafia87 = require("kolmafia");
 
-// src/kolmafia/autoscend/paths/avant_guard.ts
+// packages/kolmafia/src/autoscend/paths/avant_guard.ts
 var import_kolmafia63 = require("kolmafia");
 
-// src/kolmafia/autoscend/iotms/mr2024.ts
+// packages/kolmafia/src/autoscend/iotms/mr2024.ts
 var import_kolmafia62 = require("kolmafia");
 
-// src/kolmafia/c2t_apron.ts
+// packages/kolmafia/src/c2t_apron.ts
 var import_kolmafia15 = require("kolmafia");
 
-// src/kolmafia/c2t_megg.ts
+// packages/kolmafia/src/c2t_megg.ts
 var import_kolmafia16 = require("kolmafia");
 var c2t_megg_oldFam = import_kolmafia16.Familiar.none;
 var c2t_megg_oldEq = import_kolmafia16.Item.none;
 
-// src/kolmafia/autoscend/paths/adventurer_meats_world.ts
+// packages/kolmafia/src/autoscend/paths/adventurer_meats_world.ts
 var import_kolmafia61 = require("kolmafia");
 
-// src/kolmafia/autoscend/iotms/mr2025.ts
+// packages/kolmafia/src/autoscend/iotms/mr2025.ts
 var import_kolmafia60 = require("kolmafia");
 
-// src/kolmafia/autoscend/paths/hattrick.ts
+// packages/kolmafia/src/autoscend/paths/hattrick.ts
 var import_kolmafia17 = require("kolmafia");
 
-// src/kolmafia/autoscend/paths/small.ts
+// packages/kolmafia/src/autoscend/paths/kolhs.ts
 var import_kolmafia18 = require("kolmafia");
+function in_kolhs() {
+  return (0, import_kolmafia18.myPath)() === $path`KOLHS`;
+}
+function kolhs_initializeSettings() {
+  if (!in_kolhs()) {
+    return;
+  }
+  (0, import_kolmafia18.setProperty)("kolhs_closetDrink", false.toString());
+}
+
+// packages/kolmafia/src/autoscend/paths/small.ts
+var import_kolmafia19 = require("kolmafia");
 function in_small() {
-  return (0, import_kolmafia18.myPath)() === $path`A Shrunken Adventurer am I`;
+  return (0, import_kolmafia19.myPath)() === $path`A Shrunken Adventurer am I`;
 }
 function small_initializeSettings() {
   if (!in_small()) {
     return;
   }
-  (0, import_kolmafia18.setProperty)("auto_wandOfNagamar", true.toString());
-  (0, import_kolmafia18.setProperty)("auto_getBeehive", true.toString());
-  (0, import_kolmafia18.setProperty)("auto_getBoningKnife", true.toString());
-  (0, import_kolmafia18.setProperty)("auto_getSteelOrgan", false.toString());
-  if ((0, import_kolmafia18.inHardcore)()) {
+  (0, import_kolmafia19.setProperty)("auto_wandOfNagamar", true.toString());
+  (0, import_kolmafia19.setProperty)("auto_getBeehive", true.toString());
+  (0, import_kolmafia19.setProperty)("auto_getBoningKnife", true.toString());
+  (0, import_kolmafia19.setProperty)("auto_getSteelOrgan", false.toString());
+  if ((0, import_kolmafia19.inHardcore)()) {
     var MLCap = 50;
-    var MLSafetyLimit = (0, import_kolmafia18.getProperty)("auto_MLSafetyLimit");
+    var MLSafetyLimit = (0, import_kolmafia19.getProperty)("auto_MLSafetyLimit");
     if (MLSafetyLimit === "") {
-      (0, import_kolmafia18.setProperty)("auto_MLSafetyLimitBackup", "empty");
-      (0, import_kolmafia18.setProperty)("auto_MLSafetyLimit", MLCap.toString());
+      (0, import_kolmafia19.setProperty)("auto_MLSafetyLimitBackup", "empty");
+      (0, import_kolmafia19.setProperty)("auto_MLSafetyLimit", MLCap.toString());
     }
-    if ((0, import_kolmafia18.toInt)(MLSafetyLimit) > MLCap) {
-      (0, import_kolmafia18.setProperty)("auto_MLSafetyLimitBackup", MLSafetyLimit);
-      (0, import_kolmafia18.setProperty)("auto_MLSafetyLimit", MLCap.toString());
+    if ((0, import_kolmafia19.toInt)(MLSafetyLimit) > MLCap) {
+      (0, import_kolmafia19.setProperty)("auto_MLSafetyLimitBackup", MLSafetyLimit);
+      (0, import_kolmafia19.setProperty)("auto_MLSafetyLimit", MLCap.toString());
     }
-    var disregardKarma = (0, import_kolmafia18.getProperty)("auto_disregardInstantKarma");
+    var disregardKarma = (0, import_kolmafia19.getProperty)("auto_disregardInstantKarma");
     if (disregardKarma === "true") {
-      (0, import_kolmafia18.setProperty)("auto_disregardInstantKarmaBackup", "true");
-      (0, import_kolmafia18.setProperty)("auto_disregardInstantKarma", "false");
+      (0, import_kolmafia19.setProperty)("auto_disregardInstantKarmaBackup", "true");
+      (0, import_kolmafia19.setProperty)("auto_disregardInstantKarma", "false");
     }
   } else {
     if (auto_have_familiar($familiar`Cookbookbat`) && (canPull($item`Calzone of Legend`) || canPull($item`Deep Dish of Legend`) || canPull($item`Pizza of Legend`))) {
-      (0, import_kolmafia18.setProperty)("auto_dontUseCookBookBat", true.toString());
+      (0, import_kolmafia19.setProperty)("auto_dontUseCookBookBat", true.toString());
     }
   }
 }
 
-// src/kolmafia/autoscend/paths/zootomist.ts
+// packages/kolmafia/src/autoscend/paths/zombie_slayer.ts
+var import_kolmafia20 = require("kolmafia");
+function in_zombieSlayer() {
+  return (0, import_kolmafia20.myPath)() === $path`Zombie Slayer`;
+}
+function zombieSlayer_initializeSettings() {
+  if (in_zombieSlayer()) {
+    (0, import_kolmafia20.setProperty)("auto_wandOfNagamar", false.toString());
+  }
+}
+function zombieSlayer_usable(fam) {
+  if (!in_zombieSlayer()) {
+    return true;
+  }
+  return (0, import_kolmafia20.containsText)(fam.attributes, "undead");
+}
+
+// packages/kolmafia/src/autoscend/paths/zootomist.ts
 var import_kolmafia59 = require("kolmafia");
 
-// src/kolmafia/autoscend/iotms/mr2022.ts
+// packages/kolmafia/src/autoscend/iotms/mr2022.ts
 var import_kolmafia58 = require("kolmafia");
 
-// src/kolmafia/autoscend/paths/path_of_the_plumber.ts
-var import_kolmafia19 = require("kolmafia");
+// packages/kolmafia/src/autoscend/paths/path_of_the_plumber.ts
+var import_kolmafia21 = require("kolmafia");
 function in_plumber() {
-  return (0, import_kolmafia19.myPath)() === $path`Path of the Plumber`;
+  return (0, import_kolmafia21.myPath)() === $path`Path of the Plumber`;
 }
 function plumber_initializeSettings() {
   if (in_plumber()) {
-    (0, import_kolmafia19.setProperty)("auto_getBeehive", true.toString());
-    (0, import_kolmafia19.setProperty)("auto_wandOfNagamar", false.toString());
-    (0, import_kolmafia19.setProperty)("auto_paranoia", 1 .toString());
+    (0, import_kolmafia21.setProperty)("auto_getBeehive", true.toString());
+    (0, import_kolmafia21.setProperty)("auto_wandOfNagamar", false.toString());
+    (0, import_kolmafia21.setProperty)("auto_paranoia", 1 .toString());
   }
   return false;
 }
 
-// src/kolmafia/autoscend/paths/pocket_familiars.ts
-var import_kolmafia20 = require("kolmafia");
+// packages/kolmafia/src/autoscend/paths/pocket_familiars.ts
+var import_kolmafia22 = require("kolmafia");
 function in_pokefam() {
-  return (0, import_kolmafia20.myPath)() === $path`Pocket Familiars`;
+  return (0, import_kolmafia22.myPath)() === $path`Pocket Familiars`;
 }
 function pokefam_initializeSettings() {
   if (in_pokefam()) {
-    (0, import_kolmafia20.setProperty)("auto_ignoreRestoreFailure", true.toString());
-    (0, import_kolmafia20.setProperty)("auto_getBeehive", false.toString());
-    (0, import_kolmafia20.setProperty)("auto_ignoreFlyer", true.toString());
-    (0, import_kolmafia20.setProperty)("auto_wandOfNagamar", false.toString());
-    (0, import_kolmafia20.setProperty)("auto_runDayCount", 3 .toString());
+    (0, import_kolmafia22.setProperty)("auto_ignoreRestoreFailure", true.toString());
+    (0, import_kolmafia22.setProperty)("auto_getBeehive", false.toString());
+    (0, import_kolmafia22.setProperty)("auto_ignoreFlyer", true.toString());
+    (0, import_kolmafia22.setProperty)("auto_wandOfNagamar", false.toString());
+    (0, import_kolmafia22.setProperty)("auto_runDayCount", 3 .toString());
   }
 }
 
-// src/kolmafia/autoscend/paths/two_crazy_random_summer.ts
-var import_kolmafia21 = require("kolmafia");
+// packages/kolmafia/src/autoscend/paths/two_crazy_random_summer.ts
+var import_kolmafia23 = require("kolmafia");
 
-// src/kolmafia/autoscend/paths/wereprofessor.ts
-var import_kolmafia22 = require("kolmafia");
+// packages/kolmafia/src/autoscend/paths/wereprofessor.ts
+var import_kolmafia24 = require("kolmafia");
 function in_wereprof() {
-  return (0, import_kolmafia22.myPath)() === $path`WereProfessor`;
+  return (0, import_kolmafia24.myPath)() === $path`WereProfessor`;
 }
 function wereprof_initializeSettings() {
   if (!in_wereprof()) {
     return;
   }
-  (0, import_kolmafia22.setProperty)("auto_wandOfNagamar", false.toString());
-  (0, import_kolmafia22.setProperty)("auto_dontPhylumBanish", true.toString());
-  (0, import_kolmafia22.cliExecute)("wereprofessor research");
+  (0, import_kolmafia24.setProperty)("auto_wandOfNagamar", false.toString());
+  (0, import_kolmafia24.setProperty)("auto_dontPhylumBanish", true.toString());
+  (0, import_kolmafia24.cliExecute)("wereprofessor research");
 }
 function wereprof_usable(str) {
   if (!in_wereprof()) {
@@ -874,25 +903,25 @@ function wereprof_usable(str) {
   return true;
 }
 
-// src/kolmafia/autoscend/quests/level_09.ts
+// packages/kolmafia/src/autoscend/quests/level_09.ts
 var import_kolmafia57 = require("kolmafia");
 
-// src/kolmafia/autoscend/iotms/mr2018.ts
+// packages/kolmafia/src/autoscend/iotms/mr2018.ts
 var import_kolmafia56 = require("kolmafia");
 
-// src/kolmafia/autoscend/paths/bees_hate_you.ts
-var import_kolmafia23 = require("kolmafia");
+// packages/kolmafia/src/autoscend/paths/bees_hate_you.ts
+var import_kolmafia25 = require("kolmafia");
 function in_bhy() {
-  return (0, import_kolmafia23.myPath)() === $path`Bees Hate You`;
+  return (0, import_kolmafia25.myPath)() === $path`Bees Hate You`;
 }
 function bhy_initializeSettings() {
   if (in_bhy()) {
-    (0, import_kolmafia23.setProperty)("auto_abooclover", false.toString());
-    (0, import_kolmafia23.setProperty)("auto_wandOfNagamar", false.toString());
-    (0, import_kolmafia23.setProperty)("auto_hippyInstead", true.toString());
-    (0, import_kolmafia23.setProperty)("auto_getBeehive", true.toString());
-    (0, import_kolmafia23.setProperty)("auto_getBoningKnife", true.toString());
-    (0, import_kolmafia23.setProperty)("auto_ignoreFlyer", true.toString());
+    (0, import_kolmafia25.setProperty)("auto_abooclover", false.toString());
+    (0, import_kolmafia25.setProperty)("auto_wandOfNagamar", false.toString());
+    (0, import_kolmafia25.setProperty)("auto_hippyInstead", true.toString());
+    (0, import_kolmafia25.setProperty)("auto_getBeehive", true.toString());
+    (0, import_kolmafia25.setProperty)("auto_getBoningKnife", true.toString());
+    (0, import_kolmafia25.setProperty)("auto_ignoreFlyer", true.toString());
   }
 }
 function bhy_usable(str) {
@@ -916,160 +945,131 @@ function bhy_usable(str) {
     case "Knob Goblin harem veil":
       return true;
   }
-  if ((0, import_kolmafia23.containsText)(str, "b")) {
+  if ((0, import_kolmafia25.containsText)(str, "b")) {
     return false;
   }
-  if ((0, import_kolmafia23.containsText)(str, "B")) {
+  if ((0, import_kolmafia25.containsText)(str, "B")) {
     return false;
   }
   return true;
 }
 function bhy_is_item_valid(it) {
   if (!in_bhy()) {
-    (0, import_kolmafia23.abort)(
+    (0, import_kolmafia25.abort)(
       "bhy_is_item_valid(item it) should never be called outside of bees hate you path."
     );
   }
-  if ((0, import_kolmafia23.toSlot)(it) !== import_kolmafia23.Slot.none) {
-    return (0, import_kolmafia23.isUnrestricted)(it);
+  if ((0, import_kolmafia25.toSlot)(it) !== import_kolmafia25.Slot.none) {
+    return (0, import_kolmafia25.isUnrestricted)(it);
   }
   if ($items`Cobb's Knob map, enchanted bean, ball polish, black market map, boring binder clip, beehive, electric boning knife`.includes(
     it
   )) {
     return true;
   }
-  return bhy_usable(it.toString()) && (0, import_kolmafia23.isUnrestricted)(it);
+  return bhy_usable(it.toString()) && (0, import_kolmafia25.isUnrestricted)(it);
 }
 
-// src/kolmafia/autoscend/paths/disguises_delimit.ts
-var import_kolmafia24 = require("kolmafia");
+// packages/kolmafia/src/autoscend/paths/disguises_delimit.ts
+var import_kolmafia26 = require("kolmafia");
 function in_disguises() {
-  return (0, import_kolmafia24.myPath)() === $path`Disguises Delimit`;
+  return (0, import_kolmafia26.myPath)() === $path`Disguises Delimit`;
 }
 function disguises_initializeSettings() {
   if (in_disguises()) {
-    (0, import_kolmafia24.setProperty)("auto_getBeehive", true.toString());
-    (0, import_kolmafia24.setProperty)("auto_getBoningKnife", true.toString());
+    (0, import_kolmafia26.setProperty)("auto_getBeehive", true.toString());
+    (0, import_kolmafia26.setProperty)("auto_getBoningKnife", true.toString());
   }
 }
 
-// src/kolmafia/autoscend/paths/one_crazy_random_summer.ts
-var import_kolmafia25 = require("kolmafia");
+// packages/kolmafia/src/autoscend/paths/one_crazy_random_summer.ts
+var import_kolmafia27 = require("kolmafia");
 function in_ocrs() {
-  return (0, import_kolmafia25.myPath)() === $path`One Crazy Random Summer`;
+  return (0, import_kolmafia27.myPath)() === $path`One Crazy Random Summer`;
 }
 
-// src/kolmafia/autoscend/paths/quantum_terrarium.ts
+// packages/kolmafia/src/autoscend/paths/quantum_terrarium.ts
 var import_kolmafia55 = require("kolmafia");
 
-// src/kolmafia/autoscend/quests/level_11.ts
+// packages/kolmafia/src/autoscend/quests/level_11.ts
 var import_kolmafia54 = require("kolmafia");
 
-// src/kolmafia/autoscend/iotms/mr2020.ts
-var import_kolmafia26 = require("kolmafia");
+// packages/kolmafia/src/autoscend/iotms/mr2020.ts
+var import_kolmafia28 = require("kolmafia");
 function auto_hasPowerfulGlove() {
   return possessEquipment($item`Powerful Glove`) && auto_is_valid($item`mint-in-box Powerful Glove`);
 }
 
-// src/kolmafia/autoscend/iotms/mr2026.ts
-var import_kolmafia27 = require("kolmafia");
+// packages/kolmafia/src/autoscend/iotms/mr2026.ts
+var import_kolmafia29 = require("kolmafia");
 
-// src/kolmafia/autoscend/paths/avatar_of_shadows_over_loathing.ts
-var import_kolmafia28 = require("kolmafia");
+// packages/kolmafia/src/autoscend/paths/avatar_of_shadows_over_loathing.ts
+var import_kolmafia30 = require("kolmafia");
 function in_aosol() {
-  return (0, import_kolmafia28.myPath)() === $path`Avatar of Shadows Over Loathing`;
+  return (0, import_kolmafia30.myPath)() === $path`Avatar of Shadows Over Loathing`;
 }
 function aosol_initializeSettings() {
   if (in_aosol()) {
-    (0, import_kolmafia28.setProperty)("auto_aosolLastSkill", 0 .toString());
-    (0, import_kolmafia28.setProperty)("auto_wandOfNagamar", false.toString());
-    (0, import_kolmafia28.setProperty)("auto_aosol_dontUnCurse", true.toString());
+    (0, import_kolmafia30.setProperty)("auto_aosolLastSkill", 0 .toString());
+    (0, import_kolmafia30.setProperty)("auto_wandOfNagamar", false.toString());
+    (0, import_kolmafia30.setProperty)("auto_aosol_dontUnCurse", true.toString());
   }
   return false;
 }
 
-// src/kolmafia/autoscend/paths/live_ascend_repeat.ts
-var import_kolmafia29 = require("kolmafia");
-
-// src/kolmafia/autoscend/paths/low_key_summer.ts
-var import_kolmafia53 = require("kolmafia");
-
-// src/kolmafia/autoscend/quests/level_02.ts
-var import_kolmafia30 = require("kolmafia");
-
-// src/kolmafia/autoscend/quests/level_03.ts
+// packages/kolmafia/src/autoscend/paths/live_ascend_repeat.ts
 var import_kolmafia31 = require("kolmafia");
 
-// src/kolmafia/autoscend/quests/level_04.ts
+// packages/kolmafia/src/autoscend/paths/low_key_summer.ts
+var import_kolmafia53 = require("kolmafia");
+
+// packages/kolmafia/src/autoscend/quests/level_02.ts
 var import_kolmafia32 = require("kolmafia");
 
-// src/kolmafia/autoscend/quests/level_05.ts
-var import_kolmafia52 = require("kolmafia");
-
-// src/kolmafia/autoscend/paths/you_robot.ts
-var import_kolmafia51 = require("kolmafia");
-
-// src/kolmafia/autoscend/quests/level_10.ts
-var import_kolmafia50 = require("kolmafia");
-
-// src/kolmafia/autoscend/paths/way_of_the_surprising_fist.ts
+// packages/kolmafia/src/autoscend/quests/level_03.ts
 var import_kolmafia33 = require("kolmafia");
 
-// src/kolmafia/autoscend/quests/level_13.ts
-var import_kolmafia49 = require("kolmafia");
-
-// src/kolmafia/autoscend/iotms/mr2021.ts
-var import_kolmafia39 = require("kolmafia");
-
-// src/kolmafia/autoscend/auto_craft.ts
+// packages/kolmafia/src/autoscend/quests/level_04.ts
 var import_kolmafia34 = require("kolmafia");
 
-// src/kolmafia/autoscend/paths/kolhs.ts
-var import_kolmafia35 = require("kolmafia");
-function in_kolhs() {
-  return (0, import_kolmafia35.myPath)() === $path`KOLHS`;
-}
-function kolhs_initializeSettings() {
-  if (!in_kolhs()) {
-    return;
-  }
-  (0, import_kolmafia35.setProperty)("kolhs_closetDrink", false.toString());
-}
+// packages/kolmafia/src/autoscend/quests/level_05.ts
+var import_kolmafia52 = require("kolmafia");
 
-// src/kolmafia/autoscend/paths/wildfire.ts
+// packages/kolmafia/src/autoscend/paths/you_robot.ts
+var import_kolmafia51 = require("kolmafia");
+
+// packages/kolmafia/src/autoscend/quests/level_10.ts
+var import_kolmafia50 = require("kolmafia");
+
+// packages/kolmafia/src/autoscend/paths/way_of_the_surprising_fist.ts
+var import_kolmafia35 = require("kolmafia");
+
+// packages/kolmafia/src/autoscend/quests/level_13.ts
+var import_kolmafia49 = require("kolmafia");
+
+// packages/kolmafia/src/autoscend/iotms/mr2021.ts
+var import_kolmafia39 = require("kolmafia");
+
+// packages/kolmafia/src/autoscend/auto_craft.ts
 var import_kolmafia36 = require("kolmafia");
+
+// packages/kolmafia/src/autoscend/paths/wildfire.ts
+var import_kolmafia37 = require("kolmafia");
 function in_wildfire() {
-  return (0, import_kolmafia36.myPath)() === $path`Wildfire`;
+  return (0, import_kolmafia37.myPath)() === $path`Wildfire`;
 }
 function wildfire_initializeSettings() {
   if (!in_wildfire()) {
     return;
   }
-  (0, import_kolmafia36.setProperty)("auto_wandOfNagamar", false.toString());
-  (0, import_kolmafia36.setProperty)("auto_getBeehive", true.toString());
+  (0, import_kolmafia37.setProperty)("auto_wandOfNagamar", false.toString());
+  (0, import_kolmafia37.setProperty)("auto_getBeehive", true.toString());
 }
 
-// src/kolmafia/autoscend/quests/level_07.ts
+// packages/kolmafia/src/autoscend/quests/level_07.ts
 var import_kolmafia38 = require("kolmafia");
 
-// src/kolmafia/autoscend/paths/zombie_slayer.ts
-var import_kolmafia37 = require("kolmafia");
-function in_zombieSlayer() {
-  return (0, import_kolmafia37.myPath)() === $path`Zombie Slayer`;
-}
-function zombieSlayer_initializeSettings() {
-  if (in_zombieSlayer()) {
-    (0, import_kolmafia37.setProperty)("auto_wandOfNagamar", false.toString());
-  }
-}
-function zombieSlayer_usable(fam) {
-  if (!in_zombieSlayer()) {
-    return true;
-  }
-  return (0, import_kolmafia37.containsText)(fam.attributes, "undead");
-}
-
-// src/kolmafia/autoscend/paths/bugbear_invasion.ts
+// packages/kolmafia/src/autoscend/paths/bugbear_invasion.ts
 var import_kolmafia40 = require("kolmafia");
 function in_bugbear() {
   return (0, import_kolmafia40.myPath)() === $path`Bugbear Invasion`;
@@ -1088,16 +1088,16 @@ function bugbear_initializeSettings() {
   }
 }
 
-// src/kolmafia/autoscend/paths/the_source.ts
+// packages/kolmafia/src/autoscend/paths/the_source.ts
 var import_kolmafia48 = require("kolmafia");
 
-// src/kolmafia/autoscend/quests/optional.ts
+// packages/kolmafia/src/autoscend/quests/optional.ts
 var import_kolmafia47 = require("kolmafia");
 
-// src/kolmafia/autoscend/paths/grey_goo.ts
+// packages/kolmafia/src/autoscend/paths/grey_goo.ts
 var import_kolmafia41 = require("kolmafia");
 
-// src/kolmafia/autoscend/paths/license_to_adventure.ts
+// packages/kolmafia/src/autoscend/paths/license_to_adventure.ts
 var import_kolmafia42 = require("kolmafia");
 function in_lta() {
   return (0, import_kolmafia42.myPath)() === $path`License to Adventure`;
@@ -1110,7 +1110,7 @@ function bond_initializeSettings() {
   }
 }
 
-// src/kolmafia/autoscend/paths/nuclear_autumn.ts
+// packages/kolmafia/src/autoscend/paths/nuclear_autumn.ts
 var import_kolmafia43 = require("kolmafia");
 function in_nuclear() {
   return (0, import_kolmafia43.myPath)() === $path`Nuclear Autumn`;
@@ -1121,16 +1121,16 @@ function nuclear_initializeSettings() {
   }
 }
 
-// src/kolmafia/autoscend/paths/picky.ts
+// packages/kolmafia/src/autoscend/paths/picky.ts
 var import_kolmafia44 = require("kolmafia");
 
-// src/kolmafia/autoscend/quests/level_06.ts
+// packages/kolmafia/src/autoscend/quests/level_06.ts
 var import_kolmafia45 = require("kolmafia");
 
-// src/kolmafia/autoscend/quests/level_any.ts
+// packages/kolmafia/src/autoscend/quests/level_any.ts
 var import_kolmafia46 = require("kolmafia");
 
-// src/kolmafia/autoscend/quests/optional.ts
+// packages/kolmafia/src/autoscend/quests/optional.ts
 var $_f_epicWeapons = /* @__PURE__ */ new Map(
   [
     [$class`Seal Clubber`, $item`Hammer of Smiting`],
@@ -1152,7 +1152,7 @@ var $_f_starterWeapons = /* @__PURE__ */ new Map(
   ]
 );
 
-// src/kolmafia/autoscend/paths/the_source.ts
+// packages/kolmafia/src/autoscend/paths/the_source.ts
 function in_theSource() {
   return (0, import_kolmafia48.myPath)() === $path`The Source`;
 }
@@ -1164,7 +1164,7 @@ function theSource_initializeSettings() {
   return false;
 }
 
-// src/kolmafia/autoscend/quests/level_13.ts
+// packages/kolmafia/src/autoscend/quests/level_13.ts
 function beehiveConsider(at_tower) {
   var damage_sources = 1;
   if (auto_have_familiar($familiar`Glover`)) {
@@ -1228,7 +1228,7 @@ function beehiveConsider(at_tower) {
   return false;
 }
 
-// src/kolmafia/autoscend/paths/you_robot.ts
+// packages/kolmafia/src/autoscend/paths/you_robot.ts
 function in_robot() {
   return (0, import_kolmafia51.myPath)() === $path`You, Robot`;
 }
@@ -1243,7 +1243,7 @@ function robot_initializeSettings() {
   (0, import_kolmafia51.setProperty)("auto_paranoia", 1 .toString());
 }
 
-// src/kolmafia/autoscend/paths/low_key_summer.ts
+// packages/kolmafia/src/autoscend/paths/low_key_summer.ts
 var lowKeys = /* @__PURE__ */ new Map();
 lowKeys.set($item`clown car key`, $location`The "Fun" House`);
 lowKeys.set($item`batting cage key`, $location`The Bat Hole Entrance`);
@@ -1277,7 +1277,7 @@ function lowkey_initializeSettings() {
   }
 }
 
-// src/kolmafia/autoscend/paths/quantum_terrarium.ts
+// packages/kolmafia/src/autoscend/paths/quantum_terrarium.ts
 function in_quantumTerrarium() {
   return (0, import_kolmafia55.myPath)() === $path`Quantum Terrarium`;
 }
@@ -1287,7 +1287,7 @@ function qt_initializeSettings() {
   }
 }
 
-// src/kolmafia/autoscend/iotms/mr2025.ts
+// packages/kolmafia/src/autoscend/iotms/mr2025.ts
 var LEPRECONDO_RESULTS_SCORE = /* @__PURE__ */ new Map([
   [
     $effect`Your Days Are Numbed`,
@@ -1342,7 +1342,7 @@ var LEPRECONDO_RESULTS_SCORE = /* @__PURE__ */ new Map([
   // -combat effect
 ]);
 
-// src/kolmafia/autoscend/paths/adventurer_meats_world.ts
+// packages/kolmafia/src/autoscend/paths/adventurer_meats_world.ts
 function in_amw() {
   return (0, import_kolmafia61.myPath)() === $path`Adventurer Meats World`;
 }
@@ -1354,7 +1354,7 @@ function amw_initializeSettings() {
   (0, import_kolmafia61.setProperty)("auto_shouldMeatLevel", false.toString());
 }
 
-// src/kolmafia/autoscend/paths/avant_guard.ts
+// packages/kolmafia/src/autoscend/paths/avant_guard.ts
 function in_avantGuard() {
   return (0, import_kolmafia63.myPath)() === $path`Avant Guard`;
 }
@@ -1371,79 +1371,79 @@ function ag_initializeSettings() {
   }
 }
 
-// src/kolmafia/autoscend/combat/auto_combat_awol.ts
+// packages/kolmafia/src/autoscend/combat/auto_combat_awol.ts
 var import_kolmafia64 = require("kolmafia");
 
-// src/kolmafia/autoscend/combat/auto_combat_default_stage1.ts
+// packages/kolmafia/src/autoscend/combat/auto_combat_default_stage1.ts
 var import_kolmafia76 = require("kolmafia");
 
-// src/kolmafia/autoscend/combat/auto_combat_adventurer_meats_world.ts
+// packages/kolmafia/src/autoscend/combat/auto_combat_adventurer_meats_world.ts
 var import_kolmafia65 = require("kolmafia");
 
-// src/kolmafia/autoscend/combat/auto_combat_bees_hate_you.ts
+// packages/kolmafia/src/autoscend/combat/auto_combat_bees_hate_you.ts
 var import_kolmafia66 = require("kolmafia");
 
-// src/kolmafia/autoscend/combat/auto_combat_disguises_delimit.ts
+// packages/kolmafia/src/autoscend/combat/auto_combat_disguises_delimit.ts
 var import_kolmafia67 = require("kolmafia");
 
-// src/kolmafia/autoscend/combat/auto_combat_fall_of_the_dinosaurs.ts
+// packages/kolmafia/src/autoscend/combat/auto_combat_fall_of_the_dinosaurs.ts
 var import_kolmafia68 = require("kolmafia");
 
-// src/kolmafia/autoscend/combat/auto_combat_heavy_rains.ts
+// packages/kolmafia/src/autoscend/combat/auto_combat_heavy_rains.ts
 var import_kolmafia69 = require("kolmafia");
 
-// src/kolmafia/autoscend/combat/auto_combat_kingdom_of_exploathing.ts
+// packages/kolmafia/src/autoscend/combat/auto_combat_kingdom_of_exploathing.ts
 var import_kolmafia70 = require("kolmafia");
 
-// src/kolmafia/autoscend/combat/auto_combat_mr2012.ts
+// packages/kolmafia/src/autoscend/combat/auto_combat_mr2012.ts
 var import_kolmafia71 = require("kolmafia");
 
-// src/kolmafia/autoscend/combat/auto_combat_pete.ts
+// packages/kolmafia/src/autoscend/combat/auto_combat_pete.ts
 var import_kolmafia72 = require("kolmafia");
 
-// src/kolmafia/autoscend/combat/auto_combat_the_source.ts
+// packages/kolmafia/src/autoscend/combat/auto_combat_the_source.ts
 var import_kolmafia73 = require("kolmafia");
 
-// src/kolmafia/autoscend/combat/auto_combat_wereprofessor.ts
+// packages/kolmafia/src/autoscend/combat/auto_combat_wereprofessor.ts
 var import_kolmafia74 = require("kolmafia");
 
-// src/kolmafia/autoscend/combat/auto_combat_wildfire.ts
+// packages/kolmafia/src/autoscend/combat/auto_combat_wildfire.ts
 var import_kolmafia75 = require("kolmafia");
 
-// src/kolmafia/autoscend/combat/auto_combat_default_stage2.ts
+// packages/kolmafia/src/autoscend/combat/auto_combat_default_stage2.ts
 var import_kolmafia78 = require("kolmafia");
 
-// src/kolmafia/autoscend/combat/auto_combat_dark_gyffte.ts
+// packages/kolmafia/src/autoscend/combat/auto_combat_dark_gyffte.ts
 var import_kolmafia77 = require("kolmafia");
 
-// src/kolmafia/autoscend/combat/auto_combat_default_stage3.ts
+// packages/kolmafia/src/autoscend/combat/auto_combat_default_stage3.ts
 var import_kolmafia80 = require("kolmafia");
 
-// src/kolmafia/autoscend/combat/auto_combat_zombie_slayer.ts
+// packages/kolmafia/src/autoscend/combat/auto_combat_zombie_slayer.ts
 var import_kolmafia79 = require("kolmafia");
 
-// src/kolmafia/autoscend/combat/auto_combat_default_stage4.ts
+// packages/kolmafia/src/autoscend/combat/auto_combat_default_stage4.ts
 var import_kolmafia82 = require("kolmafia");
 
-// src/kolmafia/autoscend/combat/auto_combat_license_to_adventure.ts
+// packages/kolmafia/src/autoscend/combat/auto_combat_license_to_adventure.ts
 var import_kolmafia81 = require("kolmafia");
 
-// src/kolmafia/autoscend/combat/auto_combat_default_stage5.ts
+// packages/kolmafia/src/autoscend/combat/auto_combat_default_stage5.ts
 var import_kolmafia85 = require("kolmafia");
 
-// src/kolmafia/autoscend/combat/auto_combat_plumber.ts
+// packages/kolmafia/src/autoscend/combat/auto_combat_plumber.ts
 var import_kolmafia83 = require("kolmafia");
 
-// src/kolmafia/autoscend/combat/auto_combat_you_robot.ts
+// packages/kolmafia/src/autoscend/combat/auto_combat_you_robot.ts
 var import_kolmafia84 = require("kolmafia");
 
-// src/kolmafia/autoscend/combat/auto_combat_ocrs.ts
+// packages/kolmafia/src/autoscend/combat/auto_combat_ocrs.ts
 var import_kolmafia86 = require("kolmafia");
 
-// src/kolmafia/autoscend/combat/auto_combat_ed.ts
+// packages/kolmafia/src/autoscend/combat/auto_combat_ed.ts
 var import_kolmafia88 = require("kolmafia");
 
-// src/kolmafia/autoscend/paths/i_love_u_hate.ts
+// packages/kolmafia/src/autoscend/paths/i_love_u_hate.ts
 var import_kolmafia90 = require("kolmafia");
 function in_iluh() {
   return (0, import_kolmafia90.myPath)() === $path`11 Things I Hate About U`;
@@ -1474,7 +1474,7 @@ function iluh_famAllowed(fam) {
   return true;
 }
 
-// src/kolmafia/autoscend/paths/dark_gyffte.ts
+// packages/kolmafia/src/autoscend/paths/dark_gyffte.ts
 function in_darkGyffte() {
   return (0, import_kolmafia92.myPath)() === $path`Dark Gyffte`;
 }
@@ -1488,7 +1488,7 @@ function bat_initializeSettings() {
   }
 }
 
-// src/kolmafia/autoscend/paths/legacy_of_loathing.ts
+// packages/kolmafia/src/autoscend/paths/legacy_of_loathing.ts
 function in_lol() {
   return (0, import_kolmafia96.myPath)() === $path`Legacy of Loathing`;
 }
@@ -1626,10 +1626,10 @@ function auto_ItemToReplica(it) {
   return it;
 }
 
-// src/kolmafia/autoscend/quests/level_01.ts
+// packages/kolmafia/src/autoscend/quests/level_01.ts
 var import_kolmafia98 = require("kolmafia");
 
-// src/kolmafia/autoscend/paths/actually_ed_the_undying.ts
+// packages/kolmafia/src/autoscend/paths/actually_ed_the_undying.ts
 function isActuallyEd() {
   return (0, import_kolmafia99.myPath)() === $path`Actually Ed the Undying`;
 }
@@ -1659,7 +1659,7 @@ function ed_initializeSettings() {
   }
 }
 
-// src/kolmafia/autoscend/iotms/mr2019.ts
+// packages/kolmafia/src/autoscend/iotms/mr2019.ts
 function auto_spoonGetDesiredSign() {
   var spoonsign = (0, import_kolmafia100.toLowerCase)((0, import_kolmafia100.getProperty)("auto_spoonsign"));
   function statSign(musc, myst, mox) {
@@ -1732,7 +1732,7 @@ function auto_spoonTuneConfirm() {
   }
 }
 
-// src/kolmafia/autoscend/paths/kingdom_of_exploathing.ts
+// packages/kolmafia/src/autoscend/paths/kingdom_of_exploathing.ts
 function in_koe() {
   return (0, import_kolmafia101.myPath)() === $path`Kingdom of Exploathing`;
 }
@@ -1749,7 +1749,7 @@ function koe_initializeSettings() {
   return false;
 }
 
-// src/kolmafia/autoscend/iotms/mr2016.ts
+// packages/kolmafia/src/autoscend/iotms/mr2016.ts
 function expectGhostReport() {
   if ((0, import_kolmafia102.totalTurnsPlayed)() >= (0, import_kolmafia102.toInt)((0, import_kolmafia102.getProperty)("nextParanormalActivity"))) {
     if ((0, import_kolmafia102.totalTurnsPlayed)() > (0, import_kolmafia102.toInt)((0, import_kolmafia102.getProperty)("nextParanormalActivity"))) {
@@ -1780,19 +1780,19 @@ function haveGhostReport() {
   return false;
 }
 
-// src/kolmafia/autoscend/paths/casual.ts
+// packages/kolmafia/src/autoscend/paths/casual.ts
 function inAftercore() {
   return (0, import_kolmafia106.toBoolean)((0, import_kolmafia106.getProperty)("kingLiberated"));
 }
 
-// src/kolmafia/autoscend/iotms/clan.ts
+// packages/kolmafia/src/autoscend/iotms/clan.ts
 function isSpeakeasyDrink(drink_1) {
   return $items`glass of "milk", cup of "tea", thermos of "whiskey", Lucky Lindy, Bee's Knees, Sockdollager, Ish Kabibble, Hot Socks, Phonus Balonus, Flivver, Sloppy Jalopy`.includes(
     drink_1
   );
 }
 
-// src/kolmafia/autoscend/auto_restore.ts
+// packages/kolmafia/src/autoscend/auto_restore.ts
 var $_f___known_restoration_sources = /* @__PURE__ */ new Map();
 var $_f___restore_maximizer_cache = /* @__PURE__ */ new Map();
 function invalidateRestoreOptionCache() {
@@ -1800,10 +1800,10 @@ function invalidateRestoreOptionCache() {
   $_f___restore_maximizer_cache.clear();
 }
 
-// src/kolmafia/autoscend/iotms/ttt.ts
+// packages/kolmafia/src/autoscend/iotms/ttt.ts
 var import_kolmafia109 = require("kolmafia");
 
-// src/kolmafia/autoscend/iotms/mr2014.ts
+// packages/kolmafia/src/autoscend/iotms/mr2014.ts
 var $_f_importantMonsters = import_kolmafia112.Monster.get(
   [
     // L4:
@@ -1899,7 +1899,7 @@ function icehouseUserErrorProtection() {
   }
 }
 
-// src/kolmafia/autoscend/auto_familiar.ts
+// packages/kolmafia/src/autoscend/auto_familiar.ts
 function is100FamRun() {
   if ((0, import_kolmafia113.toFamiliar)((0, import_kolmafia113.getProperty)("auto_100familiar")) === import_kolmafia113.Familiar.none) {
     return false;
@@ -1961,7 +1961,7 @@ function auto_have_familiar(fam) {
   return (0, import_kolmafia113.haveFamiliar)(fam);
 }
 
-// src/kolmafia/autoscend/auto_equipment.ts
+// packages/kolmafia/src/autoscend/auto_equipment.ts
 function equipmentAmount(equipment) {
   if (equipment === import_kolmafia114.Item.none) {
     return 0;
@@ -1976,19 +1976,19 @@ function possessEquipment(equipment) {
   return equipmentAmount(equipment) > 0;
 }
 
-// src/kolmafia/autoscend/iotms/mr2007.ts
+// packages/kolmafia/src/autoscend/iotms/mr2007.ts
 var import_kolmafia115 = require("kolmafia");
 
-// src/kolmafia/autoscend/paths/class_act.ts
+// packages/kolmafia/src/autoscend/paths/class_act.ts
 var import_kolmafia116 = require("kolmafia");
 
-// src/kolmafia/autoscend/paths/class_act_two.ts
+// packages/kolmafia/src/autoscend/paths/class_act_two.ts
 var import_kolmafia117 = require("kolmafia");
 
-// src/kolmafia/autoscend/paths/journeyman.ts
+// packages/kolmafia/src/autoscend/paths/journeyman.ts
 var import_kolmafia118 = require("kolmafia");
 
-// src/kolmafia/autoscend/auto_util.ts
+// packages/kolmafia/src/autoscend/auto_util.ts
 function trim(input) {
   return input.trim();
 }
@@ -2046,13 +2046,12 @@ function auto_log(s, color, log_level) {
       break;
   }
 }
-function auto_log_info(s, color) {
+function auto_log_info(s) {
+  var color = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : "blue";
   auto_log(s, color, 2);
 }
-function auto_log_info$1(s) {
-  auto_log(s, "blue", 2);
-}
-function auto_log_debug(s, color) {
+function auto_log_debug(s) {
+  var color = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : "black";
   auto_log(s, color, 3);
 }
 function auto_turbo() {
@@ -2065,10 +2064,10 @@ function wrap_item(it) {
   return it;
 }
 
-// src/kolmafia/autoscend/auto_consume.ts
+// packages/kolmafia/src/autoscend/auto_consume.ts
 var $_saucemavenApplies_saucy_foods = $items`cold hi mein, devil hair pasta, Fettris, fettucini Inconnu, fleetwood mac 'n' cheese, fusillocybin, gnocchetti di Nietzsche, haunted Hell ramen, Hell ramen, hot hi mein, libertagliatelle, linguini immondizia bianco, linguini of the sea, prescription noodles, shells a la shellfish, sleazy hi mein, spagecialetti, spaghetti con calaveras, spaghetti with Skullheads, spooky hi mein, stinky hi mein, turkish mostaccioli`;
 
-// src/kolmafia/autoscend/auto_acquire.ts
+// packages/kolmafia/src/autoscend/auto_acquire.ts
 function canPull(it) {
   var historical = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : false;
   if ((0, import_kolmafia123.inHardcore)()) {
@@ -2169,13 +2168,13 @@ function auto_mall_price(it) {
   return -1;
 }
 
-// src/kolmafia/autoscend/auto_bedtime.ts
+// packages/kolmafia/src/autoscend/auto_bedtime.ts
 var import_kolmafia125 = require("kolmafia");
 
-// src/kolmafia/autoscend/auto_zlib.ts
+// packages/kolmafia/src/autoscend/auto_zlib.ts
 var import_kolmafia124 = require("kolmafia");
 
-// src/kolmafia/autoscend/auto_settings.ts
+// packages/kolmafia/src/autoscend/auto_settings.ts
 var import_kolmafia126 = require("kolmafia");
 function trackingSplitterFixer(oldSetting, day, newSetting) {
   var setting = (0, import_kolmafia126.getProperty)(oldSetting);
@@ -2473,7 +2472,7 @@ function auto_settingsDelete() {
 }
 function defaultConfig(prop, val) {
   if (!(0, import_kolmafia126.propertyExists)(prop)) {
-    auto_log_info$1(
+    auto_log_info(
       `${prop} has no value set. setting it to the default value of ${val}`
     );
     (0, import_kolmafia126.setProperty)(prop, val);
@@ -2516,10 +2515,10 @@ function auto_settings() {
   auto_settingsDefaults();
 }
 
-// src/kolmafia/autoscend/auto_sim.ts
+// packages/kolmafia/src/autoscend/auto_sim.ts
 var import_kolmafia127 = require("kolmafia");
 
-// src/kolmafia/autoscend/autoscend_migration.ts
+// packages/kolmafia/src/autoscend/autoscend_migration.ts
 var import_kolmafia128 = require("kolmafia");
 var $_f___autoscend_version = "2.0.0";
 function autoscend_current_version() {
@@ -2529,7 +2528,7 @@ function autoscend_current_version() {
   return (0, import_kolmafia128.getProperty)("auto_current_version");
 }
 
-// src/kolmafia/autoscend/iotms/eudora.ts
+// packages/kolmafia/src/autoscend/iotms/eudora.ts
 var import_kolmafia129 = require("kolmafia");
 function eudora_available() {
   if ((0, import_kolmafia129.containsText)((0, import_kolmafia129.visitUrl)("account.php"), "tab=correspondence")) {
@@ -2560,22 +2559,22 @@ function eudora_initializeSettings() {
   return retval;
 }
 
-// src/kolmafia/autoscend/iotms/mr2013.ts
+// packages/kolmafia/src/autoscend/iotms/mr2013.ts
 var import_kolmafia130 = require("kolmafia");
 
-// src/kolmafia/autoscend/paths/auto_path_util.ts
+// packages/kolmafia/src/autoscend/paths/auto_path_util.ts
 var import_kolmafia131 = require("kolmafia");
 
-// src/kolmafia/autoscend/paths/community_service.ts
+// packages/kolmafia/src/autoscend/paths/community_service.ts
 var import_kolmafia132 = require("kolmafia");
 
-// src/kolmafia/autoscend/task_registry.ts
+// packages/kolmafia/src/autoscend/task_registry.ts
 var import_kolmafia134 = require("kolmafia");
 
-// src/kolmafia/autoscend/iotms/mr2012.ts
+// packages/kolmafia/src/autoscend/iotms/mr2012.ts
 var import_kolmafia133 = require("kolmafia");
 
-// src/kolmafia/autoscend.ts
+// packages/kolmafia/src/autoscend.ts
 function initializeSettings() {
   if (inAftercore()) {
     return;
@@ -2754,10 +2753,10 @@ function initializeSettings() {
   (0, import_kolmafia135.removeProperty)("_auto_reinitialize");
 }
 
-// src/relay/pages/info.ts
+// packages/relay/src/pages/info.ts
 var import_kolmafia137 = require("kolmafia");
 
-// src/relay/relayUtils.ts
+// packages/relay/src/relayUtils.ts
 var import_kolmafia136 = require("kolmafia");
 function html(data) {
   return { type: "html", data };
@@ -2893,7 +2892,7 @@ function generateHTML(pages) {
   return buffer.join("\n");
 }
 
-// src/relay/pages/info.ts
+// packages/relay/src/pages/info.ts
 function infoTile(label, value) {
   return `<div class="infoTile"><div class="infoTileLabel">${(0, import_kolmafia137.entityEncode)(label)}</div><div class="infoTileValue">${(0, import_kolmafia137.entityEncode)(value)}</div></div>`;
 }
@@ -2927,7 +2926,7 @@ function infoPage() {
   };
 }
 
-// src/relay/pages/settings.ts
+// packages/relay/src/pages/settings.ts
 var import_kolmafia138 = require("kolmafia");
 function buildGroup(path, def, settingsData2, collapsed, inheritedColor) {
   var color = def.color ?? inheritedColor;
@@ -3049,7 +3048,7 @@ function settingsPage() {
   };
 }
 
-// src/relay/pages/tracked.ts
+// packages/relay/src/pages/tracked.ts
 var import_kolmafia139 = require("kolmafia");
 var trackingConfig = (
   // eslint-disable-next-line @typescript-eslint/no-require-imports
@@ -3129,7 +3128,7 @@ function trackedPage() {
   };
 }
 
-// src/relay/relay_autoscend.ts
+// packages/relay/src/relay_autoscend.ts
 function main() {
   auto_settings();
   initializeSettings();
