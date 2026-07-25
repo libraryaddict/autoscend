@@ -2354,7 +2354,7 @@ function auto_spadeDigItem() {
       );
       handleTracker$2(
         SPADE.toString(),
-        (0, import_kolmafia32.myLocation)().toString(),
+        (0, import_kolmafia32.myLocation)(),
         `Dig up something nearby reported ${total_items_dropped} drops`,
         "auto_otherstuff"
       );
@@ -2363,8 +2363,8 @@ function auto_spadeDigItem() {
     if (n_digs > auto_spadeDigsRemaining()) {
       handleTracker$2(
         SPADE.toString(),
-        `Dig up something nearby - ${(0, import_kolmafia32.myLocation)()}`,
-        my_drop.toString(),
+        (0, import_kolmafia32.myLocation)(),
+        `Dig up something nearby - ${my_drop}`,
         "auto_otherstuff"
       );
       return true;
@@ -6057,8 +6057,9 @@ function auto_combatDefaultStage2(round_1, enemy, text) {
     // we don't want to refract if the monster was from a choice
     !combat_status_check("choiceMonster") && auto_bczRefractedGaze() && !combat_status_check("droptablereplaced") && auto_have_skill($skill`BCZ: Refracted Gaze`)
   ) {
-    handleTracker$1(
+    handleTracker$2(
       enemy.toString(),
+      (0, import_kolmafia81.myLocation)(),
       $skill`BCZ: Refracted Gaze`.toString(),
       "auto_otherstuff"
     );
@@ -6241,14 +6242,14 @@ function auto_combatDefaultStage2(round_1, enemy, text) {
       if ((0, import_kolmafia81.indexOf)(banishAction, "skill") === 0) {
         handleTracker$2(
           (0, import_kolmafia81.monsterPhylum)(enemy).toString(),
-          (0, import_kolmafia81.myLocation)().toString(),
+          (0, import_kolmafia81.myLocation)(),
           (0, import_kolmafia81.toSkill)((0, import_kolmafia81.substring)(banishAction, 6)).toString(),
           "auto_banishes"
         );
       } else if ((0, import_kolmafia81.indexOf)(banishAction, "item") === 0) {
         handleTracker$2(
           (0, import_kolmafia81.monsterPhylum)(enemy).toString(),
-          (0, import_kolmafia81.myLocation)().toString(),
+          (0, import_kolmafia81.myLocation)(),
           (0, import_kolmafia81.toItem)((0, import_kolmafia81.substring)(banishAction, 5)).toString(),
           "auto_banishes"
         );
@@ -9759,7 +9760,7 @@ function makeGenieWish(wish) {
   }
   handleTracker$2(
     (0, import_kolmafia96.toItem)(wish_provider).toString(),
-    (0, import_kolmafia96.myLocation)().toString(),
+    (0, import_kolmafia96.myLocation)(),
     wish,
     "auto_wishes"
   );
@@ -11280,12 +11281,7 @@ function auto_getCitizenZone(loc, inCombat) {
       }
     }
   } else {
-    handleTracker$2(
-      "Citizen of a Zone",
-      (0, import_kolmafia98.myLocation)().toString(),
-      goal,
-      "auto_otherstuff"
-    );
+    handleTracker$2("Citizen of a Zone", (0, import_kolmafia98.myLocation)(), goal, "auto_otherstuff");
     return true;
   }
   return false;
@@ -19783,11 +19779,11 @@ function handleTracker$2(used, loc, detail, tracker) {
   if (cur !== "") {
     cur = `${cur}, `;
   }
-  if (loc === "none") {
+  if (!loc || loc === import_kolmafia123.Location.none) {
     handleTracker$1(used, detail, tracker);
     return;
   }
-  cur = `${cur}(${(0, import_kolmafia123.myDaycount)()}:${safeString(used)}:${safeString(loc)}:${safeString(detail)}:${(0, import_kolmafia123.myTurncount)()})`;
+  cur = `${cur}(${(0, import_kolmafia123.myDaycount)()}:${safeString(used)}:${safeString(loc.toString())}:${safeString(detail)}:${(0, import_kolmafia123.myTurncount)()})`;
   (0, import_kolmafia123.setProperty)(tracker, cur);
 }
 function restoreAllSettings() {
@@ -23103,7 +23099,7 @@ function auto_post_adventure() {
       );
       handleTracker$2(
         (0, import_kolmafia139.getProperty)("auto_forceNonCombatSource"),
-        (0, import_kolmafia139.myLocation)().toString(),
+        (0, import_kolmafia139.myLocation)(),
         (0, import_kolmafia139.getProperty)("lastEncounter"),
         "auto_forcedNC"
       );

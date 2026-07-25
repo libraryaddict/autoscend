@@ -2506,7 +2506,7 @@ function peridotChoiceHandler(choice, page) {
   if ((0, import_kolmafia54.toInt)(popChoice) === 0 || auto_peridotSetZone(loc)) {
     handleTracker$2(
       $item`Peridot of Peril`.toString(),
-      loc.toString(),
+      loc,
       "Peace out",
       "auto_mapperidot"
     );
@@ -2515,7 +2515,7 @@ function peridotChoiceHandler(choice, page) {
   }
   handleTracker$2(
     $item`Peridot of Peril`.toString(),
-    loc.toString(),
+    loc,
     popChoice.toString(),
     "auto_mapperidot"
   );
@@ -4212,11 +4212,11 @@ function handleTracker$2(used, loc, detail, tracker) {
   if (cur !== "") {
     cur = `${cur}, `;
   }
-  if (loc === "none") {
+  if (!loc || loc === import_kolmafia120.Location.none) {
     handleTracker$1(used, detail, tracker);
     return;
   }
-  cur = `${cur}(${(0, import_kolmafia120.myDaycount)()}:${safeString(used)}:${safeString(loc)}:${safeString(detail)}:${(0, import_kolmafia120.myTurncount)()})`;
+  cur = `${cur}(${(0, import_kolmafia120.myDaycount)()}:${safeString(used)}:${safeString(loc.toString())}:${safeString(detail)}:${(0, import_kolmafia120.myTurncount)()})`;
   (0, import_kolmafia120.setProperty)(tracker, cur);
 }
 function internalQuestStatus(prop) {

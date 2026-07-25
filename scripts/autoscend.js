@@ -23717,7 +23717,7 @@ function beretBusk(effectMultiplier) {
   if ((0, import_kolmafia66.useSkill)(1, $skill`Beret Busking`)) {
     handleTracker$2(
       $item`prismatic beret`.toString(),
-      (0, import_kolmafia66.myLocation)().toString(),
+      (0, import_kolmafia66.myLocation)(),
       `Beret busk ${(0, import_kolmafia66.getProperty)("_beretBuskingUses")} at ${buskPower} power`,
       "auto_otherstuff"
     );
@@ -23770,7 +23770,7 @@ function auto_waveTheZone() {
     if ((0, import_kolmafia66.useSkill)(1, $skill`Sea *dent: Summon a Wave`)) {
       handleTracker$2(
         $item`Monodent of the Sea`.toString(),
-        (0, import_kolmafia66.myLocation)().toString(),
+        (0, import_kolmafia66.myLocation)(),
         "Summon a Wave",
         "auto_otherstuff"
       );
@@ -26372,8 +26372,9 @@ function auto_combatDefaultStage2(round_1, enemy, text) {
     // we don't want to refract if the monster was from a choice
     !combat_status_check("choiceMonster") && auto_bczRefractedGaze() && !combat_status_check("droptablereplaced") && auto_have_skill($skill`BCZ: Refracted Gaze`)
   ) {
-    handleTracker$1(
+    handleTracker$2(
       enemy.toString(),
+      (0, import_kolmafia84.myLocation)(),
       $skill`BCZ: Refracted Gaze`.toString(),
       "auto_otherstuff"
     );
@@ -26556,14 +26557,14 @@ function auto_combatDefaultStage2(round_1, enemy, text) {
       if ((0, import_kolmafia84.indexOf)(banishAction, "skill") === 0) {
         handleTracker$2(
           (0, import_kolmafia84.monsterPhylum)(enemy).toString(),
-          (0, import_kolmafia84.myLocation)().toString(),
+          (0, import_kolmafia84.myLocation)(),
           (0, import_kolmafia84.toSkill)((0, import_kolmafia84.substring)(banishAction, 6)).toString(),
           "auto_banishes"
         );
       } else if ((0, import_kolmafia84.indexOf)(banishAction, "item") === 0) {
         handleTracker$2(
           (0, import_kolmafia84.monsterPhylum)(enemy).toString(),
-          (0, import_kolmafia84.myLocation)().toString(),
+          (0, import_kolmafia84.myLocation)(),
           (0, import_kolmafia84.toItem)((0, import_kolmafia84.substring)(banishAction, 5)).toString(),
           "auto_banishes"
         );
@@ -33874,7 +33875,7 @@ function makeGenieWish(wish) {
   }
   handleTracker$2(
     (0, import_kolmafia99.toItem)(wish_provider).toString(),
-    (0, import_kolmafia99.myLocation)().toString(),
+    (0, import_kolmafia99.myLocation)(),
     wish,
     "auto_wishes"
   );
@@ -33959,7 +33960,7 @@ function makeGenieCombat(mon, option) {
   );
   handleTracker$2(
     (0, import_kolmafia99.toItem)(wish_provider).toString(),
-    (0, import_kolmafia99.myLocation)().toString(),
+    (0, import_kolmafia99.myLocation)(),
     wish,
     "auto_wishes"
   );
@@ -35321,7 +35322,7 @@ function auto_makeMonkeyPawWish(wish) {
   if (success) {
     handleTracker$2(
       $item`cursed monkey's paw`.toString(),
-      (0, import_kolmafia101.myLocation)().toString(),
+      (0, import_kolmafia101.myLocation)(),
       wish.toString(),
       "auto_wishes"
     );
@@ -36019,12 +36020,7 @@ function auto_getCitizenZone(loc, inCombat) {
       }
     }
   } else {
-    handleTracker$2(
-      "Citizen of a Zone",
-      (0, import_kolmafia101.myLocation)().toString(),
-      goal,
-      "auto_otherstuff"
-    );
+    handleTracker$2("Citizen of a Zone", (0, import_kolmafia101.myLocation)(), goal, "auto_otherstuff");
     return true;
   }
   return false;
@@ -52570,11 +52566,11 @@ function handleTracker$2(used, loc, detail, tracker) {
   if (cur !== "") {
     cur = `${cur}, `;
   }
-  if (loc === "none") {
+  if (!loc || loc === import_kolmafia125.Location.none) {
     handleTracker$1(used, detail, tracker);
     return;
   }
-  cur = `${cur}(${(0, import_kolmafia125.myDaycount)()}:${safeString(used)}:${safeString(loc)}:${safeString(detail)}:${(0, import_kolmafia125.myTurncount)()})`;
+  cur = `${cur}(${(0, import_kolmafia125.myDaycount)()}:${safeString(used)}:${safeString(loc.toString())}:${safeString(detail)}:${(0, import_kolmafia125.myTurncount)()})`;
   (0, import_kolmafia125.setProperty)(tracker, cur);
 }
 function organsFull() {
@@ -54040,7 +54036,7 @@ function cloverUsageFinish() {
   } else {
     handleTracker$2(
       (0, import_kolmafia125.getProperty)("auto_luckySource"),
-      (0, import_kolmafia125.myLocation)().toString(),
+      (0, import_kolmafia125.myLocation)(),
       (0, import_kolmafia125.getProperty)("lastEncounter"),
       "auto_lucky"
     );
