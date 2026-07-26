@@ -1001,134 +1001,112 @@ function auto_hasPowerfulGlove() {
 }
 
 // packages/kolmafia/src/autoscend/iotms/mr2026.ts
+var import_kolmafia53 = require("kolmafia");
+
+// packages/kolmafia/src/autoscend/quests/level_10.ts
+var import_kolmafia52 = require("kolmafia");
+
+// packages/kolmafia/src/autoscend/paths/live_ascend_repeat.ts
 var import_kolmafia29 = require("kolmafia");
 
-// packages/kolmafia/src/autoscend/paths/avatar_of_shadows_over_loathing.ts
+// packages/kolmafia/src/autoscend/paths/way_of_the_surprising_fist.ts
 var import_kolmafia30 = require("kolmafia");
+
+// packages/kolmafia/src/autoscend/quests/level_04.ts
+var import_kolmafia32 = require("kolmafia");
+
+// packages/kolmafia/src/autoscend/paths/avatar_of_shadows_over_loathing.ts
+var import_kolmafia31 = require("kolmafia");
 function in_aosol() {
-  return (0, import_kolmafia30.myPath)() === $path`Avatar of Shadows Over Loathing`;
+  return (0, import_kolmafia31.myPath)() === $path`Avatar of Shadows Over Loathing`;
 }
 function aosol_initializeSettings() {
   if (in_aosol()) {
-    (0, import_kolmafia30.setProperty)("auto_aosolLastSkill", 0 .toString());
-    (0, import_kolmafia30.setProperty)("auto_wandOfNagamar", false.toString());
-    (0, import_kolmafia30.setProperty)("auto_aosol_dontUnCurse", true.toString());
+    (0, import_kolmafia31.setProperty)("auto_aosolLastSkill", 0 .toString());
+    (0, import_kolmafia31.setProperty)("auto_wandOfNagamar", false.toString());
+    (0, import_kolmafia31.setProperty)("auto_aosol_dontUnCurse", true.toString());
   }
   return false;
 }
 
-// packages/kolmafia/src/autoscend/paths/live_ascend_repeat.ts
-var import_kolmafia31 = require("kolmafia");
-
-// packages/kolmafia/src/autoscend/paths/low_key_summer.ts
-var import_kolmafia53 = require("kolmafia");
-
-// packages/kolmafia/src/autoscend/quests/level_02.ts
-var import_kolmafia32 = require("kolmafia");
-
-// packages/kolmafia/src/autoscend/quests/level_03.ts
-var import_kolmafia33 = require("kolmafia");
-
-// packages/kolmafia/src/autoscend/quests/level_04.ts
-var import_kolmafia34 = require("kolmafia");
-
-// packages/kolmafia/src/autoscend/quests/level_05.ts
-var import_kolmafia52 = require("kolmafia");
-
-// packages/kolmafia/src/autoscend/paths/you_robot.ts
+// packages/kolmafia/src/autoscend/quests/level_13.ts
 var import_kolmafia51 = require("kolmafia");
 
-// packages/kolmafia/src/autoscend/quests/level_10.ts
-var import_kolmafia50 = require("kolmafia");
-
-// packages/kolmafia/src/autoscend/paths/way_of_the_surprising_fist.ts
-var import_kolmafia35 = require("kolmafia");
-
-// packages/kolmafia/src/autoscend/quests/level_13.ts
-var import_kolmafia49 = require("kolmafia");
-
 // packages/kolmafia/src/autoscend/iotms/mr2021.ts
-var import_kolmafia39 = require("kolmafia");
+var import_kolmafia48 = require("kolmafia");
 
 // packages/kolmafia/src/autoscend/auto_craft.ts
-var import_kolmafia36 = require("kolmafia");
+var import_kolmafia33 = require("kolmafia");
 
 // packages/kolmafia/src/autoscend/paths/wildfire.ts
-var import_kolmafia37 = require("kolmafia");
+var import_kolmafia34 = require("kolmafia");
 function in_wildfire() {
-  return (0, import_kolmafia37.myPath)() === $path`Wildfire`;
+  return (0, import_kolmafia34.myPath)() === $path`Wildfire`;
 }
 function wildfire_initializeSettings() {
   if (!in_wildfire()) {
     return;
   }
-  (0, import_kolmafia37.setProperty)("auto_wandOfNagamar", false.toString());
-  (0, import_kolmafia37.setProperty)("auto_getBeehive", true.toString());
+  (0, import_kolmafia34.setProperty)("auto_wandOfNagamar", false.toString());
+  (0, import_kolmafia34.setProperty)("auto_getBeehive", true.toString());
 }
+
+// packages/kolmafia/src/autoscend/paths/you_robot.ts
+var import_kolmafia47 = require("kolmafia");
+
+// packages/kolmafia/src/autoscend/quests/level_05.ts
+var import_kolmafia46 = require("kolmafia");
+
+// packages/kolmafia/src/autoscend/paths/low_key_summer.ts
+var import_kolmafia45 = require("kolmafia");
+
+// packages/kolmafia/src/autoscend/quests/level_02.ts
+var import_kolmafia35 = require("kolmafia");
+
+// packages/kolmafia/src/autoscend/quests/level_03.ts
+var import_kolmafia36 = require("kolmafia");
+
+// packages/kolmafia/src/autoscend/quests/level_06.ts
+var import_kolmafia37 = require("kolmafia");
 
 // packages/kolmafia/src/autoscend/quests/level_07.ts
 var import_kolmafia38 = require("kolmafia");
 
-// packages/kolmafia/src/autoscend/paths/bugbear_invasion.ts
-var import_kolmafia40 = require("kolmafia");
-function in_bugbear() {
-  return (0, import_kolmafia40.myPath)() === $path`Bugbear Invasion`;
-}
-function bugbear_initializeSettings() {
-  if (in_bugbear()) {
-    (0, import_kolmafia40.setProperty)("auto_wandOfNagamar", false.toString());
-    (0, import_kolmafia40.setProperty)("auto_getBeehive", false.toString());
-    (0, import_kolmafia40.setProperty)("auto_holeinthesky", false.toString());
-    (0, import_kolmafia40.setProperty)("auto_getStarKey", false.toString());
-    (0, import_kolmafia40.setProperty)(
-      "nsTowerDoorKeysUsed",
-      "Boris's key,Jarlsberg's key,Sneaky Pete's key,Richard's star key,skeleton key,digital key"
-    );
-    (0, import_kolmafia40.setProperty)("auto_dontPhylumBanish", true.toString());
-  }
-}
-
-// packages/kolmafia/src/autoscend/paths/the_source.ts
-var import_kolmafia48 = require("kolmafia");
-
-// packages/kolmafia/src/autoscend/quests/optional.ts
-var import_kolmafia47 = require("kolmafia");
-
-// packages/kolmafia/src/autoscend/paths/grey_goo.ts
+// packages/kolmafia/src/autoscend/quests/level_any.ts
 var import_kolmafia41 = require("kolmafia");
 
-// packages/kolmafia/src/autoscend/paths/license_to_adventure.ts
-var import_kolmafia42 = require("kolmafia");
-function in_lta() {
-  return (0, import_kolmafia42.myPath)() === $path`License to Adventure`;
-}
-function bond_initializeSettings() {
-  if (in_lta()) {
-    (0, import_kolmafia42.setProperty)("auto_getBeehive", true.toString());
-    (0, import_kolmafia42.setProperty)("auto_wandOfNagamar", false.toString());
-    (0, import_kolmafia42.setProperty)("auto_familiarChoice", "");
-  }
-}
-
 // packages/kolmafia/src/autoscend/paths/nuclear_autumn.ts
-var import_kolmafia43 = require("kolmafia");
+var import_kolmafia39 = require("kolmafia");
 function in_nuclear() {
-  return (0, import_kolmafia43.myPath)() === $path`Nuclear Autumn`;
+  return (0, import_kolmafia39.myPath)() === $path`Nuclear Autumn`;
 }
 function nuclear_initializeSettings() {
   if (in_nuclear()) {
-    (0, import_kolmafia43.setProperty)("auto_getBeehive", true.toString());
+    (0, import_kolmafia39.setProperty)("auto_getBeehive", true.toString());
   }
 }
 
 // packages/kolmafia/src/autoscend/paths/picky.ts
+var import_kolmafia40 = require("kolmafia");
+
+// packages/kolmafia/src/autoscend/quests/optional.ts
 var import_kolmafia44 = require("kolmafia");
 
-// packages/kolmafia/src/autoscend/quests/level_06.ts
-var import_kolmafia45 = require("kolmafia");
+// packages/kolmafia/src/autoscend/paths/grey_goo.ts
+var import_kolmafia42 = require("kolmafia");
 
-// packages/kolmafia/src/autoscend/quests/level_any.ts
-var import_kolmafia46 = require("kolmafia");
+// packages/kolmafia/src/autoscend/paths/license_to_adventure.ts
+var import_kolmafia43 = require("kolmafia");
+function in_lta() {
+  return (0, import_kolmafia43.myPath)() === $path`License to Adventure`;
+}
+function bond_initializeSettings() {
+  if (in_lta()) {
+    (0, import_kolmafia43.setProperty)("auto_getBeehive", true.toString());
+    (0, import_kolmafia43.setProperty)("auto_wandOfNagamar", false.toString());
+    (0, import_kolmafia43.setProperty)("auto_familiarChoice", "");
+  }
+}
 
 // packages/kolmafia/src/autoscend/quests/optional.ts
 var $_f_epicWeapons = /* @__PURE__ */ new Map(
@@ -1151,97 +1129,6 @@ var $_f_starterWeapons = /* @__PURE__ */ new Map(
     [$class`Accordion Thief`, $item`stolen accordion`]
   ]
 );
-
-// packages/kolmafia/src/autoscend/paths/the_source.ts
-function in_theSource() {
-  return (0, import_kolmafia48.myPath)() === $path`The Source`;
-}
-function theSource_initializeSettings() {
-  if (in_theSource()) {
-    (0, import_kolmafia48.setProperty)("auto_getBeehive", true.toString());
-    (0, import_kolmafia48.setProperty)("auto_wandOfNagamar", false.toString());
-  }
-  return false;
-}
-
-// packages/kolmafia/src/autoscend/quests/level_13.ts
-function beehiveConsider(at_tower) {
-  var damage_sources = 1;
-  if (auto_have_familiar($familiar`Glover`)) {
-    damage_sources += 11;
-  }
-  if (auto_have_familiar($familiar`Shorter-Order Cook`)) {
-    damage_sources += 6;
-  } else if (auto_have_familiar($familiar`Mu`)) {
-    damage_sources += 5;
-  } else if (auto_have_familiar($familiar`Imitation Crab`)) {
-    damage_sources += 4;
-  }
-  if ((0, import_kolmafia49.haveSkill)($skill`Kneebutt`) || (0, import_kolmafia49.haveSkill)($skill`Headbutt`)) {
-    damage_sources += 1;
-  }
-  var _iterator = _createForOfIteratorHelper($skills`The Psalm of Pointiness, Spiky Shell, Scarysauce, Jalapeño Saucesphere`), _step;
-  try {
-    for (_iterator.s(); !(_step = _iterator.n()).done; ) {
-      var sk = _step.value;
-      if ((0, import_kolmafia49.haveSkill)(sk)) {
-        damage_sources += 1;
-      }
-    }
-  } catch (err) {
-    _iterator.e(err);
-  } finally {
-    _iterator.f();
-  }
-  var _iterator2 = _createForOfIteratorHelper($skills`Dirge of Dreadfulness, Icy Glare`), _step2;
-  try {
-    for (_iterator2.s(); !(_step2 = _iterator2.n()).done; ) {
-      var _sk = _step2.value;
-      if ((0, import_kolmafia49.haveSkill)(_sk)) {
-        damage_sources += 1;
-      }
-    }
-  } catch (err) {
-    _iterator2.e(err);
-  } finally {
-    _iterator2.f();
-  }
-  damage_sources += 2;
-  if (!at_tower || (0, import_kolmafia49.availableAmount)($item`hot plate`) > 0) {
-    damage_sources += 2;
-  } else {
-    if ((0, import_kolmafia49.numericModifier)(import_kolmafia49.Modifier.get("Hot Damage")) > 0) {
-      damage_sources += 1;
-    }
-  }
-  if ((0, import_kolmafia49.availableAmount)($item`tiny bowler`) > 0) {
-    damage_sources += 1;
-  }
-  if ((0, import_kolmafia49.availableAmount)($item`hippy protest button`) > 0) {
-    damage_sources += 1;
-  }
-  if (damage_sources >= 13) {
-    (0, import_kolmafia49.setProperty)("auto_getBeehive", false.toString());
-    return true;
-  }
-  (0, import_kolmafia49.setProperty)("auto_getBeehive", true.toString());
-  return false;
-}
-
-// packages/kolmafia/src/autoscend/paths/you_robot.ts
-function in_robot() {
-  return (0, import_kolmafia51.myPath)() === $path`You, Robot`;
-}
-function robot_initializeSettings() {
-  if (!in_robot()) {
-    return;
-  }
-  (0, import_kolmafia51.setProperty)("auto_wandOfNagamar", false.toString());
-  (0, import_kolmafia51.setProperty)("auto_getSteelOrgan", false.toString());
-  (0, import_kolmafia51.setProperty)("auto_getBeehive", true.toString());
-  (0, import_kolmafia51.setProperty)("auto_getBoningKnife", true.toString());
-  (0, import_kolmafia51.setProperty)("auto_paranoia", 1 .toString());
-}
 
 // packages/kolmafia/src/autoscend/paths/low_key_summer.ts
 var lowKeys = /* @__PURE__ */ new Map();
@@ -1269,12 +1156,123 @@ lowKeys.set($item`music box key`, $location`The Haunted Nursery`);
 lowKeys.set($item`deep-fried key`, $location`Madness Bakery`);
 lowKeys.set($item`discarded bike lock key`, $location`The Overgrown Lot`);
 function in_lowkeysummer() {
-  return (0, import_kolmafia53.myPath)() === $path`Low Key Summer`;
+  return (0, import_kolmafia45.myPath)() === $path`Low Key Summer`;
 }
 function lowkey_initializeSettings() {
   if (!in_lowkeysummer()) {
     return;
   }
+}
+
+// packages/kolmafia/src/autoscend/paths/you_robot.ts
+function in_robot() {
+  return (0, import_kolmafia47.myPath)() === $path`You, Robot`;
+}
+function robot_initializeSettings() {
+  if (!in_robot()) {
+    return;
+  }
+  (0, import_kolmafia47.setProperty)("auto_wandOfNagamar", false.toString());
+  (0, import_kolmafia47.setProperty)("auto_getSteelOrgan", false.toString());
+  (0, import_kolmafia47.setProperty)("auto_getBeehive", true.toString());
+  (0, import_kolmafia47.setProperty)("auto_getBoningKnife", true.toString());
+  (0, import_kolmafia47.setProperty)("auto_paranoia", 1 .toString());
+}
+
+// packages/kolmafia/src/autoscend/paths/bugbear_invasion.ts
+var import_kolmafia49 = require("kolmafia");
+function in_bugbear() {
+  return (0, import_kolmafia49.myPath)() === $path`Bugbear Invasion`;
+}
+function bugbear_initializeSettings() {
+  if (in_bugbear()) {
+    (0, import_kolmafia49.setProperty)("auto_wandOfNagamar", false.toString());
+    (0, import_kolmafia49.setProperty)("auto_getBeehive", false.toString());
+    (0, import_kolmafia49.setProperty)("auto_holeinthesky", false.toString());
+    (0, import_kolmafia49.setProperty)("auto_getStarKey", false.toString());
+    (0, import_kolmafia49.setProperty)(
+      "nsTowerDoorKeysUsed",
+      "Boris's key,Jarlsberg's key,Sneaky Pete's key,Richard's star key,skeleton key,digital key"
+    );
+    (0, import_kolmafia49.setProperty)("auto_dontPhylumBanish", true.toString());
+  }
+}
+
+// packages/kolmafia/src/autoscend/paths/the_source.ts
+var import_kolmafia50 = require("kolmafia");
+function in_theSource() {
+  return (0, import_kolmafia50.myPath)() === $path`The Source`;
+}
+function theSource_initializeSettings() {
+  if (in_theSource()) {
+    (0, import_kolmafia50.setProperty)("auto_getBeehive", true.toString());
+    (0, import_kolmafia50.setProperty)("auto_wandOfNagamar", false.toString());
+  }
+  return false;
+}
+
+// packages/kolmafia/src/autoscend/quests/level_13.ts
+function beehiveConsider(at_tower) {
+  var damage_sources = 1;
+  if (auto_have_familiar($familiar`Glover`)) {
+    damage_sources += 11;
+  }
+  if (auto_have_familiar($familiar`Shorter-Order Cook`)) {
+    damage_sources += 6;
+  } else if (auto_have_familiar($familiar`Mu`)) {
+    damage_sources += 5;
+  } else if (auto_have_familiar($familiar`Imitation Crab`)) {
+    damage_sources += 4;
+  }
+  if ((0, import_kolmafia51.haveSkill)($skill`Kneebutt`) || (0, import_kolmafia51.haveSkill)($skill`Headbutt`)) {
+    damage_sources += 1;
+  }
+  var _iterator = _createForOfIteratorHelper($skills`The Psalm of Pointiness, Spiky Shell, Scarysauce, Jalapeño Saucesphere`), _step;
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done; ) {
+      var sk = _step.value;
+      if ((0, import_kolmafia51.haveSkill)(sk)) {
+        damage_sources += 1;
+      }
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+  var _iterator2 = _createForOfIteratorHelper($skills`Dirge of Dreadfulness, Icy Glare`), _step2;
+  try {
+    for (_iterator2.s(); !(_step2 = _iterator2.n()).done; ) {
+      var _sk = _step2.value;
+      if ((0, import_kolmafia51.haveSkill)(_sk)) {
+        damage_sources += 1;
+      }
+    }
+  } catch (err) {
+    _iterator2.e(err);
+  } finally {
+    _iterator2.f();
+  }
+  damage_sources += 2;
+  if (!at_tower || (0, import_kolmafia51.availableAmount)($item`hot plate`) > 0) {
+    damage_sources += 2;
+  } else {
+    if ((0, import_kolmafia51.numericModifier)(import_kolmafia51.Modifier.get("Hot Damage")) > 0) {
+      damage_sources += 1;
+    }
+  }
+  if ((0, import_kolmafia51.availableAmount)($item`tiny bowler`) > 0) {
+    damage_sources += 1;
+  }
+  if ((0, import_kolmafia51.availableAmount)($item`hippy protest button`) > 0) {
+    damage_sources += 1;
+  }
+  if (damage_sources >= 13) {
+    (0, import_kolmafia51.setProperty)("auto_getBeehive", false.toString());
+    return true;
+  }
+  (0, import_kolmafia51.setProperty)("auto_getBeehive", true.toString());
+  return false;
 }
 
 // packages/kolmafia/src/autoscend/paths/quantum_terrarium.ts
