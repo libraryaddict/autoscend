@@ -1345,11 +1345,11 @@ function cartographyChoiceHandler(choice, page) {
   } else if (choice === 1435) {
     var enemy = auto_monsterToMap((0, import_kolmafia19.myLocation)(), page);
     if (enemy !== import_kolmafia19.Monster.none) {
-      handleTracker$1(
-        $skill`Map the Monsters`.toString(),
-        enemy.toString(),
-        "auto_mapperidot"
-      );
+      handleTracker({
+        what: $skill`Map the Monsters`,
+        detail: enemy.toString(),
+        property: "auto_mapperidot"
+      });
       combat_status_add("choiceMonster");
       (0, import_kolmafia19.runChoice)(1, `heyscriptswhatsupwinkwink=${(0, import_kolmafia19.toInt)(enemy)}`);
     } else {
@@ -2504,21 +2504,21 @@ function peridotChoiceHandler(choice, page) {
   }
   var popChoice = monOpts.get(bestmon) ?? monOpts.set(bestmon, import_kolmafia54.Monster.none).get(bestmon);
   if ((0, import_kolmafia54.toInt)(popChoice) === 0 || auto_peridotSetZone(loc)) {
-    handleTracker$2(
-      $item`Peridot of Peril`.toString(),
-      loc,
-      "Peace out",
-      "auto_mapperidot"
-    );
+    handleTracker({
+      what: $item`Peridot of Peril`,
+      location: loc,
+      detail: "Peace out",
+      property: "auto_mapperidot"
+    });
     (0, import_kolmafia54.runChoice)(2);
     return;
   }
-  handleTracker$2(
-    $item`Peridot of Peril`.toString(),
-    loc,
-    popChoice.toString(),
-    "auto_mapperidot"
-  );
+  handleTracker({
+    what: $item`Peridot of Peril`,
+    location: loc,
+    detail: popChoice.toString(),
+    property: "auto_mapperidot"
+  });
   combat_status_add("choiceMonster");
   (0, import_kolmafia54.runChoice)(1, `bandersnatch=${(0, import_kolmafia54.toInt)(popChoice)}`);
   return;
@@ -2557,7 +2557,11 @@ function mobiusChoiceHandler(choice, page) {
   }
   function mobiusChoice(opt) {
     var num = choiceMap.get(opt) ?? choiceMap.set(opt, 0).get(opt);
-    handleTracker$1($item`Möbius ring`.toString(), opt, "auto_otherstuff");
+    handleTracker({
+      what: $item`Möbius ring`,
+      detail: opt,
+      property: "auto_otherstuff"
+    });
     (0, import_kolmafia54.runChoice)(num);
   }
   var pos;
@@ -4135,7 +4139,7 @@ function auto_have_familiar(fam) {
     try {
       for (_iterator2.s(); !(_step2 = _iterator2.n()).done; ) {
         var _step2$value = _slicedToArray(_step2.value, 2), fam_1 = _step2$value[1];
-        blacklist.set((0, import_kolmafia110.toFamiliar)(trim(fam_1)), 1);
+        blacklist.set((0, import_kolmafia110.toFamiliar)(fam_1.trim()), 1);
       }
     } catch (err) {
       _iterator2.e(err);
@@ -4193,31 +4197,22 @@ var import_kolmafia118 = require("kolmafia");
 var import_kolmafia119 = require("kolmafia");
 
 // packages/kolmafia/src/autoscend/auto_util.ts
-function trim(input) {
-  return input.trim();
-}
 function safeString(input) {
-  return input.replaceAll(/[,:]/g, ".");
+  return input.replaceAll(/[\\,:]/g, (match) => `\\${match}`);
 }
-function handleTracker$1(used, detail, tracker) {
-  var cur = (0, import_kolmafia120.getProperty)(tracker);
-  if (cur !== "") {
-    cur = `${cur}, `;
+function handleTracker(_ref) {
+  var what = _ref.what, location = _ref.location, detail = _ref.detail, property = _ref.property;
+  var parts = [(0, import_kolmafia120.myDaycount)().toString(), safeString(String(what))];
+  if (location && location !== import_kolmafia120.Location.none) {
+    parts.push(safeString(location.toString()));
   }
-  cur = `${cur}(${(0, import_kolmafia120.myDaycount)()}:${safeString(used)}:${safeString(detail)}:${(0, import_kolmafia120.myTurncount)()})`;
-  (0, import_kolmafia120.setProperty)(tracker, cur);
-}
-function handleTracker$2(used, loc, detail, tracker) {
-  var cur = (0, import_kolmafia120.getProperty)(tracker);
-  if (cur !== "") {
-    cur = `${cur}, `;
+  if (detail !== void 0) {
+    parts.push(safeString(detail));
   }
-  if (!loc || loc === import_kolmafia120.Location.none) {
-    handleTracker$1(used, detail, tracker);
-    return;
-  }
-  cur = `${cur}(${(0, import_kolmafia120.myDaycount)()}:${safeString(used)}:${safeString(loc.toString())}:${safeString(detail)}:${(0, import_kolmafia120.myTurncount)()})`;
-  (0, import_kolmafia120.setProperty)(tracker, cur);
+  parts.push((0, import_kolmafia120.myTurncount)().toString());
+  var entries = (0, import_kolmafia120.getProperty)(property).split(/(?<!\\), /).filter(Boolean);
+  entries.push(`(${parts.join(":")})`);
+  (0, import_kolmafia120.setProperty)(property, entries.join(", "));
 }
 function internalQuestStatus(prop) {
   var status = (0, import_kolmafia120.getProperty)(prop);
@@ -4239,8 +4234,8 @@ function internalQuestStatus(prop) {
 function auto_combat_appearance_rates(place, queue) {
   var res_including_noncombat = new Map(
     Object.entries((0, import_kolmafia120.appearanceRates)(place, queue)).map(
-      (_ref) => {
-        var _ref2 = _slicedToArray(_ref, 2), _k = _ref2[0], _v = _ref2[1];
+      (_ref2) => {
+        var _ref3 = _slicedToArray(_ref2, 2), _k = _ref3[0], _v = _ref3[1];
         return [
           import_kolmafia120.Monster.get(_k),
           _v
