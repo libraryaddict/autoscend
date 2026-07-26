@@ -16469,13 +16469,14 @@ function auto_baseball_game(plan) {
   if (plan.length !== 9) return false;
   if (auto_baseball_innings_left() === 0) return false;
   if (auto_baseball_team().length !== 9) return false;
-  (0, import_kolmafia61.visitUrl)(`inventory.php?pwd=${(0, import_kolmafia61.myHash)()}&action=pball?ajax=1`, false);
+  (0, import_kolmafia61.visitUrl)(`inventory.php?pwd=${(0, import_kolmafia61.myHash)()}&action=pball`, false);
   var order = $elements`hot, cold, spooky, stench, sleaze`;
   for (var i = 0; i < 9; i++) {
     (0, import_kolmafia61.visitUrl)(
       `choice.php?pwd&whichchoice=1598&option=${order.indexOf(plan[i]) + 1}`
     );
   }
+  (0, import_kolmafia61.visitUrl)(`choice.php?pwd&whichchoice=1598&option=6`);
   if (auto_baseball_team().length > 0)
     (0, import_kolmafia61.abort)(`Expected to have played baseball, did not.`);
   return true;
