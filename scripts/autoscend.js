@@ -16459,27 +16459,8 @@ function auto_have_baseball_diamond() {
   }
   return false;
 }
-function auto_baseball_innings_left() {
-  return 3 - get("_baseballInnings");
-}
 function auto_baseball_team() {
   return get("baseballTeam").split(",").filter(Boolean).map((s) => import_kolmafia61.Monster.get(s));
-}
-function auto_baseball_game(plan) {
-  if (plan.length !== 9) return false;
-  if (auto_baseball_innings_left() === 0) return false;
-  if (auto_baseball_team().length !== 9) return false;
-  (0, import_kolmafia61.visitUrl)(`inventory.php?pwd=${(0, import_kolmafia61.myHash)()}&action=pball`, false);
-  var order = $elements`hot, cold, spooky, stench, sleaze`;
-  for (var i = 0; i < 9; i++) {
-    (0, import_kolmafia61.visitUrl)(
-      `choice.php?pwd&whichchoice=1598&option=${order.indexOf(plan[i]) + 1}`
-    );
-  }
-  (0, import_kolmafia61.visitUrl)(`choice.php?pwd&whichchoice=1598&option=6`);
-  if (auto_baseball_team().length > 0)
-    (0, import_kolmafia61.abort)(`Expected to have played baseball, did not.`);
-  return true;
 }
 function auto_baseballScorchExtras(mon) {
   if (mon === $monster`shadow slab`) {
@@ -16564,51 +16545,6 @@ function auto_baseballSlotZeroLoadBearing() {
     auto_baseballBuildAssignments(team)
   );
 }
-function auto_baseballPitchPlan() {
-  var _assignments$;
-  var team = auto_baseball_team();
-  if (team.length !== 9) {
-    return void 0;
-  }
-  var assignments = auto_baseballBuildAssignments(team);
-  var plan = new Array(9).fill(import_kolmafia61.Element.none);
-  var claimedSlots = /* @__PURE__ */ new Set();
-  var _iterator11 = _createForOfIteratorHelper(
-    assignments
-  ), _step11;
-  try {
-    for (_iterator11.s(); !(_step11 = _iterator11.n()).done; ) {
-      var a = _step11.value;
-      plan[a.finisherSlot] = a.element;
-      claimedSlots.add(a.finisherSlot);
-      var _iterator12 = _createForOfIteratorHelper(
-        a.normalSlots
-      ), _step12;
-      try {
-        for (_iterator12.s(); !(_step12 = _iterator12.n()).done; ) {
-          var s = _step12.value;
-          plan[s] = a.element;
-          claimedSlots.add(s);
-        }
-      } catch (err) {
-        _iterator12.e(err);
-      } finally {
-        _iterator12.f();
-      }
-    }
-  } catch (err) {
-    _iterator11.e(err);
-  } finally {
-    _iterator11.f();
-  }
-  var fillerElement = ((_assignments$ = assignments[0]) === null || _assignments$ === void 0 ? void 0 : _assignments$.element) ?? $element`stench`;
-  for (var i = 0; i < 9; i++) {
-    if (!claimedSlots.has(i)) {
-      plan[i] = fillerElement;
-    }
-  }
-  return plan;
-}
 function auto_baseballWantsSomeFish(loc, enemy) {
   if (!auto_have_baseball_diamond() || !auto_haveMonodent()) {
     return false;
@@ -16624,14 +16560,6 @@ function auto_baseballWantsSomeFish(loc, enemy) {
     return true;
   }
   return !auto_baseballSlotZeroLoadBearing();
-}
-function auto_forcePlayRemainingBaseballGames() {
-  if (auto_baseball_team().length < 9) return false;
-  var plan = auto_baseballPitchPlan();
-  if (!plan || !auto_baseball_game(plan)) {
-    return false;
-  }
-  return true;
 }
 function auto_baseball_freefight_monster() {
   return get("_curveballMonster", $monster.none);
@@ -28239,7 +28167,7 @@ function auto_combatDefaultStage4(round_1, enemy, text) {
     handleTracker({
       what: $skill`Steal Monster's Heart`,
       location: (0, import_kolmafia90.myLocation)(),
-      detail: `${(0, import_kolmafia90.lastMonster)()}: ${get("heartstoneLetters")} -> ${get("heartstoneLetters") + (0, import_kolmafia90.heartstoneMiddleLetter)()}`,
+      detail: `${(0, import_kolmafia90.lastMonster)()}: ${get("heartstoneLetters")}[${(0, import_kolmafia90.heartstoneMiddleLetter)()}]`,
       property: "auto_otherstuff"
     });
     return auto_useSkill($skill`Steal Monster's Heart`);
@@ -63867,7 +63795,6 @@ function doBedtime() {
   while (acquireHermitItem($item`11-leaf clover`)) {
   }
   auto_burnRemainingSpadeDigs();
-  auto_forcePlayRemainingBaseballGames();
   januaryToteAcquire($item`makeshift garbage shirt`);
   loveTunnelAcquire(true, import_kolmafia133.Stat.none, true, 3, true, 1);
   var bottle = wrap_item($item`genie bottle`);
@@ -66234,7 +66161,7 @@ function LX_needToBurnUnusedLuck() {
     return false;
   }
   var spareAdv = (0, import_kolmafia143.myAdventures)() - auto_advToReserve();
-  return consumptionProgress() >= 0.999 || spareAdv <= unusedLucky;
+  return consumptionProgress() >= 0.999 || spareAdv <= unusedLucky + 1;
 }
 function LX_bestLuckyBurnLocation() {
   var candidates = [

@@ -10638,7 +10638,7 @@ function auto_combatDefaultStage4(round_1, enemy, text) {
     handleTracker({
       what: $skill`Steal Monster's Heart`,
       location: (0, import_kolmafia88.myLocation)(),
-      detail: `${(0, import_kolmafia88.lastMonster)()}: ${get("heartstoneLetters")} -> ${get("heartstoneLetters") + (0, import_kolmafia88.heartstoneMiddleLetter)()}`,
+      detail: `${(0, import_kolmafia88.lastMonster)()}: ${get("heartstoneLetters")}[${(0, import_kolmafia88.heartstoneMiddleLetter)()}]`,
       property: "auto_otherstuff"
     });
     return auto_useSkill($skill`Steal Monster's Heart`);
