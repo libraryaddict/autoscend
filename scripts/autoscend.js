@@ -18536,6 +18536,9 @@ function L13_towerNSTowerMeat() {
   if ((0, import_kolmafia63.toLowerCase)((0, import_kolmafia63.getProperty)("auto_towerBreak")) === "wall of meat" || (0, import_kolmafia63.toLowerCase)((0, import_kolmafia63.getProperty)("auto_towerBreak")) === "wallofmeat" || (0, import_kolmafia63.toLowerCase)((0, import_kolmafia63.getProperty)("auto_towerBreak")) === "meat" || (0, import_kolmafia63.toLowerCase)((0, import_kolmafia63.getProperty)("auto_towerBreak")) === "level 2") {
     (0, import_kolmafia63.abort)("auto_towerBreak set to abort here.");
   }
+  $modifiers`Monster Level, Item Drop, Experience`.forEach(
+    (modifier) => maximizer.clearWeight(modifier)
+  );
   equipBaseline();
   shrugAT($effect`Polka of Plenty`);
   provideMeat$1(526, true, false);
@@ -18671,6 +18674,9 @@ function L13_towerNSTowerBones() {
   } finally {
     _iterator9.f();
   }
+  $modifiers`Monster Level, Item Drop, Experience, Meat Drop`.forEach(
+    (modifier) => maximizer.clearWeight(modifier)
+  );
   maximizer.weight($modifier`Mysticality`, 100).weight($modifier`Spell Damage Percent`, 60).weight($modifier`Spell Damage`, 20).weight($modifier`Monster Level`, -20);
   equipMaximizedGear();
   var _iterator0 = _createForOfIteratorHelper(
@@ -18771,6 +18777,9 @@ function L13_towerNSTowerShadow() {
     );
     return true;
   }
+  $modifiers`Monster Level, Item Drop, Meat Drop, Experience`.forEach(
+    (modifier) => maximizer.clearWeight(modifier)
+  );
   var n_healing_items = (0, import_kolmafia63.itemAmount)($item`gauze garter`) + (0, import_kolmafia63.itemAmount)($item`filthy poultice`) + (0, import_kolmafia63.itemAmount)($item`red pixel potion`) + (0, import_kolmafia63.itemAmount)($item`scented massage oil`);
   if (in_plumber()) {
     n_healing_items = (0, import_kolmafia63.itemAmount)($item`super deluxe mushroom`);
@@ -18918,7 +18927,10 @@ function L13_towerNSFinalDo() {
   }
   autoEquipToSlot($slot`off-hand`, $item`Oscus's garbage can lid`);
   handleFamiliar("boss");
-  maximizer.weight($modifier`Damage Reduction`, 10).weight($modifier`Moxie`, 3).weight($modifier`Damage Absorption`, 0.5).max($modifier`Damage Absorption`, 1e3).weight($modifier`Monster Level`, -5).weight($modifier`Maximum HP`, 1.5).weight($modifier`Item Drop`, 0).weight($modifier`Meat Drop`, 0);
+  $modifiers`Monster Level, Item Drop, Meat Drop, Experience`.forEach(
+    (modifier) => maximizer.clearWeight(modifier)
+  );
+  maximizer.weight($modifier`Damage Reduction`, 10).weight($modifier`Moxie`, 3).weight($modifier`Damage Absorption`, 0.5).max($modifier`Damage Absorption`, 1e3).weight($modifier`Monster Level`, -5).weight($modifier`Maximum HP`, 1.5);
   autoEquipToSlot($slot`acc2`, $item`attorney's badge`);
   if (in_aosol()) {
     buffMaintain$2($effect`Queso Fustulento`, 10, 1, 10);
@@ -25966,17 +25978,6 @@ function auto_codpieceFillerItem() {
     (i) => (maximizer.getBonus(i) <= 0 || !CODPIECE_MANAGED_GEMS.includes(i)) && (0, import_kolmafia72.itemAmount)(i) > 0
   ) ?? import_kolmafia72.Item.none;
 }
-function auto_codpieceOriginalGems() {
-  var raw = (0, import_kolmafia72.getProperty)("_auto_codpiece_original_gems").split(",");
-  if (raw.length === 5) {
-    return raw.map((s) => import_kolmafia72.Item.get(parseInt(s)));
-  }
-  _set(
-    "_auto_codpiece_original_gems",
-    EternityCodpiece_exports.currentGems().map((g) => g.id).join(",")
-  );
-  return EternityCodpiece_exports.currentGems();
-}
 function auto_codpieceFoldGemScores() {
   if (!auto_haveEternityCodpiece()) {
     maximizer.clearFoldedBonuses($item`The Eternity Codpiece`);
@@ -25991,16 +25992,13 @@ function auto_codpieceReconcileGem(gem) {
   if (!CODPIECE_MANAGED_GEMS.includes(gem)) {
     return;
   }
-  var wanted = maximizer.getBonus(gem) > 0;
+  var wanted = maximizer.getBonus(gem) > 0 || gem === $item`Heartstone`;
   var codpieceWorn = (0, import_kolmafia72.haveEquipped)($item`The Eternity Codpiece`);
   var inCodpiece = auto_isInEternityCodpiece(gem);
   var slots = EternityCodpiece_exports.SLOTS;
-  var originals = auto_codpieceOriginalGems();
   if (wanted && codpieceWorn && !inCodpiece && !(0, import_kolmafia72.haveEquipped)(gem)) {
     var emptySlot = slots.find((s) => (0, import_kolmafia72.equippedItem)(s) === import_kolmafia72.Item.none);
-    var backfillSlot = _toConsumableArray(slots).reverse().find(
-      (s) => !CODPIECE_MANAGED_GEMS.includes((0, import_kolmafia72.equippedItem)(s)) && (0, import_kolmafia72.equippedItem)(s) === originals[slots.indexOf(s)]
-    );
+    var backfillSlot = _toConsumableArray(slots).reverse().find((s) => maximizer.getBonus((0, import_kolmafia72.equippedItem)(s)) <= 0);
     var target = emptySlot ?? backfillSlot;
     if (!target) {
       return;
@@ -26013,14 +26011,11 @@ function auto_codpieceReconcileGem(gem) {
     if (idx === -1) {
       return;
     }
-    if (gem === $item`Baseball Diamond`) {
-      (0, import_kolmafia72.equip)(slots[idx], auto_codpieceFillerItem());
+    var filler = auto_codpieceFillerItem();
+    if (gem !== $item`Baseball Diamond` && (filler === import_kolmafia72.Item.none || filler === (0, import_kolmafia72.equippedItem)(slots[idx]))) {
       return;
     }
-    if (originals[idx] === import_kolmafia72.Item.none || (0, import_kolmafia72.itemAmount)(originals[idx]) === 0) {
-      return;
-    }
-    (0, import_kolmafia72.equip)(slots[idx], originals[idx]);
+    (0, import_kolmafia72.equip)(slots[idx], filler);
   }
 }
 function auto_codpieceFillEmptySlots() {
@@ -54447,7 +54442,7 @@ function disregardInstantKarma() {
   if (inAftercore()) {
     return true;
   }
-  if ((0, import_kolmafia102.myLevel)() !== 13) {
+  if ((0, import_kolmafia102.myLevel)() < 13) {
     return true;
   }
   return get("auto_disregardInstantKarma", false);
@@ -70378,6 +70373,9 @@ function auto_pre_adventure() {
     doML = true;
     removeML = false;
     purgeML = false;
+  }
+  if ((0, import_kolmafia140.myLevel)() >= 13 && internalQuestStatus("questL13Final") >= 7 && internalQuestStatus("questL13Final") < 14) {
+    doML = false;
   }
   if (auto_backupTarget()) {
     doML = false;
