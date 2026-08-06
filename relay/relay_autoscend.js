@@ -21751,13 +21751,34 @@ function mobiusChoiceHandler(choice, page) {
     }
   }
   if (auto_paradoxicity() < 15) {
+    var statChoices = [
+      ["Mind your own business", $stat`Mysticality`],
+      ["Lift yourself by your bootstraps", $stat`Muscle`],
+      ["Shoot yourself in the foot", $stat`Moxie`]
+    ].map(
+      (_ref6) => {
+        var _ref7 = _slicedToArray(_ref6, 2), choice2 = _ref7[0], stat = _ref7[1];
+        return [
+          choice2,
+          (0, import_kolmafia65.myBasestat)(stat_to_substat(stat)) * (stat === (0, import_kolmafia65.myClass)().primestat ? 0.7 : 1)
+        ];
+      }
+    );
+    statChoices.sort((_ref8, _ref9) => {
+      var _ref0 = _slicedToArray(_ref8, 2), s1 = _ref0[1];
+      var _ref1 = _slicedToArray(_ref9, 2), s2 = _ref1[1];
+      return s1 - s2;
+    });
     for (var _i9 = 0, _arr3 = [
       "Stop your arch-nemesis as a baby",
       "Borrow meat from your future",
-      "Hey, free gun!",
-      "Shoot yourself in the foot",
-      "Mind your own business",
-      "Lift yourself up by your bootstraps",
+      "Hey, free gun!"
+    ].concat(_toConsumableArray(
+      statChoices.map((_ref10) => {
+        var _ref11 = _slicedToArray(_ref10, 1), s = _ref11[0];
+        return s;
+      })
+    ), [
       "Draw a goatee on yourself",
       "Go for a nature walk",
       "Steal a cupcake from young Susie",
@@ -21771,7 +21792,7 @@ function mobiusChoiceHandler(choice, page) {
       "Play Schroedinger's Prank on yourself",
       "Peek in on your future",
       "Give your past self investment tips"
-    ]; _i9 < _arr3.length; _i9++) {
+    ]); _i9 < _arr3.length; _i9++) {
       var str = _arr3[_i9];
       if (choiceMap.has(str)) {
         mobiusChoice(str);
