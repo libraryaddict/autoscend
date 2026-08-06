@@ -26103,7 +26103,7 @@ function auto_tryPlayBaseball() {
   }
   var assignments = auto_baseballBuildAssignments(team);
   var slotZeroLoadBearing = auto_baseballIsSlotZeroLoadBearing(assignments);
-  if (!slotZeroLoadBearing && assignments.length < 3 && auto_baseballZoneHasUnclaimedTarget((0, import_kolmafia71.myLocation)(), assignments, team) && isSoftBlockInPlace("baseballDiamond")) {
+  if (!slotZeroLoadBearing && (assignments.length < 3 || auto_baseballZoneHasUnclaimedTarget((0, import_kolmafia71.myLocation)(), assignments, team)) && isSoftBlockInPlace("baseballDiamond")) {
     return false;
   }
   var plan = auto_baseballPitchPlan();
