@@ -1521,7 +1521,7 @@ var Macro = /* @__PURE__ */ (function() {
        *
        * @returns {Macro} This object itself.
        */
-      function abort75() {
+      function abort73() {
         return this.step("abort");
       }
     )
@@ -1924,7 +1924,7 @@ var Macro = /* @__PURE__ */ (function() {
     } finally {
       _iterator.f();
     }
-  } }, { key: "abort", value: function abort75() {
+  } }, { key: "abort", value: function abort73() {
     return new this().abort();
   } }, { key: "abortWithWarning", value: function abortWithWarning(warning) {
     return new this().abortWithWarning(warning);
@@ -7454,7 +7454,7 @@ var Maximizer = /* @__PURE__ */ (function() {
             continue;
           }
           if (itemModes.size > 1) {
-            (0, import_kolmafia27.abort)(
+            auto_abort(
               `Maximizer: multiple modes queued for ${_item2} (${_toConsumableArray(itemModes).join(", ")}), but equipping can only force one.`
             );
           }
@@ -13220,8 +13220,6 @@ function L7_cryptDo() {
   if (L7_bonerdagonDefeated()) {
     return runQuestTask(L7_cryptFinishTask);
   }
-  (0, import_kolmafia56.visitUrl)("crypt.php");
-  (0, import_kolmafia56.use)(1, $item`Evilometer`);
   cyrptEvilBonus();
   return runTaskChain(
     [
@@ -15696,7 +15694,7 @@ function LX_acquireEpicWeaponDo() {
     (0, import_kolmafia58.visitUrl)("guild.php?place=scg");
     (0, import_kolmafia58.cliExecute)("refresh quests");
     if (internalQuestStatus("questG04Nemesis") < 0) {
-      (0, import_kolmafia58.abort)(
+      auto_abort(
         "Failed to start Nemesis quest. Please start it manually then run me again"
       );
     }
@@ -16896,6 +16894,61 @@ var get8BitFatLootTokenTask = registerQuestTask({
 });
 function get8BitFatLootToken() {
   return runQuestTask(get8BitFatLootTokenTask);
+}
+var eightBitLocs = [
+  {
+    location: $location`Vanya's Castle`,
+    modifier: $modifier`Initiative`,
+    target: 595.6
+  },
+  {
+    location: $location`Hero's Field`,
+    modifier: $modifier`Item Drop`,
+    target: 395.6
+  },
+  {
+    location: $location`The Fungus Plains`,
+    modifier: $modifier`Meat Drop`,
+    target: 445.6
+  }
+];
+var canUseAnyFamiliar = /* @__PURE__ */ new Map();
+function auto_8BitCanUseAnyFamiliar(place) {
+  var compute = canUseAnyFamiliar.get(place);
+  return compute !== void 0 && compute.canUseAnyFamiliar;
+}
+function auto_8BitCheckCappingScore(place) {
+  if (!canChangeFamiliar() || !pathHasFamiliar() || !pathAllowsChangingFamiliar()) {
+    return;
+  }
+  var realm = eightBitLocs.find((t) => t.location === place);
+  if (realm === void 0) {
+    return;
+  }
+  var meetsTarget = (0, import_kolmafia62.numericModifier)(realm.modifier) - 40 >= realm.target;
+  var cached = canUseAnyFamiliar.get(place);
+  if (!meetsTarget) {
+    canUseAnyFamiliar.set(place, {
+      canUseAnyFamiliar: meetsTarget,
+      computed: (0, import_kolmafia62.myTurncount)()
+    });
+    return;
+  }
+  if (cached !== void 0 && cached.canUseAnyFamiliar === meetsTarget) {
+    cached.computed = (0, import_kolmafia62.myTurncount)();
+    return;
+  }
+  if (cached !== void 0 && cached.computed + 40 >= (0, import_kolmafia62.myTurncount)()) {
+    return;
+  }
+  var current = (0, import_kolmafia62.myFamiliar)();
+  (0, import_kolmafia62.useFamiliar)($familiar`none`);
+  meetsTarget = (0, import_kolmafia62.numericModifier)(realm.modifier) >= realm.target;
+  (0, import_kolmafia62.useFamiliar)(current);
+  canUseAnyFamiliar.set(place, {
+    canUseAnyFamiliar: meetsTarget,
+    computed: (0, import_kolmafia62.myTurncount)()
+  });
 }
 function LX_getDigitalKeyDo() {
   if ((0, import_kolmafia62.itemAmount)($item`digital key`) > 0) {
@@ -26195,7 +26248,7 @@ function auto_swordFamiliarWantsMonsterDrops(sMonster) {
   }
   if ($monsters`skeleton astronaut, spiny skelelton, toothy sklelton`.includes(
     sMonster
-  ) && auto_is_valid($item`evil eye`) && get("cyrptNookEvilness") - (0, import_kolmafia71.itemAmount)($item`evil eye`) * 3 > 16 && !in_koe()) {
+  ) && auto_is_valid($item`evil eye`) && get("cyrptNookEvilness") - (0, import_kolmafia71.itemAmount)($item`evil eye`) * 3 > 13 + (!currentlyTracking ? 3 : 0) && !in_koe()) {
     return true;
   }
   if ((currentlyTracking || chanceToEncounterMonster >= 100) && !auto_haveSpringShoes() && sMonster === $monster`Green Ops Soldier`) {
@@ -30253,20 +30306,6 @@ function L11_mauriceSpookyravenNormalPathwayReady() {
   }
   return true;
 }
-function L11_mauriceSpookyravenZones() {
-  return [
-    L11_mauriceSpookyravenBallroomTask,
-    L11_mauriceSpookyravenKitchenTask,
-    L11_mauriceSpookyravenConservatoryTask,
-    L11_mauriceSpookyravenBathroomTask,
-    L11_mauriceSpookyravenGalleryTask,
-    L11_mauriceSpookyravenLaboratoryTask,
-    L11_mauriceSpookyravenStorageRoomTask,
-    L11_mauriceSpookyravenWineCellarTask,
-    L11_mauriceSpookyravenLaundryRoomTask,
-    L11_mauriceSpookyravenBoilerRoomTask
-  ].flatMap(taskLocations);
-}
 var L11_mauriceSpookyravenBallroomTask = registerQuestTask({
   name: "L11_mauriceSpookyravenBallroom",
   completed: () => internalQuestStatus("questL11Manor") >= 1,
@@ -30288,7 +30327,7 @@ var L11_mauriceSpookyravenBallroomTask = registerQuestTask({
 });
 var L11_mauriceSpookyravenMortarTask = registerQuestTask({
   name: "L11_mauriceSpookyravenMortar",
-  completed: () => (0, import_kolmafia75.getProperty)("spookyravenRecipeUsed") !== "",
+  completed: () => (0, import_kolmafia75.getProperty)("spookyravenRecipeUsed") !== "none",
   ready: () => internalQuestStatus("questL11Manor") >= 1,
   do: () => {
     if ((0, import_kolmafia75.itemAmount)($item`recipe: mortar-dissolving solution`) === 0) {
@@ -30312,12 +30351,6 @@ var L11_mauriceSpookyravenBossTask = registerQuestTask({
       return false;
     }
     if (is_professor()) {
-      return false;
-    }
-    if (auto_copierShouldDelayZone(L11_mauriceSpookyravenZones())) {
-      auto_log_debug(
-        "Delaying Manor boss fight - still farming a copier target in this cluster."
-      );
       return false;
     }
     return true;
@@ -30454,8 +30487,8 @@ var L11_mauriceSpookyravenAltPathwayFinishTask = registerQuestTask(
 );
 var L11_mauriceSpookyravenFulminateCraftTask = registerQuestTask({
   name: "L11_mauriceSpookyravenFulminateCraft",
-  completed: () => possessEquipment($item`unstable fulminate`) || internalQuestStatus("questL11Manor") >= 3,
-  ready: () => !possessEquipment($item`unstable fulminate`) && internalQuestStatus("questL11Manor") < 3 && (0, import_kolmafia75.itemAmount)($item`blasting soda`) === 1 && (0, import_kolmafia75.itemAmount)($item`bottle of Chateau de Vinegar`) === 1,
+  completed: () => possessEquipment($item`unstable fulminate`) || (0, import_kolmafia75.itemAmount)($item`wine bomb`) > 0 || internalQuestStatus("questL11Manor") >= 3,
+  ready: () => (0, import_kolmafia75.itemAmount)($item`blasting soda`) === 1 && (0, import_kolmafia75.itemAmount)($item`bottle of Chateau de Vinegar`) === 1,
   do: () => {
     auto_log_info(
       "Time to cook up something explosive! Science fair unstable fulminate time!",
@@ -30504,7 +30537,7 @@ var L11_mauriceSpookyravenFulminateCraftTask = registerQuestTask({
 });
 var L11_mauriceSpookyravenWineCellarTask = registerQuestTask({
   name: "L11_mauriceSpookyravenWineCellar",
-  completed: () => (0, import_kolmafia75.itemAmount)($item`bottle of Chateau de Vinegar`) > 0 || possessEquipment($item`unstable fulminate`) || internalQuestStatus("questL11Manor") >= 3,
+  completed: () => (0, import_kolmafia75.itemAmount)($item`bottle of Chateau de Vinegar`) > 0 || possessEquipment($item`unstable fulminate`) || (0, import_kolmafia75.itemAmount)($item`wine bomb`) > 0 || internalQuestStatus("questL11Manor") >= 3,
   ready: () => {
     if (L11_mauriceSpookyravenAltPathwayActive() || (0, import_kolmafia75.itemAmount)($item`bottle of Chateau de Vinegar`) > 0 || possessEquipment($item`unstable fulminate`) || internalQuestStatus("questL11Manor") >= 3) {
       return false;
@@ -30540,7 +30573,7 @@ var L11_mauriceSpookyravenWineCellarTask = registerQuestTask({
 });
 var L11_mauriceSpookyravenLaundryRoomTask = registerQuestTask({
   name: "L11_mauriceSpookyravenLaundryRoom",
-  completed: () => (0, import_kolmafia75.itemAmount)($item`blasting soda`) > 0 || possessEquipment($item`unstable fulminate`) || internalQuestStatus("questL11Manor") >= 3,
+  completed: () => (0, import_kolmafia75.itemAmount)($item`blasting soda`) > 0 || possessEquipment($item`unstable fulminate`) || (0, import_kolmafia75.itemAmount)($item`wine bomb`) > 0 || internalQuestStatus("questL11Manor") >= 3,
   ready: () => {
     if (L11_mauriceSpookyravenAltPathwayActive() || (0, import_kolmafia75.itemAmount)($item`blasting soda`) > 0 || possessEquipment($item`unstable fulminate`) || internalQuestStatus("questL11Manor") >= 3) {
       return false;
@@ -30574,9 +30607,9 @@ var L11_mauriceSpookyravenLaundryRoomTask = registerQuestTask({
 });
 var L11_mauriceSpookyravenBoilerRoomTask = registerQuestTask({
   name: "L11_mauriceSpookyravenBoilerRoom",
-  completed: () => !possessEquipment($item`unstable fulminate`) || internalQuestStatus("questL11Manor") >= 3,
+  completed: () => (0, import_kolmafia75.itemAmount)($item`wine bomb`) > 0 || internalQuestStatus("questL11Manor") >= 3,
   ready: () => {
-    if (!possessEquipment($item`unstable fulminate`) || internalQuestStatus("questL11Manor") >= 3) {
+    if (!possessEquipment($item`unstable fulminate`)) {
       return false;
     }
     if (!L11_mauriceSpookyravenNormalPathwayReady()) {
@@ -60060,6 +60093,10 @@ function auto_is_valid$4(str) {
   }
   return (0, import_kolmafia134.isUnrestricted)(str);
 }
+function auto_abort(s) {
+  auto_log_error(s);
+  (0, import_kolmafia134.abort)(s);
+}
 function auto_log(s, color, log_level) {
   if (log_level > get("auto_log_level", 0)) {
     return;
@@ -62038,7 +62075,7 @@ function auto_runCombat(text, combatMacro) {
       if ((0, import_kolmafia134.currentRound)() === 0 && ((0, import_kolmafia134.inMultiFight)() || (0, import_kolmafia134.fightFollowsChoice)())) {
         text = (0, import_kolmafia134.visitUrl)("main.php");
       }
-      if ((0, import_kolmafia134.currentRound)() === 0 && ((0, import_kolmafia134.inMultiFight)() || (0, import_kolmafia134.fightFollowsChoice)())) {
+      if ((0, import_kolmafia134.currentRound)() === 0) {
         (0, import_kolmafia134.abort)(
           `Still not in combat after visiting fight.php/main.php (multiFight=${(0, import_kolmafia134.inMultiFight)()} fightFollowsChoice=${(0, import_kolmafia134.fightFollowsChoice)()})`
         );
@@ -62476,7 +62513,7 @@ function autoChooseFamiliar(place) {
   }
   if ($locations`Guano Junction, The Beanbat Chamber, Cobb's Knob Harem, The Goatlet, Itznotyerzitz Mine, Twin Peak, The Penultimate Fantasy Airship, The Hidden Temple, The Hidden Bowling Alley, The Haunted Wine Cellar, The Haunted Laundry Room, The Copperhead Club, A Mob of Zeppelin Protesters, Whitey's Grove, The Oasis, The Middle Chamber, The Orcish Frat House, The Hippy Camp, The Hatching Chamber, The Feeding Chamber, The Royal Guard Chamber, The Hole in the Sky, Hero's Field, The Degrassi Knoll Garage, The Old Landfill, The Laugh Floor, Infernal Rackets Backstage`.includes(
     place
-  )) {
+  ) && (place !== $location`Hero's Field` || !auto_8BitCanUseAnyFamiliar($location`Hero's Field`))) {
     famChoice = lookupFamiliarDatafile("item");
   }
   if (place === $location`Inside the Palindome` && (0, import_kolmafia135.itemAmount)($item`stunt nuts`) === 0 && (0, import_kolmafia135.itemAmount)($item`wet stunt nut stew`) === 0) {
@@ -62556,13 +62593,13 @@ function autoChooseFamiliar(place) {
   if ($location`The Themthar Hills` === place) {
     famChoice = lookupFamiliarDatafile("meat");
   }
-  if ($location`The Fungus Plains` === place) {
+  if ($location`The Fungus Plains` === place && !auto_8BitCanUseAnyFamiliar($location`The Fungus Plains`)) {
     famChoice = lookupFamiliarDatafile("meat");
   }
   if ($location`The Defiled Alcove` === place && get("cyrptAlcoveEvilness") > 14) {
     famChoice = lookupFamiliarDatafile("init");
   }
-  if ($location`Vanya's Castle` === place) {
+  if ($location`Vanya's Castle` === place && !auto_8BitCanUseAnyFamiliar($location`Vanya's Castle`)) {
     famChoice = lookupFamiliarDatafile("init");
   }
   famChoice = auto_forceEagle(famChoice);
@@ -66109,6 +66146,7 @@ function auto_pre_adventure() {
   maximizer.clearWeight($modifier`Mana Cost`);
   auto_ghost_prep(place);
   equipMaximizedGear();
+  auto_8BitCheckCappingScore(place);
   auto_handleRetrocape();
   auto_handleParka();
   auto_codpieceReconcileGem($item`blood cubic zirconia`);
@@ -70503,7 +70541,7 @@ function pullXWhenHaveYCasual(it, howMany, whenHave) {
   var maxprice = get("autoBuyPriceLimit");
   while ((0, import_kolmafia143.itemAmount)(it) < howMany && auto_mall_price(it) < maxprice) {
     if (auto_mall_price(it) > (0, import_kolmafia143.myMeat)()) {
-      (0, import_kolmafia143.abort)("Don't have enough meat to restock, big sad");
+      auto_abort("Don't have enough meat to restock, big sad");
     }
     if ((0, import_kolmafia143.buy)(1, it, maxprice) === 0) {
       auto_log_info(
@@ -72365,7 +72403,7 @@ function adventureFailureHandler() {
           "blue"
         );
         (0, import_kolmafia153.print)("set auto_newbieOverride = true", "blue");
-        (0, import_kolmafia153.abort)(
+        auto_abort(
           `We have spent ${place.turnsSpent} turns at '${place}' and that is bad... aborting.`
         );
       }
@@ -72375,7 +72413,7 @@ function adventureFailureHandler() {
     if (get("auto_newbieOverride", false)) {
       _set("auto_newbieOverride", false);
     } else {
-      (0, import_kolmafia153.abort)("We went to the Noob Cave for reals... uh oh");
+      auto_abort("We went to the Noob Cave for reals... uh oh");
     }
   } else {
     _set("auto_newbieOverride", false);
@@ -72385,7 +72423,9 @@ function adventureFailureHandler() {
 function beatenUpResolution() {
   if ((0, import_kolmafia153.haveEffect)($effect`Beaten Up`) > 0) {
     if (get("auto_beatenUpCount", 0) > 10 && (0, import_kolmafia153.getProperty)("lastEncounter") !== "Poetic Justice") {
-      (0, import_kolmafia153.abort)("We are getting beaten up too much, this is not good. Aborting.");
+      auto_abort(
+        "We are getting beaten up too much, this is not good. Aborting."
+      );
     }
     acquireHP();
   }
@@ -72402,7 +72442,7 @@ function beatenUpResolution() {
     } else {
       (0, import_kolmafia153.cliExecute)("refresh all");
       if ((0, import_kolmafia153.haveEffect)($effect`Beaten Up`) > 0) {
-        (0, import_kolmafia153.abort)(
+        auto_abort(
           "We failed to remove beaten up. Adventuring in the same place that we got beaten in with half stats will just result in us dying again"
         );
       }
@@ -73257,7 +73297,7 @@ var ggooSanityCheckTask = registerQuestTask({
   ready: () => true,
   do: () => {
     if (in_ggoo()) {
-      (0, import_kolmafia153.abort)(
+      auto_abort(
         "Should not have gotten here, aborted LA_grey_goo_tasks method allowed return to caller. Uh oh."
       );
     }
