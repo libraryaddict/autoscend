@@ -66339,7 +66339,7 @@ function auto_runCombat(text, combatMacro) {
       if ((0, import_kolmafia135.currentRound)() === 0 && ((0, import_kolmafia135.inMultiFight)() || (0, import_kolmafia135.fightFollowsChoice)())) {
         text = (0, import_kolmafia135.visitUrl)("main.php");
       }
-      if ((0, import_kolmafia135.currentRound)() === 0) {
+      if ((0, import_kolmafia135.currentRound)() === 0 && ((0, import_kolmafia135.inMultiFight)() || (0, import_kolmafia135.fightFollowsChoice)())) {
         (0, import_kolmafia135.abort)(
           `Still not in combat after visiting fight.php/main.php (multiFight=${(0, import_kolmafia135.inMultiFight)()} fightFollowsChoice=${(0, import_kolmafia135.fightFollowsChoice)()})`
         );
