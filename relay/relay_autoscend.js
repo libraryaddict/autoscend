@@ -26881,19 +26881,19 @@ function auto_have_baseball_diamond() {
   }
   return false;
 }
-function auto_baseball_innings_left() {
+function auto_baseballInningsRemaining() {
   return 3 - get("_baseballInnings");
 }
-function auto_baseball_freefight_monster() {
-  return auto_baseball_freefights_left() > 0 ? get("_curveballMonster", $monster.none) : import_kolmafia80.Monster.none;
+function auto_baseballFreefightMonster() {
+  return auto_baseballFreefightsRemaining() > 0 ? get("_curveballMonster", $monster.none) : import_kolmafia80.Monster.none;
 }
-function auto_baseball_freefights_left() {
+function auto_baseballFreefightsRemaining() {
   return get("_curveballFightsLeft", 0);
 }
-function auto_baseball_team() {
+function auto_baseballRecruits() {
   return get("baseballTeam").split(",").filter(Boolean).map((s) => import_kolmafia80.Monster.get(s));
 }
-function auto_playBaseball_game(assignments) {
+function auto_playBaseballGame(assignments) {
   (0, import_kolmafia80.visitUrl)(`inventory.php?pwd=${(0, import_kolmafia80.myHash)()}&action=pball`, false);
   if (!(0, import_kolmafia80.handlingChoice)()) return false;
   var finishers = [
@@ -26966,7 +26966,7 @@ function auto_playBaseball_game(assignments) {
     }
     return true;
   }
-  var team = auto_baseball_team();
+  var team = auto_baseballRecruits();
   for (var i = 0; i < 9; i++) {
     var options = (0, import_kolmafia80.availableChoiceOptions)();
     var bestElement = import_kolmafia80.Element.none;
@@ -27023,7 +27023,7 @@ function auto_playBaseball_game(assignments) {
     });
   }
   (0, import_kolmafia80.visitUrl)(`choice.php?pwd&whichchoice=1598&option=6`);
-  if (auto_baseball_team().length > 0) {
+  if (auto_baseballRecruits().length > 0) {
     (0, import_kolmafia80.abort)(`Expected to have played baseball, did not.`);
   }
   return true;
@@ -27137,10 +27137,10 @@ function auto_baseballBuildAssignments(team) {
 }
 function auto_baseballDiamondMaximizerBonus(loc) {
   if (!auto_have_baseball_diamond()) return 0;
-  if (auto_baseball_innings_left() === 0 && (!(0, import_kolmafia80.canEat)() || !(0, import_kolmafia80.canDrink)() || fullness_left() > 0 && inebriety_left() > 0 || getMinimumAdventuresToMaintain() + 10 > (0, import_kolmafia80.myAdventures)())) {
+  if (auto_baseballInningsRemaining() === 0 && (!(0, import_kolmafia80.canEat)() || !(0, import_kolmafia80.canDrink)() || fullness_left() > 0 && inebriety_left() > 0 || getMinimumAdventuresToMaintain() + 10 > (0, import_kolmafia80.myAdventures)())) {
     return 0;
   }
-  var team = auto_baseball_team();
+  var team = auto_baseballRecruits();
   var assignments = auto_baseballBuildAssignments(team);
   var assignedElements = assignments.map((a) => a.element);
   var hasWorthyTarget = auto_zoneCopyableMonsters(loc).some(
@@ -27198,7 +27198,7 @@ function auto_baseballShouldPlay(team, assignments) {
     return false;
   }
   var validAssignments = assignments.filter(
-    (a) => !isSniffed(a.finisherMonster, $item`Baseball Diamond`) && a.finisherMonster !== auto_baseball_freefight_monster()
+    (a) => !isSniffed(a.finisherMonster, $item`Baseball Diamond`) && a.finisherMonster !== auto_baseballFreefightMonster()
   );
   if (validAssignments.length === 3) {
     return true;
@@ -27209,7 +27209,7 @@ function auto_baseballShouldPlay(team, assignments) {
   return false;
 }
 function auto_tryPlayBaseball() {
-  var team = auto_baseball_team();
+  var team = auto_baseballRecruits();
   if (team.length !== 9) {
     return false;
   }
@@ -27217,16 +27217,16 @@ function auto_tryPlayBaseball() {
   if (!auto_baseballShouldPlay(team, assignments)) {
     return false;
   }
-  if (!auto_playBaseball_game(assignments)) {
+  if (!auto_playBaseballGame(assignments)) {
     return false;
   }
   return true;
 }
 function auto_baseballShouldDelayZone(zoneMonsters) {
-  if (auto_baseball_innings_left() <= 0) {
+  if (auto_baseballInningsRemaining() <= 0) {
     return false;
   }
-  var freeFightsMonster = auto_baseball_freefight_monster();
+  var freeFightsMonster = auto_baseballFreefightMonster();
   if (zoneMonsters.some(
     (_ref13) => {
       var _ref14 = _slicedToArray(_ref13, 1), mon = _ref14[0];
@@ -27235,7 +27235,7 @@ function auto_baseballShouldDelayZone(zoneMonsters) {
   )) {
     return false;
   }
-  var team = auto_baseball_team();
+  var team = auto_baseballRecruits();
   if (team.length === 0) {
     return false;
   }
@@ -59970,7 +59970,7 @@ function isFreeMonster(mon) {
   if ((0, import_kolmafia143.containsText)((0, import_kolmafia143.toLowerCase)(mon.attributes), "free")) {
     return true;
   }
-  if (mon === auto_baseball_freefight_monster() && auto_baseball_freefights_left() > 0) {
+  if (mon === auto_baseballFreefightMonster() && auto_baseballFreefightsRemaining() > 0) {
     return true;
   }
   return false;
@@ -67068,8 +67068,7 @@ function auto_pre_adventure() {
   var wantBCZRefractedGaze = auto_bczRefractedGaze(planToPeridot);
   if (planToPeridot && !wantBCZRefractedGaze) {
     addBonusToMaximize($item`Peridot of Peril`, 1e3);
-  }
-  if (wantBCZRefractedGaze) {
+  } else if (wantBCZRefractedGaze) {
     if (auto_havePeridot()) {
       maximizer.exclude($item`Peridot of Peril`);
     }
@@ -67081,6 +67080,8 @@ function auto_pre_adventure() {
     if (auto_haveMonodent()) {
       addBonusToMaximize($item`Monodent of the Sea`, 700);
     }
+  } else if (auto_haveMonodent() && auto_baseballFreefightMonster() === $monster`some fish`) {
+    addBonusToMaximize($item`Monodent of the Sea`, 80);
   }
   if (auto_haveBatWings() && place === $location`The Penultimate Fantasy Airship`) {
     autoEquip($item`bat wings`);
