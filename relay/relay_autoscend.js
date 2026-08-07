@@ -62102,44 +62102,49 @@ function rat_locations() {
   ];
 }
 function pm_updateThrall(place, going_to_eat) {
-  if ((0, import_kolmafia134.myThrall)() === $thrall`Vampieroghi` && place === $location`The Hidden Apartment Building` && auto_have_skill(import_kolmafia134.Skill.get("Dismiss Pasta Thrall"))) {
-    (0, import_kolmafia134.useSkill)(import_kolmafia134.Skill.get("Dismiss Pasta Thrall"));
+  if ((0, import_kolmafia134.myThrall)() === $thrall`Vampieroghi` && place === $location`The Hidden Apartment Building` && auto_have_skill($skill`Dismiss Pasta Thrall`)) {
+    (0, import_kolmafia134.useSkill)($skill`Dismiss Pasta Thrall`);
   }
-  var cur = (0, import_kolmafia134.myThrall)();
-  var consider = import_kolmafia134.Thrall.none;
-  var baseline_ver = (0, import_kolmafia134.myMp)() >= 1.2 * (0, import_kolmafia134.mpCost)(import_kolmafia134.Skill.get("Bind Vermincelli")) && auto_have_skill(import_kolmafia134.Skill.get("Bind Vermincelli"));
-  var ver_level = (0, import_kolmafia134.toThrall)("ver").level;
-  var base_spice = (0, import_kolmafia134.myMp)() >= 1.2 * (0, import_kolmafia134.mpCost)(import_kolmafia134.Skill.get("Bind Spice Ghost")) && auto_have_skill(import_kolmafia134.Skill.get("Bind Spice Ghost")) && (0, import_kolmafia134.myDaycount)() > 1 && (0, import_kolmafia134.toInt)((0, import_kolmafia134.numericModifier)($modifier`MP Regen Min`)) > 9;
+  var currentThrall = (0, import_kolmafia134.myThrall)();
+  var desiredThrall = import_kolmafia134.Thrall.none;
+  var canUseVerm = auto_have_skill($skill`Bind Vermincelli`) && (0, import_kolmafia134.myMp)() >= 1.2 * (0, import_kolmafia134.mpCost)($skill`Bind Vermincelli`);
+  var vermincelliLevel = $thrall`Vermincelli`.level;
+  var canLevelVermTo11 = vermincelliLevel < 11 && auto_havePastaWand();
+  var canFreeFightRats = vermincelliLevel > 10;
+  var canUseSpiceGhost = auto_have_skill($skill`Bind Spice Ghost`) && ((0, import_kolmafia134.myDaycount)() > 1 || !canLevelVermTo11) && (0, import_kolmafia134.toInt)((0, import_kolmafia134.numericModifier)($modifier`MP Regen Min`)) > 9 && (0, import_kolmafia134.myMp)() >= 1.2 * (0, import_kolmafia134.mpCost)($skill`Bind Spice Ghost`);
   if (going_to_eat) {
-    if (base_spice && (0, import_kolmafia134.toThrall)("spice").level > 10 && !get("_legendarySpiceGhostFood")) {
-      consider = $thrall`Spice Ghost`;
+    var canUseSpiceGhostFoodBonus = canUseSpiceGhost && $thrall`Spice Ghost`.level > 10 && !get("_legendarySpiceGhostFood");
+    if (canUseSpiceGhostFoodBonus) {
+      desiredThrall = $thrall`Spice Ghost`;
     }
   } else {
-    if (baseline_ver && cur === import_kolmafia134.Thrall.none) {
-      consider = $thrall`Vermincelli`;
+    var vermNeededForRats = rat_locations().includes(place);
+    if (canUseVerm && currentThrall === import_kolmafia134.Thrall.none) {
+      desiredThrall = $thrall`Vermincelli`;
     }
-    if (base_spice) {
-      consider = $thrall`Spice Ghost`;
+    if (canUseSpiceGhost) {
+      desiredThrall = $thrall`Spice Ghost`;
     }
-    if (baseline_ver && ver_level > 10 && rat_locations().includes(place)) {
-      consider = $thrall`Vermincelli`;
-    } else if (baseline_ver && ver_level < 11 && auto_havePastaWand()) {
-      consider = $thrall`Vermincelli`;
+    if (canUseVerm && canFreeFightRats && vermNeededForRats) {
+      desiredThrall = $thrall`Vermincelli`;
+    } else if (canUseVerm && canLevelVermTo11) {
+      desiredThrall = $thrall`Vermincelli`;
     }
   }
-  if (consider !== cur && consider !== import_kolmafia134.Thrall.none) {
-    var toEquip = (0, import_kolmafia134.toSkill)(`Bind ${consider}`);
-    if (toEquip !== import_kolmafia134.Skill.none) {
-      if ((0, import_kolmafia134.myMp)() >= (0, import_kolmafia134.mpCost)(toEquip)) {
-        (0, import_kolmafia134.useSkill)(1, toEquip);
-      }
-    } else {
-      auto_log_warning(
-        "Thrall handler error. Could not generate appropriate skill.",
-        "red"
-      );
-      return false;
-    }
+  var shouldChangeThrall = desiredThrall !== currentThrall && desiredThrall !== import_kolmafia134.Thrall.none;
+  if (!shouldChangeThrall) {
+    return true;
+  }
+  var bindSkill = (0, import_kolmafia134.toSkill)(`Bind ${desiredThrall}`);
+  if (bindSkill === import_kolmafia134.Skill.none) {
+    auto_log_warning(
+      "Thrall handler error. Could not generate appropriate skill.",
+      "red"
+    );
+    return false;
+  }
+  if ((0, import_kolmafia134.myMp)() >= (0, import_kolmafia134.mpCost)(bindSkill)) {
+    (0, import_kolmafia134.useSkill)(1, bindSkill);
   }
   return true;
 }
