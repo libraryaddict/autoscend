@@ -25994,40 +25994,50 @@ function auto_baseball_team() {
 function auto_playBaseball_game(assignments) {
   (0, import_kolmafia71.visitUrl)(`inventory.php?pwd=${(0, import_kolmafia71.myHash)()}&action=pball`, false);
   if (!(0, import_kolmafia71.handlingChoice)()) return false;
-  var order = $elements`hot, cold, spooky, stench, sleaze`;
+  var finishers = [
+    [$element`hot`, "Yellow Ray"],
+    [$element`cold`, "Banish"],
+    [$element`spooky`, "Free Fights"],
+    [$element`Stench`, "Extra Zone Copies"],
+    [$element`sleaze`, "High ML"]
+  ];
   var fillerPriority = /* @__PURE__ */ new Map([
     [
       "Garbageball",
-      auto_is_valid($item`discarded hot dog`) && (0, import_kolmafia71.canEat)() || auto_is_valid($item`most of a beer`) && (0, import_kolmafia71.canDrink)() ? 100 : -1
+      [
+        auto_is_valid($item`discarded hot dog`) && (0, import_kolmafia71.canEat)() || auto_is_valid($item`most of a beer`) && (0, import_kolmafia71.canDrink)() ? 100 : -1,
+        "Food/Drink"
+      ]
     ],
-    ["Throw Some Smoke", 99],
+    ["Throw Some Smoke", [99, "+5 All Stats"]],
     // +5 stats
-    ["Deep Freeze", 98],
+    ["Deep Freeze", [98, "3 DR"]],
     // +3 DR
-    ["Bacon-Wrapped Slider", 5],
+    ["Bacon-Wrapped Slider", [5, "+Init"]],
     // Combat init
-    ["Snowball", 4],
+    ["Snowball", [4, "2-4 MP Regen"]],
     // +2-4 MP Regen
-    ["Ghost Pitch", 3],
+    ["Ghost Pitch", [3, "3-5 HP Regen"]],
     // 3-5 HP Regen
-    ["Slurveball", -2],
+    ["Slurveball", [-2, "Sleaze Res"]],
     // Sleaze res
-    ["Bring the Heat", -3],
+    ["Bring the Heat", [-3, "Hot Dmg"]],
     // +5 hot dmg
-    ["Skullball", -4],
+    ["Skullball", [-4, "Reduce Enemy Attack/Def"]],
     // Reduced att+def
-    ["Beanball", -5]
+    ["Beanball", [-5, "Passive Stench Dmg"]]
     // Passive stench damage
   ]);
   var playedCounts = /* @__PURE__ */ new Map();
-  function isSafeToPlay(element2, currentSlot) {
+  var track = [];
+  function isSafeToPlay(element, currentSlot) {
     var finisherHere = assignments.find(
       (a) => a.finisherSlot === currentSlot
     );
     if (finisherHere) {
-      return element2 === finisherHere.element;
+      return element === finisherHere.element;
     }
-    if ((playedCounts.get(element2) ?? 0) === 2) {
+    if ((playedCounts.get(element) ?? 0) === 2) {
       return false;
     }
     var totalNeeded = 0;
@@ -26039,7 +26049,7 @@ function auto_playBaseball_game(assignments) {
         return 0;
       }
       var needed = 2 - (playedCounts.get(futureFinisher.element) ?? 0);
-      if (element2 === futureFinisher.element) {
+      if (element === futureFinisher.element) {
         needed--;
       }
       totalNeeded += Math.max(0, needed);
@@ -26060,20 +26070,30 @@ function auto_playBaseball_game(assignments) {
     var bestElement = import_kolmafia71.Element.none;
     var bestChoice = 0;
     var highestPriority = -9999;
+    var gain = "???";
     var _iterator14 = _createForOfIteratorHelper(
-      order
+      finishers
     ), _step14;
     try {
-      for (_iterator14.s(); !(_step14 = _iterator14.n()).done; ) {
-        var element = _step14.value;
-        if (!isSafeToPlay(element, i)) continue;
-        var choiceNum = order.indexOf(element) + 1;
-        var priority = fillerPriority.get(options[choiceNum]) ?? -1e3;
-        if (priority > highestPriority) {
-          highestPriority = priority;
+      var _loop6 = function _loop62() {
+        var _step14$value = _slicedToArray(_step14.value, 2), element = _step14$value[0], eleGain = _step14$value[1];
+        if (!isSafeToPlay(element, i)) return 1;
+        var choiceNum = finishers.findIndex((_ref3) => {
+          var _ref4 = _slicedToArray(_ref3, 1), e = _ref4[0];
+          return e === element;
+        }) + 1;
+        var priority = fillerPriority.get(
+          options[choiceNum]
+        ) ?? [-1e3, eleGain];
+        if (priority[0] > highestPriority) {
+          highestPriority = priority[0];
           bestElement = element;
           bestChoice = choiceNum;
+          gain = priority[1];
         }
+      };
+      for (_iterator14.s(); !(_step14 = _iterator14.n()).done; ) {
+        if (_loop6()) continue;
       }
     } catch (err) {
       _iterator14.e(err);
@@ -26083,15 +26103,22 @@ function auto_playBaseball_game(assignments) {
     if (bestChoice === 0) {
       (0, import_kolmafia71.abort)(`Failed to find a valid pitch for baseball slot ${i}.`);
     }
-    var chosenText = options[bestChoice];
-    playedCounts.set(bestElement, (playedCounts.get(bestElement) ?? 0) + 1);
-    if (chosenText && !fillerPriority.has(chosenText)) {
-      auto_log_info(`Don't recognize baseball pitch: ${chosenText}`);
+    if (highestPriority === -1e3) {
+      track.push([team[i], gain]);
     }
+    playedCounts.set(bestElement, (playedCounts.get(bestElement) ?? 0) + 1);
     auto_log_info(
-      `Baseball round ${i + 1}, throwing ${bestElement} ball #${playedCounts.get(bestElement)} at ${team[i]}`
+      `Baseball round ${i + 1}, throwing ${bestElement} ball #${playedCounts.get(bestElement)} at ${team[i]} for ${gain}`
     );
     (0, import_kolmafia71.visitUrl)(`choice.php?pwd&whichchoice=1598&option=${bestChoice}`);
+  }
+  for (var _i2 = 0, _track = track; _i2 < _track.length; _i2++) {
+    var _track$_i = _slicedToArray(_track[_i2], 2), monster = _track$_i[0], _gain = _track$_i[1];
+    handleTracker({
+      what: $item`Baseball Diamond`,
+      detail: `${monster} - ${_gain}`,
+      property: "auto_otherstuff"
+    });
   }
   (0, import_kolmafia71.visitUrl)(`choice.php?pwd&whichchoice=1598&option=6`);
   if (auto_baseball_team().length > 0) {
@@ -26119,8 +26146,8 @@ function auto_baseballGetDesiredElements(mon) {
 function auto_baseballBuildAssignments(team) {
   var possible = team.map(
     (mon, slot) => [slot < 2 ? [] : auto_baseballGetDesiredElements(mon), slot]
-  ).filter((_ref3) => {
-    var _ref4 = _slicedToArray(_ref3, 1), eles = _ref4[0];
+  ).filter((_ref5) => {
+    var _ref6 = _slicedToArray(_ref5, 1), eles = _ref6[0];
     return eles.length > 0;
   });
   possible.sort((a, b) => a[1] - b[1]);
@@ -26128,12 +26155,12 @@ function auto_baseballBuildAssignments(team) {
     if (a.length !== b.length) {
       return a.length > b.length;
     }
-    var aSlots = a.map((_ref5) => {
-      var _ref6 = _slicedToArray(_ref5, 2), slot = _ref6[1];
+    var aSlots = a.map((_ref7) => {
+      var _ref8 = _slicedToArray(_ref7, 2), slot = _ref8[1];
       return slot;
     });
-    var bSlots = b.map((_ref7) => {
-      var _ref8 = _slicedToArray(_ref7, 2), slot = _ref8[1];
+    var bSlots = b.map((_ref9) => {
+      var _ref0 = _slicedToArray(_ref9, 2), slot = _ref0[1];
       return slot;
     });
     for (var i2 = 0; i2 < aSlots.length; i2++) {
@@ -26184,8 +26211,8 @@ function auto_baseballBuildAssignments(team) {
   }
   var largest = getLargestGroup([], 9);
   var assignments = largest.map(
-    (_ref9) => {
-      var _ref0 = _slicedToArray(_ref9, 2), element = _ref0[0], finisherSlot = _ref0[1];
+    (_ref1) => {
+      var _ref10 = _slicedToArray(_ref1, 2), element = _ref10[0], finisherSlot = _ref10[1];
       return {
         element,
         finisherSlot,
@@ -26194,7 +26221,7 @@ function auto_baseballBuildAssignments(team) {
       };
     }
   );
-  var _loop6 = function _loop62(i2) {
+  var _loop7 = function _loop72(i2) {
     var _assignments$find;
     if (assignments.some((a) => a.finisherSlot === i2)) {
       return 1;
@@ -26202,7 +26229,7 @@ function auto_baseballBuildAssignments(team) {
     (_assignments$find = assignments.find((a) => a.normalSlots.length < 2)) === null || _assignments$find === void 0 || _assignments$find.normalSlots.push(i2);
   };
   for (var i = 0; i < 9; i++) {
-    if (_loop6(i)) continue;
+    if (_loop7(i)) continue;
   }
   return assignments;
 }
@@ -26215,8 +26242,8 @@ function auto_baseballDiamondMaximizerBonus(loc) {
   var assignments = auto_baseballBuildAssignments(team);
   var assignedElements = assignments.map((a) => a.element);
   var hasWorthyTarget = auto_zoneCopyableMonsters(loc).some(
-    (_ref1) => {
-      var _ref10 = _slicedToArray(_ref1, 1), mon = _ref10[0];
+    (_ref11) => {
+      var _ref12 = _slicedToArray(_ref11, 1), mon = _ref12[0];
       return (auto_isWorthYellowRaying(mon, loc) || auto_isWorthSniffing(mon, loc)) && auto_baseballGetDesiredElements(mon, loc).some(
         (e) => !assignedElements.includes(e)
       );
@@ -26291,24 +26318,6 @@ function auto_tryPlayBaseball() {
   if (!auto_playBaseball_game(assignments)) {
     return false;
   }
-  var _iterator18 = _createForOfIteratorHelper(
-    assignments
-  ), _step18;
-  try {
-    for (_iterator18.s(); !(_step18 = _iterator18.n()).done; ) {
-      var a = _step18.value;
-      var _effect2 = a.element === $element`hot` ? "Drop Items" : a.element === $element`spooky` ? "Free Fights" : "Extra Zone Copies";
-      handleTracker({
-        what: $item`Baseball Diamond`,
-        detail: `${team[a.finisherSlot]} - ${_effect2}`,
-        property: "auto_otherstuff"
-      });
-    }
-  } catch (err) {
-    _iterator18.e(err);
-  } finally {
-    _iterator18.f();
-  }
   return true;
 }
 function auto_baseballShouldDelayZone(zoneMonsters) {
@@ -26317,8 +26326,8 @@ function auto_baseballShouldDelayZone(zoneMonsters) {
   }
   var freeFightsMonster = auto_baseball_freefight_monster();
   if (zoneMonsters.some(
-    (_ref11) => {
-      var _ref12 = _slicedToArray(_ref11, 1), mon = _ref12[0];
+    (_ref13) => {
+      var _ref14 = _slicedToArray(_ref13, 1), mon = _ref14[0];
       return mon === freeFightsMonster || isSniffed(mon, $item`Baseball Diamond`);
     }
   )) {
@@ -26330,8 +26339,8 @@ function auto_baseballShouldDelayZone(zoneMonsters) {
   }
   var assignments = auto_baseballBuildAssignments(team);
   return assignments.some(
-    (assignment) => zoneMonsters.some((_ref13) => {
-      var _ref14 = _slicedToArray(_ref13, 1), mon = _ref14[0];
+    (assignment) => zoneMonsters.some((_ref15) => {
+      var _ref16 = _slicedToArray(_ref15, 1), mon = _ref16[0];
       return mon === assignment.finisherMonster;
     })
   ) && isSoftBlockInPlace("baseballDiamond");
@@ -26452,8 +26461,8 @@ function auto_wantSwordFamiliar(place) {
     return false;
   }
   return auto_location_monsters(place).some(
-    (_ref15) => {
-      var _ref16 = _slicedToArray(_ref15, 2), mon = _ref16[0], chance = _ref16[1];
+    (_ref17) => {
+      var _ref18 = _slicedToArray(_ref17, 2), mon = _ref18[0], chance = _ref18[1];
       return chance > 0 && auto_swordFamiliarWantsMonsterDrops(mon, chance);
     }
   );
@@ -26463,8 +26472,8 @@ function auto_swordFamiliarShouldDelayZone(monsters) {
 }
 function auto_copierShouldDelayZone(locs) {
   var zoneMonsters = locs.flatMap(auto_zoneCopyableMonsters);
-  return auto_swordFamiliarShouldDelayZone(zoneMonsters.map((_ref17) => {
-    var _ref18 = _slicedToArray(_ref17, 1), mon = _ref18[0];
+  return auto_swordFamiliarShouldDelayZone(zoneMonsters.map((_ref19) => {
+    var _ref20 = _slicedToArray(_ref19, 1), mon = _ref20[0];
     return mon;
   })) || auto_baseballShouldDelayZone(zoneMonsters);
 }
@@ -26496,19 +26505,19 @@ function auto_summonIsGoodSwordTarget(target) {
     (monster) => auto_swordFamiliarWantsMonsterDrops(monster, 100) && canSummonMonster(monster)
   );
   if (desiredHits.length === 0) return false;
-  var _iterator19 = _createForOfIteratorHelper(
+  var _iterator18 = _createForOfIteratorHelper(
     import_kolmafia71.Location.all()
-  ), _step19;
+  ), _step18;
   try {
-    var _loop7 = function _loop72() {
-      var loc = _step19.value;
+    var _loop8 = function _loop82() {
+      var loc = _step18.value;
       if (!(0, import_kolmafia71.canAdventure)(loc)) return 0;
       var monsters = auto_location_monsters(loc);
-      var totalChance = monsters.filter((_ref19) => {
-        var _ref20 = _slicedToArray(_ref19, 2), m = _ref20[0], chance = _ref20[1];
+      var totalChance = monsters.filter((_ref21) => {
+        var _ref22 = _slicedToArray(_ref21, 2), m = _ref22[0], chance = _ref22[1];
         return desiredHits.includes(m) && chance > 0;
-      }).map((_ref21) => {
-        var _ref22 = _slicedToArray(_ref21, 2), chance = _ref22[1];
+      }).map((_ref23) => {
+        var _ref24 = _slicedToArray(_ref23, 2), chance = _ref24[1];
         return chance;
       }).reduce((l, r) => l + r, 0);
       if (totalChance <= 65) return 0;
@@ -26519,15 +26528,15 @@ function auto_summonIsGoodSwordTarget(target) {
       }
       return { v: false };
     }, _ret3;
-    for (_iterator19.s(); !(_step19 = _iterator19.n()).done; ) {
-      _ret3 = _loop7();
+    for (_iterator18.s(); !(_step18 = _iterator18.n()).done; ) {
+      _ret3 = _loop8();
       if (_ret3 === 0) continue;
       if (_ret3) return _ret3.v;
     }
   } catch (err) {
-    _iterator19.e(err);
+    _iterator18.e(err);
   } finally {
-    _iterator19.f();
+    _iterator18.f();
   }
   return true;
 }
