@@ -27652,9 +27652,13 @@ function auto_interestingCoinsSpendable() {
   return Math.max(0, coins - amount);
 }
 function auto_acquireInterestingItem(item) {
+  var speculating = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : false;
   var price = (0, import_kolmafia72.sellPrice)($coinmaster`interesting`, item);
   if (price > auto_interestingCoinsSpendable()) {
     return false;
+  }
+  if (speculating) {
+    return (0, import_kolmafia72.creatableAmount)(item) > 0;
   }
   var onHand = (0, import_kolmafia72.itemAmount)(item);
   (0, import_kolmafia72.buy)($coinmaster`Interesting Coin`, 1, item);
@@ -48428,14 +48432,17 @@ function L8_mountainManSummonDo() {
     handleFamiliar$1($familiar`Cat Burglar`);
     return summonMonster($monster`mountain man`);
   }
-  if (canSummonMonster($monster`mountain man`) && canYellowRay()) {
+  if (canSummonMonster($monster`mountain man`) && (canYellowRay($monster`mountain man`) || prepareYellowRayNextCombat(6, true))) {
     var need_dupe = current_ore < 1;
     var can_mctwist = auto_can_equip($item`pro skateboard`) && !get("_epicMcTwistUsed");
     var will_mctwist = can_mctwist && need_dupe;
+    if (!can_mctwist && need_dupe) return false;
     auto_log_info(
       `Trying to summon a mountain man, which we will YR${will_mctwist ? " and McTwist." : "."}`
     );
-    adjustForYellowRayIfPossible();
+    if (!adjustForYellowRayIfPossible($monster`mountain man`)) {
+      prepareYellowRayNextCombat(6);
+    }
     if (will_mctwist) {
       autoEquip($item`pro skateboard`);
       return summonMonster($monster`mountain man`);
@@ -61372,18 +61379,21 @@ function internalQuestStatus(prop) {
   return -1;
 }
 function prepareYellowRayNextCombat(estimatedTurnsSaves) {
+  var speculating = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : false;
   var allowedSizedDiet = estimatedTurnsSaves / Math.max(1, get("auto_consumeMinAdvPerFill", 0));
-  if (can_consume() && canChew($item`spooky jelly`) && allowedSizedDiet >= $item`spooky jelly`.spleen && spleen_left() >= $item`spooky jelly`.spleen && acquireOrPull($item`spooky jelly`) && autoChew(1, $item`spooky jelly`)) {
+  if (can_consume() && canChew($item`spooky jelly`) && allowedSizedDiet >= $item`spooky jelly`.spleen && spleen_left() >= $item`spooky jelly`.spleen && acquireOrPull($item`spooky jelly`, speculating) && (speculating || autoChew(1, $item`spooky jelly`))) {
     return true;
   }
-  if (can_consume() && allowedSizedDiet >= $item`mixed berry jelly`.spleen && canChew($item`mixed berry jelly`) && spleen_left() >= $item`mixed berry jelly`.spleen && acquireOrPull($item`mixed berry jelly`) && autoChew(1, $item`mixed berry jelly`)) {
+  if (can_consume() && allowedSizedDiet >= $item`mixed berry jelly`.spleen && canChew($item`mixed berry jelly`) && spleen_left() >= $item`mixed berry jelly`.spleen && acquireOrPull($item`mixed berry jelly`, speculating) && (speculating || autoChew(1, $item`mixed berry jelly`))) {
     return true;
   }
-  if (can_consume() && allowedSizedDiet >= $item`toxic asset`.spleen && canChew($item`toxic asset`) && spleen_left() >= $item`toxic asset`.spleen && ((0, import_kolmafia135.itemAmount)($item`toxic asset`) > 0 || auto_acquireInterestingItem($item`toxic asset`)) && autoChew(1, $item`toxic asset`)) {
-    _set("_auto_toxicAssetUses", get("_auto_toxicAssetUses", 0) + 1);
+  if (can_consume() && allowedSizedDiet >= $item`toxic asset`.spleen && canChew($item`toxic asset`) && spleen_left() >= $item`toxic asset`.spleen && ((0, import_kolmafia135.itemAmount)($item`toxic asset`) > 0 || auto_acquireInterestingItem($item`toxic asset`), speculating) && (speculating || autoChew(1, $item`toxic asset`))) {
+    if (!speculating) {
+      _set("_auto_toxicAssetUses", get("_auto_toxicAssetUses", 0) + 1);
+    }
     return true;
   }
-  if (can_consume() && allowedSizedDiet >= $item`toast with spooky jelly`.spleen && auto_canEat($item`toast with spooky jelly`) && stomach_left() >= $item`toast with spooky jelly`.fullness && acquireOrPull($item`toast with spooky jelly`) && autoEat(1, $item`toast with spooky jelly`)) {
+  if (can_consume() && allowedSizedDiet >= $item`toast with spooky jelly`.spleen && auto_canEat($item`toast with spooky jelly`) && stomach_left() >= $item`toast with spooky jelly`.fullness && acquireOrPull($item`toast with spooky jelly`, speculating) && (speculating || autoEat(1, $item`toast with spooky jelly`))) {
     return true;
   }
   return false;
@@ -62028,28 +62038,31 @@ function adjustForYellowRay(combat_string) {
 }
 function adjustForYellowRayIfPossible() {
   var target = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : import_kolmafia135.Monster.none;
-  if (canYellowRay(target)) {
-    if (isYellowRayingNextCombat()) {
-      auto_log_info(
-        `YR is active for next combat, aiming at (${target})`,
-        "blue"
-      );
-      return true;
-    }
-    var yr_string = yellowRayCombatString(
-      target,
-      false,
-      $monsters`bearpig topiary animal, elephant (meatcar?) topiary animal, spider (duck?) topiary animal, knight (Snake)`.includes(
-        target
-      )
-    );
+  if (target !== import_kolmafia135.Monster.none && isDropsCapped(target)) {
+    return true;
+  }
+  if (!canYellowRay(target)) {
+    return false;
+  }
+  if (isYellowRayingNextCombat()) {
     auto_log_info(
-      `Adjusting to have YR available for ${target}: ${yr_string}`,
+      `YR is active for next combat, aiming at (${target})`,
       "blue"
     );
-    return adjustForYellowRay(yr_string);
+    return true;
   }
-  return false;
+  var yr_string = yellowRayCombatString(
+    target,
+    false,
+    $monsters`bearpig topiary animal, elephant (meatcar?) topiary animal, spider (duck?) topiary animal, knight (Snake)`.includes(
+      target
+    )
+  );
+  auto_log_info(
+    `Adjusting to have YR available for ${target}: ${yr_string}`,
+    "blue"
+  );
+  return adjustForYellowRay(yr_string);
 }
 function canReplace(target) {
   return replaceMonsterCombatString(target) !== void 0;
@@ -63276,8 +63289,10 @@ function LX_summonMonsterDo() {
     }
   }
   var oreGoal = safeGet("trapperOre", import_kolmafia135.Item.none);
-  if (internalQuestStatus("questL08Trapper") < 2 && auto_haveTrainSet() && oreGoal !== import_kolmafia135.Item.none && (0, import_kolmafia135.itemAmount)(oreGoal) < 2 && canYellowRay() && canSummonMonster($monster`mountain man`)) {
-    adjustForYellowRayIfPossible();
+  if (internalQuestStatus("questL08Trapper") < 2 && !auto_haveTrainSet() && oreGoal !== import_kolmafia135.Item.none && (0, import_kolmafia135.itemAmount)(oreGoal) < 2 && canYellowRay() && canSummonMonster($monster`mountain man`)) {
+    if (!adjustForYellowRayIfPossible($monster`mountain man`)) {
+      prepareYellowRayNextCombat(6);
+    }
     var need_dupe = (0, import_kolmafia135.itemAmount)(oreGoal) < 1;
     var can_mctwist = auto_can_equip($item`pro skateboard`) && !get("_epicMcTwistUsed");
     var will_mctwist = can_mctwist && need_dupe;
@@ -63309,7 +63324,9 @@ function LX_summonMonsterDo() {
     }
   }
   if (!possessOutfit("Frat Warrior Fatigues") && auto_warSide() === "fratboy" && canYellowRay() && (0, import_kolmafia135.myLevel)() >= 9 && (canSummonMonster($monster`War Frat 151st Infantryman`) || canSummonMonster($monster`War Frat Mobile Grill Unit`) || canSummonMonster($monster`Orcish Frat Boy Spy`))) {
-    adjustForYellowRayIfPossible();
+    if (!adjustForYellowRayIfPossible()) {
+      prepareYellowRayNextCombat(12);
+    }
     if (summonMonster($monster`War Frat 151st Infantryman`)) {
       return true;
     }
@@ -63373,7 +63390,7 @@ var LX_summonMonsterTask = registerQuestTask({
       encounters.push({ monster: $monster`screambat`, needAmount: 1 });
     }
     var oreGoal = safeGet("trapperOre", import_kolmafia135.Item.none);
-    if (get("trapperOre") && internalQuestStatus("questL08Trapper") < 2 && auto_haveTrainSet() && (0, import_kolmafia135.itemAmount)(oreGoal) < 2 && canYellowRay() && canSummonMonster($monster`mountain man`)) {
+    if (get("trapperOre") && internalQuestStatus("questL08Trapper") < 2 && !auto_haveTrainSet() && (0, import_kolmafia135.itemAmount)(oreGoal) < 2 && (isDropsCapped($monster`mountain man`) || canYellowRay($monster`mountain man`) || prepareYellowRayNextCombat(6, true)) && canSummonMonster($monster`mountain man`)) {
       encounters.push({ monster: $monster`mountain man`, needAmount: 1 });
     }
     if (auto_is_valid($item`smut orc keepsake box`) && (0, import_kolmafia135.itemAmount)($item`smut orc keepsake box`) === 0 && (0, import_kolmafia135.myLevel)() >= 9 && (lumberCount() < bridgeGoal() || fastenerCount() < bridgeGoal()) && canSummonMonster($monster`smut orc pervert`)) {
@@ -66583,6 +66600,22 @@ function getMonsterDrops(monster) {
     rate: r.rate,
     flag: DropNames[r.type]
   }));
+}
+function isItemDropControlled(drop) {
+  return !["pickpocket_only", "steal_accordion", "conditional"].includes(drop.flag);
+}
+function isDropCapped(drop) {
+  var rate = drop.rate * ((0, import_kolmafia135.itemDropModifier)() / 100);
+  return rate >= 100;
+}
+function isDropsCapped(monster) {
+  return getMonsterDrops(monster).every(
+    (m) => !isItemDropControlled(m) || isDropCapped(m) || // We don't strict for manual potions
+    m.flag === "conditional" && isManualAvatarPotion(m.item)
+  );
+}
+function isManualAvatarPotion(item) {
+  return (0, import_kolmafia135.stringModifier)((0, import_kolmafia135.effectModifier)(item, "Effect"), "Avatar") !== "";
 }
 function auto_isWorthYellowRaying(mon, loc) {
   var drops = getMonsterDrops(mon).map((i) => i.item);
@@ -75320,17 +75353,18 @@ function auto_getConsumablePriceLimit() {
 
 // packages/kolmafia/src/autoscend/auto_acquire.ts
 function acquireOrPull(it) {
+  var speculating = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : false;
   if (possessEquipment(it)) {
     return true;
   }
   if ((0, import_kolmafia144.itemAmount)(it) > 0) {
     return true;
   }
-  if ((0, import_kolmafia144.retrieveItem)(1, it)) {
+  if (speculating ? (0, import_kolmafia144.availableAmount)(it) + (0, import_kolmafia144.creatableAmount)(it) > 0 : (0, import_kolmafia144.retrieveItem)(1, it)) {
     return true;
   }
   if (canPull(it)) {
-    if (pullXWhenHaveY(it, 1, 0)) {
+    if (speculating || pullXWhenHaveY(it, 1, 0)) {
       return true;
     }
   }
@@ -75338,6 +75372,7 @@ function acquireOrPull(it) {
     it
   )) {
     if (canPull($item`metal meteoroid`)) {
+      if (speculating) return true;
       if (pullXWhenHaveY($item`metal meteoroid`, 1, 0)) {
         if ((0, import_kolmafia144.retrieveItem)(1, it)) {
           return true;
@@ -78816,7 +78851,7 @@ function LX_calculateTheUniverse(speculative) {
     return false;
   }
   if (!possessOutfit("Frat Warrior Fatigues") && auto_warSide() === "fratboy") {
-    if (doNumberology("battlefield", false) !== -1 && adjustForYellowRayIfPossible($monster`War Frat 151st Infantryman`)) {
+    if (doNumberology("battlefield", false) !== -1 && (adjustForYellowRayIfPossible($monster`War Frat 151st Infantryman`) || prepareYellowRayNextCombat(12, speculative))) {
       if (speculative) {
         return true;
       } else {
