@@ -26285,7 +26285,6 @@ function auto_heartstoneShouldStealHeart(location) {
   } finally {
     _iterator2.f();
   }
-  var getRidOfCurrentWord = inCombat && currentWord.length > 1;
   var _iterator3 = _createForOfIteratorHelper(
     allWords
   ), _step3;
@@ -26296,22 +26295,17 @@ function auto_heartstoneShouldStealHeart(location) {
       var remainingLetters = word.substring(currentWord.length).split("");
       var _chance = remainingLetters.map((l) => letterChances.get(l) ?? 0).reduce((l, r) => Math.min(l, r), 0);
       if (_chance <= 5) continue;
-      if (!inCombat) {
-        if ((locationLetters.get(remainingLetters[0]) ?? 0) <= 0) {
-          continue;
-        }
-        return true;
-      } else {
-        return true;
+      if (!inCombat && (locationLetters.get(remainingLetters[0]) ?? 0) <= 0) {
+        continue;
       }
-      getRidOfCurrentWord = false;
+      return true;
     }
   } catch (err) {
     _iterator3.e(err);
   } finally {
     _iterator3.f();
   }
-  return getRidOfCurrentWord;
+  return currentWord.length > (inCombat ? 1 : 0);
 }
 function auto_haveElfToilet() {
   return auto_is_valid($item`Archaeologist's Spade`) && !is_werewolf() && // Werewolf doesn't have campground?
