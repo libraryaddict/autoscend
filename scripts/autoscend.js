@@ -28566,7 +28566,8 @@ function auto_acquireInterestingItem(item4) {
   return true;
 }
 function auto_chewLiquidAsset() {
-  if (!can_consume() || !auto_is_valid$2($skill`Exercise Liquidity`) || !canChew($item`liquid asset`) || spleen_left() < $item`liquid asset`.spleen || isActuallyEd()) {
+  var doingBedtime = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : false;
+  if (!auto_is_valid$2($skill`Exercise Liquidity`) || !canChew($item`liquid asset`) || spleen_left() < $item`liquid asset`.spleen || !doingBedtime && isActuallyEd()) {
     return false;
   }
   if ((0, import_kolmafia81.itemAmount)($item`liquid asset`) === 0 && !auto_acquireInterestingItem($item`liquid asset`)) {
@@ -77275,6 +77276,9 @@ function bedtime_spleen() {
       _iterator3.e(err);
     } finally {
       _iterator3.f();
+    }
+    if (!consumed_this_loop) {
+      consumed_this_loop = auto_chewLiquidAsset(true);
     }
     if (!consumed_this_loop) {
       done = true;
