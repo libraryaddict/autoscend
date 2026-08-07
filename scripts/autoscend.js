@@ -998,6 +998,41 @@ var Wanderer;
   Wanderer2["Vote"] = "Vote Monster";
 })(Wanderer || (Wanderer = {}));
 var deterministicWanderers = [Wanderer.Digitize, Wanderer.Portscan];
+function haveCounter(counterName) {
+  var minTurns = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : 0;
+  var maxTurns = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : 500;
+  return (0, import_kolmafia4.getCounters)(counterName, minTurns, maxTurns) === counterName;
+}
+function isVoteWandererNow() {
+  return (0, import_kolmafia4.totalTurnsPlayed)() % 11 === 1 && get("lastVoteMonsterTurn") < (0, import_kolmafia4.totalTurnsPlayed)();
+}
+function isWandererNow(wanderer) {
+  if (deterministicWanderers.includes(wanderer)) {
+    return haveCounter(wanderer, 0, 0);
+  }
+  if (wanderer === Wanderer.Kramco) {
+    return true;
+  }
+  if (wanderer === Wanderer.Vote) {
+    return isVoteWandererNow();
+  }
+  if (wanderer === Wanderer.Familiar) {
+    return get("_hipsterAdv") < 7;
+  }
+  var begin = wanderer + " window begin";
+  var end = wanderer + " window end";
+  return !haveCounter(begin, 1) && haveCounter(end);
+}
+function getKramcoWandererChance() {
+  var fights = get("_sausageFights");
+  var lastFight = get("_lastSausageMonsterTurn");
+  var totalTurns = (0, import_kolmafia4.totalTurnsPlayed)();
+  if (fights < 1) {
+    return lastFight === totalTurns && (0, import_kolmafia4.myTurncount)() < 1 ? 0.5 : 1;
+  }
+  var turnsSinceLastFight = totalTurns - lastFight;
+  return Math.min(1, (turnsSinceLastFight + 1) / (5 + fights * 3 + Math.max(0, fights - 5) ** 3));
+}
 function multiSplit(prop, outerDelimiter, innerDelimiter, mappers) {
   var initialSplit = get(prop).split(outerDelimiter).filter(Boolean);
   var multiDimensionalArray = outerDelimiter === innerDelimiter ? chunk(initialSplit, mappers.length) : initialSplit.map((entry) => entry.split(innerDelimiter));
@@ -27365,6 +27400,11 @@ function auto_wantSwordFamiliar(place) {
   if (auto_canTracesBandit() && auto_desires_sword_familiar_drops()) {
     return true;
   }
+  if (auto_sword_of_swords_tracking() !== import_kolmafia72.Monster.none && [Wanderer.Digitize, Wanderer.Enamorang, Wanderer.Romantic].some(
+    (w) => isWandererNow(w)
+  ) || auto_haveKramcoSausageOMatic() && getKramcoWandererChance() >= 0.9 || auto_have_familiar($familiar`Mini-Hipster`) && canChangeToFamiliar($familiar`Mini-Hipster`) && isWandererNow(Wanderer.Familiar) || isVoteWandererNow() && possessEquipment($item`"I Voted!" sticker`)) {
+    return false;
+  }
   if (!zone_delay(place)._boolean) {
     return false;
   }
@@ -35535,7 +35575,7 @@ function L12_filthwormsDo() {
   var retval;
   if ((0, import_kolmafia82.haveEffect)($effect`Filthworm Drone Stench`) > 0) {
     if ((0, import_kolmafia82.haveEffect)($effect`Filthworm Drone Stench`) === 1 && !glandGuaranteed) {
-      if (prepareYellowRayNextCombat()) {
+      if (prepareYellowRayNextCombat(15)) {
         auto_log_info(
           "Only one turn left in The Royal Guard Chamber, using forcing next combat to have a YR to avoid having to start over from the beginning"
         );
@@ -57052,6 +57092,7 @@ function auto_combatDefaultStage2(round_1, enemy, text) {
       property: "auto_otherstuff"
     });
     combat_status_add("droptablereplaced");
+    combat_status_add("refractedgazed");
     return auto_useSkill($skill`BCZ: Refracted Gaze`);
   }
   var extinguisherSkill = auto_FireExtinguisherCombatSkill((0, import_kolmafia118.myLocation)());
@@ -57130,7 +57171,7 @@ function auto_combatDefaultStage2(round_1, enemy, text) {
   var willDouse = isDouseTarget && douseAvailable;
   var swoopAvailable = auto_canUse($skill`Swoop like a Bat`, true) && get("_batWingsSwoopUsed") < 11;
   var willSwoop = auto_swoopLocations().includes((0, import_kolmafia118.myLocation)()) && swoopAvailable;
-  if ((!combat_status_check("yellowray") && auto_wantToYellowRay(enemy, (0, import_kolmafia118.myLocation)()) || combat_status_check("droptablereplaced")) && !willDouse && !willSwoop && !isYellowRayingNextCombat()) {
+  if ((!combat_status_check("yellowray") && auto_wantToYellowRay(enemy, (0, import_kolmafia118.myLocation)()) || combat_status_check("refractedgazed")) && !willDouse && !willSwoop && !isYellowRayingNextCombat()) {
     var combatAction = yellowRayCombatString(
       enemy,
       true,
@@ -61215,18 +61256,19 @@ function internalQuestStatus(prop) {
   }
   return -1;
 }
-function prepareYellowRayNextCombat() {
-  if (can_consume() && canChew($item`spooky jelly`) && spleen_left() >= $item`spooky jelly`.spleen && acquireOrPull($item`spooky jelly`) && autoChew(1, $item`spooky jelly`)) {
+function prepareYellowRayNextCombat(estimatedTurnsSaves) {
+  var allowedSizedDiet = estimatedTurnsSaves / Math.max(1, get("auto_consumeMinAdvPerFill", 0));
+  if (can_consume() && canChew($item`spooky jelly`) && allowedSizedDiet >= $item`spooky jelly`.spleen && spleen_left() >= $item`spooky jelly`.spleen && acquireOrPull($item`spooky jelly`) && autoChew(1, $item`spooky jelly`)) {
     return true;
   }
-  if (can_consume() && canChew($item`mixed berry jelly`) && spleen_left() >= $item`mixed berry jelly`.spleen && acquireOrPull($item`mixed berry jelly`) && autoChew(1, $item`mixed berry jelly`)) {
+  if (can_consume() && allowedSizedDiet >= $item`mixed berry jelly`.spleen && canChew($item`mixed berry jelly`) && spleen_left() >= $item`mixed berry jelly`.spleen && acquireOrPull($item`mixed berry jelly`) && autoChew(1, $item`mixed berry jelly`)) {
     return true;
   }
-  if (can_consume() && canChew($item`toxic asset`) && spleen_left() >= $item`toxic asset`.spleen && ((0, import_kolmafia135.itemAmount)($item`toxic asset`) > 0 || auto_acquireInterestingItem($item`toxic asset`)) && autoChew(1, $item`toxic asset`)) {
+  if (can_consume() && allowedSizedDiet >= $item`toxic asset`.spleen && canChew($item`toxic asset`) && spleen_left() >= $item`toxic asset`.spleen && ((0, import_kolmafia135.itemAmount)($item`toxic asset`) > 0 || auto_acquireInterestingItem($item`toxic asset`)) && autoChew(1, $item`toxic asset`)) {
     _set("_auto_toxicAssetUses", get("_auto_toxicAssetUses", 0) + 1);
     return true;
   }
-  if (can_consume() && auto_canEat($item`toast with spooky jelly`) && stomach_left() >= $item`toast with spooky jelly`.fullness && acquireOrPull($item`toast with spooky jelly`) && autoEat(1, $item`toast with spooky jelly`)) {
+  if (can_consume() && allowedSizedDiet >= $item`toast with spooky jelly`.spleen && auto_canEat($item`toast with spooky jelly`) && stomach_left() >= $item`toast with spooky jelly`.fullness && acquireOrPull($item`toast with spooky jelly`) && autoEat(1, $item`toast with spooky jelly`)) {
     return true;
   }
   return false;
@@ -66380,6 +66422,30 @@ function safeGet(key, fallback) {
   );
   return value === null ? fallback : value;
 }
+var DropMappings = {
+  none: "",
+  // No special rules
+  unknown: "0",
+  // Not spaded?
+  pickpocket_only: "p",
+  // Only gained via pickpocket
+  no_pickpocket: "n",
+  // Can't pickpocket
+  conditional: "c",
+  // Can't always say it'll drop
+  fixed: "f",
+  // Needs a fixed item drop?
+  steal_accordion: "a",
+  // Only via steal accordion
+  multi_drop: "m"
+  // Hobo bosses?
+};
+var DropNames = Object.fromEntries(
+  Object.entries(DropMappings).map((_ref20) => {
+    var _ref21 = _slicedToArray(_ref20, 2), name = _ref21[0], code = _ref21[1];
+    return [code, name];
+  })
+);
 
 // packages/kolmafia/src/autoscend/auto_familiar.ts
 function is100FamRun() {
