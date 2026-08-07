@@ -20897,6 +20897,10 @@ function auto_leprecondoExtras(doingBedtime) {
     traces: {
       active: (0, import_kolmafia65.spleenLimit)() > 0 && !isActuallyEd() && canConsume && (doingBedtime || !doneOrgans.includes("traces")),
       surplus: leprecondoTracesSurplus(doingBedtime)
+    },
+    plans: {
+      active: auto_is_valid($item`crafting plans`) && !doneOrgans.includes("plans"),
+      surplus: 4 + Math.min((0, import_kolmafia65.freeCrafts)(), (0, import_kolmafia65.freeSmiths)()) - (6 + (0, import_kolmafia65.itemAmount)($item`crafting plans`))
     }
   };
   var extraFill = 3;
@@ -20937,6 +20941,13 @@ function auto_leprecondoExtras(doingBedtime) {
         "cupcake treadmill": { exercise: 200 },
         "couch and flatscreen": { "dumb entertainment": 200 },
         "UltraDance karaoke machine": { "dumb entertainment": 200 }
+      }
+    },
+    {
+      // Prioritize crafting plans while we're short on free crafts/smiths
+      condition: organs.plans.active,
+      values: {
+        "internet-connected laptop": { "mental stimulation": 120 }
       }
     }
   ];
