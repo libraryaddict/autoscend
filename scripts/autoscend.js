@@ -26229,29 +26229,28 @@ function auto_heartstoneWordsToAimFor() {
   return words;
 }
 function auto_heartstoneShouldStealHeart(location) {
-  if (location === $location.none || location === $location`Noob Cave`) {
+  var inCombat = (0, import_kolmafia72.currentRound)() > 0;
+  var badLoc = location === $location.none || location === $location`Noob Cave`;
+  if (inCombat && badLoc) {
     return false;
   }
-  var inCombat = !location;
-  if (!auto_haveHeartstone() || !(0, import_kolmafia72.haveEquipped)(auto_getItemToEquipHeartstone()) || !auto_is_valid$2($skill`Steal Monster's Heart`) || inCombat && !auto_have_skill($skill`Steal Monster's Heart`) || // If in combat and don't have skill
+  if (!auto_haveHeartstone() || !(0, import_kolmafia72.haveEquipped)(auto_getItemToEquipHeartstone()) || !auto_is_valid$2($skill`Steal Monster's Heart`) || inCombat && !auto_canUse($skill`Steal Monster's Heart`) || // If in combat and don't have skill
   get("_lastCombatActions").split(";").includes(`sk${$skill`Steal Monster's Heart`.id}`)) {
     return false;
   }
   var letter = inCombat ? (0, import_kolmafia72.heartstoneMiddleLetter)().toUpperCase() : "";
   if (inCombat && letter === "") return false;
   var currentWord = get("heartstoneLetters").toUpperCase();
-  currentWord = currentWord.slice(Math.floor(currentWord.length / 4) * 4);
+  currentWord = currentWord.slice(currentWord.length % 4);
   currentWord += letter;
   var allWords = auto_heartstoneWordsToAimFor();
   if (currentWord.length >= 4 && allWords.includes(currentWord)) {
     return true;
   }
-  var allLocations = getIncompleteQuestTasks().map((t) => t.locations).filter(Boolean).flatMap(
-    (t) => typeof t === "function" ? t() : !Array.isArray(t) ? [t] : t
-  ).filter(
+  var allLocations = getIncompleteQuestTasks().flatMap((t) => taskLocations(t)).filter(
     (l) => !!l && l !== import_kolmafia72.Location.none && l !== $location`Noob Cave`
   );
-  if (location && !allLocations.includes(location)) {
+  if (!inCombat && !badLoc && !allLocations.includes(location)) {
     allLocations.push(location);
   }
   var locationLetters = /* @__PURE__ */ new Map();
@@ -26301,6 +26300,8 @@ function auto_heartstoneShouldStealHeart(location) {
         if ((locationLetters.get(remainingLetters[0]) ?? 0) <= 0) {
           continue;
         }
+        return true;
+      } else {
         return true;
       }
       getRidOfCurrentWord = false;
@@ -58553,7 +58554,7 @@ function auto_combatDefaultStage4(round_1, enemy, text) {
   if (shouldCinchoConfetti() && canSurvive(5)) {
     return auto_useSkill($skill`Cincho: Confetti Extravaganza`);
   }
-  if (auto_heartstoneShouldStealHeart()) {
+  if (auto_heartstoneShouldStealHeart((0, import_kolmafia122.myLocation)())) {
     handleTracker({
       what: $skill`Steal Monster's Heart`,
       location: (0, import_kolmafia122.myLocation)(),
