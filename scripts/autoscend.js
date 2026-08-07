@@ -58153,6 +58153,9 @@ function auto_combatDefaultStage3(round_1, enemy, text) {
     if (auto_canUse($skill`Tear Away your Pants!`) && ((0, import_kolmafia120.getProperty)("auto_forceNonCombatSource") === "" && !(auto_wantToSniff(enemy, (0, import_kolmafia120.myLocation)()) && getSniffer(enemy) !== import_kolmafia120.Skill.none) || (0, import_kolmafia120.monsterPhylum)() === $phylum`plant`)) {
       return auto_useSkill($skill`Tear Away your Pants!`);
     }
+    if (auto_canUse($skill`Taunt Your Foe`)) {
+      return auto_useSkill($skill`Taunt Your Foe`);
+    }
     if (auto_canUse($skill`Disarming Thrust`)) {
       return auto_useSkill($skill`Disarming Thrust`);
     }
@@ -68170,8 +68173,10 @@ function finalizeMaximize() {
       addBonusToMaximize($item`Cup of 13s`, Math.min(40, (0, import_kolmafia138.inebrietyLimit)() * 7));
     }
     if (have($item`Portable Laughing Stock`)) {
-      var score = 40 - get("_laughingStockFruitDropped", 0) * 6;
-      if (score > 0) {
+      var score = Math.ceil(
+        40 * (1 - Math.pow(get("_laughingStockFruitDropped", 0) / 7, 3))
+      );
+      if (score > 1) {
         addBonusToMaximize($item`Portable Laughing Stock`, Math.min(40, score));
       }
     }
