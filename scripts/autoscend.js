@@ -78845,8 +78845,7 @@ function runNextTask() {
   ), _step3;
   try {
     for (_iterator3.s(); !(_step3 = _iterator3.n()).done; ) {
-      var _step3$value = _slicedToArray(_step3.value, 2), i = _step3$value[0], task = _step3$value[1];
-      auto_log_debug(`Attempting to execute task ${i} ${task.name}`);
+      var _step3$value = _slicedToArray(_step3.value, 2), task = _step3$value[1];
       if (!engine.available(task)) {
         continue;
       }
