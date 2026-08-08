@@ -67422,9 +67422,6 @@ function auto_adv1(location, combatMacro) {
   if (!(0, import_kolmafia144.canAdventure)(location)) return false;
   if (!(0, import_kolmafia144.prepareForAdventure)(location)) return false;
   var url = (0, import_kolmafia144.toUrl)(location);
-  if (location === $location`The Lower Chambers` && get("pyramidBombUsed") && !url.endsWith("a")) {
-    url += "a";
-  }
   auto_resolveEncounters((0, import_kolmafia144.visitUrl)(url), combatMacro);
   return true;
 }
