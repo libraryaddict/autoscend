@@ -27,7 +27,7 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 // data:kolmafia_revision
 var require_kolmafia_revision = __commonJS({
   "data:kolmafia_revision"(exports, module2) {
-    module2.exports = 29138;
+    module2.exports = 29142;
   }
 });
 
@@ -69136,6 +69136,7 @@ function finalizeMaximize() {
     }
     if (have($item`Portable Laughing Stock`)) {
       var score = Math.ceil(
+        // eslint-disable-next-line local/verify-properties
         40 * (1 - Math.pow(get("_laughingStockFruitDropped", 0) / 7, 3))
       );
       if (score > 1) {

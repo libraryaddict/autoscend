@@ -64869,6 +64869,7 @@ function finalizeMaximize() {
     }
     if (have($item`Portable Laughing Stock`)) {
       var score = Math.ceil(
+        // eslint-disable-next-line local/verify-properties
         40 * (1 - Math.pow(get("_laughingStockFruitDropped", 0) / 7, 3))
       );
       if (score > 1) {
