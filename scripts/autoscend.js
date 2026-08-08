@@ -25645,13 +25645,13 @@ function januaryToteTurnsLeft(it) {
   if ((0, import_kolmafia79.getRevision)() < 18848) {
     switch (it) {
       case $item`deceased crimbo tree`:
-        score = get("_garbageTreeCharge", 0);
+        score = get("garbageTreeCharge", 0);
         break;
       case $item`broken champagne bottle`:
-        score = get("_garbageChampagneCharge", 0);
+        score = get("garbageChampagneCharge", 0);
         break;
       case $item`makeshift garbage shirt`:
-        score = get("_garbageShirtCharge", 0);
+        score = get("garbageShirtCharge", 0);
         break;
     }
     return score;
@@ -32537,74 +32537,100 @@ var L11_mauriceSpookyravenWineBombTask = registerQuestTask({
     return true;
   }
 });
-var L11_mauriceSpookyravenKitchenTask = registerQuestTask({
-  name: "L11_mauriceSpookyravenKitchen",
-  completed: () => (0, import_kolmafia85.itemAmount)($item`loosening powder`) > 0,
-  ready: () => L11_mauriceSpookyravenAltPathwayActive() && (0, import_kolmafia85.itemAmount)($item`loosening powder`) === 0,
+var L11_mauriceSpookyravenAltPathwayTask = {
+  name: "L11_mauriceSpookyravenAltPathway",
+  completed: () => (0, import_kolmafia85.getProperty)("spookyravenRecipeUsed") === "with_glasses" || have($item`bottle of Chateau de Vinegar`) || have($item`unstable fulminate`) || have($item`wine bomb`) || internalQuestStatus("questL11Manor") >= 3,
+  ready: () => L11_mauriceSpookyravenAltPathwayActive(),
   do: () => {
-    auto_log_warning("Alternate fulminate pathway... how sad :(", "red");
-    return autoAdv($location`The Haunted Kitchen`);
-  },
-  locations: $location`The Haunted Kitchen`
-});
-var L11_mauriceSpookyravenConservatoryTask = registerQuestTask({
-  name: "L11_mauriceSpookyravenConservatory",
-  completed: () => (0, import_kolmafia85.itemAmount)($item`powdered castoreum`) > 0,
-  ready: () => L11_mauriceSpookyravenAltPathwayActive() && (0, import_kolmafia85.itemAmount)($item`loosening powder`) > 0 && (0, import_kolmafia85.itemAmount)($item`powdered castoreum`) === 0,
-  do: () => {
-    auto_log_warning("Alternate fulminate pathway... how sad :(", "red");
-    return autoAdv($location`The Haunted Conservatory`);
-  },
-  locations: $location`The Haunted Conservatory`
-});
-var L11_mauriceSpookyravenBathroomTask = registerQuestTask({
-  name: "L11_mauriceSpookyravenBathroom",
-  completed: () => (0, import_kolmafia85.itemAmount)($item`drain dissolver`) > 0,
-  ready: () => L11_mauriceSpookyravenAltPathwayActive() && (0, import_kolmafia85.itemAmount)($item`loosening powder`) > 0 && (0, import_kolmafia85.itemAmount)($item`powdered castoreum`) > 0 && (0, import_kolmafia85.itemAmount)($item`drain dissolver`) === 0,
-  do: () => {
-    auto_log_warning("Alternate fulminate pathway... how sad :(", "red");
-    return autoAdv($location`The Haunted Bathroom`);
-  },
-  locations: $location`The Haunted Bathroom`
-});
-var L11_mauriceSpookyravenGalleryTask = registerQuestTask({
-  name: "L11_mauriceSpookyravenGallery",
-  completed: () => (0, import_kolmafia85.itemAmount)($item`triple-distilled turpentine`) > 0,
-  ready: () => L11_mauriceSpookyravenAltPathwayActive() && (0, import_kolmafia85.itemAmount)($item`loosening powder`) > 0 && (0, import_kolmafia85.itemAmount)($item`powdered castoreum`) > 0 && (0, import_kolmafia85.itemAmount)($item`drain dissolver`) > 0 && (0, import_kolmafia85.itemAmount)($item`triple-distilled turpentine`) === 0,
-  do: () => {
-    auto_log_warning("Alternate fulminate pathway... how sad :(", "red");
-    return autoAdv($location`The Haunted Gallery`);
-  },
-  locations: $location`The Haunted Gallery`
-});
-var L11_mauriceSpookyravenLaboratoryTask = registerQuestTask({
-  name: "L11_mauriceSpookyravenLaboratory",
-  completed: () => (0, import_kolmafia85.itemAmount)($item`detartrated anhydrous sublicalc`) > 0,
-  ready: () => L11_mauriceSpookyravenAltPathwayActive() && (0, import_kolmafia85.itemAmount)($item`loosening powder`) > 0 && (0, import_kolmafia85.itemAmount)($item`powdered castoreum`) > 0 && (0, import_kolmafia85.itemAmount)($item`drain dissolver`) > 0 && (0, import_kolmafia85.itemAmount)($item`triple-distilled turpentine`) > 0 && (0, import_kolmafia85.itemAmount)($item`detartrated anhydrous sublicalc`) === 0,
-  do: () => {
-    auto_log_warning("Alternate fulminate pathway... how sad :(", "red");
-    if (internalQuestStatus("questM17Babies") === -1) {
-      (0, import_kolmafia85.visitUrl)("place.php?whichplace=manor3&action=manor3_ladys");
-    }
-    return autoAdv($location`The Haunted Laboratory`);
-  },
-  locations: $location`The Haunted Laboratory`
-});
-var L11_mauriceSpookyravenStorageRoomTask = registerQuestTask({
-  name: "L11_mauriceSpookyravenStorageRoom",
-  completed: () => (0, import_kolmafia85.itemAmount)($item`triatomaceous dust`) > 0,
-  ready: () => L11_mauriceSpookyravenAltPathwayActive() && (0, import_kolmafia85.itemAmount)($item`loosening powder`) > 0 && (0, import_kolmafia85.itemAmount)($item`powdered castoreum`) > 0 && (0, import_kolmafia85.itemAmount)($item`drain dissolver`) > 0 && (0, import_kolmafia85.itemAmount)($item`triple-distilled turpentine`) > 0 && (0, import_kolmafia85.itemAmount)($item`detartrated anhydrous sublicalc`) > 0 && (0, import_kolmafia85.itemAmount)($item`triatomaceous dust`) === 0,
-  do: () => {
-    auto_log_warning("Alternate fulminate pathway... how sad :(", "red");
-    return autoAdv($location`The Haunted Storage Room`);
-  },
-  locations: $location`The Haunted Storage Room`
-});
+  }
+};
+var L11_mauriceSpookyravenKitchenTask = registerQuestTask(
+  L11_mauriceSpookyravenAltPathwayTask,
+  {
+    name: "L11_mauriceSpookyravenKitchen",
+    completed: () => (0, import_kolmafia85.itemAmount)($item`loosening powder`) > 0,
+    ready: () => (0, import_kolmafia85.itemAmount)($item`loosening powder`) === 0,
+    do: () => {
+      auto_log_warning("Alternate fulminate pathway... how sad :(", "red");
+      return autoAdv($location`The Haunted Kitchen`);
+    },
+    locations: $location`The Haunted Kitchen`
+  }
+);
+var L11_mauriceSpookyravenConservatoryTask = registerQuestTask(
+  L11_mauriceSpookyravenAltPathwayTask,
+  {
+    name: "L11_mauriceSpookyravenConservatory",
+    completed: () => (0, import_kolmafia85.itemAmount)($item`powdered castoreum`) > 0,
+    ready: () => (0, import_kolmafia85.itemAmount)($item`loosening powder`) > 0 && (0, import_kolmafia85.itemAmount)($item`powdered castoreum`) === 0,
+    do: () => {
+      auto_log_warning("Alternate fulminate pathway... how sad :(", "red");
+      return autoAdv($location`The Haunted Conservatory`);
+    },
+    locations: $location`The Haunted Conservatory`
+  }
+);
+var L11_mauriceSpookyravenBathroomTask = registerQuestTask(
+  L11_mauriceSpookyravenAltPathwayTask,
+  {
+    name: "L11_mauriceSpookyravenBathroom",
+    completed: () => (0, import_kolmafia85.itemAmount)($item`drain dissolver`) > 0,
+    ready: () => (0, import_kolmafia85.itemAmount)($item`loosening powder`) > 0 && (0, import_kolmafia85.itemAmount)($item`powdered castoreum`) > 0 && (0, import_kolmafia85.itemAmount)($item`drain dissolver`) === 0,
+    do: () => {
+      auto_log_warning("Alternate fulminate pathway... how sad :(", "red");
+      return autoAdv($location`The Haunted Bathroom`);
+    },
+    locations: $location`The Haunted Bathroom`
+  }
+);
+var L11_mauriceSpookyravenGalleryTask = registerQuestTask(
+  L11_mauriceSpookyravenAltPathwayTask,
+  {
+    name: "L11_mauriceSpookyravenGallery",
+    completed: () => (0, import_kolmafia85.itemAmount)($item`triple-distilled turpentine`) > 0,
+    ready: () => (0, import_kolmafia85.itemAmount)($item`loosening powder`) > 0 && (0, import_kolmafia85.itemAmount)($item`powdered castoreum`) > 0 && (0, import_kolmafia85.itemAmount)($item`drain dissolver`) > 0 && (0, import_kolmafia85.itemAmount)($item`triple-distilled turpentine`) === 0,
+    do: () => {
+      auto_log_warning("Alternate fulminate pathway... how sad :(", "red");
+      return autoAdv($location`The Haunted Gallery`);
+    },
+    locations: $location`The Haunted Gallery`
+  }
+);
+var L11_mauriceSpookyravenLaboratoryTask = registerQuestTask(
+  L11_mauriceSpookyravenAltPathwayTask,
+  {
+    name: "L11_mauriceSpookyravenLaboratory",
+    completed: () => (0, import_kolmafia85.itemAmount)($item`detartrated anhydrous sublicalc`) > 0,
+    ready: () => (0, import_kolmafia85.itemAmount)($item`loosening powder`) > 0 && (0, import_kolmafia85.itemAmount)($item`powdered castoreum`) > 0 && (0, import_kolmafia85.itemAmount)($item`drain dissolver`) > 0 && (0, import_kolmafia85.itemAmount)($item`triple-distilled turpentine`) > 0 && (0, import_kolmafia85.itemAmount)($item`detartrated anhydrous sublicalc`) === 0,
+    do: () => {
+      auto_log_warning("Alternate fulminate pathway... how sad :(", "red");
+      if (internalQuestStatus("questM17Babies") === -1) {
+        (0, import_kolmafia85.visitUrl)("place.php?whichplace=manor3&action=manor3_ladys");
+      }
+      return autoAdv($location`The Haunted Laboratory`);
+    },
+    locations: $location`The Haunted Laboratory`
+  }
+);
+var L11_mauriceSpookyravenStorageRoomTask = registerQuestTask(
+  L11_mauriceSpookyravenAltPathwayTask,
+  {
+    name: "L11_mauriceSpookyravenStorageRoom",
+    completed: () => (0, import_kolmafia85.itemAmount)($item`triatomaceous dust`) > 0,
+    ready: () => (0, import_kolmafia85.itemAmount)($item`loosening powder`) > 0 && (0, import_kolmafia85.itemAmount)($item`powdered castoreum`) > 0 && (0, import_kolmafia85.itemAmount)($item`drain dissolver`) > 0 && (0, import_kolmafia85.itemAmount)($item`triple-distilled turpentine`) > 0 && (0, import_kolmafia85.itemAmount)($item`detartrated anhydrous sublicalc`) > 0 && (0, import_kolmafia85.itemAmount)($item`triatomaceous dust`) === 0,
+    do: () => {
+      auto_log_warning("Alternate fulminate pathway... how sad :(", "red");
+      return autoAdv($location`The Haunted Storage Room`);
+    },
+    locations: $location`The Haunted Storage Room`
+  }
+);
 var L11_mauriceSpookyravenAltPathwayFinishTask = registerQuestTask(
+  L11_mauriceSpookyravenAltPathwayTask,
   {
     name: "L11_mauriceSpookyravenAltPathwayFinish",
-    completed: () => !L11_mauriceSpookyravenAltPathwayActive() || possessEquipment($item`unstable fulminate`) || internalQuestStatus("questL11Manor") >= 3,
-    ready: () => L11_mauriceSpookyravenAltPathwayActive() && !possessEquipment($item`unstable fulminate`) && internalQuestStatus("questL11Manor") < 3 && (0, import_kolmafia85.itemAmount)($item`loosening powder`) > 0 && (0, import_kolmafia85.itemAmount)($item`powdered castoreum`) > 0 && (0, import_kolmafia85.itemAmount)($item`drain dissolver`) > 0 && (0, import_kolmafia85.itemAmount)($item`triple-distilled turpentine`) > 0 && (0, import_kolmafia85.itemAmount)($item`detartrated anhydrous sublicalc`) > 0 && (0, import_kolmafia85.itemAmount)($item`triatomaceous dust`) > 0,
+    completed: () => possessEquipment($item`unstable fulminate`) || internalQuestStatus("questL11Manor") >= 3,
+    ready: () => !possessEquipment($item`unstable fulminate`) && internalQuestStatus("questL11Manor") < 3 && (0, import_kolmafia85.itemAmount)($item`loosening powder`) > 0 && (0, import_kolmafia85.itemAmount)($item`powdered castoreum`) > 0 && (0, import_kolmafia85.itemAmount)($item`drain dissolver`) > 0 && (0, import_kolmafia85.itemAmount)($item`triple-distilled turpentine`) > 0 && (0, import_kolmafia85.itemAmount)($item`detartrated anhydrous sublicalc`) > 0 && (0, import_kolmafia85.itemAmount)($item`triatomaceous dust`) > 0,
     do: () => {
       (0, import_kolmafia85.visitUrl)("place.php?whichplace=manor4&action=manor4_chamberwall");
       return true;
@@ -32663,9 +32689,9 @@ var L11_mauriceSpookyravenFulminateCraftTask = registerQuestTask({
 });
 var L11_mauriceSpookyravenWineCellarTask = registerQuestTask({
   name: "L11_mauriceSpookyravenWineCellar",
-  completed: () => (0, import_kolmafia85.itemAmount)($item`bottle of Chateau de Vinegar`) > 0 || possessEquipment($item`unstable fulminate`) || (0, import_kolmafia85.itemAmount)($item`wine bomb`) > 0 || internalQuestStatus("questL11Manor") >= 3,
+  completed: () => (0, import_kolmafia85.itemAmount)($item`bottle of Chateau de Vinegar`) > 0 || have($item`unstable fulminate`) || have($item`wine bomb`) || internalQuestStatus("questL11Manor") >= 3,
   ready: () => {
-    if (L11_mauriceSpookyravenAltPathwayActive() || (0, import_kolmafia85.itemAmount)($item`bottle of Chateau de Vinegar`) > 0 || possessEquipment($item`unstable fulminate`) || internalQuestStatus("questL11Manor") >= 3) {
+    if (L11_mauriceSpookyravenAltPathwayActive()) {
       return false;
     }
     if (!L11_mauriceSpookyravenNormalPathwayReady()) {
@@ -37469,7 +37495,7 @@ var L12_farmTask = registerQuestTask({
   ]
 });
 function L12_clearBattlefieldDo() {
-  if (!inAftercore() && (0, import_kolmafia91.myInebriety)() < (0, import_kolmafia91.inebrietyLimit)() && !get("_gardenHarvested", false)) {
+  if (!inAftercore() && (0, import_kolmafia91.myInebriety)() < (0, import_kolmafia91.inebrietyLimit)()) {
     var camp = auto_get_campground();
     if (camp.has($item`packet of thanksgarden seeds`) && camp.has($item`cornucopia`) && (camp.get($item`cornucopia`) ?? 0) > 0 && internalQuestStatus("questL12War") >= 1 && (0, import_kolmafia91.isUnrestricted)($item`packet of thanksgarden seeds`)) {
       (0, import_kolmafia91.cliExecute)("garden pick");
@@ -39475,7 +39501,7 @@ function kgb_getMartini() {
   if (page === "") {
     page = (0, import_kolmafia93.visitUrl)("place.php?whichplace=kgb");
   }
-  if (!get("_kgbDailyStuff", false)) {
+  if (!get("_kgbOpened", false)) {
     var flipped = false;
     if ((0, import_kolmafia93.containsText)(page, "handledown")) {
       page = (0, import_kolmafia93.visitUrl)("place.php?whichplace=kgb&action=kgb_handledown", false);
@@ -39506,7 +39532,6 @@ function kgb_getMartini() {
     if (!get("_kgbOpened")) {
       (0, import_kolmafia93.visitUrl)("place.php?whichplace=kgb&action=kgb_daily", false);
     }
-    _set("_kgbDailyStuff", true);
   }
   if (get("_kgbDispenserUses") >= 3) {
     return false;
@@ -39538,7 +39563,7 @@ function kgb_getMartini() {
           "_kgbClicksUsed appears to not be tracking, please let the spies in.",
           "red"
         );
-        _set("_kgbClicksUSed", newClicks + 1);
+        _set("_kgbClicksUsed", newClicks + 1);
       }
       if (kgb_tabHeight(page) < 11) {
         if (button === 0) {
@@ -39812,7 +39837,7 @@ function isHorseryAvailable() {
   return get("horseryAvailable") && auto_is_valid($item`Horsery contract`);
 }
 function horseCost() {
-  if (get("_horseryRented", 0) > 0) {
+  if (get("_auto_horseryRented", 0) > 0) {
     return 500;
   }
   return 0;
@@ -39909,7 +39934,7 @@ function getHorse(type_1) {
   (0, import_kolmafia93.visitUrl)("place.php?whichplace=town_right&action=town_horsery");
   (0, import_kolmafia93.visitUrl)(`choice.php?pwd=&whichchoice=1266&option=${choice}`);
   if (choice <= 4) {
-    _set("_horseryRented", get("_horseryRented", 0) + 1);
+    _set("_auto_horseryRented", get("_auto_horseryRented", 0) + 1);
   }
   return true;
 }
@@ -40801,7 +40826,7 @@ function banisherCombatAction$1(enemy, loc) {
   if (auto_canUse($skill`Unleash Nanites`) && (0, import_kolmafia94.haveEffect)($effect`Nanobrawny`) >= 40) {
     return $skill`Unleash Nanites`;
   }
-  if (auto_have_skill($skill`Beancannon`) && get("_beancannonUses", 0) < 5 && (0, import_kolmafia94.myMp)() - 20 >= (0, import_kolmafia94.mpCost)($skill`Beancannon`) && !used.includes("beancannon")) {
+  if (auto_have_skill($skill`Beancannon`) && get("_beanCannonUses", 0) < 5 && (0, import_kolmafia94.myMp)() - 20 >= (0, import_kolmafia94.mpCost)($skill`Beancannon`) && !used.includes("beancannon")) {
     var haveBeans = false;
     var _iterator5 = _createForOfIteratorHelper(
       $items`Frigid Northern Beans, Heimz Fortified Kidney Beans, Hellfire Spicy Beans, Mixed Garbanzos and Chickpeas, Pork 'n' Pork 'n' Pork 'n' Beans, Shrub's Premium Baked Beans, Tesla's Electroplated Beans, Trader Olaf's Exotic Stinkbeans, World's Blackest-Eyed Peas`
@@ -43229,7 +43254,7 @@ function deck_cheat(cheat) {
   $_deck_cheat_cards.set("mysticality stat", 70);
   var card = $_deck_cheat_cards.get(cheat) ?? 0;
   var cheated = new Map(
-    (0, import_kolmafia97.splitString)((0, import_kolmafia97.getProperty)("_deckCardsCheated"), ",").map(
+    (0, import_kolmafia97.splitString)((0, import_kolmafia97.getProperty)("_auto_deckCardsCheated"), ",").map(
       (_v, _i) => [
         _i,
         _v
@@ -43269,7 +43294,7 @@ function deck_cheat(cheat) {
     });
     var found = false;
     var cheated_1 = new Map(
-      (0, import_kolmafia97.splitString)((0, import_kolmafia97.getProperty)("_deckCardsCheated"), ",").map(
+      (0, import_kolmafia97.splitString)((0, import_kolmafia97.getProperty)("_auto_deckCardsCheated"), ",").map(
         (_v, _i) => [
           _i,
           _v
@@ -43292,10 +43317,13 @@ function deck_cheat(cheat) {
       _iterator4.f();
     }
     if (!found) {
-      if ((0, import_kolmafia97.getProperty)("_deckCardsCheated") === "") {
-        _set("_deckCardsCheated", card);
+      if ((0, import_kolmafia97.getProperty)("_auto_deckCardsCheated") === "") {
+        _set("_auto_deckCardsCheated", card);
       } else {
-        _set("_deckCardsCheated", `${(0, import_kolmafia97.getProperty)("_deckCardsCheated")},${card}`);
+        _set(
+          "_auto_deckCardsCheated",
+          `${(0, import_kolmafia97.getProperty)("_auto_deckCardsCheated")},${card}`
+        );
       }
     }
     return true;
@@ -50015,13 +50043,13 @@ function casualCheck() {
   if (!(0, import_kolmafia106.inCasual)()) {
     return;
   }
-  if (get("_casualAscension", 0) !== -1) {
-    _set("_casualAscension", (0, import_kolmafia106.myAscensions)());
+  if (get("_auto_casualAscension", 0) !== -1) {
+    _set("_auto_casualAscension", (0, import_kolmafia106.myAscensions)());
     auto_log_warning(
       "I think I'm in a casual ascension and should not run. To override:",
       "red"
     );
-    auto_log_warning("set _casualAscension = -1", "red");
+    auto_log_warning("set _auto_casualAscension = -1", "red");
     (0, import_kolmafia106.abort)();
   }
 }
@@ -50534,7 +50562,7 @@ function auto_floundryAction() {
   if (get("_floundryItemCreated")) {
     return false;
   }
-  if (!get("_floundryItemGot", false) && auto_get_clan_lounge().has($item`Clan Floundry`) && !inAftercore()) {
+  if (!get("_floundryItemCreated", false) && auto_get_clan_lounge().has($item`Clan Floundry`) && !inAftercore()) {
     if ((0, import_kolmafia107.getProperty)("auto_floundryChoice") !== "") {
       var floundryChoice = new Map(
         (0, import_kolmafia107.splitString)((0, import_kolmafia107.getProperty)("auto_floundryChoice"), ";").map(
@@ -50553,7 +50581,6 @@ function auto_floundryAction() {
         if ($items`bass clarinet, codpiece, fish hatchet`.includes(myFloundry) && !get("_floundryItemUsed") && (0, import_kolmafia107.itemAmount)(myFloundry) > 0) {
           (0, import_kolmafia107.use)(1, myFloundry);
         }
-        _set("_floundryItemGot", true);
         return true;
       } else {
         auto_log_warning(
@@ -64709,7 +64736,7 @@ function handleBarrelFullOfBarrels(daily) {
   if (!get("barrelShrineUnlocked")) {
     return false;
   }
-  if (daily && get("_didBarrelBustToday", false)) {
+  if (daily && get("_auto_didBarrelBustToday", false)) {
     return false;
   }
   if (!(0, import_kolmafia144.isUnrestricted)($item`shrine to the Barrel god`)) {
@@ -64735,7 +64762,7 @@ function handleBarrelFullOfBarrels(daily) {
       (0, import_kolmafia144.visitUrl)(`choice.php?whichchoice=1099&pwd&option=1&slot=${slotID}`);
     }
   }
-  _set("_didBarrelBustToday", true);
+  _set("_auto_didBarrelBustToday", true);
   return smashed > 0;
 }
 function use_barrels() {
