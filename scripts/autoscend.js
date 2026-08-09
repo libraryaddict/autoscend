@@ -23231,14 +23231,16 @@ function auto_heartstoneShouldStealHeart(location) {
   if (!inCombat && badLoc) {
     return false;
   }
-  if (!auto_haveHeartstone() || inCombat && !(0, import_kolmafia74.haveEquipped)(auto_getItemToEquipHeartstone()) || !auto_is_valid$2($skill`Steal Monster's Heart`) || inCombat && !auto_canUse($skill`Steal Monster's Heart`) || // If in combat and don't have skill
+  if (!auto_haveHeartstone() || !auto_is_valid$2($skill`Steal Monster's Heart`) || inCombat && !auto_canUse($skill`Steal Monster's Heart`) || // If in combat and don't have skill
   get("_lastCombatActions").split(";").includes(`sk${$skill`Steal Monster's Heart`.id}`)) {
     return false;
   }
   var letter = inCombat ? (0, import_kolmafia74.heartstoneMiddleLetter)().toUpperCase() : "";
   if (inCombat && letter === "") return false;
   var currentWord = get("heartstoneLetters").toUpperCase();
-  currentWord = currentWord.slice(currentWord.length % 4);
+  currentWord = currentWord.slice(
+    currentWord.length - currentWord.length % 4
+  );
   currentWord += letter;
   var allWords = auto_heartstoneWordsToAimFor();
   if (currentWord.length >= 4 && allWords.includes(currentWord)) {
@@ -57997,6 +57999,12 @@ function auto_combatDefaultStage2(round_1, enemy, text) {
         ) + 30
       )
     );
+  }
+  if (auto_heartstoneShouldStealHeart((0, import_kolmafia126.myLocation)())) {
+    auto_log_debug(
+      `Skipping stage 2 of combat for now as we intend to steal the heart of  [${enemy}]`
+    );
+    return void 0;
   }
   if (auto_wantToSniff(enemy, (0, import_kolmafia126.myLocation)()) && getSniffer(enemy) !== import_kolmafia126.Skill.none && !ag_is_bodyguard()) {
     auto_log_debug(
