@@ -23236,7 +23236,7 @@ function auto_heartstoneShouldStealHeartInCombat() {
   if (!auto_haveHeartstone() || !auto_is_valid$2($skill`Steal Monster's Heart`) || !auto_canUse($skill`Steal Monster's Heart`) || get("_lastCombatActions").split(";").includes(`sk${$skill`Steal Monster's Heart`.id}`)) {
     return false;
   }
-  var letter = (0, import_kolmafia74.heartstoneMiddleLetter)().toUpperCase();
+  var letter = (0, import_kolmafia74.heartstoneMiddleLetter)((0, import_kolmafia74.lastMonster)()).toUpperCase();
   if (letter === "") return false;
   var currentWord = auto_heartstoneCurrentWord();
   var allWords = auto_heartstoneWordsToAimFor();
@@ -32242,20 +32242,19 @@ function auto_8BitCheckCappingScore(place) {
   if (realm === void 0) {
     return;
   }
-  var meetsTarget = (0, import_kolmafia85.numericModifier)(realm.modifier) - 40 >= realm.target;
+  var usingAnyFamAtm = auto_8BitCanUseAnyFamiliar(place);
+  var meetsTarget = (0, import_kolmafia85.numericModifier)(realm.modifier) - // If we've checked this before, and it said we could, assume we're already wearing the 'any' familiar
+  (usingAnyFamAtm ? 0 : -40) >= realm.target;
   var cached = canUseAnyFamiliar.get(place);
-  if (!meetsTarget) {
+  if (!meetsTarget || cached && cached.computed - (0, import_kolmafia85.myTurncount)() < 5 && !cached.canUseAnyFamiliar) {
     canUseAnyFamiliar.set(place, {
-      canUseAnyFamiliar: meetsTarget,
+      canUseAnyFamiliar: false,
       computed: (0, import_kolmafia85.myTurncount)()
     });
     return;
   }
   if (cached !== void 0 && cached.canUseAnyFamiliar === meetsTarget) {
     cached.computed = (0, import_kolmafia85.myTurncount)();
-    return;
-  }
-  if (cached !== void 0 && cached.computed + 40 >= (0, import_kolmafia85.myTurncount)()) {
     return;
   }
   var current = (0, import_kolmafia85.myFamiliar)();
@@ -32266,6 +32265,18 @@ function auto_8BitCheckCappingScore(place) {
     canUseAnyFamiliar: meetsTarget,
     computed: (0, import_kolmafia85.myTurncount)()
   });
+  if (meetsTarget !== usingAnyFamAtm) {
+    if (meetsTarget) {
+      auto_log_info(
+        `Computed that we could be using any familiar, let's bail out and figure out our equipment again...`
+      );
+    } else {
+      auto_log_info(
+        `Computed that we cannot be using 'any' familiar, let's bail out and use the correct familiar.`
+      );
+    }
+    _set("_autoSkipNextAdventure", true);
+  }
 }
 function LX_getDigitalKeyDo() {
   if ((0, import_kolmafia85.itemAmount)($item`digital key`) > 0) {
@@ -37253,7 +37264,7 @@ function yellowRayCombatString(target, inCombat) {
   if (asdonCanMissile()) {
     return $skill`Asdon Martin: Missile Launcher`;
   }
-  if (auto_canNorthernExplosionFE()) {
+  if (auto_canNorthernExplosionFE() && auto_canUse($skill`Northern Explosion`)) {
     return $skill`Northern Explosion`;
   }
   if (auto_canFeelEnvy()) {
@@ -37479,6 +37490,18 @@ function auto_remainingMildEvilUses() {
     return 0;
   }
   return 3 - get("_mildEvilPerpetrated");
+}
+function auto_shouldHeartstoneStealInstead() {
+  if (auto_heartstoneShouldStealHeartInCombat()) {
+    handleTracker({
+      what: $skill`Steal Monster's Heart`,
+      location: (0, import_kolmafia89.myLocation)(),
+      detail: `${(0, import_kolmafia89.lastMonster)()}: ${auto_heartstoneCurrentWord()}[${(0, import_kolmafia89.heartstoneMiddleLetter)((0, import_kolmafia89.lastMonster)())}]`,
+      property: "auto_otherstuff"
+    });
+    return true;
+  }
+  return false;
 }
 
 // packages/kolmafia/src/autoscend/combat/paths/auto_combat_ed.ts
@@ -57976,6 +57999,9 @@ function auto_combatDefaultStage1(round_1, enemy, text) {
   var backedUpMonster = safeGet("lastCopyableMonster", import_kolmafia125.Monster.none);
   var reserveAdvsForFreeFights = (0, import_kolmafia125.myAdventures)() < 3 && !isFreeMonster(backedUpMonster);
   if (auto_backupTarget() && enemy !== backedUpMonster && auto_canUse($skill`Back-Up to your Last Enemy`) && !reserveAdvsForFreeFights) {
+    if (auto_shouldHeartstoneStealInstead()) {
+      return auto_useSkill($skill`Steal Monster's Heart`);
+    }
     handleTracker({
       what: enemy,
       detail: $skill`Back-Up to your Last Enemy`.toString(),
@@ -58009,6 +58035,9 @@ function auto_combatDefaultStage1(round_1, enemy, text) {
   }
   if ((auto_talkToSomeFish((0, import_kolmafia125.myLocation)(), enemy) || // I'm too lazy at this time as this should be harmless, but the baseball check has a lot of overlap it feels like with the normal check
   auto_baseballShouldReplaceWithFish((0, import_kolmafia125.myLocation)(), enemy) && auto_wantToBanish(enemy, (0, import_kolmafia125.myLocation)())) && auto_have_skill($skill`Sea *dent: Talk to Some Fish`)) {
+    if (auto_shouldHeartstoneStealInstead()) {
+      return auto_useSkill($skill`Steal Monster's Heart`);
+    }
     handleTracker({
       what: enemy,
       location: (0, import_kolmafia125.myLocation)(),
@@ -59205,6 +59234,9 @@ function auto_combatDefaultStage4(round_1, enemy, text) {
   if (get("auto_skipStage3", false)) {
     _set("auto_skipStage3", false);
   }
+  if (auto_shouldHeartstoneStealInstead()) {
+    return auto_useSkill($skill`Steal Monster's Heart`);
+  }
   var retval = auto_combatTheSourceStage4(
     round_1,
     enemy,
@@ -59486,15 +59518,6 @@ function auto_combatDefaultStage4(round_1, enemy, text) {
   }
   if (shouldCinchoConfetti() && canSurvive(5)) {
     return auto_useSkill($skill`Cincho: Confetti Extravaganza`);
-  }
-  if (auto_heartstoneShouldStealHeartInCombat()) {
-    handleTracker({
-      what: $skill`Steal Monster's Heart`,
-      location: (0, import_kolmafia130.myLocation)(),
-      detail: `${(0, import_kolmafia130.lastMonster)()}: ${auto_heartstoneCurrentWord()}[${(0, import_kolmafia130.heartstoneMiddleLetter)()}]`,
-      property: "auto_otherstuff"
-    });
-    return auto_useSkill($skill`Steal Monster's Heart`);
   }
   return void 0;
 }
@@ -67230,7 +67253,7 @@ var freekillWithNoDropsMonsters = import_kolmafia144.Monster.get(
   ]
 );
 function auto_wantToFreeKillWithNoDrops(loc, enemy) {
-  if (combat_status_check("refractedgazed") || (0, import_kolmafia144.myFamiliar)() !== $familiar`Sword of S Words` && combat_status_check("droptablereplaced")) {
+  if (combat_status_check("refractedgazed") || combat_status_check("droptablereplaced") || (0, import_kolmafia144.myFamiliar)() === $familiar`Sword of S Words` && auto_desires_sword_familiar_drops()) {
     return false;
   }
   if (in_avantGuard()) {
@@ -69874,7 +69897,7 @@ function auto_equipFreekill() {
   } else if (sweatBulletsAvailable && !maximizer.has($slot`acc3`)) {
     auto_log_info("Man, we about to sweat bullets up in here. Equipping BCZ.");
     autoEquipToSlot($slot`acc3`, bcz);
-  } else if (clubBackAvailable && !maximizer.has($slot`weapon`)) {
+  } else if (clubBackAvailable && !maximizer.has($slot`weapon`) && (safeGet("auto_familiarChoice", import_kolmafia147.Familiar.none) !== $familiar`Sword of S Words` || !auto_desires_sword_familiar_drops())) {
     auto_log_info(
       "They may not be seals, but we're gonna kill them last week. Equipping Legendary Seal Clubbing Club."
     );
@@ -71861,7 +71884,8 @@ function autoAdv() {
   var turncount = (0, import_kolmafia150.myTurncount)();
   auto_interruptCheck("main", false);
   auto_triggerPreAdventure();
-  var advReturn = auto_adv1(loc, option);
+  var advReturn = get("_autoSkipNextAdventure", false) || auto_adv1(loc, option);
+  (0, import_kolmafia150.removeProperty)("_autoSkipNextAdventure");
   auto_triggerPostAdventure();
   if (!advReturn) {
     auto_interruptCheck("main", false);
