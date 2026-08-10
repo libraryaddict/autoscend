@@ -150,6 +150,8 @@ freerun	78	Flaming Troll
 freerun	79	Lamz0r N00b
 freerun	80	me4t begZ0r
 freerun	81	Spam Witch
+freerun	82	oasis monster
+freerun	83	rolling Stone
 
 replace	0	Banshee Librarian	item:Killing Jar>0
 replace	1	Beefy Bodyguard Bat	loc:The Boss Bat's Lair;turnsspent:The Boss Bat's Lair>=4;!path:Heavy Rains;!path:Actually Ed the Undying;!path:Pocket Familiars;!path:Dark Gyffte;!path:Path of the Plumber;!pathid:41;!path:Wildfire;!path:Fall of the Dinosaurs;!path:Avatar of Shadows Over Loathing;!path:Legacy of Loathing;!path:WereProfessor

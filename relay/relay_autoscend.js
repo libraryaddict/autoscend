@@ -22835,11 +22835,11 @@ function auto_playBaseballGame(assignments) {
   (0, import_kolmafia73.visitUrl)(`inventory.php?pwd=${(0, import_kolmafia73.myHash)()}&action=pball`, false);
   if (!(0, import_kolmafia73.handlingChoice)()) return false;
   var finishers = [
-    [$element`hot`, "Yellow Ray"],
-    [$element`cold`, "Banish"],
-    [$element`spooky`, "Free Fights"],
-    [$element`stench`, "Extra Zone Copies"],
-    [$element`sleaze`, "High ML"]
+    [$element`hot`, "Yellow Ray", "auto_yellowRays"],
+    [$element`cold`, "Banish", "auto_banishes"],
+    [$element`spooky`, "Free Fights", "auto_instakill"],
+    [$element`stench`, "Extra Zone Copies", "auto_copies"],
+    [$element`sleaze`, "High ML", void 0]
   ];
   var fillerPriority = /* @__PURE__ */ new Map([
     [
@@ -22911,12 +22911,13 @@ function auto_playBaseballGame(assignments) {
     var bestChoice = 0;
     var highestPriority = -9999;
     var gain = "???";
+    var trackerKey = void 0;
     var _iterator15 = _createForOfIteratorHelper(
       finishers
     ), _step15;
     try {
       var _loop6 = function _loop62() {
-        var _step15$value = _slicedToArray(_step15.value, 2), element = _step15$value[0], eleGain = _step15$value[1];
+        var _step15$value = _slicedToArray(_step15.value, 3), element = _step15$value[0], eleGain = _step15$value[1], key2 = _step15$value[2];
         if (!isSafeToPlay(element, i)) return 1;
         var choiceNum = finishers.findIndex((_ref3) => {
           var _ref4 = _slicedToArray(_ref3, 1), e = _ref4[0];
@@ -22930,6 +22931,7 @@ function auto_playBaseballGame(assignments) {
           bestElement = element;
           bestChoice = choiceNum;
           gain = priority[1];
+          trackerKey = key2;
         }
       };
       for (_iterator15.s(); !(_step15 = _iterator15.n()).done; ) {
@@ -22944,7 +22946,7 @@ function auto_playBaseballGame(assignments) {
       (0, import_kolmafia73.abort)(`Failed to find a valid pitch for baseball slot ${i}.`);
     }
     if (highestPriority === -1e3) {
-      track.push([team[i], gain]);
+      track.push([team[i], gain, trackerKey]);
     }
     playedCounts.set(bestElement, (playedCounts.get(bestElement) ?? 0) + 1);
     auto_log_info(
@@ -22953,12 +22955,16 @@ function auto_playBaseballGame(assignments) {
     (0, import_kolmafia73.visitUrl)(`choice.php?pwd&whichchoice=1598&option=${bestChoice}`);
   }
   for (var _i2 = 0, _track = track; _i2 < _track.length; _i2++) {
-    var _track$_i = _slicedToArray(_track[_i2], 2), monster = _track$_i[0], _gain = _track$_i[1];
-    handleTracker({
-      what: $item`Baseball Diamond`,
-      detail: `${monster} - ${_gain}`,
-      property: "auto_otherstuff"
-    });
+    var _track$_i = _slicedToArray(_track[_i2], 3), monster = _track$_i[0], _gain = _track$_i[1], _trackerKey = _track$_i[2];
+    for (var _i3 = 0, _arr2 = ["auto_otherstuff", _trackerKey]; _i3 < _arr2.length; _i3++) {
+      var key = _arr2[_i3];
+      if (!key) continue;
+      handleTracker({
+        what: $item`Baseball Diamond`,
+        detail: `${monster} - ${_gain}`,
+        property: key
+      });
+    }
   }
   (0, import_kolmafia73.visitUrl)(`choice.php?pwd&whichchoice=1598&option=6`);
   if (auto_baseballRecruits().length > 0) {
@@ -26234,7 +26240,7 @@ var L11_getUVCompassTask = registerQuestTask({
     possessEquipment($item`UV-resistant compass`) || //impossible to get compass in this path. [The Shore, Inc] is unavailable
     in_koe()
   ),
-  ready: () => auto_can_equip($item`UV-resistant compass`) && is_professor(),
+  ready: () => auto_can_equip($item`UV-resistant compass`) && !is_werewolf(),
   do: L11_getUVCompassDo
 });
 function L11_getUVCompass() {
@@ -26444,11 +26450,24 @@ function L11_aridDesertDo() {
     if ((0, import_kolmafia78.myMp)() > 30 && (0, import_kolmafia78.myHp)() < (0, import_kolmafia78.myMaxhp)() * 0.5) {
       acquireHP();
     }
-    if (((0, import_kolmafia78.inHardcore)() || (0, import_kolmafia78.pullsRemaining)() === 0) && (0, import_kolmafia78.itemAmount)($item`worm-riding hooks`) > 0 && get("desertExploration") <= 100 - 5 * progress && (get("gnasirProgress") & 16) !== 16 && (0, import_kolmafia78.itemAmount)($item`stone rose`) === 0) {
+    if (((0, import_kolmafia78.inHardcore)() || (0, import_kolmafia78.pullsRemaining)() === 0) && (0, import_kolmafia78.itemAmount)($item`worm-riding hooks`) > 0 && get("desertExploration") <= 100 - 5 * progress && (get("gnasirProgress") & 16) !== 16) {
       if ((0, import_kolmafia78.itemAmount)($item`drum machine`) > 0) {
         auto_log_info("Found the drums, now we use them!", "blue");
         (0, import_kolmafia78.use)(1, $item`drum machine`);
       } else {
+        var drumDrop = getMonsterDrops($monster`blur`).find(
+          (d) => d.item === $item`drum machine`
+        );
+        var dropCapped = drumDrop !== void 0 && isDropCapped(drumDrop);
+        if (((get("gnasirProgress") & 1) !== 0 || (0, import_kolmafia78.itemAmount)($item`stone rose`) > 0 || get("desertExploration") <= 100 - 5 * progress) && canSummonMonster($monster`blur`) && (dropCapped || canYellowRay($monster`blur`))) {
+          auto_log_info("Summoning the blur to get a drum machine!", "blue");
+          if (!dropCapped && !adjustForYellowRayIfPossible($monster`blur`)) {
+            prepareYellowRayNextCombat(6);
+          }
+          if (summonMonster($monster`blur`)) {
+            return true;
+          }
+        }
         auto_log_info("Off to find the drums!", "blue");
         autoAdv($location`The Oasis`);
       }
@@ -34927,7 +34946,7 @@ function isSniffed(enemy, sk) {
   return (0, import_kolmafia88.trackedBy)(enemy).includes(search);
 }
 function isSniffed$1(enemy) {
-  var _iterator3 = _createForOfIteratorHelper($skills`Transcendent Olfaction, Make Friends, Long Con, Perceive Soul, Gallapagosian Mating Call, Monkey Point, Offer Latte to Opponent, Motif, Hunt, McHugeLarge Slash, Left %n Kick, Right %n Kick, Meat Cute`), _step3;
+  var _iterator3 = _createForOfIteratorHelper($skills`Transcendent Olfaction, Make Friends, Long Con, Perceive Soul, Gallapagosian Mating Call, Monkey Point, Offer Latte to Opponent, Motif, Hunt, McHugeLarge Slash, Left %n Kick, Right %n Kick, Meat Cute, Get a Good Whiff of This Guy`), _step3;
   try {
     for (_iterator3.s(); !(_step3 = _iterator3.n()).done; ) {
       var sk = _step3.value;
