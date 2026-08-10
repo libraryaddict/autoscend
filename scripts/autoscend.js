@@ -58147,7 +58147,7 @@ function auto_combatDefaultStage2(round_1, enemy, text) {
     if (auto_swordIsWillingToSwitchTargets() && auto_canUse($skill`%fn, stop killing those guys`)) {
       handleTracker({
         what: auto_sword_of_swords_tracking(),
-        detail: `${$familiar`Sword of S Words`.toString()} - ${$skill`%fn\, stop killing those guys`.toString()}`,
+        detail: `${$familiar`Sword of S Words`.toString()} - ${$skill`%fn, stop killing those guys`.toString()}`,
         property: "auto_otherstuff"
       });
       return auto_useSkill($skill`%fn, stop killing those guys`);
