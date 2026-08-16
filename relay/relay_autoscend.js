@@ -26270,12 +26270,19 @@ function L11_aridDesertDo() {
     }
     if ((get("gnasirProgress") & 1) !== 1) {
       var expectedOasisTurns = 8 - $location`The Oasis`.turnsSpent;
-      var equivProgress = expectedOasisTurns * progress;
-      var need_1 = 100 - get("desertExploration");
-      auto_log_info(`expectedOasis: ${expectedOasisTurns}`, "brown");
-      auto_log_info(`equivProgress: ${equivProgress}`, "brown");
-      auto_log_info(`need: ${need_1}`, "brown");
-      if (need_1 <= 15 && 15 >= equivProgress && (0, import_kolmafia79.itemAmount)($item`stone rose`) === 0) {
+      var desertProgressRemaining = 100 - get("desertExploration");
+      var oasisProgressPerTurn = Math.min(15, desertProgressRemaining) / expectedOasisTurns;
+      if (oasisProgressPerTurn % 1 > 0) {
+        oasisProgressPerTurn = Math.round(oasisProgressPerTurn * 10) / 10;
+      }
+      auto_log_info(
+        `Expected Oasis turns for a Stone Rose: ${expectedOasisTurns}`
+      );
+      auto_log_info(
+        `Oasis would give progress per turn: ${oasisProgressPerTurn}`
+      );
+      auto_log_info(`Desert progress per turn: ${progress}`, "brown");
+      if (oasisProgressPerTurn >= progress && (0, import_kolmafia79.itemAmount)($item`stone rose`) === 0) {
         auto_log_info("It seems raisinable to hunt a Stone Rose. Beep", "blue");
         autoAdv($location`The Oasis`);
         return true;
@@ -73556,6 +73563,8 @@ function initializeSettings() {
   _set("auto_dontUseCookBookBat", false);
   _set("auto_dietpills", 0);
   _set("_auto_candyMapCompleted", false);
+  (0, import_kolmafia163.removeProperty)("auto_exerciseLiquidity");
+  (0, import_kolmafia163.removeProperty)("_auto_toxicAssetUses");
   beehiveConsider(false);
   eudora_initializeSettings();
   heavyrains_initializeSettings();
