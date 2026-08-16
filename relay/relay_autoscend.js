@@ -30557,12 +30557,21 @@ function auto_acquireInterestingItem(item4) {
   if (price2 > auto_interestingCoinsSpendable()) {
     return false;
   }
+  if ((0, import_kolmafia81.itemAmount)(item4) > 0) {
+    return true;
+  }
   if (speculating) {
     return (0, import_kolmafia81.creatableAmount)(item4) > 0;
   }
-  var onHand = (0, import_kolmafia81.itemAmount)(item4);
   (0, import_kolmafia81.buy)($coinmaster`Interesting Coin`, 1, item4);
-  if (onHand === (0, import_kolmafia81.itemAmount)(item4)) return false;
+  if ((0, import_kolmafia81.itemAmount)(item4) === 0) {
+    return false;
+  }
+  handleTracker({
+    what: `Spend your Interesting Coins`,
+    detail: `Claimed ${item4.toString()}`,
+    property: "auto_iotm_claim"
+  });
   auto_spendInterestingCoins(price2);
   return true;
 }
