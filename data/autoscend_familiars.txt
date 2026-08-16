@@ -69,34 +69,36 @@ drop	18	Cookbookbat	item:St. Sneaky Pete's Whey<4;!prop_boolean:auto_dontUseCook
 #
 # density 1.875 size 4 spleen consumables. boolean autoChooseFamiliar(location place) will already grab the amount needed for spleen
 # Here they are only used to grab extras.
+# We prefer sword over all, because sword overwrites drops, and thus is prefered in less situations
 drop	19	Sword of S Words	prop_boolean:_auto_preferSwordFam
 drop	20	Skeleton of Crimbo Past	prop_boolean:auto_preferSoCP
-drop	21	Grim Brother	prop:_grimFairyTaleDrops<5
-drop	22	Pair of Stomping Boots	!path:G-Lover;prop:_bootStomps<7
-drop	23	Baby Sandworm	prop:_aguaDrops<5
-drop	24	Bloovian Groose	prop:_grooseDrops<5
-drop	25	Golden Monkey	prop:_powderedGoldDrops<5
-drop	26	Unconscious Collective	prop:_dreamJarDrops<5
+drop	21	Chest Mimic	prop_boolean:_auto_preferChestMimic
+drop	22	Grim Brother	prop:_grimFairyTaleDrops<5
+drop	23	Pair of Stomping Boots	!path:G-Lover;prop:_bootStomps<7
+drop	24	Baby Sandworm	prop:_aguaDrops<5
+drop	25	Bloovian Groose	prop:_grooseDrops<5
+drop	26	Golden Monkey	prop:_powderedGoldDrops<5
+drop	27	Unconscious Collective	prop:_dreamJarDrops<5
 # psychoanalytic jar 1 per day.
-drop	27	Angry Jung Man	prop:_jungDrops<1
+drop	28	Angry Jung Man	prop:_jungDrops<1
 # grimstone mask 1 per day
-drop	28	Grimstone Golem	prop:_grimstoneMaskDrops<1
+drop	29	Grimstone Golem	prop:_grimstoneMaskDrops<1
 # tales of spelunking 1 per day
-drop	29	Adventurous Spelunker	prop:_spelunkingTalesDrops<1
+drop	30	Adventurous Spelunker	prop:_spelunkingTalesDrops<1
 # can drop 5 devilish folio a day
-drop	30	Blavious Kloop	prop:_kloopDrops<5
+drop	31	Blavious Kloop	prop:_kloopDrops<5
 # can drop 5 absinthe a day
-drop	31	Green Pixie	prop:_absintheDrops<5
+drop	32	Green Pixie	prop:_absintheDrops<5
 # Hot ashes can make a potion that gives +15 ML for 15 adv. drop limit 5/day
-drop	32	Galloping Grill	prop:_hotAshesDrops<5
+drop	33	Galloping Grill	prop:_hotAshesDrops<5
 # If all else fails, keep generating CBB ingredients
-drop	33	Cookbookbat	!prop_boolean:auto_dontUseCookBookBat
+drop	34	Cookbookbat	!prop_boolean:auto_dontUseCookBookBat
 # build up a few mini kiwis, enough for an aioli and a bikini
-drop	34	Mini Kiwi	item:mini kiwi<7
+drop	35	Mini Kiwi	item:mini kiwi<7
 # use a Peace turkey if all else fails
-drop	35	Peace Turkey
+drop	36	Peace Turkey
 # eh, may as well put some XP on the mimic if there's no other drop familiars
-drop	36	Chest Mimic
+drop	37	Chest Mimic
 
 # We want to delevel, but don't want to deal damage
 gremlins	0	Nosy Nose

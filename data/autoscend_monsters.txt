@@ -61,8 +61,8 @@ banish	53	trendy bugbear chef	path:Bugbear Invasion;loc:Galley;loc:Gallery;!snif
 copy	0	Pygmy Bowler	prop:hiddenBowlingAlleyProgress<4
 copy	1	Bob Racecar
 copy	2	Racecar Bob
-copy	3	pygmy witch accountant	loc:The Hidden Office Building
-copy	4	pygmy witch accountant	loc:The Hidden Apartment Building;effect:Thrice-Cursed
+copy	3	pygmy witch accountant	loc:The Hidden Office Building;item:McClusky file (complete)<1;item:McClusky file (page 5)<1;!prop:questL11Business=finished
+copy	4	pygmy witch accountant	loc:The Hidden Apartment Building;effect:Thrice-Cursed;item:McClusky file (complete)<1;item:McClusky file (page 5)<1;!prop:questL11Business=finished
 copy	5	Camel's Toe	item:star<7;item:line<6
 copy	6	Skinflute	item:star<7;item:line<6
 copy	7	Swarm of Ghuol Whelps	prop:cyrptCrannyEvilness>17
@@ -197,8 +197,8 @@ sniff	2	cabinet of Dr. Limpieza
 sniff	3	Dairy Goat	loc:The Goatlet;item:goat cheese<3
 sniff	4	Pygmy Bowler
 sniff	5	Pygmy Witch Surgeon
-sniff	6	pygmy witch accountant	loc:The Hidden Office Building
-sniff	7	pygmy witch accountant	loc:The Hidden Apartment Building;effect:Thrice-Cursed
+sniff	6	pygmy witch accountant	loc:The Hidden Office Building;item:McClusky file (complete)<1;item:McClusky file (page 5)<1;!prop:questL11Business=finished
+sniff	7	pygmy witch accountant	loc:The Hidden Apartment Building;effect:Thrice-Cursed;item:McClusky file (complete)<1;item:McClusky file (page 5)<1;!prop:questL11Business=finished
 sniff	8	Pygmy Janitor	loc:The Hidden Park;!tavern:true;!itemdropcapped:20=book of matches
 sniff	9	Tomb Rat
 sniff	10	Bob Racecar	!sniffed:Racecar Bob

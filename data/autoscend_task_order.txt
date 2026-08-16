@@ -14,7 +14,7 @@ A Shrunken Adventurer am I	6	LX_setWorkshed
 A Shrunken Adventurer am I	7	LX_galaktikSubQuest
 A Shrunken Adventurer am I	8	L9_leafletQuest
 A Shrunken Adventurer am I	9	L5_findKnob
-A Shrunken Adventurer am I	10	L12_sonofaPrefix
+A Shrunken Adventurer am I	10	L12_sonofaBeach
 # burn any unused Lucky! (Heartstone/Apriling sax/August scepter) before bedtime
 A Shrunken Adventurer am I	11	LX_burnUnusedLuck
 A Shrunken Adventurer am I	12	LX_burnDelay
@@ -109,7 +109,7 @@ Actually Ed the Undying	6	LX_setWorkshed
 Actually Ed the Undying	7	LX_galaktikSubQuest
 Actually Ed the Undying	8	L9_leafletQuest
 Actually Ed the Undying	9	L5_findKnob
-Actually Ed the Undying	10	L12_sonofaPrefix
+Actually Ed the Undying	10	L12_sonofaBeach
 # burn any unused Lucky! (Heartstone/Apriling sax/August scepter) before bedtime
 Actually Ed the Undying	11	LX_burnUnusedLuck
 Actually Ed the Undying	12	LX_burnDelay
@@ -274,7 +274,7 @@ Adventurer Meats World	6	LX_setWorkshed
 Adventurer Meats World	7	LX_galaktikSubQuest
 Adventurer Meats World	8	L9_leafletQuest
 Adventurer Meats World	9	L5_findKnob
-Adventurer Meats World	10	L12_sonofaPrefix
+Adventurer Meats World	10	L12_sonofaBeach
 # burn any unused Lucky! (Heartstone/Apriling sax/August scepter) before bedtime
 Adventurer Meats World	11	LX_burnUnusedLuck
 Adventurer Meats World	12	LX_burnDelay
@@ -377,7 +377,7 @@ Avant Guard	6	LX_setWorkshed
 Avant Guard	7	LX_galaktikSubQuest
 Avant Guard	8	L9_leafletQuest
 Avant Guard	9	L5_findKnob
-Avant Guard	10	L12_sonofaPrefix
+Avant Guard	10	L12_sonofaBeach
 # burn any unused Lucky! (Heartstone/Apriling sax/August scepter) before bedtime
 Avant Guard	11	LX_burnUnusedLuck
 Avant Guard	12	LX_burnDelay
@@ -485,7 +485,7 @@ Avatar of Jarlsberg	6	LX_setWorkshed
 Avatar of Jarlsberg	7	LX_galaktikSubQuest
 Avatar of Jarlsberg	8	L9_leafletQuest
 Avatar of Jarlsberg	9	L5_findKnob
-Avatar of Jarlsberg	10	L12_sonofaPrefix
+Avatar of Jarlsberg	10	L12_sonofaBeach
 # burn any unused Lucky! (Heartstone/Apriling sax/August scepter) before bedtime
 Avatar of Jarlsberg	11	LX_burnUnusedLuck
 Avatar of Jarlsberg	12	LX_burnDelay
@@ -548,7 +548,7 @@ Bugbear Invasion	6	LX_setWorkshed
 Bugbear Invasion	7	LX_galaktikSubQuest
 Bugbear Invasion	8	L9_leafletQuest
 Bugbear Invasion	9	L5_findKnob
-Bugbear Invasion	10	L12_sonofaPrefix
+Bugbear Invasion	10	L12_sonofaBeach
 # burn any unused Lucky! (Heartstone/Apriling sax/August scepter) before bedtime
 Bugbear Invasion	11	LX_burnUnusedLuck
 Bugbear Invasion	12	LX_burnDelay
@@ -650,7 +650,7 @@ default	6	LX_setWorkshed
 default	7	LX_galaktikSubQuest
 default	8	L9_leafletQuest
 default	9	L5_findKnob
-default	10	L12_sonofaPrefix
+default	10	L12_sonofaBeach
 # burn any unused Lucky! (Heartstone/Apriling sax/August scepter) before bedtime
 default	11	LX_burnUnusedLuck
 default	12	LX_burnDelay
@@ -750,7 +750,7 @@ Legacy of Loathing	6	LX_setWorkshed
 Legacy of Loathing	7	LX_galaktikSubQuest
 Legacy of Loathing	8	L9_leafletQuest
 Legacy of Loathing	9	L5_findKnob
-Legacy of Loathing	10	L12_sonofaPrefix
+Legacy of Loathing	10	L12_sonofaBeach
 # burn any unused Lucky! (Heartstone/Apriling sax/August scepter) before bedtime
 Legacy of Loathing	11	LX_burnUnusedLuck
 Legacy of Loathing	12	LX_burnDelay
@@ -854,7 +854,7 @@ Low Key Summer	6	LX_setWorkshed
 Low Key Summer	7	LX_galaktikSubQuest
 Low Key Summer	8	L9_leafletQuest
 Low Key Summer	9	L5_findKnob
-Low Key Summer	10	L12_sonofaPrefix
+Low Key Summer	10	L12_sonofaBeach
 # burn any unused Lucky! (Heartstone/Apriling sax/August scepter) before bedtime
 Low Key Summer	11	LX_burnUnusedLuck
 Low Key Summer	12	LX_burnDelay
@@ -873,7 +873,7 @@ Low Key Summer	22	LX_setWorkshed
 Low Key Summer	23	LX_galaktikSubQuest
 Low Key Summer	24	L9_leafletQuest
 Low Key Summer	25	L5_findKnob
-Low Key Summer	26	L12_sonofaPrefix
+Low Key Summer	26	L12_sonofaBeach
 Low Key Summer	27	LX_burnDelay
 Low Key Summer	28	LX_summonMonster
 # Lock in the Shen zones as soon as we can as it (potentially) unlocks a bunch of stuff.
@@ -1004,7 +1004,7 @@ Quantum Terrarium	6	LX_setWorkshed
 Quantum Terrarium	7	LX_galaktikSubQuest
 Quantum Terrarium	8	L9_leafletQuest
 Quantum Terrarium	9	L5_findKnob
-Quantum Terrarium	10	L12_sonofaPrefix
+Quantum Terrarium	10	L12_sonofaBeach
 # burn any unused Lucky! (Heartstone/Apriling sax/August scepter) before bedtime
 Quantum Terrarium	11	LX_burnUnusedLuck
 Quantum Terrarium	12	LX_burnDelay
@@ -1070,7 +1070,7 @@ WereProfessor	7	LX_setWorkshed
 WereProfessor	8	LX_galaktikSubQuest
 WereProfessor	9	L9_leafletQuest
 WereProfessor	10	L5_findKnob
-WereProfessor	11	L12_sonofaPrefix
+WereProfessor	11	L12_sonofaBeach
 # burn any unused Lucky! (Heartstone/Apriling sax/August scepter) before bedtime
 WereProfessor	12	LX_burnUnusedLuck
 WereProfessor	13	LX_burnDelay
@@ -1180,7 +1180,7 @@ Zombie Slayer	6	LX_setWorkshed
 Zombie Slayer	7	LX_galaktikSubQuest
 Zombie Slayer	8	L9_leafletQuest
 Zombie Slayer	9	L5_findKnob
-Zombie Slayer	10	L12_sonofaPrefix
+Zombie Slayer	10	L12_sonofaBeach
 # burn any unused Lucky! (Heartstone/Apriling sax/August scepter) before bedtime
 Zombie Slayer	11	LX_burnUnusedLuck
 Zombie Slayer	12	LX_burnDelay
