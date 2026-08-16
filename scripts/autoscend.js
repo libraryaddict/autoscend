@@ -1100,11 +1100,11 @@ var require_to_absolute_index = __commonJS({
   "node_modules/core-js/internals/to-absolute-index.js"(exports, module2) {
     "use strict";
     var toIntegerOrInfinity = require_to_integer_or_infinity();
-    var max27 = Math.max;
+    var max28 = Math.max;
     var min37 = Math.min;
     module2.exports = function(index, length2) {
       var integer = toIntegerOrInfinity(index);
-      return integer < 0 ? max27(integer + length2, 0) : min37(integer, length2);
+      return integer < 0 ? max28(integer + length2, 0) : min37(integer, length2);
     };
   }
 });
@@ -2711,12 +2711,12 @@ var PropertiesManager = /* @__PURE__ */ (function() {
      */
   }, {
     key: "clamp",
-    value: function clamp2(property, min37, max27) {
-      if (max27 < min37)
+    value: function clamp2(property, min37, max28) {
+      if (max28 < min37)
         return false;
       var start = get(property);
       this.setMinimumValue(property, min37);
-      this.setMaximumValue(property, max27);
+      this.setMaximumValue(property, max28);
       return start !== get(property);
     }
     /**
@@ -2779,8 +2779,8 @@ function notNull(value) {
 function parseNumber(n) {
   return Number.parseInt(n.replace(/,/g, ""));
 }
-function clamp(n, min37, max27) {
-  return Math.max(min37, Math.min(max27, n));
+function clamp(n, min37, max28) {
+  return Math.max(min37, Math.min(max28, n));
 }
 function chunk(array, chunkSize) {
   var result = [];
@@ -3100,8 +3100,8 @@ function getRange(range) {
   return [lower, Number.isNaN(upper) || upper === void 0 ? lower : upper];
 }
 function getAverage(range) {
-  var _getRange = getRange(range), _getRange2 = _slicedToArray(_getRange, 2), min37 = _getRange2[0], max27 = _getRange2[1];
-  return (min37 + max27) / 2;
+  var _getRange = getRange(range), _getRange2 = _slicedToArray(_getRange, 2), min37 = _getRange2[0], max28 = _getRange2[1];
+  return (min37 + max28) / 2;
 }
 function getAverageAdventures(item4) {
   return getAverage(item4.adventures);
@@ -9112,7 +9112,7 @@ var Maximizer = /* @__PURE__ */ (function() {
   } }, { key: "min", value: function min37(mod, amount) {
     this.mins.set(criterionName(mod), amount);
     return this;
-  } }, { key: "max", value: function max27(mod, amount) {
+  } }, { key: "max", value: function max28(mod, amount) {
     this.maxes.set(
       criterionName(mod),
       Math.max(this.maxes.get(criterionName(mod)) ?? amount, amount)
@@ -9369,9 +9369,9 @@ var Maximizer = /* @__PURE__ */ (function() {
           var displayName = MAXIMIZER_ALIASES[name] ?? name;
           var term = `${amount !== 1 ? `${amount} ` : ""}${displayName}`;
           var min37 = this.mins.get(name);
-          var max27 = this.maxes.get(name);
+          var max28 = this.maxes.get(name);
           if (min37 !== void 0) term += ` ${min37} min`;
-          if (max27 !== void 0) term += ` ${max27} max`;
+          if (max28 !== void 0) term += ` ${max28} max`;
           terms.push(term);
         }
       } catch (err) {
@@ -42936,7 +42936,7 @@ function auto_combatDefaultStage2(round_1, enemy, text) {
   }
   if (auto_heartstoneShouldStealHeartInCombat()) {
     auto_log_debug(
-      `Skipping stage 2 of combat for now as we intend to steal the heart of  [${enemy}]`
+      `Skipping stage 2 of combat for now as we intend to steal the heart of [${enemy}]`
     );
     return void 0;
   }
@@ -42960,25 +42960,29 @@ function auto_combatDefaultStage2(round_1, enemy, text) {
   if (retval !== void 0) {
     return retval;
   }
-  if (!combat_status_check("droptablereplaced") && auto_wantToStartTrackingSwordMonster(enemy, 100) && auto_canUse($skill`%fn, kill a lot of these guys`)) {
-    handleTracker({
-      what: enemy,
-      location: (0, import_kolmafia107.myLocation)(),
-      detail: $skill`%fn, kill a lot of these guys`,
-      property: "auto_otherstuff"
-    });
-    return auto_useSkill($skill`%fn, kill a lot of these guys`);
-  }
-  if ((0, import_kolmafia107.myFamiliar)() === $familiar`Sword of S Words` && auto_sword_of_swords_tracking() !== $monster.none && enemy.copyable && !enemy.boss) {
-    if (auto_swordIsWillingToSwitchTargets() && auto_canUse($skill`%fn, stop killing those guys`)) {
+  if ((0, import_kolmafia107.myFamiliar)() === $familiar`Sword of S Words`) {
+    if (!combat_status_check("droptablereplaced") && auto_wantToStartTrackingSwordMonster(enemy, 100) && auto_canUse($skill`%fn, kill a lot of these guys`)) {
       handleTracker({
-        what: auto_sword_of_swords_tracking(),
-        detail: $skill`%fn, stop killing those guys`,
+        what: enemy,
+        location: (0, import_kolmafia107.myLocation)(),
+        detail: $skill`%fn, kill a lot of these guys`,
         property: "auto_otherstuff"
       });
-      return auto_useSkill($skill`%fn, stop killing those guys`);
+      return auto_useSkill($skill`%fn, kill a lot of these guys`);
     }
-    combat_status_add("droptablereplaced");
+    if (auto_sword_of_swords_tracking() !== $monster.none && enemy.copyable && !enemy.boss) {
+      if (auto_swordIsWillingToSwitchTargets() && auto_canUse($skill`%fn, stop killing those guys`)) {
+        handleTracker({
+          what: auto_sword_of_swords_tracking(),
+          detail: $skill`%fn, stop killing those guys`,
+          property: "auto_otherstuff"
+        });
+        return auto_useSkill($skill`%fn, stop killing those guys`);
+      }
+      if (!combat_status_check("droptablereplaced")) {
+        combat_status_add("droptablereplaced");
+      }
+    }
   }
   if (
     // we don't want to refract if the monster was from a choice
@@ -43913,40 +43917,6 @@ function auto_combatDefaultStage3(round_1, enemy, text) {
           return auto_useSkill($skill`Gallapagosian Mating Call`, false);
         }
       }
-      if (coldMortarShell) {
-        return auto_useSkill($skill`Stuffed Mortar Shell`);
-      } else if (coldSkillToUse !== $skill.none) {
-        return auto_useSkill(coldSkillToUse, false);
-      } else if (!in_robot() && $classes`Seal Clubber, Turtle Tamer, Pastamancer, Sauceror, Disco Bandit, Accordion Thief`.includes(
-        (0, import_kolmafia109.myClass)()
-      )) {
-        if (coldAttackDamage > 69 + (0, import_kolmafia109.monsterLevelAdjustment)() && coldAttackDamage > 0) {
-          if ((0, import_kolmafia109.myClass)() === $class`Seal Clubber`) {
-            if (auto_canUse($skill`Lunging Thrust-Smack`, false)) {
-              return auto_useSkill($skill`Lunging Thrust-Smack`, false);
-            } else if (auto_canUse($skill`Thrust-Smack`, false)) {
-              return auto_useSkill($skill`Thrust-Smack`, false);
-            } else if (auto_canUse($skill`Lunge Smack`, false)) {
-              return auto_useSkill($skill`Lunge Smack`, false);
-            } else {
-              return "attack";
-            }
-          } else {
-            return "attack";
-          }
-        } else if ((0, import_kolmafia109.monsterLevelAdjustment)() <= -25 && auto_canUse($skill`Saucestorm`, false)) {
-          auto_log_warning(
-            "None of the best [cold] skills available against smut orcs but trying weaker alternative in view of the negative monster level.",
-            "red"
-          );
-          return auto_useSkill($skill`Saucestorm`, false);
-        } else {
-          auto_log_warning(
-            "None of our preferred [cold] skills available against smut orcs. Engaging in Fisticuffs.",
-            "red"
-          );
-        }
-      }
     }
     if ((0, import_kolmafia109.myLocation)() === $location`The Haunted Kitchen` && auto_canUse($skill`Become a Cloud of Mist`) && get("_vampyreCloakeFormUses") < 10) {
       var hot = (0, import_kolmafia109.toInt)((0, import_kolmafia109.numericModifier)($modifier`Hot Resistance`));
@@ -44522,6 +44492,80 @@ function auto_combatDefaultStage5(round_1, enemy, text) {
   retval = auto_combatMeatGolemStage5(round_1, enemy, text);
   if (retval !== void 0) {
     return retval;
+  }
+  if ((0, import_kolmafia114.myLocation)() === $location`The Smut Orc Logging Camp` && canSurvive(1) && get("chasmBridgeProgress") < bridgeGoal()) {
+    var coldMortarShell = auto_canUse($skill`Stuffed Mortar Shell`) && (0, import_kolmafia114.haveEffect)($effect`Spirit of Peppermint`) !== 0;
+    var coldSkillToUse = $skill.none;
+    var coldAttackDamageMultiplier = 1;
+    if ((0, import_kolmafia114.myClass)() === $class`Seal Clubber`) {
+      if (auto_canUse($skill`Lunging Thrust-Smack`, false)) {
+        coldAttackDamageMultiplier = 3;
+      } else if (auto_canUse($skill`Thrust-Smack`, false)) {
+        coldAttackDamageMultiplier = 2;
+      }
+    }
+    var coldAttackDamage = (0, import_kolmafia114.toInt)(
+      (0, import_kolmafia114.numericModifier)($modifier`Cold Damage`) * coldAttackDamageMultiplier
+    );
+    if (auto_canUse($skill`Saucegeyser`, false) && (0, import_kolmafia114.numericModifier)($modifier`Cold Spell Damage`) > (0, import_kolmafia114.numericModifier)($modifier`Hot Spell Damage`)) {
+      coldSkillToUse = $skill`Saucegeyser`;
+    } else if (auto_canUse($skill`Saucecicle`, false)) {
+      coldSkillToUse = $skill`Saucecicle`;
+    } else if (auto_canUse($skill`Cannelloni Cannon`, false) && (0, import_kolmafia114.haveEffect)($effect`Spirit of Peppermint`) !== 0) {
+      coldSkillToUse = $skill`Cannelloni Cannon`;
+    } else if (auto_canUse($skill`Northern Explosion`, false) && !auto_canNorthernExplosionFE()) {
+      coldSkillToUse = $skill`Northern Explosion`;
+    } else if ((0, import_kolmafia114.monsterLevelAdjustment)() < -65 && auto_canUse($skill`Saucestorm`, false)) {
+      coldSkillToUse = $skill`Saucestorm`;
+    } else if (coldAttackDamage > 3 * (0, import_kolmafia114.max)(1, 69 + (0, import_kolmafia114.monsterLevelAdjustment)())) {
+      if ((0, import_kolmafia114.myClass)() === $class`Seal Clubber`) {
+        if (auto_canUse($skill`Lunging Thrust-Smack`, false)) {
+          coldSkillToUse = $skill`Lunging Thrust-Smack`;
+        } else if (auto_canUse($skill`Thrust-Smack`, false)) {
+          coldSkillToUse = $skill`Thrust-Smack`;
+        } else if (auto_canUse($skill`Lunge Smack`, false)) {
+          coldSkillToUse = $skill`Lunge Smack`;
+        }
+      }
+    } else if (auto_canUse($skill`Saucegeyser`, false) && (0, import_kolmafia114.numericModifier)($modifier`Cold Spell Damage`) === (0, import_kolmafia114.numericModifier)($modifier`Hot Spell Damage`)) {
+      coldSkillToUse = $skill`Saucegeyser`;
+    } else if (in_nuclear() && auto_canUse($skill`Throat Refrigerant`, false)) {
+      coldSkillToUse = $skill`Throat Refrigerant`;
+    }
+    if (coldMortarShell) {
+      return auto_useSkill($skill`Stuffed Mortar Shell`);
+    } else if (coldSkillToUse !== $skill.none) {
+      return auto_useSkill(coldSkillToUse, false);
+    } else if (!in_robot() && $classes`Seal Clubber, Turtle Tamer, Pastamancer, Sauceror, Disco Bandit, Accordion Thief`.includes(
+      (0, import_kolmafia114.myClass)()
+    )) {
+      if (coldAttackDamage > 69 + (0, import_kolmafia114.monsterLevelAdjustment)() && coldAttackDamage > 0) {
+        if ((0, import_kolmafia114.myClass)() === $class`Seal Clubber`) {
+          if (auto_canUse($skill`Lunging Thrust-Smack`, false)) {
+            return auto_useSkill($skill`Lunging Thrust-Smack`, false);
+          } else if (auto_canUse($skill`Thrust-Smack`, false)) {
+            return auto_useSkill($skill`Thrust-Smack`, false);
+          } else if (auto_canUse($skill`Lunge Smack`, false)) {
+            return auto_useSkill($skill`Lunge Smack`, false);
+          } else {
+            return "attack";
+          }
+        } else {
+          return "attack";
+        }
+      } else if ((0, import_kolmafia114.monsterLevelAdjustment)() <= -25 && auto_canUse($skill`Saucestorm`, false)) {
+        auto_log_warning(
+          "None of the best [cold] skills available against smut orcs but trying weaker alternative in view of the negative monster level.",
+          "red"
+        );
+        return auto_useSkill($skill`Saucestorm`, false);
+      } else {
+        auto_log_warning(
+          "None of our preferred [cold] skills available against smut orcs. Engaging in Fisticuffs.",
+          "red"
+        );
+      }
+    }
   }
   if (auto_canUse($skill`Loofah Stew`) && (0, import_kolmafia114.monsterElement)(enemy) !== $element`cold`) {
     return auto_useSkill($skill`Loofah Stew`, false);
