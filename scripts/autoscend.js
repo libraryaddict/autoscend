@@ -2009,7 +2009,7 @@ var require_atob = __commonJS({
 // data:setting_extras
 var require_setting_extras = __commonJS({
   "data:setting_extras"(exports, module2) {
-    module2.exports = { auto_interrupt: { default: "false" }, auto_stop: { default: "false" }, auto_debugging: { default: "false" }, auto_paranoia: { default: "-1", resets: "ascend" }, auto_inv_paranoia: { default: "false" }, auto_newbieOverride: { default: "false" }, auto_disableAdventureHandling: { default: "false", resets: "ascend" }, auto_disableFamiliarChanging: { default: "false" }, auto_combatDirective: { default: "" }, auto_interruptZones: { default: "" }, auto_delayTimer: { default: "1" }, auto_stayInRun: { default: "false" }, auto_confidence: { default: "false" }, auto_blacklistFamiliar: { default: "" }, auto_considerGalaktik: { default: "false" }, auto_skipUnlockGuild: { default: "false" }, auto_save_adv_override: { default: "-1" }, auto_secondPlaceOrBust: { default: "false" }, auto_log_level: { default: "3" }, auto_log_level_restore: { default: "0" }, auto_restoreUseBloodBond: { default: "false" }, auto_forceFatLootToken: { default: "false" }, auto_pvpEnable: { default: "false" }, auto_towerBreak: { default: "" }, auto_ignoreRestoreFailure: { default: "false" }, auto_workshed: { default: "" }, auto_stopMinutesToRollover: { default: "5", resets: "ascend" }, auto_abooclover: { default: "true", resets: "ascend" }, auto_clanstuff: { default: "0", resets: "ascend" }, _auto_ignoreRestoreFailureToday: { default: "false" }, auto_aosol_dontUnCurse: { default: "false" }, auto_skipRefreshAll: { default: "false" }, auto_aboopending: { resets: "ascend" }, auto_avalancheDeployed: { default: "false", resets: "ascend" }, auto_banishes: { default: "", resets: "ascend" }, auto_batoomerangDay: { resets: "ascend" }, auto_beatenUpLastAdv: { default: "false", resets: "ascend" }, auto_beatenUpLocations: { resets: "ascend" }, auto_boughtCommerceGhostItem: { resets: "ascend" }, auto_breathitinLastLevel: { default: "0", resets: "day" }, auto_bruteForcePalindome: { default: "false", resets: "ascend" }, auto_cabinetsencountered: { default: "0", resets: "ascend" }, auto_chewed: { default: "", resets: "ascend" }, auto_cmcConsultLastLevel: { default: "0", resets: "day" }, auto_considerCCSCShore: { default: "true", resets: "ascend" }, auto_copies: { default: "", resets: "ascend" }, auto_dakotaFanning: { default: "false", resets: "ascend" }, auto_day1_dna: { resets: "ascend" }, auto_day2WaitLastLevel: { default: "0", resets: "ascend" }, auto_debuffAsdonDelay: { default: "0", resets: "ascend" }, auto_delayLastLevel: { default: "0", resets: "day" }, auto_dietpills: { default: "0", resets: "ascend" }, auto_doCombatCopy: { default: "no", resets: "ascend" }, auto_dontUseCookBookBat: { default: "false", resets: "ascend" }, auto_doWhiteys: { default: "false", resets: "ascend" }, auto_drunken: { default: "", resets: "ascend" }, auto_eaten: { default: "", resets: "ascend" }, auto_exerciseLiquidity: { resets: "ascend" }, auto_forcedNC: { resets: "ascend" }, auto_forceNonCombatSource: { default: "", resets: "ascend" }, auto_forceTavern: { default: "false", resets: "ascend" }, auto_freeruns: { default: "", resets: "ascend" }, auto_funTracker: { default: "", resets: "ascend" }, auto_haveSourceTerminal: { default: "false", resets: "ascend" }, auto_instakill: { default: "", resets: "ascend" }, auto_instakillSource: { default: "", resets: "ascend" }, auto_instakillSuccess: { default: "false", resets: "ascend" }, auto_interruptedZones: { default: "", resets: "ascend" }, auto_iotm_claim: { default: "", resets: "ascend" }, auto_junkspritesencountered: { default: "0", resets: "ascend" }, auto_L03CouncilVisited: { default: "false", resets: "ascend" }, auto_L05CouncilVisited: { default: "false", resets: "ascend" }, auto_L07CouncilVisited: { default: "false", resets: "ascend" }, auto_L11CouncilVisited: { default: "false", resets: "ascend" }, auto_L12FarmStage: { default: "0", resets: "ascend" }, auto_lastShenTurn: { default: "0", resets: "ascend" }, auto_leaflet_done: { default: "false", resets: "ascend" }, auto_lucky: { default: "", resets: "ascend" }, auto_luckySource: { default: "none", resets: "ascend" }, auto_mapperidot: { default: "", resets: "ascend" }, auto_minedCells: { resets: "ascend" }, auto_openedziggurat: { default: "false", resets: "ascend" }, auto_otherstuff: { default: "", resets: "ascend" }, auto_paranoia_counter: { default: "0", resets: "ascend" }, auto_parkaSpikesDeployed: { default: "false", resets: "ascend" }, auto_powerfulglove: { default: "", resets: "ascend" }, auto_priorCharpaneMode: { default: "0", resets: "ascend" }, auto_pulls: { default: "", resets: "ascend" }, auto_replaces: { default: "", resets: "ascend" }, auto_shenZonesTurnsSpent: { resets: "ascend" }, auto_shinningStarted: { default: "false", resets: "ascend" }, auto_skipL12Farm: { default: "false", resets: "ascend" }, auto_sniffs: { default: "", resets: "ascend" }, auto_tracker_path: { default: "", resets: "ascend" }, auto_wineracksencountered: { default: "0", resets: "ascend" }, auto_wishes: { default: "", resets: "ascend" }, auto_writingDeskSummon: { default: "false", resets: "ascend" }, auto_yellowRays: { default: "", resets: "ascend" }, _auto_candyMapCompleted: { resets: "day" }, _auto_reinitialize: { default: "false", resets: "ascend" }, _auto_toxicAssetUses: { resets: "ascend" }, choiceAdventure1003: { default: "0", resets: "ascend" }, kolhs_closetDrink: { default: "false" }, auto_getSteelOrgan: { default: "false" }, auto_getBeehive: { default: "false", resets: "ascend" }, auto_getStarKey: { default: "true", resets: "ascend" }, auto_holeinthesky: { default: "true", resets: "ascend" }, auto_hippyInstead: { default: "false", resets: "ascend" }, auto_ignoreFlyer: { default: "false", resets: "ascend" }, auto_wandOfNagamar: { default: "true", resets: "ascend" }, auto_dontPhylumBanish: { default: "false", resets: "ascend" }, auto_runDayCount: { default: "2", resets: "ascend" }, auto_chasmBusted: { default: "true", resets: "ascend" }, auto_day_init: { default: "0", resets: "ascend" }, auto_getBoningKnife: { default: "false", resets: "ascend" }, auto_gnasirUnlocked: { default: "false", resets: "ascend" }, auto_grimstoneFancyOilPainting: { default: "true", resets: "ascend" }, auto_grimstoneOrnateDowsingRod: { default: "true", resets: "ascend" }, auto_hedge: { default: "fast", resets: "ascend" }, auto_powerLevelLastLevel: { default: "0", resets: "day" }, auto_powerLevelAdvCount: { default: "0", resets: "ascend" }, auto_powerLevelLastAttempted: { default: "0", resets: "ascend" }, auto_skipNuns: { default: "false", resets: "ascend" }, auto_100familiar: { default: "" }, auto_beatenUpCount: { default: "0", resets: "ascend" }, auto_doneInitialize: { default: "0" }, auto_needLegs: { default: "false" }, auto_haveoven: { default: "false", resets: "ascend" }, auto_doGalaktik: { default: "false" }, auto_L8_ninjaAssassinFail: { default: "false", resets: "ascend" }, auto_L8_extremeInstead: { default: "false", resets: "ascend" }, auto_getSteelOrgan_initialize: { default: "false" }, auto_doGalaktik_initialize: { default: "false" }, auto_disableExcavator: { default: "false" }, auto_ashtonLimit: { default: "" }, auto_bcz_battlefieldGaze: { default: "2" }, auto_clanVIPLounge: { default: "auto" }, auto_hideAdultery: { default: "false" }, auto_optimizeConsultsInRun: { default: "false" }, auto_consultClan: { default: "" }, auto_consultChoice: { default: "OnlyFax" }, auto_floundryChoice: { default: "" }, auto_skipGuzzlrCocktailSet: { default: "false" }, auto_interestingCoins: { default: "1" }, auto_spoonsign: { default: "" }, auto_mushroomGardenGrowth: { default: "1" }, auto_farmSoCP: { default: "false" }, auto_extrudeChoice: { default: "" }, auto_teaChoice: { default: "" }, auto_powerLevelTimer: { default: "10" }, auto_MLSafetyLimit: { default: "" }, auto_disregardInstantKarma: { default: "false" }, auto_burndownStatsProgression: { default: "false" }, auto_burndownStatsProgressionDiff: { default: "75%" }, auto_burndownStatsInstantKarma: { default: "false" }, auto_burndownStatsInstantKarmaAbort: { default: "false" }, auto_attemptToBladdermax: { default: "false" }, auto_limitConsume: { default: "false" }, auto_skipNightcap: { default: "false" }, auto_consumeMinAdvPerFill: { default: "0" }, auto_dontConsumeKeyLimePies: { default: "false" }, auto_dontConsumeLegendPizzas: { default: "false" }, auto_slowSteelOrgan: { default: "false" }, auto_maximize_smarter: { default: "false" }, auto_maximize_baseline: { default: "" }, auto_equipment_override_hat: { default: "" }, auto_equipment_override_back: { default: "" }, auto_equipment_override_shirt: { default: "" }, auto_equipment_override_weapon: { default: "" }, "auto_equipment_override_off-hand": { default: "" }, auto_equipment_override_pants: { default: "" }, auto_equipment_override_acc: { default: "" }, auto_equipment_override_familiar: { default: "" }, auto_debug_maximizer: { default: "false" }, auto_consumablePriceLimit: { default: "12000" }, auto_maxCandyPrice: { default: "0" }, auto_meat_surplus: { default: "5000" }, auto_consumePullDesirability: { default: "5" }, auto_bedtime_pulls_skip: { default: "false" }, auto_bedtime_pulls_pvp_multi: { default: "0.3" }, auto_bedtime_pulls_min_desirability: { default: "1" } };
+    module2.exports = { auto_interrupt: { default: "false" }, auto_stop: { default: "false" }, auto_debugging: { default: "false" }, auto_abortBeforeAdventuring: { default: "false" }, auto_paranoia: { default: "-1", resets: "ascend" }, auto_inv_paranoia: { default: "false" }, auto_newbieOverride: { default: "false" }, auto_disableAdventureHandling: { default: "false", resets: "ascend" }, auto_disableFamiliarChanging: { default: "false" }, auto_combatDirective: { default: "" }, auto_interruptZones: { default: "" }, auto_delayTimer: { default: "1" }, auto_stayInRun: { default: "false" }, auto_confidence: { default: "false" }, auto_blacklistFamiliar: { default: "" }, auto_considerGalaktik: { default: "false" }, auto_skipUnlockGuild: { default: "false" }, auto_save_adv_override: { default: "-1" }, auto_secondPlaceOrBust: { default: "false" }, auto_log_level: { default: "3" }, auto_log_level_restore: { default: "0" }, auto_restoreUseBloodBond: { default: "false" }, auto_forceFatLootToken: { default: "false" }, auto_pvpEnable: { default: "false" }, auto_towerBreak: { default: "" }, auto_ignoreRestoreFailure: { default: "false" }, auto_workshed: { default: "" }, auto_stopMinutesToRollover: { default: "5", resets: "ascend" }, auto_abooclover: { default: "true", resets: "ascend" }, auto_clanstuff: { default: "0", resets: "ascend" }, _auto_ignoreRestoreFailureToday: { default: "false" }, auto_aosol_dontUnCurse: { default: "false" }, auto_skipRefreshAll: { default: "false" }, auto_aboopending: { resets: "ascend" }, auto_avalancheDeployed: { default: "false", resets: "ascend" }, auto_banishes: { default: "", resets: "ascend" }, auto_batoomerangDay: { resets: "ascend" }, auto_beatenUpLastAdv: { default: "false", resets: "ascend" }, auto_beatenUpLocations: { resets: "ascend" }, auto_boughtCommerceGhostItem: { resets: "ascend" }, auto_breathitinLastLevel: { default: "0", resets: "day" }, auto_bruteForcePalindome: { default: "false", resets: "ascend" }, auto_cabinetsencountered: { default: "0", resets: "ascend" }, auto_chewed: { default: "", resets: "ascend" }, auto_cmcConsultLastLevel: { default: "0", resets: "day" }, auto_considerCCSCShore: { default: "true", resets: "ascend" }, auto_copies: { default: "", resets: "ascend" }, auto_dakotaFanning: { default: "false", resets: "ascend" }, auto_day1_dna: { resets: "ascend" }, auto_day2WaitLastLevel: { default: "0", resets: "ascend" }, auto_debuffAsdonDelay: { default: "0", resets: "ascend" }, auto_delayLastLevel: { default: "0", resets: "day" }, auto_dietpills: { default: "0", resets: "ascend" }, auto_doCombatCopy: { default: "no", resets: "ascend" }, auto_dontUseCookBookBat: { default: "false", resets: "ascend" }, auto_doWhiteys: { default: "false", resets: "ascend" }, auto_drunken: { default: "", resets: "ascend" }, auto_eaten: { default: "", resets: "ascend" }, auto_exerciseLiquidity: { resets: "ascend" }, auto_forcedNC: { resets: "ascend" }, auto_forceNonCombatSource: { default: "", resets: "ascend" }, auto_forceTavern: { default: "false", resets: "ascend" }, auto_freeruns: { default: "", resets: "ascend" }, auto_funTracker: { default: "", resets: "ascend" }, auto_haveSourceTerminal: { default: "false", resets: "ascend" }, auto_instakill: { default: "", resets: "ascend" }, auto_instakillSource: { default: "", resets: "ascend" }, auto_instakillSuccess: { default: "false", resets: "ascend" }, auto_interruptedZones: { default: "", resets: "ascend" }, auto_iotm_claim: { default: "", resets: "ascend" }, auto_junkspritesencountered: { default: "0", resets: "ascend" }, auto_L03CouncilVisited: { default: "false", resets: "ascend" }, auto_L05CouncilVisited: { default: "false", resets: "ascend" }, auto_L07CouncilVisited: { default: "false", resets: "ascend" }, auto_L11CouncilVisited: { default: "false", resets: "ascend" }, auto_L12FarmStage: { default: "0", resets: "ascend" }, auto_lastShenTurn: { default: "0", resets: "ascend" }, auto_leaflet_done: { default: "false", resets: "ascend" }, auto_lucky: { default: "", resets: "ascend" }, auto_luckySource: { default: "none", resets: "ascend" }, auto_mapperidot: { default: "", resets: "ascend" }, auto_minedCells: { resets: "ascend" }, auto_openedziggurat: { default: "false", resets: "ascend" }, auto_otherstuff: { default: "", resets: "ascend" }, auto_paranoia_counter: { default: "0", resets: "ascend" }, auto_parkaSpikesDeployed: { default: "false", resets: "ascend" }, auto_powerfulglove: { default: "", resets: "ascend" }, auto_priorCharpaneMode: { default: "0", resets: "ascend" }, auto_pulls: { default: "", resets: "ascend" }, auto_replaces: { default: "", resets: "ascend" }, auto_shenZonesTurnsSpent: { resets: "ascend" }, auto_shinningStarted: { default: "false", resets: "ascend" }, auto_skipL12Farm: { default: "false", resets: "ascend" }, auto_sniffs: { default: "", resets: "ascend" }, auto_tracker_path: { default: "", resets: "ascend" }, auto_wineracksencountered: { default: "0", resets: "ascend" }, auto_wishes: { default: "", resets: "ascend" }, auto_writingDeskSummon: { default: "false", resets: "ascend" }, auto_yellowRays: { default: "", resets: "ascend" }, _auto_candyMapCompleted: { resets: "day" }, _auto_reinitialize: { default: "false", resets: "ascend" }, _auto_toxicAssetUses: { resets: "ascend" }, choiceAdventure1003: { default: "0", resets: "ascend" }, kolhs_closetDrink: { default: "false" }, auto_getSteelOrgan: { default: "false" }, auto_getBeehive: { default: "false", resets: "ascend" }, auto_getStarKey: { default: "true", resets: "ascend" }, auto_holeinthesky: { default: "true", resets: "ascend" }, auto_hippyInstead: { default: "false", resets: "ascend" }, auto_ignoreFlyer: { default: "false", resets: "ascend" }, auto_wandOfNagamar: { default: "true", resets: "ascend" }, auto_dontPhylumBanish: { default: "false", resets: "ascend" }, auto_runDayCount: { default: "2", resets: "ascend" }, auto_chasmBusted: { default: "true", resets: "ascend" }, auto_day_init: { default: "0", resets: "ascend" }, auto_getBoningKnife: { default: "false", resets: "ascend" }, auto_gnasirUnlocked: { default: "false", resets: "ascend" }, auto_grimstoneFancyOilPainting: { default: "true", resets: "ascend" }, auto_grimstoneOrnateDowsingRod: { default: "true", resets: "ascend" }, auto_hedge: { default: "fast", resets: "ascend" }, auto_powerLevelLastLevel: { default: "0", resets: "day" }, auto_powerLevelAdvCount: { default: "0", resets: "ascend" }, auto_powerLevelLastAttempted: { default: "0", resets: "ascend" }, auto_skipNuns: { default: "false", resets: "ascend" }, auto_100familiar: { default: "" }, auto_beatenUpCount: { default: "0", resets: "ascend" }, auto_doneInitialize: { default: "0" }, auto_needLegs: { default: "false" }, auto_haveoven: { default: "false", resets: "ascend" }, auto_doGalaktik: { default: "false" }, auto_L8_ninjaAssassinFail: { default: "false", resets: "ascend" }, auto_L8_extremeInstead: { default: "false", resets: "ascend" }, auto_getSteelOrgan_initialize: { default: "false" }, auto_doGalaktik_initialize: { default: "false" }, auto_disableExcavator: { default: "false" }, auto_ashtonLimit: { default: "" }, auto_bcz_battlefieldGaze: { default: "2" }, auto_clanVIPLounge: { default: "auto" }, auto_hideAdultery: { default: "false" }, auto_optimizeConsultsInRun: { default: "false" }, auto_consultClan: { default: "" }, auto_consultChoice: { default: "OnlyFax" }, auto_floundryChoice: { default: "" }, auto_skipGuzzlrCocktailSet: { default: "false" }, auto_interestingCoins: { default: "1" }, auto_spoonsign: { default: "" }, auto_mushroomGardenGrowth: { default: "1" }, auto_farmSoCP: { default: "false" }, auto_extrudeChoice: { default: "" }, auto_teaChoice: { default: "" }, auto_powerLevelTimer: { default: "10" }, auto_MLSafetyLimit: { default: "" }, auto_disregardInstantKarma: { default: "false" }, auto_burndownStatsProgression: { default: "false" }, auto_burndownStatsProgressionDiff: { default: "75%" }, auto_burndownStatsInstantKarma: { default: "false" }, auto_burndownStatsInstantKarmaAbort: { default: "false" }, auto_attemptToBladdermax: { default: "false" }, auto_limitConsume: { default: "false" }, auto_skipNightcap: { default: "false" }, auto_consumeMinAdvPerFill: { default: "0" }, auto_dontConsumeKeyLimePies: { default: "false" }, auto_dontConsumeLegendPizzas: { default: "false" }, auto_slowSteelOrgan: { default: "false" }, auto_maximize_smarter: { default: "false" }, auto_maximize_baseline: { default: "" }, auto_equipment_override_hat: { default: "" }, auto_equipment_override_back: { default: "" }, auto_equipment_override_shirt: { default: "" }, auto_equipment_override_weapon: { default: "" }, "auto_equipment_override_off-hand": { default: "" }, auto_equipment_override_pants: { default: "" }, auto_equipment_override_acc: { default: "" }, auto_equipment_override_familiar: { default: "" }, auto_debug_maximizer: { default: "false" }, auto_consumablePriceLimit: { default: "12000" }, auto_maxCandyPrice: { default: "0" }, auto_meat_surplus: { default: "5000" }, auto_consumePullDesirability: { default: "5" }, auto_bedtime_pulls_skip: { default: "false" }, auto_bedtime_pulls_pvp_multi: { default: "0.3" }, auto_bedtime_pulls_min_desirability: { default: "1" } };
   }
 });
 
@@ -2805,7 +2805,7 @@ __export(propertyTypes_exports, {
   statProperties: () => statProperties,
   stringProperties: () => stringProperties
 });
-var booleanProperties = ["abortOnChoiceWhenNotInChoice", "addChatCommandLine", "addCreationQueue", "addStatusBarToFrames", "allowCloseableDesktopTabs", "allowNegativeTally", "allowNonMoodBurning", "allowSummonBurning", "autoHighlightOnFocus", "broadcastEvents", "cacheMallSearches", "chatBeep", "chatLinksUseRelay", "compactChessboard", "copyAsHTML", "customizedTabs", "debugBuy", "debugConsequences", "debugFoxtrotRemoval", "debugPathnames", "debugTopMenuStyle", "gapProtection", "gitInstallDependencies", "gitShowCommitMessages", "gitUpdateOnLogin", "greenScreenProtection", "guiUsesOneWindow", "hideServerDebugText", "logAcquiredItems", "logBattleAction", "logBrowserInteractions", "logChatMessages", "logChatRequests", "logCleanedHTML", "logDecoratedResponses", "logFamiliarActions", "logGainMessages", "logReadableHTML", "logPreferenceChange", "logMonsterHealth", "logReverseOrder", "logStatGains", "logStatusEffects", "logStatusOnLogin", "macroDebug", "macroLens", "mementoListActive", "mergeHobopolisChat", "pingLogin", "pingStealthyTimein", "printStackOnAbort", "proxySet", "relayAddSounds", "relayAddsCustomCombat", "relayAddsDiscoHelper", "relayAddsGraphicalCLI", "relayAddsQuickScripts", "relayAddsRestoreLinks", "relayAddsUpArrowLinks", "relayAddsUseLinks", "relayAddsWikiLinks", "relayAllowRemoteAccess", "relayBrowserOnly", "relayCacheUncacheable", "relayFormatsChatText", "relayHidesJunkMallItems", "relayMaintainsEffects", "relayMaintainsHealth", "relayMaintainsMana", "relayOverridesImages", "relayRunsAfterAdventureScript", "relayRunsBeforeBattleScript", "relayRunsBeforePVPScript", "relayScriptButtonFirst", "relayTextualizesEffects", "relayTrimsZapList", "relayUsesInlineLinks", "relayUsesIntegratedChat", "relayWarnOnRecoverFailure", "removeMalignantEffects", "retryFailedNetworkRequests", "saveSettingsOnSet", "sharePriceData", "showAllRequests", "showExceptionalRequests", "stealthLogin", "svnAlwaysAdd", "svnAlwaysOverwrite", "svnInstallDependencies", "svnShowCommitMessages", "svnUpdateOnLogin", "switchEquipmentForBuffs", "syncAfterSvnUpdate", "useChatToolbar", "useContactsFrame", "useDevServer", "useDockIconBadge", "useHugglerChannel", "useImageCache", "useLastUserAgent", "useSystemTrayIcon", "useTabbedChatFrame", "useToolbars", "useCachedVolcanoMaps", "useZoneComboBox", "verboseSpeakeasy", "verboseFloundry", "wrapLongLines", "_faxDataChanged", "_gitUpdated", "_svnRepoFileFetched", "_svnUpdated", "antagonisticSnowmanKitAvailable", "arcadeGameHints", "armoryUnlocked", "autoForbidIgnoringStores", "autoCraft", "autoQuest", "autoEntangle", "autoGarish", "autoManaRestore", "autoFillMayoMinder", "autoPinkyRing", "autoPlantHardcore", "autoPlantSoftcore", "autoPotionID", "autoRepairBoxServants", "autoSatisfyWithCloset", "autoSatisfyWithCoinmasters", "autoSatisfyWithMall", "autoSatisfyWithNPCs", "autoSatisfyWithStash", "autoSatisfyWithStorage", "autoSatisfyWithShop", "autoSetConditions", "autoSteal", "autoTuxedo", "backupCameraReverserEnabled", "badMoonEncounter01", "badMoonEncounter02", "badMoonEncounter03", "badMoonEncounter04", "badMoonEncounter05", "badMoonEncounter06", "badMoonEncounter07", "badMoonEncounter08", "badMoonEncounter09", "badMoonEncounter10", "badMoonEncounter11", "badMoonEncounter12", "badMoonEncounter13", "badMoonEncounter14", "badMoonEncounter15", "badMoonEncounter16", "badMoonEncounter17", "badMoonEncounter18", "badMoonEncounter19", "badMoonEncounter20", "badMoonEncounter21", "badMoonEncounter22", "badMoonEncounter23", "badMoonEncounter24", "badMoonEncounter25", "badMoonEncounter26", "badMoonEncounter27", "badMoonEncounter28", "badMoonEncounter29", "badMoonEncounter30", "badMoonEncounter31", "badMoonEncounter32", "badMoonEncounter33", "badMoonEncounter34", "badMoonEncounter35", "badMoonEncounter36", "badMoonEncounter37", "badMoonEncounter38", "badMoonEncounter39", "badMoonEncounter40", "badMoonEncounter41", "badMoonEncounter42", "badMoonEncounter43", "badMoonEncounter44", "badMoonEncounter45", "badMoonEncounter46", "badMoonEncounter47", "badMoonEncounter48", "barrelShrineUnlocked", "batWingsBatHoleEntrance", "batWingsBatratBurrow", "batWingsBeanbatChamber", "batWingsGuanoJunction", "bigBrotherRescued", "blackBartsBootyAvailable", "bondAdv", "bondBeach", "bondBeat", "bondBooze", "bondBridge", "bondDesert", "bondDR", "bondDrunk1", "bondDrunk2", "bondHoney", "bondHP", "bondInit", "bondItem1", "bondItem2", "bondItem3", "bondJetpack", "bondMartiniDelivery", "bondMartiniPlus", "bondMartiniTurn", "bondMeat", "bondMox1", "bondMox2", "bondMPregen", "bondMus1", "bondMus2", "bondMys1", "bondMys2", "bondSpleen", "bondStat", "bondStat2", "bondStealth", "bondStealth2", "bondSymbols", "bondWar", "bondWeapon2", "bondWpn", "bookOfIronyAvailable", "booPeakLit", "bootsCharged", "breakfastCompleted", "burlyBodyguardReceivedBonus", "burrowgrubHiveUsed", "calzoneOfLegendEaten", "candyCaneSwordApartmentBuilding", "candyCaneSwordBlackForest", "candyCaneSwordBowlingAlley", "candyCaneSwordCopperheadClub", "candyCaneSwordDailyDungeon", "candyCaneSwordDefiledCranny", "candyCaneSwordFunHouse", "candyCaneSwordShore", "candyCaneSwordWarFratRoom", "candyCaneSwordWarFratZetas", "candyCaneSwordWarHippyBait", "candyCaneSwordWarHippyLine", "canteenUnlocked", "chaosButterflyThrown", "chatbotScriptExecuted", "chateauAvailable", "chatLiterate", "chatServesUpdates", "checkJackassHardcore", "checkJackassSoftcore", "clanAttacksEnabled", "coldAirportAlways", "considerShadowNoodles", "controlRoomUnlock", "concertVisited", "controlPanel1", "controlPanel2", "controlPanel3", "controlPanel4", "controlPanel5", "controlPanel6", "controlPanel7", "controlPanel8", "controlPanel9", "corralUnlocked", "crAlways", "crimbo23ArmoryAtWar", "crimbo23BarAtWar", "crimbo23CafeAtWar", "crimbo23CottageAtWar", "crimbo23FoundryAtWar", "cyberDatastickCollected", "dailyDungeonDone", "dampOldBootPurchased", "daycareOpen", "deepDishOfLegendEaten", "demonSummoned", "dinseyAudienceEngagement", "dinseyGarbagePirate", "dinseyRapidPassEnabled", "dinseyRollercoasterNext", "dinseySafetyProtocolsLoose", "doghouseBoarded", "dontStopForCounters", "drippingHallUnlocked", "drippyShieldUnlocked", "edUsedLash", "eldritchFissureAvailable", "eldritchHorrorAvailable", "enqueueForConsumption", "errorOnAmbiguousFold", "essenceOfAnnoyanceAvailable", "essenceOfBearAvailable", "expressCardUsed", "falloutShelterChronoUsed", "falloutShelterCoolingTankUsed", "fireExtinguisherBatHoleUsed", "fireExtinguisherChasmUsed", "fireExtinguisherCyrptUsed", "fireExtinguisherDesertUsed", "fireExtinguisherHaremUsed", "fistTeachingsHaikuDungeon", "fistTeachingsPokerRoom", "fistTeachingsBarroomBrawl", "fistTeachingsConservatory", "fistTeachingsBatHole", "fistTeachingsFunHouse", "fistTeachingsMenagerie", "fistTeachingsSlums", "fistTeachingsFratHouse", "fistTeachingsRoad", "fistTeachingsNinjaSnowmen", "flickeringPixel1", "flickeringPixel2", "flickeringPixel3", "flickeringPixel4", "flickeringPixel5", "flickeringPixel6", "flickeringPixel7", "flickeringPixel8", "floristFriarAvailable", "floristFriarChecked", "frAlways", "frCemetaryUnlocked", "friarsBlessingReceived", "frMountainsUnlocked", "frSwampUnlocked", "frVillageUnlocked", "frWoodUnlocked", "getawayCampsiteUnlocked", "ghostPencil1", "ghostPencil2", "ghostPencil3", "ghostPencil4", "ghostPencil5", "ghostPencil6", "ghostPencil7", "ghostPencil8", "ghostPencil9", "gingerAdvanceClockUnlocked", "gingerBlackmailAccomplished", "gingerbreadCityAvailable", "gingerExtraAdventures", "gingerNegativesDropped", "gingerSewersUnlocked", "gingerSubwayLineUnlocked", "gingerRetailUnlocked", "glitchItemAvailable", "grabCloversHardcore", "grabCloversSoftcore", "grandpaUnlockedBlankPrescriptionSheet", "grandpaUnlockedEelSauce", "grandpaUnlockedFishyWand", "grandpaUnlockedGlowingSyringe", "grandpaUnlockedGroupieSpangles", "grandpaUnlockedHairOfTheFish", "grandpaUnlockedHalibut", "grandpaUnlockedHeavilyInvestedInPunFutures", "grandpaUnlockedJellyfishGel", "grandpaUnlockedMarineAquamarine", "grandpaUnlockedMidgetClownfish", "grandpaUnlockedSeaRadish", "grandpaUnlockedTrophyFish", "grandpaUnlockedWaterPoloCap", "grandpaUnlockedWaterPoloMitt", "guideToSafariAvailable", "guyMadeOfBeesDefeated", "hallowienerDefiledNook", "hallowienerGuanoJunction", "hallowienerKnollGym", "hallowienerMadnessBakery", "hallowienerMiddleChamber", "hallowienerOvergrownLot", "hallowienerSkeletonStore", "hallowienerSmutOrcs", "hallowienerSonofaBeach", "hallowienerVolcoino", "hardcorePVPWarning", "harvestBatteriesHardcore", "harvestBatteriesSoftcore", "hasAutumnaton", "hasBartender", "hasChef", "hasCocktailKit", "hasCosmicBowlingBall", "hasDetectiveSchool", "hasMaydayContract", "hasOven", "hasRange", "hasShaker", "hasShrunkenHead", "hasSushiMat", "hasTwinkleVision", "haveBoxingDaydreamHardcore", "haveBoxingDaydreamSoftcore", "heartstoneBanishUnlocked", "heartstoneBuffUnlocked", "heartstoneKillUnlocked", "heartstoneLuckUnlocked", "heartstonePalsUnlocked", "heartstoneStunUnlocked", "hermitHax0red", "holidayHalsBookAvailable", "horseryAvailable", "hotAirportAlways", "intenseCurrents", "isMerkinGladiatorChampion", "isMerkinHighPriest", "itemBoughtPerAscension637", "itemBoughtPerAscension8266", "itemBoughtPerAscension10790", "itemBoughtPerAscension10794", "itemBoughtPerAscension10795", "itemBoughtPerCharacter6423", "itemBoughtPerCharacter6428", "itemBoughtPerCharacter6429", "kingLiberated", "lastPirateInsult1", "lastPirateInsult2", "lastPirateInsult3", "lastPirateInsult4", "lastPirateInsult5", "lastPirateInsult6", "lastPirateInsult7", "lastPirateInsult8", "lawOfAveragesAvailable", "leafletCompleted", "ledCandleDropped", "libraryCardUsed", "lockPicked", "logBastilleBattalionBattles", "loginRecoveryHardcore", "loginRecoverySoftcore", "lovebugsUnlocked", "loveTunnelAvailable", "lowerChamberUnlock", "madnessBakeryAvailable", "makeHandheldRadiosHardcore", "makeHandheldRadiosSoftcore", "makePocketWishesHardcore", "makePocketWishesSoftcore", "manualOfNumberologyAvailable", "mappingMonsters", "mapToAnemoneMinePurchased", "mapToKokomoAvailable", "mapToMadnessReefPurchased", "mapToTheDiveBarPurchased", "mapToTheMarinaraTrenchPurchased", "mapToTheSkateParkPurchased", "maraisBeaverUnlock", "maraisCorpseUnlock", "maraisDarkUnlock", "maraisVillageUnlock", "maraisWildlifeUnlock", "maraisWizardUnlock", "maximizerAlwaysCurrent", "maximizerCreateOnHand", "maximizerCurrentMallPrices", "maximizerFoldables", "maximizerIncludeAll", "maximizerNoAdventures", "maximizerUseScope", "merkinElementaryBathroomUnlock", "merkinElementaryJanitorUnlock", "merkinElementaryTeacherUnlock", "middleChamberUnlock", "milkOfMagnesiumActive", "moonTuned", "neverendingPartyAlways", "noncombatForcerActive", "oasisAvailable", "odeBuffbotCheck", "oilPeakLit", "oscusSodaUsed", "outrageousSombreroUsed", "overgrownLotAvailable", "ownsFloristFriar", "ownsSpeakeasy", "pathedSummonsHardcore", "pathedSummonsSoftcore", "pirateRealmUnlockedAnemometer", "pirateRealmUnlockedBlunderbuss", "pirateRealmUnlockedBreastplate", "pirateRealmUnlockedClipper", "pirateRealmUnlockedCrabsicle", "pirateRealmUnlockedFlag", "pirateRealmUnlockedFork", "pirateRealmUnlockedGoldRing", "pirateRealmUnlockedManOWar", "pirateRealmUnlockedPlushie", "pirateRealmUnlockedRadioRing", "pirateRealmUnlockedRhum", "pirateRealmUnlockedScurvySkillbook", "pirateRealmUnlockedShavingCream", "pirateRealmUnlockedSpyglass", "pirateRealmUnlockedTattoo", "pirateRealmUnlockedThirdCrewmate", "pirateRealmUnlockedTikiSkillbook", "pizzaOfLegendEaten", "popularTartUnlocked", "potatoAlarmClockUsed", "prAlways", "prayedForGlamour", "prayedForProtection", "prayedForVigor", "primaryLabCheerCoreGrabbed", "pumpkinSpiceWhorlUsed", "pyramidBombUsed", "rageGlandVented", "readManualHardcore", "readManualSoftcore", "relayDecorateJsCommands", "relayShowSpoilers", "relayShowWarnings", "rememberDesktopSize", "replicaChateauAvailable", "replicaNeverendingPartyAlways", "replicaWitchessSetAvailable", "requireBoxServants", "requireSewerTestItems", "restUsingCampAwayTent", "restUsingChateau", "ROMOfOptimalityAvailable", "safePickpocket", "schoolOfHardKnocksDiplomaAvailable", "scriptCascadingMenus", "serverAddsCustomCombat", "serverAddsBothCombat", "SHAWARMAInitiativeUnlocked", "showForbiddenStores", "showGainsPerUnit", "showIgnoringStorePrices", "showNoSummonOnly", "showTurnFreeOnly", "shubJigguwattDefeated", "skeletonStoreAvailable", "sleazeAirportAlways", "snojoAvailable", "sortByEffect", "sortByRoom", "spacegateAlways", "spacegateVaccine1", "spacegateVaccine2", "spacegateVaccine3", "spaceInvaderDefeated", "spelunkyHints", "spiceMelangeUsed", "spookyAirportAlways", "stenchAirportAlways", "stopForFixedWanderer", "stopForUltraRare", "styxPixieVisited", "superconductorDefeated", "suppressCyberRealmDarkMode", "suppressCyberRealmGreenImages", "suppressInappropriateNags", "suppressPowerPixellation", "suppressMallPriceCacheMessages", "telegraphOfficeAvailable", "telescopeLookedHigh", "timeTowerAvailable", "trackLightsOut", "uneffectWithHotTub", "universalSeasoningActive", "universalSeasoningAvailable", "useBookOfEverySkillHardcore", "useBookOfEverySkillSoftcore", "useCrimboToysHardcore", "useCrimboToysSoftcore", "verboseMaximizer", "visitLoungeHardcore", "visitLoungeSoftcore", "visitRumpusHardcore", "visitRumpusSoftcore", "voteAlways", "wildfireBarrelCaulked", "wildfireDusted", "wildfireFracked", "wildfirePumpGreased", "wildfireSprinkled", "yearbookCameraPending", "yogUrtDefeated", "youRobotScavenged", "_2002MrStoreCreditsCollected", "_affirmationCookieEaten", "_affirmationHateUsed", "_airFryerUsed", "_akgyxothUsed", "_alienAnimalMilkUsed", "_alienPlantPodUsed", "_allYearSucker", "_alliedRadioMaterielIntel", "_alliedRadioWildsunBoon", "_aprilShower", "_aprilShowerGlobsCollected", "_aprilShowerLungingThrustSmack", "_aprilShowerNorthernExplosion", "_aprilShowerSimmer", "_armyToddlerCast", "_aug1Cast", "_aug2Cast", "_aug3Cast", "_aug4Cast", "_aug5Cast", "_aug6Cast", "_aug7Cast", "_aug8Cast", "_aug9Cast", "_aug10Cast", "_aug11Cast", "_aug12Cast", "_aug13Cast", "_aug14Cast", "_aug15Cast", "_aug16Cast", "_aug17Cast", "_aug18Cast", "_aug19Cast", "_aug20Cast", "_aug21Cast", "_aug22Cast", "_aug23Cast", "_aug24Cast", "_aug25Cast", "_aug26Cast", "_aug27Cast", "_aug28Cast", "_aug29Cast", "_aug30Cast", "_aug31Cast", "_augTodayCast", "_authorsInkUsed", "_baconMachineUsed", "_bagOfCandy", "_bagOfCandyUsed", "_bagOTricksUsed", "_ballastTurtleUsed", "_ballInACupUsed", "_ballpit", "_barrelPrayer", "_bastilleLastBattleWon", "_beachCombing", "_bendHellUsed", "_blackMonolithUsed", "_blankoutUsed", "_bloodBagDoctorBag", "_bloodBagCloake", "_bloodBankIntimidated", "_bloodBankVisited", "_bonersSummoned", "_bookOfEverySkillUsed", "_borrowedTimeUsed", "_bowleggedSwaggerUsed", "_bowlFullOfJellyUsed", "_boxOfHammersUsed", "_brainPreservationFluidUsed", "_brassDreadFlaskUsed", "_cameraUsed", "_canSeekBirds", "_candyCaneSwordBackAlley", "_candyCaneSwordHauntedBedroom", "_candyCaneSwordHauntedLibrary", "_candyCaneSwordLyle", "_candyCaneSwordMadnessBakery", "_candyCaneSwordOvergrownLot", "_candyCaneSwordOvergrownShrine", "_candyCaneSwordPalindome", "_candyCaneSwordSouthOfTheBorder", "_candyCaneSwordSpookyForest", "_carboLoaded", "_cargoPocketEmptied", "_ceciHatUsed", "_chateauDeskHarvested", "_chateauMonsterFought", "_chibiChanged", "_chronerCrossUsed", "_chronerTriggerUsed", "_chubbyAndPlumpUsed", "_circadianRhythmsRecalled", "_circleDrumUsed", "_clanFortuneBuffUsed", "_clanRumpusSpot1Visited", "_clanRumpusSpot2Visited", "_clanRumpusSpot3Visited", "_clanRumpusSpot4Visited", "_clanRumpusSpot5Visited", "_clanRumpusSpot7Visited", "_clanRumpusSpot9Visited", "_claraBellUsed", "_coalPaperweightUsed", "_cocoaDispenserUsed", "_cocktailShakerUsed", "_coldAirportToday", "_coldOne", "_communismUsed", "_confusingLEDClockUsed", "_controlPanelUsed", "_cookbookbatRecipeDrops", "_coolerYetiAdventures", "_corruptedStardustUsed", "_cosmicSixPackConjured", "_crappyCameraUsed", "_creepyVoodooDollUsed", "_crimboPastDailySpecial", "_crimboPastMedicalGruel", "_crimboPastPrizeTurkey", "_crimboPastSmokingPope", "_crimboTraining", "_crimboTree", "_crToday", "_cursedKegUsed", "_cursedMicrowaveUsed", "_cyberTrashCollected", "_dailyDungeonMalwareUsed", "_darkChocolateHeart", "_daycareFights", "_daycareNap", "_daycareSpa", "_daycareToday", "_defectiveTokenChecked", "_defectiveTokenUsed", "_dinseyGarbageDisposed", "_discoKnife", "_distentionPillUsed", "_dnaHybrid", "_docClocksThymeCocktailDrunk", "_douseFoeSuccess", "_drippingHallDoor1", "_drippingHallDoor2", "_drippingHallDoor3", "_drippingHallDoor4", "_drippyCaviarUsed", "_drippyNuggetUsed", "_drippyPilsnerUsed", "_drippyPlumUsed", "_drippyWineUsed", "_eldritchHorrorEvoked", "_eldritchTentacleFought", "_eleventRestEffectGained", "_elfGuardHangoverCureUsed", "_emberingHulkFought", "_entauntaunedToday", "_envyfishEggUsed", "_epicMcTwistUsed", "_essentialTofuUsed", "_etchedHourglassUsed", "_eternalCarBatteryUsed", "_everfullGlassUsed", "_extraGreasySliderEaten", "_eyeAndATwistUsed", "_fancyChessSetUsed", "_falloutShelterSpaUsed", "_fancyHotDogEaten", "_faradayCageRestEffectGained", "_farmerItemsCollected", "_favoriteBirdVisited", "_firedJokestersGun", "_fireExtinguisherRefilled", "_fireStartingKitUsed", "_fireworksShop", "_fireworksShopHatBought", "_fireworksShopEquipmentBought", "_fireworkUsed", "_fishyPipeUsed", "_flagellateFlagonUsed", "_fleekMascaraUsed", "_floundryItemCreated", "_floundryItemUsed", "_freePillKeeperUsed", "_frToday", "_frostyMugUsed", "_fudgeSporkUsed", "_garbageItemChanged", "_giantGnawingBoneUsed", "_gingerBiggerAlligators", "_gingerbreadCityToday", "_gingerbreadClockAdvanced", "_gingerbreadClockVisited", "_gingerbreadColumnDestroyed", "_gingerbreadHouseRestEffectGained", "_gingerbreadMobHitUsed", "_glennGoldenDiceUsed", "_glitchItemImplemented", "_gnollEyeUsed", "_gnomePart", "_governmentPerDiemUsed", "_grimBuff", "_guildManualUsed", "_guzzlrQuestAbandoned", "_hardKnocksDiplomaUsed", "_heartstoneLuckUsed", "_hippyMeatCollected", "_hobbyHorseUsed", "_hodgmansBlanketDrunk", "_holidayFunUsed", "_holoWristCrystal", "_hotAirportToday", "_hungerSauceUsed", "_hyperinflatedSealLungUsed", "_iceHotelRoomsRaided", "_iceSculptureUsed", "_incredibleSelfEsteemCast", "_infernoDiscoVisited", "_infiniteJellyUsed", "_internetDailyDungeonMalwareBought", "_internetGallonOfMilkBought", "_internetPlusOneBought", "_internetPrintScreenButtonBought", "_internetViralVideoBought", "_interviewIsabella", "_interviewMasquerade", "_interviewVlad", "_inquisitorsUnidentifiableObjectUsed", "_ironicMoustache", "_jackassPlumberGame", "_jarlsCheeseSummoned", "_jarlsCreamSummoned", "_jarlsDoughSummoned", "_jarlsEggsSummoned", "_jarlsFruitSummoned", "_jarlsMeatSummoned", "_jarlsPotatoSummoned", "_jarlsVeggiesSummoned", "_jingleBellUsed", "_jukebox", "_kgbFlywheelCharged", "_kgbLeftDrawerUsed", "_kgbOpened", "_kgbRightDrawerUsed", "_kolConSixPackUsed", "_kolhsCutButNotDried", "_kolhsIsskayLikeAnAshtray", "_kolhsPoeticallyLicenced", "_kolhsSchoolSpirited", "_kudzuSaladEaten", "_lastCombatLost", "_lastCombatWon", "_latteBanishUsed", "_latteCopyUsed", "_latteDrinkUsed", "_leafAntEggCrafted", "_leafDayShortenerCrafted", "_leafTattooCrafted", "_leavesJumped", "_legendaryBeat", "_legendaryNoodlesSpleen", "_legendaryPastaWaveCast", "_legendarySpiceGhostFood", "_licenseToChillUsed", "_lodestoneUsed", "_lookingGlass", "_loveTunnelToday", "_loveTunnelUsed", "_luckyGoldRingVolcoino", "_lunchBreak", "_lupineHormonesUsed", "_lyleFavored", "_madLiquorDrunk", "_madTeaParty", "_mafiaMiddleFingerRingUsed", "_managerialManipulationUsed", "_mansquitoSerumUsed", "_mapToACandyRichBlockUsed", "_maydayDropped", "_mayoDeviceRented", "_mayoTankSoaked", "_meatballMachineUsed", "_meatifyMatterUsed", "_milkOfMagnesiumUsed", "_mimeArmyShotglassUsed", "_miniKiwiIntoxicatingSpiritsBought", "_miniKiwiTipiDrop", "_missGravesVermouthDrunk", "_missileLauncherUsed", "_mobiusRingPrimed", "_molehillMountainUsed", "_momFoodReceived", "_mrBurnsgerEaten", "_muffinOrderedToday", "_mulliganStewEaten", "_mushroomGardenVisited", "_mushroomHouseRestEffectGained", "_neverendingPartyToday", "_newYouQuestCompleted", "_olympicSwimmingPool", "_olympicSwimmingPoolItemFound", "_overflowingGiftBasketUsed", "_partyHard", "_pastaAdditive", "_perfectFreezeUsed", "_perfectlyFairCoinUsed", "_petePartyThrown", "_peteRiotIncited", "_photocopyUsed", "_pickyTweezersUsed", "_pickleJuiceDrunk", "_pingPongGame", "_pirateBellowUsed", "_pirateDinghyUsed", "_pirateForkUsed", "_pirateRealmSoldCompass", "_pirateRealmWindicleUsed", "_pixelOrbUsed", "_plumbersMushroomStewEaten", "_pneumaticityPotionUsed", "_porkElfMedicineCabinetUsed", "_porkElfNetiPotUsed", "_porkElfSinkUsed", "_porkElfToiletriesKitUsed", "_porkElfToiletUsed", "_portableSteamUnitUsed", "_pottedTeaTreeUsed", "_prToday", "_psychoJarFilled", "_psychoJarUsed", "_psychokineticHugUsed", "_pumpkinRestEffectGained", "_punchingMirrorUsed", "_rainStickUsed", "_redwoodRainStickUsed", "_replicaSnowconeTomeUsed", "_replicaResolutionLibramUsed", "_replicaSmithsTomeUsed", "_requestSandwichSucceeded", "_residenceCubeRestEffectGained", "_rhinestonesAcquired", "_saladForkUsed", "_seadentWaveUsed", "_seaJellyHarvested", "_septEmberBalanceChecked", "_setOfJacksUsed", "_sewingKitUsed", "_sexChanged", "_shadowAffinityToday", "_shadowForestLooted", "_shrubDecorated", "_silverDreadFlaskUsed", "_sitCourseCompleted", "_skateBuff1", "_skateBuff2", "_skateBuff3", "_skateBuff4", "_skateBuff5", "_sleazeAirportToday", "_snowballFactoryUsed", "_snowFortRestEffectGained", "_sobrieTeaUsed", "_softwareGlitchTurnReceived", "_sotParcelReturned", "_spacegateMurderbot", "_spacegateRuins", "_spacegateSpant", "_spacegateToday", "_spacegateVaccine", "_spaghettiBreakfast", "_spaghettiBreakfastEaten", "_spinmasterLatheVisited", "_spinningWheel", "_spookyAirportToday", "_stabonicScrollUsed", "_steelyEyedSquintUsed", "_stenchAirportToday", "_stinkyCheeseBanisherUsed", "_strangeStalagmiteUsed", "_streamsCrossed", "_structuralEmberUsed", "_stuffedPocketwatchUsed", "_styxSprayUsed", "_summonAnnoyanceUsed", "_summonCarrotUsed", "_summonResortPassUsed", "_sweetToothUsed", "_syntheticDogHairPillUsed", "_tacoFlierUsed", "_takerSpaceSuppliesDelivered", "_telegraphOfficeToday", "_templeHiddenPower", "_tempuraAirUsed", "_thesisDelivered", "_tiedUpFlamingLeafletFought", "_tiedUpFlamingMonsteraFought", "_tiedUpLeaviathanFought", "_timeSpinnerReplicatorUsed", "_toastSummoned", "_tonicDjinn", "_treasuryEliteMeatCollected", "_treasuryHaremMeatCollected", "_trivialAvocationsGame", "_tryptophanDartUsed", "_turtlePowerCast", "_twelveNightEnergyUsed", "_ultraMegaSourBallUsed", "_unblemishedPearlAnemoneMine", "_unblemishedPearlDiveBar", "_unblemishedPearlMadnessReef", "_unblemishedPearlMarinaraTrench", "_unblemishedPearlTheBriniestDeepests", "_victorSpoilsUsed", "_villainLairCanLidUsed", "_villainLairColorChoiceUsed", "_villainLairDoorChoiceUsed", "_villainLairFirecrackerUsed", "_villainLairSymbologyChoiceUsed", "_villainLairWebUsed", "_vmaskBanisherUsed", "_voraciTeaUsed", "_volcanoItemRedeemed", "_volcanoSuperduperheatedMetal", "_voodooSnuffUsed", "_voteToday", "_VYKEACafeteriaRaided", "_VYKEALoungeRaided", "_walfordQuestStartedToday", "_warbearBankUsed", "_warbearBreakfastMachineUsed", "_warbearGyrocopterUsed", "_warbearSodaMachineUsed", "_wildfireBarrelHarvested", "_witchessBuff", "_workshedItemUsed", "_yamBatteryUsed", "_zombieClover", "_preventScurvy", "lockedItem4637", "lockedItem4638", "lockedItem4639", "lockedItem4646", "lockedItem4647", "unknownRecipe3542", "unknownRecipe3543", "unknownRecipe3544", "unknownRecipe3545", "unknownRecipe3546", "unknownRecipe3547", "unknownRecipe3548", "unknownRecipe3749", "unknownRecipe3751", "unknownRecipe4172", "unknownRecipe4173", "unknownRecipe4174", "unknownRecipe5060", "unknownRecipe5061", "unknownRecipe5062", "unknownRecipe5063", "unknownRecipe5064", "unknownRecipe5066", "unknownRecipe5067", "unknownRecipe5069", "unknownRecipe5070", "unknownRecipe5072", "unknownRecipe5073", "unknownRecipe5670", "unknownRecipe5671", "unknownRecipe6501", "unknownRecipe6564", "unknownRecipe6565", "unknownRecipe6566", "unknownRecipe6567", "unknownRecipe6568", "unknownRecipe6569", "unknownRecipe6570", "unknownRecipe6571", "unknownRecipe6572", "unknownRecipe6573", "unknownRecipe6574", "unknownRecipe6575", "unknownRecipe6576", "unknownRecipe6577", "unknownRecipe6578", "unknownRecipe7752", "unknownRecipe7753", "unknownRecipe7754", "unknownRecipe7755", "unknownRecipe7756", "unknownRecipe7757", "unknownRecipe7758", "unknownRecipe10970", "unknownRecipe10971", "unknownRecipe10972", "unknownRecipe10973", "unknownRecipe10974", "unknownRecipe10975", "unknownRecipe10976", "unknownRecipe10977", "unknownRecipe10978", "unknownRecipe10988", "unknownRecipe10989", "unknownRecipe10990", "unknownRecipe10991", "unknownRecipe10992", "unknownRecipe11000", "auto_interrupt", "auto_stop", "auto_debugging", "auto_inv_paranoia", "auto_newbieOverride", "auto_disableAdventureHandling", "auto_disableFamiliarChanging", "auto_stayInRun", "auto_confidence", "auto_considerGalaktik", "auto_skipUnlockGuild", "auto_secondPlaceOrBust", "auto_restoreUseBloodBond", "auto_forceFatLootToken", "auto_pvpEnable", "auto_ignoreRestoreFailure", "auto_abooclover", "_auto_ignoreRestoreFailureToday", "auto_aosol_dontUnCurse", "auto_skipRefreshAll", "auto_alienLanguage", "auto_avalancheDeployed", "auto_beatenUpLastAdv", "auto_bruteForcePalindome", "auto_considerCCSCShore", "auto_dakotaFanning", "auto_delayWar", "auto_disregardInstantKarmaBackup", "auto_dontUseCookBookBat", "auto_doWhiteys", "auto_forceCombatWithLegendaryNoodles", "auto_forceFreeRun", "auto_forceTavern", "auto_getDictionary", "auto_gremlinMoly", "auto_haveSourceTerminal", "auto_instakillSuccess", "auto_januaryToteAcquireCalledThisTurn", "auto_L03CouncilVisited", "auto_L05CouncilVisited", "auto_L07CouncilVisited", "auto_L11CouncilVisited", "auto_leaflet_done", "auto_ninjasnowmanassassin", "auto_nonAdvLoc", "auto_openedziggurat", "auto_parkaSpikesDeployed", "auto_preferSoCP", "auto_prioritizeGoose", "auto_shinningStarted", "auto_shouldMeatLevel", "auto_skipL12Farm", "auto_skipStage2", "auto_skipStage3", "auto_skipStage4", "auto_turbo", "auto_useCleesh", "auto_usePowerPill", "auto_writingDeskSummon", "_auto_bad100Familiar", "_auto_candyMapCompleted", "_auto_coldMedicineLocked", "_auto_completedJarlsbergSkillTree", "_auto_current_monster_is_free", "_auto_didBarrelBustToday", "_auto_doneToday", "_auto_extra_debug_bedtime_pulls", "_auto_farmingKaAsEd", "_auto_forcePokefamRestore", "_auto_gnomeArenaVisited", "_auto_kgbSetup", "_auto_preferChestMimic", "_auto_preferSwordFam", "_auto_reinitialize", "_auto_seaQuestStartedToday", "_auto_skip_L8_trapperGroar", "_auto_thisLoopHandleFamiliar", "_autoSkipNextAdventure", "_portscanPending", "_yearbookClubVisitedToday", "kolhs_closetDrink", "auto_getSteelOrgan", "auto_getBeehive", "auto_getStarKey", "auto_holeinthesky", "auto_hippyInstead", "auto_ignoreFlyer", "auto_wandOfNagamar", "auto_dontPhylumBanish", "auto_chasmBusted", "auto_getBoningKnife", "auto_gnasirUnlocked", "auto_grimstoneFancyOilPainting", "auto_grimstoneOrnateDowsingRod", "auto_skipNuns", "auto_needLegs", "auto_haveoven", "auto_doGalaktik", "auto_L8_ninjaAssassinFail", "auto_L8_extremeInstead", "auto_getSteelOrgan_initialize", "auto_doGalaktik_initialize", "auto_disableExcavator", "auto_hideAdultery", "auto_optimizeConsultsInRun", "auto_skipGuzzlrCocktailSet", "auto_farmSoCP", "auto_disregardInstantKarma", "auto_burndownStatsProgression", "auto_burndownStatsInstantKarma", "auto_burndownStatsInstantKarmaAbort", "auto_attemptToBladdermax", "auto_limitConsume", "auto_skipNightcap", "auto_dontConsumeKeyLimePies", "auto_dontConsumeLegendPizzas", "auto_slowSteelOrgan", "auto_maximize_smarter", "auto_debug_maximizer", "auto_bedtime_pulls_skip"];
+var booleanProperties = ["abortOnChoiceWhenNotInChoice", "addChatCommandLine", "addCreationQueue", "addStatusBarToFrames", "allowCloseableDesktopTabs", "allowNegativeTally", "allowNonMoodBurning", "allowSummonBurning", "autoHighlightOnFocus", "broadcastEvents", "cacheMallSearches", "chatBeep", "chatLinksUseRelay", "compactChessboard", "copyAsHTML", "customizedTabs", "debugBuy", "debugConsequences", "debugFoxtrotRemoval", "debugPathnames", "debugTopMenuStyle", "gapProtection", "gitInstallDependencies", "gitShowCommitMessages", "gitUpdateOnLogin", "greenScreenProtection", "guiUsesOneWindow", "hideServerDebugText", "logAcquiredItems", "logBattleAction", "logBrowserInteractions", "logChatMessages", "logChatRequests", "logCleanedHTML", "logDecoratedResponses", "logFamiliarActions", "logGainMessages", "logReadableHTML", "logPreferenceChange", "logMonsterHealth", "logReverseOrder", "logStatGains", "logStatusEffects", "logStatusOnLogin", "macroDebug", "macroLens", "mementoListActive", "mergeHobopolisChat", "pingLogin", "pingStealthyTimein", "printStackOnAbort", "proxySet", "relayAddSounds", "relayAddsCustomCombat", "relayAddsDiscoHelper", "relayAddsGraphicalCLI", "relayAddsQuickScripts", "relayAddsRestoreLinks", "relayAddsUpArrowLinks", "relayAddsUseLinks", "relayAddsWikiLinks", "relayAllowRemoteAccess", "relayBrowserOnly", "relayCacheUncacheable", "relayFormatsChatText", "relayHidesJunkMallItems", "relayMaintainsEffects", "relayMaintainsHealth", "relayMaintainsMana", "relayOverridesImages", "relayRunsAfterAdventureScript", "relayRunsBeforeBattleScript", "relayRunsBeforePVPScript", "relayScriptButtonFirst", "relayTextualizesEffects", "relayTrimsZapList", "relayUsesInlineLinks", "relayUsesIntegratedChat", "relayWarnOnRecoverFailure", "removeMalignantEffects", "retryFailedNetworkRequests", "saveSettingsOnSet", "sharePriceData", "showAllRequests", "showExceptionalRequests", "stealthLogin", "svnAlwaysAdd", "svnAlwaysOverwrite", "svnInstallDependencies", "svnShowCommitMessages", "svnUpdateOnLogin", "switchEquipmentForBuffs", "syncAfterSvnUpdate", "useChatToolbar", "useContactsFrame", "useDevServer", "useDockIconBadge", "useHugglerChannel", "useImageCache", "useLastUserAgent", "useSystemTrayIcon", "useTabbedChatFrame", "useToolbars", "useCachedVolcanoMaps", "useZoneComboBox", "verboseSpeakeasy", "verboseFloundry", "wrapLongLines", "_faxDataChanged", "_gitUpdated", "_svnRepoFileFetched", "_svnUpdated", "antagonisticSnowmanKitAvailable", "arcadeGameHints", "armoryUnlocked", "autoForbidIgnoringStores", "autoCraft", "autoQuest", "autoEntangle", "autoGarish", "autoManaRestore", "autoFillMayoMinder", "autoPinkyRing", "autoPlantHardcore", "autoPlantSoftcore", "autoPotionID", "autoRepairBoxServants", "autoSatisfyWithCloset", "autoSatisfyWithCoinmasters", "autoSatisfyWithMall", "autoSatisfyWithNPCs", "autoSatisfyWithStash", "autoSatisfyWithStorage", "autoSatisfyWithShop", "autoSetConditions", "autoSteal", "autoTuxedo", "backupCameraReverserEnabled", "badMoonEncounter01", "badMoonEncounter02", "badMoonEncounter03", "badMoonEncounter04", "badMoonEncounter05", "badMoonEncounter06", "badMoonEncounter07", "badMoonEncounter08", "badMoonEncounter09", "badMoonEncounter10", "badMoonEncounter11", "badMoonEncounter12", "badMoonEncounter13", "badMoonEncounter14", "badMoonEncounter15", "badMoonEncounter16", "badMoonEncounter17", "badMoonEncounter18", "badMoonEncounter19", "badMoonEncounter20", "badMoonEncounter21", "badMoonEncounter22", "badMoonEncounter23", "badMoonEncounter24", "badMoonEncounter25", "badMoonEncounter26", "badMoonEncounter27", "badMoonEncounter28", "badMoonEncounter29", "badMoonEncounter30", "badMoonEncounter31", "badMoonEncounter32", "badMoonEncounter33", "badMoonEncounter34", "badMoonEncounter35", "badMoonEncounter36", "badMoonEncounter37", "badMoonEncounter38", "badMoonEncounter39", "badMoonEncounter40", "badMoonEncounter41", "badMoonEncounter42", "badMoonEncounter43", "badMoonEncounter44", "badMoonEncounter45", "badMoonEncounter46", "badMoonEncounter47", "badMoonEncounter48", "barrelShrineUnlocked", "batWingsBatHoleEntrance", "batWingsBatratBurrow", "batWingsBeanbatChamber", "batWingsGuanoJunction", "bigBrotherRescued", "blackBartsBootyAvailable", "bondAdv", "bondBeach", "bondBeat", "bondBooze", "bondBridge", "bondDesert", "bondDR", "bondDrunk1", "bondDrunk2", "bondHoney", "bondHP", "bondInit", "bondItem1", "bondItem2", "bondItem3", "bondJetpack", "bondMartiniDelivery", "bondMartiniPlus", "bondMartiniTurn", "bondMeat", "bondMox1", "bondMox2", "bondMPregen", "bondMus1", "bondMus2", "bondMys1", "bondMys2", "bondSpleen", "bondStat", "bondStat2", "bondStealth", "bondStealth2", "bondSymbols", "bondWar", "bondWeapon2", "bondWpn", "bookOfIronyAvailable", "booPeakLit", "bootsCharged", "breakfastCompleted", "burlyBodyguardReceivedBonus", "burrowgrubHiveUsed", "calzoneOfLegendEaten", "candyCaneSwordApartmentBuilding", "candyCaneSwordBlackForest", "candyCaneSwordBowlingAlley", "candyCaneSwordCopperheadClub", "candyCaneSwordDailyDungeon", "candyCaneSwordDefiledCranny", "candyCaneSwordFunHouse", "candyCaneSwordShore", "candyCaneSwordWarFratRoom", "candyCaneSwordWarFratZetas", "candyCaneSwordWarHippyBait", "candyCaneSwordWarHippyLine", "canteenUnlocked", "chaosButterflyThrown", "chatbotScriptExecuted", "chateauAvailable", "chatLiterate", "chatServesUpdates", "checkJackassHardcore", "checkJackassSoftcore", "clanAttacksEnabled", "coldAirportAlways", "considerShadowNoodles", "controlRoomUnlock", "concertVisited", "controlPanel1", "controlPanel2", "controlPanel3", "controlPanel4", "controlPanel5", "controlPanel6", "controlPanel7", "controlPanel8", "controlPanel9", "corralUnlocked", "crAlways", "crimbo23ArmoryAtWar", "crimbo23BarAtWar", "crimbo23CafeAtWar", "crimbo23CottageAtWar", "crimbo23FoundryAtWar", "cyberDatastickCollected", "dailyDungeonDone", "dampOldBootPurchased", "daycareOpen", "deepDishOfLegendEaten", "demonSummoned", "dinseyAudienceEngagement", "dinseyGarbagePirate", "dinseyRapidPassEnabled", "dinseyRollercoasterNext", "dinseySafetyProtocolsLoose", "doghouseBoarded", "dontStopForCounters", "drippingHallUnlocked", "drippyShieldUnlocked", "edUsedLash", "eldritchFissureAvailable", "eldritchHorrorAvailable", "enqueueForConsumption", "errorOnAmbiguousFold", "essenceOfAnnoyanceAvailable", "essenceOfBearAvailable", "expressCardUsed", "falloutShelterChronoUsed", "falloutShelterCoolingTankUsed", "fireExtinguisherBatHoleUsed", "fireExtinguisherChasmUsed", "fireExtinguisherCyrptUsed", "fireExtinguisherDesertUsed", "fireExtinguisherHaremUsed", "fistTeachingsHaikuDungeon", "fistTeachingsPokerRoom", "fistTeachingsBarroomBrawl", "fistTeachingsConservatory", "fistTeachingsBatHole", "fistTeachingsFunHouse", "fistTeachingsMenagerie", "fistTeachingsSlums", "fistTeachingsFratHouse", "fistTeachingsRoad", "fistTeachingsNinjaSnowmen", "flickeringPixel1", "flickeringPixel2", "flickeringPixel3", "flickeringPixel4", "flickeringPixel5", "flickeringPixel6", "flickeringPixel7", "flickeringPixel8", "floristFriarAvailable", "floristFriarChecked", "frAlways", "frCemetaryUnlocked", "friarsBlessingReceived", "frMountainsUnlocked", "frSwampUnlocked", "frVillageUnlocked", "frWoodUnlocked", "getawayCampsiteUnlocked", "ghostPencil1", "ghostPencil2", "ghostPencil3", "ghostPencil4", "ghostPencil5", "ghostPencil6", "ghostPencil7", "ghostPencil8", "ghostPencil9", "gingerAdvanceClockUnlocked", "gingerBlackmailAccomplished", "gingerbreadCityAvailable", "gingerExtraAdventures", "gingerNegativesDropped", "gingerSewersUnlocked", "gingerSubwayLineUnlocked", "gingerRetailUnlocked", "glitchItemAvailable", "grabCloversHardcore", "grabCloversSoftcore", "grandpaUnlockedBlankPrescriptionSheet", "grandpaUnlockedEelSauce", "grandpaUnlockedFishyWand", "grandpaUnlockedGlowingSyringe", "grandpaUnlockedGroupieSpangles", "grandpaUnlockedHairOfTheFish", "grandpaUnlockedHalibut", "grandpaUnlockedHeavilyInvestedInPunFutures", "grandpaUnlockedJellyfishGel", "grandpaUnlockedMarineAquamarine", "grandpaUnlockedMidgetClownfish", "grandpaUnlockedSeaRadish", "grandpaUnlockedTrophyFish", "grandpaUnlockedWaterPoloCap", "grandpaUnlockedWaterPoloMitt", "guideToSafariAvailable", "guyMadeOfBeesDefeated", "hallowienerDefiledNook", "hallowienerGuanoJunction", "hallowienerKnollGym", "hallowienerMadnessBakery", "hallowienerMiddleChamber", "hallowienerOvergrownLot", "hallowienerSkeletonStore", "hallowienerSmutOrcs", "hallowienerSonofaBeach", "hallowienerVolcoino", "hardcorePVPWarning", "harvestBatteriesHardcore", "harvestBatteriesSoftcore", "hasAutumnaton", "hasBartender", "hasChef", "hasCocktailKit", "hasCosmicBowlingBall", "hasDetectiveSchool", "hasMaydayContract", "hasOven", "hasRange", "hasShaker", "hasShrunkenHead", "hasSushiMat", "hasTwinkleVision", "haveBoxingDaydreamHardcore", "haveBoxingDaydreamSoftcore", "heartstoneBanishUnlocked", "heartstoneBuffUnlocked", "heartstoneKillUnlocked", "heartstoneLuckUnlocked", "heartstonePalsUnlocked", "heartstoneStunUnlocked", "hermitHax0red", "holidayHalsBookAvailable", "horseryAvailable", "hotAirportAlways", "intenseCurrents", "isMerkinGladiatorChampion", "isMerkinHighPriest", "itemBoughtPerAscension637", "itemBoughtPerAscension8266", "itemBoughtPerAscension10790", "itemBoughtPerAscension10794", "itemBoughtPerAscension10795", "itemBoughtPerCharacter6423", "itemBoughtPerCharacter6428", "itemBoughtPerCharacter6429", "kingLiberated", "lastPirateInsult1", "lastPirateInsult2", "lastPirateInsult3", "lastPirateInsult4", "lastPirateInsult5", "lastPirateInsult6", "lastPirateInsult7", "lastPirateInsult8", "lawOfAveragesAvailable", "leafletCompleted", "ledCandleDropped", "libraryCardUsed", "lockPicked", "logBastilleBattalionBattles", "loginRecoveryHardcore", "loginRecoverySoftcore", "lovebugsUnlocked", "loveTunnelAvailable", "lowerChamberUnlock", "madnessBakeryAvailable", "makeHandheldRadiosHardcore", "makeHandheldRadiosSoftcore", "makePocketWishesHardcore", "makePocketWishesSoftcore", "manualOfNumberologyAvailable", "mappingMonsters", "mapToAnemoneMinePurchased", "mapToKokomoAvailable", "mapToMadnessReefPurchased", "mapToTheDiveBarPurchased", "mapToTheMarinaraTrenchPurchased", "mapToTheSkateParkPurchased", "maraisBeaverUnlock", "maraisCorpseUnlock", "maraisDarkUnlock", "maraisVillageUnlock", "maraisWildlifeUnlock", "maraisWizardUnlock", "maximizerAlwaysCurrent", "maximizerCreateOnHand", "maximizerCurrentMallPrices", "maximizerFoldables", "maximizerIncludeAll", "maximizerNoAdventures", "maximizerUseScope", "merkinElementaryBathroomUnlock", "merkinElementaryJanitorUnlock", "merkinElementaryTeacherUnlock", "middleChamberUnlock", "milkOfMagnesiumActive", "moonTuned", "neverendingPartyAlways", "noncombatForcerActive", "oasisAvailable", "odeBuffbotCheck", "oilPeakLit", "oscusSodaUsed", "outrageousSombreroUsed", "overgrownLotAvailable", "ownsFloristFriar", "ownsSpeakeasy", "pathedSummonsHardcore", "pathedSummonsSoftcore", "pirateRealmUnlockedAnemometer", "pirateRealmUnlockedBlunderbuss", "pirateRealmUnlockedBreastplate", "pirateRealmUnlockedClipper", "pirateRealmUnlockedCrabsicle", "pirateRealmUnlockedFlag", "pirateRealmUnlockedFork", "pirateRealmUnlockedGoldRing", "pirateRealmUnlockedManOWar", "pirateRealmUnlockedPlushie", "pirateRealmUnlockedRadioRing", "pirateRealmUnlockedRhum", "pirateRealmUnlockedScurvySkillbook", "pirateRealmUnlockedShavingCream", "pirateRealmUnlockedSpyglass", "pirateRealmUnlockedTattoo", "pirateRealmUnlockedThirdCrewmate", "pirateRealmUnlockedTikiSkillbook", "pizzaOfLegendEaten", "popularTartUnlocked", "potatoAlarmClockUsed", "prAlways", "prayedForGlamour", "prayedForProtection", "prayedForVigor", "primaryLabCheerCoreGrabbed", "pumpkinSpiceWhorlUsed", "pyramidBombUsed", "rageGlandVented", "readManualHardcore", "readManualSoftcore", "relayDecorateJsCommands", "relayShowSpoilers", "relayShowWarnings", "rememberDesktopSize", "replicaChateauAvailable", "replicaNeverendingPartyAlways", "replicaWitchessSetAvailable", "requireBoxServants", "requireSewerTestItems", "restUsingCampAwayTent", "restUsingChateau", "ROMOfOptimalityAvailable", "safePickpocket", "schoolOfHardKnocksDiplomaAvailable", "scriptCascadingMenus", "serverAddsCustomCombat", "serverAddsBothCombat", "SHAWARMAInitiativeUnlocked", "showForbiddenStores", "showGainsPerUnit", "showIgnoringStorePrices", "showNoSummonOnly", "showTurnFreeOnly", "shubJigguwattDefeated", "skeletonStoreAvailable", "sleazeAirportAlways", "snojoAvailable", "sortByEffect", "sortByRoom", "spacegateAlways", "spacegateVaccine1", "spacegateVaccine2", "spacegateVaccine3", "spaceInvaderDefeated", "spelunkyHints", "spiceMelangeUsed", "spookyAirportAlways", "stenchAirportAlways", "stopForFixedWanderer", "stopForUltraRare", "styxPixieVisited", "superconductorDefeated", "suppressCyberRealmDarkMode", "suppressCyberRealmGreenImages", "suppressInappropriateNags", "suppressPowerPixellation", "suppressMallPriceCacheMessages", "telegraphOfficeAvailable", "telescopeLookedHigh", "timeTowerAvailable", "trackLightsOut", "uneffectWithHotTub", "universalSeasoningActive", "universalSeasoningAvailable", "useBookOfEverySkillHardcore", "useBookOfEverySkillSoftcore", "useCrimboToysHardcore", "useCrimboToysSoftcore", "verboseMaximizer", "visitLoungeHardcore", "visitLoungeSoftcore", "visitRumpusHardcore", "visitRumpusSoftcore", "voteAlways", "wildfireBarrelCaulked", "wildfireDusted", "wildfireFracked", "wildfirePumpGreased", "wildfireSprinkled", "yearbookCameraPending", "yogUrtDefeated", "youRobotScavenged", "_2002MrStoreCreditsCollected", "_affirmationCookieEaten", "_affirmationHateUsed", "_airFryerUsed", "_akgyxothUsed", "_alienAnimalMilkUsed", "_alienPlantPodUsed", "_allYearSucker", "_alliedRadioMaterielIntel", "_alliedRadioWildsunBoon", "_aprilShower", "_aprilShowerGlobsCollected", "_aprilShowerLungingThrustSmack", "_aprilShowerNorthernExplosion", "_aprilShowerSimmer", "_armyToddlerCast", "_aug1Cast", "_aug2Cast", "_aug3Cast", "_aug4Cast", "_aug5Cast", "_aug6Cast", "_aug7Cast", "_aug8Cast", "_aug9Cast", "_aug10Cast", "_aug11Cast", "_aug12Cast", "_aug13Cast", "_aug14Cast", "_aug15Cast", "_aug16Cast", "_aug17Cast", "_aug18Cast", "_aug19Cast", "_aug20Cast", "_aug21Cast", "_aug22Cast", "_aug23Cast", "_aug24Cast", "_aug25Cast", "_aug26Cast", "_aug27Cast", "_aug28Cast", "_aug29Cast", "_aug30Cast", "_aug31Cast", "_augTodayCast", "_authorsInkUsed", "_baconMachineUsed", "_bagOfCandy", "_bagOfCandyUsed", "_bagOTricksUsed", "_ballastTurtleUsed", "_ballInACupUsed", "_ballpit", "_barrelPrayer", "_bastilleLastBattleWon", "_beachCombing", "_bendHellUsed", "_blackMonolithUsed", "_blankoutUsed", "_bloodBagDoctorBag", "_bloodBagCloake", "_bloodBankIntimidated", "_bloodBankVisited", "_bonersSummoned", "_bookOfEverySkillUsed", "_borrowedTimeUsed", "_bowleggedSwaggerUsed", "_bowlFullOfJellyUsed", "_boxOfHammersUsed", "_brainPreservationFluidUsed", "_brassDreadFlaskUsed", "_cameraUsed", "_canSeekBirds", "_candyCaneSwordBackAlley", "_candyCaneSwordHauntedBedroom", "_candyCaneSwordHauntedLibrary", "_candyCaneSwordLyle", "_candyCaneSwordMadnessBakery", "_candyCaneSwordOvergrownLot", "_candyCaneSwordOvergrownShrine", "_candyCaneSwordPalindome", "_candyCaneSwordSouthOfTheBorder", "_candyCaneSwordSpookyForest", "_carboLoaded", "_cargoPocketEmptied", "_ceciHatUsed", "_chateauDeskHarvested", "_chateauMonsterFought", "_chibiChanged", "_chronerCrossUsed", "_chronerTriggerUsed", "_chubbyAndPlumpUsed", "_circadianRhythmsRecalled", "_circleDrumUsed", "_clanFortuneBuffUsed", "_clanRumpusSpot1Visited", "_clanRumpusSpot2Visited", "_clanRumpusSpot3Visited", "_clanRumpusSpot4Visited", "_clanRumpusSpot5Visited", "_clanRumpusSpot7Visited", "_clanRumpusSpot9Visited", "_claraBellUsed", "_coalPaperweightUsed", "_cocoaDispenserUsed", "_cocktailShakerUsed", "_coldAirportToday", "_coldOne", "_communismUsed", "_confusingLEDClockUsed", "_controlPanelUsed", "_cookbookbatRecipeDrops", "_coolerYetiAdventures", "_corruptedStardustUsed", "_cosmicSixPackConjured", "_crappyCameraUsed", "_creepyVoodooDollUsed", "_crimboPastDailySpecial", "_crimboPastMedicalGruel", "_crimboPastPrizeTurkey", "_crimboPastSmokingPope", "_crimboTraining", "_crimboTree", "_crToday", "_cursedKegUsed", "_cursedMicrowaveUsed", "_cyberTrashCollected", "_dailyDungeonMalwareUsed", "_darkChocolateHeart", "_daycareFights", "_daycareNap", "_daycareSpa", "_daycareToday", "_defectiveTokenChecked", "_defectiveTokenUsed", "_dinseyGarbageDisposed", "_discoKnife", "_distentionPillUsed", "_dnaHybrid", "_docClocksThymeCocktailDrunk", "_douseFoeSuccess", "_drippingHallDoor1", "_drippingHallDoor2", "_drippingHallDoor3", "_drippingHallDoor4", "_drippyCaviarUsed", "_drippyNuggetUsed", "_drippyPilsnerUsed", "_drippyPlumUsed", "_drippyWineUsed", "_eldritchHorrorEvoked", "_eldritchTentacleFought", "_eleventRestEffectGained", "_elfGuardHangoverCureUsed", "_emberingHulkFought", "_entauntaunedToday", "_envyfishEggUsed", "_epicMcTwistUsed", "_essentialTofuUsed", "_etchedHourglassUsed", "_eternalCarBatteryUsed", "_everfullGlassUsed", "_extraGreasySliderEaten", "_eyeAndATwistUsed", "_fancyChessSetUsed", "_falloutShelterSpaUsed", "_fancyHotDogEaten", "_faradayCageRestEffectGained", "_farmerItemsCollected", "_favoriteBirdVisited", "_firedJokestersGun", "_fireExtinguisherRefilled", "_fireStartingKitUsed", "_fireworksShop", "_fireworksShopHatBought", "_fireworksShopEquipmentBought", "_fireworkUsed", "_fishyPipeUsed", "_flagellateFlagonUsed", "_fleekMascaraUsed", "_floundryItemCreated", "_floundryItemUsed", "_freePillKeeperUsed", "_frToday", "_frostyMugUsed", "_fudgeSporkUsed", "_garbageItemChanged", "_giantGnawingBoneUsed", "_gingerBiggerAlligators", "_gingerbreadCityToday", "_gingerbreadClockAdvanced", "_gingerbreadClockVisited", "_gingerbreadColumnDestroyed", "_gingerbreadHouseRestEffectGained", "_gingerbreadMobHitUsed", "_glennGoldenDiceUsed", "_glitchItemImplemented", "_gnollEyeUsed", "_gnomePart", "_governmentPerDiemUsed", "_grimBuff", "_guildManualUsed", "_guzzlrQuestAbandoned", "_hardKnocksDiplomaUsed", "_heartstoneLuckUsed", "_hippyMeatCollected", "_hobbyHorseUsed", "_hodgmansBlanketDrunk", "_holidayFunUsed", "_holoWristCrystal", "_hotAirportToday", "_hungerSauceUsed", "_hyperinflatedSealLungUsed", "_iceHotelRoomsRaided", "_iceSculptureUsed", "_incredibleSelfEsteemCast", "_infernoDiscoVisited", "_infiniteJellyUsed", "_internetDailyDungeonMalwareBought", "_internetGallonOfMilkBought", "_internetPlusOneBought", "_internetPrintScreenButtonBought", "_internetViralVideoBought", "_interviewIsabella", "_interviewMasquerade", "_interviewVlad", "_inquisitorsUnidentifiableObjectUsed", "_ironicMoustache", "_jackassPlumberGame", "_jarlsCheeseSummoned", "_jarlsCreamSummoned", "_jarlsDoughSummoned", "_jarlsEggsSummoned", "_jarlsFruitSummoned", "_jarlsMeatSummoned", "_jarlsPotatoSummoned", "_jarlsVeggiesSummoned", "_jingleBellUsed", "_jukebox", "_kgbFlywheelCharged", "_kgbLeftDrawerUsed", "_kgbOpened", "_kgbRightDrawerUsed", "_kolConSixPackUsed", "_kolhsCutButNotDried", "_kolhsIsskayLikeAnAshtray", "_kolhsPoeticallyLicenced", "_kolhsSchoolSpirited", "_kudzuSaladEaten", "_lastCombatLost", "_lastCombatWon", "_latteBanishUsed", "_latteCopyUsed", "_latteDrinkUsed", "_leafAntEggCrafted", "_leafDayShortenerCrafted", "_leafTattooCrafted", "_leavesJumped", "_legendaryBeat", "_legendaryNoodlesSpleen", "_legendaryPastaWaveCast", "_legendarySpiceGhostFood", "_licenseToChillUsed", "_lodestoneUsed", "_lookingGlass", "_loveTunnelToday", "_loveTunnelUsed", "_luckyGoldRingVolcoino", "_lunchBreak", "_lupineHormonesUsed", "_lyleFavored", "_madLiquorDrunk", "_madTeaParty", "_mafiaMiddleFingerRingUsed", "_managerialManipulationUsed", "_mansquitoSerumUsed", "_mapToACandyRichBlockUsed", "_maydayDropped", "_mayoDeviceRented", "_mayoTankSoaked", "_meatballMachineUsed", "_meatifyMatterUsed", "_milkOfMagnesiumUsed", "_mimeArmyShotglassUsed", "_miniKiwiIntoxicatingSpiritsBought", "_miniKiwiTipiDrop", "_missGravesVermouthDrunk", "_missileLauncherUsed", "_mobiusRingPrimed", "_molehillMountainUsed", "_momFoodReceived", "_mrBurnsgerEaten", "_muffinOrderedToday", "_mulliganStewEaten", "_mushroomGardenVisited", "_mushroomHouseRestEffectGained", "_neverendingPartyToday", "_newYouQuestCompleted", "_olympicSwimmingPool", "_olympicSwimmingPoolItemFound", "_overflowingGiftBasketUsed", "_partyHard", "_pastaAdditive", "_perfectFreezeUsed", "_perfectlyFairCoinUsed", "_petePartyThrown", "_peteRiotIncited", "_photocopyUsed", "_pickyTweezersUsed", "_pickleJuiceDrunk", "_pingPongGame", "_pirateBellowUsed", "_pirateDinghyUsed", "_pirateForkUsed", "_pirateRealmSoldCompass", "_pirateRealmWindicleUsed", "_pixelOrbUsed", "_plumbersMushroomStewEaten", "_pneumaticityPotionUsed", "_porkElfMedicineCabinetUsed", "_porkElfNetiPotUsed", "_porkElfSinkUsed", "_porkElfToiletriesKitUsed", "_porkElfToiletUsed", "_portableSteamUnitUsed", "_pottedTeaTreeUsed", "_prToday", "_psychoJarFilled", "_psychoJarUsed", "_psychokineticHugUsed", "_pumpkinRestEffectGained", "_punchingMirrorUsed", "_rainStickUsed", "_redwoodRainStickUsed", "_replicaSnowconeTomeUsed", "_replicaResolutionLibramUsed", "_replicaSmithsTomeUsed", "_requestSandwichSucceeded", "_residenceCubeRestEffectGained", "_rhinestonesAcquired", "_saladForkUsed", "_seadentWaveUsed", "_seaJellyHarvested", "_septEmberBalanceChecked", "_setOfJacksUsed", "_sewingKitUsed", "_sexChanged", "_shadowAffinityToday", "_shadowForestLooted", "_shrubDecorated", "_silverDreadFlaskUsed", "_sitCourseCompleted", "_skateBuff1", "_skateBuff2", "_skateBuff3", "_skateBuff4", "_skateBuff5", "_sleazeAirportToday", "_snowballFactoryUsed", "_snowFortRestEffectGained", "_sobrieTeaUsed", "_softwareGlitchTurnReceived", "_sotParcelReturned", "_spacegateMurderbot", "_spacegateRuins", "_spacegateSpant", "_spacegateToday", "_spacegateVaccine", "_spaghettiBreakfast", "_spaghettiBreakfastEaten", "_spinmasterLatheVisited", "_spinningWheel", "_spookyAirportToday", "_stabonicScrollUsed", "_steelyEyedSquintUsed", "_stenchAirportToday", "_stinkyCheeseBanisherUsed", "_strangeStalagmiteUsed", "_streamsCrossed", "_structuralEmberUsed", "_stuffedPocketwatchUsed", "_styxSprayUsed", "_summonAnnoyanceUsed", "_summonCarrotUsed", "_summonResortPassUsed", "_sweetToothUsed", "_syntheticDogHairPillUsed", "_tacoFlierUsed", "_takerSpaceSuppliesDelivered", "_telegraphOfficeToday", "_templeHiddenPower", "_tempuraAirUsed", "_thesisDelivered", "_tiedUpFlamingLeafletFought", "_tiedUpFlamingMonsteraFought", "_tiedUpLeaviathanFought", "_timeSpinnerReplicatorUsed", "_toastSummoned", "_tonicDjinn", "_treasuryEliteMeatCollected", "_treasuryHaremMeatCollected", "_trivialAvocationsGame", "_tryptophanDartUsed", "_turtlePowerCast", "_twelveNightEnergyUsed", "_ultraMegaSourBallUsed", "_unblemishedPearlAnemoneMine", "_unblemishedPearlDiveBar", "_unblemishedPearlMadnessReef", "_unblemishedPearlMarinaraTrench", "_unblemishedPearlTheBriniestDeepests", "_victorSpoilsUsed", "_villainLairCanLidUsed", "_villainLairColorChoiceUsed", "_villainLairDoorChoiceUsed", "_villainLairFirecrackerUsed", "_villainLairSymbologyChoiceUsed", "_villainLairWebUsed", "_vmaskBanisherUsed", "_voraciTeaUsed", "_volcanoItemRedeemed", "_volcanoSuperduperheatedMetal", "_voodooSnuffUsed", "_voteToday", "_VYKEACafeteriaRaided", "_VYKEALoungeRaided", "_walfordQuestStartedToday", "_warbearBankUsed", "_warbearBreakfastMachineUsed", "_warbearGyrocopterUsed", "_warbearSodaMachineUsed", "_wildfireBarrelHarvested", "_witchessBuff", "_workshedItemUsed", "_yamBatteryUsed", "_zombieClover", "_preventScurvy", "lockedItem4637", "lockedItem4638", "lockedItem4639", "lockedItem4646", "lockedItem4647", "unknownRecipe3542", "unknownRecipe3543", "unknownRecipe3544", "unknownRecipe3545", "unknownRecipe3546", "unknownRecipe3547", "unknownRecipe3548", "unknownRecipe3749", "unknownRecipe3751", "unknownRecipe4172", "unknownRecipe4173", "unknownRecipe4174", "unknownRecipe5060", "unknownRecipe5061", "unknownRecipe5062", "unknownRecipe5063", "unknownRecipe5064", "unknownRecipe5066", "unknownRecipe5067", "unknownRecipe5069", "unknownRecipe5070", "unknownRecipe5072", "unknownRecipe5073", "unknownRecipe5670", "unknownRecipe5671", "unknownRecipe6501", "unknownRecipe6564", "unknownRecipe6565", "unknownRecipe6566", "unknownRecipe6567", "unknownRecipe6568", "unknownRecipe6569", "unknownRecipe6570", "unknownRecipe6571", "unknownRecipe6572", "unknownRecipe6573", "unknownRecipe6574", "unknownRecipe6575", "unknownRecipe6576", "unknownRecipe6577", "unknownRecipe6578", "unknownRecipe7752", "unknownRecipe7753", "unknownRecipe7754", "unknownRecipe7755", "unknownRecipe7756", "unknownRecipe7757", "unknownRecipe7758", "unknownRecipe10970", "unknownRecipe10971", "unknownRecipe10972", "unknownRecipe10973", "unknownRecipe10974", "unknownRecipe10975", "unknownRecipe10976", "unknownRecipe10977", "unknownRecipe10978", "unknownRecipe10988", "unknownRecipe10989", "unknownRecipe10990", "unknownRecipe10991", "unknownRecipe10992", "unknownRecipe11000", "auto_interrupt", "auto_stop", "auto_debugging", "auto_abortBeforeAdventuring", "auto_inv_paranoia", "auto_newbieOverride", "auto_disableAdventureHandling", "auto_disableFamiliarChanging", "auto_stayInRun", "auto_confidence", "auto_considerGalaktik", "auto_skipUnlockGuild", "auto_secondPlaceOrBust", "auto_restoreUseBloodBond", "auto_forceFatLootToken", "auto_pvpEnable", "auto_ignoreRestoreFailure", "auto_abooclover", "_auto_ignoreRestoreFailureToday", "auto_aosol_dontUnCurse", "auto_skipRefreshAll", "auto_alienLanguage", "auto_avalancheDeployed", "auto_beatenUpLastAdv", "auto_bruteForcePalindome", "auto_considerCCSCShore", "auto_dakotaFanning", "auto_delayWar", "auto_disregardInstantKarmaBackup", "auto_dontUseCookBookBat", "auto_doWhiteys", "auto_forceCombatWithLegendaryNoodles", "auto_forceFreeRun", "auto_forceTavern", "auto_getDictionary", "auto_gremlinMoly", "auto_haveSourceTerminal", "auto_instakillSuccess", "auto_januaryToteAcquireCalledThisTurn", "auto_L03CouncilVisited", "auto_L05CouncilVisited", "auto_L07CouncilVisited", "auto_L11CouncilVisited", "auto_leaflet_done", "auto_ninjasnowmanassassin", "auto_nonAdvLoc", "auto_openedziggurat", "auto_parkaSpikesDeployed", "auto_preferSoCP", "auto_prioritizeGoose", "auto_shinningStarted", "auto_shouldMeatLevel", "auto_skipL12Farm", "auto_skipStage2", "auto_skipStage3", "auto_skipStage4", "auto_turbo", "auto_useCleesh", "auto_usePowerPill", "auto_writingDeskSummon", "_auto_bad100Familiar", "_auto_candyMapCompleted", "_auto_coldMedicineLocked", "_auto_completedJarlsbergSkillTree", "_auto_current_monster_is_free", "_auto_didBarrelBustToday", "_auto_doneToday", "_auto_extra_debug_bedtime_pulls", "_auto_farmingKaAsEd", "_auto_forcePokefamRestore", "_auto_gnomeArenaVisited", "_auto_kgbSetup", "_auto_preferChestMimic", "_auto_preferSwordFam", "_auto_reinitialize", "_auto_seaQuestStartedToday", "_auto_skip_L8_trapperGroar", "_auto_thisLoopHandleFamiliar", "_autoSkipNextAdventure", "_portscanPending", "_yearbookClubVisitedToday", "kolhs_closetDrink", "auto_getSteelOrgan", "auto_getBeehive", "auto_getStarKey", "auto_holeinthesky", "auto_hippyInstead", "auto_ignoreFlyer", "auto_wandOfNagamar", "auto_dontPhylumBanish", "auto_chasmBusted", "auto_getBoningKnife", "auto_gnasirUnlocked", "auto_grimstoneFancyOilPainting", "auto_grimstoneOrnateDowsingRod", "auto_skipNuns", "auto_needLegs", "auto_haveoven", "auto_doGalaktik", "auto_L8_ninjaAssassinFail", "auto_L8_extremeInstead", "auto_getSteelOrgan_initialize", "auto_doGalaktik_initialize", "auto_disableExcavator", "auto_hideAdultery", "auto_optimizeConsultsInRun", "auto_skipGuzzlrCocktailSet", "auto_farmSoCP", "auto_disregardInstantKarma", "auto_burndownStatsProgression", "auto_burndownStatsInstantKarma", "auto_burndownStatsInstantKarmaAbort", "auto_attemptToBladdermax", "auto_limitConsume", "auto_skipNightcap", "auto_dontConsumeKeyLimePies", "auto_dontConsumeLegendPizzas", "auto_slowSteelOrgan", "auto_maximize_smarter", "auto_debug_maximizer", "auto_bedtime_pulls_skip"];
 var numericProperties = ["coinMasterIndex", "dailyDeedsVersion", "defaultDropdown1", "defaultDropdown2", "defaultDropdownSplit", "defaultLimit", "fixedThreadPoolSize", "itemManagerIndex", "lastBuffRequestType", "lastGlobalCounterDay", "lastImageCacheClear", "pingDefaultTestPings", "pingLoginCount", "pingLoginGoal", "pingLoginThreshold", "pingTestPings", "previousUpdateRevision", "relayDelayForSVN", "relaySkillButtonCount", "scriptButtonPosition", "statusDropdown", "svnThreadPoolSize", "toolbarPosition", "_beachTides", "_g9Effect", "8BitBonusTurns", "8BitScore", "addingScrolls", "adventurerMeatsWorldPoints", "affirmationCookiesEaten", "aminoAcidsUsed", "antagonisticSnowmanKitCost", "ascensionsToday", "asolDeferredPoints", "asolPointsPigSkinner", "asolPointsCheeseWizard", "asolPointsJazzAgent", "autoAbortThreshold", "autoAntidote", "autoBuyPriceLimit", "autopsyTweezersUsed", "autumnatonQuestTurn", "availableCandyCredits", "availableDimes", "availableFunPoints", "availableMrStore2002Credits", "availableQuarters", "availableSeptEmbers", "availableStoreCredits", "availableSwagger", "avantGuardPoints", "averageSwagger", "awolMedicine", "awolPointsBeanslinger", "awolPointsCowpuncher", "awolPointsSnakeoiler", "awolDeferredPointsBeanslinger", "awolDeferredPointsCowpuncher", "awolDeferredPointsSnakeoiler", "awolVenom", "bagOTricksCharges", "ballpitBonus", "bankedKarma", "bartenderTurnsUsed", "basementMallPrices", "basementSafetyMargin", "batmanFundsAvailable", "batmanBonusInitialFunds", "batmanTimeLeft", "bearSwagger", "beeCounter", "beGregariousCharges", "beGregariousFightsLeft", "birdformCold", "birdformHot", "birdformRoc", "birdformSleaze", "birdformSpooky", "birdformStench", "blackBartsBootyCost", "blackPuddingsDefeated", "blackForestProgress", "blankOutUsed", "bloodweiserDrunk", "bodyguardCharge", "bondPoints", "bondVillainsDefeated", "boneAbacusVictories", "bookOfFactsGummi", "bookOfFactsPinata", "bookOfIronyCost", "booPeakProgress", "borisPoints", "breakableHandling", "breakableHandling1964", "breakableHandling9691", "breakableHandling9692", "breakableHandling9699", "breathitinCharges", "brodenBacteria", "brodenSprinkles", "buffBotMessageDisposal", "buffBotPhilanthropyType", "buffJimmyIngredients", "burnoutsDefeated", "burrowgrubSummonsRemaining", "bwApronMealsEaten", "camelSpit", "camerasUsed", "campAwayDecoration", "candyWitchTurnsUsed", "candyWitchCandyTotal", "carboLoading", "catBurglarBankHeists", "cellarLayout", "charitableDonations", "chasmBridgeProgress", "chefTurnsUsed", "chessboardsCleared", "chibiAlignment", "chibiBirthday", "chibiFitness", "chibiIntelligence", "chibiLastVisit", "chibiSocialization", "chilledToTheBone", "cinchoSaltAndLime", "cinderellaMinutesToMidnight", "cinderellaScore", "clubEmNextWeekMonsterTurn", "cocktailSummons", "commerceGhostCombats", "cookbookbatIngredientsCharge", "controlPanelOmega", "cornucopiasOpened", "cosmicBowlingBallReturnCombats", "cozyCounter6332", "cozyCounter6333", "cozyCounter6334", "craftingClay", "craftingLeather", "craftingPlansCharges", "craftingStraw", "crimbo16BeardChakraCleanliness", "crimbo16BootsChakraCleanliness", "crimbo16BungChakraCleanliness", "crimbo16CrimboHatChakraCleanliness", "crimbo16GutsChakraCleanliness", "crimbo16HatChakraCleanliness", "crimbo16JellyChakraCleanliness", "crimbo16LiverChakraCleanliness", "crimbo16NippleChakraCleanliness", "crimbo16NoseChakraCleanliness", "crimbo16ReindeerChakraCleanliness", "crimbo16SackChakraCleanliness", "crimboTrainingSkill", "crimboTreeDays", "cubelingProgress", "cupidBowFights", "currentExtremity", "currentHedgeMazeRoom", "currentMojoFilters", "currentNunneryMeat", "currentPortalEnergy", "currentReplicaStoreYear", "cursedMagnifyingGlassCount", "cyrptAlcoveEvilness", "cyrptCrannyEvilness", "cyrptNicheEvilness", "cyrptNookEvilness", "cyrptTotalEvilness", "darkGyfftePoints", "dartsThrown", "daycareEquipment", "daycareInstructorItemQuantity", "daycareInstructors", "daycareLastScavenge", "daycareToddlers", "dbNemesisSkill1", "dbNemesisSkill2", "dbNemesisSkill3", "desertExploration", "desktopHeight", "desktopWidth", "dinseyFilthLevel", "dinseyFunProgress", "dinseyNastyBearsDefeated", "dinseySocialJusticeIProgress", "dinseySocialJusticeIIProgress", "dinseyTouristsFed", "dinseyToxicMultiplier", "doctorBagQuestLights", "doctorBagUpgrades", "dreadScroll1", "dreadScroll2", "dreadScroll3", "dreadScroll4", "dreadScroll5", "dreadScroll6", "dreadScroll7", "dreadScroll8", "dripAdventuresSinceAscension", "drippingHallAdventuresSinceAscension", "drippingTreesAdventuresSinceAscension", "drippyBatsUnlocked", "drippyJuice", "drippyOrbsClaimed", "droneSelfDestructChipsUsed", "drunkenSwagger", "edDefeatAbort", "edPoints", "eldritchTentaclesFought", "electricKoolAidEaten", "elfGratitude", "encountersUntilDMTChoice", "encountersUntilYachtzeeChoice", "encountersUntilNEPChoice", "encountersUntilSRChoice", "ensorceleeLevel", "entauntaunedColdRes", "essenceOfAnnoyanceCost", "essenceOfBearCost", "extraRolloverAdventures", "falloutShelterLevel", "familiarSweat", "fingernailsClipped", "fistSkillsKnown", "flyeredML", "fossilB", "fossilD", "fossilN", "fossilP", "fossilS", "fossilW", "fratboysDefeated", "frenchGuardTurtlesFreed", "funGuyMansionKills", "garbageChampagneCharge", "garbageFireProgress", "garbageShirtCharge", "garbageTreeCharge", "garlandUpgrades", "getsYouDrunkTurnsLeft", "ghostPepperTurnsLeft", "gingerDigCount", "gingerLawChoice", "gingerMuscleChoice", "gingerTrainScheduleStudies", "gladiatorBallMovesKnown", "gladiatorBladeMovesKnown", "gladiatorNetMovesKnown", "glitchItemCost", "glitchItemImplementationCount", "glitchItemImplementationLevel", "glitchSwagger", "gloverPoints", "gnasirProgress", "goldenMrAccessories", "gongPath", "gooseDronesRemaining", "goreCollected", "gourdItemCount", "greyYouPoints", "grimoire1Summons", "grimoire2Summons", "grimoire3Summons", "grimstoneCharge", "guardTurtlesFreed", "guideToSafariCost", "guyMadeOfBeesCount", "guzzlrBronzeDeliveries", "guzzlrDeliveryProgress", "guzzlrGoldDeliveries", "guzzlrPlatinumDeliveries", "haciendaLayout", "hallowiener8BitRealm", "hallowienerCoinspiracy", "handfulOfTipsMeat", "hareMillisecondsSaved", "hareTurnsUsed", "heavyRainsStartingThunder", "heavyRainsStartingRain", "heavyRainsStartingLightning", "heroDonationBoris", "heroDonationJarlsberg", "heroDonationSneakyPete", "hiddenApartmentProgress", "hiddenBowlingAlleyProgress", "hiddenHospitalProgress", "hiddenOfficeProgress", "hiddenTavernUnlock", "highTopPumped", "hippiesDefeated", "holidayHalsBookCost", "holidaySwagger", "homemadeRobotUpgrades", "homebodylCharges", "hpAutoRecovery", "hpAutoRecoveryTarget", "iceSwagger", "ironicSwagger", "jarlsbergPoints", "juicyGarbageUsed", "jungCharge", "junglePuns", "knownAscensions", "kolhsTotalSchoolSpirited", "lassoTrainingCount", "lastAnticheeseDay", "lastArcadeAscension", "lastBadMoonReset", "lastBangPotionReset", "lastBattlefieldReset", "lastBeardBuff", "lastBreakfast", "lastCartographyBooPeak", "lastCartographyCastleTop", "lastCartographyDarkNeck", "lastCartographyDefiledNook", "lastCartographyFratHouse", "lastCartographyFratHouseVerge", "lastCartographyGuanoJunction", "lastCartographyHauntedBilliards", "lastCartographyHippyCampVerge", "lastCartographyZeppelinProtesters", "lastCastleGroundUnlock", "lastCastleTopUnlock", "lastCellarReset", "lastChanceThreshold", "lastChasmReset", "lastColosseumRoundWon", "lastCouncilVisit", "lastCounterDay", "lastDesertUnlock", "lastDispensaryOpen", "lastDMTDuplication", "lastDwarfFactoryReset", "lastEVHelmetValue", "lastEVHelmetReset", "lastEmptiedStorage", "lastFilthClearance", "lastGoofballBuy", "lastGuildStoreOpen", "lastGuyMadeOfBeesReset", "lastFratboyCall", "lastFriarCeremonyAscension", "lastFriarsElbowNC", "lastFriarsHeartNC", "lastFriarsNeckNC", "lastHippyCall", "lastIslandUnlock", "lastKeyotronUse", "lastKingLiberation", "lastLightsOutTurn", "lastMushroomPlot", "lastMiningReset", "lastNemesisReset", "lastPaperStripReset", "lastPirateEphemeraReset", "lastPirateInsultReset", "lastPlusSignUnlock", "lastQuartetAscension", "lastQuartetRequest", "lastSecondFloorUnlock", "lastShadowForgeUnlockAdventure", "lastKOLHSArtClassUnlockAdventure", "lastKOLHSChemClassUnlockAdventure", "lastKOLHSShopClassUnlockAdventure", "lastSkateParkReset", "lastStillBeatingSpleen", "lastTavernAscension", "lastTavernSquare", "lastTelescopeReset", "lastTempleAdventures", "lastTempleButtonsUnlock", "lastTempleUnlock", "lastThingWithNoNameDefeated", "lastTowelAscension", "lastTr4pz0rQuest", "lastTrainsetConfiguration", "lastVioletFogMap", "lastVoteMonsterTurn", "lastWartDinseyDefeated", "lastWuTangDefeated", "lastYearbookCameraAscension", "lastZapperWand", "lastZapperWandExplosionDay", "lawOfAveragesCost", "legacyPoints", "legendaryNoodlesAmygdala", "legendaryNoodlesSkin", "legendaryNoodlesStomach", "leprecondoLastNeedChange", "libramSummons", "lightsOutAutomation", "louvreDesiredGoal", "louvreGoal", "lovebugsAridDesert", "lovebugsBeachBuck", "lovebugsBooze", "lovebugsChroner", "lovebugsCoinspiracy", "lovebugsCyrpt", "lovebugsFreddy", "lovebugsFunFunds", "lovebugsHoboNickel", "lovebugsItemDrop", "lovebugsMeat", "lovebugsMeatDrop", "lovebugsMoxie", "lovebugsMuscle", "lovebugsMysticality", "lovebugsOilPeak", "lovebugsOrcChasm", "lovebugsPowder", "lovebugsWalmart", "lttQuestDifficulty", "lttQuestStageCount", "manaBurnSummonThreshold", "manaBurningThreshold", "manaBurningTrigger", "manorDrawerCount", "manualOfNumberologyCost", "mapToKokomoCost", "markYourTerritoryCharges", "masksUnlocked", "maximizerMRUSize", "maximizerCombinationLimit", "maximizerEquipmentLevel", "maximizerEquipmentScope", "maximizerMaxPrice", "maximizerPriceLevel", "maxManaBurn", "mayflyExperience", "mayoLevel", "meansuckerPrice", "mechanicalSongbirdProgress", "merkinVocabularyMastery", "miniAdvClass", "miniKiwiAiolisUsed", "miniMartinisDrunk", "mixedBerryJellyUses", "moleTunnelLevel", "momSeaMonkeeProgress", "mothershipProgress", "mpAutoRecovery", "mpAutoRecoveryTarget", "munchiesPillsUsed", "mushroomGardenCropLevel", "nanopolymerSpiderWebsUsed", "nextAprilBandTurn", "nextParanormalActivity", "nextQuantumFamiliarOwnerId", "nextQuantumFamiliarTurn", "noobPoints", "noobDeferredPoints", "noodleSummons", "nsContestants1", "nsContestants2", "nsContestants3", "nuclearAutumnPoints", "numericSwagger", "nunsVisits", "oilPeakProgress", "optimalSwagger", "optimisticCandleProgress", "palindomeDudesDefeated", "parasolUsed", "peaceTurkeyIndex", "pendingMapReflections", "phosphorTracesUses", "pingpongSkill", "pirateRealmPlasticPiratesDefeated", "pirateRealmShipsDestroyed", "pirateRealmStormsEscaped", "pirateSwagger", "plantingDay", "plumberBadgeCost", "plumberCostumeCost", "plumberPoints", "pokefamPoints", "poolSharkCount", "poolSkill", "powerPillProgress", "preworkoutPowderUses", "primaryLabGooIntensity", "prismaticSummons", "procrastinatorLanguageFluency", "promptAboutCrafting", "puzzleChampBonus", "pyramidPosition", "quantumPoints", "reagentSummons", "reanimatorArms", "reanimatorLegs", "reanimatorSkulls", "reanimatorWeirdParts", "reanimatorWings", "recentLocations", "redSnapperProgress", "relayPort", "relocatePygmyJanitor", "relocatePygmyLawyer", "rockinRobinProgress", "romanCandelabraRedCasts", "romanCandelabraBlueCasts", "romanCandelabraYellowCasts", "romanCandelabraGreenCasts", "romanCandelabraPurpleCasts", "ROMOfOptimalityCost", "rumpelstiltskinKidsRescued", "rumpelstiltskinTurnsUsed", "rwbMonsterCount", "safariSwagger", "sausageGrinderUnits", "schoolOfHardKnocksDiplomaCost", "schoolSwagger", "scrapbookCharges", "screechCombats", "scriptMRULength", "seadentConstructKills", "seadentLevel", "seaodesFound", "seaPoints", "SeasoningSwagger", "sexChanges", "shenInitiationDay", "shockingLickCharges", "shrunkenHeadZombieHP", "singleFamiliarRun", "skillBurn3", "skillBurn90", "skillBurn153", "skillBurn154", "skillBurn155", "skillBurn236", "skillBurn237", "skillBurn1019", "skillBurn5017", "skillBurn6014", "skillBurn6015", "skillBurn6016", "skillBurn6020", "skillBurn6021", "skillBurn6022", "skillBurn6023", "skillBurn6024", "skillBurn6026", "skillBurn6028", "skillBurn7323", "skillBurn14008", "skillBurn14028", "skillBurn14038", "skillBurn15011", "skillBurn15028", "skillBurn17005", "skillBurn22034", "skillBurn22035", "skillBurn23301", "skillBurn23302", "skillBurn23303", "skillBurn23304", "skillBurn23305", "skillBurn23306", "skillLevel46", "skillLevel47", "skillLevel48", "skillLevel117", "skillLevel118", "skillLevel121", "skillLevel128", "skillLevel134", "skillLevel135", "skillLevel144", "skillLevel180", "skillLevel188", "skillLevel227", "skillLevel245", "skillLevel7254", "slimelingFullness", "slimelingStacksDropped", "slimelingStacksDue", "smoresEaten", "smutOrcNoncombatProgress", "sneakyPetePoints", "snojoMoxieWins", "snojoMuscleWins", "snojoMysticalityWins", "sourceAgentsDefeated", "sourceEnlightenment", "sourceInterval", "sourcePoints", "sourceTerminalGram", "sourceTerminalPram", "sourceTerminalSpam", "spaceBabyLanguageFluency", "spacePirateLanguageFluency", "spelunkyNextNoncombat", "spelunkySacrifices", "spelunkyWinCount", "spookyPuttyCopiesMade", "spookyVHSTapeMonsterTurn", "statbotUses", "stockCertificateTurn", "sugarCounter4178", "sugarCounter4179", "sugarCounter4180", "sugarCounter4181", "sugarCounter4182", "sugarCounter4183", "sugarCounter4191", "summonAnnoyanceCost", "sweat", "tacoDanCocktailSauce", "tacoDanFishMeat", "takerSpaceAnchor", "takerSpaceGold", "takerSpaceMast", "takerSpaceRum", "takerSpaceSilk", "takerSpaceSpice", "tavernLayout", "telescopeUpgrades", "tempuraSummons", "timeposedTopHats", "timeSpinnerMedals", "timesRested", "tomeSummons", "totalCharitableDonations", "trainsetPosition", "tryToRememberCharges", "turtleBlessingTurns", "twinPeakProgress", "twoCRSPoints", "unicornHornInflation", "universalSeasoningCost", "usable1HWeapons", "usable1xAccs", "usable2HWeapons", "usable3HWeapons", "usableAccessories", "usableHats", "usableOffhands", "usableOther", "usablePants", "usableShirts", "valueOfAdventure", "valueOfInventory", "valueOfStill", "valueOfTome", "vintnerCharge", "vintnerWineLevel", "violetFogGoal", "walfordBucketProgress", "warehouseProgress", "welcomeBackAdv", "wereProfessorBite", "wereProfessorKick", "wereProfessorLiver", "wereProfessorPoints", "wereProfessorRend", "wereProfessorResearchPoints", "wereProfessorStomach", "wereProfessorTransformTurns", "whetstonesUsed", "wolfPigsEvicted", "wolfTurnsUsed", "writingDesksDefeated", "xoSkeleltonXProgress", "xoSkeleltonOProgress", "yearbookCameraAscensions", "yearbookCameraUpgrades", "youRobotBody", "youRobotBottom", "youRobotLeft", "youRobotPoints", "youRobotRight", "youRobotTop", "zeppelinProgress", "zeppelinProtestors", "zigguratLianas", "zombiePoints", "zootSpecimensPrepared", "zootomistPoints", "_absintheDrops", "_abstractionDropsCrown", "_aguaDrops", "_xenomorphCharge", "_alliedRadioDropsUsed", "_ancestralRecallCasts", "_antihangoverBonus", "_aprilShowerDiscoNap", "_aprilBandInstruments", "_aprilBandSaxophoneUses", "_aprilBandTomUses", "_aprilBandTubaUses", "_aprilBandStaffUses", "_aprilBandPiccoloUses", "_archSpadeDigs", "_astralDrops", "_augSkillsCast", "_assertYourAuthorityCast", "_automatedFutureManufactures", "_autumnatonQuests", "_backUpUses", "_badlyRomanticArrows", "_badgerCharge", "_balefulHowlUses", "_banderRunaways", "_baseballInnings", "_bastilleCheese", "_bastilleGames", "_bastilleGameTurn", "_bastilleLastCheese", "_batWingsCauldronUsed", "_batWingsFreeFights", "_batWingsRestUsed", "_batWingsSwoopUsed", "_bczBloodGeyserCasts", "_bczRefractedGazeCasts", "_bczSweatBulletsCasts", "_bczBloodBathCasts", "_bczDialitupCasts", "_bczSweatEquityCasts", "_bczBloodThinnerCasts", "_bczSpinalTapasCasts", "_bczPheromoneCocktailCasts", "_beanCannonUses", "_bearHugs", "_beerLensDrops", "_bellydancerPickpockets", "_benettonsCasts", "_beretBlastUses", "_beretBoastUses", "_beretBuskingUses", "_birdsSoughtToday", "_bookOfFactsWishes", "_bookOfFactsTatters", "_boomBoxFights", "_boomBoxSongsLeft", "_bootStomps", "_boxingGloveArrows", "_brickoEyeSummons", "_brickoFights", "_campAwayCloudBuffs", "_campAwaySmileBuffs", "_candyEggsDeviled", "_candySummons", "_captainHagnkUsed", "_carnieCandyDrops", "_carnivorousPottedPlantWins", "_carrotNoseDrops", "_catBurglarCharge", "_catBurglarHeistsComplete", "_cheerleaderSteam", "_chestXRayUsed", "_chibiAdventures", "_chipBags", "_chocolateCigarsUsed", "_chocolateCoveredPingPongBallsUsed", "_chocolateSculpturesUsed", "_chocolatesUsed", "_chronolithActivations", "_chronolithNextCost", "_cinchUsed", "_cinchoRests", "_circadianRhythmsAdventures", "_clanFortuneConsultUses", "_clipartSummons", "_clocksUsed", "_cloversPurchased", "_clubEmBattlefieldUsed", "_clubEmNextWeekUsed", "_clubEmTimeUsed", "_coldMedicineConsults", "_coldMedicineEquipmentTaken", "_companionshipCasts", "_concoctionDatabaseRefreshes", "_cookbookbatCrafting", "_cookbookbatCombatsUntilNewQuest", "_cosmicBowlingSkillsUsed", "_crimbo21ColdResistance", "_crimboPastDailySpecialPrice", "_cyberFreeFights", "_cyberZone1Turns", "_cyberZone2Turns", "_cyberZone3Turns", "_dailySpecialPrice", "_dartsLeft", "_daycareGymScavenges", "_daycareRecruits", "_deckCardsDrawn", "_deluxeKlawSummons", "_demandSandwich", "_detectiveCasesCompleted", "_disavowed", "_dnaPotionsMade", "_donhosCasts", "_douseFoeUses", "_dreamJarDrops", "_drunkPygmyBanishes", "_durableDolphinWhistleUsed", "_edDefeats", "_edLashCount", "_eldritchTentaclesFoughtToday", "_elfGuardCookingUsed", "_elronsCasts", "_enamorangs", "_energyCollected", "_expertCornerCutterUsed", "_extraTimeUsed", "_favorRareSummons", "_feastUsed", "_feelinTheRhythm", "_feelPrideUsed", "_feelExcitementUsed", "_feelHatredUsed", "_feelLonelyUsed", "_feelNervousUsed", "_feelEnvyUsed", "_feelDisappointedUsed", "_feelSuperiorUsed", "_feelLostUsed", "_feelNostalgicUsed", "_feelPeacefulUsed", "_fingertrapArrows", "_fireExtinguisherCharge", "_fitnessTrackingSteps", "_fragrantHerbsUsed", "_freeBeachWalksUsed", "_frButtonsPressed", "_fudgeWaspFights", "_gapBuffs", "_garbageFireDrops", "_garbageFireDropsCrown", "_generateIronyUsed", "_genieFightsUsed", "_genieWishesUsed", "_gibbererAdv", "_gibbererCharge", "_gingerbreadCityTurns", "_glarkCableUses", "_glitchMonsterFights", "_gnomeAdv", "_godLobsterFights", "_goldenMoneyCharge", "_gongDrops", "_gothKidCharge", "_gothKidFights", "_greyYouAdventures", "_grimBrotherCharge", "_grimFairyTaleDrops", "_grimFairyTaleDropsCrown", "_grimoireConfiscatorSummons", "_grimoireGeekySummons", "_grimstoneMaskDrops", "_grimstoneMaskDropsCrown", "_grooseCharge", "_grooseDrops", "_grubbyWoolDrops", "_guzzlrDeliveries", "_guzzlrGoldDeliveries", "_guzzlrPlatinumDeliveries", "_hareAdv", "_hareCharge", "_heartstoneBanishUsed", "_heartstoneBuffUsed", "_heartstoneKillUsed", "_heartstonePalsUsed", "_heartstoneStunUsed", "_highTopPumps", "_hipsterAdv", "_hoardedCandyDropsCrown", "_hoboUnderlingSummons", "_holidayMultitaskingUsed", "_holoWristDrops", "_holoWristProgress", "_hoboFortRestEffectsGained", "_hotAshesDrops", "_hotJellyUses", "_hotTubSoaks", "_humanMuskUses", "_iceballUses", "_inigosCasts", "_ironTricornHeadbuttUsed", "_jerksHealthMagazinesUsed", "_jiggleCheese", "_jiggleCream", "_jiggleLife", "_jiggleSteak", "_jitbCharge", "_juneCleaverAdvs", "_juneCleaverFightsLeft", "_juneCleaverEncounters", "_juneCleaverStench", "_juneCleaverSpooky", "_juneCleaverSleaze", "_juneCleaverHot", "_juneCleaverCold", "_juneCleaverSkips", "_jungDrops", "_kgbClicksUsed", "_kgbDispenserUses", "_kgbTranquilizerDartUses", "_klawSummons", "_kloopCharge", "_kloopDrops", "_knuckleboneDrops", "_knuckleboneRests", "_kolhsAdventures", "_kolhsSavedByTheBell", "_lastDailyDungeonRoom", "_lastFitzsimmonsHatch", "_lastMobiusStripTurn", "_lastSausageMonsterTurn", "_lastZomboEye", "_latteRefillsUsed", "_lawOfAveragesUsed", "_leafblowerML", "_leafLassosCrafted", "_leafMonstersFought", "_leavesBurned", "_legendaryLasagmbieMana", "_legendaryVermincelliFreeRats", "_legionJackhammerCrafting", "_leprecondoRearrangements", "_leprecondoFurniture", "_llamaCharge", "_longConUsed", "_lovebugsBeachBuck", "_lovebugsChroner", "_lovebugsCoinspiracy", "_lovebugsFreddy", "_lovebugsFunFunds", "_lovebugsHoboNickel", "_lovebugsWalmart", "_loveChocolatesUsed", "_lynyrdSnareUses", "_machineTunnelsAdv", "_macrometeoriteUses", "_mafiaThumbRingAdvs", "_mapToACandyRichBlockDrops", "_mayamRests", "_mayflowerDrops", "_mayflySummons", "_mcHugeLargeAvalancheUses", "_mcHugeLargeSkiPlowUses", "_mcHugeLargeSlashUses", "_meatCuteUsed", "_meatLoafUsed", "_mediumSiphons", "_meteoriteAdesUsed", "_meteorShowerUses", "_micrometeoriteUses", "_mildEvilPerpetrated", "_mimicEggsDonated", "_mimicEggsObtained", "_miniKiwiDrops", "_miniMartiniDrops", "_mobiusRingPrimedTurn", "_mobiusStripEncounters", "_monkeyPawWishesUsed", "_monsterHabitatsFightsLeft", "_monsterHabitatsRecalled", "_monstersMapped", "_mushroomGardenFights", "_nanorhinoCharge", "_navelRunaways", "_neverendingPartyFreeTurns", "_newYouQuestSharpensDone", "_newYouQuestSharpensToDo", "_nextColdMedicineConsult", "_nextQuantumAlignment", "_nightmareFuelCharges", "_noobSkillCount", "_nuclearStockpileUsed", "_oilExtracted", "_oldSchoolCocktailCraftingUsed", "_olfactionsUsed", "_optimisticCandleDropsCrown", "_oreDropsCrown", "_otoscopeUsed", "_oysterEggsFound", "_pantsgivingBanish", "_pantsgivingCount", "_pantsgivingCrumbs", "_pantsgivingFullness", "_pasteDrops", "_perilsForeseen", "_peteJukeboxFixed", "_peteJumpedShark", "_petePeeledOut", "_photoBoothEffects", "_photoBoothEquipment", "_pieDrops", "_piePartsCount", "_pirateRealmGold", "_pirateRealmGlue", "_pirateRealmGrog", "_pirateRealmGrub", "_pirateRealmGuns", "_pirateRealmIslandMonstersDefeated", "_pirateRealmSailingTurns", "_pirateRealmShipSpeed", "_pixieCharge", "_pocketProfessorLectures", "_poisonArrows", "_pokeGrowFertilizerDrops", "_poolGames", "_powderedGoldDrops", "_powderedMadnessUses", "_powerfulGloveBatteryPowerUsed", "_powerPillDrops", "_powerPillUses", "_precisionCasts", "_pyramidRestEffectsGained", "_questPartyFairItemsOpened", "_radlibSummons", "_raindohCopiesMade", "_rapidPrototypingUsed", "_raveStealCount", "_reflexHammerUsed", "_resolutionAdv", "_resolutionRareSummons", "_riftletAdv", "_robinEggDrops", "_roboDrops", "_rogueProgramCharge", "_romanticFightsLeft", "_saberForceMonsterCount", "_saberForceUses", "_saberMod", "_saltGrainsConsumed", "_sandwormCharge", "_saplingsPlanted", "_sausageFights", "_sausagesEaten", "_sausagesMade", "_seadentLightningUsed", "_sealFigurineUses", "_sealScreeches", "_sealsSummoned", "_shadowBricksUsed", "_shadowRiftCombats", "_shatteringPunchUsed", "_shortOrderCookCharge", "_shrubCharge", "_slimeVialsHarvested", "_sloppyDinerBeachBucks", "_smilesOfMrA", "_smithsnessSummons", "_smolderingSkeletonsDefeated", "_smoochArmyHQCombats", "_snojoFreeFights", "_snojoParts", "_snokebombUsed", "_snowconeSummons", "_snowglobeDrops", "_snowmanHatPlaceUsed", "_snowSuitCount", "_sourceTerminalDigitizeMonsterCount", "_sourceTerminalDigitizeUses", "_sourceTerminalDuplicateUses", "_sourceTerminalEnhanceUses", "_sourceTerminalExtrudes", "_sourceTerminalPortscanUses", "_spaceFurDropsCrown", "_spacegatePlanetIndex", "_spacegateTurnsLeft", "_spaceJellyfishDrops", "_speakeasyDrinksDrunk", "_speakeasyFreeFights", "_spelunkerCharges", "_spelunkingTalesDrops", "_spikolodonSpikeUses", "_spiritOfTheMountainsAdvs", "_spookyJellyUses", "_stackLumpsUses", "_steamCardDrops", "_stickerSummons", "_stinkyCheeseCount", "_stressBallSqueezes", "_sugarSummons", "_summonResortPassesUsed", "_surprisinglySweetSlashUsed", "_surprisinglySweetStabUsed", "_sweatOutSomeBoozeUsed", "_swordOfSWordsKills", "_swordOfSWordsMonsterChanged", "_taffyRareSummons", "_taffyYellowSummons", "_tearawayPantsAdvs", "_thanksgettingFoodsEaten", "_thingfinderCasts", "_thinknerdPackageDrops", "_thorsPliersCrafting", "_timeHelmetAdv", "_timeCopsFoughtToday", "_timeSpinnerMinutesUsed", "_tokenDrops", "_transponderDrops", "_turkeyBlastersUsed", "_turkeyBooze", "_turkeyMuscle", "_turkeyMyst", "_turkeyMoxie", "_unaccompaniedMinerUsed", "_unblemishedPearlAnemoneMineProgress", "_unblemishedPearlDiveBarProgress", "_unblemishedPearlMadnessReefProgress", "_unblemishedPearlMarinaraTrenchProgress", "_unblemishedPearlTheBriniestDeepestsProgress", "_unconsciousCollectiveCharge", "_universalSeasoningsUsed", "_universeCalculated", "_universeImploded", "_usedReplicaBatoomerang", "_vampyreCloakeFormUses", "_villainLairProgress", "_vitachocCapsulesUsed", "_vmaskAdv", "_voidFreeFights", "_volcanoItem1", "_volcanoItem2", "_volcanoItem3", "_volcanoItemCount1", "_volcanoItemCount2", "_volcanoItemCount3", "_voteFreeFights", "_VYKEACompanionLevel", "_wandOfPigificationUsed", "_warbearAutoAnvilCrafting", "_waxGlobDrops", "_whiteRiceDrops", "_witchessFights", "_xoHugsUsed", "_yellowPixelDropsCrown", "_zapCount", "_zombieSmashPocketsUsed", "lastNoncombat15", "lastNoncombat257", "lastNoncombat270", "lastNoncombat273", "lastNoncombat280", "lastNoncombat283", "lastNoncombat297", "lastNoncombat322", "lastNoncombat323", "lastNoncombat324", "lastNoncombat341", "lastNoncombat343", "lastNoncombat384", "lastNoncombat386", "lastNoncombat391", "lastNoncombat392", "lastNoncombat394", "lastNoncombat405", "lastNoncombat406", "lastNoncombat408", "lastNoncombat439", "lastNoncombat440", "lastNoncombat441", "lastNoncombat450", "lastNoncombat528", "lastNoncombat533", "lastNoncombat539", "lastNoncombat540", "lastNoncombat541", "lastNoncombat588", "lastNoncombat589", "lastNoncombat590", "lastNoncombat591", "lastNoncombat592", "auto_paranoia", "auto_delayTimer", "auto_save_adv_override", "auto_log_level", "auto_log_level_restore", "auto_stopMinutesToRollover", "auto_clanstuff", "auto_aboopending", "auto_aosolLastSkill", "auto_awolLastSkill", "auto_bat_ensorcels", "auto_batoomerangDay", "auto_batoomerangUse", "auto_borisSkills", "auto_bowledAtAlley", "auto_breathitinLastLevel", "auto_cabinetsencountered", "auto_cmcConsultLastLevel", "auto_combatHandlerThunderBird", "auto_combatHP", "auto_day2WaitLastLevel", "auto_debuffAsdonDelay", "auto_delayLastLevel", "auto_diag_round", "auto_dietpills", "auto_edCombatCount", "auto_edCombatRoundCount", "auto_edServantBugCount", "auto_edSkills", "auto_exerciseLiquidity", "auto_junkspritesencountered", "auto_kgbAscension", "auto_kgbButton100", "auto_L12FarmStage", "auto_lastShenTurn", "auto_lastthunder", "auto_lastthunderturn", "auto_mcd_target", "auto_modernzmobiecount", "auto_noSnakeOil", "auto_paranoia_counter", "auto_peteSkills", "auto_priorCharpaneMode", "auto_renenutetBought", "auto_robot_skills_bought", "auto_spoonconfirmed", "auto_wineracksencountered", "_auto_AwkwardBeatenUp", "_auto_bat_bloodBank", "_auto_bondLevel", "_auto_casualAscension", "_auto_combatDisguisesDelimitMask", "_auto_combatTracker_MortarRound", "_auto_groundhogSkip", "_auto_groundhogSkipCounter", "_auto_horseryRented", "_auto_im_cool_with_dying_a_lot", "_auto_interestingCoinsSpent", "_auto_jarlsbergSkills", "_auto_lastABooConsider", "_auto_lastABooCycleFix", "_auto_lastAutumnatonUpgrade", "_auto_lobsterChoice", "_auto_override_tooManyAdv", "_auto_toxicAssetUses", "_auto_witchessBattles", "_LAR_skipNC163", "_LAR_skipNC178", "_NC772_directive", "choiceAdventure1003", "auto_runDayCount", "auto_day_init", "auto_powerLevelLastLevel", "auto_powerLevelAdvCount", "auto_powerLevelLastAttempted", "auto_beatenUpCount", "auto_doneInitialize", "auto_bcz_battlefieldGaze", "auto_mushroomGardenGrowth", "auto_powerLevelTimer", "auto_consumablePriceLimit", "auto_maxCandyPrice", "auto_meat_surplus", "auto_mpAutoRecovery", "auto_mpAutoRecoveryTarget", "_auto_organSpace", "auto_consumeMinAdvPerFill", "auto_consumePullDesirability", "auto_bedtime_pulls_pvp_multi", "auto_bedtime_pulls_min_desirability"];
 var monsterProperties = ["beGregariousMonster", "bodyguardChatMonster", "cameraMonster", "chateauMonster", "clubEmNextWeekMonster", "clumsinessGroveBoss", "crappyCameraMonster", "crudeMonster", "enamorangMonster", "envyfishMonster", "glacierOfJerksBoss", "holdHandsMonster", "iceSculptureMonster", "lastCopyableMonster", "longConMonster", "maelstromOfLoversBoss", "makeFriendsMonster", "merkinLockkeyMonster", "monkeyPointMonster", "motifMonster", "nosyNoseMonster", "olfactedMonster", "photocopyMonster", "rainDohMonster", "romanticTarget", "rufusDesiredEntity", "rwbMonster", "screencappedMonster", "shrunkenHeadZombieMonster", "spookyPuttyMonster", "spookyVHSTapeMonster", "stenchCursedMonster", "superficiallyInterestedMonster", "swordOfSWordsMonster", "waxMonster", "yearbookCameraTarget", "_afterimageMonster", "_beanballMonster", "_chainedRelativityMonster", "_chainedPurpleCandleMonster", "_chainedAfterimageMonster", "_cookbookbatQuestMonster", "_curveballMonster", "_gallapagosMonster", "_jiggleCreamedMonster", "_latteMonster", "_monsterHabitatsMonster", "_nanorhinoBanishedMonster", "_newYouQuestMonster", "_prankCardMonster", "_relativityMonster", "_saberForceMonster", "_screwballMonster", "_skullballMonster", "_sourceTerminalDigitizeMonster", "_trickCoinMonster", "_voteMonster"];
 var monsterNumericProperties = ["swordOfSWordsMonster"];
@@ -19511,7 +19511,7 @@ function taskLocations(task) {
 function turnsSavedByForcing(location, forcing) {
   if (forcing.turnsRequiredForSetup < 0) return 0;
   var turnsSaved = forcing.turnsSavedByForcedNC ?? (0, import_kolmafia103.turnsUntilForcedNoncombat)(location);
-  if (location.combatPercent !== 0 && location.combatPercent !== 100) {
+  if (location.combatPercent > 0 && location.combatPercent < 100) {
     var noncombatChance = 100 - (location.combatPercent + (0, import_kolmafia103.numericModifier)("Combat Rate"));
     if (noncombatChance > 0) {
       turnsSaved = (0, import_kolmafia103.min)(turnsSaved, Math.round(100 / noncombatChance));
@@ -19519,26 +19519,94 @@ function turnsSavedByForcing(location, forcing) {
   }
   return (0, import_kolmafia103.max)(0, turnsSaved - forcing.turnsRequiredForSetup);
 }
-function isTopLocationToForceNoncombat(location) {
-  var wanted = [];
-  var here = 0;
+function turnsSavedByForcingNoncombatHere(location) {
+  var saved = 0;
+  for (var _i = 0, _getAllQuestTasks = getAllQuestTasks(); _i < _getAllQuestTasks.length; _i++) {
+    var _task = _getAllQuestTasks[_i];
+    if (!_task.forcedNonCombats || !isAvailable(_task)) continue;
+    if (taskLocations(_task)[0] !== location) continue;
+    var forcing = _task.forcedNonCombats()[0];
+    if (forcing === void 0) continue;
+    saved = (0, import_kolmafia103.max)(saved, turnsSavedByForcing(location, forcing));
+  }
+  return saved;
+}
+function isTopUseOfAForcer(turnsSaved) {
+  if (turnsSaved === 0) return false;
+  var betterUses = 0;
   var _loop2 = function _loop3() {
-    var task = _getAllQuestTasks[_i];
+    var task = _getAllQuestTasks2[_i2];
     if (!task.forcedNonCombats || !isAvailable(task)) return 0;
     var taskLocation = taskLocations(task)[0];
     if (taskLocation === void 0) return 0;
-    var turnsSaved = task.forcedNonCombats().map((forcing) => turnsSavedByForcing(taskLocation, forcing));
-    if (taskLocation === location) {
-      here = (0, import_kolmafia103.max)(here, turnsSaved[0] ?? 0);
-    }
-    wanted.push.apply(wanted, _toConsumableArray(turnsSaved.filter((saved) => saved > 0)));
+    betterUses += task.forcedNonCombats().filter(
+      (forcing) => turnsSavedByForcing(taskLocation, forcing) > turnsSaved
+    ).length;
   }, _ret;
-  for (var _i = 0, _getAllQuestTasks = getAllQuestTasks(); _i < _getAllQuestTasks.length; _i++) {
+  for (var _i2 = 0, _getAllQuestTasks2 = getAllQuestTasks(); _i2 < _getAllQuestTasks2.length; _i2++) {
     _ret = _loop2();
     if (_ret === 0) continue;
   }
-  if (here === 0) return false;
-  return wanted.filter((saved) => saved > here).length < remainingNCForcesAvailable();
+  return betterUses < remainingNCForcesAvailable();
+}
+function isTopLocationToForceNoncombat(location) {
+  return isTopUseOfAForcer(turnsSavedByForcingNoncombatHere(location));
+}
+function printForcedNoncombatLocations() {
+  (0, import_kolmafia103.printHtml)(
+    `Noncombat forcers available: ${remainingNCForcesAvailable()}`,
+    false
+  );
+  var rows = [];
+  var _loop2 = function _loop22() {
+    var task = _getAllQuestTasks3[_i3];
+    if (!task.forcedNonCombats) return 0;
+    var location = taskLocations(task)[0];
+    if (location === void 0) return 0;
+    var where = `${task.name} @ ${location.toString()}`;
+    if (isComplete(task)) {
+      rows.push({
+        saved: -2,
+        lines: [
+          `<font color=gray>${where}: done, will not want a forcer</font>`
+        ]
+      });
+      return 0;
+    }
+    var available7 = isAvailable(task);
+    var wants = task.forcedNonCombats().map((forcing, index) => {
+      var saved = turnsSavedByForcing(location, forcing);
+      var claimed = forcing.turnsSavedByForcedNC === void 0 ? "" : `, claims ${forcing.turnsSavedByForcedNC}`;
+      var top = available7 && isTopUseOfAForcer(saved) ? " <b>[best use of a forcer]</b>" : "";
+      return `&nbsp;&nbsp;- <font color=${index % 2 === 0 ? "blue" : "purple"}>#${index + 1}${forcing.name ? ` ${forcing.name}` : ""} saves ${saved} (setup ${forcing.turnsRequiredForSetup}, until NC ${(0, import_kolmafia103.turnsUntilForcedNoncombat)(location)}${claimed})</font>${top}`;
+    });
+    rows.push({
+      saved: available7 ? turnsSavedByForcingNoncombatHere(location) : -1,
+      lines: [
+        `<font color=${available7 ? "green" : "darkred"}>${where}</font>:${wants.length > 0 ? "" : " wants no forcers right now"}`
+      ].concat(_toConsumableArray(
+        wants
+      ))
+    });
+  }, _ret2;
+  for (var _i3 = 0, _getAllQuestTasks3 = getAllQuestTasks(); _i3 < _getAllQuestTasks3.length; _i3++) {
+    _ret2 = _loop2();
+    if (_ret2 === 0) continue;
+  }
+  rows.sort((a, b) => b.saved - a.saved);
+  var _iterator2 = _createForOfIteratorHelper(
+    rows.flatMap((row) => row.lines)
+  ), _step2;
+  try {
+    for (_iterator2.s(); !(_step2 = _iterator2.n()).done; ) {
+      var line = _step2.value;
+      (0, import_kolmafia103.printHtml)(line, false);
+    }
+  } catch (err) {
+    _iterator2.e(err);
+  } finally {
+    _iterator2.f();
+  }
 }
 function isMonsterEncounter(encounter) {
   return "monster" in encounter;
@@ -19575,7 +19643,7 @@ function getDesiredItemDrop(monster) {
     getMonsterDrops(monster)
   ), _step2;
   try {
-    var _loop2 = function _loop22() {
+    var _loop3 = function _loop32() {
       var drop = _step2.value;
       if (drop.rate < 1 || drop.rate >= 100 || !isItemDropControlled(drop) || !desiredItems.some((desired) => desired.item === drop.item)) {
         return 1;
@@ -19583,7 +19651,7 @@ function getDesiredItemDrop(monster) {
       needed = (0, import_kolmafia103.max)(needed ?? 0, 1e4 / drop.rate);
     };
     for (_iterator2.s(); !(_step2 = _iterator2.n()).done; ) {
-      if (_loop2()) continue;
+      if (_loop3()) continue;
     }
   } catch (err) {
     _iterator2.e(err);
@@ -19594,46 +19662,46 @@ function getDesiredItemDrop(monster) {
 }
 function getNeededItemDrop() {
   var needed;
-  for (var _i2 = 0, _getExecutingQuestTas = getExecutingQuestTasks(); _i2 < _getExecutingQuestTas.length; _i2++) {
-    var _task = _getExecutingQuestTas[_i2];
-    var desiredItems = taskDesiredEncounters(_task).drops.map(
+  for (var _i4 = 0, _getExecutingQuestTas = getExecutingQuestTasks(); _i4 < _getExecutingQuestTas.length; _i4++) {
+    var _task2 = _getExecutingQuestTas[_i4];
+    var desiredItems = taskDesiredEncounters(_task2).drops.map(
       (drop2) => drop2.item
     );
     if (desiredItems.length === 0) continue;
-    var _iterator2 = _createForOfIteratorHelper(
-      taskLocations(_task)
-    ), _step2;
+    var _iterator3 = _createForOfIteratorHelper(
+      taskLocations(_task2)
+    ), _step3;
     try {
-      for (_iterator2.s(); !(_step2 = _iterator2.n()).done; ) {
-        var location = _step2.value;
-        for (var _i3 = 0, _Object$entries = Object.entries(
+      for (_iterator3.s(); !(_step3 = _iterator3.n()).done; ) {
+        var location = _step3.value;
+        for (var _i5 = 0, _Object$entries = Object.entries(
           (0, import_kolmafia103.appearanceRates)(location)
-        ); _i3 < _Object$entries.length; _i3++) {
-          var _Object$entries$_i = _slicedToArray(_Object$entries[_i3], 2), monsterName = _Object$entries$_i[0], encounterRate = _Object$entries$_i[1];
+        ); _i5 < _Object$entries.length; _i5++) {
+          var _Object$entries$_i = _slicedToArray(_Object$entries[_i5], 2), monsterName = _Object$entries$_i[0], encounterRate = _Object$entries$_i[1];
           if (encounterRate <= 0) continue;
           var monster = import_kolmafia103.Monster.get(monsterName);
-          var _iterator3 = _createForOfIteratorHelper(
+          var _iterator4 = _createForOfIteratorHelper(
             getMonsterDrops(monster)
-          ), _step3;
+          ), _step4;
           try {
-            for (_iterator3.s(); !(_step3 = _iterator3.n()).done; ) {
-              var drop = _step3.value;
+            for (_iterator4.s(); !(_step4 = _iterator4.n()).done; ) {
+              var drop = _step4.value;
               if (drop.rate < 1 || drop.rate >= 100 || !isItemDropControlled(drop) || !desiredItems.includes(drop.item)) {
                 continue;
               }
               needed = (0, import_kolmafia103.max)(needed ?? 0, 1e4 / drop.rate);
             }
           } catch (err) {
-            _iterator3.e(err);
+            _iterator4.e(err);
           } finally {
-            _iterator3.f();
+            _iterator4.f();
           }
         }
       }
     } catch (err) {
-      _iterator2.e(err);
+      _iterator3.e(err);
     } finally {
-      _iterator2.f();
+      _iterator3.f();
     }
   }
   return needed;
@@ -19748,32 +19816,32 @@ function printAllTaskQuests() {
     "Incomplete - Ready": [],
     "Incomplete - Not Ready": []
   };
-  var _iterator6 = _createForOfIteratorHelper(
+  var _iterator7 = _createForOfIteratorHelper(
     getAllQuestTasks()
-  ), _step6;
+  ), _step7;
   try {
-    for (_iterator6.s(); !(_step6 = _iterator6.n()).done; ) {
-      var _task2$ready;
-      var _task2 = _step6.value;
-      if (!_task2.name.toLowerCase().includes(filter)) continue;
-      var context = getEngine().getContext(_task2);
-      var _isComplete = _task2.completed(context);
-      var isReady = ((_task2$ready = _task2.ready) === null || _task2$ready === void 0 ? void 0 : _task2$ready.call(_task2, context)) ?? false;
+    for (_iterator7.s(); !(_step7 = _iterator7.n()).done; ) {
+      var _task3$ready;
+      var _task3 = _step7.value;
+      if (!_task3.name.toLowerCase().includes(filter)) continue;
+      var context = getEngine().getContext(_task3);
+      var _isComplete = _task3.completed(context);
+      var isReady = ((_task3$ready = _task3.ready) === null || _task3$ready === void 0 ? void 0 : _task3$ready.call(_task3, context)) ?? false;
       var key = `${_isComplete ? "Complete" : "Incomplete"} - ${isReady ? "Ready" : "Not Ready"}`;
       var color = _isComplete && isReady ? "darkgreen" : _isComplete || isReady ? "green" : "darkred";
-      groups[key].push(`<font color=${color}>${_task2.name}</font>`);
+      groups[key].push(`<font color=${color}>${_task3.name}</font>`);
     }
   } catch (err) {
-    _iterator6.e(err);
+    _iterator7.e(err);
   } finally {
-    _iterator6.f();
+    _iterator7.f();
   }
-  for (var _i5 = 0, _Object$values = Object.values(groups); _i5 < _Object$values.length; _i5++) {
-    var tasks = _Object$values[_i5];
+  for (var _i7 = 0, _Object$values = Object.values(groups); _i7 < _Object$values.length; _i7++) {
+    var tasks = _Object$values[_i7];
     tasks.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
   }
-  for (var _i6 = 0, _Object$entries3 = Object.entries(groups); _i6 < _Object$entries3.length; _i6++) {
-    var _Object$entries3$_i = _slicedToArray(_Object$entries3[_i6], 2), group = _Object$entries3$_i[0], _tasks = _Object$entries3$_i[1];
+  for (var _i8 = 0, _Object$entries3 = Object.entries(groups); _i8 < _Object$entries3.length; _i8++) {
+    var _Object$entries3$_i = _slicedToArray(_Object$entries3[_i8], 2), group = _Object$entries3$_i[0], _tasks = _Object$entries3$_i[1];
     if (_tasks.length === 0) continue;
     var _group$split = group.split(" - "), _group$split2 = _slicedToArray(_group$split, 2), complete = _group$split2[0], ready = _group$split2[1];
     (0, import_kolmafia103.printHtml)(
@@ -19796,24 +19864,24 @@ function isAvailable(task) {
   return getEngine().available(task);
 }
 function runTaskChain(tasks) {
-  var _iterator7 = _createForOfIteratorHelper(
+  var _iterator8 = _createForOfIteratorHelper(
     tasks
-  ), _step7;
+  ), _step8;
   try {
-    for (_iterator7.s(); !(_step7 = _iterator7.n()).done; ) {
-      var _task3 = _step7.value;
-      if (!getEngine().available(_task3)) {
+    for (_iterator8.s(); !(_step8 = _iterator8.n()).done; ) {
+      var _task4 = _step8.value;
+      if (!getEngine().available(_task4)) {
         continue;
       }
-      getEngine().execute(_task3);
+      getEngine().execute(_task4);
       if (getEngine().lastSuccessfulTask) {
         return true;
       }
     }
   } catch (err) {
-    _iterator7.e(err);
+    _iterator8.e(err);
   } finally {
-    _iterator7.f();
+    _iterator8.f();
   }
   return false;
 }
@@ -25737,7 +25805,6 @@ function cartographyChoiceHandler(choice, page) {
         detail: enemy.toString(),
         property: "auto_mapperidot"
       });
-      combat_status_add("choiceMonster");
       auto_runChoice(1, `heyscriptswhatsupwinkwink=${(0, import_kolmafia131.toInt)(enemy)}`);
     } else {
       auto_abort(
@@ -27011,7 +27078,7 @@ function L7_swordWantsCryptMonster() {
   if (in_koe()) {
     return false;
   }
-  return !auto_swordFamiliarLikesCurrentTarget() && $monsters`spiny skelelton, toothy sklelton`.some(
+  return !auto_swordFamiliarIsActivelyFarming() && $monsters`spiny skelelton, toothy sklelton`.some(
     (m) => auto_swordFamiliarWantsMonsterDrops(m)
   );
 }
@@ -27926,6 +27993,22 @@ var L10_plantThatBeanTask = registerQuestTask(
     ]
   }
 );
+function L10_shouldDelayBladdermaxxing() {
+  if (!get("auto_attemptToBladdermax") || !auto_haveMonodent() || !inAftercore() || !canChangeToFamiliar($familiar`Sword of S Words`) || !auto_swordFamiliarWantsMonsterDrops($monster`giant squid`, 100)) {
+    return false;
+  }
+  if (get("_seadentWaveUsed") && (0, import_kolmafia137.toLocation)(get("_seadentWaveZone")) !== $location`The Penultimate Fantasy Airship`) {
+    return true;
+  }
+  var monodented = get("_seadentWaveUsed") && (0, import_kolmafia137.toLocation)(get("_seadentWaveZone")) === $location`The Penultimate Fantasy Airship`;
+  if (monodented && (0, import_kolmafia137.itemAmount)($item`ink bladder`) > 0) {
+    return false;
+  }
+  return isSoftBlockInPlace(
+    "swordTrackingCurrentTarget",
+    "ink bladders are not ready"
+  );
+}
 function L10_plantThatBean() {
   return runQuestTask(L10_plantThatBeanTask);
 }
@@ -27940,17 +28023,10 @@ function L10_airshipDo() {
     _set("_auto_screechDelay", "dude");
     return false;
   }
-  if (
-    // If the sword fam isn't desiring the drops, then it's in a bad state and can be skipped
-    canChangeToFamiliar($familiar`Sword of S Words`) && auto_haveMonodent() && (auto_swordFamiliarWantsMonsterDrops($monster`giant squid`, 100) || !inAftercore() && (0, import_kolmafia137.itemAmount)($item`ink bladder`) > 5 && auto_haveMonodent() && get("_seadentWaveUsed") && (0, import_kolmafia137.toLocation)(get("_seadentWaveZone")) !== $location`The Penultimate Fantasy Airship`) && get("auto_attemptToBladdermax") && isSoftBlockInPlace(
-      "swordTrackingCurrentTarget",
-      "ink bladders are not ready"
-    )
-  ) {
+  if (L10_shouldDelayBladdermaxxing()) {
     auto_log_debug(
       "Delaying L10 airship - still farming ink bladders via Giant Squid."
     );
-    return false;
   }
   auto_log_info("The Penultimate Fantasy Airship - unlocking Castle.", "blue");
   if ((0, import_kolmafia137.myMp)() > 60 || considerGrimstoneGolem(true)) {
@@ -27981,7 +28057,7 @@ function L10_airshipDo() {
   return true;
 }
 function shouldMonodentTheAirship() {
-  return !inAftercore() && $location`The Penultimate Fantasy Airship`.turnsSpent < 3 && isAvailable(L10_airshipTask) && auto_haveMonodent() && !get("_seadentWaveUsed") && (0, import_kolmafia137.itemAmount)($item`ink bladder`) > 5 && auto_is_valid($item`ink bladder`);
+  return !inAftercore() && get("auto_attemptToBladdermax") && $location`The Penultimate Fantasy Airship`.turnsSpent < 3 && isAvailable(L10_airshipTask) && auto_haveMonodent() && !get("_seadentWaveUsed") && (0, import_kolmafia137.itemAmount)($item`ink bladder`) > 5 && auto_is_valid($item`ink bladder`);
 }
 var L10_airshipTask = registerQuestTask(
   L10_rainOnThePlainsTask,
@@ -28998,7 +29074,6 @@ function peridotChoiceHandler(choice, page) {
     detail: popChoice.toString(),
     property: "auto_mapperidot"
   });
-  combat_status_add("choiceMonster");
   auto_runChoice(1, `bandersnatch=${(0, import_kolmafia138.toInt)(popChoice)}`);
   return;
 }
@@ -29664,6 +29739,9 @@ function auto_talkToSomeFish(loc, enemy) {
   if (auto_wantToBanish(enemy, loc)) {
     return banisherCombatAction$1(enemy, loc, (0, import_kolmafia138.currentRound)() > 0) === void 0;
   }
+  if ((0, import_kolmafia138.myFamiliar)() === $familiar`Sword of S Words` && auto_swordWantsToFish(loc, enemy)) {
+    return true;
+  }
   if (!auto_wantToFreeRun(enemy, loc)) {
     return false;
   }
@@ -29713,7 +29791,7 @@ function auto_isPotentialTalkToSomeFishTarget(loc, enemy) {
   if (safeGet("_chainedPurpleCandleMonster") === enemy) {
     return false;
   }
-  if (combat_status_check("refractedgazed") || combat_status_check("droptablereplaced") && !combat_status_check("droptablereplacedbysword")) {
+  if (combat_status_check("refractedgazed") || !combatStatusCanDiscardDrops()) {
     return false;
   }
   if (auto_bczRefractedGaze() && auto_BCZEquipped()) {
@@ -29925,7 +30003,7 @@ function auto_bczRefractedGaze() {
   if (combat_status_check("choiceMonster") || safeGet("auto_familiarChoice") === $familiar`Sword of S Words`) {
     return false;
   }
-  if ((0, import_kolmafia138.currentRound)() > 0 && (0, import_kolmafia138.myFamiliar)() === $familiar`Sword of S Words` && (auto_swordFamiliarLikesCurrentTarget() || auto_swordOfSwordsTracking() !== $monster.none)) {
+  if ((0, import_kolmafia138.currentRound)() > 0 && (0, import_kolmafia138.myFamiliar)() === $familiar`Sword of S Words` && (auto_swordFamiliarIsActivelyFarming() || auto_swordOfSwordsTracking() !== $monster.none)) {
     return false;
   }
   planToPeridot = auto_havePeridot() && !haveUsedPeridot(location) && planToPeridot;
@@ -29974,10 +30052,14 @@ function auto_bczRefractedGaze() {
       )) {
         return false;
       }
+      if (!canYellowRay($monster`Quiet Healer`)) {
+        return false;
+      }
       if (isSpeculating) return true;
-      return $monsters`some fish, Irritating Series of Random Encounters, MagiMechTech MechaMech, Protagonist, Spunky Princess`.includes(
-        (0, import_kolmafia138.lastMonster)()
-      );
+      if ((0, import_kolmafia138.lastMonster)() === $monster`some fish` || auto_haveMonodent()) {
+        return true;
+      }
+      return !$monsters`Burly Sidekick, Quiet Healer`.includes((0, import_kolmafia138.lastMonster)());
     }
     case $location`The Battlefield (Frat Uniform)`: {
       if (planToPeridot) {
@@ -30382,7 +30464,6 @@ function bluevsred_initializeSettings() {
   if (bluevsred_isRed()) {
     _set("auto_hippyInstead", true);
     _set("auto_skipNuns", true);
-    _set("auto_skipL12Farm", true);
   }
 }
 var bluevsred_monsterColors = /* @__PURE__ */ new Map();
@@ -31811,7 +31892,7 @@ var L6_friarsFinishTask = registerQuestTask(L6_friarsTask, {
     return internalQuestStatus("questL06Friar") > 2;
   }
 });
-function L6_friarsGetPartsSetup() {
+function L6_friarsGetPartsSetup(loc) {
   if ((0, import_kolmafia143.myMp)() > 50 || considerGrimstoneGolem(true)) {
     handleBjornify($familiar`Grimstone Golem`);
   }
@@ -31832,14 +31913,14 @@ function L6_friarsGetPartsSetup() {
       handleFamiliar$1($familiar`Robortender`);
     }
   }
-  var forced_loc = safeGet("auto_forceNonCombatLocation");
   var forced_here = $locations`The Dark Neck of the Woods, The Dark Elbow of the Woods, The Dark Heart of the Woods`.includes(
-    forced_loc
+    safeGet("auto_forceNonCombatLocation")
   );
-  if (forced_here && auto_shouldDelayForForcedNonCombat(forced_loc)) {
+  if (auto_shouldDelayForForcedNonCombat(loc)) {
     return false;
   }
-  if (!forced_here && (0, import_kolmafia143.myDaycount)() === 1 && !isAboutToPowerlevel() && !get("auto_getSteelOrgan", false)) {
+  if (!forced_here && (0, import_kolmafia143.myDaycount)() === 1 && !isAboutToPowerlevel() && !get("auto_getSteelOrgan", false) && // no point hoarding a forcer that saves us the most turns right here
+  !isTopLocationToForceNoncombat(loc)) {
     var running_low_on_turns = auto_roughExpectedTurnsLeftToday() < 10 + turnsUsedByRemainingNCForcesToday();
     var total_daily_forces = baseNCForcesToday();
     if (total_daily_forces > 0 && !running_low_on_turns) {
@@ -31853,7 +31934,7 @@ function L6_friarsGetPartsSetup() {
   return true;
 }
 function L6_friarsGetNeckDo() {
-  if (!L6_friarsGetPartsSetup()) {
+  if (!L6_friarsGetPartsSetup($location`The Dark Neck of the Woods`)) {
     return false;
   }
   auto_log_info("Getting Dodecagram", "blue");
@@ -31866,7 +31947,7 @@ function L6_friarsGetNeckDo() {
   return autoAdv($location`The Dark Neck of the Woods`);
 }
 function L6_friarsGetElbowDo() {
-  if (!L6_friarsGetPartsSetup()) {
+  if (!L6_friarsGetPartsSetup($location`The Dark Elbow of the Woods`)) {
     return false;
   }
   auto_log_info("Getting Eldritch Butterknife", "blue");
@@ -31879,7 +31960,7 @@ function L6_friarsGetElbowDo() {
   return autoAdv($location`The Dark Elbow of the Woods`);
 }
 function L6_friarsGetHeartDo() {
-  if (!L6_friarsGetPartsSetup()) {
+  if (!L6_friarsGetPartsSetup($location`The Dark Heart of the Woods`)) {
     return false;
   }
   auto_log_info("Getting Box of Birthday Candles", "blue");
@@ -44548,9 +44629,18 @@ function auto_baseballBuildAssignments(team) {
   }
   return assignments;
 }
+function baseballOversized(monster) {
+  if (monster.name.startsWith("Black Crayon ")) return true;
+  return $monsters`beetle, Big Wheelin' Twins, Blader, caugr, cockroach, dilophosaur, Eldritch Tentacle, Hellion, Mer-kin baker, Mismatched Twins, moomy, oil cartel, reanimated demon skeleton, reanimated giant spider skeleton, reanimated wyrm skeleton, shadow bat, signal, spectre of war, tiki idol, translucent monkey, ungulith, vape ghost, wild beaver, wild moose, wild reindeer, wild walrus, Yuleviathan`.includes(
+    monster
+  );
+}
 function auto_baseballDiamondMaximizerBonus(loc) {
   if (!auto_haveBaseballDiamond()) return 0;
   if (auto_baseballInningsRemaining() === 0 && (!(0, import_kolmafia159.canEat)() || !(0, import_kolmafia159.canDrink)() || fullness_left() > 0 && inebriety_left() > 0 || getMinimumAdventuresToMaintain() + 10 > (0, import_kolmafia159.myAdventures)())) {
+    return 0;
+  }
+  if (loc === $location`Oil Peak` && (0, import_kolmafia159.monsterLevelAdjustment)() >= 100 && baseballOversized($monster`oil cartel`)) {
     return 0;
   }
   var team = auto_baseballRecruits();
@@ -44559,7 +44649,7 @@ function auto_baseballDiamondMaximizerBonus(loc) {
   var hasWorthyTarget = auto_zoneCopyableMonsters(loc).some(
     (_ref15) => {
       var _ref16 = _slicedToArray(_ref15, 1), mon = _ref16[0];
-      return (auto_isWorthYellowRaying(mon, loc) || auto_isWorthSniffing(mon, loc)) && auto_baseballGetDesiredElements(mon, loc).some(
+      return !baseballOversized(mon) && (auto_isWorthYellowRaying(mon, loc) || auto_isWorthSniffing(mon, loc)) && auto_baseballGetDesiredElements(mon, loc).some(
         (e) => !assignedElements.includes(e)
       );
     }
@@ -44763,7 +44853,7 @@ function auto_swordFamiliarWantsMonsterDrops(sMonster) {
   }
   return false;
 }
-function auto_swordFamiliarLikesCurrentTarget() {
+function auto_swordFamiliarIsActivelyFarming() {
   return auto_swordFamiliarWantsMonsterDrops(auto_swordOfSwordsTracking(), 100);
 }
 function auto_wantToStartTrackingSwordMonster(enemy) {
@@ -44783,6 +44873,30 @@ function auto_preferSwordFamiliar(place) {
   if (!auto_haveSwordFamiliar()) return;
   _set("_auto_preferSwordFam", auto_canUseSwordFamiliarHere(place));
 }
+function auto_swordFishTarget(loc, mon) {
+  if (loc === $location`The Boss Bat's Lair` && mon === $monster`beefy bodyguard bat` && // If we don't need the meat
+  !isMeatPoor()) {
+    return true;
+  }
+  return false;
+}
+function auto_swordCanOverwriteDrops(loc, mon) {
+  if (mon.copyable && !mon.boss) {
+    return true;
+  }
+  return auto_haveMonodent() && auto_swordFishTarget(loc, mon);
+}
+function auto_swordWantsToFish(loc, mon) {
+  return auto_swordFishTarget(loc, mon) && auto_swordOfSwordsKillsLeft() > 0 && auto_swordFamiliarIsActivelyFarming();
+}
+function auto_swordNeedsMonodentHere(place) {
+  return auto_locationMonsters(place).some(
+    (_ref21) => {
+      var _ref22 = _slicedToArray(_ref21, 2), mon = _ref22[0], rate = _ref22[1];
+      return rate > 0 && auto_swordWantsToFish(place, mon);
+    }
+  );
+}
 function auto_canUseSwordFamiliarHere(place) {
   var ignoreDailyBudget = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : false;
   if (!auto_haveSwordFamiliar()) {
@@ -44792,9 +44906,9 @@ function auto_canUseSwordFamiliarHere(place) {
     return false;
   }
   if (auto_locationMonsters(place).every(
-    (_ref21) => {
-      var _ref22 = _slicedToArray(_ref21, 2), mon = _ref22[0], rate = _ref22[1];
-      return !mon.copyable || mon.boss || rate <= 0;
+    (_ref23) => {
+      var _ref24 = _slicedToArray(_ref23, 2), mon = _ref24[0], rate = _ref24[1];
+      return rate <= 0 || !auto_swordCanOverwriteDrops(place, mon);
     }
   )) {
     return false;
@@ -44808,7 +44922,7 @@ function auto_canUseSwordFamiliarHere(place) {
   if (auto_queueIgnore() || safeGet("auto_nextEncounter") !== $monster`none` && !auto_wantToFreeKillWithNoDrops(place, safeGet("auto_nextEncounter"))) {
     return false;
   }
-  if (auto_canTracesBandit() && auto_swordFamiliarLikesCurrentTarget()) {
+  if (auto_canTracesBandit() && auto_swordFamiliarIsActivelyFarming()) {
     return true;
   }
   if (auto_swordOfSwordsTracking() !== $monster.none && ([Wanderer.Digitize, Wanderer.Enamorang, Wanderer.Romantic].some(
@@ -44816,27 +44930,27 @@ function auto_canUseSwordFamiliarHere(place) {
   ) || auto_haveKramcoSausageOMatic() && getKramcoWandererChance() >= 0.9 || auto_have_familiar($familiar`Mini-Hipster`) && canChangeToFamiliar($familiar`Mini-Hipster`) && isWandererNow(Wanderer.Familiar) || isVoteWandererNow() && possessEquipment($item`"I Voted!" sticker`))) {
     return false;
   }
-  if (!zone_delay(place).shouldDelay && !$locations`The Haunted Kitchen, The Battlefield (Frat Uniform), The Battlefield (Hippy Uniform), The Daily Dungeon`.includes(
+  if (!zone_delay(place).shouldDelay && !$locations`The Haunted Kitchen, The Battlefield (Frat Uniform), The Battlefield (Hippy Uniform)`.includes(
     place
   )) {
     return false;
   }
-  if (auto_swordFamiliarLikesCurrentTarget()) {
+  if (auto_swordFamiliarIsActivelyFarming()) {
     return true;
   }
   if (!ignoreDailyBudget && auto_swordOfSwordSwitchesLeft() <= 0) {
     return false;
   }
   return auto_locationMonsters(place).some(
-    (_ref23) => {
-      var _ref24 = _slicedToArray(_ref23, 2), mon = _ref24[0], chance = _ref24[1];
+    (_ref25) => {
+      var _ref26 = _slicedToArray(_ref25, 2), mon = _ref26[0], chance = _ref26[1];
       return chance > 0 && auto_swordFamiliarWantsMonsterDrops(mon, chance);
     }
   );
 }
 function auto_swordFamiliarWantsThisMonsterInFuture(monsters) {
   if (monsters.includes(auto_swordOfSwordsTracking())) {
-    return auto_swordFamiliarLikesCurrentTarget() && isSoftBlockInPlace(
+    return auto_swordFamiliarIsActivelyFarming() && isSoftBlockInPlace(
       "swordTrackingCurrentTarget",
       `${auto_swordOfSwordsTracking()} is still wanted`
     );
@@ -44847,7 +44961,7 @@ function auto_swordFamiliarWantsThisMonsterInFuture(monsters) {
   );
 }
 function auto_swordUnavailableShouldDelayZone(locs) {
-  if (auto_swordFamiliarLikesCurrentTarget() || auto_swordIsWillingToSwitchTargets()) {
+  if (auto_swordFamiliarIsActivelyFarming() || auto_swordIsWillingToSwitchTargets()) {
     return false;
   }
   return locs.some((loc) => auto_canUseSwordFamiliarHere(loc, true)) && isSoftBlockInPlace(
@@ -44859,8 +44973,8 @@ function auto_copierShouldDelayZone(locs) {
   if (isAboutToPowerlevel()) return false;
   var zoneMonsters = locs.flatMap(auto_zoneCopyableMonsters);
   return auto_swordUnavailableShouldDelayZone(locs) || auto_swordFamiliarWantsThisMonsterInFuture(
-    zoneMonsters.map((_ref25) => {
-      var _ref26 = _slicedToArray(_ref25, 1), mon = _ref26[0];
+    zoneMonsters.map((_ref27) => {
+      var _ref28 = _slicedToArray(_ref27, 1), mon = _ref28[0];
       return mon;
     })
   ) || auto_baseballShouldDelayZone(zoneMonsters);
@@ -44912,11 +45026,11 @@ function auto_summonIsGoodSwordTarget(target) {
       var loc = _step20.value;
       if (!(0, import_kolmafia159.canAdventure)(loc)) return 0;
       var monsters = auto_locationMonsters(loc);
-      var totalChance = monsters.filter((_ref27) => {
-        var _ref28 = _slicedToArray(_ref27, 2), m = _ref28[0], chance = _ref28[1];
+      var totalChance = monsters.filter((_ref29) => {
+        var _ref30 = _slicedToArray(_ref29, 2), m = _ref30[0], chance = _ref30[1];
         return desiredHits.includes(m) && chance > 0;
-      }).map((_ref29) => {
-        var _ref30 = _slicedToArray(_ref29, 2), chance = _ref30[1];
+      }).map((_ref31) => {
+        var _ref32 = _slicedToArray(_ref31, 2), chance = _ref32[1];
         return chance;
       }).reduce((l, r) => l + r, 0);
       if (totalChance <= 65) return 0;
@@ -44940,7 +45054,7 @@ function auto_summonIsGoodSwordTarget(target) {
   return true;
 }
 function auto_swordIsWillingToSwitchTargets() {
-  if (!auto_haveSwordFamiliar() || auto_swordFamiliarLikesCurrentTarget() || auto_swordOfSwordSwitchesLeft() <= 0 || auto_swordOfSwordsKillsLeft() <= 0) {
+  if (!auto_haveSwordFamiliar() || auto_swordFamiliarIsActivelyFarming() || auto_swordOfSwordSwitchesLeft() <= 0 || auto_swordOfSwordsKillsLeft() <= 0) {
     return false;
   }
   return true;
@@ -48088,7 +48202,7 @@ function L11_aridDesertDo() {
       }
       return true;
     }
-    if ((get("gnasirProgress") & 1) !== 1) {
+    if ((get("gnasirProgress") & 1) !== 1 && zone_isAvailable($location`The Oasis`, false)) {
       var remaining = 100 - get("desertExploration");
       var pages = (0, import_kolmafia164.itemAmount)($item`worm-riding manual page`);
       var oasisTurns = 8 - $location`The Oasis`.turnsSpent;
@@ -56282,6 +56396,7 @@ function auto_combatDefaultStage2(round_1, enemy, text) {
     }
     if (auto_swordOfSwordsTracking() !== $monster.none && enemy.copyable && !enemy.boss) {
       if (auto_swordIsWillingToSwitchTargets() && auto_canUse($skill`%fn, stop killing those guys`)) {
+        combat_status_remove("droptablereplacedbysword");
         handleTracker({
           what: auto_swordOfSwordsTracking(),
           detail: $skill`%fn, stop killing those guys`,
@@ -56447,8 +56562,7 @@ function auto_combatDefaultStage2(round_1, enemy, text) {
     });
     return useItem($item`groveling gravel`);
   }
-  if (!combat_status_check("banishercheck") && (!combat_status_check("droptablereplaced") || // We're fine with destroying the sword's drops
-  combat_status_check("droptablereplacedbysword")) && auto_wantToBanish(enemy, (0, import_kolmafia183.myLocation)())) {
+  if (!combat_status_check("banishercheck") && combatStatusCanDiscardDrops() && auto_wantToBanish(enemy, (0, import_kolmafia183.myLocation)())) {
     var freeRunAction = freeRunCombatStringPreBanish(
       enemy,
       (0, import_kolmafia183.myLocation)(),
@@ -56463,8 +56577,7 @@ function auto_combatDefaultStage2(round_1, enemy, text) {
       return freeRunAction;
     }
   }
-  if (!combat_status_check("banishercheck") && !combat_status_check("phylumbanishercheck") && (!combat_status_check("droptablereplaced") || // We're fine with destroying the sword's drops
-  combat_status_check("droptablereplacedbysword")) && auto_wantToBanish$1((0, import_kolmafia183.monsterPhylum)(enemy), (0, import_kolmafia183.myLocation)()) && auto_habitatMonster() !== enemy) {
+  if (!combat_status_check("banishercheck") && !combat_status_check("phylumbanishercheck") && combatStatusCanDiscardDrops() && auto_wantToBanish$1((0, import_kolmafia183.monsterPhylum)(enemy), (0, import_kolmafia183.myLocation)()) && auto_habitatMonster() !== enemy) {
     var banishAction = banisherCombatString(
       (0, import_kolmafia183.monsterPhylum)(enemy),
       (0, import_kolmafia183.myLocation)(),
@@ -56483,8 +56596,7 @@ function auto_combatDefaultStage2(round_1, enemy, text) {
     }
     combat_status_add("phylumbanishercheck");
   }
-  if (!combat_status_check("banishercheck") && (!combat_status_check("droptablereplaced") || // We're fine with destroying the sword's drops
-  combat_status_check("droptablereplacedbysword")) && auto_wantToBanish(guardee, (0, import_kolmafia183.myLocation)())) {
+  if (!combat_status_check("banishercheck") && combatStatusCanDiscardDrops() && auto_wantToBanish(guardee, (0, import_kolmafia183.myLocation)())) {
     var _freeRunAction = freeRunCombatStringPreBanish(
       enemy,
       (0, import_kolmafia183.myLocation)(),
@@ -56499,8 +56611,7 @@ function auto_combatDefaultStage2(round_1, enemy, text) {
       return _freeRunAction;
     }
   }
-  if (!combat_status_check("banishercheck") && !combat_status_check("phylumbanishercheck") && (!combat_status_check("droptablereplaced") || // We're fine with destroying the sword's drops
-  combat_status_check("droptablereplacedbysword")) && auto_wantToBanish(enemy, (0, import_kolmafia183.myLocation)()) && !ag_is_bodyguard()) {
+  if (!combat_status_check("banishercheck") && !combat_status_check("phylumbanishercheck") && combatStatusCanDiscardDrops() && auto_wantToBanish(enemy, (0, import_kolmafia183.myLocation)()) && !ag_is_bodyguard()) {
     var _banishAction = banisherCombatAction$1(
       enemy,
       (0, import_kolmafia183.myLocation)(),
@@ -56519,8 +56630,7 @@ function auto_combatDefaultStage2(round_1, enemy, text) {
     }
     combat_status_add("banishercheck");
   }
-  if (!combat_status_check("freeruncheck") && (!combat_status_check("droptablereplaced") || // We're fine with destroying the sword's drops
-  combat_status_check("droptablereplacedbysword")) && (auto_wantToFreeRun(enemy, (0, import_kolmafia183.myLocation)()) || auto_forceFreeRun(true) || auto_wantToBanish(enemy, (0, import_kolmafia183.myLocation)()) || auto_wantToBanish$1((0, import_kolmafia183.monsterPhylum)(enemy), (0, import_kolmafia183.myLocation)()) && auto_habitatMonster() !== enemy || auto_wantToFreeRun(guardee, (0, import_kolmafia183.myLocation)()) || auto_wantToBanish(guardee, (0, import_kolmafia183.myLocation)()))) {
+  if (!combat_status_check("freeruncheck") && combatStatusCanDiscardDrops() && (auto_wantToFreeRun(enemy, (0, import_kolmafia183.myLocation)()) || auto_forceFreeRun(true) || auto_wantToBanish(enemy, (0, import_kolmafia183.myLocation)()) || auto_wantToBanish$1((0, import_kolmafia183.monsterPhylum)(enemy), (0, import_kolmafia183.myLocation)()) && auto_habitatMonster() !== enemy || auto_wantToFreeRun(guardee, (0, import_kolmafia183.myLocation)()) || auto_wantToBanish(guardee, (0, import_kolmafia183.myLocation)()))) {
     var _freeRunAction2 = freeRunCombatAction(
       enemy,
       (0, import_kolmafia183.myLocation)(),
@@ -56541,8 +56651,7 @@ function auto_combatDefaultStage2(round_1, enemy, text) {
     }
     combat_status_add("freeruncheck");
   }
-  if (!combat_status_check("replacercheck") && (!combat_status_check("droptablereplaced") || // We're fine with destroying the sword's drops
-  combat_status_check("droptablereplacedbysword")) && auto_wantToReplace(enemy, (0, import_kolmafia183.myLocation)())) {
+  if (!combat_status_check("replacercheck") && combatStatusCanDiscardDrops() && auto_wantToReplace(enemy, (0, import_kolmafia183.myLocation)())) {
     var _combatAction = replaceMonsterCombatString(
       enemy,
       true
@@ -58825,7 +58934,7 @@ function auto_combatInitialize(round_1, enemy, text) {
       );
       break;
   }
-  (0, import_kolmafia193.removeProperty)("_auto_combatState");
+  combat_status_reset();
   (0, import_kolmafia193.removeProperty)("auto_funCombatHandler");
   (0, import_kolmafia193.removeProperty)("auto_funPrefix");
   _set("auto_combatHandlerThunderBird", 0);
@@ -59781,6 +59890,9 @@ function replaceMonsterCombatString(target) {
   }
   return void 0;
 }
+function combatStatusCanDiscardDrops() {
+  return !combat_status_check("droptablereplaced") || combat_status_check("droptablereplacedbysword");
+}
 function turns_to_kill(dmg) {
   return (0, import_kolmafia194.toFloat)((0, import_kolmafia194.monsterHp)()) / dmg;
 }
@@ -59793,6 +59905,16 @@ function combat_status_add(mark) {
     st = `${st}(${mark})`;
   }
   _set("_auto_combatState", st);
+}
+function combat_status_remove(mark) {
+  var status = get("_auto_combatState").replaceAll(`(${mark})`, "");
+  _set("_auto_combatState", status);
+}
+function combat_status_reset() {
+  (0, import_kolmafia194.removeProperty)("_auto_combatState");
+  if ((0, import_kolmafia194.fightFollowsChoice)()) {
+    combat_status_add("choiceMonster");
+  }
 }
 function wantToForceDrop(enemy) {
   var mildEvilAvailable = auto_canUse($skill`Perpetrate Mild Evil`, false) && get("_mildEvilPerpetrated") < 3;
@@ -63941,6 +64063,9 @@ function isSoftBlockInPlace(key) {
   softblockLastCheckedPass.set(key, softblockCheckPass);
   return (softblockReleaseLevel.get(key) ?? (0, import_kolmafia199.myLevel)()) < (0, import_kolmafia199.myLevel)();
 }
+function armSoftblock(key) {
+  softblockReleaseLevel.set(key, 0);
+}
 function releaseSoftblock(key, reason) {
   if (!softblockReleaseLevel.has(key)) return;
   auto_log_warning(
@@ -63954,6 +64079,10 @@ function clearSoftblock(key) {
 }
 function setupSoftblockLocks() {
   softblockReleaseLevel.set("8bitRealm", 0);
+  if (safeGet("auto_forceNonCombatLocation") !== $location.none) {
+    softblockReleaseLevel.set("forceNCFutureHere", 0);
+    softblockReleaseLevel.set("forceNCFutureElsewhere", 0);
+  }
   if (auto_haveSwordFamiliar() && !in_quantumTerrarium()) {
     softblockReleaseLevel.set("swordTrackingCurrentTarget", 0);
     softblockReleaseLevel.set("swordTrackingFutureTarget", 0);
@@ -71740,7 +71869,7 @@ function auto_edCombatHandler(round_1, enemy, text) {
     );
   }
   if (round_1 === 0) {
-    (0, import_kolmafia208.removeProperty)("_auto_combatState");
+    combat_status_reset();
     if (get("_edDefeats") === 0) {
       _set("auto_edCombatCount", 1 + get("auto_edCombatCount", 0));
     }
@@ -72441,7 +72570,7 @@ function auto_JunkyardCombatHandler(round_1, enemy, text) {
   auto_log_info(`auto_JunkyardCombatHandler: ${round_1}`, "brown");
   if (round_1 === 0) {
     _set("auto_gremlinMoly", false);
-    (0, import_kolmafia209.removeProperty)("_auto_combatState");
+    combat_status_reset();
   }
   if ($monsters`batwinged gremlin (tool), erudite gremlin (tool), spider gremlin (tool), vegetable gremlin (tool)`.includes(
     enemy
@@ -72762,7 +72891,7 @@ function auto_estimatedAdventuresForDooks() {
   advCost_1 -= $location`McMillicancuddy's Pond`.turnsSpent;
   advCost_1 -= $location`McMillicancuddy's Back 40`.turnsSpent;
   advCost_1 -= $location`McMillicancuddy's Other Back 40`.turnsSpent;
-  if (in_bhy() || in_pokefam() || in_glover() || bluevsred_isRed()) {
+  if (in_bhy() || in_pokefam() || in_glover()) {
     return advCost_1;
   }
   var advToGetCB = auto_estimatedAdventuresForChaosButterfly();
@@ -76827,9 +76956,20 @@ function auto_forceFreeRun(combat) {
   }
   return false;
 }
-function auto_wantToFreeRun(enemy, loc) {
+function canEncounterNaturally(enemy, loc) {
   var _appearanceRates2, _enemy$toString2;
-  if (((_appearanceRates2 = (0, import_kolmafia219.appearanceRates)(loc))[_enemy$toString2 = enemy.toString()] ?? (_appearanceRates2[_enemy$toString2] = 0)) <= 0 || (0, import_kolmafia219.currentRound)() > 0 && isFreeMonster(enemy, loc)) {
+  if ($monster`some fish` === enemy && auto_parseFightActions().includes($skill`Sea *dent: Talk to Some Fish`)) {
+    return true;
+  }
+  if ($monsters`Protagonist, Burly Sidekick, MagiMechTech MechaMech, Spunky Princess, Quiet Healer`.includes(
+    enemy
+  ) && loc === $location`The Penultimate Fantasy Airship`) {
+    return true;
+  }
+  return ((_appearanceRates2 = (0, import_kolmafia219.appearanceRates)(loc))[_enemy$toString2 = enemy.toString()] ?? (_appearanceRates2[_enemy$toString2] = 0)) > 0;
+}
+function auto_wantToFreeRun(enemy, loc) {
+  if (!canEncounterNaturally(enemy, loc) && !combat_status_check("choiceMonster") || (0, import_kolmafia219.currentRound)() > 0 && isFreeMonster(enemy, loc)) {
     return false;
   }
   var locCache = (0, import_kolmafia219.myLocation)();
@@ -77003,17 +77143,18 @@ function freeRunCombatAction(enemy, loc, inCombat) {
   }
   if (!inAftercore() && (get("_seadentWaveUsed") && (0, import_kolmafia219.toLocation)(get("_seadentWaveZone")) === loc || loc.environment === "underwater")) {
     if (canUse$3($item`ink bladder`) && (0, import_kolmafia219.itemAmount)($item`ink bladder`) > 0) {
-      return useItem($item`ink bladder`);
+      return $item`ink bladder`;
     }
   }
   if (auto_canUse($skill`Peel Out`) && pete_peelOutRemaining() > 0) {
     return $skill`Peel Out`;
   }
-  if ((inCombat ? auto_have_skill($skill`Bowl a Curveball`) : (0, import_kolmafia219.itemAmount)($item`cosmic bowling ball`) > 0) && auto_is_valid$2($skill`Bowl a Curveball`)) {
+  var banishWouldStick = ((0, import_kolmafia219.appearanceRates)(loc)[enemy.toString()] ?? 0) > 0;
+  if (banishWouldStick && (inCombat ? auto_have_skill($skill`Bowl a Curveball`) : (0, import_kolmafia219.itemAmount)($item`cosmic bowling ball`) > 0) && auto_is_valid$2($skill`Bowl a Curveball`)) {
     return $skill`Bowl a Curveball`;
   }
   var potential_split_pea_soup = (0, import_kolmafia219.availableAmount)($item`whirled peas`) / 2 + (0, import_kolmafia219.availableAmount)($item`handful of split pea soup`);
-  if (potential_split_pea_soup > 1 && auto_is_valid($item`handful of split pea soup`)) {
+  if (banishWouldStick && potential_split_pea_soup > 1 && auto_is_valid($item`handful of split pea soup`)) {
     return $item`handful of split pea soup`;
   }
   if (!inAftercore()) {
@@ -77089,7 +77230,12 @@ function adjustForYellowRay(combat_string) {
 function adjustForYellowRayIfPossible() {
   var target = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : $monster.none;
   var speculative = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : false;
-  if (target !== $monster.none && isDropsCapped(target) && !combat_status_check("droptablereplaced") && !combat_status_check("refractedgazed")) {
+  if ((0, import_kolmafia219.currentRound)() > 0 && combat_status_check("droptablereplacedbysword")) {
+    return false;
+  }
+  if (target !== $monster.none && isDropsCapped(target) && // A gaze swaps in the rest of the zone's drops, so only skip the YR if nothing
+  // we're still hunting could show up on that replaced table
+  (combat_status_check("refractedgazed") ? auto_wantedDropMonsters((0, import_kolmafia219.myLocation)()).length === 0 : !combat_status_check("droptablereplaced"))) {
     return true;
   }
   if (!canYellowRay(target)) {
@@ -78592,6 +78738,10 @@ function auto_summonMountainManImpl(canDelay, speculating) {
   );
   var dropCount = drops.length;
   var neededDropCount = 3 - (0, import_kolmafia219.itemAmount)(oreGoal);
+  if (!auto_have_familiar($familiar`Cat Burglar`)) {
+    var maxOresPerSummon = dropCount * (auto_can_equip($item`pro skateboard`) ? 2 : 1);
+    neededDropCount = Math.min(neededDropCount, maxOresPerSummon);
+  }
   if (neededDropCount <= 0) return "fail";
   var oresAlreadyDropping = drops.filter(
     (d) => isDropCapped(d)
@@ -80461,14 +80611,14 @@ function _auto_forceNextNoncombat(loc) {
       return true;
     }
     _set("auto_forceNonCombatSource", "McHugeLarge left ski");
-    _set("auto_forceNonCombatLocation", loc);
+    setPendingForcedNoncombatLocation(loc);
     return true;
   } else if (auto_hasParka() && get("_spikolodonSpikeUses") < 5 && hasTorso() && (!in_wereprof() || !is_professor())) {
     if (speculative) {
       return true;
     }
     _set("auto_forceNonCombatSource", "jurassic parka");
-    _set("auto_forceNonCombatLocation", loc);
+    setPendingForcedNoncombatLocation(loc);
     return true;
   } else if (auto_canARBSupplyDrop()) {
     if (speculative) {
@@ -80509,6 +80659,11 @@ function _auto_forceNextNoncombat(loc) {
   }
   return false;
 }
+function setPendingForcedNoncombatLocation(loc) {
+  _set("auto_forceNonCombatLocation", loc);
+  armSoftblock("forceNCFutureHere");
+  armSoftblock("forceNCFutureElsewhere");
+}
 function auto_canForceNextNoncombat() {
   return _auto_forceNextNoncombat($location.none, true);
 }
@@ -80541,17 +80696,25 @@ function auto_forceNextNoncombat(loc) {
     }
     return true;
   }
+  auto_log_debug(
+    `Wanted to force a noncombat at ${loc.toString()} but none of the ${remainingNCForcesAvailable()} forcers we counted were usable.`,
+    "blue"
+  );
   return false;
+}
+function noLaterDayToDelayTo() {
+  return (0, import_kolmafia219.myDaycount)() >= get("auto_runDayCount", 0) || isAboutToPowerlevel();
 }
 function auto_forceNextNoncombatIfWorthIt(loc) {
   if (
     // nothing gets spent if the noncombat is already next, or a forcer is on its way here
-    (0, import_kolmafia219.turnsUntilForcedNoncombat)(loc) === 0 || auto_haveQueuedForcedNonCombat() || safeGet("auto_forceNonCombatLocation") === loc || isTopLocationToForceNoncombat(loc)
+    (0, import_kolmafia219.turnsUntilForcedNoncombat)(loc) === 0 || auto_haveQueuedForcedNonCombat() || safeGet("auto_forceNonCombatLocation") === loc || isTopLocationToForceNoncombat(loc) || // we're adventuring here either way, so a decent saving beats hoarding the forcer
+    noLaterDayToDelayTo() && turnsSavedByForcingNoncombatHere(loc) >= 2 || auto_roughExpectedTurnsLeftToday() < 10 + turnsUsedByRemainingNCForcesToday()
   ) {
     return auto_forceNextNoncombat(loc);
   }
   auto_log_debug(
-    `Not forcing a noncombat at ${loc.toString()}, our forcers save more turns elsewhere.`,
+    `Not forcing a noncombat at ${loc.toString()}, it would save ${turnsSavedByForcingNoncombatHere(loc)} turns and our ${remainingNCForcesAvailable()} forcers have better uses elsewhere.`,
     "blue"
   );
   return false;
@@ -81167,7 +81330,7 @@ var freekillWithNoDropsMonsters = import_kolmafia219.Monster.get(
   ]
 );
 function auto_wantToFreeKillWithNoDrops(loc, enemy) {
-  if (combat_status_check("refractedgazed") || combat_status_check("droptablereplaced") || (0, import_kolmafia219.myFamiliar)() === $familiar`Sword of S Words` && auto_swordFamiliarLikesCurrentTarget()) {
+  if (combat_status_check("refractedgazed") || combat_status_check("droptablereplaced") || (0, import_kolmafia219.myFamiliar)() === $familiar`Sword of S Words` && auto_swordFamiliarIsActivelyFarming()) {
     return false;
   }
   if (in_avantGuard()) {
@@ -81609,6 +81772,17 @@ function auto_monsterHasWantedDrop(mon) {
     (t) => taskDesiredEncounters(t).drops.some((f) => drops.includes(f.item))
   );
 }
+function auto_wantedDropMonsters(location) {
+  return auto_locationMonsters(location).filter(
+    (_ref28) => {
+      var _ref29 = _slicedToArray(_ref28, 2), mon = _ref29[0], rate = _ref29[1];
+      return rate > 0 && auto_monsterHasWantedDrop(mon) && !isDropsCapped(mon);
+    }
+  ).map((_ref30) => {
+    var _ref31 = _slicedToArray(_ref30, 1), mon = _ref31[0];
+    return mon;
+  });
+}
 function auto_isWorthYellowRaying(mon, loc) {
   var drops = getMonsterDrops(mon).map((i) => i.item);
   return auto_wantToYellowRay(mon, loc) || getIncompleteQuestTasks().some(
@@ -81623,8 +81797,8 @@ function auto_isWorthSniffing(mon, loc) {
 function auto_isInIncompleteZone(mon) {
   return getIncompleteQuestTasks().some(
     (t) => taskLocations(t).some(
-      (t2) => auto_locationMonsters(t2).some((_ref28) => {
-        var _ref29 = _slicedToArray(_ref28, 2), m = _ref29[0], rate = _ref29[1];
+      (t2) => auto_locationMonsters(t2).some((_ref32) => {
+        var _ref33 = _slicedToArray(_ref32, 2), m = _ref33[0], rate = _ref33[1];
         return rate > 0 && m === mon;
       })
     )
@@ -84009,7 +84183,7 @@ function auto_equipFreekill() {
   } else if (sweatBulletsAvailable && !maximizer.has($slot`acc3`)) {
     auto_log_info("Man, we about to sweat bullets up in here. Equipping BCZ.");
     addBonusToMaximize($item`blood cubic zirconia`, 400, true);
-  } else if (clubBackAvailable && !maximizer.has($slot`weapon`) && (safeGet("auto_familiarChoice") !== $familiar`Sword of S Words` || !auto_swordFamiliarLikesCurrentTarget()) && auto_locationMonsters((0, import_kolmafia222.myLocation)()).some(
+  } else if (clubBackAvailable && !maximizer.has($slot`weapon`) && (safeGet("auto_familiarChoice") !== $familiar`Sword of S Words` || !auto_swordFamiliarIsActivelyFarming()) && auto_locationMonsters((0, import_kolmafia222.myLocation)()).some(
     (_ref5) => {
       var _ref6 = _slicedToArray(_ref5, 1), m = _ref6[0];
       return wantToClubEmBackInTime((0, import_kolmafia222.myLocation)(), m);
@@ -85596,10 +85770,17 @@ function auto_pre_adventure() {
     }
     autoEquip($item`blood cubic zirconia`);
     if (auto_haveMonodent()) {
-      addBonusToMaximize($item`Monodent of the Sea`, 1700);
+      if (auto_wantedDropMonsters(place).length > 1) {
+        autoEquip($item`Monodent of the Sea`);
+      } else {
+        addBonusToMaximize($item`Monodent of the Sea`, 1700);
+      }
     }
   } else if (auto_haveMonodent() && auto_baseballFreefightMonster() === $monster`some fish` && zoneHasUnwantedMonsters && !planToPeridot) {
     addBonusToMaximize($item`Monodent of the Sea`, 200);
+  }
+  if (safeGet("auto_familiarChoice") === $familiar`Sword of S Words` && auto_swordNeedsMonodentHere(place)) {
+    addBonusToMaximize($item`Monodent of the Sea`, 400);
   }
   if (auto_havePeridot() && !planToPeridot && !maximizer.has($item`Peridot of Peril`) && !get("mappingMonsters") && auto_haveQueuedForcedNonCombat() && safeGet("auto_forceNonCombatLocation") === place && !periledToday(place)) {
     maximizer.exclude($item`Peridot of Peril`);
@@ -86038,6 +86219,11 @@ function autoAdv() {
   var turncount = (0, import_kolmafia225.myTurncount)();
   auto_interruptCheck("main", false);
   auto_triggerPreAdventure();
+  if (get("auto_abortBeforeAdventuring")) {
+    auto_abort(
+      `Aborted script as per user setting of 'auto_abortBeforeAdventuring'`
+    );
+  }
   var advReturn = get("_autoSkipNextAdventure", false) || ((shouldSkipAdventure === null || shouldSkipAdventure === void 0 ? void 0 : shouldSkipAdventure()) ?? false) || auto_adv1(loc, option);
   (0, import_kolmafia225.removeProperty)("_autoSkipNextAdventure");
   auto_triggerPostAdventure();
@@ -96957,6 +97143,11 @@ var args = Args.create(
       key: "tasks",
       help: "Print off the tasks, used for debugging. Usage 'tasks=' where a filter can be provided",
       setting: ""
+    }),
+    ncforces: Args.flag({
+      key: "ncforcers",
+      help: "This shows the information about forcing a NC that we have",
+      setting: ""
     })
   }
 );
@@ -96966,6 +97157,10 @@ function main2() {
   Args.fill(args, input);
   if (args.help) {
     Args.showHelp(args);
+    return;
+  }
+  if (args.ncforces) {
+    printForcedNoncombatLocations();
     return;
   }
   if (args.tasks !== void 0) {

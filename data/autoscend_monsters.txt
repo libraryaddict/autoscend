@@ -14,52 +14,53 @@ banish	6	Protagonist	!class:Ed the Undying	!familiar:Red-Nosed Snapper	js:Item.g
 banish	7	Irritating Series of Random Encounters	js:Item.get(["amulet of extreme plot significance","Mohawk Wig","metallic A"]).some(i => itemAmount(i) + equippedAmount(i) === 0)
 banish	8	MagiMechTech MechaMech	class:Ed the Undying	js:Item.get(["amulet of extreme plot significance","Mohawk Wig"]).some(i => itemAmount(i) + equippedAmount(i) === 0)
 banish	9	MagiMechTech MechaMech	!class:Ed the Undying	item:metallic A>0	js:Item.get(["amulet of extreme plot significance","Mohawk Wig"]).some(i => itemAmount(i) + equippedAmount(i) === 0)
-banish	10	Coaltergeist
-banish	11	Drunk Goat
-banish	12	Eagle	class:Ed the Undying
-banish	13	Evil Olive
-banish	14	Empty suit of armor	class:Ed the Undying
-banish	15	Flock Of Stab-Bats
-banish	16	Gluttonous Ghuol	class:Vampyre
-banish	17	Gluttonous Ghuol	prop:auto_turbo==true
-banish	18	Knob Goblin Harem Guard
-banish	19	Knob Goblin Madam	item:Knob Goblin Perfume>0
-banish	20	Mad Wino	!class:Ed the Undying
-banish	21	Mob Penguin Capo	class:Ed the Undying
-banish	22	Mismatched Twins
-banish	23	Natural Spider
-banish	24	Plaid Ghost
-banish	25	Possessed Laundry Press
-banish	26	Procrastination Giant
-banish	27	Pygmy Headhunter
-banish	28	Pygmy Janitor	tavern:true
-banish	29	Pygmy Orderlies
-banish	30	Pygmy Witch Lawyer
-banish	31	Pygmy Witch Nurse
-banish	32	Red Herring	!prop:questL11Ron=step4
-banish	33	Red Snapper	!prop:questL11Ron=step4
-banish	34	Sabre-Toothed Goat
-banish	35	Senile Lihc	loc:The Defiled Niche	prop:cyrptNicheEvilness>14
-banish	36	Slick Lihc	loc:The Defiled Niche	prop:cyrptNicheEvilness>14
-banish	37	Skeletal Sommelier
-banish	38	Spooky mummy	class:Ed the Undying
-banish	39	Spooky vampire	class:Ed the Undying
-banish	40	Steam Elemental
-banish	41	Taco Cat
-banish	42	Tan Gnat
-banish	43	Tomb Asp
-banish	44	Tomb Servant
-banish	45	Triffid	class:Ed the Undying
-banish	46	Wardr&ouml;b Nightstand
-banish	47	Warehouse Janitor
-banish	48	party skelteon	loc:The Defiled Nook	prop:cyrptNookEvilness>14
-banish	49	basic lihc	loc:The Defiled Niche	prop:cyrptNicheEvilness>14
+banish	10	Spunky Princess	js:Item.get(["amulet of extreme plot significance","Mohawk Wig"]).some(i => itemAmount(i) + equippedAmount(i) === 0)
+banish	11	Coaltergeist
+banish	12	Drunk Goat
+banish	13	Eagle	class:Ed the Undying
+banish	14	Evil Olive
+banish	15	Empty suit of armor	class:Ed the Undying
+banish	16	Flock Of Stab-Bats
+banish	17	Gluttonous Ghuol	class:Vampyre
+banish	18	Gluttonous Ghuol	prop:auto_turbo==true
+banish	19	Knob Goblin Harem Guard
+banish	20	Knob Goblin Madam	item:Knob Goblin Perfume>0
+banish	21	Mad Wino	!class:Ed the Undying
+banish	22	Mob Penguin Capo	class:Ed the Undying
+banish	23	Mismatched Twins
+banish	24	Natural Spider
+banish	25	Plaid Ghost
+banish	26	Possessed Laundry Press
+banish	27	Procrastination Giant
+banish	28	Pygmy Headhunter
+banish	29	Pygmy Janitor	tavern:true
+banish	30	Pygmy Orderlies
+banish	31	Pygmy Witch Lawyer
+banish	32	Pygmy Witch Nurse
+banish	33	Red Herring	!prop:questL11Ron=step4
+banish	34	Red Snapper	!prop:questL11Ron=step4
+banish	35	Sabre-Toothed Goat
+banish	36	Senile Lihc	loc:The Defiled Niche	prop:cyrptNicheEvilness>14
+banish	37	Slick Lihc	loc:The Defiled Niche	prop:cyrptNicheEvilness>14
+banish	38	Skeletal Sommelier
+banish	39	Spooky mummy	class:Ed the Undying
+banish	40	Spooky vampire	class:Ed the Undying
+banish	41	Steam Elemental
+banish	42	Taco Cat
+banish	43	Tan Gnat
+banish	44	Tomb Asp
+banish	45	Tomb Servant
+banish	46	Triffid	class:Ed the Undying
+banish	47	Wardr&ouml;b Nightstand
+banish	48	Warehouse Janitor
+banish	49	party skelteon	loc:The Defiled Nook	prop:cyrptNookEvilness>14
+banish	50	basic lihc	loc:The Defiled Niche	prop:cyrptNicheEvilness>14
 # Bugbear Invasion Mothership
-banish	50	scavenger bugbear	path:Bugbear Invasion	loc:Waste Processing	!sniffed:scavenger bugbear
-banish	51	bugaboo	path:Bugbear Invasion	loc:Morgue	!sniffed:bugaboo
-banish	52	Battlesuit Bugbear Type	path:Bugbear Invasion:loc:Engineering	!sniffed:Battlesuit Bugbear Type
-banish	53	ancient unspeakable bugbear	path:Bugbear Invasion	loc:Navigation	!sniffed:ancient unspeakable bugbear
-banish	54	trendy bugbear chef	path:Bugbear Invasion	loc:Galley	loc:Gallery	!sniffed:trendy bugbear chef
+banish	51	scavenger bugbear	path:Bugbear Invasion	loc:Waste Processing	!sniffed:scavenger bugbear
+banish	52	bugaboo	path:Bugbear Invasion	loc:Morgue	!sniffed:bugaboo
+banish	53	Battlesuit Bugbear Type	path:Bugbear Invasion:loc:Engineering	!sniffed:Battlesuit Bugbear Type
+banish	54	ancient unspeakable bugbear	path:Bugbear Invasion	loc:Navigation	!sniffed:ancient unspeakable bugbear
+banish	55	trendy bugbear chef	path:Bugbear Invasion	loc:Galley	loc:Gallery	!sniffed:trendy bugbear chef
 
 copy	0	Pygmy Bowler	js:get("hiddenBowlingAlleyProgress") + itemAmount($item`bowling ball`) < 6
 copy	1	Bob Racecar
@@ -84,94 +85,97 @@ freerun	9	Quiet Healer	item:amulet of extreme plot significance>0
 freerun	10	Spunky Princess	item:titanium assault umbrella>0
 freerun	11	Spunky Princess	item:unbreakable umbrella>0
 freerun	12	Spunky Princess	item:amulet of extreme plot significance>0
-freerun	13	MagiMechTech MechaMech	item:metallic A>0
-freerun	14	MagiMechTech MechaMech	prop:auto_wandOfNagamar=false
-freerun	15	Protagonist	!class:Ed the Undying
-freerun	16	bar
-freerun	17	spooky mummy
-freerun	18	spooky vampire
-freerun	19	triffid
-freerun	20	warwelf	!class:Ed the Undying
-freerun	21	wolfman	!class:Ed the Undying
-freerun	22	cubist bull
-freerun	23	empty suit of armor
-freerun	24	guy with a pitchfork, and his wife
-freerun	25	claw-foot bathtub
-freerun	26	malevolent hair clog
-freerun	27	toilet papergeist
-freerun	28	Iiti Kitty
-freerun	29	tomb bat
-freerun	30	tomb servant	loc:The Upper Chamber
-freerun	31	Knob Goblin Assistant Chef
-freerun	32	sleeping Knob Goblin Guard
-freerun	33	Sub-Assistant Knob Mad Scientist
-freerun	34	animated mahogany nightstand
-freerun	35	animated ornate nightstand	item:Disposable Instant Camera>0	item:Lord Spookyraven's Spectacles>0
-freerun	36	animated rustic nightstand
-freerun	37	Wardröb nightstand
-freerun	38	drunken rat
-freerun	39	bunch of drunken rats
-freerun	40	tapdancing skeleton
-freerun	41	floating platter of hors d'oeuvres
-freerun	42	boaraffe
-freerun	43	pygmy assault squad
-freerun	44	pygmy blowgunner
-freerun	45	pygmy orderlies
-freerun	46	pygmy witch lawyer
-freerun	47	pygmy witch nurse
-freerun	48	Pygmy headhunter
-freerun	49	pygmy witch accountant	loc:The Hidden Office Building	item:McClusky file (complete)=1
-freerun	50	pygmy witch accountant	loc:The Hidden Office Building	item:McClusky file (page 5)=1
-freerun	51	pygmy witch accountant	loc:The Hidden Office Building	prop:questL11Business=finished
-freerun	52	pygmy shaman	loc:The Hidden Apartment Building	effect:Thrice-Cursed
-freerun	53	pygmy shaman	loc:The Hidden Apartment Building	prop:hiddenApartmentProgress>6
-freerun	54	Copperhead Club bartender
-freerun	55	fan dancer
-freerun	56	Mob Penguin Capo
-freerun	57	ninja snowman (chopsticks)
-freerun	58	ninja snowman janitor
-freerun	59	ninja snowman weaponmaster
+freerun	13	Spunky Princess	prop:auto_attemptToBladdermax=true
+freerun	14	MagiMechTech MechaMech	item:metallic A>0
+freerun	15	MagiMechTech MechaMech	prop:auto_wandOfNagamar=false
+freerun	16	MagiMechTech MechaMech	prop:auto_attemptToBladdermax=true
+freerun	17	Protagonist	!class:Ed the Undying
+freerun	18	bar
+freerun	19	spooky mummy
+freerun	20	spooky vampire
+freerun	21	triffid
+freerun	22	warwelf	!class:Ed the Undying
+freerun	23	wolfman	!class:Ed the Undying
+freerun	24	cubist bull
+freerun	25	empty suit of armor
+freerun	26	guy with a pitchfork, and his wife
+freerun	27	claw-foot bathtub
+freerun	28	malevolent hair clog
+freerun	29	toilet papergeist
+freerun	30	Iiti Kitty
+freerun	31	tomb bat
+freerun	32	tomb servant	loc:The Upper Chamber
+freerun	33	Knob Goblin Assistant Chef
+freerun	34	sleeping Knob Goblin Guard
+freerun	35	Sub-Assistant Knob Mad Scientist
+freerun	36	animated mahogany nightstand
+freerun	37	animated ornate nightstand	item:Disposable Instant Camera>0	item:Lord Spookyraven's Spectacles>0
+freerun	38	animated rustic nightstand
+freerun	39	Wardröb nightstand
+freerun	40	drunken rat
+freerun	41	bunch of drunken rats
+freerun	42	tapdancing skeleton
+freerun	43	floating platter of hors d'oeuvres
+freerun	44	boaraffe
+freerun	45	pygmy assault squad
+freerun	46	pygmy blowgunner
+freerun	47	pygmy orderlies
+freerun	48	pygmy witch lawyer
+freerun	49	pygmy witch nurse
+freerun	50	Pygmy headhunter
+freerun	51	pygmy witch accountant	loc:The Hidden Office Building	item:McClusky file (complete)=1
+freerun	52	pygmy witch accountant	loc:The Hidden Office Building	item:McClusky file (page 5)=1
+freerun	53	pygmy witch accountant	loc:The Hidden Office Building	prop:questL11Business=finished
+freerun	54	pygmy shaman	loc:The Hidden Apartment Building	effect:Thrice-Cursed
+freerun	55	pygmy shaman	loc:The Hidden Apartment Building	prop:hiddenApartmentProgress>6
+freerun	56	Copperhead Club bartender
+freerun	57	fan dancer
+freerun	58	Mob Penguin Capo
+freerun	59	ninja snowman (chopsticks)
+freerun	60	ninja snowman janitor
+freerun	61	ninja snowman weaponmaster
 # low key summer
-freerun	60	fluffy bunny
-freerun	61	factory-irregular skeleton
-freerun	62	novelty tropical skeleton
-freerun	63	remaindered skeleton
-freerun	64	swarm of skulls
-freerun	65	cooler wino
-freerun	66	dire pigeon
-freerun	67	malt liquor golem
-freerun	68	sewer snake with a sewer snake in it
-freerun	69	angry piñata
-freerun	70	handsome mariachi
-freerun	71	irate mariachi
-freerun	72	mariachi calavera
-freerun	73	raging bull
-freerun	74	Snow Queen
-freerun	75	upgraded ram
-freerun	76	baguette lady
-freerun	77	cr&ecirc;ep
-freerun	78	dinner troll
-freerun	79	gingerbread murderer
-freerun	80	Carnivorous Moxie Weed
-freerun	81	Grass Elemental
-freerun	82	Weremoose
-freerun	83	anglerbush
-freerun	84	confused goth music student
-freerun	85	man-eating plant
-freerun	86	skeletal cat
-freerun	87	skeletal hamster
-freerun	88	skeletal monkey
-freerun	89	creepy doll
-freerun	90	possessed toy chest
-freerun	91	spooky music box
-freerun	92	1335 HaXx0r
-freerun	93	Anime Smiley
-freerun	94	Flaming Troll
-freerun	95	Lamz0r N00b
-freerun	96	me4t begZ0r
-freerun	97	Spam Witch
-freerun	98	oasis monster
-freerun	99	rolling Stone
+freerun	62	fluffy bunny
+freerun	63	factory-irregular skeleton
+freerun	64	novelty tropical skeleton
+freerun	65	remaindered skeleton
+freerun	66	swarm of skulls
+freerun	67	cooler wino
+freerun	68	dire pigeon
+freerun	69	malt liquor golem
+freerun	70	sewer snake with a sewer snake in it
+freerun	71	angry piñata
+freerun	72	handsome mariachi
+freerun	73	irate mariachi
+freerun	74	mariachi calavera
+freerun	75	raging bull
+freerun	76	Snow Queen
+freerun	77	upgraded ram
+freerun	78	baguette lady
+freerun	79	cr&ecirc;ep
+freerun	80	dinner troll
+freerun	81	gingerbread murderer
+freerun	82	Carnivorous Moxie Weed
+freerun	83	Grass Elemental
+freerun	84	Weremoose
+freerun	85	anglerbush
+freerun	86	confused goth music student
+freerun	87	man-eating plant
+freerun	88	skeletal cat
+freerun	89	skeletal hamster
+freerun	90	skeletal monkey
+freerun	91	creepy doll
+freerun	92	possessed toy chest
+freerun	93	spooky music box
+freerun	94	1335 HaXx0r
+freerun	95	Anime Smiley
+freerun	96	Flaming Troll
+freerun	97	Lamz0r N00b
+freerun	98	me4t begZ0r
+freerun	99	Spam Witch
+freerun	100	oasis monster
+freerun	101	rolling Stone
+freerun	102	some fish
 
 replace	0	Banshee Librarian	item:Killing Jar>0
 replace	1	Beefy Bodyguard Bat	loc:The Boss Bat's Lair	turnsspent:The Boss Bat's Lair>=4	!path:Heavy Rains	!path:Actually Ed the Undying	!path:Pocket Familiars	!path:Dark Gyffte	!path:Path of the Plumber	!pathid:41	!path:Wildfire	!path:Fall of the Dinosaurs	!path:Avatar of Shadows Over Loathing	!path:Legacy of Loathing	!path:WereProfessor
