@@ -31854,9 +31854,9 @@ function ensuredDropsPerFight(monster, item15) {
     (drop) => drop.item === item15 && drop.rate >= 25 && !stealOnlyDrops.includes(drop.flag)
   ).length;
 }
-var cannotBeYellowRayed = $items`blasting soda, bottle of Chateau de Vinegar, A-Boo clue`;
+var notPickpocketable = $items`A-Boo clue, barrel of gunpowder`, fakeDrops = $items`blasting soda, bottle of Chateau de Vinegar, funky junk key, Worse Homes and Gardens, ninja rope, ninja crampons, ninja carabiner, bloodied surgical dungarees, half-size scalpel, surgical apron, head mirror, surgical mask, McClusky file (page 1), McClusky file (page 2), McClusky file (page 3), McClusky file (page 4), McClusky file (page 5), McClusky file (complete)`;
 function isDropYellowRayable(drop) {
-  return !cannotBeYellowRayed.includes(drop.item) && isItemDropControlled(drop);
+  return !notPickpocketable.includes(drop.item) && !fakeDrops.includes(drop.item) && drop.flag !== "no_pickpocket" && isItemDropControlled(drop);
 }
 function isItemDropControlled(drop) {
   return drop.rate >= 1 && drop.rate < 100 && !stealOnlyDrops.includes(drop.flag);
