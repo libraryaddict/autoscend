@@ -30075,15 +30075,18 @@ function auto_freeCrafts() {
   var retval = 0;
   return (0, import_kolmafia175.haveSkill)($skill`Rapid Prototyping`) && (0, import_kolmafia175.isUnrestricted)($item`Crimbot ROM: Rapid Prototyping`) && (retval += 5 - get4("_rapidPrototypingUsed")), (0, import_kolmafia175.haveSkill)($skill`Expert Corner-Cutter`) && (0, import_kolmafia175.isUnrestricted)($item`LyleCo Contractor's Manual`) && (retval += 5 - get4("_expertCornerCutterUsed")), retval += (0, import_kolmafia175.haveEffect)($effect`Inigo's Incantation of Inspiration`) / 5, retval += get4("homebodylCharges"), retval;
 }
+function isNaturallyFree(monster) {
+  return monster === $monster`Eldritch Tentacle` ? get4("eldritchTentaclesFought") < 11 : !!(monster.attributes.includes("FREE") || monster === $monster`time cop` && get4("_timeCopsFoughtToday") < 11);
+}
 function isFreeMonster(mon) {
   var loc = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : $location.none;
-  return in_avantGuard() ? !1 : !!(get4("_auto_current_monster_is_free", !1) || mon === $monster`time cop` && get4("_timeCopsFoughtToday") < 11 || combat_status_check("choiceMonster") && (0, import_kolmafia175.lastChoice)() === 1596 && mon.phylum === $phylum`undead` || (0, import_kolmafia175.myThrall)() === $thrall`Vermincelli` && (0, import_kolmafia175.myThrall)().level >= 11 && mon.attributes.split(" ").includes("RAT") && get4("_legendaryVermincelliFreeRats") < 3 || $monsters`angry ghost, annoyed snake, government bureaucrat, slime blob, terrible mutant`.includes(
+  return in_avantGuard() ? !1 : !!(isNaturallyFree(mon) || get4("_auto_current_monster_is_free", !1) || mon === $monster`time cop` && get4("_timeCopsFoughtToday") < 11 || combat_status_check("choiceMonster") && (0, import_kolmafia175.lastChoice)() === 1596 && mon.phylum === $phylum`undead` || (0, import_kolmafia175.myThrall)() === $thrall`Vermincelli` && (0, import_kolmafia175.myThrall)().level >= 11 && mon.attributes.split(" ").includes("RAT") && get4("_legendaryVermincelliFreeRats") < 3 || $monsters`angry ghost, annoyed snake, government bureaucrat, slime blob, terrible mutant`.includes(
     mon
   ) && get4("_voteFreeFights") < 3 || $monsters`biker, burnout, jock, party girl, "plain" girl`.includes(mon) && get4("_neverendingPartyFreeTurns") < 10 || $monsters`Perceiver of Sensations, Performer of Actions, Thinker of Thoughts`.includes(
     mon
   ) && (0, import_kolmafia175.myFamiliar)() === $familiar`Machine Elf` && get4("_machineTunnelsAdv") < 5 && (0, import_kolmafia175.myLocation)() === $location`The Deep Machine Tunnels` || $monster`X-32-F Combat Training Snowman` === mon && get4("_snojoFreeFights") < 10 || $monsters`void guy, void slab, void spider`.includes(mon) && get4("_voidFreeFights") < 5 || $monster`drunk pygmy` === mon && (0, import_kolmafia175.itemAmount)($item`Bowl of Scorpions`) > 0 && bluevsred_willEncounterFight(mon) || get4("breathitinCharges") > 0 && loc.environment === "outdoor" || $locations`Shadow Rift (The Ancient Buried Pyramid), Shadow Rift (The Hidden City), Shadow Rift (The Misspelled Cemetary)`.includes(
     loc
-  ) && (0, import_kolmafia175.haveEffect)($effect`Shadow Affinity`) > 0 && !in_avantGuard() || mon.randomModifiers.includes("optimal") || (0, import_kolmafia175.toLowerCase)(mon.attributes).includes("free") && ((0, import_kolmafia175.currentRound)() > 0 && mon === (0, import_kolmafia175.lastMonster)() || bluevsred_willEncounterFight(mon)) || mon === baseballDiamond_exports.baseballFreefightMonster() && baseballDiamond_exports.baseballFreefightsRemaining() > 0);
+  ) && (0, import_kolmafia175.haveEffect)($effect`Shadow Affinity`) > 0 && !in_avantGuard() || mon.randomModifiers.includes("optimal") || mon.attributes.includes("FREE") && ((0, import_kolmafia175.currentRound)() > 0 && mon === (0, import_kolmafia175.lastMonster)() || bluevsred_willEncounterFight(mon)) || mon === baseballDiamond_exports.baseballFreefightMonster() && baseballDiamond_exports.baseballFreefightsRemaining() > 0);
 }
 function auto_burningDelay() {
   return !!((votingBooth_exports.voteMonster(!0) || sourceTerminal_exports.isOverdueDigitize() || sealClubbingClub_exports.isOverdueClubIntoNextWeek() || kramco_exports.sausageGoblin() || backupCamera_exports.backupTarget() || cursedMagnifyingGlass_exports.voidMonster()) && (0, import_kolmafia175.myLocation)() === solveDelayZone());
@@ -31816,7 +31819,7 @@ function auto_runCombat(text, combatMacro) {
         } else if (freefightSnapshot.get(name) === value) continue;
         _reason2.push(name);
       }
-      (0, import_kolmafia175.lastMonster)().attributes.includes("FREE") && _reason2.push(""), _reason2.length === 0 && _reason2.push("unknown"), handleTracker({
+      isNaturallyFree((0, import_kolmafia175.lastMonster)()) && _reason2.push(""), _reason2.length === 0 && _reason2.push("unknown"), handleTracker({
         tracker: "freekills",
         monster: (0, import_kolmafia175.lastMonster)(),
         source: _reason2.join(" / ")
@@ -33066,7 +33069,10 @@ function freeRestsRemaining() {
   return cincho_exports.haveCincho() && cincho_exports.nextRestOverCinch() ? 0 : (0, import_kolmafia177.max)(0, (0, import_kolmafia177.totalFreeRests)() - get4("timesRested"));
 }
 function restoreMpBeforeBigFight() {
-  var haveEnoughMp = () => $classes`Pastamancer, Sauceror`.includes((0, import_kolmafia177.myClass)()) && (0, import_kolmafia177.myMp)() >= Math.min((0, import_kolmafia177.myMaxmp)() - 20, 200);
+  var haveEnoughMp = () => (0, import_kolmafia177.myMp)() >= Math.min(
+    (0, import_kolmafia177.myMaxmp)() - 20,
+    $classes`Pastamancer, Sauceror`.includes((0, import_kolmafia177.myClass)()) ? 200 : 80
+  );
   (0, import_kolmafia177.myMp)() < 40 && possessEquipment($item`Pantsgiving`) && (0, import_kolmafia177.equip)($item`Pantsgiving`);
   for (var i = 0; i < 5 && (i === 0 || !haveEnoughMp()) && (0, import_kolmafia177.myMp)() < Math.min((0, import_kolmafia177.myMaxmp)(), 500) && (0, import_kolmafia177.haveCampground)() && freeRestsRemaining() > 1; i++)
     doRest();
@@ -43190,12 +43196,12 @@ __export(zeppelin_exports, {
 });
 var import_kolmafia223 = require("kolmafia");
 function L11_zeppelinProtestors() {
-  if (internalQuestStatus("questL11Shen") < 8 && !isAboutToPowerlevel() && !LX_needToBurnUnusedLuck() || internalQuestStatus("questL11Ron") < 0 || internalQuestStatus("questL11Ron") > 1)
+  if (internalQuestStatus("questL11Shen") < 8 && !isAboutToPowerlevel() && !LX_needToBurnUnusedLuck() && get4("zeppelinProtestors") < 79 || internalQuestStatus("questL11Ron") < 0 || internalQuestStatus("questL11Ron") > 1)
     return !1;
   if (internalQuestStatus("questL11Ron") === 0)
     return autoAdv($location`A Mob of Zeppelin Protesters`);
-  if (set3("choiceAdventure856", 1), candyCane_exports.haveCCSC() ? set3("choiceAdventure857", 2) : set3("choiceAdventure857", 1), set3("choiceAdventure858", 1), buffMaintain$2($effect`Greasy Peasy`), buffMaintain$2($effect`Musky`), buffMaintain$2($effect`Blood-Gorged`), in_wotsf() || pullXWhenHaveY($item`deck of lewd playing cards`, 1, 0), (0, import_kolmafia223.itemAmount)($item`Flamin' Whatshisname`) > 0 ? backupSetting("choiceAdventure866", "3") : backupSetting("choiceAdventure866", "2"), get4("zeppelinProtestors") < 79) {
-    maximizer.weight($modifier`Sleaze Damage`, 100).weight($modifier`Sleaze Spell Damage`, 100), auto_is_valid$3($effect`Oiled, Slick`) && beachComb_exports.beachCombHead("sleaze");
+  if (set3("choiceAdventure856", 1), candyCane_exports.haveCCSC() ? set3("choiceAdventure857", 2) : set3("choiceAdventure857", 1), set3("choiceAdventure858", 1), (0, import_kolmafia223.itemAmount)($item`Flamin' Whatshisname`) > 0 ? backupSetting("choiceAdventure866", "3") : backupSetting("choiceAdventure866", "2"), get4("zeppelinProtestors") < 79) {
+    buffMaintain$2($effect`Greasy Peasy`), buffMaintain$2($effect`Musky`), buffMaintain$2($effect`Blood-Gorged`), in_wotsf() || pullXWhenHaveY($item`deck of lewd playing cards`, 1, 0), maximizer.weight($modifier`Sleaze Damage`, 100).weight($modifier`Sleaze Spell Damage`, 100), auto_is_valid$3($effect`Oiled, Slick`) && beachComb_exports.beachCombHead("sleaze");
     for (var sl of $slots`acc1, acc2, acc3`)
       (0, import_kolmafia223.numericModifier)((0, import_kolmafia223.equippedItem)(sl), "sleaze damage") + (0, import_kolmafia223.numericModifier)((0, import_kolmafia223.equippedItem)(sl), "sleaze spell damage") < 60 && (0, import_kolmafia223.itemAmount)($item`mini kiwi`) >= 2 && equipmentAmount($item`mini kiwi bikini`) < 3 && auto_is_valid($item`mini kiwi bikini`) && (0, import_kolmafia223.create)(1, $item`mini kiwi bikini`);
   }
