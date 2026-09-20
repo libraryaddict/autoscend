@@ -183,7 +183,7 @@ item	40	Pair of Stomping Boots	!path:G-Lover
 item	41	Slimeling
 # More slightly special fairies
 item	42	Cooler Yeti
-item	43	Gelatinous Cubeling	prop:cubelingProgress<12
+item	43	Gelatinous Cubeling	prop:cubelingProgress<12	!prop_boolean:auto_skipDailyDungeon
 item	44	Steam-Powered Cheerleader
 item	45	Obtuse Angel
 item	46	Green Pixie
